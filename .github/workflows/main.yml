@@ -91,22 +91,6 @@ jobs:
             ${{ runner.os }}-build-${{ env.cache-name }}-
             ${{ runner.os }}-build-
             ${{ runner.os }}-
-
-      - name: Install Dependencies
-        run: npm install
-
-      - name: Install conda environment
-        uses: conda-incubator/setup-miniconda@v1
-        with:
-          activate-environment: jupyter-actions
-          environment-file: environment.yml
-          python-version: 3.7
-
-      - name: Execute all Notebooks
-        shell: bash -l {0}
-        run: |
-          conda activate jupyter-actions
-          pytest
       
       - name: Sync ReadMe docs
         env:
@@ -115,8 +99,6 @@ jobs:
           # export RELEVANCEAI_SDK_VERSION=$(cat __version__)
           # echo 'Updating ReadMe docs with version $RELEVANCEAI_SDK_VERSION'
           ./scripts/sync_readme_docs.sh true
-
-      
 
       ### Given stable version of SDK
 
