@@ -49,7 +49,9 @@ jobs:
         run: npm install
       
       - name: Sync ReadMe docs
-        run: npx rdme docs ./RelevanceAI-ReadMe-docs/v0.27.0 --version=v0.27.0 --key ${{ secrets.RELEVANCEAI_README_API_KEY }}  
+        run: | 
+          export RELEVANCEAI_SDK_VERSION=$(cat __version__)
+          npx rdme docs ./RelevanceAI-ReadMe-docs/${RELEVANCEAI_SDK_VERSION} --version=${RELEVANCEAI_SDK_VERSION} --key ${{ secrets.RELEVANCEAI_README_API_KEY }}  
 
       
 
