@@ -66,7 +66,7 @@ client = Client()
 ```
 
 
-<img src="https://github.com/RelevanceAI/RelevanceAI-readme-docs/blob/main/RelevanceAI-ReadMe-docs/Getting_Started/_assets/RelevanceAI_auth_token_details.png?raw=true" width="650" alt="Get your Auth Details" />
+<img src="https://github.com/RelevanceAI/RelevanceAI-readme-docs/blob/main/docs/GETTING_STARTED/_assets/RelevanceAI_auth_token_details.png?raw=true" width="650" alt="Get your Auth Details" />
 
 
 Once you've retrieved your authentication credentials, you can instantiate your client in future in the following manner.
@@ -88,5 +88,5 @@ client = Client(project=project, api_key=api_key)
 The key can also be found here:
 
 
-<img src="https://github.com/RelevanceAI/RelevanceAI-readme-docs/blob/main/RelevanceAI-ReadMe-docs/Getting_Started/_assets/RelevanceAI_auth_setting_details.png?raw=true" width="650" alt="Find your API and project key here in Settings" />
+<img src="https://github.com/RelevanceAI/RelevanceAI-readme-docs/blob/main/docs/GETTING_STARTED/_assets/RelevanceAI_auth_setting_details.png?raw=true" width="650" alt="Find your API and project key here in Settings" />
 

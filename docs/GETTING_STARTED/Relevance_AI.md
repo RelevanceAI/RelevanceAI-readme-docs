@@ -10,12 +10,17 @@ updatedAt: "2022-01-10T01:31:01.336Z"
 
 Relevance AI's ultimate goal is to assist developers to experiment, build and share the best vectors to solve similarity and relevance based problems across teams.
 
-<img src="https://github.com/RelevanceAI/RelevanceAI-readme-docs/blob/main/RelevanceAI-ReadMe-docs/Getting_Started/_assets/RelevanceAI_DS_Workflow.png?raw=true" width="650" alt="Relevance AI DS Workflow" />
+
+
+<figure>
+<img src="https://github.com/RelevanceAI/RelevanceAI-readme-docs/blob/main/docs/GETTING_STARTED/_assets/RelevanceAI_DS_Workflow.png?raw=true" width="650" alt="Relevance AI DS Workflow" />
+<figcaption>How Relevance AI helps with the data science workflow</figcaption>
+<figure>
 
 
 ## In 5 lines of code, get a shareable dashboard for experiments insight!
 
-Run this Quickstart in Colab: [![Open In Colab](https://colab.research.google.com/_assets/colab-badge.svg)](https://githubtocolab.com/RelevanceAI/RelevanceAI-readme-docs/blob/main/RelevanceAI-ReadMe-docs/Getting_Started/_notebooks/Intro_to_Relevance_AI.ipynb)
+Run this Quickstart in Colab: [![Open In Colab](https://colab.research.google.com/_assets/colab-badge.svg)](https://githubtocolab.com/RelevanceAI/RelevanceAI-readme-docs/blob/main/docs/GETTING_STARTED/_notebooks/Intro_to_Relevance_AI.ipynb)
 
 ### 1. Set up Relevance AI
 

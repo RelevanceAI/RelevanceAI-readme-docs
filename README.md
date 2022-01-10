@@ -58,7 +58,7 @@ Store corresponding images in relative section.
 Append `?=raw=true` to Github asset URL.
 
 ```html
-<img src="https://github.com/RelevanceAI/RelevanceAI-readme-docs/blob/main/RelevanceAI-ReadMe-docs/Getting_Started/RelevanceAI_DS_Workflow.png?raw=true" width="650" alt="Relevance AI DS Workflow" />
+<img src="https://github.com/RelevanceAI/RelevanceAI-readme-docs/blob/main/docs/GETTING_STARTED/RelevanceAI_DS_Workflow.png?raw=true" width="650" alt="Relevance AI DS Workflow" />
 
 ```
 
@@ -71,9 +71,9 @@ Replace link to Google Colab from 'https://github.com/<path_to_notebook>' to 'ht
 
 eg. 
 
-Github ref - https://github.com/RelevanceAI/RelevanceAI-readme-docs/blob/main/RelevanceAI-ReadMe-docs/Getting_Started/Intro_to_Relevance_AI.ipynb
+Github ref - https://github.com/RelevanceAI/RelevanceAI-readme-docs/blob/main/docs/GETTING_STARTED/Intro_to_Relevance_AI.ipynb
 
-Colab ref - https://githubtocolab.com/RelevanceAI/RelevanceAI-readme-docs/blob/main/RelevanceAI-ReadMe-docs/Getting_Started/Intro_to_Relevance_AI.ipynb
+Colab ref - https://githubtocolab.com/RelevanceAI/RelevanceAI-readme-docs/blob/main/docs/GETTING_STARTED/Intro_to_Relevance_AI.ipynb
 
 2. We review notebooks using ReviewNB
 
@@ -109,7 +109,7 @@ updatedAt: "2022-01-10T01:31:01.336Z"
 ❯ npx rdme docs path-to-markdown-files --version={project-version} --key $RELEVANCEAI_README_API_KEY 
 
 ## eg.
-❯ npx rdme docs ./RelevanceAI-ReadMe-docs/ --version=v0.27.0  --key $RELEVANCEAI_README_API_KEY
+❯ npx rdme docs ./docs/ --version=v0.27.0  --key $RELEVANCEAI_README_API_KEY
 ```
 
 #### Edit a Single ReadMe Doc on Your Local Machine

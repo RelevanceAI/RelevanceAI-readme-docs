@@ -13,7 +13,7 @@ While vector databases are used to power recommendations and search engines - th
 ### Why are vector databases not easy to experiment with?
 
 
-<img src="https://github.com/RelevanceAI/RelevanceAI-readme-docs/blob/main/RelevanceAI-ReadMe-docs/Getting_Started/New_to_vectors?/_assets/RelevanceAI_vectorbase_workflow.png?raw=true" width="650" alt="Typical Vector Database Workflow" />
+<img src="https://github.com/RelevanceAI/RelevanceAI-readme-docs/blob/main/docs/GETTING_STARTED/New_to_vectors?/_assets/RelevanceAI_vectorbase_workflow.png?raw=true" width="650" alt="Typical Vector Database Workflow" />
 
 
 Vector databases are at their core - designed for production-level purposes without enabling the developers to first test which vectors work best for their purposes. 
@@ -50,7 +50,7 @@ While these range from model problems to data problems, one thing is clear:
 ## Relevance AI's provides an experimentation-first vector database
 
 
-<img src="https://github.com/RelevanceAI/RelevanceAI-readme-docs/blob/main/RelevanceAI-ReadMe-docs/Getting_Started/New_to_vectors?/_assets/RelevanceAI_experimentationfirst_example_flow.png?raw=true" width="650" alt="Experimentation-first Vector Database Workflow" />
+<img src="https://github.com/RelevanceAI/RelevanceAI-readme-docs/blob/main/docs/GETTING_STARTED/New_to_vectors?/_assets/RelevanceAI_experimentationfirst_example_flow.png?raw=true" width="650" alt="Experimentation-first Vector Database Workflow" />
 
 
 
