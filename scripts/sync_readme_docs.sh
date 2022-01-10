@@ -72,4 +72,4 @@ fi
 # Sync documentation
 ###############################################################################
 
-npx rdme docs ./RelevanceAI-ReadMe-docs/ --version=$RELEVANCEAI_SDK_VERSION  --key $RELEVANCEAI_README_API_KEY
+npx rdme docs ./docs/ --version=$RELEVANCEAI_SDK_VERSION  --key $RELEVANCEAI_README_API_KEY

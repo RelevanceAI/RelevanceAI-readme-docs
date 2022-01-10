@@ -41,7 +41,7 @@ You will be prompted with your username and password. Once entered, you'll be ab
 else export `$RELEVANCEAI_README_API_KEY` variable from ReadMe Project Configuration
 
 
-![](./imgs/readme_api_key.png)
+![](./assets/readme_api_key.png)
 
 
 ```zsh
@@ -49,7 +49,7 @@ else export `$RELEVANCEAI_README_API_KEY` variable from ReadMe Project Configura
 ```
 
 
-### Asset References
+### Asset References, Updates and Reviews
 
 ### Images
 
@@ -58,31 +58,36 @@ Store corresponding images in relative section.
 Append `?=raw=true` to Github asset URL.
 
 ```html
-<img src="https://github.com/RelevanceAI/RelevanceAI-readme-docs/blob/development/RelevanceAI-ReadMe-docs/Getting%20Started/RelevanceAI_DS_Workflow.png?raw=true" width="650" alt="Relevance AI DS Workflow" />
+<img src="https://github.com/RelevanceAI/RelevanceAI-readme-docs/blob/main/RelevanceAI-ReadMe-docs/Getting_Started/RelevanceAI_DS_Workflow.png?raw=true" width="650" alt="Relevance AI DS Workflow" />
 
 ```
 
 
 ### Colab Notebooks
 
-Store corresponding notebooks in relative section.
+1. Store corresponding notebooks in relative section.
 
 Replace link to Google Colab from 'https://github.com/<path_to_notebook>' to 'https://githubtocolab.com/<path_to_notebook>'.
 
 eg. 
 
-Github ref - https://github.com/RelevanceAI/RelevanceAI-readme-docs/blob/development/RelevanceAI-ReadMe-docs/Getting%20Started/Intro_to_Relevance_AI.ipynb
+Github ref - https://github.com/RelevanceAI/RelevanceAI-readme-docs/blob/main/RelevanceAI-ReadMe-docs/Getting_Started/Intro_to_Relevance_AI.ipynb
 
-Colab ref - https://githubtocolab.com/RelevanceAI/RelevanceAI-readme-docs/blob/development/RelevanceAI-ReadMe-docs/Getting%20Started/Intro_to_Relevance_AI.ipynb
+Colab ref - https://githubtocolab.com/RelevanceAI/RelevanceAI-readme-docs/blob/main/RelevanceAI-ReadMe-docs/Getting_Started/Intro_to_Relevance_AI.ipynb
+
+2. We review notebooks using ReviewNB
+
+https://app.reviewnb.com/RelevanceAI/RelevanceAI-readme-docs/
+
 
 ### Syncing ReadMe docs
 #### Syncing a Folder of Markdown Docs to ReadMe
 
 Ensure folder structure matches the following - 
 
-![](./imgs/example_readme_folder_structure.png)
+![](./assets/example_readme_folder_structure.png)
 
-![](./imgs/example_readme_docsync.png)
+![](./assets/example_readme_docsync.png)
 
 
 
@@ -135,7 +140,7 @@ For example:
 
 For now, you can only update page slugs in manually in the respective page.
 
-![](./imgs/page_slug_update.png)
+![](./assets/page_slug_update.png)
 
 
 ## 📘 Getting Started with ReadMe Markdown
@@ -144,3 +149,8 @@ https://rdmd.readme.io/docs/getting-started
 
 
 
+
+
+### Helpful Tools
+
+- [jqplay](https://jqplay.org/s/VTxvuAo0T2) - For crafting jq queries
