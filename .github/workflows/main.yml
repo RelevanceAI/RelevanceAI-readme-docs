@@ -3,14 +3,45 @@ name: ReadMe Update
 
 on:
   push:
-    branches: [ main, development ]
+    branches: [ main, beta ]
   pull_request:
-    branches: [ main, development]
+    branches: [ main, beta ]
 
   workflow_dispatch:
 
 jobs:
-  build:
+  test-notebooks:
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        os: [ ubuntu-latest] 
+        python-version: [ '3.7' ]
+        # python-version: [ '3.6', '3.7', '3.8', '3.9' ]
+        include:
+          - os: ubuntu-latest
+            path: ~/.cache/pip
+          # - os: macos-latest
+          #   path: ~/Library/Caches/pip
+          # - os: windows-latest
+          #   path: ~\AppData\Local\pip\Cache
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Install conda environment
+        uses: conda-incubator/setup-miniconda@v1
+        with:
+          activate-environment: jupyter-actions
+          environment-file: environment.yml
+          python-version: 3.7
+
+      - name: Execute all Notebooks
+        shell: bash -l {0}
+        run: |
+          conda activate jupyter-actions
+          pytest
+
+  sync-to-readme:
     runs-on: ${{ matrix.os }}
     strategy:
       matrix:
@@ -47,11 +78,25 @@ jobs:
 
       - name: Install Dependencies
         run: npm install
+
+      - name: Install conda environment
+        uses: conda-incubator/setup-miniconda@v1
+        with:
+          activate-environment: jupyter-actions
+          environment-file: environment.yml
+          python-version: 3.7
+
+      - name: Execute all Notebooks
+        shell: bash -l {0}
+        run: |
+          conda activate jupyter-actions
+          pytest
       
       - name: Sync ReadMe docs
         run: | 
           export RELEVANCEAI_SDK_VERSION=$(cat __version__)
-          npx rdme docs ./RelevanceAI-ReadMe-docs/${RELEVANCEAI_SDK_VERSION} --version=${RELEVANCEAI_SDK_VERSION} --key ${{ secrets.RELEVANCEAI_README_API_KEY }}  
+          echo 'Updating ReadMe docs with version $RELEVANCEAI_SDK_VERSION'
+          npx rdme docs ./RelevanceAI-ReadMe-docs/ --version=${RELEVANCEAI_SDK_VERSION} --key ${{ secrets.RELEVANCEAI_README_API_KEY }}  
 
       
 
@@ -62,27 +107,3 @@ jobs:
       ### Update README docs with current version, latest updates
 
 
-
-
-      # - name: Set up Python
-      #   uses: actions/setup-python@v2
-      #   with:
-      #     python-version: ${{ matrix.python-version }}
-      # - name: Cache pip
-      #   uses: actions/cache@v2
-      #   with:
-      #     path: ${{ matrix.path }}
-      #     key: ${{ runner.os }}-${{ env.pythonLocation }}-pip-${{ hashFiles('setup.py') }}-${{ hashFiles('requirements-dev.txt') }}
-      #     restore-keys: |
-      #       ${{ runner.os }}-${{ env.pythonLocation }}-pip-
-      #       ${{ runner.os }}-${{ env.pythonLocation }}-
-      # - name: Run tests
-      #   env:
-      #     TEST_PROJECT: ${{ secrets.TEST_PROJECT }}
-      #     TEST_API_KEY: ${{ secrets.TEST_API_KEY }}
-      #   run: |
-      #     python -c "import sys; print(sys.version)"
-      #     python -m pip install -e .[tests]
-      #     python -m pip install pytest-sugar
-      #     python -m pip install pytest-rerunfailures
-      #     python -m pytest --cov=relevanceai -vv -rs -x --reruns 5 --reruns-delay 1
