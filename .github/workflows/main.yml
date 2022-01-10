@@ -3,9 +3,9 @@ name: ReadMe Update
 
 on:
   push:
-    branches: [ main, beta ]
+    branches: [ main, development ]
   pull_request:
-    branches: [ main, beta ]
+    branches: [ main, development ]
 
   workflow_dispatch:
 
