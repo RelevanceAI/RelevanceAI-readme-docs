@@ -38,7 +38,7 @@ get_latest_readme_version() {
 
 pip install --upgrade pip
 pip --version
-RELEVANCEAI_SDK_VERSION=$(pip install RelevanceAI== | grep -oP '\(\K[^\)]+')
+RELEVANCEAI_SDK_VERSION=$(pip --use-deprecated=legacy-resolver install RelevanceAI== | grep -oP '\(\K[^\)]+')
 LATEST_README_VERSION=$(get_latest_readme_version)
 echo $RELEVANCEAI_SDK_VERSION
 echo $LATEST_README_VERSION
