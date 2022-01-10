@@ -10,15 +10,13 @@ updatedAt: "2022-01-10T01:31:01.336Z"
 
 Relevance AI's ultimate goal is to assist developers to experiment, build and share the best vectors to solve similarity and relevance based problems across teams.
 
-![](RelevanceAI_DS_Workflow.png)
+![](https://github.com/RelevanceAI/RelevanceAI-readme-docs/blob/development/RelevanceAI-ReadMe-docs/Getting%20Started/RelevanceAI_DS_Workflow.png)
 
-![](https:// ... RelevanceAI_DS_Workflow.png) 
-- S3 or Blob folder
 
 
 ## In 5 lines of code, get a shareable dashboard for experiments insight!
 
-Run this Quickstart in Colab: [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://github.com/n-waves/multifit/blob/master/notebooks/Intro_to_Relevance_AI.ipynb)
+Run this Quickstart in Colab: [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://githubtocolab.com/RelevanceAI/RelevanceAI-readme-docs/blob/development/RelevanceAI-ReadMe-docs/Getting%20Started/Intro_to_Relevance_AI.ipynb)
 
 ### 1. Set up Relevance AI
 

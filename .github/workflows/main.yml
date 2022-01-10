@@ -42,6 +42,7 @@ jobs:
           pytest
 
   sync-to-readme:
+    needs: test-notebooks
     runs-on: ${{ matrix.os }}
     strategy:
       matrix:
