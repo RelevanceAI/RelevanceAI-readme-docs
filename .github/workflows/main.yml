@@ -47,6 +47,9 @@ jobs:
 
       - name: Install Dependencies
         run: npm install
+      
+      - name: Sync ReadMe docs
+        run: npx rdme docs ./RelevanceAI-ReadMe-docs/v0.27.0 --version=v0.27.0 --key ${{ secrets.README_LOGIN_KEY }}  
 
       
 
