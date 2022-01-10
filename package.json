@@ -1,0 +1,27 @@
+{
+  "name": "relevanceai-readme-docs",
+  "version": "1.0.0",
+  "description": "This repository updates RelevanceAI's ReadMe Documentation [here](https://relevance-ai-documentation.readme.io/docs/).",
+  "dependencies": {},
+  "devDependencies": {
+    "rdme": "^6.2.1"
+  },
+  "scripts": {
+    "sync": "" 
+  },
+  "tags": [
+    "readme",
+    "documentation",
+    "relevanceai"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/RelevanceAI/RelevanceAI-readme-docs.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/RelevanceAI/RelevanceAI-readme-docs/issues"
+  },
+  "homepage": "https://github.com/RelevanceAI/RelevanceAI-readme-docs#readme"
+}
