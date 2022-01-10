@@ -12,9 +12,10 @@ While vector databases are used to power recommendations and search engines - th
 
 ### Why are vector databases not easy to experiment with?
 
-
-<img src="https://github.com/RelevanceAI/RelevanceAI-readme-docs/blob/main/docs/GETTING_STARTED/New_to_vectors?/_assets/RelevanceAI_vectorbase_workflow.png?raw=true" width="650" alt="Typical Vector Database Workflow" />
-
+<figure>
+<img src="https://github.com/RelevanceAI/RelevanceAI-readme-docs/blob/main/docs/GETTING_STARTED/New_to_vectors%3F/_assets/RelevanceAI_vectorbase_workflow.png?raw=true" width="650" alt="Typical Vector Database Workflow" />
+<figcaption>Typical Vector Database Workflow</figcaption>
+<figure>
 
 Vector databases are at their core - designed for production-level purposes without enabling the developers to first test which vectors work best for their purposes. 
 
@@ -49,10 +50,10 @@ While these range from model problems to data problems, one thing is clear:
 
 ## Relevance AI's provides an experimentation-first vector database
 
-
-<img src="https://github.com/RelevanceAI/RelevanceAI-readme-docs/blob/main/docs/GETTING_STARTED/New_to_vectors?/_assets/RelevanceAI_experimentationfirst_example_flow.png?raw=true" width="650" alt="Experimentation-first Vector Database Workflow" />
-
-
+<figure>
+<img src="https://github.com/RelevanceAI/RelevanceAI-readme-docs/blob/main/docs/GETTING_STARTED/New_to_vectors%3F/_assets/RelevanceAI_experimentationfirst_example_flow.png?raw=true" width="650" alt="Experimentation-first Vector Database Workflow" />
+<figcaption>Experimentation-first Vector Database Workflow</figcaption>
+<figure>
 
 Through our experience in developing vector-based applications, we understand the current vector search workflow and want to ensure practitioners and researchers are able to use the best model and best data for their searching/recommending/identification of nearest neighbors. 
 
@@ -75,7 +76,7 @@ In addition to our vector database, we will also be open-sourcing a few tools to
 - JSONShower to allow researchers and practitioners to quickly investigate performance of their models from JSONs inside Jupyter Notebook environments
 - Search Comparator is a tool to quickly compare numerous queries and search configurations with customizable metrics and various other utilities like identifying the most different queries across configurations 
 
-| Attribute |  Relevance AI  | Other Solutions |
+| **Attribute** |  **Relevance AI**  | **Other Solutions** |
 |:-----:|:--------:|:------:|
 | Basic vector search with filters   | `/vector` | Weaviate, Milvus, Pinecone, ElasticSearch |
 | Flexible vector search queries   |  Sits across all vector search endpoints inside `multivector_query` with adjustable weightings  | ElasticSearch|

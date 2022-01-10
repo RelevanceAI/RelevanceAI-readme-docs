@@ -21,7 +21,10 @@ A vector database can store the vector of any kind of data. This is because the 
 > 
 > Below, we visualise how we map data into a geometrical space that is able to plot the similarity distance between every sample of the dataset. Basically, the closer the vectors are located in the space, the more similar they are.
 
-<img src="https://github.com/RelevanceAI/RelevanceAI-readme-docs/blob/main/docs/GETTING_STARTED/New_to_vectors?/_assets/RelevanceAI_vector_analysis.png?raw=true" width="650" alt="Similar items are closer to each other" />
+<figure>
+<img src="https://github.com/RelevanceAI/RelevanceAI-readme-docs/blob/main/docs/GETTING_STARTED/New_to_vectors%3F/_assets/RelevanceAI_vector_analysis.png?raw=true" width="650" alt="Similar items are closer to each other" />
+<figcaption>Analysing your vectors in 3D space</figcaption>
+<figure>
 
 
 ### Limitations of open source vector database frameworks?
@@ -74,18 +77,20 @@ Because vector databases store a completely different kind of data (vectors), th
 
 A traditional database usually searches data through keyword matching. Once given a search query, we can filter the content that contains the query exactly or a few characters away. Although very efficient, this approach can lead to subpar or irrelevant results as it does not handle synonyms, context and personalisation well. For example: searching for "dogs" and it not matching against "puppies".
 
-
-<img src="https://github.com/RelevanceAI/RelevanceAI-readme-docs/blob/main/docs/GETTING_STARTED/New_to_vectors?/_assets/RelevanceAI_traditional_db.png?raw=true" width="650" alt="Traditional Databases" />
-
+<figure>
+<img src="https://github.com/RelevanceAI/RelevanceAI-readme-docs/blob/main/docs/GETTING_STARTED/New_to_vectors%3F/_assets/RelevanceAI_traditional_db.png?raw=true" width="650" alt="Traditional Databases" />
+<figcaption>Traditional Databases</figcaption>
+<figure>
 
 ### Vector-based search in vector databases
 
 Vector databases uses a method called vector search (also known as nearest neighbour search) to find the closest match. This technique attempts to find the closest vectors that corresponds to our query in the multidimensional space. This means that we are not only limited to the results that correspond exactly to our search query, but we can also accept results that are similar to what we are searching for.
 
 
-
-<img src="https://github.com/RelevanceAI/RelevanceAI-readme-docs/blob/main/docs/GETTING_STARTED/New_to_vectors?/_assets/RelevanceAI_nearest_neighbour.png?raw=true" width="650" alt="Nearest Neighbour" />
-
+<figure>
+<img src="https://github.com/RelevanceAI/RelevanceAI-readme-docs/blob/main/docs/GETTING_STARTED/New_to_vectors%3F/_assets/RelevanceAI_nearest_neighbour.png?raw=true" width="650" alt="Nearest Neighbour" />
+<figcaption>Nearest Neighbour</figcaption>
+<figure>
 
 A great thing about this, is that depending on the model used to create the vectors, a lot of the issues with keyword matching can be overcome with vector search. This is because vectors can capture the 'semantic' of the data, thus being able to associate two data that might be constructed very differently but having very similar semantics. For example: the word ('puppies' and 'dogs') or ('truck' and 'SUV') have very different character length, characters, etc, but they mean similar things and are often used in the same context. Vector is able to capture these semantic features and through vector search be able to match those two words as similar, thus overcoming the issues that come with keyword matching. 
 
