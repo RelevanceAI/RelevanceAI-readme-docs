@@ -10,8 +10,7 @@ updatedAt: "2022-01-10T01:31:01.336Z"
 
 Relevance AI's ultimate goal is to assist developers to experiment, build and share the best vectors to solve similarity and relevance based problems across teams.
 
-![](https://github.com/RelevanceAI/RelevanceAI-readme-docs/blob/development/RelevanceAI-ReadMe-docs/Getting%20Started/RelevanceAI_DS_Workflow.png)
-
+<img src="https://github.com/RelevanceAI/RelevanceAI-readme-docs/blob/development/RelevanceAI-ReadMe-docs/Getting%20Started/RelevanceAI_DS_Workflow.png?raw=true" width="650" alt="Relevance AI DS Workflow" />
 
 
 ## In 5 lines of code, get a shareable dashboard for experiments insight!

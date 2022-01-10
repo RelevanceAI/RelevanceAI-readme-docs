@@ -48,8 +48,34 @@ else export `$RELEVANCEAI_README_API_KEY` variable from ReadMe Project Configura
 ❯ export RELEVANCEAI_README_API_KEY='xxx'
 ```
 
-### Docs
 
+### Asset References
+
+### Images
+
+Store corresponding images in relative section. 
+
+Append `?=raw=true` to Github asset URL.
+
+```html
+<img src="https://github.com/RelevanceAI/RelevanceAI-readme-docs/blob/development/RelevanceAI-ReadMe-docs/Getting%20Started/RelevanceAI_DS_Workflow.png?raw=true" width="650" alt="Relevance AI DS Workflow" />
+
+```
+
+
+### Colab Notebooks
+
+Store corresponding notebooks in relative section.
+
+Replace link to Google Colab from 'https://github.com/<path_to_notebook>' to 'https://githubtocolab.com/<path_to_notebook>'.
+
+eg. 
+
+Github ref - https://github.com/RelevanceAI/RelevanceAI-readme-docs/blob/development/RelevanceAI-ReadMe-docs/Getting%20Started/Intro_to_Relevance_AI.ipynb
+
+Colab ref - https://githubtocolab.com/RelevanceAI/RelevanceAI-readme-docs/blob/development/RelevanceAI-ReadMe-docs/Getting%20Started/Intro_to_Relevance_AI.ipynb
+
+### Syncing ReadMe docs
 #### Syncing a Folder of Markdown Docs to ReadMe
 
 Ensure folder structure matches the following - 
@@ -78,7 +104,7 @@ updatedAt: "2022-01-10T01:31:01.336Z"
 ❯ npx rdme docs path-to-markdown-files --version={project-version} --key $RELEVANCEAI_README_API_KEY 
 
 ## eg.
-❯ npx rdme docs ./RelevanceAI-ReadMe-docs/v0.27.0 --version=v0.27.0  --key $RELEVANCEAI_README_API_KEY
+❯ npx rdme docs ./RelevanceAI-ReadMe-docs/ --version=v0.27.0  --key $RELEVANCEAI_README_API_KEY
 ```
 
 #### Edit a Single ReadMe Doc on Your Local Machine
