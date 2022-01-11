@@ -38,6 +38,9 @@ For each section, we need to
 
 The following conventions have been proposed to make this migration and doc organisation easier. Please feel free to suggest improvements!
 
+
+![](./assets/readme_folder_structure_repo.png)
+
 ![](./assets/readme_folder_structure.png)
 
 
