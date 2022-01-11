@@ -73,7 +73,7 @@ Images need to be wrapped in HTML `<figure>` and `<figcaption>` to show the capt
 
 ```
 
-![](https://github.com/RelevanceAI/RelevanceAI-readme-docs/blob/main/docs/GETTING_STARTED/Example_applications/_assets/RelevanceAI_quickstart_clip_dashboard.png)
+![](./assets/readme_figure.png)
 
 
 
