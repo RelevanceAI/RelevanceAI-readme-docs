@@ -1,6 +1,6 @@
 # RelevanceAI-readme-docs
 
-This repository updates RelevanceAI's ReadMe Documentation [here](https://relevance-ai-documentation.readme.io/docs/).
+This repository updates RelevanceAI's ReadMe Documentation [here](https://docs.relevance.ai/docs).
 
 ## 🧠 Documentation
 
