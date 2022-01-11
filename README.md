@@ -67,15 +67,10 @@ Append `?=raw=true` to Github asset URL.
 
 1. Store corresponding notebooks in relative section.
 
-Replace link to Google Colab from 'https://github.com/<path_to_notebook>' to 'https://githubtocolab.com/<path_to_notebook>'.
+[![Open In Colab](https://colab.research.google.com/_assets/colab-badge.svg)](https://githubtocolab.com/RelevanceAI/RelevanceAI-readme-docs/blob/main/docs/GETTING_STARTED/Intro_to_Relevance_AI.ipynb)
 
-eg. 
 
-Github ref - https://github.com/RelevanceAI/RelevanceAI-readme-docs/blob/main/docs/GETTING_STARTED/Intro_to_Relevance_AI.ipynb
-
-Colab ref - https://githubtocolab.com/RelevanceAI/RelevanceAI-readme-docs/blob/main/docs/GETTING_STARTED/Intro_to_Relevance_AI.ipynb
-
-2. We review notebooks using ReviewNB
+2. We review notebooks using [ReviewNB](https://app.reviewnb.com/RelevanceAI/RelevanceAI-readme-docs/)
 
 https://app.reviewnb.com/RelevanceAI/RelevanceAI-readme-docs/
 
@@ -145,9 +140,7 @@ For now, you can only update page slugs in manually in the respective page.
 
 ## 📘 Getting Started with ReadMe Markdown
 
-https://rdmd.readme.io/docs/getting-started
-
-
+See official [docs](https://rdmd.readme.io/docs/getting-started) here for more details, else see rdmd cheatsheet [here](./rdmd.md).
 
 
 

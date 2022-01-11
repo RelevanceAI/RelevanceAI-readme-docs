@@ -42,7 +42,6 @@ fi
 # Sync all notebooks with latest SDK version
 ###############################################################################
 
-
 check_files() {
     while read file; do
         echo Testing $file:
@@ -54,17 +53,17 @@ check_files() {
     done
 }
 
-
 NOTEBOOK_PATHS=$(find . -type f -name '*.ipynb')
 
-for NOTEBOOK_PATH in $NOTEBOOK_PATHS; do
-    echo $NOTEBOOK_PATH
-    PIP_INSTALL_LATEST="!pip install -U RelevanceAI==$RELEVANCEAI_SDK_VERSION"
-    JQ_PIP_UPDATE_QUERY='.cells[] | select(.source[] | contains("!pip install * RelevanceAI==")) .source'
+NOTEBOOK_PATH='./examples/Intro_to_Relevance_AI.ipynb'
+# for NOTEBOOK_PATH in $NOTEBOOK_PATHS; do
+echo $NOTEBOOK_PATH
+PIP_INSTALL_LATEST='!pip install -U RelevanceAI==$RELEVANCEAI_SDK_VERSION'
+JQ_PIP_UPDATE_QUERY='.cells[] | select(.source[] | contains("!pip install -U RelevanceAI==")) .source |= "!pip install -U RelevanceAI==$RELEVANCEAI_SDK_VERSION"'
 
-    #jq --arg tag $TAG '.[].ModelECRImageTag = $tag' <<< $NOTEBOOK_PATH > $NOTEBOOK_PATH
-    jq $JQ_PIP_UPDATE_QUERY <<< $NOTEBOOK_PATH > $NOTEBOOK_PATH
+# jq --arg tag $TAG '.[].ModelECRImageTag = $tag' <<< $NOTEBOOK_PATH > $NOTEBOOK_PATH
 
-    # cat <<< $(jq $JQ_PIP_UPDATE_QUERY "$NOTEBOOK_PATH") > "$NOTEBOOK_PATH"
-done
+# jq $JQ_PIP_UPDATE_QUERY <<< $NOTEBOOK_PATH > $NOTEBOOK_PATH
 
+# cat <<< $(jq $JQ_PIP_UPDATE_QUERY "$NOTEBOOK_PATH") > "$NOTEBOOK_PATH"
+# done

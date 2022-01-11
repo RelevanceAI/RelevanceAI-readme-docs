@@ -99,9 +99,7 @@ jobs:
           ./scripts/sync_readme_docs.sh true
 
       ### Given stable version of SDK
-
       ### Run through notebooks and execute end to end with current version
-
       ### Update README docs with current version, latest updates
 
 
