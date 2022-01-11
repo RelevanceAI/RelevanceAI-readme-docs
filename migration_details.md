@@ -1,6 +1,6 @@
 
 
-## Migration Details How-to
+# Migration Details How-to
 
 We aim to migrate our docs to be updated via ReadMe's API in a Git-driven manner.
 
@@ -26,17 +26,15 @@ Please use this locally to quickly test that the changes that you make in the re
 
 For each section, we need to
 
+- Create a new branch for a section - eg. `git checkout -v v0.27.0-cluster-features-migration`
 - Create a new folder/subfolders to match the respective section/subsections following conventions below
-- Ensure assets and notebooks are stored in `_assets` and `_notebooks` and references updated
+- Ensure assets and notebooks are stored in `_assets` and `_notebooks` and references in Markdown updated
+- Ensure front matter matches the current page
+- Replace each respective `[block]` section with `rdmd`
+- Sync the page using `./scripts/sync_readme_docs.sh` and check new synced version matches previous unsynced version upon render
+- Commit changes! 
 
-
-
-
-
-
-
-
-1. ### File/folder Naming Conventions
+1. ## File/folder Naming Conventions
 
 The following conventions have been proposed to make this migration and doc organisation easier. Please feel free to suggest improvements!
 
@@ -62,7 +60,7 @@ The following conventions have been proposed to make this migration and doc orga
 ![](./assets/readme_page_slug_update.png)
 
 
-2. ### Syncing Markdown files
+2. ## Syncing Markdown files
 
 To ensure files are synced properly, we need to ensure Markdown Front Matter matches the respective `title`, `excerpt` and `slug` and ensure `hidden: false`. Make sure to update `slug` if updated.
 
@@ -80,24 +78,24 @@ hidden: false
 
 
 
-3. ### Colab Notebooks and Badges
+3. ## Colab Notebooks and Badges
 
-
-Store corresponding notebooks in relative section under `_notebooks` folder.  
+- Store corresponding notebooks in relative section under `_notebooks` folder.  
 
 ```markdown
-[![Open In Colab](https://colab.research.google.com/_assets/colab-badge.svg)](https://githubtocolab.com/RelevanceAI/RelevanceAI-readme-docs/blob/main/docs/GETTING_STARTED/Intro_to_Relevance_AI.ipynb)
+[![Open In Colab](https://colab.research.google.com/_assets/colab-badge.svg)](https://colab.research.google.com/github/RelevanceAI/RelevanceAI-readme-docs/blob/main/docs/GETTING_STARTED/_notebooks/Intro_to_Relevance_AI.ipynb)
 ```
 
+- For each notebook, we also include the Colab badge link at the top of the notebook, so that one may open in Colab from Github.
 
-We review notebooks using [ReviewNB](https://app.reviewnb.com/RelevanceAI/RelevanceAI-readme-docs/)
+![](assets/readme_colab_badge.png)
 
-https://app.reviewnb.com/RelevanceAI/RelevanceAI-readme-docs/
+- We review notebooks using [ReviewNB](https://app.reviewnb.com/RelevanceAI/RelevanceAI-readme-docs/)
+
+  https://app.reviewnb.com/RelevanceAI/RelevanceAI-readme-docs/
 
 
-
-
-4. ### Converting `[block]` to Readme Markdown (rdmd)
+4. ## Converting `[block]` to Readme Markdown (rdmd)
 
 The main things that need to be converted are - 
 
@@ -109,7 +107,7 @@ The main things that need to be converted are -
 See official [docs](https://rdmd.readme.io/docs/getting-started) here for more details, else see rdmd cheatsheet [here](./rdmd.md).
 
 
-4.1 #### Code Blocks
+4.1 ### Code Blocks
 
 Code blocks need to be converted from `[block:code]` to Readme Markdown (rdmd)
 
@@ -137,7 +135,7 @@ eg.
 
 
 
-4.2 #### Assets
+4.2 ### Assets
 
 Assets need to be converted from `[block:image]` to Readme Markdown (rdmd)
 
@@ -176,7 +174,7 @@ eg.
 
 
 
-4.3 #### Callouts
+4.3 ### Callouts
 
 Callouts need to be converted from `[block:callout]` to Readme Markdown (rdmd)
 
@@ -218,7 +216,7 @@ Default themes are specified using one of the following emojis. (You can always 
 See official [docs](https://rdmd.readme.io/docs/callouts) here for more details.
 
 
-3.4 #### Tables 
+4.4 ### Tables 
 
 Callouts need to be converted from `[block:parameters]` to Readme Markdown (rdmd)
 

@@ -18,19 +18,6 @@ Migrating RelevanceAI docs from [docs.relevance.ai/v0.26.0/docs/welcome](https:/
 
 - Linux (Ubuntu 18.04.6 LTS (Bionic Beaver) Debian)
 
-#### Colab Notebooks
-
-1. Store corresponding notebooks in relative section under `_notebooks` folder.  
-
-```markdown
-[![Open In Colab](https://colab.research.google.com/_assets/colab-badge.svg)](https://githubtocolab.com/RelevanceAI/RelevanceAI-readme-docs/blob/main/docs/GETTING_STARTED/Intro_to_Relevance_AI.ipynb)
-```
-
-2. We review notebooks using [ReviewNB](https://app.reviewnb.com/RelevanceAI/RelevanceAI-readme-docs/)
-
-https://app.reviewnb.com/RelevanceAI/RelevanceAI-readme-docs/
-
-
 
 
 ## 👩🏻‍💻 Getting Started with rdme Client
