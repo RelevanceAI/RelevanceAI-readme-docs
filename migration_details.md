@@ -107,7 +107,7 @@ The main things that need to be converted are -
 See official [docs](https://rdmd.readme.io/docs/getting-started) here for more details, else see rdmd cheatsheet [here](./rdmd.md).
 
 
-4.1 ### Code Blocks
+### Code Blocks
 
 Code blocks need to be converted from `[block:code]` to Readme Markdown (rdmd)
 
@@ -135,7 +135,7 @@ eg.
 
 
 
-4.2 ### Assets
+### Assets
 
 Assets need to be converted from `[block:image]` to Readme Markdown (rdmd)
 
@@ -174,7 +174,7 @@ eg.
 
 
 
-4.3 ### Callouts
+### Callouts
 
 Callouts need to be converted from `[block:callout]` to Readme Markdown (rdmd)
 
@@ -216,7 +216,7 @@ Default themes are specified using one of the following emojis. (You can always 
 See official [docs](https://rdmd.readme.io/docs/callouts) here for more details.
 
 
-4.4 ### Tables 
+### Tables 
 
 Callouts need to be converted from `[block:parameters]` to Readme Markdown (rdmd)
 
