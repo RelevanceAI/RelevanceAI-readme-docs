@@ -10,37 +10,37 @@ on:
   workflow_dispatch:
 
 jobs:
-  # test-notebooks:
-  #   runs-on: ${{ matrix.os }}
-  #   strategy:
-  #     matrix:
-  #       os: [ ubuntu-latest] 
-  #       python-version: [ '3.7' ]
-  #       # python-version: [ '3.6', '3.7', '3.8', '3.9' ]
-  #       include:
-  #         - os: ubuntu-latest
-  #           path: ~/.cache/pip
-  #         # - os: macos-latest
-  #         #   path: ~/Library/Caches/pip
-  #         # - os: windows-latest
-  #         #   path: ~\AppData\Local\pip\Cache
-  #   steps:
-  #     - name: Checkout code
-  #       uses: actions/checkout@v2
+  test-notebooks:
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        os: [ ubuntu-latest] 
+        python-version: [ '3.7' ]
+        # python-version: [ '3.6', '3.7', '3.8', '3.9' ]
+        include:
+          - os: ubuntu-latest
+            path: ~/.cache/pip
+          # - os: macos-latest
+          #   path: ~/Library/Caches/pip
+          # - os: windows-latest
+          #   path: ~\AppData\Local\pip\Cache
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
 
-  #     - uses: actions/setup-python@v2
-  #       with:
-  #         python-version: ${{ matrix.python-version }}
-  #         # cache: 'pip'
-  #     - name: Cache Python deps
-  #     #   uses: actions/cache@v2
-  #     #   with:
-  #     #     path: ${{ matrix.path }}
-  #     #     key: ${{ runner.os }}-${{ env.pythonLocation }}-pip-${{ hashFiles('setup.py') }}-${{ hashFiles('requirements-dev.txt') }}
-  #     #     restore-keys: |
-  #     #       ${{ runner.os }}-${{ env.pythonLocation }}-pip-
-  #     #       ${{ runner.os }}-${{ env.pythonLocation }}-
-  #     - run: pip install -r requirements.txt
+      - uses: actions/setup-python@v2
+        with:
+          python-version: ${{ matrix.python-version }}
+          # cache: 'pip'
+      - name: Cache Python deps
+      #   uses: actions/cache@v2
+      #   with:
+      #     path: ${{ matrix.path }}
+      #     key: ${{ runner.os }}-${{ env.pythonLocation }}-pip-${{ hashFiles('setup.py') }}-${{ hashFiles('requirements-dev.txt') }}
+      #     restore-keys: |
+      #       ${{ runner.os }}-${{ env.pythonLocation }}-pip-
+      #       ${{ runner.os }}-${{ env.pythonLocation }}-
+      # - run: pip install -r requirements.txt
 
       # - name: Install conda environment
       #   env:
@@ -97,9 +97,3 @@ jobs:
           RELEVANCEAI_README_API_KEY: ${{ secrets.RELEVANCEAI_README_API_KEY }}
         run: | 
           ./scripts/sync_readme_docs.sh true
-
-      ### Given stable version of SDK
-      ### Run through notebooks and execute end to end with current version
-      ### Update README docs with current version, latest updates
-
-

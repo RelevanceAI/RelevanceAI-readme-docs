@@ -1,7 +1,7 @@
 ---
 title: "Multi-vector search with your own vectors"
 excerpt: "Get started with Relevance AI in 5 minutes!"
-slug: "search-with-your-own-vectors"
+slug: "quickstart-multivector-search"
 hidden: false
 ---
 
@@ -13,7 +13,7 @@ hidden: false
 
 
 
-**Try it out in Colab:** [![Open In Colab](https://colab.research.google.com/_assets/colab-badge.svg)](https://colab.research.google.com/github/RelevanceAI/RelevanceAI-readme-docs/blob/main/docs/GETTING_STARTED/Example_applications/_notebooks/RelevanceAI_ReadMe_Multi_Vector_Search.ipynb)
+**Try it out in Colab:** [![Open In Colab](https://colab.research.google.com/_assets/colab-badge.svg)](https://colab.research.google.com/github/RelevanceAI/RelevanceAI-readme-docs/blob/main/docs/GETTING_STARTED/Example_applications/_notebooks/RelevanceAI_ReadMe_Quickstart_Multivector_Search.ipynb)
 
 
 

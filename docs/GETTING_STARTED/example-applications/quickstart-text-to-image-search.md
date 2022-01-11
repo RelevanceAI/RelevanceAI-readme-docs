@@ -282,7 +282,7 @@ show_json(
 
 
 
-**Try it out in Colab:** [![Open In Colab](https://colab.research.google.com/_assets/colab-badge.svg)](https://colab.research.google.com/github/RelevanceAI/RelevanceAI-readme-docs/blob/main/docs/GETTING_STARTED/Example_applications/_notebooks/RelevanceAI_ReadMe_Text_to_Image_Search.ipynb)
+**Try it out in Colab:** [![Open In Colab](https://colab.research.google.com/_assets/colab-badge.svg)](https://colab.research.google.com/github/RelevanceAI/RelevanceAI-readme-docs/blob/main/docs/GETTING_STARTED/Example_applications/_notebooks/RelevanceAI_ReadMe_Quickstart_Text_to_Image_Search.ipynb)
 
 
 ## Final Code
