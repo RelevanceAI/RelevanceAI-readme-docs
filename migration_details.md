@@ -26,7 +26,7 @@ Please use this locally to quickly test that the changes that you make in the re
 
 For each section, we need to
 
-- Create a new branch for a section - eg. `git checkout -v v0.27.0-cluster-features-migration`
+- Create a new branch for a section - eg. `git checkout -v v0.26.6-cluster-features-migration`
 - Create a new folder/subfolders to match the respective section/subsections following conventions below
 - Ensure assets and notebooks are stored in `_assets` and `_notebooks` and references in Markdown updated
 - Ensure front matter matches the current page
