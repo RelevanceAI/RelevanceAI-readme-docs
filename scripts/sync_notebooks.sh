@@ -57,17 +57,19 @@ NOTEBOOK_PATHS=$(find . -type f -name '*.ipynb')
 
 NOTEBOOK_PATH='./examples/Intro_to_Relevance_AI.ipynb'
 
-# for NOTEBOOK_PATH in $NOTEBOOK_PATHS; do
+
 echo $NOTEBOOK_PATH
 PIP_INSTALL="!pip install -U RelevanceAI=="
 PIP_INSTALL_LATEST="$PIP_INSTALL$RELEVANCEAI_SDK_VERSION"
 echo $PIP_INSTALL_LATEST
 
+jq --arg relevanceai_sdk_version_update $PIP_INSTALL_LATEST '.cells[] | select(.source[] | contains("!pip install -U RelevanceAI==")) .source = $relevanceai_sdk_version_update' <<< $NOTEBOOK_PATH 
+
+
+# for NOTEBOOK_PATH in $NOTEBOOK_PATHS; do
 # JQ_PIP_UPDATE_QUERY='.cells[] | select(.source[] | contains("!pip install -U RelevanceAI==")) .source |= "!pip install -U RelevanceAI==$RELEVANCEAI_SDK_VERSION"'
 
 # # jq --arg tag $TAG '.[].ModelECRImageTag = $tag' <<< $NOTEBOOK_PATH > $NOTEBOOK_PATH
-
-jq --arg relevanceai_sdk_version_update $PIP_INSTALL_LATEST '.cells[] | select(.source[] | contains("!pip install -U RelevanceAI==")) .source = $relevanceai_sdk_version_update' <<< $NOTEBOOK_PATH 
 
 # jq $JQ_PIP_UPDATE_QUERY <<< $NOTEBOOK_PATH > $NOTEBOOK_PATH
 

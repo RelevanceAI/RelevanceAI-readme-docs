@@ -33,14 +33,20 @@ jobs:
           python-version: ${{ matrix.python-version }}
           # cache: 'pip'
       - name: Cache Python deps
-      #   uses: actions/cache@v2
-      #   with:
-      #     path: ${{ matrix.path }}
-      #     key: ${{ runner.os }}-${{ env.pythonLocation }}-pip-${{ hashFiles('setup.py') }}-${{ hashFiles('requirements-dev.txt') }}
-      #     restore-keys: |
-      #       ${{ runner.os }}-${{ env.pythonLocation }}-pip-
-      #       ${{ runner.os }}-${{ env.pythonLocation }}-
-      # - run: pip install -r requirements.txt
+        uses: actions/cache@v2
+        with:
+          path: ${{ matrix.path }}
+          key: ${{ runner.os }}-${{ env.pythonLocation }}-pip-${{ hashFiles('setup.py') }}-${{ hashFiles('colab_requirements.txt') }}
+          restore-keys: |
+            ${{ runner.os }}-${{ env.pythonLocation }}-pip-
+            ${{ runner.os }}-${{ env.pythonLocation }}-
+
+      - run: pip install -r colab_requirements.txt
+
+      - name: Update notebook versions to latest SDK version
+        run: | 
+          python ./scripts/update_notebook_versions.py
+          
 
       # - name: Install conda environment
       #   env:
