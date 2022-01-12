@@ -43,9 +43,7 @@ jobs:
 
       - name: Install requirements
         run: pip install -r requirements.txt
-        # run: pip install jupyter
         # run: pip install -r colab_requirements.txt
-
 
       - name: Test notebooks on latest SDK version
         env:
