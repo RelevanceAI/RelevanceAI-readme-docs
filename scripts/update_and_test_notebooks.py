@@ -51,8 +51,6 @@ PIP_INSTALL_REGEX = f'"!pip install .* RelevanceAI==.*"'
 PIP_INSTALL_LATEST = f'"!pip install -U RelevanceAI=={RELEVANCEAI_SDK_VERSION_LATEST}"'
 
 
-# for notebook in Path(DOCS_PATH).glob('**/*.ipynb'):
-#     print(notebook)
 
 def notebook_find_replace(notebook, find_str_regex, replace_str):
 
@@ -74,31 +72,33 @@ def notebook_find_replace(notebook, find_str_regex, replace_str):
 
 
 
-notebook = Path.cwd() / 'examples' / 'Intro_to_Relevance_AI.ipynb'
+# notebook = Path.cwd() / 'examples' / 'Intro_to_Relevance_AI.ipynb'
 
-## Update to latest version
-notebook_find_replace(notebook, PIP_INSTALL_REGEX, PIP_INSTALL_LATEST)
+for notebook in Path(DOCS_PATH).glob('**/*.ipynb'):
+    print(notebook)
 
-## Replace Client with test creds
-CLIENT_INSTANTIATION_REGEX = '"client.*Client(.*)"'
-TEST_PROJECT = os.getenv('TEST_PROJECT')
-TEST_API_KEY = os.getenv('TEST_API_KEY')
-# TEST_API_KEY = 'TWhLVU9Yd0JmQldJU2NLNXF5anM6TUNHcGhyd1FTV200RHdHbWRCaV9VUQ'
-CLIENT_INSTANTIATION_TEST = f'"client = Client(project=\\"{TEST_PROJECT}\\", api_key=\\"{TEST_API_KEY}\\")"'
-CLIENT_INSTANTIATION_BASE = f'"client = Client()"'
+    ## Update to latest version
+    notebook_find_replace(notebook, PIP_INSTALL_REGEX, PIP_INSTALL_LATEST)
 
-## Temporarily updating notebook with test creds
-notebook_find_replace(notebook, CLIENT_INSTANTIATION_REGEX, CLIENT_INSTANTIATION_TEST)
+    ## Replace Client with test creds
+    CLIENT_INSTANTIATION_REGEX = '"client.*Client(.*)"'
+    TEST_PROJECT = os.getenv('TEST_PROJECT')
+    TEST_API_KEY = os.getenv('TEST_API_KEY')
+    CLIENT_INSTANTIATION_TEST = f'"client = Client(project=\\"{TEST_PROJECT}\\", api_key=\\"{TEST_API_KEY}\\")"'
+    CLIENT_INSTANTIATION_BASE = f'"client = Client()"'
 
-## Execute notebook with test creds
-with open(notebook, 'r') as f:
-    ## Execute notebook
-    print(f'Executing notebook: {notebook} with SDK version {RELEVANCEAI_SDK_VERSION_LATEST}')
-    nb_in = nbformat.read(f, nbformat.NO_CONVERT)
-    ep = ExecutePreprocessor(timeout=600, kernel_name='python3')
-    nb_out = ep.preprocess(nb_in)
+    ## Temporarily updating notebook with test creds
+    notebook_find_replace(notebook, CLIENT_INSTANTIATION_REGEX, CLIENT_INSTANTIATION_TEST)
 
-## Replace creds with previous 
-notebook_find_replace(notebook, CLIENT_INSTANTIATION_REGEX, CLIENT_INSTANTIATION_BASE)
+    ## Execute notebook with test creds
+    with open(notebook, 'r') as f:
+        ## Execute notebook
+        print(f'Executing notebook: {notebook} with SDK version {RELEVANCEAI_SDK_VERSION_LATEST}')
+        nb_in = nbformat.read(f, nbformat.NO_CONVERT)
+        ep = ExecutePreprocessor(timeout=600, kernel_name='python3')
+        nb_out = ep.preprocess(nb_in)
+
+    ## Replace creds with previous 
+    notebook_find_replace(notebook, CLIENT_INSTANTIATION_REGEX, CLIENT_INSTANTIATION_BASE)
 
 
