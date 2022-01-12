@@ -31,22 +31,28 @@ jobs:
       - uses: actions/setup-python@v2
         with:
           python-version: ${{ matrix.python-version }}
-          # cache: 'pip'
-      - name: Cache Python deps
-        uses: actions/cache@v2
-        with:
-          path: ${{ matrix.path }}
-          key: ${{ runner.os }}-${{ env.pythonLocation }}-pip-${{ hashFiles('setup.py') }}-${{ hashFiles('colab_requirements.txt') }}
-          restore-keys: |
-            ${{ runner.os }}-${{ env.pythonLocation }}-pip-
-            ${{ runner.os }}-${{ env.pythonLocation }}-
+          cache: 'pip'
+      # - name: Cache Python deps
+      #   uses: actions/cache@v2
+      #   with:
+      #     path: ${{ matrix.path }}
+      #     key: ${{ runner.os }}-${{ env.pythonLocation }}-pip-${{ hashFiles('colab_requirements.txt') }}
+      #     restore-keys: |
+      #       ${{ runner.os }}-${{ env.pythonLocation }}-pip-
+      #       ${{ runner.os }}-${{ env.pythonLocation }}-
 
-      - run: pip install -r colab_requirements.txt
+      - name: Install requirements
+        run: pip install jupyter
+        # run: pip install -r colab_requirements.txt
+
 
       - name: Update notebook versions to latest SDK version
-        run: | 
-          python ./scripts/update_notebook_versions.py
-          
+        run: python ./scripts/update_notebook_versions.py
+        
+      - name: Run notebooks
+        run: python -m jupyter nbconvert --to notebook --execute --ExecutePreprocessor.timeout=600 --ExecutePreprocessor.kernel_name=python3 --ExecutePreprocessor.allow_errors=True --ExecutePreprocessor.timeout_tolerance=600 --ExecutePreprocessor.allow_errors=True --ExecutePreprocessor.kernel_name=python3 --execute *.ipynb
+
+
 
       # - name: Install conda environment
       #   env:
