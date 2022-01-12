@@ -93,7 +93,7 @@ for notebook in Path(DOCS_PATH).glob('**/*.ipynb'):
     ## Execute notebook with test creds
     with open(notebook, 'r') as f:
         ## Execute notebook
-        print(f'Executing notebook: {notebook} with SDK version {RELEVANCEAI_SDK_VERSION_LATEST}')
+        print(f'Executing notebook: \n{notebook} with SDK version {RELEVANCEAI_SDK_VERSION_LATEST}')
         nb_in = nbformat.read(f, nbformat.NO_CONVERT)
         ep = ExecutePreprocessor(timeout=600, kernel_name='python3')
         nb_out = ep.preprocess(nb_in)
