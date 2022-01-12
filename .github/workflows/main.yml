@@ -47,10 +47,10 @@ jobs:
 
 
       - name: Update notebook versions to latest SDK version
-        run: python ./scripts/update_notebook_versions.py
+        run: python ./scripts/update_and_test_notebooks.py
         
-      - name: Run notebooks
-        run: python -m jupyter nbconvert --to notebook --execute --ExecutePreprocessor.timeout=600 --ExecutePreprocessor.timeout_tolerance=600 --ExecutePreprocessor.kernel_name=python3 --ExecutePreprocessor.allow_errors=True  --execute *.ipynb
+      # - name: Run notebooks
+      #   run: jupyter nbconvert --to notebook --execute --ExecutePreprocessor.timeout=600 --ExecutePreprocessor.timeout_tolerance=600 --ExecutePreprocessor.kernel_name=python3 --ExecutePreprocessor.allow_errors=True  --execute *.ipynb
 
 
 
