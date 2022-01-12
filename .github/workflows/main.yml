@@ -46,8 +46,12 @@ jobs:
         # run: pip install -r colab_requirements.txt
 
 
-      - name: Update notebook versions to latest SDK version
-        run: python ./scripts/update_and_test_notebooks.py
+      - name: Test notebooks on latest SDK version
+        env:
+          TEST_PROJECT: ${{ secrets.TEST_PROJECT }}
+          TEST_API_KEY: ${{ secrets.TEST_API_KEY }}
+        run: |
+          python ./scripts/update_and_test_notebooks.py
         
       # - name: Run notebooks
       #   run: jupyter nbconvert --to notebook --execute --ExecutePreprocessor.timeout=600 --ExecutePreprocessor.timeout_tolerance=600 --ExecutePreprocessor.kernel_name=python3 --ExecutePreprocessor.allow_errors=True  --execute *.ipynb

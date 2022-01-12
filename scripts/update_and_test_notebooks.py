@@ -45,10 +45,10 @@ def get_latest_version(name):
 
 
 DOCS_PATH = Path.cwd() / 'docs'
-RELEVANCEAI_SDK_VERSION = get_latest_version('RelevanceAI')
-# RELEVANCEAI_SDK_VERSION = 'latest'
+RELEVANCEAI_SDK_VERSION_LATEST = get_latest_version('RelevanceAI')
+# RELEVANCEAI_SDK_VERSION_LATEST = 'latest'
 PIP_INSTALL_REGEX = f'"!pip install .* RelevanceAI==.*"'
-PIP_INSTALL_LATEST = f'"!pip install -U RelevanceAI=={RELEVANCEAI_SDK_VERSION}"'
+PIP_INSTALL_LATEST = f'"!pip install -U RelevanceAI=={RELEVANCEAI_SDK_VERSION_LATEST}"'
 
 
 # for notebook in Path(DOCS_PATH).glob('**/*.ipynb'):
@@ -60,8 +60,7 @@ def notebook_find_replace(notebook, find_str_regex, replace_str):
         lines = f.readlines()
 
     with open(notebook, 'w') as f:
-        for line in lines:     
-            # print(line)       
+        for line in lines:          
             if bool(re.search(find_str_regex, line)):
                 find_str = re.search(find_str_regex, line).group()
                 
@@ -94,7 +93,7 @@ notebook_find_replace(notebook, CLIENT_INSTANTIATION_REGEX, CLIENT_INSTANTIATION
 ## Execute notebook with test creds
 with open(notebook, 'r') as f:
     ## Execute notebook
-    print(f'Executing notebook: {notebook}')
+    print(f'Executing notebook: {notebook} with SDK version {RELEVANCEAI_SDK_VERSION_LATEST}')
     nb_in = nbformat.read(f, nbformat.NO_CONVERT)
     ep = ExecutePreprocessor(timeout=600, kernel_name='python3')
     nb_out = ep.preprocess(nb_in)
