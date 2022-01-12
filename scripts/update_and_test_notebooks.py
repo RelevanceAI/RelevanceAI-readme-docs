@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
 
+import os
 from pathlib import Path
 import re
 import subprocess
@@ -45,7 +46,7 @@ def get_latest_version(name):
 
 DOCS_PATH = Path.cwd() / 'docs'
 RELEVANCEAI_SDK_VERSION = get_latest_version('RelevanceAI')
-RELEVANCEAI_SDK_VERSION = 'latest'
+# RELEVANCEAI_SDK_VERSION = 'latest'
 PIP_INSTALL_REGEX = f'"!pip install .* RelevanceAI==.*"'
 PIP_INSTALL_LATEST = f'"!pip install -U RelevanceAI=={RELEVANCEAI_SDK_VERSION}"'
 
@@ -62,12 +63,13 @@ def notebook_find_replace(notebook, find_str_regex, replace_str):
         for line in lines:     
             # print(line)       
             if bool(re.search(find_str_regex, line)):
-                find_string = re.search(find_str_regex, line).group()
-                if find_string == replace_str: continue
-    
+                find_str = re.search(find_str_regex, line).group()
+                
+                # if find_str == replace_str: continue
                 print(f'Find: \n{find_str_regex}')
-                print(f'Replace: \n{find_string}\n{replace_str}\n')
-                line = line.replace(find_string, replace_str)
+                print(f'Replace: \n{find_str}\n{replace_str}\n')
+                line = line.replace(find_str, replace_str)
+                
             f.write(line)
 
 
@@ -80,9 +82,10 @@ notebook_find_replace(notebook, PIP_INSTALL_REGEX, PIP_INSTALL_LATEST)
 
 ## Replace Client with test creds
 CLIENT_INSTANTIATION_REGEX = '"client.*Client(.*)"'
-PROJECT = '4219e219b6907fd6fbf0'
-API_KEY = 'TWhLVU9Yd0JmQldJU2NLNXF5anM6TUNHcGhyd1FTV200RHdHbWRCaV9VUQ'
-CLIENT_INSTANTIATION_TEST = f'"client = Client(project=\\"{PROJECT}\\", api_key=\\"{API_KEY}\\")"'
+TEST_PROJECT = os.getenv('TEST_PROJECT')
+TEST_API_KEY = os.getenv('TEST_API_KEY')
+# TEST_API_KEY = 'TWhLVU9Yd0JmQldJU2NLNXF5anM6TUNHcGhyd1FTV200RHdHbWRCaV9VUQ'
+CLIENT_INSTANTIATION_TEST = f'"client = Client(project=\\"{TEST_PROJECT}\\", api_key=\\"{TEST_API_KEY}\\")"'
 CLIENT_INSTANTIATION_BASE = f'"client = Client()"'
 
 ## Temporarily updating notebook with test creds
