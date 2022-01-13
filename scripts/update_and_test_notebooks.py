@@ -15,11 +15,15 @@ from nbconvert.preprocessors import ExecutePreprocessor
 ###############################################################################
 
 
-def check_latest_version(name):
+def get_latest_version(name):
     latest_version = str(subprocess.run([sys.executable, '-m', 'pip', 'install', '{}==random'.format(name)], capture_output=True, text=True))
     latest_version = latest_version[latest_version.find('(from versions:')+15:]
     latest_version = latest_version[:latest_version.find(')')]
     latest_version = latest_version.replace(' ','').split(',')[-1]
+    return latest_version
+    
+def check_latest_version(name):
+    latest_version = get_latest_version(name)
 
     current_version = str(subprocess.run([sys.executable, '-m', 'pip', 'show', '{}'.format(name)], capture_output=True, text=True))
     current_version = current_version[current_version.find('Version:')+8:]
@@ -31,12 +35,6 @@ def check_latest_version(name):
         return False
 
 
-def get_latest_version(name):
-    latest_version = str(subprocess.run([sys.executable, '-m', 'pip', 'install', '{}==random'.format(name)], capture_output=True, text=True))
-    latest_version = latest_version[latest_version.find('(from versions:')+15:]
-    latest_version = latest_version[:latest_version.find(')')]
-    latest_version = latest_version.replace(' ','').split(',')[-1]
-    return latest_version
 
 
 ###############################################################################
@@ -71,8 +69,15 @@ def notebook_find_replace(notebook, find_str_regex, replace_str):
 
 
 
-
 # notebook = Path.cwd() / 'examples' / 'Intro_to_Relevance_AI.ipynb'
+
+## Env vars
+CLIENT_INSTANTIATION_REGEX = '"client.*Client(.*)"'
+TEST_PROJECT = os.getenv('TEST_PROJECT')
+TEST_API_KEY = os.getenv('TEST_API_KEY')
+CLIENT_INSTANTIATION_TEST = f'"client = Client(project=\\"{TEST_PROJECT}\\", api_key=\\"{TEST_API_KEY}\\")"'
+CLIENT_INSTANTIATION_BASE = f'"client = Client()"'
+
 
 for notebook in Path(DOCS_PATH).glob('**/*.ipynb'):
     print(notebook)
@@ -80,19 +85,11 @@ for notebook in Path(DOCS_PATH).glob('**/*.ipynb'):
     ## Update to latest version
     notebook_find_replace(notebook, PIP_INSTALL_REGEX, PIP_INSTALL_LATEST)
 
-    ## Replace Client with test creds
-    CLIENT_INSTANTIATION_REGEX = '"client.*Client(.*)"'
-    TEST_PROJECT = os.getenv('TEST_PROJECT')
-    TEST_API_KEY = os.getenv('TEST_API_KEY')
-    CLIENT_INSTANTIATION_TEST = f'"client = Client(project=\\"{TEST_PROJECT}\\", api_key=\\"{TEST_API_KEY}\\")"'
-    CLIENT_INSTANTIATION_BASE = f'"client = Client()"'
-
     ## Temporarily updating notebook with test creds
     notebook_find_replace(notebook, CLIENT_INSTANTIATION_REGEX, CLIENT_INSTANTIATION_TEST)
 
     ## Execute notebook with test creds
     with open(notebook, 'r') as f:
-        ## Execute notebook
         print(f'Executing notebook: \n{notebook} with SDK version {RELEVANCEAI_SDK_VERSION_LATEST}')
         nb_in = nbformat.read(f, nbformat.NO_CONVERT)
         ep = ExecutePreprocessor(timeout=600, kernel_name='python3')
