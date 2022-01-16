@@ -7,7 +7,7 @@
     "rdme": "^6.2.1"
   },
   "scripts": {
-    "sync": "" 
+    "sync": ""
   },
   "tags": [
     "readme",
