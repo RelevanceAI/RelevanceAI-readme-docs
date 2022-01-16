@@ -47,7 +47,7 @@ The following conventions have been proposed to make this migration and doc orga
 - Section categories converted to all caps with underscore delimiter
   - (eg. Getting Started) -> `GETTING_STARTED`
 - Subsections and Markdown filename is named after its' page slug [1]
-  - eg. https://docs.relevance.ai/docs/welcome -> [`welcome.md`](https://github.com/RelevanceAI/RelevanceAI-readme-docs/blob/development/docs/GETTING_STARTED/welcome.md)
+  - eg. https://docs.relevance.ai/docs/welcome -> [`welcome.md`](https://github.com/RelevanceAI/RelevanceAI-readme-docs/blob/main/docs/GETTING_STARTED/welcome.md)
   - eg. https://dash.readme.com/project/relevance/docs/vectors-and-vector-databases -> https://github.com/RelevanceAI/RelevanceAI-readme-docs/tree/development/docs/GETTING_STARTED/vectors-and-vector-databases 
   - Using `-` as delimiter (default via README)
 - Corresponding assets (eg. images/GIFs) for a particular section/subsection should be in a folder named `_assets`

@@ -1,5 +1,5 @@
 ---
-title: "What experimentation first"
+title: "Why experimentation first"
 excerpt: "Why we need an experimentation-first vector database"
 slug: "why-experimentation-first"
 hidden: false

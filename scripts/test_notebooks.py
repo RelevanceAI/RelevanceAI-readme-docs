@@ -45,7 +45,7 @@ def check_latest_version(name):
 DOCS_PATH = Path.cwd() / 'docs'
 RELEVANCEAI_SDK_VERSION_LATEST = get_latest_version('RelevanceAI')
 # RELEVANCEAI_SDK_VERSION_LATEST = 'latest'
-PIP_INSTALL_REGEX = f'"!pip install .* RelevanceAI==.*"'
+PIP_INSTALL_REGEX = f'".*pip install .* RelevanceAI.*==.*"'
 PIP_INSTALL_LATEST = f'"!pip install -U RelevanceAI=={RELEVANCEAI_SDK_VERSION_LATEST}"'
 
 
