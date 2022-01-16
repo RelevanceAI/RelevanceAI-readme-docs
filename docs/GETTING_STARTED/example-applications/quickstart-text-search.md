@@ -10,7 +10,10 @@ hidden: false
 <img src="https://github.com/RelevanceAI/RelevanceAI-readme-docs/blob/main/docs/GETTING_STARTED/example-applications/_assets/RelevanceAI_text_search.png?raw=true" 
      alt="RelevanceAI Text to Image"
      style="width: 100% vertical-align: middle"/> 
-<figcaption>Universal Sentence Encoder encoding process from https://tfhub.dev/google/universal-sentence-encoder/4</figcaption>
+<figcaption>
+<a href="https://tfhub.dev/google/universal-sentence-encoder/4">Universal Sentence Encoder encoding process</a>
+</figcaption>
+
 <figure>
 
 In this section, we will show you how to create and experiment with a powerful text search engine using Google's Universal Sentence Encoder through [VectorHub library](https://github.com/RelevanceAI/vectorhub) and Relevance AI. 
