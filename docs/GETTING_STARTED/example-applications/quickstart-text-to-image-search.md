@@ -206,7 +206,7 @@ Lets insert documents into the dataset `quickstart_clip`.
 
 
 ```python Python (SDK)
-client.insert_documents("quickstart_clip", documents=documents)
+client.insert_documents("quickstart_clip", docs=documents)
 ```
 ```python
 ```

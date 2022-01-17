@@ -97,7 +97,7 @@ To insert data to a dataset, you can use the `insert_documents` method.  Note th
 ```python Python (SDK)
 
 # Now we instantiate our client
-client.insert_documents(dataset_id="quickstart_sample", documents=documents)
+client.insert_documents(dataset_id="quickstart_sample", docs=documents)
 
 ```
 ```python

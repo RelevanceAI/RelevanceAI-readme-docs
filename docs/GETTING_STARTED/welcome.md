@@ -65,7 +65,7 @@ documents = [
 	{"_id": "4", "example_vector_": [0.5, 0.5, 0.5], "data": "This is another doc"},
 ]
 
-client.insert_documents(dataset_id="quickstart", documents=documents)
+client.insert_documents(dataset_id="quickstart", docs=documents)
 
 ```
 ```python
