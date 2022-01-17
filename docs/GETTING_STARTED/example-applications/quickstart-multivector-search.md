@@ -13,8 +13,7 @@ hidden: false
 
 
 
-**Try it out in Colab:** [![Open In Colab](https://colab.research.google.com/_assets/colab-badge.svg)](https://colab.research.google.com/github/RelevanceAI/RelevanceAI-readme-docs/blob/main/docs/GETTING_STARTED/example-applications/_notebooks/RelevanceAI_ReadMe_Quickstart_Multivector_Search.ipynb)
-
+**Try it out in Colab:** [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/RelevanceAI/RelevanceAI-readme-docs/blob/main/docs/GETTING_STARTED/example-applications/_notebooks/RelevanceAI_ReadMe_Quickstart_Multivector_Search.ipynb)
 
 
 
