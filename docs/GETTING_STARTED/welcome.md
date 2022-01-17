@@ -19,7 +19,7 @@ Relevance AI's ultimate goal is to assist developers to experiment, build and sh
 
 ## In 5 lines of code, get a shareable dashboard for experiments insight!
 
-Run this Quickstart in Colab: [![Open In Colab](https://colab.research.google.com/_assets/colab-badge.svg)](https://colab.research.google.com/github/RelevanceAI/RelevanceAI-readme-docs/blob/main/docs/GETTING_STARTED/_notebooks/Intro_to_Relevance_AI.ipynb)
+Run this Quickstart in Colab: [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/RelevanceAI/RelevanceAI-readme-docs/blob/main/docs/GETTING_STARTED/_notebooks/Intro_to_Relevance_AI.ipynb)
 
 ### 1. Set up Relevance AI
 
