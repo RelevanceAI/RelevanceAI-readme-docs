@@ -18,7 +18,7 @@ hidden: false
 
 In this section, we will show you how to create and experiment with a powerful text search engine using Google's Universal Sentence Encoder through [VectorHub library](https://github.com/RelevanceAI/vectorhub) and Relevance AI. 
 
-**Try it out in Colab:** [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/RelevanceAI/RelevanceAI-readme-docs/blob/main/docs/GETTING_STARTED/example-applications/_notebooks/RelevanceAI_ReadMe_Quickstart_Text_Search_(using_USE_VectorHub).ipynb)
+**Try it out in Colab:** [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/RelevanceAI/RelevanceAI-readme-docs/blob/main/docs/GETTING_STARTED/example-applications/_notebooks/RelevanceAI_ReadMe_Quickstart_Text_Search_\(using_USE_VectorHub\).ipynb)
 
 
 ### What I Need
