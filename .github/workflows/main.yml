@@ -50,7 +50,7 @@ jobs:
           TEST_PROJECT: ${{ secrets.TEST_PROJECT }}
           TEST_API_KEY: ${{ secrets.TEST_API_KEY }}
         run: |
-          python ./scripts/test_notebooks.py
+          python scripts/test_notebooks.py . RelevanceAI  
         
 
   sync-readme-docs:
