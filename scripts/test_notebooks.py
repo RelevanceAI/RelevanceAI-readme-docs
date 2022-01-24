@@ -12,7 +12,7 @@ import argparse
 
 parser = argparse.ArgumentParser()
 parser.add_argument("-p", "--path", default=Path.cwd(), help='Path of tests')
-parser.add_argument("-n", "--name", default="RelevanceAI", help='Package Name')
+parser.add_argument("-n", "--package-name", default="RelevanceAI", help='Package Name')
 parser.add_argument("-v", "--version", default=None, help='Package Version')
 args = parser.parse_args()
 
@@ -113,7 +113,7 @@ CLIENT_INSTANTIATION_STR_REPLACE = (
 CLIENT_INSTANTIATION_BASE = f'"client = Client()"'
 
 
-
+# notebook = Path('examples') / 'RelevanceAI_ReadMe_Quickstart_Text_Search.ipynb'
 
 for notebook in Path(DOCS_PATH).glob("**/*.ipynb"):
     print(notebook)
