@@ -103,4 +103,3 @@ However, there are areas where vectors fall short especially when the vector is 
 - **Hybrid search (keyword + vector)**: As mentioned there are strengths and weaknesses of both keyword and vector approach. A great thing about a hybrid vector database like Relevance AI is the ability to combine keyword and vector to create a hybrid search.
 - **Multi-vector search**: Because different kinds of data can be encoded into vectors, searches are not limited to one data type. For example, a query would not be limited to textual data, but may also take into consideration the vectors obtained by image data as well. This is normally not supported for most vector databases, but a feature that has dedicated support in Relevance AI.
 - Many more other combination possibilities to create the best search, check out the [better text search](doc:better-text-search-prerequisites) section that goes into this deeper with examples using Relevance AI.
-w
