@@ -111,6 +111,7 @@ CLIENT_INSTANTIATION_STR_REPLACE = (
 
 CLIENT_INSTANTIATION_BASE = f'"client = Client()"'
 
+# notebook = Path('examples') / 'Intro_to_Relevance_AI.ipynb'
 
 for notebook in Path(DOCS_PATH).glob("**/*.ipynb"):
     print(notebook)
@@ -141,6 +142,5 @@ for notebook in Path(DOCS_PATH).glob("**/*.ipynb"):
     notebook_find_replace(
         notebook,
         CLIENT_INSTANTIATION_SENT_REGEX,
-        CLIENT_INSTANTIATION_STR_REGEX,
+        CLIENT_INSTANTIATION_SENT_REGEX,
         CLIENT_INSTANTIATION_BASE,
-    )
