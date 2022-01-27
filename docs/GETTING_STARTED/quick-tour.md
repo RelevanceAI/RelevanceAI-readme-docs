@@ -52,7 +52,7 @@ client = Client()
 ```
 
 <figure>
-<img src="https://github.com/RelevanceAI/RelevanceAI-readme-docs/blob/main/docs/GETTING_STARTED/_assets/RelevanceAI_auth_token_details.png?raw=true" width="650" alt="Get your Auth Details" />
+<img src="https://github.com/RelevanceAI/RelevanceAI-readme-docs/blob/main/docs/GETTING_STARTED/_assets/RelevanceAI_auth_token_details.png?raw=true" alt="Get your Auth Details" />
 <figcaption>Get your Auth Details</figcaption>
 <figure>
 
@@ -79,7 +79,7 @@ client.insert_documents(dataset_id="quickstart", documents=documents)
 
 
 <figure>
-<img src="https://github.com/RelevanceAI/RelevanceAI-readme-docs/blob/main/docs/GETTING_STARTED/_assets/RelevanceAI_dataset_dashboard.png?raw=true" width="650" alt="See your dataset in the dashboard" />
+<img src="https://github.com/RelevanceAI/RelevanceAI-readme-docs/blob/main/docs/GETTING_STARTED/_assets/RelevanceAI_dataset_dashboard.png?raw=true" alt="See your dataset in the dashboard" />
 <figcaption>See your dataset in the dashboard</figcaption>
 <figure>
 
@@ -107,13 +107,13 @@ client.datasets.schema(dataset_id="quickstart")
 
 
 <figure>
-<img src="https://github.com/RelevanceAI/RelevanceAI-readme-docs/blob/main/docs/GETTING_STARTED/_assets/RelevanceAI_vectors_dashboard.png?raw=true" width="650" alt="Monitor your vectors in the dashboard" />
+<img src="https://github.com/RelevanceAI/RelevanceAI-readme-docs/blob/main/docs/GETTING_STARTED/_assets/RelevanceAI_vectors_dashboard.png?raw=true" alt="Monitor your vectors in the dashboard" />
 <figcaption>Monitor your vectors in the dashboard</figcaption>
 <figure>
 
 
 <figure>
-<img src="https://github.com/RelevanceAI/RelevanceAI-readme-docs/blob/main/docs/GETTING_STARTED/_assets/RelevanceAI_images_dashboard.png?raw=true" width="650" alt="View your dataset in the dashboard" />
+<img src="https://github.com/RelevanceAI/RelevanceAI-readme-docs/blob/main/docs/GETTING_STARTED/_assets/RelevanceAI_images_dashboard.png?raw=true" alt="View your dataset in the dashboard" />
 <figcaption>View your dataset in the dashboard</figcaption>
 <figure>
 
@@ -122,8 +122,89 @@ client.datasets.schema(dataset_id="quickstart")
 
 ### 4. Run clustering on your vectors
 
-Run clustering on your vectors to better understand your data. Yo can view the clusters in our clustering dashboard following the provided link when clustering finishes.
+Run clustering on your vectors to better understand your data. You can view the clusters in our clustering dashboard following the provided link when clustering finishes.
+
+
+
+```python Python (SDK)
+centroids = client.vector_tools.cluster.kmeans_cluster(
+    dataset_id = "quickstart", 
+    vector_fields = ["product_image_clip_vector_"],
+    k = 10
+)
+
+client.services.cluster.centroids.list_closest_to_center(
+  dataset_id = "quickstart", 
+  vector_field = "product_image_clip_vector_", 
+  cluster_ids = [],                 # Leave this as an empty list if you want all of the clusters,
+  alias = "kmeans_10"
+)
+```
+```python
+```
+
+
+<figure>
+<img src="https://github.com/RelevanceAI/RelevanceAI-readme-docs/blob/main/docs/GETTING_STARTED/_assets/RelevanceAI_cluster_dashboard.png?raw=true" alt="See what your clusters represent" />
+<figcaption>See what your clusters represent</figcaption>
+<figure>
 
 
 
 
+You can read more about how to analyse clusters in your data  [here](doc:quickstart-k-means).
+
+
+### 5. Run a vector search
+
+See your search results on the dashboard here https://cloud.relevance.ai/sdk/search.
+
+
+
+```python Python (SDK)
+
+query = "xmas gifts"  # query text
+query_vec_txt = client.services.encoders.text(text=query)
+
+client.services.search.vector(
+	dataset_id = "quickstart", 
+  multivector_query = [
+    {"vector": query_vec_txt["vector"], 
+     "fields": ["product_image_clip_vector_"]},
+  ],
+  page_size = 3,
+  query = "sample search" # Stored on the dashboard
+)
+
+```
+```python
+```
+
+
+
+<figure>
+<img src="https://github.com/RelevanceAI/RelevanceAI-readme-docs/blob/main/docs/GETTING_STARTED/_assets/RelevanceAI_search_dashboard.png?raw=true"  alt="Visualise your search results" />
+<figcaption>Visualise your search results</figcaption>
+<figure>
+
+
+
+You can read more about how to construct a multi-vector query with those features [here](doc:vector-search-prerequisites).
+
+
+### 6. Project your vectors in 3D space
+
+Coming soon!
+
+
+### 7. Compare model, clustering, search and application configurations over a series of different experiments
+
+Coming soon!
+
+
+This is just the start. Relevance AI comes out of the box with support for features such as cluster aggregation, and evaluation to further make sense of your unstructured data and multi-vector search, filters, facets and traditional keyword matching to enhance your vector search capabilities. 
+
+**Get started with some example applications you can build with Relevance AI. Check out some other guides below!**
+- [Text-to-image search with OpenAI's CLIP](doc:quickstart-text-to-image-search)
+- [Hybrid Text search with Universal Sentence Encoder using Vectorhub](doc:quickstart-text-search)
+- [Text search with Universal Sentence Encoder Question Answer from Google](doc:quickstart-question-answering)
