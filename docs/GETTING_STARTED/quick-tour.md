@@ -69,7 +69,7 @@ from relevanceai.datasets import get_sample_ecommerce_dataset
 documents = get_sample_ecommerce_dataset()
 documents[0]
 
-client.insert_documents(dataset_id="quickstart", documents=documents)
+client.insert_documents(dataset_id="quickstart", docs=documents)
 
 
 ```
@@ -96,9 +96,9 @@ enc = Clip2Vec()
 
 # Set the default encode to encoding an image
 enc.encode = enc.encode_image
-documents = enc.encode_documents(fields=["product_image"], documents=documents)
+documents = enc.encode_documents(fields=["product_image"], docs=documents)
 
-client.update_documents(dataset_id="quickstart", documents=documents)
+client.update_documents(dataset_id="quickstart", docs=documents)
 
 client.datasets.schema(dataset_id="quickstart")
 ```
@@ -149,10 +149,7 @@ client.services.cluster.centroids.list_closest_to_center(
 <figcaption>See what your clusters represent</figcaption>
 <figure>
 
-
-
-
-You can read more about how to analyse clusters in your data  [here](doc:quickstart-k-means).
+You can read more about how to analyse clusters in your data [here](doc:quickstart-k-means).
 
 
 ### 5. Run a vector search
@@ -186,8 +183,6 @@ client.services.search.vector(
 <img src="https://github.com/RelevanceAI/RelevanceAI-readme-docs/blob/main/docs/GETTING_STARTED/_assets/RelevanceAI_search_dashboard.png?raw=true"  alt="Visualise your search results" />
 <figcaption>Visualise your search results</figcaption>
 <figure>
-
-
 
 You can read more about how to construct a multi-vector query with those features [here](doc:vector-search-prerequisites).
 
