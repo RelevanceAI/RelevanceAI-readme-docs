@@ -2,7 +2,10 @@
   "name": "relevanceai-readme-docs",
   "version": "1.0.0",
   "description": "This repository updates RelevanceAI's ReadMe Documentation [here](https://relevance-ai-documentation.readme.io/docs/).",
-  "dependencies": {},
+  "dependencies": {
+    "npm": "^8.3.2",
+    "npx": "^10.2.2"
+  },
   "devDependencies": {
     "rdme": "^6.2.1"
   },

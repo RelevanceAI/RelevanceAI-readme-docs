@@ -10,7 +10,6 @@ if [ "$DEBUG_MODE" = true ]; then
 fi
 
 
-
 ###############################################################################
 # Functions to get env vars  
 ###############################################################################
@@ -37,10 +36,15 @@ get_latest_readme_version() {
 
 PIP_PACKAGE_NAME="RelevanceAI"
 PACKAGE_JSON_URL="https://pypi.org/pypi/$PIP_PACKAGE_NAME/json"                
-RELEVANCEAI_SDK_VERSION=$(curl -L -s "$PACKAGE_JSON_URL" | jq  -r '.releases | keys | .[]' | sort -V | tail -n1)
+LATEST_RELEVANCEAI_SDK_VERSION=$(curl -L -s "$PACKAGE_JSON_URL" | jq  -r '.releases | keys | .[]' | sort -V | tail -n1)
 LATEST_README_VERSION=$(get_latest_readme_version)
+
+RELEVANCEAI_SDK_VERSION=${2:-${LATEST_RELEVANCEAI_SDK_VERSION}}
+RELEVANCEAI_SDK_VERSION=$(echo $RELEVANCEAI_SDK_VERSION | sed 's/[^0-9.]//g')
+
 echo $RELEVANCEAI_SDK_VERSION
 echo $LATEST_README_VERSION
+
 
 if check_readme_api_key_set; then
     README_VERSIONS=$(npx rdme versions --key $RELEVANCEAI_README_API_KEY --raw | jq -r '.[] | .version')

@@ -62,7 +62,6 @@ DOCS_PATH = Path(args.path) / "docs"
 RELEVANCEAI_SDK_VERSION = args.version if args.version else get_latest_version(args.package_name)
 print(f'Executing notebook test with {args.package_name}=={RELEVANCEAI_SDK_VERSION}\n\n')
 
-# RELEVANCEAI_SDK_VERSION = 'latest'
 PIP_INSTALL_SENT_REGEX = f'".*pip install .* {args.package_name}.*==.*"'
 PIP_INSTALL_STR_REGEX = f"==.*[0-9]"
 PIP_INSTALL_STR_REPLACE = f"=={RELEVANCEAI_SDK_VERSION}"
@@ -103,8 +102,8 @@ def notebook_find_replace(notebook, find_sent_regex, find_str_regex, replace_str
 
 ## Env vars
 CLIENT_INSTANTIATION_SENT_REGEX = '"client.*Client(.*)"'
-TEST_PROJECT = os.getenv("TEST_PROJECT")
-TEST_API_KEY = os.getenv("TEST_API_KEY")
+TEST_PROJECT = os.environ["TEST_PROJECT"]
+TEST_API_KEY = os.environ["TEST_API_KEY"]
 CLIENT_INSTANTIATION_STR_REGEX = "\((.*?)\)"
 CLIENT_INSTANTIATION_STR_REPLACE = (
     f'(project=\\"{TEST_PROJECT}\\", api_key=\\"{TEST_API_KEY}\\")'
@@ -112,8 +111,6 @@ CLIENT_INSTANTIATION_STR_REPLACE = (
 
 CLIENT_INSTANTIATION_BASE = f'"client = Client()"'
 
-
-# notebook = Path('examples') / 'RelevanceAI_ReadMe_Quickstart_Text_Search.ipynb'
 
 for notebook in Path(DOCS_PATH).glob("**/*.ipynb"):
     print(notebook)

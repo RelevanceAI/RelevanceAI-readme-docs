@@ -4,8 +4,8 @@ This repository updates RelevanceAI's ReadMe Documentation [here](https://docs.r
 
 ## 🧠 Documentation
 
-Migrating RelevanceAI docs from [docs.relevance.ai/v0.26.0/docs/welcome](https://docs.relevance.ai/v0.26.0/docs/welcome).
- to [docs.relevance.ai/v0.27.0/docs/welcome](https://docs.relevance.ai/v0.27.0/docs/welcome).
+Migrating RelevanceAI docs from [docs.relevance.ai/v0.27.0/docs/welcome](https://docs.relevance.ai/v0.27.0/docs/welcome).
+ to [docs.relevance.ai/v0.28.0/docs/welcome](https://docs.relevance.ai/v0.28.0/docs/welcome).
 
 
 ## 🛠️  Requirements
