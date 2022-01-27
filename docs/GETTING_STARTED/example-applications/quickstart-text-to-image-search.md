@@ -33,7 +33,7 @@ Prior to starting, let's install the main dependencies. This installation provid
 
 
 ```bash Bash
-!pip install -U RelevanceAI[notebook]
+!pip install -U RelevanceAI[notebook]==0.27.0
 ```
 ```bash
 ```

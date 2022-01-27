@@ -13,7 +13,7 @@ hidden: false
 The easiest way to install our Python SDK is to run: 
 
 ```bash Bash
-!pip install -U RelevanceAI
+!pip install -U RelevanceAI==0.27.0
 ```
 ```bash
 ```
@@ -28,7 +28,7 @@ This will install the latest version of our Python SDK:
 
 
 ```bash Bash
-!pip install git+https://github.com/relevanceai/relevanceai
+!pip install git+https://github.com/relevanceai/relevanceai@v0.27.0
 ```
 ```bash
 ```
@@ -38,7 +38,7 @@ For editable installation:
 
 
 ```bash Bash
-git clone https://github.com/relevanceai/relevanceai
+git clone https://github.com/relevanceai/relevanceai@v0.27.0
 pip install -e .
 ```
 ```bash

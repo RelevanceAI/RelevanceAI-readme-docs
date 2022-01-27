@@ -45,14 +45,8 @@ client = Client()
 ```
 
 
-### 2. Create a dataset with vectors and inserting it
+### 2. Create a dataset with vectors
 
-
-```bash Bash
-!pip install -U RelevanceAI
-```
-```bash
-```
 
 
 ```python Python (SDK)
