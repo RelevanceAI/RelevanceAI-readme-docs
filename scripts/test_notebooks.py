@@ -144,3 +144,4 @@ for notebook in Path(DOCS_PATH).glob("**/*.ipynb"):
         CLIENT_INSTANTIATION_SENT_REGEX,
         CLIENT_INSTANTIATION_SENT_REGEX,
         CLIENT_INSTANTIATION_BASE,
+    )
