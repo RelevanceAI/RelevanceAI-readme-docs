@@ -50,7 +50,9 @@ jobs:
           TEST_PROJECT: ${{ secrets.TEST_PROJECT }}
           TEST_API_KEY: ${{ secrets.TEST_API_KEY }}
         run: |
-          python scripts/test_notebooks.py -p . -n RelevanceAI -v 0.27.0  
+          README_VERSION=$(cat __version__)
+          echo "README_VERSION=$README_VERSION"
+          python scripts/test_notebooks.py -p . -n RelevanceAI -v $README_VERSION
         
 
   sync-readme-docs:
@@ -91,4 +93,6 @@ jobs:
         env:
           RELEVANCEAI_README_API_KEY: ${{ secrets.RELEVANCEAI_README_API_KEY }}
         run: | 
-          ./scripts/sync_readme_docs.sh true
+          README_VERSION=$(cat __version__)
+          echo "README_VERSION=$README_VERSION"
+          ./scripts/sync_readme_docs.sh true v$README_VERSION
