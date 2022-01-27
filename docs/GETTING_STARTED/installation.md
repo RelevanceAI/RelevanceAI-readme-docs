@@ -20,7 +20,7 @@ The easiest way to install our Python SDK is to run:
 
 This installation provides you with what you need to connect to RelevanceAI's API, read/write data, make different searches, etc.
 
-**The SDK Reference** can be found at https://relevanceai.github.io/RelevanceAI/docs/html/index.html
+**The SDK Reference** can be found at https://relevanceai.readthedocs.io/en/v0.27.0/
 
 ### Installation from source
 
@@ -38,7 +38,7 @@ For editable installation:
 
 
 ```bash Bash
-git clone https://github.com/relevanceai/relevanceai@v0.27.0
+git clone https://github.com/relevanceai/relevanceai
 pip install -e .
 ```
 ```bash
