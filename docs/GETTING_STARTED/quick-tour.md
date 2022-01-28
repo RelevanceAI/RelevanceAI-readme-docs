@@ -12,7 +12,7 @@ Relevance AI is designed and built to help developers to experiment, build and s
 
 
 <figure>
-<img src="https://github.com/RelevanceAI/RelevanceAI-readme-docs/blob/main/docs/GETTING_STARTED/_assets/RelevanceAI_DS_Workflow.png?raw=true" width="450" alt="Relevance AI DS Workflow" />
+<img src="https://github.com/RelevanceAI/RelevanceAI-readme-docs/blob/main/docs/_assets/RelevanceAI_DS_Workflow.png?raw=true" width="450" alt="Relevance AI DS Workflow" />
 <figcaption>How Relevance AI helps with the data science workflow</figcaption>
 <figure>
 

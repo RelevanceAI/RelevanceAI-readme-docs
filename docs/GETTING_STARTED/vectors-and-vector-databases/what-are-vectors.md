@@ -41,7 +41,7 @@ When we encode thousands of words using the same machine learning algorithm, we 
 In the example below, we have encoded 3 words: 'dog', 'cat', and 'pizza'. The word 'dog' and 'cat' are used in the same context very often and are semantically more similar, as opposed to 'cat' and 'pizza'. This was learnt by the machine learning model and when we produce a vector from it, we can see below that the words 'cat' and 'dog' are closer to each other and far away from 'pizza'.
 
 <figure>
-<img src="https://github.com/RelevanceAI/RelevanceAI-readme-docs/blob/main/docs/GETTING_STARTED/vectors-and-vector-databases/_assets/RelevanceAI_vector_space.png?raw=true" width="650" alt="" />
+<img src="https://github.com/RelevanceAI/RelevanceAI-readme-docs/blob/main/docs/_assets/RelevanceAI_vector_space.png?raw=true" width="650" alt="Vector Spaces" />
 <figcaption></figcaption>
 <figure>
 

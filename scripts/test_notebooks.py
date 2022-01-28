@@ -12,7 +12,7 @@ import sys
 import argparse
 
 parser = argparse.ArgumentParser()
-parser.add_argument("-p", "--path", default=Path.cwd(), help="Path of tests")
+parser.add_argument("-p", "--path", default=Path.cwd(), help="Path of root folder")
 parser.add_argument("-n", "--package-name", default="RelevanceAI", help="Package Name")
 parser.add_argument("-v", "--version", default=None, help="Package Version")
 args = parser.parse_args()
