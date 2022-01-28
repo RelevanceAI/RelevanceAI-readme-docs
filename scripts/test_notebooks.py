@@ -7,7 +7,6 @@ import subprocess
 import sys
 import nbformat
 from nbconvert.preprocessors import ExecutePreprocessor
-import sys
 
 import argparse
 

@@ -1,0 +1,13 @@
+repos:
+  - repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v4.1.0
+    hooks:
+      - id: check-added-large-files
+  - repo: local
+    hooks:
+      - id: detect-api-keys
+        name: Detect API Keys
+        entry: python scripts/detect_api_key.py docs
+        language: python
+        always_run: true
+        pass_filenames: false
