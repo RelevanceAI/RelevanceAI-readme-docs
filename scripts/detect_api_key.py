@@ -69,6 +69,7 @@ if __name__ == "__main__":
 		sys.exit(0)
 
 	path = str(sys.argv[1])
+	
 	print(f'Scanning directory: {path}') 
 	print(f'For tokens with minimum API key length: {api_key_min_length}')
 	print(f'For tokens with minimum entropy ratio: {api_key_min_entropy_ratio}')
