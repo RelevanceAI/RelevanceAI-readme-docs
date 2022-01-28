@@ -94,4 +94,4 @@ jobs:
         run: | 
           README_VERSION=$(cat __version__)
           echo "README_VERSION=$README_VERSION"
-          ./scripts/sync_readme_docs.sh true v$README_VERSION
+          ./scripts/sync_readme_docs.sh true $README_VERSION
