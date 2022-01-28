@@ -1,0 +1,31 @@
+name: Release Version
+on:
+  pull_request:
+    types: [closed]
+    branches:
+      - main
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    if: github.event.pull_request.merged
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Set ReadMe version as Github env
+        run: | 
+          README_VERSION=$(cat __version__) 
+          echo "README_VERSION=$README_VERSION" >> $GITHUB_ENV
+
+      - name: Bump version and push tag
+        id: tag_version
+        uses: mathieudutour/github-tag-action@v6.0
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          custom_tag: ${{ env.README_VERSION }}
+          
+      - name: Create a GitHub release
+        uses: ncipollo/release-action@v1
+        with:
+          tag: ${{ steps.tag_version.outputs.new_tag }}
+          name: Release ${{ steps.tag_version.outputs.new_tag }}
+          body: ${{ steps.tag_version.outputs.changelog }}

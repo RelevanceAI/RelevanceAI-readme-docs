@@ -1,7 +1,10 @@
 
 name: ReadMe Update
 
-on: [pull_request]
+on:
+  push:
+      branches: [ main ]
+  pull_request: 
   # push:
   #   # branches: [ main, development ]
   # pull_request:
@@ -96,3 +99,36 @@ jobs:
           README_VERSION=$(cat __version__)
           echo "README_VERSION=$README_VERSION"
           ./scripts/sync_readme_docs.sh true $README_VERSION
+      
+
+
+  # update-readme-main:
+  #   needs: sync-readme-docs
+  #   runs-on: ${{ matrix.os }}
+  #   strategy:
+  #     matrix:
+  #       os: [ ubuntu-latest] 
+  #       include:
+  #         - os: ubuntu-latest
+  #           path: ~/.cache/pip
+  #         # - os: macos-latest
+  #         #   path: ~/Library/Caches/pip
+  #         # - os: windows-latest
+  #         #   path: ~\AppData\Local\pip\Cache
+  #   steps:
+  #   - name: Checkout code
+  #     uses: actions/checkout@v2
+
+  #   - uses: actions/setup-python@v2
+  #     with:
+  #       python-version: ${{ matrix.python-version }}
+  #       cache: 'pip'
+      
+  #     - name: Sync ReadMe docs
+  #       env:
+  #         RELEVANCEAI_README_API_KEY: ${{ secrets.RELEVANCEAI_README_API_KEY }}
+  #       run: | 
+  #         README_VERSION=$(cat __version__)
+  #         echo "README_VERSION=$README_VERSION"
+  #         ./scripts/sync_readme_docs.sh true $README_VERSION
+      
