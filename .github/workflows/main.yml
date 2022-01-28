@@ -1,11 +1,10 @@
 
 name: ReadMe Update
 
-on:
-  push:
-    branches: [ main, development ]
-  pull_request:
-    branches: [ main, development ]
+on: [pull_request]
+    # branches: [ main, development ]
+  # pull_request:
+  #   branches: [ main, development ]
 
   workflow_dispatch:
 
