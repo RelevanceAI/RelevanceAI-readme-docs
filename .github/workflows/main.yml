@@ -2,11 +2,12 @@
 name: ReadMe Update
 
 on: [pull_request]
-    # branches: [ main, development ]
+  # push:
+  #   # branches: [ main, development ]
   # pull_request:
-  #   branches: [ main, development ]
+  #   # branches: [ main, development ]
 
-  workflow_dispatch:
+  # workflow_dispatch:
 
 jobs:
   test-notebooks:
