@@ -7,7 +7,7 @@
     "npx": "^10.2.2"
   },
   "devDependencies": {
-    "rdme": "^6.2.1"
+    "rdme": "^6.3.0"
   },
   "scripts": {
     "sync": ""

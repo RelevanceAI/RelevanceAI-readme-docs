@@ -37,7 +37,7 @@ def line_contains_api_key(line, regex_str=None):
 
 def scan_file(fpath):
 	"""
-	Prints out lines in the specified file that probably contain an API key orpassword.
+	Prints out lines in the specified file that probably contain an API key or password.
 	"""
 	print(f'Scanning {fpath}...')
 	f = open(fpath)
@@ -54,10 +54,6 @@ def scan_file(fpath):
 		number += 1
 
 def scan_dir(path, ext):
-	"""
-	Recursively walks through the specified directory and scans each file.
-	Ignores hidden files and files matching the ignore list.
-	"""
 	for f in Path(path).glob(f"**/*.{ext}"):
 		scan_file(str(f))
 

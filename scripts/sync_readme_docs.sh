@@ -35,16 +35,18 @@ get_latest_readme_version() {
 ###############################################################################
 
 PIP_PACKAGE_NAME="RelevanceAI"
-PACKAGE_JSON_URL="https://pypi.org/pypi/$PIP_PACKAGE_NAME/json"                
+PACKAGE_JSON_URL="https://pypi.org/pypi/$PIP_PACKAGE_NAME/json"  
+RELEVANCEAI_SDK_VERSIONS=$(curl -L -s "$PACKAGE_JSON_URL" | jq  -r '.releases | keys | .[]' | sort -V)             
 LATEST_RELEVANCEAI_SDK_VERSION=$(curl -L -s "$PACKAGE_JSON_URL" | jq  -r '.releases | keys | .[]' | sort -V | tail -n1)
 LATEST_README_VERSION=$(get_latest_readme_version)
 
-RELEVANCEAI_SDK_VERSION=${2:-${LATEST_RELEVANCEAI_SDK_VERSION}}
-RELEVANCEAI_SDK_VERSION=$(echo $RELEVANCEAI_SDK_VERSION | sed 's/[^0-9.]//g')
 
-echo $RELEVANCEAI_SDK_VERSION
-echo $LATEST_README_VERSION
+README_VERSION=${2:-${LATEST_README_VERSION}}
+README_VERSION=$(echo $README_VERSION | sed 's/[^0-9.]//g')     ## stripping 'v' from version string
 
+RELEVANCEAI_SDK_VERSION=${README_VERSION}
+
+echo $README_VERSION
 
 if check_readme_api_key_set; then
     README_VERSIONS=$(npx rdme versions --key $RELEVANCEAI_README_API_KEY --raw | jq -r '.[] | .version')
@@ -57,18 +59,16 @@ fi
 
 check_sdk_version_in_readme(){
     if [[ $README_VERSIONS =~ $RELEVANCEAI_SDK_VERSION ]]; then
-        echo "RelevanceAI SDK version $RELEVANCEAI_SDK_VERSION is in README_VERSIONS"
         true
     else
-        echo "RelevanceAI SDK version $RELEVANCEAI_SDK_VERSION is not in README_VERSIONS"
         false
     fi
 }
 
 if ! check_sdk_version_in_readme; then
-    npx rdme versions:create  --version=$RELEVANCEAI_SDK_VERSION --key=$RELEVANCEAI_README_API_KEY --fork=$LATEST_README_VERSION --main=False --beta=True --isPublic=True 
+    npx rdme versions:create  --version=$README_VERSION --key=$RELEVANCEAI_README_API_KEY --fork=$LATEST_README_VERSION --main=False --beta=True --isPublic=True 
 else
-    echo "RelevanceAI SDK version $RELEVANCEAI_SDK_VERSION already exists in ReadMe"
+    echo "ReadMe version $README_VERSION already exists"
 fi
 
 
@@ -76,4 +76,5 @@ fi
 # Sync documentation
 ###############################################################################
 
-npx rdme docs ./docs/ --version=$RELEVANCEAI_SDK_VERSION  --key $RELEVANCEAI_README_API_KEY
+echo "Syncing ReadMe version $README_VERSION"
+npx rdme docs ./docs/ --version=$README_VERSION  --key $RELEVANCEAI_README_API_KEY

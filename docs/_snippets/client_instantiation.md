@@ -1,0 +1,13 @@
+
+```python Python (SDK)
+
+from relevanceai import Client 
+
+"""
+You can sign up/login and find your credentials here: https://cloud.relevance.ai/sdk/api
+Once you have signed up, click on the value under `Authorization token` and paste it here
+"""
+client = Client()
+```
+```python
+```

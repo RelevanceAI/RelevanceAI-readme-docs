@@ -34,6 +34,7 @@ for index in range(len(md_sentences)):
             temp['type'] = md_sentences[index].split(':')[1][:-1]
             temp['index'] = [0, 0]
             temp['index'][0] = index
+            
         # For all the indexes after [block:code] search for the closest [/block]
             for following in range(index+1, len(md_sentences)):
                 if md_sentences[following][0:8]=='[/block]':

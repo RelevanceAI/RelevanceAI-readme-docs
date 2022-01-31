@@ -4,6 +4,7 @@ on:
     types: [closed]
     branches:
       - main
+
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -15,6 +16,12 @@ jobs:
         run: | 
           README_VERSION=$(cat __version__) 
           echo "README_VERSION=$README_VERSION" >> $GITHUB_ENV
+
+
+      # - name: Update live ReadMe version
+      #   run: | 
+      #       README_VERSION=$(cat __version__) 
+      #       echo "README_VERSION=$README_VERSION" >> $GITHUB_ENV
 
       - name: Bump version and push tag
         id: tag_version
