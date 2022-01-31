@@ -4,8 +4,10 @@
 import os
 from pathlib import Path
 import re
-import string
+
 import json
+import yaml
+
 from typing import List, Literal, Tuple
 
 import argparse
@@ -31,7 +33,6 @@ def load_snippet(snippet_path, ext=Literal['ipynb', 'md']):
     '''
     Loads a given snippet from the given path
     '''
-
     try:
         with open(snippet_path, 'r') as f:
             text = f.read()
@@ -48,8 +49,9 @@ def load_snippet(snippet_path, ext=Literal['ipynb', 'md']):
         snippet.append("```"+language)
         snippet.append("```")
     if ext == 'ipynb':
-        ### Skipping first line of snippet (language only relevance for rdmd)
-        ### and building ipynb snippet
+        ## Skipping first line of snippet (language only relevance for rdmd)
+        ## and building ipynb snippet
+
         snippet = snippet[1:]
         for i, sline in enumerate(snippet):
             sline_formatted = f'{json.dumps(sline)},'
@@ -93,8 +95,9 @@ def generate_file(input_fname: str, output_fname: str, snippet_paths: List[Path]
                     snippet_fpath = Path(snippet_path) / f'{snippet_name}'
                     print(f'Loading snippet: {snippet_path}/{snippet_name}')
                     snippet = load_snippet(snippet_fpath, ext=ext)
-                    # print(snippet)
+                    print(snippet)
                     [md_lines.append(x) for x in snippet]
+                    # print(md_lines)
         else:
             md_lines.append(line)
 
@@ -174,6 +177,12 @@ def main(args):
                         snippet_paths=snippet_paths,
                         ext='ipynb'
                     )
+
+                    ### Validating JSON notebook
+                    
+                    data = yaml.full_load(open(output_fname))
+                    json.dump(data, fp=open(output_fname, 'w'), indent=4)
+
 
 
 if __name__ == "__main__":
