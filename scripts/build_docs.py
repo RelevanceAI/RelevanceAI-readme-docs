@@ -4,6 +4,7 @@
 import os
 from pathlib import Path
 import re
+import string
 import json
 from typing import List, Literal, Tuple
 
@@ -30,15 +31,13 @@ def load_snippet(snippet_path, ext=Literal['ipynb', 'md']):
     '''
     Loads a given snippet from the given path
     '''
-    #load string
+
     try:
         with open(snippet_path, 'r') as f:
             text = f.read()
     except Exception as e:
         raise FileNotFoundError (f'File not found: {snippet_path}')
-
-   
-
+    
     snippet = text.split('\n')
     if ext == 'md':
         ### Reading language from the first line of the snippet
@@ -52,16 +51,9 @@ def load_snippet(snippet_path, ext=Literal['ipynb', 'md']):
         ### Skipping first line of snippet (language only relevance for rdmd)
         ### and building ipynb snippet
         snippet = snippet[1:]
-        # print(snippet)
-        # print(json.dumps(str(snippet)))
         for i, sline in enumerate(snippet):
-        #     sline = sline.replace('"""', '\"\"\"')
-        #     print(sline)
             sline_formatted = f'{json.dumps(sline)},'
-            print(sline_formatted)
             snippet[i] = sline_formatted
-
-        print(snippet)
     return snippet
 
 
@@ -77,24 +69,31 @@ def generate_file(input_fname: str, output_fname: str, snippet_paths: List[Path]
     # generates a new file
     md_lines = list() 
     for line in md_file.split('\n'):
-        if  bool(re.search('@@@', line)):
+        # print(line)
+        if  bool(re.search('@@@.*', line)):
+            # print(line)
             # load the corresponding snippet and merge it in the code
             # Loads snippets in order from root to inner folder - will overwrite the snippets with same name
             for snippet_path in snippet_paths:
                 available_snippets = os.listdir(snippet_path)
                 # print(available_snippets)
-    
-                if ext == 'md':
-                    snippet_name = line.split('@@@')[1].strip(' ')[0]
-                if ext == 'ipynb':
-                    snippet_name = line.split('@@@')[1].strip('"')
-            
-                if available_snippets and (snippet_name in available_snippets):
-                    snippet_fpath = Path(snippet_path) / f'{snippet_name}'
 
+                if ext == 'md':
+                    snippet_name = line.split('@@@')[1].split(' ')[0]
+                if ext == 'ipynb':
+                    snippet_name = line.split('@@@')[1].splitlines()[0]
+                    snippet_name = re.sub(r'[^\w\s]', '', snippet_name)
+                
+                print(snippet_name)
+                if available_snippets:
+
+                    regexes = {f".*{s}.*": s for s in available_snippets}
+                    snippet_name = [regexes[r] for r in regexes.keys() if re.match(r, snippet_name)][0]
+
+                    snippet_fpath = Path(snippet_path) / f'{snippet_name}'
                     print(f'Loading snippet: {snippet_path}/{snippet_name}')
                     snippet = load_snippet(snippet_fpath, ext=ext)
-
+                    # print(snippet)
                     [md_lines.append(x) for x in snippet]
         else:
             md_lines.append(line)
@@ -142,22 +141,22 @@ def main(args):
 
             print(f'Snippet paths {snippet_paths}')
 
-            # ### Generating for md
-            # if '_md' in dirs:
-            #     MD_DIR = Path(root) / "_md"
+            ### Generating for md
+            if '_md' in dirs:
+                MD_DIR = Path(root) / "_md"
 
-            #     for fname in os.listdir(MD_DIR):
-            #         input_fname = MD_DIR / fname
-            #         output_fname = Path(root) / fname
+                for fname in os.listdir(MD_DIR):
+                    input_fname = MD_DIR / fname
+                    output_fname = Path(root) / fname
 
-            #         print('---')
+                    print('---')
 
-            #         generate_file(
-            #             input_fname=input_fname, 
-            #             output_fname=output_fname, 
-            #             snippet_paths=snippet_paths,
-            #             ext='md'
-            #         )
+                    generate_file(
+                        input_fname=input_fname, 
+                        output_fname=output_fname, 
+                        snippet_paths=snippet_paths,
+                        ext='md'
+                    )
 
             ### Generating for ipynb        
             if '_ipynb' in dirs:
