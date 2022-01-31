@@ -12,12 +12,7 @@ hidden: false
 
 The easiest way to install our Python SDK is to run: 
 
-
-```bash Bash
-!pip install -U RelevanceAI==0.27.0
-```
-```bash
-```
+@@@installation
 
 This installation provides you with what you need to connect to RelevanceAI's API, read/write data, make different searches, etc.
 
@@ -54,20 +49,7 @@ pip install -e .
 After we install, we want to also set up the client. If you are missing an API key, grab your API key from https://cloud.relevance.ai/ in the [Settings](https://cloud.relevance.ai/settings) area and let's get started!
 
 
-
-```python Python (SDK)
-
-from relevanceai import Client 
-
-"""
-You can sign up/login and find your credentials here: https://cloud.relevance.ai/sdk/api
-Once you have signed up, click on the value under `Authorization token` and paste it here
-"""
-client = Client()
-```
-```python
-```
-
+@@@client_instantiation
 
 
 <figure>

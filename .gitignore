@@ -18,3 +18,5 @@ venv.bak/
 .vscode/
 
 readme_notebook_errors.txt
+
+*.bak

@@ -25,7 +25,7 @@ Run this Quickstart in Colab: [![Open In Colab](https://colab.research.google.co
 
 @@@installation
 
-<!-- @@@client_instantiation -->
+@@@client_instantiation
 
 
 ### 2. Create a dataset with vectors

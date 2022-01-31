@@ -23,12 +23,12 @@ Run this Quickstart in Colab: [![Open In Colab](https://colab.research.google.co
 
 ### 1. Set up Relevance AI
 
+
 ```bash Bash
 !pip install -U RelevanceAI==0.27.0
 ```
 ```bash
 ```
-
 
 
 ```python Python (SDK)
@@ -43,6 +43,7 @@ client = Client()
 ```
 ```python
 ```
+
 
 
 ### 2. Create a dataset with vectors
@@ -125,4 +126,5 @@ This is just the start. Relevance AI comes out of the box with support for more 
 - [Multi-vector search with your own vectors](doc:search-with-your-own-vectors)
 - [Hybrid Text search with Universal Sentence Encoder using Vectorhub](doc:quickstart-text-search)
 - [Text search with Universal Sentence Encoder Question Answer from Google](doc:quickstart-question-answering)
+
 
