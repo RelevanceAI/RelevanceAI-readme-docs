@@ -48,6 +48,14 @@ jobs:
         run: pip install -r requirements.txt
         # run: pip install -r colab_requirements.txt
 
+      - name: Test for API keys
+        run: | 
+          python scripts/update_asset_links.py   
+      
+      - name: Update asset links to match Readme version
+        run: | 
+          python scripts/update_asset_links.py   
+
       - name: Test notebooks on latest SDK version
         env:
           TEST_PROJECT: ${{ secrets.TEST_PROJECT }}

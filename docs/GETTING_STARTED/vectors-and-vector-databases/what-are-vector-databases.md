@@ -22,7 +22,7 @@ A vector database can store the vector of any kind of data. This is because the 
 > Below, we visualise how we map data into a geometrical space that is able to plot the similarity distance between every sample of the dataset. Basically, the closer the vectors are located in the space, the more similar they are.
 
 <figure>
-<img src="https://github.com/RelevanceAI/RelevanceAI-readme-docs/blob/main/docs/GETTING_STARTED/vectors-and-vector-databases/_assets/RelevanceAI_vector_analysis.png?raw=true" width="650" alt="Similar items are closer to each other" />
+<img src="https://github.com/RelevanceAI/RelevanceAI-readme-docs/blob/v0.28.0/docs/GETTING_STARTED/vectors-and-vector-databases/_assets/RelevanceAI_vector_analysis.png?raw=true" width="650" alt="Similar items are closer to each other" />
 <figcaption>Analysing your vectors in 3D space</figcaption>
 <figure>
 
@@ -78,7 +78,7 @@ Because vector databases store a completely different kind of data (vectors), th
 A traditional database usually searches data through keyword matching. Once given a search query, we can filter the content that contains the query exactly or a few characters away. Although very efficient, this approach can lead to subpar or irrelevant results as it does not handle synonyms, context and personalisation well. For example: searching for "dogs" and it not matching against "puppies".
 
 <figure>
-<img src="https://github.com/RelevanceAI/RelevanceAI-readme-docs/blob/main/docs/GETTING_STARTED/vectors-and-vector-databases/_assets/RelevanceAI_traditional_db.png?raw=true" width="650" alt="Traditional Databases" />
+<img src="https://github.com/RelevanceAI/RelevanceAI-readme-docs/blob/v0.28.0/docs/GETTING_STARTED/vectors-and-vector-databases/_assets/RelevanceAI_traditional_db.png?raw=true" width="650" alt="Traditional Databases" />
 <figcaption>Traditional Databases</figcaption>
 <figure>
 
@@ -88,7 +88,7 @@ Vector databases uses a method called vector search (also known as nearest neigh
 
 
 <figure>
-<img src="https://github.com/RelevanceAI/RelevanceAI-readme-docs/blob/main/docs/GETTING_STARTED/vectors-and-vector-databases/_assets/RelevanceAI_nearest_neighbour.png?raw=true" width="650" alt="Nearest Neighbour" />
+<img src="https://github.com/RelevanceAI/RelevanceAI-readme-docs/blob/v0.28.0/docs/GETTING_STARTED/vectors-and-vector-databases/_assets/RelevanceAI_nearest_neighbour.png?raw=true" width="650" alt="Nearest Neighbour" />
 <figcaption>Nearest Neighbour</figcaption>
 <figure>
 

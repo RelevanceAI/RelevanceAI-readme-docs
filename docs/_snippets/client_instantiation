@@ -1,4 +1,3 @@
-
 ```python Python (SDK)
 
 from relevanceai import Client 

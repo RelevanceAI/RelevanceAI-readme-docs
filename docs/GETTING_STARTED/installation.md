@@ -12,16 +12,16 @@ hidden: false
 
 The easiest way to install our Python SDK is to run: 
 
-
 ```bash Bash
-!pip install -U RelevanceAI==0.27.0
+!pip install -U RelevanceAI==0.28.0
 ```
 ```bash
 ```
 
+
 This installation provides you with what you need to connect to RelevanceAI's API, read/write data, make different searches, etc.
 
-**The SDK Reference** can be found at https://relevanceai.readthedocs.io/en/v0.27.0/
+**The SDK Reference** can be found at https://relevanceai.readthedocs.io/en/latest/
 
 ### Installation from source
 
@@ -54,7 +54,6 @@ pip install -e .
 After we install, we want to also set up the client. If you are missing an API key, grab your API key from https://cloud.relevance.ai/ in the [Settings](https://cloud.relevance.ai/settings) area and let's get started!
 
 
-
 ```python Python (SDK)
 
 from relevanceai import Client 
@@ -71,7 +70,7 @@ client = Client()
 
 
 <figure>
-<img src="https://github.com/RelevanceAI/RelevanceAI-readme-docs/blob/main/docs/GETTING_STARTED/_assets/RelevanceAI_auth_token_details.png?raw=true" alt="Get your Auth Details" />
+<img src="https://github.com/RelevanceAI/RelevanceAI-readme-docs/blob/v0.28.0/docs/GETTING_STARTED/_assets/RelevanceAI_auth_token_details.png?raw=true" alt="Get your Auth Details" />
 <figcaption>Get your Auth Details</figcaption>
 <figure>
 
@@ -94,6 +93,6 @@ client = Client(project=project, api_key=api_key)
 The key can also be found here:
 
 <figure>
-<img src="https://github.com/RelevanceAI/RelevanceAI-readme-docs/blob/main/docs/GETTING_STARTED/_assets/RelevanceAI_auth_setting_details.png?raw=true" alt="Find your API and project key here in Settings" />
+<img src="https://github.com/RelevanceAI/RelevanceAI-readme-docs/blob/v0.28.0/docs/GETTING_STARTED/_assets/RelevanceAI_auth_setting_details.png?raw=true" alt="Find your API and project key here in Settings" />
 <figcaption>Find your API and project key in Project Settings</figcaption>
 <figure>
