@@ -24,14 +24,12 @@ Run this Quickstart in Colab: [![Open In Colab](https://colab.research.google.co
 ### 1. Set up Relevance AI
 
 ```bash Bash
-!pip install -U RelevanceAI==0.28.0
+!pip install RelevanceAI==0.28.0
 ```
 ```bash
 ```
 
-
 ```python Python (SDK)
-
 from relevanceai import Client 
 
 """
@@ -39,10 +37,10 @@ You can sign up/login and find your credentials here: https://cloud.relevance.ai
 Once you have signed up, click on the value under `Authorization token` and paste it here
 """
 client = Client()
+
 ```
 ```python
 ```
-
 
 
 ### 2. Create a dataset with vectors

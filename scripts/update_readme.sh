@@ -30,7 +30,7 @@ CYAN "=== Updating asset links to v$README_VERSION ==="
 python scripts/update_asset_links.py
 
 CYAN "=== Rebuilding Readme versions ==="
-python scripts/build_rdmd.py
+python scripts/build_docs.py
 
 CYAN "=== Syncing ReadMe version v$README_VERSION ==="
 ./scripts/sync_readme_docs.sh $DEBUG_MODE $README_VERSION

@@ -81,7 +81,7 @@ def main(args):
         file_find_replace(f, ASSET_SENTENCE_REGEX, ASSET_STR_REGEX, ASSET_REPLACE_STR)
     
     ## Updating semver
-    installation_snippet = Path(DOCS_PATH) / "_snippets" / "installation"
+    installation_snippet = Path(DOCS_PATH) / "_snippets" / "relevanceai_installation"
     installation_guide = Path(DOCS_PATH) / "GETTING_STARTED" / "installation.md"
     SEMVER_SENT = f'.*(\d+\.\d+(?:\.\d+)?).*'
     SEMVER_STR = f"(\d+\.\d+(?:\.\d+)?)"

@@ -28,7 +28,7 @@ Run this Quickstart in Colab: [![Open In Colab](https://colab.research.google.co
 ### 1. Set up Relevance AI and Vectorhub for Encoding!
 
 
-@@@installation
+@@@relevanceai_installation
 
 
 After installation, we need to also set up an API client. If you are missing an API key, you can easily sign up and get your API key from [https://cloud.relevance.ai/](https://cloud.relevance.ai/) in the settings area.

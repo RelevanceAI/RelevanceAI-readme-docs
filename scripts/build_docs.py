@@ -3,8 +3,9 @@
 
 import os
 from pathlib import Path
-import fileinput
-from typing import List, Tuple
+import re
+import json
+from typing import List, Literal, Tuple
 
 import argparse
 
@@ -14,13 +15,18 @@ parser.add_argument("-p", "--path", default=Path.cwd(), help="Path of root folde
 # parser.add_argument("-v", "--version", default=None, help='Package Version')
 args = parser.parse_args()
 
+RDMD_SNIPPET_LANGUAGES = {
+    'python': 'Python (SDK)',
+    'bash': 'Bash',
+    'json': 'JSON',
+}
 
 ###############################################################################
 # Helper Functions
 ###############################################################################
 
 
-def load_snippet(snippet_path):
+def load_snippet(snippet_path, ext=Literal['ipynb', 'md']):
     '''
     Loads a given snippet from the given path
     '''
@@ -31,21 +37,39 @@ def load_snippet(snippet_path):
     except Exception as e:
         raise FileNotFoundError (f'File not found: {snippet_path}')
 
+   
+
     snippet = text.split('\n')
-    
-    # language = snippet[0].split(' ')[0]
-    # snippet[0] = "```"+snippet[0] 
-    # snippet.append("```")
-    # snippet.append("```"+language)
-    # snippet.append("```")
+    if ext == 'md':
+        ### Reading language from the first line of the snippet
+        ### and building rdmd snippet
+        language = snippet[0].split(' ')[0]
+        snippet[0] = f"```{language} {RDMD_SNIPPET_LANGUAGES[language]}" 
+        snippet.append("```")
+        snippet.append("```"+language)
+        snippet.append("```")
+    if ext == 'ipynb':
+        ### Skipping first line of snippet (language only relevance for rdmd)
+        ### and building ipynb snippet
+        snippet = snippet[1:]
+        # print(snippet)
+        # print(json.dumps(str(snippet)))
+        for i, sline in enumerate(snippet):
+        #     sline = sline.replace('"""', '\"\"\"')
+        #     print(sline)
+            sline_formatted = f'{json.dumps(sline)},'
+            print(sline_formatted)
+            snippet[i] = sline_formatted
+
+        print(snippet)
     return snippet
 
 
-def generate_file(input_fname: str, output_fname: str, snippet_paths: List[Path]):
+def generate_file(input_fname: str, output_fname: str, snippet_paths: List[Path], ext=Literal['ipynb', 'md']):
     '''
     Given a list of snippet paths, generate a file `output_fname` with the given `input_fname`
     '''
-    # load sample
+    # load file
     print(f'Input file: {input_fname}')
     with open(input_fname) as f:
         md_file = f.read()
@@ -53,27 +77,25 @@ def generate_file(input_fname: str, output_fname: str, snippet_paths: List[Path]
     # generates a new file
     md_lines = list() 
     for line in md_file.split('\n'):
-        if line.find('@@@') != -1:
+        if  bool(re.search('@@@', line)):
             # load the corresponding snippet and merge it in the code
             # Loads snippets in order from root to inner folder - will overwrite the snippets with same name
             for snippet_path in snippet_paths:
-                # print(f'Snippet path: {snippet_path}')
                 available_snippets = os.listdir(snippet_path)
-
-                snippet_name = line.split('@@@')[1].split(' ')[0]
-
+                # print(available_snippets)
+    
+                if ext == 'md':
+                    snippet_name = line.split('@@@')[1].strip(' ')[0]
+                if ext == 'ipynb':
+                    snippet_name = line.split('@@@')[1].strip('"')
+            
                 if available_snippets and (snippet_name in available_snippets):
-                    # print(snippet_name)
                     snippet_fpath = Path(snippet_path) / f'{snippet_name}'
-                    # print(snippet_fpath)
-                    snippet = load_snippet(snippet_fpath)
 
                     print(f'Loading snippet: {snippet_path}/{snippet_name}')
-                    # print(snippet)
-                    #[print(x) for x in snippet] # Verbose
-                # else:
-                #     print(f'No snippets found for {snippet_name} in {snippet_path}')
-            [md_lines.append(x) for x in snippet]
+                    snippet = load_snippet(snippet_fpath, ext=ext)
+
+                    [md_lines.append(x) for x in snippet]
         else:
             md_lines.append(line)
 
@@ -117,22 +139,42 @@ def main(args):
             SNIPPETS_DIR = Path(root).joinpath("_snippets")
             if '_snippets' in dirs:
                 snippet_paths +=  [SNIPPETS_DIR]
-            if '_md' in dirs and '_snippets' in dirs:
-                MD_DIR = Path(root) / "_md"
-                print(f'Snippet paths {snippet_paths}')
 
-                for fname in os.listdir(MD_DIR):
-                    input_fname = MD_DIR / fname
-                    output_fname = Path(root) / fname
+            print(f'Snippet paths {snippet_paths}')
+
+            # ### Generating for md
+            # if '_md' in dirs:
+            #     MD_DIR = Path(root) / "_md"
+
+            #     for fname in os.listdir(MD_DIR):
+            #         input_fname = MD_DIR / fname
+            #         output_fname = Path(root) / fname
+
+            #         print('---')
+
+            #         generate_file(
+            #             input_fname=input_fname, 
+            #             output_fname=output_fname, 
+            #             snippet_paths=snippet_paths,
+            #             ext='md'
+            #         )
+
+            ### Generating for ipynb        
+            if '_ipynb' in dirs:
+                IPYNB_DIR = Path(root) / "_ipynb"
+
+                for fname in os.listdir(IPYNB_DIR):
+                    input_fname = IPYNB_DIR / fname
+                    output_fname = Path(root) / '_notebooks'/ fname
 
                     print('---')
 
                     generate_file(
                         input_fname=input_fname, 
                         output_fname=output_fname, 
-                        snippet_paths=snippet_paths
+                        snippet_paths=snippet_paths,
+                        ext='ipynb'
                     )
-
 
 
 if __name__ == "__main__":
