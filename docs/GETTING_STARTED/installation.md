@@ -6,7 +6,7 @@ hidden: false
 
 ---
 
-**Relevance AI is tested on Python 3.6+ on Windows, Linux and MacOS.**
+**Relevance AI is tested on Python 0.28.0+ on Windows, Linux and MacOS.**
 
 ### Installation
 
