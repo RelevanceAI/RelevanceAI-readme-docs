@@ -74,19 +74,18 @@ def generate_ipynb_file(input_fname: str, output_fname: str, snippet_paths: List
     Given a list of snippet paths, generate a file `output_fname` with the given `input_fname`
     '''
     print(f'Input file: {input_fname}')
-    with open(input_fname) as f:
-        notebook_json = json.loads(f.read())
+    notebook_json = json.loads(open(input_fname).read())
 
     for cell in notebook_json['cells']:
         if str(cell['source']).find('@@@') != -1:
 
             for snippet_path in snippet_paths:
                 available_snippets = os.listdir(snippet_path)
-                snippet_name = cell['source'][0].split('@@@')[-1]
+                snippet_cell = [cell for cell in cell['source'] if '@@@' in cell][0]
+                snippet_name = snippet_cell.split('@@@')[-1]
             
-                print(snippet_name)
+                print(f'Snippet name: {snippet_name}')
                 if available_snippets:
-
                     regexes = {f".*{s}.*": s for s in available_snippets}
                     snippet_name = [regexes[r] for r in regexes.keys() if re.match(r, snippet_name)][0]
 
@@ -98,6 +97,8 @@ def generate_ipynb_file(input_fname: str, output_fname: str, snippet_paths: List
                     cell['source'] = snippet
         
     json.dump(notebook_json, fp=open(output_fname, 'w'), indent=4)
+
+
 
 
 def generate_md_file(input_fname: str, output_fname: str, snippet_paths: List[Path]):
@@ -174,21 +175,21 @@ def main(args):
 
             print(f'Snippet paths {snippet_paths}')
 
-            ### Generating for md
-            if '_md' in dirs:
-                MD_DIR = Path(root) / "_md"
+            # ### Generating for md
+            # if '_md' in dirs:
+            #     MD_DIR = Path(root) / "_md"
 
-                for fname in os.listdir(MD_DIR):
-                    input_fname = MD_DIR / fname
-                    output_fname = Path(root) / fname
+            #     for fname in os.listdir(MD_DIR):
+            #         input_fname = MD_DIR / fname
+            #         output_fname = Path(root) / fname
 
-                    print('---')
+            #         print('---')
 
-                    generate_md_file(
-                        input_fname=input_fname, 
-                        output_fname=output_fname, 
-                        snippet_paths=snippet_paths
-                    )
+            #         generate_md_file(
+            #             input_fname=input_fname, 
+            #             output_fname=output_fname, 
+            #             snippet_paths=snippet_paths
+            #         )
 
             ### Generating for ipynb        
             if '_ipynb' in dirs:
