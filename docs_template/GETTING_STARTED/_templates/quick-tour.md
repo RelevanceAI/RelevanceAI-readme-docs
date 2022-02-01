@@ -51,14 +51,11 @@ Use one of your sample datasets to insert into your own dataset!
 
 
 ```python Python (SDK)
-
 from relevanceai.datasets import get_sample_ecommerce_dataset
 documents = get_sample_ecommerce_dataset()
 documents[0]
 
 client.insert_documents(dataset_id="quickstart", docs=documents)
-
-
 ```
 ```python
 ```

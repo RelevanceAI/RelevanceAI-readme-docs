@@ -18,7 +18,7 @@ parser.add_argument("-p", "--path", default=Path.cwd(), help="Path of root folde
 args = parser.parse_args()
 
 
-def file_find_replace(fname, find_sent_regex, find_str_regex, replace_str):
+def file_find_replace(fname: str, find_sent_regex: str, find_str_regex: str, replace_str: str):
 
     with open(fname, "r") as f:
         lines = f.readlines()
@@ -41,7 +41,7 @@ def file_find_replace(fname, find_sent_regex, find_str_regex, replace_str):
                         print(f"Replace: \n{find_replace_str}\n{replace_str}\n")
                         line = line.replace(find_replace_str, replace_str)
 
-                        print(f"Updated:")
+                        print(f"Updated: ")
                         print(line.strip())
                     else:
                         print(f"Not found: {find_replace_str}\n")
@@ -65,6 +65,7 @@ def get_readme_version_from_file(fpath):
 
 def main(args):
     DOCS_PATH = Path(args.path) / "docs"
+    DOCS_TEMPLATE_PATH = Path(args.path) / "docs_template"
     README_VERSION = get_readme_version_from_file(Path.cwd() / "__version__")
 
     ## Updating asset links
@@ -72,7 +73,6 @@ def main(args):
     notebooks = get_files(DOCS_PATH, ext='ipynb')
 
     files = itertools.chain(md_files, notebooks)
-
     for f in files:
         ASSET_SENTENCE_REGEX = '.*/RelevanceAI-readme-docs/blob/.*'
         ASSET_STR_REGEX = '/RelevanceAI-readme-docs/blob/.*?/'
@@ -81,7 +81,7 @@ def main(args):
         file_find_replace(f, ASSET_SENTENCE_REGEX, ASSET_STR_REGEX, ASSET_REPLACE_STR)
     
     ## Updating semver
-    installation_snippet = Path(DOCS_PATH) / "_snippets" / "relevanceai_installation"
+    installation_snippet = Path(DOCS_TEMPLATE_PATH) / "_snippets" / "relevanceai_installation"
     installation_guide = Path(DOCS_PATH) / "GETTING_STARTED" / "installation.md"
     SEMVER_SENT = f'.*(\d+\.\d+(?:\.\d+)?).*'
     SEMVER_STR = f"(\d+\.\d+(?:\.\d+)?)"

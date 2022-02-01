@@ -24,18 +24,14 @@ RDMD_SNIPPET_LANGUAGES = {
     'json': 'JSON',
 }
 
-# SNIPPETS = {
-#     '@@@relevanceai_installation': snippet_fpath
-# }
 
 ###############################################################################
 # Helper Functions
 ###############################################################################
 
-
-def load_ipynb_snippet(snippet_path):
+def load_ipynb_snippet(snippet_path: str):
     '''
-    Loads a given snippet from the given path
+    Loads an ipynb given snippet from the given path
     '''
     try:
         with open(snippet_path, 'r') as f:
@@ -47,9 +43,9 @@ def load_ipynb_snippet(snippet_path):
     return snippet
 
 
-def load_md_snippet(snippet_path):
+def load_md_snippet(snippet_path: str):
     '''
-    Loads a given snippet from the given path
+    Loads a md given snippet from the given path
     '''
     try:
         with open(snippet_path, 'r') as f:
@@ -95,10 +91,8 @@ def generate_ipynb_file(input_fname: str, output_fname: str, snippet_paths: List
 
                     snippet_fpath = Path(snippet_path) / f'{snippet_name}'
                     print(f'Loading snippet: {snippet_path}/{snippet_name}')
-                    
+
                     snippet = load_ipynb_snippet(snippet_fpath)
-                    
-                    print(snippet)
                     cell['source'] = snippet
         
     json.dump(notebook_json, fp=open(output_fname, 'w'), indent=4)
@@ -114,7 +108,6 @@ def generate_md_file(input_fname: str, output_fname: str, snippet_paths: List[Pa
     with open(input_fname) as f:
         md_file = f.read()
 
-    # generates a new file
     md_lines = list() 
     for line in md_file.split('\n'):
         if  bool(re.search('@@@.*', line)):
@@ -123,17 +116,18 @@ def generate_md_file(input_fname: str, output_fname: str, snippet_paths: List[Pa
             for snippet_path in snippet_paths:
                 available_snippets = os.listdir(snippet_path)
                 snippet_name = line.split('@@@')[1].split(' ')[0]
-
+                
+                print(snippet_name)
                 if available_snippets:
                     regexes = {f".*{s}.*": s for s in available_snippets}
+                    # print(regexes)
                     snippet_name = [regexes[r] for r in regexes.keys() if re.match(r, snippet_name)][0]
 
                     snippet_fpath = Path(snippet_path) / f'{snippet_name}'
                     print(f'Loading snippet: {snippet_path}/{snippet_name}')
                     snippet = load_md_snippet(snippet_fpath)
-                    print(snippet)
+                    # print(snippet)
                     [md_lines.append(x) for x in snippet]
-                    # print(md_lines)
         else:
             md_lines.append(line)
 
@@ -150,8 +144,8 @@ def generate_md_file(input_fname: str, output_fname: str, snippet_paths: List[Pa
 
 def main(args):
     ### For files in sections and subsections
-
     DOCS_PATH = Path(args.path) / "docs"
+    DOCS_TEMPLATE_PATH = Path(args.path) / "docs_template"
 
     # GENERAL_SNIPPETS = Path(DOCS_PATH) / "_snippets"
     # sample_input_fname = DOCS_PATH / "_md" / "welcome.md"
@@ -166,7 +160,7 @@ def main(args):
     #     )
 
     snippet_paths = []
-    for root, dirs, files in os.walk(DOCS_PATH, topdown=True):
+    for root, dirs, files in os.walk(DOCS_TEMPLATE_PATH, topdown=True):
         root_name = root.split('/')[-1]
         if root_name[0] != '_':
             print(f'\nRoot {root}')
@@ -176,47 +170,46 @@ def main(args):
             ### Template generation for certain files
             SNIPPETS_DIR = Path(root).joinpath("_snippets")
             if '_snippets' in dirs:
-                snippet_paths +=  [SNIPPETS_DIR]
+                snippet_paths += [SNIPPETS_DIR]
 
             print(f'Snippet paths {snippet_paths}')
 
-            # ### Generating for md
-            # if '_md' in dirs:
-            #     MD_DIR = Path(root) / "_md"
+            ### Generating for md
+            if '_md' in dirs:
+                MD_DIR = Path(root) / "_md"
 
-            #     for fname in os.listdir(MD_DIR):
-            #         input_fname = MD_DIR / fname
-            #         output_fname = Path(root) / fname
-
-            #         print('---')
-
-            #         generate_md_file(
-            #             input_fname=input_fname, 
-            #             output_fname=output_fname, 
-            #             snippet_paths=snippet_paths
-            #         )
-
-            ### Generating for ipynb        
-            if '_ipynb' in dirs:
-                IPYNB_DIR = Path(root) / "_ipynb"
-
-                for fname in os.listdir(IPYNB_DIR):
-                    input_fname = IPYNB_DIR / fname
-                    output_fname = Path(root) / '_notebooks'/ fname
+                for fname in os.listdir(MD_DIR):
+                    input_fname = MD_DIR / fname
+                    output_fname = Path(root).parent / 'docs' / fname
+                    print(output_fname)
 
                     print('---')
 
-                    generate_ipynb_file(
+                    generate_md_file(
                         input_fname=input_fname, 
                         output_fname=output_fname, 
-                        snippet_paths=snippet_paths,
+                        snippet_paths=snippet_paths
                     )
-                    
-                    
 
-                    # ### Validating JSON notebook
-                    # data = yaml.full_load(open(output_fname))
-                    # json.dump(data, fp=open(output_fname, 'w'), indent=4)
+            # ### Generating for ipynb        
+            # if '_ipynb' in dirs:
+            #     IPYNB_DIR = Path(root) / "_ipynb"
+
+            #     for fname in os.listdir(IPYNB_DIR):
+            #         input_fname = IPYNB_DIR / fname
+            #         output_fname = Path(root) / '_notebooks'/ fname
+
+            #         print('---')
+
+            #         generate_ipynb_file(
+            #             input_fname=input_fname, 
+            #             output_fname=output_fname, 
+            #             snippet_paths=snippet_paths,
+            #         )
+                    
+            #         # ### Validating JSON notebook
+            #         # data = yaml.full_load(open(output_fname))
+            #         # json.dump(data, fp=open(output_fname, 'w'), indent=4)
 
 
 
