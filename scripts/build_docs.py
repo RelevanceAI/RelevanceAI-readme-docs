@@ -39,7 +39,7 @@ def load_ipynb_snippet(snippet_path):
     '''
     try:
         with open(snippet_path, 'r') as f:
-                text = f.readlines()
+            text = f.readlines()
     except Exception as e:
         raise FileNotFoundError (f'File not found: {snippet_path}')
         

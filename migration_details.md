@@ -2,12 +2,12 @@
 
 # Migration Details How-to
 
-We aim to migrate our docs to be updated via ReadMe's API in a Git-driven manner.
+We aim to migrate our docs_template to be updated via ReadMe's API in a Git-driven manner.
 
-Due to the fact that exported ReadMe docs are in `[block]` format as generated through manual creation vs Markdown, it becomes difficult to maintain docs in a Git-driven manner. See [here](./examples/quickstart_block_format.md) for example `[block]` format. Therefore, a manual migration step  is initially needed to import, and update/re-sync docs for future updates.
+Due to the fact that exported ReadMe docs_template are in `[block]` format as generated through manual creation vs Markdown, it becomes difficult to maintain docs_template in a Git-driven manner. See [here](./examples/quickstart_block_format.md) for example `[block]` format. Therefore, a manual migration step  is initially needed to import, and update/re-sync docs_template for future updates.
 
 
-This repo is set up to sync all files in the [docs](./docs) folder with our ReadMe domain [here](https://docs.relevance.ai/docs) using the `rdme` client.
+This repo is set up to sync all files in the [docs_template](./docs_template) folder with our ReadMe domain [here](https://docs_template.relevance.ai/docs_template) using the `rdme` client.
 
 A small script has been prepared to help keep this repo's assets synced to a ReadMe doc version reflective of the latest version of the SDK. 
 
@@ -18,10 +18,10 @@ Please use this locally to quickly test that the changes that you make in the re
 
 
 ```zsh
-❯ ./scripts/sync_readme_docs.sh 
+❯ ./scripts/sync_readme_docs_template.sh 
 
 ## To run in debug mode
-❯ ./scripts/sync_readme_docs.sh true
+❯ ./scripts/sync_readme_docs_template.sh true
 ```
 
 For each section, we need to
@@ -31,7 +31,7 @@ For each section, we need to
 - Ensure assets and notebooks are stored in `_assets` and `_notebooks` and references in Markdown updated
 - Ensure front matter matches the current page
 - Replace each respective `[block]` section with `rdmd`
-- Sync the page using `./scripts/sync_readme_docs.sh` and check new synced version matches previous unsynced version upon render
+- Sync the page using `./scripts/sync_readme_docs_template.sh` and check new synced version matches previous unsynced version upon render
 - Commit changes! 
 
 1. ## File/folder Naming Conventions
@@ -47,14 +47,14 @@ The following conventions have been proposed to make this migration and doc orga
 - Section categories converted to all caps with underscore delimiter
   - (eg. Getting Started) -> `GETTING_STARTED`
 - Subsections and Markdown filename is named after its' page slug [1]
-  - eg. https://docs.relevance.ai/docs/welcome -> [`welcome.md`](https://github.com/RelevanceAI/RelevanceAI-readme-docs/blob/main/docs/GETTING_STARTED/welcome.md)
-  - eg. https://dash.readme.com/project/relevance/docs/vectors-and-vector-databases -> https://github.com/RelevanceAI/RelevanceAI-readme-docs/tree/development/docs/GETTING_STARTED/vectors-and-vector-databases 
+  - eg. https://docs_template.relevance.ai/docs_template/welcome -> [`welcome.md`](https://github.com/RelevanceAI/RelevanceAI-readme-docs_template/blob/main/docs_template/GETTING_STARTED/welcome.md)
+  - eg. https://dash.readme.com/project/relevance/docs_template/vectors-and-vector-databases -> https://github.com/RelevanceAI/RelevanceAI-readme-docs_template/tree/development/docs_template/GETTING_STARTED/vectors-and-vector-databases 
   - Using `-` as delimiter (default via README)
 - Corresponding assets (eg. images/GIFs) for a particular section/subsection should be in a folder named `_assets`
-  - eg. https://github.com/RelevanceAI/RelevanceAI-readme-docs/tree/development/docs/GETTING_STARTED/_assets
+  - eg. https://github.com/RelevanceAI/RelevanceAI-readme-docs_template/tree/development/docs_template/GETTING_STARTED/_assets
   - Assets should prefix with `RelevanceAI_*.png` to ensure image URL/filename has reference to `RelevanceAI` upon download/reference
 - Corresponding notebooks for a particular section/subsection should be in a folder named `_notebooks`
-  - eg. https://github.com/RelevanceAI/RelevanceAI-readme-docs/tree/development/docs/GETTING_STARTED/_notebooks
+  - eg. https://github.com/RelevanceAI/RelevanceAI-readme-docs_template/tree/development/docs_template/GETTING_STARTED/_notebooks
   - Notebooks should prefix with `RelevanceAI_ReadMe_<Page_Slug>*.ipynb` to to ensure notebook URL/filename has reference to `RelevanceAI` upon download/reference
   - Using `_` as delimiter (default upon export of `*.ipynb` from Colab)
 
@@ -86,16 +86,16 @@ hidden: false
 - Store corresponding notebooks in relative section under `_notebooks` folder.  
 
 ```markdown
-[![Open In Colab](https://colab.research.google.com/_assets/colab-badge.svg)](https://colab.research.google.com/github/RelevanceAI/RelevanceAI-readme-docs/blob/main/docs/GETTING_STARTED/_notebooks/Intro_to_Relevance_AI.ipynb)
+[![Open In Colab](https://colab.research.google.com/_assets/colab-badge.svg)](https://colab.research.google.com/github/RelevanceAI/RelevanceAI-readme-docs_template/blob/main/docs_template/GETTING_STARTED/_notebooks/Intro_to_Relevance_AI.ipynb)
 ```
 
 - For each notebook, we also include the Colab badge link at the top of the notebook, so that one may open in Colab from Github.
 
 ![](assets/readme_colab_badge.png)
 
-- We review notebooks using [ReviewNB](https://app.reviewnb.com/RelevanceAI/RelevanceAI-readme-docs/)
+- We review notebooks using [ReviewNB](https://app.reviewnb.com/RelevanceAI/RelevanceAI-readme-docs_template/)
 
-  https://app.reviewnb.com/RelevanceAI/RelevanceAI-readme-docs/
+  https://app.reviewnb.com/RelevanceAI/RelevanceAI-readme-docs_template/
 
 
 4. ## Converting `[block]` to Readme Markdown (rdmd)
@@ -107,7 +107,7 @@ The main things that need to be converted are -
 - callouts
 - tables
 
-See official [docs](https://rdmd.readme.io/docs/getting-started) here for more details, else see rdmd cheatsheet [here](./rdmd.md).
+See official [docs_template](https://rdmd.readme.io/docs_template/getting-started) here for more details, else see rdmd cheatsheet [here](./rdmd.md).
 
 
 ### Code Blocks
@@ -168,7 +168,7 @@ eg.
 
 ```html
 <figure>
-<img src="https://github.com/RelevanceAI/RelevanceAI-readme-docs/blob/main/docs/GETTING_STARTED/example-applications/_assets/RelevanceAI_quickstart_clip_dashboard.png?raw=true" width="650" alt="RelevanceAI Dashboard" />
+<img src="https://github.com/RelevanceAI/RelevanceAI-readme-docs_template/blob/main/docs_template/GETTING_STARTED/example-applications/_assets/RelevanceAI_quickstart_clip_dashboard.png?raw=true" width="650" alt="RelevanceAI Dashboard" />
 <figcaption>Relevance AI dashboard</figcaption>
 <figure>
 ```
@@ -216,7 +216,7 @@ Default themes are specified using one of the following emojis. (You can always 
 |❗️| `.callout_error` | 🛑 |
 
 
-See official [docs](https://rdmd.readme.io/docs/callouts) here for more details.
+See official [docs_template](https://rdmd.readme.io/docs_template/callouts) here for more details.
 
 
 ### Tables 
