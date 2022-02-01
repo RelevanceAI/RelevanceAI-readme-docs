@@ -78,21 +78,26 @@ def generate_ipynb_file(input_fname: str, output_fname: str, snippet_paths: List
 
     for cell in notebook_json['cells']:
         if str(cell['source']).find('@@@') != -1:
-
+            print('Cell source')
+            print(cell['source'] )
             for snippet_path in snippet_paths:
                 available_snippets = os.listdir(snippet_path)
+                
                 snippet_cell = [cell for cell in cell['source'] if '@@@' in cell][0]
-                snippet_name = snippet_cell.split('@@@')[-1]
-            
+                print('Cell snippet')
+                print(snippet_cell)
+                
+                snippet_name = snippet_cell.split('@@@')[-1].strip()
                 print(f'Snippet name: {snippet_name}')
                 if available_snippets:
-                    regexes = {f".*{s}.*": s for s in available_snippets}
-                    snippet_name = [regexes[r] for r in regexes.keys() if re.match(r, snippet_name)][0]
+                    # regexes = {f".*{s}.*": s for s in available_snippets}
+                    # snippet_name = [regexes[r] for r in regexes.keys() if re.match(r, snippet_name)][0]
 
                     snippet_fpath = Path(snippet_path) / f'{snippet_name}'
                     print(f'Loading snippet: {snippet_path}/{snippet_name}')
                     
                     snippet = load_ipynb_snippet(snippet_fpath)
+                    
                     print(snippet)
                     cell['source'] = snippet
         
@@ -209,9 +214,9 @@ def main(args):
                     
                     
 
-                    ### Validating JSON notebook
-                    data = yaml.full_load(open(output_fname))
-                    json.dump(data, fp=open(output_fname, 'w'), indent=4)
+                    # ### Validating JSON notebook
+                    # data = yaml.full_load(open(output_fname))
+                    # json.dump(data, fp=open(output_fname, 'w'), indent=4)
 
 
 
