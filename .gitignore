@@ -21,4 +21,6 @@ readme_notebook_errors.txt
 
 *.bak
 
-*.ipynb*
+*.ipynb_checkpoints
+
+_*.ipynb
