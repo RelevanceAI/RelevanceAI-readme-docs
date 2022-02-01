@@ -24,68 +24,66 @@ RDMD_SNIPPET_LANGUAGES = {
     'json': 'JSON',
 }
 
+# SNIPPETS = {
+#     '@@@relevanceai_installation': snippet_fpath
+# }
+
 ###############################################################################
 # Helper Functions
 ###############################################################################
 
 
-def load_snippet(snippet_path, ext=Literal['ipynb', 'md']):
+def load_ipynb_snippet(snippet_path):
     '''
     Loads a given snippet from the given path
     '''
     try:
         with open(snippet_path, 'r') as f:
-            text = f.read()
+                text = f.readlines()
     except Exception as e:
         raise FileNotFoundError (f'File not found: {snippet_path}')
-    
-    snippet = text.split('\n')
-    if ext == 'md':
-        ### Reading language from the first line of the snippet
-        ### and building rdmd snippet
-        language = snippet[0].split(' ')[0]
-        snippet[0] = f"```{language} {RDMD_SNIPPET_LANGUAGES[language]}" 
-        snippet.append("```")
-        snippet.append("```"+language)
-        snippet.append("```")
-    if ext == 'ipynb':
-        ## Skipping first line of snippet (language only relevance for rdmd)
-        ## and building ipynb snippet
-
-        snippet = snippet[1:]
-        for i, sline in enumerate(snippet):
-            sline_formatted = f'{json.dumps(sline)},'
-            snippet[i] = sline_formatted
+        
+    snippet = text[1:]
     return snippet
 
 
-def generate_file(input_fname: str, output_fname: str, snippet_paths: List[Path], ext=Literal['ipynb', 'md']):
+def load_md_snippet(snippet_path):
+    '''
+    Loads a given snippet from the given path
+    '''
+    try:
+        with open(snippet_path, 'r') as f:
+                text = f.read()
+    except Exception as e:
+        raise FileNotFoundError (f'File not found: {snippet_path}')
+
+    snippet = text.split('\n')
+    ### Reading language from the first line of the snippet
+    ### and building rdmd snippet
+    language = snippet[0].split(' ')[0]
+    snippet[0] = f"```{language} {RDMD_SNIPPET_LANGUAGES[language]}" 
+    snippet.append("```")
+    snippet.append("```"+language)
+    snippet.append("```")
+    return snippet
+
+
+
+def generate_ipynb_file(input_fname: str, output_fname: str, snippet_paths: List[Path]):
     '''
     Given a list of snippet paths, generate a file `output_fname` with the given `input_fname`
     '''
-    # load file
     print(f'Input file: {input_fname}')
     with open(input_fname) as f:
-        md_file = f.read()
+        notebook_json = json.loads(f.read())
 
-    # generates a new file
-    md_lines = list() 
-    for line in md_file.split('\n'):
-        # print(line)
-        if  bool(re.search('@@@.*', line)):
-            # print(line)
-            # load the corresponding snippet and merge it in the code
-            # Loads snippets in order from root to inner folder - will overwrite the snippets with same name
+    for cell in notebook_json['cells']:
+        if str(cell['source']).find('@@@') != -1:
+
             for snippet_path in snippet_paths:
                 available_snippets = os.listdir(snippet_path)
-                # print(available_snippets)
-
-                if ext == 'md':
-                    snippet_name = line.split('@@@')[1].split(' ')[0]
-                if ext == 'ipynb':
-                    snippet_name = line.split('@@@')[1].splitlines()[0]
-                    snippet_name = re.sub(r'[^\w\s]', '', snippet_name)
-                
+                snippet_name = cell['source'][0].split('@@@')[-1]
+            
                 print(snippet_name)
                 if available_snippets:
 
@@ -94,7 +92,39 @@ def generate_file(input_fname: str, output_fname: str, snippet_paths: List[Path]
 
                     snippet_fpath = Path(snippet_path) / f'{snippet_name}'
                     print(f'Loading snippet: {snippet_path}/{snippet_name}')
-                    snippet = load_snippet(snippet_fpath, ext=ext)
+                    
+                    snippet = load_ipynb_snippet(snippet_fpath)
+                    print(snippet)
+                    cell['source'] = snippet
+        
+    json.dump(notebook_json, fp=open(output_fname, 'w'), indent=4)
+
+
+def generate_md_file(input_fname: str, output_fname: str, snippet_paths: List[Path]):
+    '''
+    Given a list of snippet paths, generate a file `output_fname` with the given `input_fname`
+    '''
+    print(f'Input file: {input_fname}')
+    with open(input_fname) as f:
+        md_file = f.read()
+
+    # generates a new file
+    md_lines = list() 
+    for line in md_file.split('\n'):
+        if  bool(re.search('@@@.*', line)):
+            # load the corresponding snippet and merge it in the code
+            # Loads snippets in order from root to inner folder - will overwrite the snippets with same name
+            for snippet_path in snippet_paths:
+                available_snippets = os.listdir(snippet_path)
+                snippet_name = line.split('@@@')[1].split(' ')[0]
+
+                if available_snippets:
+                    regexes = {f".*{s}.*": s for s in available_snippets}
+                    snippet_name = [regexes[r] for r in regexes.keys() if re.match(r, snippet_name)][0]
+
+                    snippet_fpath = Path(snippet_path) / f'{snippet_name}'
+                    print(f'Loading snippet: {snippet_path}/{snippet_name}')
+                    snippet = load_md_snippet(snippet_fpath)
                     print(snippet)
                     [md_lines.append(x) for x in snippet]
                     # print(md_lines)
@@ -154,11 +184,10 @@ def main(args):
 
                     print('---')
 
-                    generate_file(
+                    generate_md_file(
                         input_fname=input_fname, 
                         output_fname=output_fname, 
-                        snippet_paths=snippet_paths,
-                        ext='md'
+                        snippet_paths=snippet_paths
                     )
 
             ### Generating for ipynb        
@@ -171,15 +200,15 @@ def main(args):
 
                     print('---')
 
-                    generate_file(
+                    generate_ipynb_file(
                         input_fname=input_fname, 
                         output_fname=output_fname, 
                         snippet_paths=snippet_paths,
-                        ext='ipynb'
                     )
+                    
+                    
 
                     ### Validating JSON notebook
-                    
                     data = yaml.full_load(open(output_fname))
                     json.dump(data, fp=open(output_fname, 'w'), indent=4)
 

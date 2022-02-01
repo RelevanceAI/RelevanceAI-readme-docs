@@ -20,3 +20,5 @@ venv.bak/
 readme_notebook_errors.txt
 
 *.bak
+
+*.ipynb*
