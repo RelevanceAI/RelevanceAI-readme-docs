@@ -1,2 +1,2 @@
 bash
-!pip install -U -q RelevanceAI==0.31.0
+!pip install -U -q RelevanceAI==0.28.0
