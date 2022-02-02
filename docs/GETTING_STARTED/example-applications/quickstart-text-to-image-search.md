@@ -7,7 +7,7 @@ hidden: false
 
 
 <figure>
-<img src="https://github.com/RelevanceAI/RelevanceAI-readme-docs/blob/v0.31.0/docs_template/GETTING_STARTED/example-applications/_assets/RelevanceAI_text_to_image.gif?raw=true" 
+<img src="https://github.com/RelevanceAI/RelevanceAI-readme-docs/blob/v0.28.0/docs_template/GETTING_STARTED/example-applications/_assets/RelevanceAI_text_to_image.gif?raw=true" 
      alt="RelevanceAI Text to Image"
      style="width: 100% vertical-align: middle"/> 
 <figcaption>
@@ -19,7 +19,7 @@ hidden: false
 This section, we will show you how to create and experiment with a powerful text-to-image search engine using OpenAI's CLIP and Relevance AI. 
 
 
-**Try it out in Colab:** [![Open In Colab](https://colab.research.google.com/_assets/colab-badge.svg)](https://colab.research.google.com/github/RelevanceAI/RelevanceAI-readme-docs/blob/v0.31.0/docs/GETTING_STARTED/example-applications/_notebooks/RelevanceAI_ReadMe_Quickstart_Text_to_Image_Search.ipynb)
+**Try it out in Colab:** [![Open In Colab](https://colab.research.google.com/_assets/colab-badge.svg)](https://colab.research.google.com/github/RelevanceAI/RelevanceAI-readme-docs/blob/v0.28.0/docs/GETTING_STARTED/example-applications/_notebooks/RelevanceAI_ReadMe_Quickstart_Text_to_Image_Search.ipynb)
 
 
 ### What I Need
@@ -33,7 +33,7 @@ Prior to starting, let's install the main dependencies. This installation provid
 
 
 ```bash Bash
-!pip install -U RelevanceAI[notebook]==0.27.0
+!pip install -U -q RelevanceAI==0.31.0
 ```
 ```bash
 ```
@@ -47,7 +47,6 @@ After installation, we need to also set up an API client. If you are missing an 
 
 
 ```python Python (SDK)
-
 from relevanceai import Client 
 
 """
@@ -55,6 +54,7 @@ You can sign up/login and find your credentials here: https://cloud.relevance.ai
 Once you have signed up, click on the value under `Authorization token` and paste it here
 """
 client = Client()
+
 ```
 ```python
 ```
@@ -71,7 +71,7 @@ To be able to perform text-to-image search, we will show you how to:
 
 
 <figure>
-<img src="https://github.com/RelevanceAI/RelevanceAI-readme-docs/blob/v0.31.0/docs_template/GETTING_STARTED/example-applications/_assets/RelevanceAI_search_steps.png?raw=true" width="650" alt="Steps to search" />
+<img src="https://github.com/RelevanceAI/RelevanceAI-readme-docs/blob/v0.28.0/docs_template/GETTING_STARTED/example-applications/_assets/RelevanceAI_search_steps.png?raw=true" width="650" alt="Steps to search" />
 <figcaption>Steps to search</figcaption>
 <figure>
 
@@ -126,7 +126,7 @@ As you can see each data entry contains both text (`product_title`, `product_des
 CLIP is a vectorizer from OpenAI that is trained to find similarities between text and image pairs. In the code below we set up and install CLIP. 
 
 <figure>
-<img src="https://github.com/RelevanceAI/RelevanceAI-readme-docs/blob/v0.31.0/docs_template/GETTING_STARTED/example-applications/_assets/RelevanceAI_CLIP_contrastive_pretraining.png?raw=true" width="650" alt="Photo of OpenAI's CLIP architecture from OpenAI" />
+<img src="https://github.com/RelevanceAI/RelevanceAI-readme-docs/blob/v0.28.0/docs_template/GETTING_STARTED/example-applications/_assets/RelevanceAI_CLIP_contrastive_pretraining.png?raw=true" width="650" alt="Photo of OpenAI's CLIP architecture from OpenAI" />
 <figcaption>Photo of OpenAI's CLIP architecture from OpenAI (https://openai.com/blog/clip/)</figcaption>
 <figure>
 
@@ -214,7 +214,7 @@ client.insert_documents("quickstart_clip", docs=documents)
 Once we have inserted the data into the dataset, we can visit [RelevanceAI dashboard](https://cloud.relevance.ai/dataset/quickstart_clip/dashboard/monitor/vectors). The dashboard gives us a great overview of our dataset as shown below. 
 
 <figure>
-<img src="https://github.com/RelevanceAI/RelevanceAI-readme-docs/blob/v0.31.0/docs_template/GETTING_STARTED/example-applications/_assets/RelevanceAI_quickstart_clip_dashboard.png?raw=true" width="650" alt="RelevanceAI Dashboard" />
+<img src="https://github.com/RelevanceAI/RelevanceAI-readme-docs/blob/v0.28.0/docs_template/GETTING_STARTED/example-applications/_assets/RelevanceAI_quickstart_clip_dashboard.png?raw=true" width="650" alt="RelevanceAI Dashboard" />
 <figcaption>Relevance AI dashboard</figcaption>
 <figure>
 
@@ -274,13 +274,13 @@ show_json(
 
 
 <figure>
-<img src="https://github.com/RelevanceAI/RelevanceAI-readme-docs/blob/v0.31.0/docs_template/GETTING_STARTED/example-applications/_assets/RelevanceAI_JSONShower_results.png?raw=true" width="650" alt="JSONShower Results" />
+<img src="https://github.com/RelevanceAI/RelevanceAI-readme-docs/blob/v0.28.0/docs_template/GETTING_STARTED/example-applications/_assets/RelevanceAI_JSONShower_results.png?raw=true" width="650" alt="JSONShower Results" />
 <figcaption>JSONShower Results</figcaption>
 <figure>
 
 
 
-**Try it out in Colab:** [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/RelevanceAI/RelevanceAI-readme-docs/blob/v0.31.0/docs/GETTING_STARTED/example-applications/_notebooks/RelevanceAI_ReadMe_Quickstart_Text_to_Image_Search.ipynb)
+**Try it out in Colab:** [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/RelevanceAI/RelevanceAI-readme-docs/blob/v0.28.0/docs/GETTING_STARTED/example-applications/_notebooks/RelevanceAI_ReadMe_Quickstart_Text_to_Image_Search.ipynb)
 
 
 ## Final Code

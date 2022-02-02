@@ -7,13 +7,13 @@ hidden: false
 
 
 <figure>
-<img src="https://github.com/RelevanceAI/RelevanceAI-readme-docs/blob/v0.31.0/docs_template/_assets/RelevanceAI_vector_space.png?raw=true" width="650" alt="Vector Spaces" />
+<img src="https://github.com/RelevanceAI/RelevanceAI-readme-docs/blob/v0.28.0/docs_template/_assets/RelevanceAI_vector_space.png?raw=true" width="650" alt="Vector Spaces" />
 <figcaption></figcaption>
 <figure>
 
 
 
-**Try it out in Colab:** [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/RelevanceAI/RelevanceAI-readme-docs/blob/v0.31.0/docs/GETTING_STARTED/example-applications/_notebooks/RelevanceAI_ReadMe_Quickstart_Multivector_Search.ipynb)
+**Try it out in Colab:** [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/RelevanceAI/RelevanceAI-readme-docs/blob/v0.28.0/docs/GETTING_STARTED/example-applications/_notebooks/RelevanceAI_ReadMe_Quickstart_Multivector_Search.ipynb)
 
 
 
@@ -25,10 +25,8 @@ hidden: false
 
 Prior to starting, let's install the main dependencies.
 
-
-
 ```bash Bash
-!pip install -U RelevanceAI[notebook]==0.27.0
+!pip install -U -q RelevanceAI==0.31.0
 ```
 ```bash
 ```
@@ -40,9 +38,7 @@ This will give you access to Relevance AI's Python SDK.
 After installation, we need to also set up an API client. If you are missing an API key, you can easily sign up and get your API key from [https://cloud.relevance.ai/](https://cloud.relevance.ai/) in the settings area.
 
 
-
 ```python Python (SDK)
-
 from relevanceai import Client 
 
 """
@@ -50,9 +46,12 @@ You can sign up/login and find your credentials here: https://cloud.relevance.ai
 Once you have signed up, click on the value under `Authorization token` and paste it here
 """
 client = Client()
+
 ```
 ```python
 ```
+
+
 ## Steps to perform multi-vector search
 
 1. Get sample data
@@ -62,7 +61,7 @@ client = Client()
 
 
 <figure>
-<img src="https://github.com/RelevanceAI/RelevanceAI-readme-docs/blob/v0.31.0/docs_template/GETTING_STARTED/example-applications/_assets/RelevanceAI_search_steps.png?raw=true" width="650" alt="Steps to search" />
+<img src="https://github.com/RelevanceAI/RelevanceAI-readme-docs/blob/v0.28.0/docs_template/GETTING_STARTED/example-applications/_assets/RelevanceAI_search_steps.png?raw=true" width="650" alt="Steps to search" />
 <figcaption>Steps to search</figcaption>
 <figure>
 
@@ -85,7 +84,7 @@ pd.DataFrame.from_dict(documents).head()
 ```
 
 <figure>
-<img src="https://github.com/RelevanceAI/RelevanceAI-readme-docs/blob/v0.31.0/docs_template/GETTING_STARTED/example-applications/_assets/RelevanceAI_ecommerce_dataset_preview.png?raw=true" width="650" alt="E-commerce Dataset Preview" />
+<img src="https://github.com/RelevanceAI/RelevanceAI-readme-docs/blob/v0.28.0/docs_template/GETTING_STARTED/example-applications/_assets/RelevanceAI_ecommerce_dataset_preview.png?raw=true" width="650" alt="E-commerce Dataset Preview" />
 <figcaption>E-commerce Dataset Preview</figcaption>
 <figure>
 
@@ -108,7 +107,7 @@ After finalizing the insert task, the client returns a link guiding you to a das
 
 
 <figure>
-<img src="https://github.com/RelevanceAI/RelevanceAI-readme-docs/blob/v0.31.0/docs_template/GETTING_STARTED/example-applications/_assets/RelevanceAI_quickstart_multivector_search.png?raw=true" width="650" alt="Relevance AI Dashboard" />
+<img src="https://github.com/RelevanceAI/RelevanceAI-readme-docs/blob/v0.28.0/docs_template/GETTING_STARTED/example-applications/_assets/RelevanceAI_quickstart_multivector_search.png?raw=true" width="650" alt="Relevance AI Dashboard" />
 <figcaption>Relevance AI Dashboard</figcaption>
 <figure>
 
@@ -170,14 +169,14 @@ show_json(results, image_fields=["product_image"], text_fields=["product_title"]
 ```
 
 <figure>
-<img src="https://github.com/RelevanceAI/RelevanceAI-readme-docs/blob/v0.31.0/docs_template/GETTING_STARTED/example-applications/_assets/RelevanceAI_multivector_search_results.png?raw=true" width="650" alt="Multi-vector Search Results" />
+<img src="https://github.com/RelevanceAI/RelevanceAI-readme-docs/blob/v0.28.0/docs_template/GETTING_STARTED/example-applications/_assets/RelevanceAI_multivector_search_results.png?raw=true" width="650" alt="Multi-vector Search Results" />
 <figcaption>Multi-vector Search Results</figcaption>
 <figure>
 
 
 
 
-**Try it out in Colab:** [![Open In Colab](https://colab.research.google.com/_assets/colab-badge.svg)](https://colab.research.google.com/github/RelevanceAI/RelevanceAI-readme-docs/blob/v0.31.0/docs/GETTING_STARTED/example-applications/_notebooks/RelevanceAI_ReadMe_Multi_Vector_Search.ipynb)
+**Try it out in Colab:** [![Open In Colab](https://colab.research.google.com/_assets/colab-badge.svg)](https://colab.research.google.com/github/RelevanceAI/RelevanceAI-readme-docs/blob/v0.28.0/docs/GETTING_STARTED/example-applications/_notebooks/RelevanceAI_ReadMe_Multi_Vector_Search.ipynb)
 
 
 

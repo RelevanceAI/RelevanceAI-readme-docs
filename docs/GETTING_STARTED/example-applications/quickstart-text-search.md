@@ -7,7 +7,7 @@ hidden: false
 ---
 
 <figure>
-<img src="https://github.com/RelevanceAI/RelevanceAI-readme-docs/blob/v0.31.0/docs_template/GETTING_STARTED/example-applications/_assets/RelevanceAI_text_search.png?raw=true" 
+<img src="https://github.com/RelevanceAI/RelevanceAI-readme-docs/blob/v0.28.0/docs_template/GETTING_STARTED/example-applications/_assets/RelevanceAI_text_search.png?raw=true" 
      alt="RelevanceAI Text to Image"
      style="width: 100% vertical-align: middle"/> 
 <figcaption>
@@ -18,7 +18,7 @@ hidden: false
 
 In this section, we will show you how to create and experiment with a powerful text search engine using Google's Universal Sentence Encoder through [VectorHub library](https://github.com/RelevanceAI/vectorhub) and Relevance AI. 
 
-**Try it out in Colab:** [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/RelevanceAI/RelevanceAI-readme-docs/blob/v0.31.0/docs/GETTING_STARTED/example-applications/_notebooks/RelevanceAI_ReadMe_Quickstart_Text_Search.ipynb)
+**Try it out in Colab:** [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/RelevanceAI/RelevanceAI-readme-docs/blob/v0.28.0/docs/GETTING_STARTED/example-applications/_notebooks/RelevanceAI_ReadMe_Quickstart_Text_Search.ipynb)
 
 
 ### What I Need
@@ -28,38 +28,35 @@ In this section, we will show you how to create and experiment with a powerful t
 ### Installation Requirements
 
 
-
 ```bash Bash
-# RelevanceAi installation
-pip install -U RelevanceAI[notebook]==0.27.0
+# RelevanceAI installation
+!pip install -U RelevanceAI[notebook]==0.27.0
 
 # Vectorhub installation for quick access to Sentence Transformers
-pip install -q vectorhub[encoders-text-tfhub]
+!pip install -q vectorhub[encoders-text-tfhub]
 ```
 ```bash
 ```
+
 
 ### Setting Up Client
 
 To be able to use Relevance AI, you need to instantiate a client. This needs a Project and API key that can be accessed at [https://cloud.relevance.ai/](https://cloud.relevance.ai/) in the settings area! Alternatively, you can run the code below and follow the link and the guide.
 
 
-
-
 ```python Python (SDK)
 from relevanceai import Client 
 
 """
-Running this cell will provide you with 
-the link to sign up/login page where you can find your credentials.
-Once you have signed up, click on the value under `Authorization token` in the API tab
-and paste it in the Auth token box below
+You can sign up/login and find your credentials here: https://cloud.relevance.ai/sdk/api
+Once you have signed up, click on the value under `Authorization token` and paste it here
 """
-
 client = Client()
+
 ```
 ```python
 ```
+
 
 ## Text Search with Universal Sentence Encoder using VectorHub
 
@@ -67,8 +64,6 @@ client = Client()
 ### 1. Data
 
 For this experiment, we use our sample e-commerce dataset and preview one of the documents.
-
-
 
 
 ```python Python (SDK)

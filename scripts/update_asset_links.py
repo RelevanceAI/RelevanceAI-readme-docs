@@ -6,7 +6,6 @@ import re
 from pathlib import Path
 # import fileinput
 import itertools
-from telnetlib import DO
 from typing import List, Tuple
 
 import argparse
