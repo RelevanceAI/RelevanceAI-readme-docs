@@ -24,13 +24,25 @@ function blue(){
 	echo -e "\n${blue}${1}${NC}"
 }
 
-README_VERSION=$(cat __version__)
+ROOT_PATH=${2:-$PWD}
+PIP_PACKAGE_NAME=${3:-"RelevanceAI"}
+README_VERSION=${4:-$(cat __version__)}
+
 
 CYAN "=== Updating asset links to v$README_VERSION ==="
-python scripts/update_asset_links.py
+## To overcome parsing $DEBUG_MODE as string "true" or "false" not bool
+if $DEBUG_MODE; then
+	python scripts/update_docs_version.py -d $DEBUG_MODE -p $PWD -n $PIP_PACKAGE_NAME -v $README_VERSION
+else
+	python scripts/update_docs_version.py -p $PWD -n $PIP_PACKAGE_NAME -v $README_VERSION
+fi
 
-CYAN "=== Rebuilding Readme versions ==="
-python scripts/build_docs.py
+CYAN "=== Rebuilding Readme docs ==="
+if $DEBUG_MODE; then
+	python scripts/build_docs.py  -d $DEBUG_MODE -p $PWD -n $PIP_PACKAGE_NAME -v $README_VERSION
+else
+	python scripts/build_docs.py  -p $PWD -n $PIP_PACKAGE_NAME -v $README_VERSION
+fi
 
 CYAN "=== Syncing ReadMe version v$README_VERSION ==="
 ./scripts/sync_readme_docs.sh $DEBUG_MODE $README_VERSION

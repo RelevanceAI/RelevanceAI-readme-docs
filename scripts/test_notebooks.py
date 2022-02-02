@@ -8,6 +8,7 @@ import sys
 import nbformat
 from nbconvert.preprocessors import ExecutePreprocessor
 
+import logging
 import argparse
 
 
@@ -16,7 +17,7 @@ import argparse
 ###############################################################################
 
 
-def get_latest_version(name):
+def get_latest_version(name: str):
     latest_version = str(
         subprocess.run(
             [sys.executable, "-m", "pip", "install", "{}==random".format(name)],
@@ -30,7 +31,7 @@ def get_latest_version(name):
     return latest_version
 
 
-def check_latest_version(name):
+def check_latest_version(name: str):
     latest_version = get_latest_version(name)
 
     current_version = str(
@@ -49,7 +50,7 @@ def check_latest_version(name):
         return False
 
 
-def notebook_find_replace(notebook, find_sent_regex, find_str_regex, replace_str):
+def notebook_find_replace(notebook: str, find_sent_regex: str, find_str_regex: str, replace_str: str):
 
     with open(notebook, "r") as f:
         lines = f.readlines()
@@ -88,11 +89,14 @@ def notebook_find_replace(notebook, find_sent_regex, find_str_regex, replace_str
 
 
 def main(args):
+    logging_level = logging.DEBUG if args.debug else logging.INFO
+    logging.basicConfig(format='%(asctime)s %(message)s', level=logging_level)
+
     DOCS_PATH = Path(args.path) / "docs"
     RELEVANCEAI_SDK_VERSION = (
         args.version if args.version else get_latest_version(args.package_name)
     )
-    print(
+    logging.info(
         f"Executing notebook test with {args.package_name}=={RELEVANCEAI_SDK_VERSION}\n\n"
     )
 
@@ -117,9 +121,8 @@ def main(args):
 
     for notebook in Path(DOCS_PATH).glob("**/*.ipynb"):
         try:
-            print(notebook)
-
-            ## Update to latest version
+            logging.info( {notebook})
+            logging.info(f'Updating pip install to latest version {RELEVANCEAI_SDK_VERSION} ...')
             notebook_find_replace(
                 notebook,
                 PIP_INSTALL_SENT_REGEX,
@@ -127,7 +130,7 @@ def main(args):
                 PIP_INSTALL_STR_REPLACE,
             )
 
-            ## Temporarily updating notebook with test creds
+            logging.info(f'Temporarily updating notebook with test creds ...')
             notebook_find_replace(
                 notebook,
                 CLIENT_INSTANTIATION_SENT_REGEX,
@@ -137,24 +140,26 @@ def main(args):
 
             ## Execute notebook with test creds
             with open(notebook, "r") as f:
-                print(
-                    f"\nExecuting notebook: \n{notebook} with SDK version {RELEVANCEAI_SDK_VERSION}"
+                logging.info(
+                    f"Executing notebook: {notebook} with SDK version {RELEVANCEAI_SDK_VERSION}"
                 )
                 nb_in = nbformat.read(f, nbformat.NO_CONVERT)
                 ep = ExecutePreprocessor(timeout=600, kernel_name="python3")
                 nb_out = ep.preprocess(nb_in)
 
-            ## Replace creds with previous
+            logging.info(f'Replacing client with base auth ...')
             notebook_find_replace(
                 notebook,
                 CLIENT_INSTANTIATION_SENT_REGEX,
                 CLIENT_INSTANTIATION_SENT_REGEX,
                 CLIENT_INSTANTIATION_BASE,
             )
-        except:
+        except Exception as e:
+            ERROR_MESSAGE = f"Error in notebook: {notebook}\n{e}"
 
+            logging.error(ERROR_MESSAGE)
             print(
-                f"\nError with notebook: {notebook}",
+                ERROR_MESSAGE,
                 file=open(README_NOTEBOOK_ERROR_FPATH, "a"),
             )
 
@@ -164,10 +169,19 @@ def main(args):
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
+    
+    PACKAGE_NAME = 'RelevanceAI'
+    ROOT_PATH = Path(__file__).parent.resolve() / '..'
+   
+    try:
+        README_VERSION = open(ROOT_PATH/ '__version__').read()
+    except FileNotFoundError as e:
+        print(f'File not found: {e}')
+        print(f'Loading file from latest Pip package release')
 
-    parser.add_argument("-p", "--path", default=Path.cwd(), help="Path of root folder")
-    parser.add_argument("-n", "--package-name", default="RelevanceAI", help="Package Name")
-    parser.add_argument("-v", "--version", default=None, help="Package Version")
+    parser.add_argument("-p", "--path", default=ROOT_PATH, help="Path of root folder")
+    parser.add_argument("-n", "--package-name", default=PACKAGE_NAME, help="Package Name")
+    parser.add_argument("-v", "--version", default=README_VERSION, help="Package Version")
     args = parser.parse_args()
 
     main(args)

@@ -46,23 +46,29 @@ jobs:
 
       - name: Install requirements
         run: pip install -r requirements.txt
-        # run: pip install -r colab_requirements.txt
+      
+      - name: Set ReadMe version as Github env
+        run: | 
+          README_VERSION=$(cat __version__) 
+          echo "README_VERSION=$README_VERSION" >> $GITHUB_ENV
 
       - name: Test for API keys
         run: | 
-          python scripts/detect_api_keys.py   
+          python scripts/detect_api_keys.py  
       
       - name: Update asset links to match Readme version
         run: | 
-          python scripts/update_asset_links.py   
+          python scripts/update_docs_version.py -p . -n RelevanceAI -v $README_VERSION
+      
+      - name: Update asset links to match Readme version
+        run: | 
+          python scripts/build_docs.py -p . -n RelevanceAI -v $README_VERSION
 
-      - name: Test notebooks on latest SDK version
+      - name: Test notebooks 
         env:
           TEST_PROJECT: ${{ secrets.TEST_PROJECT }}
           TEST_API_KEY: ${{ secrets.TEST_API_KEY }}
         run: |
-          README_VERSION=$(cat __version__)
-          echo "README_VERSION=$README_VERSION"
           python scripts/test_notebooks.py -p . -n RelevanceAI -v $README_VERSION
         
 

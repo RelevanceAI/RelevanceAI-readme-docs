@@ -11,12 +11,8 @@ import yaml
 from typing import List, Literal, Tuple
 
 import argparse
+import logging
 
-parser = argparse.ArgumentParser()
-parser.add_argument("-p", "--path", default=Path.cwd(), help="Path of root folder")
-# parser.add_argument("-n", "--package-name", default="RelevanceAI", help='Package Name')
-# parser.add_argument("-v", "--version", default=None, help='Package Version')
-args = parser.parse_args()
 
 RDMD_SNIPPET_LANGUAGES = {
     'python': 'Python (SDK)',
@@ -31,7 +27,7 @@ RDMD_SNIPPET_LANGUAGES = {
 
 def load_ipynb_snippet(snippet_path: str):
     '''
-    Loads an ipynb given snippet from the given path
+    Loads given snippet in ipynb format from the given path
     '''
     try:
         with open(snippet_path, 'r') as f:
@@ -45,7 +41,7 @@ def load_ipynb_snippet(snippet_path: str):
 
 def load_md_snippet(snippet_path: str):
     '''
-    Loads a md given snippet from the given path
+    Loads given snippet in md format from the given path
     '''
     try:
         with open(snippet_path, 'r') as f:
@@ -68,13 +64,11 @@ def generate_ipynb_file(input_fname: str, output_fname: str, snippet_paths: List
     '''
     Given a list of snippet paths, generate a file `output_fname` with the given `input_fname`
     '''
-    print(f'Input file: {input_fname}')
+    logging.info(f'Input file: {input_fname}')
     notebook_json = json.loads(open(input_fname).read())
 
     for cell in notebook_json['cells']:
         if str(cell['source']).find('@@@') != -1:
-            # print('Cell Source')
-            # print(cell['source'])
             for snippet_path in snippet_paths:
                 available_snippets = os.listdir(snippet_path)
 
@@ -83,18 +77,16 @@ def generate_ipynb_file(input_fname: str, output_fname: str, snippet_paths: List
                         snippet_cell = cell_source
                 
                         snippet_name = snippet_cell.split('@@@')[-1].strip()
-                        # print(f'Snippet name: {snippet_name}')
+                        logging.debug(f'Snippet name: {snippet_name}')
             
                         if snippet_name in available_snippets:
-                            # regexes = {f".*{s}.*": s for s in available_snippets}
-                            # snippet_name = [regexes[r] for r in regexes.keys() if re.match(r, snippet_name)][0]
                             snippet_fpath = Path(snippet_path) / f'{snippet_name}'
-                            print(f'Loading snippet: {snippet_path}/{snippet_name}')
+                            logging.debug(f'Loading snippet: {snippet_path}/{snippet_name}')
 
                             snippet = load_ipynb_snippet(snippet_fpath)
-                            print(snippet)
                             cell['source'][i] = ''.join(snippet)
-        
+    
+    logging.info(f'Output file: {output_fname}')    
     json.dump(notebook_json, fp=open(output_fname, 'w'), indent=4)
 
 
@@ -104,28 +96,24 @@ def generate_md_file(input_fname: str, output_fname: str, snippet_paths: List[Pa
     '''
     Given a list of snippet paths, generate a file `output_fname` with the given `input_fname`
     '''
-    print(f'Input file: {input_fname}')
+    logging.info(f'Input file: {input_fname}')
     with open(input_fname) as f:
         md_file = f.read()
 
     md_lines = list() 
     for line in md_file.split('\n'):
         if  bool(re.search('@@@.*', line)):
-            # load the corresponding snippet and merge it in the code
+            # Load the corresponding snippet and merge it in the code
             # Loads snippets in order from root to inner folder - will overwrite the snippets with same name
             for snippet_path in snippet_paths:
                 available_snippets = os.listdir(snippet_path)
                 snippet_name = line.split('@@@')[1].split(' ')[0]
-                # print(snippet_path)
-                # print(available_snippets)
-                # print(snippet_name)
+
                 if snippet_name in available_snippets:
                     regexes = {f".*{s}.*": s for s in available_snippets}
-                    # print(regexes)
                     snippet_name = [regexes[r] for r in regexes.keys() if re.match(r, snippet_name)][0]
-                    # print(snippet_name)
                     snippet_fpath = Path(snippet_path) / f'{snippet_name}'
-                    print(f'Loading snippet: {snippet_path}/{snippet_name}')
+                    logging.debug(f'Loading snippet: {snippet_path}/{snippet_name}')
                     snippet = load_md_snippet(snippet_fpath)
                     # print(snippet)
                     [md_lines.append(x) for x in snippet]
@@ -135,20 +123,24 @@ def generate_md_file(input_fname: str, output_fname: str, snippet_paths: List[Pa
     with open(output_fname, "w") as fout:
         for element in md_lines:
             fout.write(element + "\n")
-        print(f'Output file: {output_fname}')
+        logging.info(f'Output file: {output_fname}')
 
 
 ###############################################################################
 # Generating ReadMe Markdown files with automated snippets
 ###############################################################################
 
-
 def main(args):
+    logging_level = logging.DEBUG if args.debug else logging.INFO
+    logging.basicConfig(format='%(asctime)s %(message)s', level=logging_level)
+
     ### For files in sections and subsections
     DOCS_PATH = Path(args.path) / "docs"
     DOCS_TEMPLATE_PATH = Path(args.path) / "docs_template"
 
     GENERAL_SNIPPETS = Path(DOCS_TEMPLATE_PATH) / "_snippets"
+
+    ### For testing/debugging
     # sample_input_fname = DOCS_PATH / "_md" / "welcome.md"
     # snippet_path = GENERAL_SNIPPETS 
     # sample_output_fname = sample_input_fname.parent.parent / sample_input_fname.name
@@ -160,27 +152,28 @@ def main(args):
     #     snippet_paths=snippet_paths
     #     )
 
+    logging.info(f'Generating files from `docs_template` to `docs` ...')
     snippet_paths = [GENERAL_SNIPPETS]
     for root, dirs, files in os.walk(DOCS_TEMPLATE_PATH, topdown=True):
         root_name = root.split('/')[-1]
         if root_name[0] != '_' and files:
-            print(f'\nRoot {root}')
-            print(f'Dirs {dirs}')
-            print(f'Files {files}')
+            logging.debug(f'Root {root}')
+            logging.debug(f'Dirs {dirs}')
+            logging.debug(f'Files {files}')
 
-            ### Template generation for certain files
+            ### Loading snippets_paths 
             SNIPPETS_DIR = Path(root).joinpath("_snippets")
             if '_snippets' in dirs:
                 snippet_paths += [SNIPPETS_DIR]
 
-            print(f'Snippet paths {snippet_paths}')
+            logging.debug(f'Snippet paths {snippet_paths}')
 
+            ### Generating for ipynb     
             MD_FILES = Path(root).glob('**/*.md')
             for input_fname in MD_FILES:
                 output_fname = str(input_fname).replace('docs_template', 'docs')
 
-                print('---')
-
+                logging.debug('---')
                 generate_md_file(
                     input_fname=input_fname, 
                     output_fname=output_fname, 
@@ -192,7 +185,7 @@ def main(args):
             for input_fname in NOTEBOOK_FILES:    
                 output_fname = str(input_fname).replace('docs_template', 'docs')
 
-                print('---')
+                logging.debug('---')
                 generate_ipynb_file(
                     input_fname=input_fname, 
                     output_fname=output_fname, 
@@ -208,9 +201,15 @@ def main(args):
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
 
-    parser.add_argument("-p", "--path", default=Path.cwd(), help="Path of root folder")
-    parser.add_argument("-n", "--package-name", default="RelevanceAI", help="Package Name")
-    parser.add_argument("-v", "--version", default=None, help="Package Version")
+    PACKAGE_NAME = 'RelevanceAI'
+
+    ROOT_PATH = Path(__file__).parent.resolve() / '..'
+    README_VERSION_FILE = open(ROOT_PATH/ '__version__').read()
+
+    parser.add_argument("-d", "--debug", default=False, help="Run debug mode")
+    parser.add_argument("-p", "--path", default=ROOT_PATH, type=str, help="Path of root folder")
+    parser.add_argument("-n", "--package-name", default=PACKAGE_NAME, type=str, help="Package Name")
+    parser.add_argument("-v", "--version", default=README_VERSION_FILE, help="Package Version")
     args = parser.parse_args()
 
     main(args)

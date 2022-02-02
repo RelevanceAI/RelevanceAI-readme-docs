@@ -40,7 +40,6 @@ RELEVANCEAI_SDK_VERSIONS=$(curl -L -s "$PACKAGE_JSON_URL" | jq  -r '.releases | 
 LATEST_RELEVANCEAI_SDK_VERSION=$(curl -L -s "$PACKAGE_JSON_URL" | jq  -r '.releases | keys | .[]' | sort -V | tail -n1)
 LATEST_README_VERSION=$(get_latest_readme_version)
 
-
 README_VERSION=${2:-${LATEST_README_VERSION}}
 README_VERSION=$(echo $README_VERSION | sed 's/[^0-9.]//g')     ## stripping 'v' from version string
 

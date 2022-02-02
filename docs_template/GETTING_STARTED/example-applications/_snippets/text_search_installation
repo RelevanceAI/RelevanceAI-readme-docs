@@ -1,6 +1,6 @@
 bash
 # RelevanceAI installation
-!pip install -U RelevanceAI[notebook]==0.27.0
+!pip install -U RelevanceAI[notebook]==0.31.0
 
 # Vectorhub installation for quick access to Sentence Transformers
 !pip install -q vectorhub[encoders-text-tfhub]
