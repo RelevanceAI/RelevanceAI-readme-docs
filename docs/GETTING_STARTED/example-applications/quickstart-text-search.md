@@ -7,7 +7,7 @@ hidden: false
 ---
 
 <figure>
-<img src="https://github.com/RelevanceAI/RelevanceAI-readme-docs/blob/v0.28.0/docs/GETTING_STARTED/example-applications/_assets/RelevanceAI_text_search.png?raw=true" 
+<img src="https://github.com/RelevanceAI/RelevanceAI-readme-docs/blob/v0.28.0/docs_template/GETTING_STARTED/example-applications/_assets/RelevanceAI_text_search.png?raw=true" 
      alt="RelevanceAI Text to Image"
      style="width: 100% vertical-align: middle"/> 
 <figcaption>
