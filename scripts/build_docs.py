@@ -93,7 +93,7 @@ def generate_ipynb_file(input_fname: str, output_fname: str, snippet_paths: List
 
                             snippet = load_ipynb_snippet(snippet_fpath)
                             print(snippet)
-                            cell['source'][i] = snippet
+                            cell['source'][i] = ''.join(snippet)
         
     json.dump(notebook_json, fp=open(output_fname, 'w'), indent=4)
 
