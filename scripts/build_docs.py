@@ -76,23 +76,30 @@ def generate_ipynb_file(input_fname: str, output_fname: str, snippet_paths: List
         if str(cell['source']).find('@@@') != -1:
             print('Cell source')
             print(cell['source'] )
+            print(type(cell['source']))
             for snippet_path in snippet_paths:
                 available_snippets = os.listdir(snippet_path)
+
+                for cell in cell['source']:
+                    if '@@@' in cell:
+                        snippet_cell = cell
                 
-                snippet_cell = [cell for cell in cell['source'] if '@@@' in cell][0]
+                # snippet_cell = [cell for cell in cell['source'] if '@@@' in cell][0]
                 print('Cell snippet')
                 print(snippet_cell)
                 
                 snippet_name = snippet_cell.split('@@@')[-1].strip()
                 print(f'Snippet name: {snippet_name}')
-                if available_snippets:
+                if snippet_name in available_snippets:
                     # regexes = {f".*{s}.*": s for s in available_snippets}
                     # snippet_name = [regexes[r] for r in regexes.keys() if re.match(r, snippet_name)][0]
-
                     snippet_fpath = Path(snippet_path) / f'{snippet_name}'
                     print(f'Loading snippet: {snippet_path}/{snippet_name}')
 
                     snippet = load_ipynb_snippet(snippet_fpath)
+                    print('cell source')
+                    print(cell['source'] )
+                    print(snippet)
                     cell['source'] = snippet
         
     json.dump(notebook_json, fp=open(output_fname, 'w'), indent=4)
@@ -116,13 +123,14 @@ def generate_md_file(input_fname: str, output_fname: str, snippet_paths: List[Pa
             for snippet_path in snippet_paths:
                 available_snippets = os.listdir(snippet_path)
                 snippet_name = line.split('@@@')[1].split(' ')[0]
-                
-                print(snippet_name)
-                if available_snippets:
+                # print(snippet_path)
+                # print(available_snippets)
+                # print(snippet_name)
+                if snippet_name in available_snippets:
                     regexes = {f".*{s}.*": s for s in available_snippets}
                     # print(regexes)
                     snippet_name = [regexes[r] for r in regexes.keys() if re.match(r, snippet_name)][0]
-
+                    # print(snippet_name)
                     snippet_fpath = Path(snippet_path) / f'{snippet_name}'
                     print(f'Loading snippet: {snippet_path}/{snippet_name}')
                     snippet = load_md_snippet(snippet_fpath)
@@ -177,10 +185,10 @@ def main(args):
             ### Generating for md
             if '_md' in dirs:
                 MD_DIR = Path(root) / "_md"
-
+            
                 for fname in os.listdir(MD_DIR):
                     input_fname = MD_DIR / fname
-                    output_fname = Path(root).parent / 'docs' / fname
+                    output_fname = Path(DOCS_TEMPLATE_PATH) / fname
                     print(output_fname)
 
                     print('---')
@@ -191,25 +199,25 @@ def main(args):
                         snippet_paths=snippet_paths
                     )
 
-            # ### Generating for ipynb        
-            # if '_ipynb' in dirs:
-            #     IPYNB_DIR = Path(root) / "_ipynb"
+            ### Generating for ipynb        
+            if '_ipynb' in dirs:
+                IPYNB_DIR = Path(root) / "_ipynb"
 
-            #     for fname in os.listdir(IPYNB_DIR):
-            #         input_fname = IPYNB_DIR / fname
-            #         output_fname = Path(root) / '_notebooks'/ fname
+                for fname in os.listdir(IPYNB_DIR):
+                    input_fname = IPYNB_DIR / fname
+                    output_fname = Path(DOCS_TEMPLATE_PATH) / '_notebooks'/ fname
 
-            #         print('---')
+                    print('---')
 
-            #         generate_ipynb_file(
-            #             input_fname=input_fname, 
-            #             output_fname=output_fname, 
-            #             snippet_paths=snippet_paths,
-            #         )
+                    generate_ipynb_file(
+                        input_fname=input_fname, 
+                        output_fname=output_fname, 
+                        snippet_paths=snippet_paths,
+                    )
                     
-            #         # ### Validating JSON notebook
-            #         # data = yaml.full_load(open(output_fname))
-            #         # json.dump(data, fp=open(output_fname, 'w'), indent=4)
+                    ### Validating JSON notebook
+                    data = yaml.full_load(open(output_fname))
+                    json.dump(data, fp=open(output_fname, 'w'), indent=4)
 
 
 

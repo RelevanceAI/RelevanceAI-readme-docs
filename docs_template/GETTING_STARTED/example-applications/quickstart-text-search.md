@@ -27,6 +27,7 @@ In this section, we will show you how to create and experiment with a powerful t
 
 ### Installation Requirements
 
+
 @@@text_search_installation
 
 
@@ -44,8 +45,6 @@ To be able to use Relevance AI, you need to instantiate a client. This needs a P
 ### 1. Data
 
 For this experiment, we use our sample e-commerce dataset and preview one of the documents.
-
-
 
 
 ```python Python (SDK)
