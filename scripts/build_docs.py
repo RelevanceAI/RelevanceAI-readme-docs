@@ -175,17 +175,17 @@ def main(args):
 
             print(f'Snippet paths {snippet_paths}')
 
-            # MD_FILES = Path(root).glob('**/*.md')
-            # for input_fname in MD_FILES:
-            #     output_fname = str(input_fname).replace('docs_template', 'docs')
+            MD_FILES = Path(root).glob('**/*.md')
+            for input_fname in MD_FILES:
+                output_fname = str(input_fname).replace('docs_template', 'docs')
 
-            #     print('---')
+                print('---')
 
-            #     generate_md_file(
-            #         input_fname=input_fname, 
-            #         output_fname=output_fname, 
-            #         snippet_paths=snippet_paths
-            #     )
+                generate_md_file(
+                    input_fname=input_fname, 
+                    output_fname=output_fname, 
+                    snippet_paths=snippet_paths
+                )
 
             ### Generating for ipynb     
             NOTEBOOK_FILES = Path(root).glob('**/*.ipynb')   
