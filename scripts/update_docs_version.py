@@ -63,8 +63,8 @@ def main(args):
 
     logging.info(f'Updating asset links to {README_VERSION} for all md and ipynb files')
 
-    md_files = get_files(DOCS_PATH, ext='md')
-    notebooks = get_files(DOCS_PATH, ext='ipynb')
+    md_files = itertools.chain(get_files(DOCS_PATH, ext='md'), get_files(DOCS_TEMPLATE_PATH, ext='md'))
+    notebooks = itertools.chain(get_files(DOCS_PATH, ext='ipynb'), get_files(DOCS_TEMPLATE_PATH, ext='ipynb'))
     files = itertools.chain(md_files, notebooks)
 
     ASSET_SENTENCE_REGEX = '.*/RelevanceAI-readme-docs/blob/.*'
