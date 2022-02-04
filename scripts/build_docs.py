@@ -8,7 +8,7 @@ import re
 import json
 import yaml
 
-from typing import List, Tuple, Dict, Optional
+from typing import List, Dict, Optional
 
 import argparse
 import logging
@@ -58,7 +58,6 @@ def load_md_snippet(snippet_path: str, params: Optional[Dict]=None):
     snippet = text.split('\n')
     ### Reading language from the first line of the snippet
     ### and building rdmd snippet
-
     ## Replacing params
     if params:
         for i,  line in enumerate(snippet):
@@ -71,6 +70,7 @@ def load_md_snippet(snippet_path: str, params: Optional[Dict]=None):
     snippet.append("```")
     snippet.append("```"+language)
     snippet.append("```")
+
     return snippet
 
 
@@ -88,7 +88,9 @@ def generate_ipynb_file(
 
     for cell in notebook_json['cells']:
         if str(cell['source']).find('@@@') != -1:
+            logging.debug(f'\tSnippet Paths: {snippet_paths}')
             for snippet_path in snippet_paths:
+                print(list(Path(snippet_path).glob('*')))
                 available_snippets = os.listdir(snippet_path)
                 logging.debug(f'\tSnippets: {available_snippets}')
 
@@ -108,8 +110,6 @@ def generate_ipynb_file(
                                 # logging.debug(f"\t{param_str.split()}")
                                 params_ref = dict(tuple(s.replace('==', '=').split('=')) for s in param_str.split())
                                 # logging.debug(f"\t{params_ref}")
-                                ## Iterating over param_dict and loading with k in snippet_var
-                                print(params_ref)
                                 params = {k: snippet_params[params_ref[k]] for k in params_ref}
                                 logging.debug(f'\tParams: {params}')
 
@@ -124,15 +124,16 @@ def generate_ipynb_file(
 
 
 def generate_md_snippet(snippet_str: str, snippet_paths: List, snippet_params: Dict):
+    logging.debug(f'\tSnippet paths: {snippet_paths}')
+    snippet = []
     for snippet_path in snippet_paths:
-        available_snippets = os.listdir(snippet_path)
-        logging.debug(f'\tSnippet paths: {snippet_paths}')
+        available_snippets = [f.name for f in Path(snippet_path).glob('*') if f.is_file()]
+        logging.debug(f'\tSnippets: {available_snippets}')
 
-        snippet_name = snippet_str.split(',')[0]
+        snippet_name = snippet_str.split(',')[0].strip()
         logging.debug(f'\tSnippet name: {snippet_name}')
 
         if snippet_name in available_snippets:
-            logging.debug(f'\tSnippets: {available_snippets}')
             params=None
             if len(snippet_str.split(',')) > 1:
                 param_str = snippet_str.split(',')[1].strip()
@@ -140,7 +141,6 @@ def generate_md_snippet(snippet_str: str, snippet_paths: List, snippet_params: D
                 # logging.debug(f"\t{param_str.split()}")
                 params_ref = dict(tuple(s.replace('==', '=').split('=')) for s in param_str.split())
                 # logging.debug(f"\t{params_ref}")
-                ## Iterating over param_dict and loading with k in snippet_var
                 params = {k: snippet_params[params_ref[k]] for k in params_ref}
                 logging.debug(f'\tParams: {params}')
 
@@ -148,10 +148,10 @@ def generate_md_snippet(snippet_str: str, snippet_paths: List, snippet_params: D
             snippet_name = [regexes[r] for r in regexes.keys() if re.match(r, snippet_name)][0]
             snippet_fpath = Path(snippet_path) / f'{snippet_name}'
             logging.debug(f'\tLoading snippet: {snippet_path}/{snippet_name}')
-
-            return load_md_snippet(snippet_fpath, params)
-
-
+            snippet = load_md_snippet(snippet_fpath, params)
+        else:
+            print(f'{snippet_name} not in {available_snippets}')
+    return snippet
 
 
 def generate_md_file(
@@ -169,13 +169,33 @@ def generate_md_file(
 
     md_lines = list()
     for line in md_file.split('\n'):
+        if  bool(re.search('@@@\+.*@@@', line)) and (not bool(re.search('.*<--.*-->.*', line))):
+            snippet_strs = line.replace('@@@+', '').replace('@@@', '').strip().split(';')
+            logging.debug(f'Snippet strs: {snippet_strs}')
+            snippet = []
+            for i, snippet_str in enumerate(snippet_strs):
+                snippet_str = snippet_str.strip()
+                _snippet = generate_md_snippet(snippet_str, snippet_paths, snippet_params)
+                logging.debug(f'Snippet str {snippet_str}')
+                if not _snippet:
+                    raise ValueError(f'{snippet_str} was not found in {snippet_paths}')
 
-        if  bool(re.search('@@@.*@@@', line)):
+                if i != 0:
+                    _snippet[0] = ''
+                if i != len(snippet_strs) -1:
+                    _snippet = _snippet[:-3]
+
+                snippet += _snippet
+                print('\n'.join(snippet))
+
+            [md_lines.append(x) for x in snippet]
+
+        elif bool(re.search('@@@.*@@@', line)) and (not bool(re.search('.*<--.*-->.*', line))):
             # Load the corresponding snippet and merge it in the code
             # Loads snippets in order from root to inner folder - will overwrite the snippets with same name
             snippet_str = line.split('@@@')[1].strip()
             snippet = generate_md_snippet(snippet_str, snippet_paths, snippet_params)
-            print('\n'.join(snippet))
+            logging.debug('\n'.join(snippet))
 
             [md_lines.append(x) for x in snippet]
         else:
@@ -213,7 +233,7 @@ def main(args):
     # generate_md_file(
     #     input_fname=sample_input_fname,
     #     output_fname=sample_output_fname,
-    #     snippet_paths=[GENERAL_SNIPPETS],
+    #     snippet_paths=snippet_paths,
     #     snippet_params=SNIPPET_PARAMS
     #     )
 
@@ -232,8 +252,7 @@ def main(args):
     snippet_paths = []
     for root, dirs, files in os.walk(DOCS_TEMPLATE_PATH, topdown=True):
         root_name = root.split('/')[-1]
-        if root_name[0] != '_' and files:
-            print(root)
+        if root_name[0] != '_' and files and (not '_snippets' in root):
             logging.debug(f'\tRoot {root}')
             logging.debug(f'\tDirs {dirs}')
             logging.debug(f'\tFiles {files}')
@@ -245,7 +264,7 @@ def main(args):
 
             logging.debug(f'\tSnippet paths {snippet_paths}')
 
-        #     ### Generating for md
+            ## Generating for md
             MD_FILES = Path(root).glob('*.md')
             for input_fname in MD_FILES:
                 output_fname = str(input_fname).replace('docs_template', 'docs')
@@ -259,7 +278,7 @@ def main(args):
                 )
 
             ### Generating for ipynb
-            NOTEBOOK_FILES = Path(root).glob('*.ipynb')
+            NOTEBOOK_FILES = Path(root).glob('*/*.ipynb')
             for input_fname in NOTEBOOK_FILES:
                 output_fname = str(input_fname).replace('docs_template', 'docs')
 
@@ -275,7 +294,7 @@ def main(args):
                 data = yaml.full_load(open(output_fname))
                 json.dump(data, fp=open(output_fname, 'w'), indent=4)
 
-
+            logging.debug('---------')
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()

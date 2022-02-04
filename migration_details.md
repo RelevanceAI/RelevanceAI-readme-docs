@@ -9,7 +9,7 @@ Due to the fact that exported ReadMe docs_template are in `[block]` format as ge
 
 This repo is set up to sync all files in the [docs_template](./docs_template) folder with our ReadMe domain [here](https://docs_template.relevance.ai/docs_template) using the `rdme` client.
 
-A small script has been prepared to help keep this repo's assets synced to a ReadMe doc version reflective of the latest version of the SDK. 
+A small script has been prepared to help keep this repo's assets synced to a ReadMe doc version reflective of the latest version of the SDK.
 
 Please use this locally to quickly test that the changes that you make in the respective Markdown files.
 
@@ -18,10 +18,10 @@ Please use this locally to quickly test that the changes that you make in the re
 
 
 ```zsh
-❯ ./scripts/sync_readme_docs_template.sh 
+❯ ./scripts/sync_readme_docs.sh
 
 ## To run in debug mode
-❯ ./scripts/sync_readme_docs_template.sh true
+❯ ./scripts/sync_readme_docs.sh true
 ```
 
 For each section, we need to
@@ -32,7 +32,7 @@ For each section, we need to
 - Ensure front matter matches the current page
 - Replace each respective `[block]` section with `rdmd`
 - Sync the page using `./scripts/sync_readme_docs_template.sh` and check new synced version matches previous unsynced version upon render
-- Commit changes! 
+- Commit changes!
 
 1. ## File/folder Naming Conventions
 
@@ -48,7 +48,7 @@ The following conventions have been proposed to make this migration and doc orga
   - (eg. Getting Started) -> `GETTING_STARTED`
 - Subsections and Markdown filename is named after its' page slug [1]
   - eg. https://docs_template.relevance.ai/docs_template/welcome -> [`welcome.md`](https://github.com/RelevanceAI/RelevanceAI-readme-docs_template/blob/main/docs_template/GETTING_STARTED/welcome.md)
-  - eg. https://dash.readme.com/project/relevance/docs_template/vectors-and-vector-databases -> https://github.com/RelevanceAI/RelevanceAI-readme-docs_template/tree/development/docs_template/GETTING_STARTED/vectors-and-vector-databases 
+  - eg. https://dash.readme.com/project/relevance/docs_template/vectors-and-vector-databases -> https://github.com/RelevanceAI/RelevanceAI-readme-docs_template/tree/development/docs_template/GETTING_STARTED/vectors-and-vector-databases
   - Using `-` as delimiter (default via README)
 - Corresponding assets (eg. images/GIFs) for a particular section/subsection should be in a folder named `_assets`
   - eg. https://github.com/RelevanceAI/RelevanceAI-readme-docs_template/tree/development/docs_template/GETTING_STARTED/_assets
@@ -83,7 +83,7 @@ hidden: false
 
 3. ## Colab Notebooks and Badges
 
-- Store corresponding notebooks in relative section under `_notebooks` folder.  
+- Store corresponding notebooks in relative section under `_notebooks` folder.
 
 ```markdown
 [![Open In Colab](https://colab.research.google.com/_assets/colab-badge.svg)](https://colab.research.google.com/github/RelevanceAI/RelevanceAI-readme-docs_template/blob/main/docs_template/GETTING_STARTED/_notebooks/Intro_to_Relevance_AI.ipynb)
@@ -100,7 +100,7 @@ hidden: false
 
 4. ## Converting `[block]` to Readme Markdown (rdmd)
 
-The main things that need to be converted are - 
+The main things that need to be converted are -
 
 - code blocks
 - assets
@@ -142,7 +142,7 @@ eg.
 
 Assets need to be converted from `[block:image]` to Readme Markdown (rdmd)
 
-eg. 
+eg.
 ```markdown
 [block:image]
 {
@@ -181,7 +181,7 @@ eg.
 
 Callouts need to be converted from `[block:callout]` to Readme Markdown (rdmd)
 
-eg. 
+eg.
 
 ```markdown
 [block:callout]
@@ -198,7 +198,7 @@ Callouts are rendered by ReadMe's custom CSS depending on your emoji choice.
 
 ```markdown
 > 👍 Free for individual use. 100K free requests for commercial use.
-> 
+>
 > Sign up for your free at https://cloud.relevance.ai/sdk/api, no credit card required! You can view our pricing here at https://relevance.ai/pricing.
 ```
 
@@ -219,7 +219,7 @@ Default themes are specified using one of the following emojis. (You can always 
 See official [docs_template](https://rdmd.readme.io/docs_template/callouts) here for more details.
 
 
-### Tables 
+### Tables
 
 Callouts need to be converted from `[block:parameters]` to Readme Markdown (rdmd)
 

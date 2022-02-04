@@ -11,42 +11,42 @@ import argparse
 
 
 def file_find_replace(fname: str, find_sent_regex: str, find_str_regex: str, replace_str: str):
+    if fname.is_file():
+        with open(fname, "r") as f:
+            lines = f.readlines()
 
-    with open(fname, "r") as f:
-        lines = f.readlines()
+        with open(fname, "w") as f:
+            for i, line in enumerate(lines):
+                if bool(re.search(find_sent_regex, line)):
+                    find_sent = re.search(find_sent_regex, line)
+                    if find_sent:
+                        find_sent = find_sent.group()
+                        logging.debug(f"Found sentence: {find_sent}")
 
-    with open(fname, "w") as f:
-        for i, line in enumerate(lines):
-            if bool(re.search(find_sent_regex, line)):
-                find_sent = re.search(find_sent_regex, line)
-                if find_sent:
-                    find_sent = find_sent.group()
-                    logging.debug(f"Found sentence: {find_sent}")
+                        # if find_str == replace_str: continue
+                        logging.debug(f"Find string regex: {find_str_regex}")
+                        find_replace_str = re.search(find_str_regex, find_sent)
+                        if find_replace_str:
+                            find_replace_str = find_replace_str.group()
+                            logging.debug(f"Found str within sentence: {find_replace_str.strip()}")
 
-                    # if find_str == replace_str: continue
-                    logging.debug(f"Find string regex: {find_str_regex}")
-                    find_replace_str = re.search(find_str_regex, find_sent)
-                    if find_replace_str:
-                        find_replace_str = find_replace_str.group()
-                        logging.debug(f"Found str within sentence: {find_replace_str.strip()}")
+                            logging.debug(f"Replace str: {replace_str}")
+                            line = line.replace(find_replace_str, replace_str)
 
-                        logging.debug(f"Replace str: {replace_str}")
-                        line = line.replace(find_replace_str, replace_str)
+                            logging.debug(f"Updated: {line.strip()}")
 
-                        logging.debug(f"Updated: {line.strip()}")
-
+                        else:
+                            logging.debug(f"Not found: {find_replace_str}")
                     else:
-                        logging.debug(f"Not found: {find_replace_str}")
-                else:
-                    logging.debug(f"Not found: {find_sent_regex}")
+                        logging.debug(f"Not found: {find_sent_regex}")
 
-            f.write(line)
+                f.write(line)
 
-    
+
 
 def get_files(path: Union[Path, str], ext: Union['md', 'ipynb']):
 	return Path(path).glob(f"**/*.{ext}")
-	
+
 
 
 def main(args):
@@ -81,14 +81,14 @@ def main(args):
     ###############################################################################
 
     logging.info(f'Updating semver ref to {README_VERSION} for all installation files')
-    
+
     SEMVER_SENT = f'.*v(\d+\.\d+(?:\.\d+)?).*'
     SEMVER_STR = f"v(\d+\.\d+(?:\.\d+)?)"
     SEMVER_REPLACE_STR = f"{README_VERSION}"
 
     installation_guide =  [Path(args.path) / "docs_template" / "GETTING_STARTED" / "installation.md"] + \
                             [Path(args.path) / "docs" / "GETTING_STARTED" / "installation.md"]
-    
+
     for f in installation_guide:
         logging.debug(f'\tUpdating {f} to {README_VERSION}')
         file_find_replace(f, SEMVER_SENT, SEMVER_STR, SEMVER_REPLACE_STR)
@@ -124,5 +124,5 @@ if __name__ == "__main__":
     parser.add_argument("-n", "--package-name", default=PACKAGE_NAME, help="Package Name")
     parser.add_argument("-v", "--version", default=README_VERSION_FILE, help="Package Version")
     args = parser.parse_args()
-    
+
     main(args)

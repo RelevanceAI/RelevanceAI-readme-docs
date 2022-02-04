@@ -6,8 +6,3 @@ documents = [
 	{"_id": "5", "example_vector_": [0.4, 0.4, 0.4], "data": "This is a doc"},
 	{"_id": "4", "example_vector_": [0.5, 0.5, 0.5], "data": "This is another doc"},
 ]
-
-DATASET_ID = "<<DATASET_ID>>"
-df = client.Dataset(DATASET_ID)
-df.delete()
-df.insert_documents(documents)

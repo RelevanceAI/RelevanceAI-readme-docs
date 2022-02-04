@@ -55,6 +55,7 @@ documents = [
 	{"_id": "4", "example_vector_": [0.5, 0.5, 0.5], "data": "This is another doc"},
 ]
 
+
 DATASET_ID = "quickstart"
 df = client.Dataset(DATASET_ID)
 df.delete()

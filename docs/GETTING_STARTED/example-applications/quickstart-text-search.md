@@ -7,16 +7,16 @@ hidden: false
 ---
 
 <figure>
-<img src="https://github.com/RelevanceAI/RelevanceAI-readme-docs/blob/v0.31.0/docs_template/GETTING_STARTED/example-applications/_assets/RelevanceAI_text_search.png?raw=true" 
+<img src="https://github.com/RelevanceAI/RelevanceAI-readme-docs/blob/v0.31.0/docs_template/GETTING_STARTED/example-applications/_assets/RelevanceAI_text_search.png?raw=true"
      alt="RelevanceAI Text to Image"
-     style="width: 100% vertical-align: middle"/> 
+     style="width: 100% vertical-align: middle"/>
 <figcaption>
 <a href="https://tfhub.dev/google/universal-sentence-encoder/4">Universal Sentence Encoder encoding process</a>
 </figcaption>
 
 <figure>
 
-In this section, we will show you how to create and experiment with a powerful text search engine using Google's Universal Sentence Encoder through [VectorHub library](https://github.com/RelevanceAI/vectorhub) and Relevance AI. 
+In this section, we will show you how to create and experiment with a powerful text search engine using Google's Universal Sentence Encoder through [VectorHub library](https://github.com/RelevanceAI/vectorhub) and Relevance AI.
 
 **Try it out in Colab:** [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/RelevanceAI/RelevanceAI-readme-docs/blob/v0.31.0/docs/GETTING_STARTED/example-applications/_notebooks/RelevanceAI_ReadMe_Quickstart_Text_Search.ipynb)
 
@@ -28,7 +28,15 @@ In this section, we will show you how to create and experiment with a powerful t
 ### Installation Requirements
 
 
-@@@text_search_installation
+```bash Bash
+# RelevanceAI installation
+!pip install -U RelevanceAI[notebook]==0.31.0
+
+# Vectorhub installation for quick access to Sentence Transformers
+!pip install -q vectorhub[encoders-text-tfhub]
+```
+```bash
+```
 
 
 ### Setting Up Client
@@ -36,7 +44,18 @@ In this section, we will show you how to create and experiment with a powerful t
 To be able to use Relevance AI, you need to instantiate a client. This needs a Project and API key that can be accessed at [https://cloud.relevance.ai/](https://cloud.relevance.ai/) in the settings area! Alternatively, you can run the code below and follow the link and the guide.
 
 
-@@@client_instantiation
+```python Python (SDK)
+from relevanceai import Client
+
+"""
+You can sign up/login and find your credentials here: https://cloud.relevance.ai/sdk/api
+Once you have signed up, click on the value under `Authorization token` and paste it here
+"""
+client = Client()
+
+```
+```python
+```
 
 
 ## Text Search with Universal Sentence Encoder using VectorHub
@@ -84,7 +103,7 @@ An example document should have a structure that looks like this.
 
 ### 2. Encode
 
-Next, we will instantiate the universal sentence encoder from VectorHub and encode the `product_title` field among all documents. 
+Next, we will instantiate the universal sentence encoder from VectorHub and encode the `product_title` field among all documents.
 
 
 
@@ -93,7 +112,7 @@ Next, we will instantiate the universal sentence encoder from VectorHub and enco
 from vectorhub.encoders.text.tfhub import USE2Vec
 enc = USE2Vec()
 
-# We add this function here so that when we encode documents, they are good. 
+# We add this function here so that when we encode documents, they are good.
 documents = enc.encode_documents(["product_title"], documents)
 
 documents[0].keys()
@@ -101,8 +120,8 @@ documents[0].keys()
 ```python
 ```
 
-We can see that there is now a field called `product_title_use_vector_` in our data. 
-`_use_vector_` is the name assigned to the model in Vectorhub and we use it when generating vectors. 
+We can see that there is now a field called `product_title_use_vector_` in our data.
+`_use_vector_` is the name assigned to the model in Vectorhub and we use it when generating vectors.
 If you prefer a different name, simply modify the `__name__` attribute via
 
 

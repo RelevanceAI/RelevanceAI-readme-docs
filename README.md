@@ -29,9 +29,9 @@ By following instructions below, you will be able to preview/create any given ve
 ├── assets      ## Assets for this README
 ├── docs        ## Generated docs files
 ├── docs_template   ## Templates and all resources for auto-generation
-├── examples        ## For testing notebook tests 
+├── examples        ## For testing notebook tests
 ├── migration_details.md ## Ignore: instructions for the initial migration
-├── package.json         ## NPM deps 
+├── package.json         ## NPM deps
 ├── package-lock.json    ## NPM deps lock
 ├── rdmd.md              ## Rdmd cheatsheet
 ├── rdme.md              ## Rdme cheatsheet
@@ -44,7 +44,7 @@ By following instructions below, you will be able to preview/create any given ve
 1. Create a new branch for the ReadMe version you'd like to create if not already auto-created upon SDK release eg. v1.0.0
    - Branch off the latest version that you'd like to fork from (if it is not `main`)
     ```zsh
-    ❯ git checkout -b v1.0.0    
+    ❯ git checkout -b v1.0.0
     ```
 2. Update the `__version__` file to match that semver of the branch eg. 1.0.0 (this can be automated in future)
    - All automation scripts read from this file by default if no version given.
@@ -55,16 +55,26 @@ By following instructions below, you will be able to preview/create any given ve
     ```markdown
     @@@relevanceai_installation
     ```
-4. Apply the changes and update the ReadMe documentations.
+4. Go the ReadMEeDash config and export the ReadMe API key `$RELEVANCEAI_README_API_KEY` variable from ReadMe Project Configuration
+
+   ![](./assets/readme_api_key.png)
+
+   ```zsh
+   ❯ export RELEVANCEAI_README_API_KEY='xxx'
+   ```
+
+5. Apply the changes and update the ReadMe documentations.
     ```zsh
-    ❯ ./scripts/update_readme.sh 
+    ❯ ./scripts/update_readme.sh
     ## Run in debug mode
     ❯ ./scripts/update_readme.sh true
     ```
-5. Install pre-commit to check for API keys in notebooks!
+6. Install pre-commit to check for API keys in notebooks!
     ```
     pre-commit install
     ```
+7. Commit your changes if what you see in the ReadMe documentation is correct!
+
 
 
 

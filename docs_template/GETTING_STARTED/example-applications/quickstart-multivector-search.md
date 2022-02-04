@@ -25,7 +25,9 @@ hidden: false
 
 Prior to starting, let's install the main dependencies.
 
-@@@relevanceai_installation
+
+@@@ relevanceai_installation, RELEVANCEAI_SDK_VERSION=RELEVANCEAI_SDK_VERSION @@@
+
 
 This will give you access to Relevance AI's Python SDK.
 
@@ -34,7 +36,7 @@ This will give you access to Relevance AI's Python SDK.
 After installation, we need to also set up an API client. If you are missing an API key, you can easily sign up and get your API key from [https://cloud.relevance.ai/](https://cloud.relevance.ai/) in the settings area.
 
 
-@@@client_instantiation
+@@@ client_instantiation @@@
 
 
 ## Steps to perform multi-vector search
@@ -42,7 +44,7 @@ After installation, we need to also set up an API client. If you are missing an 
 1. Get sample data
 2. Vectorize the data
 3. Insert into your dataset
-4. Search your dataset 
+4. Search your dataset
 
 
 <figure>
@@ -73,7 +75,7 @@ pd.DataFrame.from_dict(documents).head()
 <figcaption>E-commerce Dataset Preview</figcaption>
 <figure>
 
-### 2. Insert 
+### 2. Insert
 
 To insert data to a dataset, you can use the `insert_documents` method.  Note that this step is also already done in our sample dataset.
 
@@ -125,7 +127,7 @@ multivector_query = [
 
 #Perform a vector search
 results = client.services.search.vector(
-    dataset_id="quickstart-example", 
+    dataset_id="quickstart-example",
     multivector_query=multivector_query,
     page_size=5
 )
@@ -182,7 +184,7 @@ pd.DataFrame.from_dict(documents).head()
 client.datasets.delete("quickstart_sample")
 client.insert_documents("quickstart_sample", documents)
 
-# Let us get a document and its vector 
+# Let us get a document and its vector
 doc = client.datasets.documents.get(dataset_id="quickstart_sample", id="711161256")
 vector = doc['document']['product_image_clip_vector_']
 
@@ -192,7 +194,7 @@ multivector_query = [
 ]
 
 results = client.services.search.vector(
-    dataset_id="quickstart_sample", 
+    dataset_id="quickstart_sample",
     multivector_query=multivector_query,
     page_size=5
 )
