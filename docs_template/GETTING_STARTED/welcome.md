@@ -25,31 +25,15 @@ Run this Quickstart in Colab: [![Open In Colab](https://colab.research.google.co
 
 @@@ relevanceai_installation, RELEVANCEAI_SDK_VERSION=RELEVANCEAI_SDK_VERSION @@@
 
+@@@ client_instantiation @@@
+
 ### 2. Create a dataset with vectors
 
 
-```python Python (SDK)
-
-documents = [
-	{"_id": "1", "example_vector_": [0.1, 0.1, 0.1], "data": "Documentation"},
-	{"_id": "2", "example_vector_": [0.2, 0.2, 0.2], "data": "Best document!"},
-	{"_id": "3", "example_vector_": [0.3, 0.3, 0.3], "data": "Document example"},
-	{"_id": "5", "example_vector_": [0.4, 0.4, 0.4], "data": "This is a doc"},
-	{"_id": "4", "example_vector_": [0.5, 0.5, 0.5], "data": "This is another doc"},
-]
-
-DATASET_ID = 'quickstart'
-df = client.Dataset(DATASET_ID)
-df.delete()
-df.insert_documents(documents)
-
-```
-```python
-```
+@@@quickstart_docs DATASET_ID=QUICKSTART_DATASET_ID@@@
 
 ### 3. Clustering
 
-
 ```python Python (SDK)
 
 clusterer = df.auto_cluster("kmeans-2", ["example_vector_"])
@@ -58,13 +42,6 @@ clusterer = df.auto_cluster("kmeans-2", ["example_vector_"])
 ```python
 ```
 
-```python Python (SDK)
-
-clusterer = df.auto_cluster("kmeans-2", ["example_vector_"])
-
-```
-```python
-```
 
 ### 4. Vector Search
 

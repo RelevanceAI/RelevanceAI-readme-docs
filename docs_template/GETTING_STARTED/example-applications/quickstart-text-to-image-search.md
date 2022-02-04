@@ -32,7 +32,7 @@ This section, we will show you how to create and experiment with a powerful text
 Prior to starting, let's install the main dependencies. This installation provides you with what you need to connect to Relevance AI's API, read/write data, make different searches, etc.
 
 
-@@@relevanceai_installation
+@@@ relevanceai_installation, RELEVANCEAI_SDK_VERSION=RELEVANCEAI_SDK_VERSION @@@
 
 This will give you access to Relevance AI's Python SDK.
 
@@ -42,7 +42,7 @@ To instantiate a Relevance AI's client object, you need an API key that you can 
 
 
 
-@@@client_instantiation
+@@@ client_instantiation @@@
 
 
 ## Steps to create text to image search with CLIP
@@ -67,16 +67,7 @@ Here, we use our sample e-commerce dataset and preview one of the documents.
 
 
 
-```python Python (SDK)
-
-from relevanceai.datasets import get_ecommerce_dataset_encoded
-
-docs = get_ecommerce_dataset_encoded()
-{k:v for k, v in docs[0].items() if '_vector_' not in k}
-
-```
-```python
-```
+@@@ get_ecommerce_encoded @@@
 
 An example document should have a structure that looks like this:
 
@@ -189,14 +180,7 @@ from tqdm.auto import tqdm
 Lets insert documents into the dataset `quickstart_clip`.
 
 
-```python Python (SDK)
-dataset_id = "quickstart_clip"
-df = client.Dataset(dataset_id)
-#df.delete()
-df.insert_documents(docs)
-```
-```python
-```
+@@@dataset_basics DATASET_ID=TEXT_IMAGE_SEARCH_DATASET_ID@@@
 
 Once we have inserted the data into the dataset, we can visit [RelevanceAI dashboard](https://cloud.relevance.ai/dataset/quickstart_clip/dashboard/monitor/vectors). The dashboard gives us a great overview of our dataset as shown below. 
 
