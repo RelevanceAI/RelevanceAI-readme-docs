@@ -25,6 +25,7 @@ Run this Quickstart in Colab: [![Open In Colab](https://colab.research.google.co
 
 ```bash Bash
 !pip install -U -q RelevanceAI==0.31.0
+
 ```
 ```bash
 ```
@@ -54,7 +55,10 @@ documents = [
 	{"_id": "4", "example_vector_": [0.5, 0.5, 0.5], "data": "This is another doc"},
 ]
 
-client.insert_documents(dataset_id="quickstart", documents=documents)
+DATASET_ID = "quickstart"
+df = client.Dataset(DATASET_ID)
+df.delete()
+df.insert_documents(documents)
 ```
 ```python
 ```
@@ -63,19 +67,7 @@ client.insert_documents(dataset_id="quickstart", documents=documents)
 
 ```python Python (SDK)
 
-centroids = client.vector_tools.cluster.kmeans_cluster(
-    "quickstart",
-    vector_fields = ["example_vector_"],
-    k = 2,
-    overwrite = True
-)
-
-client.services.cluster.centroids.list_closest_to_center(
-  dataset_id = "quickstart",
-  vector_fields = ["example_vector_"],
-  cluster_ids = [],             # Leave this as an empty list if you want all of the clusters.
-  alias = "kmeans_2"
-)
+clusterer = df.auto_cluster("kmeans-2", ["example_vector_"])
 
 ```
 ```python
@@ -86,14 +78,12 @@ client.services.cluster.centroids.list_closest_to_center(
 
 
 ```python Python (SDK)
-client.services.search.vector(
-    dataset_id="quickstart",
+vector_search = df.vector_search(
     multivector_query=[
         {"vector": [0.2, 0.2, 0.2], "fields": ["example_vector_"]},
     ],
-    page_size = 3,
-    query = "sample search"     # Stored on the dashboard but not required
-)
+    page_size=3,
+    query="sample search" )
 ```
 ```python
 ```

@@ -30,6 +30,7 @@ Run this Quickstart in Colab: [![Open In Colab](https://colab.research.google.co
 
 ```bash Bash
 !pip install -U -q RelevanceAI==0.31.0
+
 ```
 ```bash
 ```
@@ -38,7 +39,7 @@ After installation, we need to also set up an API client. If you are missing an 
 
 
 ```python Python (SDK)
-from relevanceai import Client 
+from relevanceai import Client
 
 """
 You can sign up/login and find your credentials here: https://cloud.relevance.ai/sdk/api
@@ -125,14 +126,14 @@ Run clustering on your vectors to better understand your data. You can view the 
 
 ```python Python (SDK)
 centroids = client.vector_tools.cluster.kmeans_cluster(
-    dataset_id = "quickstart", 
+    dataset_id = "quickstart",
     vector_fields = ["product_image_clip_vector_"],
     k = 10
 )
 
 client.services.cluster.centroids.list_closest_to_center(
-  dataset_id = "quickstart", 
-  vector_field = "product_image_clip_vector_", 
+  dataset_id = "quickstart",
+  vector_field = "product_image_clip_vector_",
   cluster_ids = [],                 # Leave this as an empty list if you want all of the clusters,
   alias = "kmeans_10"
 )
@@ -161,9 +162,9 @@ query = "xmas gifts"  # query text
 query_vec_txt = client.services.encoders.text(text=query)
 
 client.services.search.vector(
-	dataset_id = "quickstart", 
+	dataset_id = "quickstart",
   multivector_query = [
-    {"vector": query_vec_txt["vector"], 
+    {"vector": query_vec_txt["vector"],
      "fields": ["product_image_clip_vector_"]},
   ],
   page_size = 3,
@@ -194,7 +195,7 @@ Coming soon!
 Coming soon!
 
 
-This is just the start. Relevance AI comes out of the box with support for features such as cluster aggregation, and evaluation to further make sense of your unstructured data and multi-vector search, filters, facets and traditional keyword matching to enhance your vector search capabilities. 
+This is just the start. Relevance AI comes out of the box with support for features such as cluster aggregation, and evaluation to further make sense of your unstructured data and multi-vector search, filters, facets and traditional keyword matching to enhance your vector search capabilities.
 
 **Get started with some example applications you can build with Relevance AI. Check out some other guides below!**
 - [Text-to-image search with OpenAI's CLIP](doc:quickstart-text-to-image-search)
