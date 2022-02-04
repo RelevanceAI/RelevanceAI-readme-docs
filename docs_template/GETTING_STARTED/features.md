@@ -1,4 +1,4 @@
- ---
+---
 title: "Features"
 excerpt: "Developer-first vector platform"
 slug: "features"

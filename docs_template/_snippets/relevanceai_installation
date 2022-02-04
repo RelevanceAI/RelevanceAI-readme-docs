@@ -1,2 +1,2 @@
 bash
-! pip install -U RelevanceAI==0.31.0
+!pip install -U -q RelevanceAI==<<RELEVANCEAI_SDK_VERSION>>

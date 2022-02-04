@@ -90,8 +90,9 @@ def notebook_find_replace(notebook: str, find_sent_regex: str, find_str_regex: s
 
 def main(args):
     logging_level = logging.DEBUG if args.debug else logging.INFO
-    logging.basicConfig(format='%(asctime)s %(message)s', level=logging_level)
-
+    # logging.basicConfig(format='%(asctime)s %(message)s', level=logging_level)
+    logging.basicConfig(level=logging_level)
+    
     DOCS_PATH = Path(args.path) / "docs"
     RELEVANCEAI_SDK_VERSION = (
         args.version if args.version else get_latest_version(args.package_name)

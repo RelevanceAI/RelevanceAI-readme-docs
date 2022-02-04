@@ -25,11 +25,7 @@ hidden: false
 
 Prior to starting, let's install the main dependencies.
 
-```bash Bash
-!pip install -U -q RelevanceAI==0.31.0
-```
-```bash
-```
+@@@relevanceai_installation
 
 This will give you access to Relevance AI's Python SDK.
 
@@ -38,18 +34,7 @@ This will give you access to Relevance AI's Python SDK.
 After installation, we need to also set up an API client. If you are missing an API key, you can easily sign up and get your API key from [https://cloud.relevance.ai/](https://cloud.relevance.ai/) in the settings area.
 
 
-```python Python (SDK)
-from relevanceai import Client 
-
-"""
-You can sign up/login and find your credentials here: https://cloud.relevance.ai/sdk/api
-Once you have signed up, click on the value under `Authorization token` and paste it here
-"""
-client = Client()
-
-```
-```python
-```
+@@@client_instantiation
 
 
 ## Steps to perform multi-vector search

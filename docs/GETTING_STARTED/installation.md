@@ -53,22 +53,11 @@ pip install -e .
 After we install, we want to also set up the client. If you are missing an API key, grab your API key from https://cloud.relevance.ai/ in the [Settings](https://cloud.relevance.ai/settings) area and let's get started!
 
 
-```python Python (SDK)
-from relevanceai import Client 
-
-"""
-You can sign up/login and find your credentials here: https://cloud.relevance.ai/sdk/api
-Once you have signed up, click on the value under `Authorization token` and paste it here
-"""
-client = Client()
-
-```
-```python
-```
+@@@client_instantiation
 
 
 <figure>
-<img src="https://github.com/RelevanceAI/RelevanceAI-readme-docs/blob/v0.31.0/docs_template/GETTING_STARTED/_assets/RelevanceAI_auth_token_details.png?raw=true" alt="Get your Auth Details" />
+<img src="https://github.com/RelevanceAI/RelevanceAI-readme-docs/blob/0.31.0/docs_template/GETTING_STARTED/_assets/RelevanceAI_auth_token_details.png?raw=true" alt="Get your Auth Details" />
 <figcaption>Get your Auth Details</figcaption>
 <figure>
 
@@ -91,6 +80,6 @@ client = Client(project=project, api_key=api_key)
 The key can also be found here:
 
 <figure>
-<img src="https://github.com/RelevanceAI/RelevanceAI-readme-docs/blob/v0.31.0/docs_template/GETTING_STARTED/_assets/RelevanceAI_auth_setting_details.png?raw=true" alt="Find your API and project key here in Settings" />
+<img src="https://github.com/RelevanceAI/RelevanceAI-readme-docs/blob/0.31.0/docs_template/GETTING_STARTED/_assets/RelevanceAI_auth_setting_details.png?raw=true" alt="Find your API and project key here in Settings" />
 <figcaption>Find your API and project key in Project Settings</figcaption>
 <figure>

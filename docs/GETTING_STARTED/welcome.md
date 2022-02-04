@@ -29,56 +29,30 @@ Run this Quickstart in Colab: [![Open In Colab](https://colab.research.google.co
 ```bash
 ```
 
-```python Python (SDK)
-from relevanceai import Client 
-
-"""
-You can sign up/login and find your credentials here: https://cloud.relevance.ai/sdk/api
-Once you have signed up, click on the value under `Authorization token` and paste it here
-"""
-client = Client()
-
-```
-```python
-```
-
 
 ### 2. Create a dataset with vectors
 
 
-
 ```python Python (SDK)
-
-documents = [
-	{"_id": "1", "example_vector_": [0.1, 0.1, 0.1], "data": "Documentation"},
-	{"_id": "2", "example_vector_": [0.2, 0.2, 0.2], "data": "Best document!"},
-	{"_id": "3", "example_vector_": [0.3, 0.3, 0.3], "data": "Document example"},
-	{"_id": "5", "example_vector_": [0.4, 0.4, 0.4], "data": "This is a doc"},
-	{"_id": "4", "example_vector_": [0.5, 0.5, 0.5], "data": "This is another doc"},
-]
-
 client.insert_documents(dataset_id="quickstart", docs=documents)
-
 ```
 ```python
 ```
-
-
 ### 3. Clustering
 
 
 ```python Python (SDK)
 
 centroids = client.vector_tools.cluster.kmeans_cluster(
-    "quickstart", 
+    "quickstart",
     vector_fields = ["example_vector_"],
     k = 2,
     overwrite = True
 )
 
 client.services.cluster.centroids.list_closest_to_center(
-  dataset_id = "quickstart", 
-  vector_fields = ["example_vector_"], 
+  dataset_id = "quickstart",
+  vector_fields = ["example_vector_"],
   cluster_ids = [],             # Leave this as an empty list if you want all of the clusters.
   alias = "kmeans_2"
 )
@@ -93,7 +67,7 @@ client.services.cluster.centroids.list_closest_to_center(
 
 ```python Python (SDK)
 client.services.search.vector(
-    dataset_id="quickstart", 
+    dataset_id="quickstart",
     multivector_query=[
         {"vector": [0.2, 0.2, 0.2], "fields": ["example_vector_"]},
     ],
@@ -112,7 +86,7 @@ Coming Soon!
 
 ### 6. Comparator
 
-Coming Soon! 
+Coming Soon!
 
 
 ## What Next?

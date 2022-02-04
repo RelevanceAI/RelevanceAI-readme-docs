@@ -47,7 +47,7 @@ By following instructions below, you will be able to preview/create any given ve
     ❯ git checkout -b v1.0.0    
     ```
 2. Update the `__version__` file to match that semver of the branch eg. 1.0.0 (this can be automated in future)
-   - All automation scripts read from this file by default if no version given
+   - All automation scripts read from this file by default if no version given.
 3. Make your desired changes to the relevant Markdown/notebooks on `docs_templates`.
    - Add new snippets in the corresponding `_snippets` folder.
    - Snippets are loaded in a nested fashion. Inner most `_snippets` with the same name will override general snippets in [`docs_template/_snippets/`](../docs_template/_snippets/).
@@ -58,9 +58,12 @@ By following instructions below, you will be able to preview/create any given ve
 4. Apply the changes and update the ReadMe documentations.
     ```zsh
     ❯ ./scripts/update_readme.sh 
-
     ## Run in debug mode
     ❯ ./scripts/update_readme.sh true
+    ```
+5. Install pre-commit to check for API keys in notebooks!
+    ```
+    pre-commit install
     ```
 
 
