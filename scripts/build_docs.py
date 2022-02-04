@@ -225,6 +225,7 @@ def main(args):
     for root, dirs, files in os.walk(DOCS_TEMPLATE_PATH, topdown=True):
         root_name = root.split('/')[-1]
         if root_name[0] != '_' and files:
+            print(root)
             logging.debug(f'\tRoot {root}')
             logging.debug(f'\tDirs {dirs}')
             logging.debug(f'\tFiles {files}')
@@ -236,8 +237,8 @@ def main(args):
 
             logging.debug(f'\tSnippet paths {snippet_paths}')
 
-            ### Generating for md
-            MD_FILES = Path(root).glob('**/*.md')
+        #     ### Generating for md
+            MD_FILES = Path(root).glob('*.md')
             for input_fname in MD_FILES:
                 output_fname = str(input_fname).replace('docs_template', 'docs')
 
@@ -250,7 +251,7 @@ def main(args):
                 )
 
             ### Generating for ipynb
-            NOTEBOOK_FILES = Path(root).glob('**/*.ipynb')
+            NOTEBOOK_FILES = Path(root).glob('*.ipynb')
             for input_fname in NOTEBOOK_FILES:
                 output_fname = str(input_fname).replace('docs_template', 'docs')
 

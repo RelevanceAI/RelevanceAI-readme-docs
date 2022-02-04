@@ -29,17 +29,24 @@ Run this Quickstart in Colab: [![Open In Colab](https://colab.research.google.co
 ```bash
 ```
 
+```python Python (SDK)
+from relevanceai import Client
+
+"""
+You can sign up/login and find your credentials here: https://cloud.relevance.ai/sdk/api
+Once you have signed up, click on the value under `Authorization token` and paste it here
+"""
+client = Client()
+
+```
+```python
+```
 
 ### 2. Create a dataset with vectors
 
 
-```python Python (SDK)
-client.insert_documents(dataset_id="quickstart", docs=documents)
-```
-```python
-```
-### 3. Clustering
 
+### 3. Clustering
 
 ```python Python (SDK)
 

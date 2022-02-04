@@ -25,14 +25,14 @@ Run this Quickstart in Colab: [![Open In Colab](https://colab.research.google.co
 
 @@@ relevanceai_installation, RELEVANCEAI_SDK_VERSION=RELEVANCEAI_SDK_VERSION @@@
 
-@@@+ quickstart_docs, client_instantiation @@@
+@@@ client_instantiation @@@
 
 ### 2. Create a dataset with vectors
 
 
-@@@ insert_documents, DATASET_ID=QUICKSTART_DATASET_ID @@@
-### 3. Clustering
+@@@quickstart_docs DATASET_ID=QUICKSTART_DATASET_ID@@@
 
+### 3. Clustering
 
 ```python Python (SDK)
 
