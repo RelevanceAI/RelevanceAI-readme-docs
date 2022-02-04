@@ -168,7 +168,7 @@ def generate_md_file(
                     snippet_fpath = Path(snippet_path) / f'{snippet_name}'
                     logging.debug(f'\tLoading snippet: {snippet_path}/{snippet_name}')
                     snippet = load_md_snippet(snippet_fpath, params)
-                    # print(snippet)
+                    print('\n'.join(snippet))
                     [md_lines.append(x) for x in snippet]
         else:
             md_lines.append(line)
