@@ -8,7 +8,7 @@ hidden: false
 
 ## Issues with current vector database solutions
 
-While vector databases are used to power recommendations and search engines - they are ultimately still data science products, which mean they require constant iteration, analysis and feedback to improve. Despite this however, modern vector databases are not very easy to experiment with. 
+While vector databases are used to power recommendations and search engines - they are ultimately still data science products, which mean they require constant iteration, analysis and feedback to improve. However, modern vector databases are not very easy to experiment with. 
 
 ### Why are vector databases not easy to experiment with?
 

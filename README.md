@@ -28,7 +28,7 @@ By following instructions below, you will be able to preview/create any given ve
 .
 ├── assets      ## Assets for this README
 ├── docs        ## Generated docs files
-├── docs_template   ## Template generation
+├── docs_template   ## Templates and all resources for auto-generation
 ├── examples        ## For testing notebook tests 
 ├── migration_details.md ## Ignore: instructions for the initial migration
 ├── package.json         ## NPM deps 
@@ -55,7 +55,7 @@ By following instructions below, you will be able to preview/create any given ve
     ```markdown
     @@@relevanceai_installation
     ```
-4. Sync your changes w/ README to see the updated files.
+4. Apply the changes and update the ReadMe documentations.
     ```zsh
     ❯ ./scripts/update_readme.sh 
 

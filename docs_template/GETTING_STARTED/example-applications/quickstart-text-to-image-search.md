@@ -38,7 +38,7 @@ This will give you access to Relevance AI's Python SDK.
 
 ### Setting Up Client
 
-After installation, we need to also set up an API client. If you are missing an API key, you can easily sign up and get your API key from [https://cloud.relevance.ai/](https://cloud.relevance.ai/) in the settings area.
+To instantiate a Relevance AI's client object, you need an API key that you can get from [https://cloud.relevance.ai/](https://cloud.relevance.ai/).
 
 
 
@@ -69,11 +69,10 @@ Here, we use our sample e-commerce dataset and preview one of the documents.
 
 ```python Python (SDK)
 
-from relevanceai.datasets import get_ecommerce_dataset
+from relevanceai.datasets import get_ecommerce_dataset_encoded
 
-# Get the e-commerce dataset
-documents = get_ecommerce_dataset()
-documents[0]
+docs = get_ecommerce_dataset_encoded()
+{k:v for k, v in docs[0].items() if '_vector_' not in k}
 
 ```
 ```python
@@ -191,7 +190,10 @@ Lets insert documents into the dataset `quickstart_clip`.
 
 
 ```python Python (SDK)
-client.insert_documents("quickstart_clip", docs=documents)
+dataset_id = "quickstart_clip"
+df = client.Dataset(dataset_id)
+#df.delete()
+df.insert_documents(docs)
 ```
 ```python
 ```
@@ -222,18 +224,15 @@ Now, let us try out a query using a simple vector search against our dataset.
 
 
 ```python Python (SDK)
-results = client.services.search.vector(
-    # This is the dataset that you use for  search
-    dataset_id="quickstart_clip",
-    # Construct a multivector query here
+results = df.vector_search(
     multivector_query=[
         {
             "vector": query_vector,
             "fields": ["clip_product_image_vector_"]
         }
     ],
-    # The number of returned results
-    page_size=5
+    page_size=5,
+    query=query
 )
 ```
 ```python
@@ -276,8 +275,9 @@ from relevanceai import Client
 client = Client()
 
 # Now we get an e-commerce dataset
-from relevanceai.datasets import get_ecommerce_dataset
-documents = get_ecommerce_dataset()
+from relevanceai.datasets import get_ecommerce_dataset_encoded
+
+docs = get_ecommerce_dataset_encoded()
 
 # Encoding
 import torch
@@ -307,21 +307,23 @@ def encode_text(text):
         text_features = model.encode_text(text)
     return text_features.tolist()[0]
 
+dataset_id = "quickstart_clip"
+df = client.Dataset(dataset_id)
+#df.delete()
+df.insert_documents(docs)
+
 query = "for my baby daughter"
 query_vector = encode_text(query)
 
-results = client.services.search.vector(
-    # This is the dataset that you have searched
-    dataset_id="quickstart_clip",
-    # Construct a multivector query here
+results = df.vector_search(
     multivector_query=[
         {
             "vector": query_vector,
             "fields": ["clip_product_image_vector_"]
         }
     ],
-    # The number of results that you want
-    page_size=5
+    page_size=5,
+    query=query
 )
 
 from relevanceai import show_json

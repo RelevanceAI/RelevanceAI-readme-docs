@@ -8,7 +8,7 @@ import re
 import json
 import yaml
 
-from typing import List, Literal, Tuple
+from typing import List, Tuple
 
 import argparse
 import logging

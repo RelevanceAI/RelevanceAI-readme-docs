@@ -9,15 +9,15 @@ hidden: false
 
 ## What are vector databases?
 
-In the previous section, we can see the importance of vectors and utilising it. However traditional databases are not optimised to store and operate on vectors. So, a database called vector databases that are optimised for storing and search vectors were made, making nearest neighbour cosine similarity search scalable in milliseconds. This nearest neighbor search is much more powerful than the traditional alternatives and allows for search that is not limited to only keyword matching.
+In the previous section, we saw the importance of vectors and utilising it. However traditional databases are not optimised to store and operate on vectors. So, a database called vector databases that are optimised for storing and searching vectors are made, making nearest neighbour cosine similarity search scalable in milliseconds. This nearest neighbor search is much more powerful than the traditional alternatives and enables us for a search that is not limited to keyword matching.
 
 ### What can a vector database store?
 
-A vector database can store the vector of any kind of data. This is because the advantage of vectors is that through machine learning, vectorizing any kind of data such as text, image, videos, audio, etc is all possible.
+Machine learning can vectorize any kind of data (e.g. text, image, videos, audio, etc) and a vector database can store all of them regardless of the original data type. 
 
 
 
-> 📘 When we store vectors we are storing the data by their similarities
+> 📘 When we vectorize data, we are unravelling their similarities
 > 
 > Below, we visualise how we map data into a geometrical space that is able to plot the similarity distance between every sample of the dataset. Basically, the closer the vectors are located in the space, the more similar they are.
 
@@ -29,7 +29,7 @@ A vector database can store the vector of any kind of data. This is because the 
 
 ### Limitations of open source vector database frameworks?
 
-Some of the common open source frameworks for vector databases are FAISS, Annoy, HNSWlib, etc. However, these vector databases are only designed for vector search, and does not support other vector operations and does not allow storing of metadata alongside the vectors. 
+Some of the common open source frameworks for vector databases are FAISS, Annoy, HNSWlib, etc. However, these vector databases are only designed for vector search, and do not support other vector operations or allow storing of metadata alongside the vectors. 
 
 ### Hybrid vector database (metadata + vectors)
 
@@ -39,16 +39,15 @@ Some examples of a hybrid use case:
 - a hybrid search of vector-based search alongside facets and traditional keywords
 - applying clustering on the vectors and applying aggregates on a numeric KPI or keyword in the text to get the topic of each cluster and its performance.
 
-For a hybrid vector database like Relevance AI this goes beyond just search but also other forms of vector operation as well.
+For platforms covering hybrid vector databases such as Relevance AI, this goes beyond search and covers other applocations of vector operation such as clustering and recommendation.
 
 Some examples of vector operations beyond search:
-- vector operations in turning a bunch of `product2vec` vectors into a `brand2vec` or `word2vec` into a `paragraph2vec`. This can be done by allowing aggregations to be performed on vectors such as grouping by a category field and averaging the vector field.
-- clustering the vectors to put similar data into groups
+- clustering the vectors to discover hidden patterns in data
 - visualizing and projecting vectors for interpretation
 
 ### Use cases of vectors and vector databases
 
-Vector databases are growing in popularity because of the importance of vectors. Since vectors and vector databases essentially solve the problems of similarity the number of use cases for it keeps growing every year. Here are some of the most common ones:
+Vector databases are growing in popularity due to the fact that vectors and vector databases allow ude to solve similarity problems more accurately. Here are some of the most common use:
 
 - Semantic & unstructured data search
 - Recommendation Systems
@@ -62,20 +61,19 @@ Vector databases are growing in popularity because of the importance of vectors.
 
 
 
-> 📘 The vector database is the infrastructure behind building a similarity engine for many use cases
+> 📘 Vector databases are the infrastructure behind building similarity engines for many use cases
 > 
-> A good vector and vector database can essentially become the similarity engine to solve all sorts of similarity problems, which enables a wide array of use cases.
+> A good vector and vector database can essentially become the similarity engine required to solve variety of similarity problems.
 
 
 ## Search in different databases
 
-Because vector databases store a completely different kind of data (vectors), they can perform searches differently from traditional databases. Let us see what are the main difference between the different search approaches employed by databases.
-
+Since vector databases store different kind of data (vectors), search is conducted differently in such platforms compared to traditional databases. The main difference between available search approaches are:
 
 
 ### Keyword-based matching in traditional databases
 
-A traditional database usually searches data through keyword matching. Once given a search query, we can filter the content that contains the query exactly or a few characters away. Although very efficient, this approach can lead to subpar or irrelevant results as it does not handle synonyms, context and personalisation well. For example: searching for "dogs" and it not matching against "puppies".
+A traditional database usually searches data through keyword matching. Once given a search query, we can filter the content that contains the exact query or a few characters of it. Although very efficient, this approach can lead to subpar or irrelevant results as it does not consider synonyms, context and personalisation. For example, searching for "dogs" the model has no information on the relation between "dogs" and "puppies".
 
 <figure>
 <img src="https://github.com/RelevanceAI/RelevanceAI-readme-docs/blob/v0.28.0/docs_template/GETTING_STARTED/vectors-and-vector-databases/_assets/RelevanceAI_traditional_db.png?raw=true" width="650" alt="Traditional Databases" />
@@ -84,7 +82,7 @@ A traditional database usually searches data through keyword matching. Once give
 
 ### Vector-based search in vector databases
 
-Vector databases uses a method called vector search (also known as nearest neighbour search) to find the closest match. This technique attempts to find the closest vectors that corresponds to our query in the multidimensional space. This means that we are not only limited to the results that correspond exactly to our search query, but we can also accept results that are similar to what we are searching for.
+Vector databases use a method called vector search (also known as nearest neighbour search) to find the closest match. This technique attempts to find the closest vectors that corresponds to our query in the multidimensional space. This means that we are not only limited to the results that correspond exactly to our search query, but we can also accept results that are similar to what we are searching for.
 
 
 <figure>
@@ -92,11 +90,9 @@ Vector databases uses a method called vector search (also known as nearest neigh
 <figcaption>Nearest Neighbour</figcaption>
 <figure>
 
-A great thing about this, is that depending on the model used to create the vectors, a lot of the issues with keyword matching can be overcome with vector search. This is because vectors can capture the 'semantic' of the data, thus being able to associate two data that might be constructed very differently but having very similar semantics. For example: the word ('puppies' and 'dogs') or ('truck' and 'SUV') have very different character length, characters, etc, but they mean similar things and are often used in the same context. Vector is able to capture these semantic features and through vector search be able to match those two words as similar, thus overcoming the issues that come with keyword matching. 
+Variety of issues that are associated with keyword matching techniques can be overcome using vector search. This is because vectors can capture the 'semantic' of the data, thus being able to associate two datapoints that even could be of different types (e.g. text and image) but having very similar semantics. For example: the words ('puppies' and 'dogs') or (picture of a football pitch and the word 'succer').
 
-Furthermore, vector search is also more flexible and can be used for even more use cases. For example, through building a movie recommendation system, we can perform a vector search with the query being the movie a user just viewed and return a list of results that are recommendations of movies that are similar in plot, visuals, etc.
-
-However, there are areas where vectors fall short especially when the vector is not able to capture the similarities. For example, searching for reference numbers, IDs, or specific words that is out of the model's trained vocabulary. These examples are where keyword match would perform better than vector search.
+However, there are areas where vectors fall short especially when the vector is not able to capture the similarities. For example, searching for reference numbers, IDs, or specific words that is out of the model's trained vocabulary. These examples are where keyword matching performs better than vector search.
 
 ### Combining searches in hybrid vector databases 
 
