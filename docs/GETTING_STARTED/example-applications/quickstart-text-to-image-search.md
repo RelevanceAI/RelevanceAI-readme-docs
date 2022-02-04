@@ -32,11 +32,7 @@ This section, we will show you how to create and experiment with a powerful text
 Prior to starting, let's install the main dependencies. This installation provides you with what you need to connect to Relevance AI's API, read/write data, make different searches, etc.
 
 
-```bash Bash
-!pip install -U -q RelevanceAI==0.31.0
-```
-```bash
-```
+@@@relevanceai_installation
 
 This will give you access to Relevance AI's Python SDK.
 
@@ -46,18 +42,7 @@ After installation, we need to also set up an API client. If you are missing an 
 
 
 
-```python Python (SDK)
-from relevanceai import Client 
-
-"""
-You can sign up/login and find your credentials here: https://cloud.relevance.ai/sdk/api
-Once you have signed up, click on the value under `Authorization token` and paste it here
-"""
-client = Client()
-
-```
-```python
-```
+@@@client_instantiation
 
 
 ## Steps to create text to image search with CLIP

@@ -51,7 +51,7 @@ def scan_file(fpath: Union[Path, str]):
 		result = line_contains_api_key(line, regex_str)
 		if result[0]:
 			print(f'\033[1m{fpath}: Line {number} : Entropy {result[1]}\033[0m')
-			print(line)
+			# print(line)
 			raise ValueError(f'API key found in file {fpath}: Line {number}')
 
 		number += 1
@@ -63,7 +63,8 @@ def get_files(path: Union[Path, str], ext: Union['md', 'ipynb']):
 
 def main(args):
 	logging_level = logging.DEBUG if args.debug else logging.INFO
-	logging.basicConfig(format='%(asctime)s %(message)s', level=logging_level)
+	logging.basicConfig(level=logging_level)
+	# logging.basicConfig(format='%(asctime)s %(message)s', level=logging_level)
 
 	logging.info(f'Scanning directory: {args.path}') 
 	logging.info(f'For tokens with minimum API key length: {API_KEY_MIN_LENGTH}')

@@ -28,15 +28,7 @@ In this section, we will show you how to create and experiment with a powerful t
 ### Installation Requirements
 
 
-```bash Bash
-# RelevanceAI installation
-!pip install -U RelevanceAI[notebook]==0.31.0
-
-# Vectorhub installation for quick access to Sentence Transformers
-!pip install -q vectorhub[encoders-text-tfhub]
-```
-```bash
-```
+@@@text_search_installation
 
 
 ### Setting Up Client
@@ -44,18 +36,7 @@ In this section, we will show you how to create and experiment with a powerful t
 To be able to use Relevance AI, you need to instantiate a client. This needs a Project and API key that can be accessed at [https://cloud.relevance.ai/](https://cloud.relevance.ai/) in the settings area! Alternatively, you can run the code below and follow the link and the guide.
 
 
-```python Python (SDK)
-from relevanceai import Client 
-
-"""
-You can sign up/login and find your credentials here: https://cloud.relevance.ai/sdk/api
-Once you have signed up, click on the value under `Authorization token` and paste it here
-"""
-client = Client()
-
-```
-```python
-```
+@@@client_instantiation
 
 
 ## Text Search with Universal Sentence Encoder using VectorHub

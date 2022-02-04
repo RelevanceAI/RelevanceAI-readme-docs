@@ -45,10 +45,7 @@ client = Client()
 
 ### 2. Create a dataset with vectors
 
-
-
 ```python Python (SDK)
-
 documents = [
 	{"_id": "1", "example_vector_": [0.1, 0.1, 0.1], "data": "Documentation"},
 	{"_id": "2", "example_vector_": [0.2, 0.2, 0.2], "data": "Best document!"},
@@ -59,10 +56,10 @@ documents = [
 
 client.insert_documents(dataset_id="quickstart", docs=documents)
 
+
 ```
 ```python
 ```
-
 
 ### 3. Clustering
 
