@@ -123,6 +123,35 @@ def generate_ipynb_file(
     json.dump(notebook_json, fp=open(output_fname, 'w'), indent=4)
 
 
+def generate_md_snippet(snippet_str: str, snippet_paths: List, snippet_params: Dict):
+    for snippet_path in snippet_paths:
+        available_snippets = os.listdir(snippet_path)
+        logging.debug(f'\tSnippet paths: {snippet_paths}')
+
+        snippet_name = snippet_str.split(',')[0]
+        logging.debug(f'\tSnippet name: {snippet_name}')
+
+        if snippet_name in available_snippets:
+            logging.debug(f'\tSnippets: {available_snippets}')
+            params=None
+            if len(snippet_str.split(',')) > 1:
+                param_str = snippet_str.split(',')[1].strip()
+                # logging.debug(dict(tuple(i.split('=')) for i in param_str.split()))
+                # logging.debug(f"\t{param_str.split()}")
+                params_ref = dict(tuple(s.replace('==', '=').split('=')) for s in param_str.split())
+                # logging.debug(f"\t{params_ref}")
+                ## Iterating over param_dict and loading with k in snippet_var
+                params = {k: snippet_params[params_ref[k]] for k in params_ref}
+                logging.debug(f'\tParams: {params}')
+
+            regexes = {f".*{s}.*": s for s in available_snippets}
+            snippet_name = [regexes[r] for r in regexes.keys() if re.match(r, snippet_name)][0]
+            snippet_fpath = Path(snippet_path) / f'{snippet_name}'
+            logging.debug(f'\tLoading snippet: {snippet_path}/{snippet_name}')
+
+            return load_md_snippet(snippet_fpath, params)
+
+
 
 
 def generate_md_file(
@@ -140,36 +169,15 @@ def generate_md_file(
 
     md_lines = list()
     for line in md_file.split('\n'):
+
         if  bool(re.search('@@@.*@@@', line)):
             # Load the corresponding snippet and merge it in the code
             # Loads snippets in order from root to inner folder - will overwrite the snippets with same name
-            for snippet_path in snippet_paths:
-                available_snippets = os.listdir(snippet_path)
-                logging.debug(f'\tSnippet paths: {snippet_paths}')
-                snippet_str = line.split('@@@')[1].strip()
-                snippet_name = snippet_str.split(',')[0]
-                logging.debug(f'\tSnippet name: {snippet_name}')
+            snippet_str = line.split('@@@')[1].strip()
+            snippet = generate_md_snippet(snippet_str, snippet_paths, snippet_params)
+            print('\n'.join(snippet))
 
-                if snippet_name in available_snippets:
-                    logging.debug(f'\tSnippets: {available_snippets}')
-                    params=None
-                    if len(snippet_str.split(',')) > 1:
-                        param_str = snippet_str.split(',')[1].strip()
-                        # logging.debug(dict(tuple(i.split('=')) for i in param_str.split()))
-                        # logging.debug(f"\t{param_str.split()}")
-                        params_ref = dict(tuple(s.replace('==', '=').split('=')) for s in param_str.split())
-                        # logging.debug(f"\t{params_ref}")
-                        ## Iterating over param_dict and loading with k in snippet_var
-                        params = {k: snippet_params[params_ref[k]] for k in params_ref}
-                        logging.debug(f'\tParams: {params}')
-
-                    regexes = {f".*{s}.*": s for s in available_snippets}
-                    snippet_name = [regexes[r] for r in regexes.keys() if re.match(r, snippet_name)][0]
-                    snippet_fpath = Path(snippet_path) / f'{snippet_name}'
-                    logging.debug(f'\tLoading snippet: {snippet_path}/{snippet_name}')
-                    snippet = load_md_snippet(snippet_fpath, params)
-                    # print(snippet)
-                    [md_lines.append(x) for x in snippet]
+            [md_lines.append(x) for x in snippet]
         else:
             md_lines.append(line)
 
