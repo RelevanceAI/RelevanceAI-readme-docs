@@ -1,0 +1,2 @@
+python
+client.insert_documents(dataset_id="<<DATASET_ID>>", docs=documents)

@@ -25,28 +25,27 @@ Run this Quickstart in Colab: [![Open In Colab](https://colab.research.google.co
 
 @@@ relevanceai_installation, RELEVANCEAI_SDK_VERSION=RELEVANCEAI_SDK_VERSION @@@
 
-@@@ client_instantiation @@@
-
+@@@+ quickstart_docs, client_instantiation @@@
 
 ### 2. Create a dataset with vectors
 
-@@@ quickstart_insert_documents,  DATASET_ID=QUICKSTART_DATASET_ID @@@
 
+@@@ insert_documents, DATASET_ID=QUICKSTART_DATASET_ID @@@
 ### 3. Clustering
 
 
 ```python Python (SDK)
 
 centroids = client.vector_tools.cluster.kmeans_cluster(
-    "quickstart", 
+    "quickstart",
     vector_fields = ["example_vector_"],
     k = 2,
     overwrite = True
 )
 
 client.services.cluster.centroids.list_closest_to_center(
-  dataset_id = "quickstart", 
-  vector_fields = ["example_vector_"], 
+  dataset_id = "quickstart",
+  vector_fields = ["example_vector_"],
   cluster_ids = [],             # Leave this as an empty list if you want all of the clusters.
   alias = "kmeans_2"
 )
@@ -61,7 +60,7 @@ client.services.cluster.centroids.list_closest_to_center(
 
 ```python Python (SDK)
 client.services.search.vector(
-    dataset_id="quickstart", 
+    dataset_id="quickstart",
     multivector_query=[
         {"vector": [0.2, 0.2, 0.2], "fields": ["example_vector_"]},
     ],
@@ -80,7 +79,7 @@ Coming Soon!
 
 ### 6. Comparator
 
-Coming Soon! 
+Coming Soon!
 
 
 ## What Next?
