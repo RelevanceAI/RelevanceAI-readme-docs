@@ -92,7 +92,7 @@ def main(args):
     logging_level = logging.DEBUG if args.debug else logging.INFO
     # logging.basicConfig(format='%(asctime)s %(message)s', level=logging_level)
     logging.basicConfig(level=logging_level)
-    
+
     DOCS_PATH = Path(args.path) / "docs"
     RELEVANCEAI_SDK_VERSION = (
         args.version if args.version else get_latest_version(args.package_name)
@@ -170,16 +170,17 @@ def main(args):
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
-    
+
     PACKAGE_NAME = 'RelevanceAI'
     ROOT_PATH = Path(__file__).parent.resolve() / '..'
-   
+
     try:
         README_VERSION = open(ROOT_PATH/ '__version__').read()
     except FileNotFoundError as e:
         print(f'File not found: {e}')
         print(f'Loading file from latest Pip package release')
 
+    parser.add_argument("-d", "--debug", default=False, help="Run debug mode")
     parser.add_argument("-p", "--path", default=ROOT_PATH, help="Path of root folder")
     parser.add_argument("-n", "--package-name", default=PACKAGE_NAME, help="Package Name")
     parser.add_argument("-v", "--version", default=README_VERSION, help="Package Version")
