@@ -7,16 +7,16 @@ hidden: false
 
 
 <figure>
-<img src="https://github.com/RelevanceAI/RelevanceAI-readme-docs/blob/v0.31.0/docs_template/GETTING_STARTED/example-applications/_assets/RelevanceAI_text_to_image.gif?raw=true" 
+<img src="https://github.com/RelevanceAI/RelevanceAI-readme-docs/blob/v0.31.0/docs_template/GETTING_STARTED/example-applications/_assets/RelevanceAI_text_to_image.gif?raw=true"
      alt="RelevanceAI Text to Image"
-     style="width: 100% vertical-align: middle"/> 
+     style="width: 100% vertical-align: middle"/>
 <figcaption>
 <a href="https://cloud.relevance.ai/demo/search/image-to-text">Try the image search live in Relevance AI Dashboard</a>
 </figcaption>
 <figure>
 
 
-This section, we will show you how to create and experiment with a powerful text-to-image search engine using OpenAI's CLIP and Relevance AI. 
+This section, we will show you how to create and experiment with a powerful text-to-image search engine using OpenAI's CLIP and Relevance AI.
 
 
 **Try it out in Colab:** [![Open In Colab](https://colab.research.google.com/_assets/colab-badge.svg)](https://colab.research.google.com/github/RelevanceAI/RelevanceAI-readme-docs/blob/v0.31.0/docs/GETTING_STARTED/example-applications/_notebooks/RelevanceAI_ReadMe_Quickstart_Text_to_Image_Search.ipynb)
@@ -32,27 +32,43 @@ This section, we will show you how to create and experiment with a powerful text
 Prior to starting, let's install the main dependencies. This installation provides you with what you need to connect to Relevance AI's API, read/write data, make different searches, etc.
 
 
-@@@relevanceai_installation
+```bash Bash
+!pip install -U -q RelevanceAI==0.31.0
+
+```
+```bash
+```
 
 This will give you access to Relevance AI's Python SDK.
 
 ### Setting Up Client
 
-After installation, we need to also set up an API client. If you are missing an API key, you can easily sign up and get your API key from [https://cloud.relevance.ai/](https://cloud.relevance.ai/) in the settings area.
+To instantiate a Relevance AI's client object, you need an API key that you can get from [https://cloud.relevance.ai/](https://cloud.relevance.ai/).
 
 
 
-@@@client_instantiation
+```python Python (SDK)
+from relevanceai import Client
+
+"""
+You can sign up/login and find your credentials here: https://cloud.relevance.ai/sdk/api
+Once you have signed up, click on the value under `Authorization token` and paste it here
+"""
+client = Client()
+
+```
+```python
+```
 
 
 ## Steps to create text to image search with CLIP
 
-To be able to perform text-to-image search, we will show you how to: 
+To be able to perform text-to-image search, we will show you how to:
 
 1. Get sample data
 2. Vectorize the data
 3. Insert into your dataset
-4. Search your dataset 
+4. Search your dataset
 
 
 <figure>
@@ -63,18 +79,15 @@ To be able to perform text-to-image search, we will show you how to:
 
 ### 1. Data
 
-Here, we use our sample e-commerce dataset and preview one of the documents. 
+Here, we use our sample e-commerce dataset and preview one of the documents.
 
 
 
 ```python Python (SDK)
+from relevanceai.datasets import get_ecommerce_dataset_encoded
 
-from relevanceai.datasets import get_ecommerce_dataset
-
-# Get the e-commerce dataset
-documents = get_ecommerce_dataset()
-documents[0]
-
+documents = get_ecommerce_dataset_encoded()
+{k:v for k, v in documents[0].items() if '_vector_' not in k}
 ```
 ```python
 ```
@@ -108,7 +121,7 @@ As you can see each data entry contains both text (`product_title`, `product_des
 
 ### 2. Encode
 
-CLIP is a vectorizer from OpenAI that is trained to find similarities between text and image pairs. In the code below we set up and install CLIP. 
+CLIP is a vectorizer from OpenAI that is trained to find similarities between text and image pairs. In the code below we set up and install CLIP.
 
 <figure>
 <img src="https://github.com/RelevanceAI/RelevanceAI-readme-docs/blob/v0.31.0/docs_template/GETTING_STARTED/example-applications/_assets/RelevanceAI_CLIP_contrastive_pretraining.png?raw=true" width="650" alt="Photo of OpenAI's CLIP architecture from OpenAI" />
@@ -168,7 +181,7 @@ We then encode the data.
 
 
 > 🚧 Skip encoding and insert, as we have already encoded the data into vectors for you!
-> 
+>
 > Skip if you don't want to wait and re-encode the data as the e-commerce dataset already includes vectors.
 
 
@@ -191,12 +204,15 @@ Lets insert documents into the dataset `quickstart_clip`.
 
 
 ```python Python (SDK)
-client.insert_documents("quickstart_clip", docs=documents)
+DATASET_ID = "quickstart_clip"
+df = client.Dataset(DATASET_ID)
+df.delete()
+df.insert_documents(documents)
 ```
 ```python
 ```
 
-Once we have inserted the data into the dataset, we can visit [RelevanceAI dashboard](https://cloud.relevance.ai/dataset/quickstart_clip/dashboard/monitor/vectors). The dashboard gives us a great overview of our dataset as shown below. 
+Once we have inserted the data into the dataset, we can visit [RelevanceAI dashboard](https://cloud.relevance.ai/dataset/quickstart_clip/dashboard/monitor/vectors). The dashboard gives us a great overview of our dataset as shown below.
 
 <figure>
 <img src="https://github.com/RelevanceAI/RelevanceAI-readme-docs/blob/v0.31.0/docs_template/GETTING_STARTED/example-applications/_assets/RelevanceAI_quickstart_clip_dashboard.png?raw=true" width="650" alt="RelevanceAI Dashboard" />
@@ -222,18 +238,15 @@ Now, let us try out a query using a simple vector search against our dataset.
 
 
 ```python Python (SDK)
-results = client.services.search.vector(
-    # This is the dataset that you use for  search
-    dataset_id="quickstart_clip",
-    # Construct a multivector query here
+results = df.vector_search(
     multivector_query=[
         {
             "vector": query_vector,
             "fields": ["clip_product_image_vector_"]
         }
     ],
-    # The number of returned results
-    page_size=5
+    page_size=5,
+    query=query
 )
 ```
 ```python
@@ -248,8 +261,8 @@ Next, we use `show_json` to visualize images and text easily and quickly!
 from relevanceai import show_json
 
 show_json(
-    results['results'], 
-    image_fields=["product_image"], 
+    results['results'],
+    image_fields=["product_image"],
     text_fields=["product_title"]
 )
 ```
@@ -276,8 +289,9 @@ from relevanceai import Client
 client = Client()
 
 # Now we get an e-commerce dataset
-from relevanceai.datasets import get_ecommerce_dataset
-documents = get_ecommerce_dataset()
+from relevanceai.datasets import get_ecommerce_dataset_encoded
+
+docs = get_ecommerce_dataset_encoded()
 
 # Encoding
 import torch
@@ -307,27 +321,29 @@ def encode_text(text):
         text_features = model.encode_text(text)
     return text_features.tolist()[0]
 
+dataset_id = "quickstart_clip"
+df = client.Dataset(dataset_id)
+#df.delete()
+df.insert_documents(docs)
+
 query = "for my baby daughter"
 query_vector = encode_text(query)
 
-results = client.services.search.vector(
-    # This is the dataset that you have searched
-    dataset_id="quickstart_clip",
-    # Construct a multivector query here
+results = df.vector_search(
     multivector_query=[
         {
             "vector": query_vector,
             "fields": ["clip_product_image_vector_"]
         }
     ],
-    # The number of results that you want
-    page_size=5
+    page_size=5,
+    query=query
 )
 
 from relevanceai import show_json
 show_json(
-    results['results'], 
-    image_fields=["product_image"], 
+    results['results'],
+    image_fields=["product_image"],
     text_fields=["product_title"]
 )
 ```
