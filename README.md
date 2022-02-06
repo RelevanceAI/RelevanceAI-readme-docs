@@ -74,11 +74,13 @@ By following instructions below, you will be able to preview/create any given ve
     ## Run in debug mode
     ❯ ./scripts/update_readme.sh true
     ```
+    View your synced changes in ReadMe eg. https://docs.relevance.ai/v0.31.0/docs/quick-tour
 6. Install pre-commit to check for API keys in notebooks!
     ```
     pre-commit install
     ```
 7. Commit your changes if what you see in the ReadMe documentation is correct!
+
 
 
 
