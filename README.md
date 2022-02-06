@@ -53,7 +53,12 @@ By following instructions below, you will be able to preview/create any given ve
    - Snippets are loaded in a nested fashion. Inner most `_snippets` with the same name will override general snippets in [`docs_template/_snippets/`](./docs_template/_snippets/).
    - All snippets in `*.md` and `*.ipynb` files are prefaced with `@@@`.
     ```markdown
-    @@@relevanceai_installation
+    @@@ client_instantiation @@@
+    ```
+    - If you want to concatenate snippets, please concatenate using the following format.
+    ```markdown
+    @@@+ quickstart_docs; dataset_basics, DATASET_ID=QUICKSTART_DATASET_ID @@@
+    @@@+ <SNIPPET_1_NAME>; <SNIPPET_2_NAME>, <SNIPPET_2_PARAMS>; <SNIPPET_3_NAME>, <SNIPPET_3_PARAMS>; @@@
     ```
 4. Go the ReadMEeDash config and export the ReadMe API key `$RELEVANCEAI_README_API_KEY` variable from ReadMe Project Configuration
 
