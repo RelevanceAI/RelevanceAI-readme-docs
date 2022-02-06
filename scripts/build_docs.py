@@ -90,9 +90,8 @@ def generate_ipynb_file(
         if str(cell['source']).find('@@@') != -1:
             logging.debug(f'\tSnippet Paths: {snippet_paths}')
             for snippet_path in snippet_paths:
-                print(list(Path(snippet_path).glob('*')))
-                available_snippets = os.listdir(snippet_path)
-                logging.debug(f'\tSnippets: {available_snippets}')
+                available_snippets = {f: f'{Path(root).joinpath(f)}' for root, _, files in os.walk(snippet_path) for f in files }
+                logging.debug(f'\tSnippets: {list(available_snippets.keys())}')
 
                 for i, cell_source in enumerate(cell['source']):
                     if '@@@' in cell_source:
@@ -102,7 +101,7 @@ def generate_ipynb_file(
                         snippet_name = snippet_str.split(',')[0]
                         logging.debug(f'\tSnippet name: {snippet_name}')
 
-                        if snippet_name in available_snippets:
+                        if snippet_name in available_snippets.keys():
                             params=None
                             if len(snippet_str.split(',')) > 1:
                                 param_str = snippet_str.split(',')[1].strip()
@@ -115,7 +114,7 @@ def generate_ipynb_file(
                                 params = {k: snippet_params[params_ref[k]] for k in params_ref}
                                 logging.debug(f'\tParams: {params}')
 
-                            snippet_fpath = Path(snippet_path) / f'{snippet_name}'
+                            snippet_fpath = available_snippets[snippet_name]
                             logging.debug(f'\tLoading snippet: {snippet_path}/{snippet_name}')
 
                             snippet = load_ipynb_snippet(snippet_fpath, params)
@@ -129,13 +128,14 @@ def generate_md_snippet(snippet_str: str, snippet_paths: List, snippet_params: D
     logging.debug(f'\tSnippet paths: {snippet_paths}')
     snippet = []
     for snippet_path in snippet_paths:
-        available_snippets = [f.name for f in Path(snippet_path).glob('*') if f.is_file()]
-        logging.debug(f'\tSnippets: {available_snippets}')
+
+        available_snippets = {f: f'{Path(root).joinpath(f)}' for root, _, files in os.walk(snippet_path) for f in files }
+        logging.debug(f'\tSnippets: {list(available_snippets.keys())}')
 
         snippet_name = snippet_str.split(',')[0].strip()
         logging.debug(f'\tSnippet name: {snippet_name}')
 
-        if snippet_name in available_snippets:
+        if snippet_name in available_snippets.keys():
             params=None
             if len(snippet_str.split(',')) > 1:
                 param_str = snippet_str.split(',')[1].strip()
@@ -148,7 +148,7 @@ def generate_md_snippet(snippet_str: str, snippet_paths: List, snippet_params: D
 
             regexes = {f".*{s}.*": s for s in available_snippets}
             snippet_name = [regexes[r] for r in regexes.keys() if re.match(r, snippet_name)][0]
-            snippet_fpath = Path(snippet_path) / f'{snippet_name}'
+            snippet_fpath = available_snippets[snippet_name]
             logging.debug(f'\tLoading snippet: {snippet_path}/{snippet_name}')
             snippet = load_md_snippet(snippet_fpath, params)
         else:
