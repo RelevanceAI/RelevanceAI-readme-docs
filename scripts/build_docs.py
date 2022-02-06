@@ -108,6 +108,8 @@ def generate_ipynb_file(
                                 param_str = snippet_str.split(',')[1].strip()
                                 # logging.debug(dict(tuple(i.split('=')) for i in param_str.split()))
                                 # logging.debug(f"\t{param_str.split()}")
+                                if len(param_str) == 0:
+                                    raise ValueError(f'You are maybe missing a comma.')
                                 params_ref = dict(tuple(s.replace('==', '=').split('=')) for s in param_str.split())
                                 # logging.debug(f"\t{params_ref}")
                                 params = {k: snippet_params[params_ref[k]] for k in params_ref}

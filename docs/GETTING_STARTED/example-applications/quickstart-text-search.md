@@ -29,14 +29,13 @@ In this section, we will show you how to create and experiment with a powerful t
 
 
 ```bash Bash
-# RelevanceAI installation
 !pip install -U RelevanceAI[notebook]==0.31.0
 
-# Vectorhub installation for quick access to Sentence Transformers
 !pip install -q vectorhub[encoders-text-tfhub]
 ```
 ```bash
 ```
+
 
 
 ### Setting Up Client

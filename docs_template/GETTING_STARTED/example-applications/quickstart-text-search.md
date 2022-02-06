@@ -28,7 +28,8 @@ In this section, we will show you how to create and experiment with a powerful t
 ### Installation Requirements
 
 
-@@@ text_search_installation @@@
+@@@+ relevanceai_installation, RELEVANCEAI_SDK_VERSION=RELEVANCEAI_SDK_VERSION; vectorhub_encoders_text_tfhub_installation @@@
+
 
 
 ### Setting Up Client

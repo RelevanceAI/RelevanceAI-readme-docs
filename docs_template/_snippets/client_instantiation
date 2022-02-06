@@ -1,5 +1,5 @@
 python
-from relevanceai import Client 
+from relevanceai import Client
 
 """
 You can sign up/login and find your credentials here: https://cloud.relevance.ai/sdk/api

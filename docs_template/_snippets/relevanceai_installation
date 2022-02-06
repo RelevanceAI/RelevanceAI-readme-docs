@@ -1,2 +1,2 @@
 bash
-!pip install -U -q RelevanceAI==<<RELEVANCEAI_SDK_VERSION>>
+!pip install -U RelevanceAI[notebook]==<<RELEVANCEAI_SDK_VERSION>>

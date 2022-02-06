@@ -27,8 +27,7 @@ Prior to starting, let's install the main dependencies.
 
 
 ```bash Bash
-!pip install -U -q RelevanceAI==0.31.0
-
+!pip install -U RelevanceAI[notebook]==0.31.0
 ```
 ```bash
 ```

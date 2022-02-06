@@ -50,7 +50,7 @@ By following instructions below, you will be able to preview/create any given ve
    - All automation scripts read from this file by default if no version given.
 3. Make your desired changes to the relevant Markdown/notebooks on `docs_templates`.
    - Add new snippets in the corresponding `_snippets` folder.
-   - Snippets are loaded in a nested fashion. Inner most `_snippets` with the same name will override general snippets in [`docs_template/_snippets/`](../docs_template/_snippets/).
+   - Snippets are loaded in a nested fashion. Inner most `_snippets` with the same name will override general snippets in [`docs_template/_snippets/`](./docs_template/_snippets/).
    - All snippets in `*.md` and `*.ipynb` files are prefaced with `@@@`.
     ```markdown
     @@@relevanceai_installation

@@ -24,8 +24,7 @@ Run this Quickstart in Colab: [![Open In Colab](https://colab.research.google.co
 ### 1. Set up Relevance AI
 
 ```bash Bash
-!pip install -U -q RelevanceAI==0.31.0
-
+!pip install -U RelevanceAI[notebook]==0.31.0
 ```
 ```bash
 ```
