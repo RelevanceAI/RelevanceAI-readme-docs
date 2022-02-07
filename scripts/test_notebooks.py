@@ -119,7 +119,7 @@ def execute_notebook(notebook:str, notebook_args: Dict):
             notebook = notebook[0]
 
 
-        if 'zsh' in os.environ['SHELL']:
+        if os.getenv('SHELL') and 'zsh' in os.getenv('SHELL'):
             update_pip_for_shell(notebook,shell='zsh')
 
         ## Update to latest version
@@ -144,7 +144,7 @@ def execute_notebook(notebook:str, notebook_args: Dict):
             nb_out = ep.preprocess(nb_in)
 
         ## Replace with bash
-        if 'zsh' in os.environ['SHELL']:
+        if os.getenv('SHELL') and 'zsh' in os.getenv('SHELL'):
             update_pip_for_shell(notebook, shell='bash')
 
         # Replace client test creds
@@ -156,7 +156,7 @@ def execute_notebook(notebook:str, notebook_args: Dict):
     except Exception as e:
 
         ## Replace with bash
-        if 'zsh' in os.environ['SHELL']:
+        if os.getenv('SHELL') and 'zsh' in os.getenv('SHELL'):
             update_pip_for_shell(notebook, shell='bash')
 
         ## Replace client test creds
