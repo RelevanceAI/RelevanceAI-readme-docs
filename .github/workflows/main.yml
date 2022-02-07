@@ -86,15 +86,12 @@ jobs:
       - name: Install requirements
         run: pip install -r requirements.txt
 
-      - name: Set ReadMe version as Github env
-        run: |
-          README_VERSION=$(cat __version__)
-          echo "README_VERSION=$README_VERSION" >> $GITHUB_ENV
-
       - name: Test notebooks
         env:
           TEST_ACTIVATION_TOKEN: ${{ secrets.TEST_ACTIVATION_TOKEN }}
         run: |
+          README_VERSION=$(cat __version__)
+          echo "README_VERSION=$README_VERSION" >> $GITHUB_ENV
           python scripts/test_notebooks.py -d True -p . -pn RelevanceAI -v $README_VERSION --notebooks ${{ matrix.notebook }} -m False
 
 
