@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
 
+from typing import Dict
 import os
 from pathlib import Path
 import re
@@ -7,6 +8,8 @@ import subprocess
 import sys
 import nbformat
 from nbconvert.preprocessors import ExecutePreprocessor
+
+from utils import multiprocess
 
 import logging
 import argparse
@@ -16,6 +19,7 @@ import argparse
 # Helper Functions
 ###############################################################################
 
+README_NOTEBOOK_ERROR_FPATH = "readme_notebook_errors.txt"
 
 def get_latest_version(name: str):
     latest_version = str(
@@ -50,42 +54,95 @@ def check_latest_version(name: str):
         return False
 
 
-def notebook_find_replace(notebook: str, find_sent_regex: str, find_str_regex: str, replace_str: str):
+def file_find_replace(fname: str, find_sent_regex: str, find_str_regex: str, replace_str: str):
+    if fname.is_file():
+        with open(fname, "r") as f:
+            lines = f.readlines()
 
-    with open(notebook, "r") as f:
-        lines = f.readlines()
+        with open(fname, "w") as f:
+            for i, line in enumerate(lines):
+                if bool(re.search(find_sent_regex, line)):
+                    find_sent = re.search(find_sent_regex, line)
+                    if find_sent:
+                        find_sent = find_sent.group()
+                        logging.debug(f"Found sentence: {find_sent}")
 
-    with open(notebook, "w") as f:
-        for i, line in enumerate(lines):
-            if bool(re.search(find_sent_regex, line)):
-                find_sent = re.search(find_sent_regex, line)
-                if find_sent:
-                    find_sent = find_sent.group()
-                    print(f"\nFound: {find_sent}\n")
+                        # if find_str == replace_str: continue
+                        logging.debug(f"Find string regex: {find_str_regex}")
+                        find_replace_str = re.search(find_str_regex, find_sent)
+                        if find_replace_str:
+                            find_replace_str = find_replace_str.group()
+                            logging.debug(f"Found str within sentence: {find_replace_str.strip()}")
 
-                    # if find_str == replace_str: continue
-                    print(f"Find string: {find_str_regex}")
-                    find_replace_str = re.search(find_str_regex, find_sent)
-                    if find_replace_str:
-                        find_replace_str = find_replace_str.group()
-                        print(f"Found: {find_replace_str}\n")
+                            logging.debug(f"Replace str: {replace_str}")
+                            line = line.replace(find_replace_str, replace_str)
 
-                        print(f"Replace: \n{find_replace_str}\n{replace_str}\n")
-                        line = line.replace(find_replace_str, replace_str)
+                            logging.debug(f"Updated: {line.strip()}")
 
-                        print(f"Updated:")
-                        print(line.strip())
+                        else:
+                            logging.debug(f"Not found: {find_replace_str}")
                     else:
-                        print(f"Not found: {find_replace_str}\n")
-                else:
-                    print(f"Not found: {find_sent_regex}\n")
+                        logging.debug(f"Not found: {find_sent_regex}")
 
-            f.write(line)
+                f.write(line)
 
 ###############################################################################
 # Update SDK version and test
 ###############################################################################
 
+
+def execute_notebook(notebook:str, notebook_args: Dict):
+    try:
+        print(notebook)
+
+        # to support the multiprocessing function
+        if isinstance(notebook, list):
+            notebook = notebook[0]
+
+        ## Update to latest version
+        file_find_replace(
+            notebook,
+            **notebook_args['pip_install_args']
+        )
+
+        ## Temporarily updating notebook with test creds
+        file_find_replace(
+            notebook,
+            **notebook_args['client_instantiation_args']
+        )
+
+        ## Execute notebook with test creds
+        with open(notebook, "r") as f:
+            print(
+                f"\nExecuting notebook: \n{notebook} with SDK version {notebook_args['relevanceai_sdk_version']}"
+            )
+            nb_in = nbformat.read(f, nbformat.NO_CONVERT)
+            ep = ExecutePreprocessor(timeout=600, kernel_name="python3")
+            nb_out = ep.preprocess(nb_in)
+
+        ## Replace creds with previous
+        file_find_replace(
+            notebook,
+            **notebook_args['client_base_args']
+        )
+        return
+    except Exception as e:
+
+        import traceback
+
+        exception_reason = traceback.format_exc()
+        print(
+            f"{notebook}\n{exception_reason}\n\n",
+            file=open(README_NOTEBOOK_ERROR_FPATH, "a"),
+        )
+
+        return {"notebook": notebook.__str__(), "Exception reason": exception_reason}
+
+
+
+###############################################################################
+# Main
+###############################################################################
 
 
 def main(args):
@@ -104,67 +161,63 @@ def main(args):
     PIP_INSTALL_SENT_REGEX = f'".*pip install .* {args.package_name}.*==.*"'
     PIP_INSTALL_STR_REGEX = f"==.*[0-9]"
     PIP_INSTALL_STR_REPLACE = f"=={RELEVANCEAI_SDK_VERSION}"
+    pip_install_args={
+        'find_sent_regex': PIP_INSTALL_SENT_REGEX,
+        'find_str_regex': PIP_INSTALL_STR_REGEX,
+        'replace_str': PIP_INSTALL_STR_REPLACE,
+    }
 
     ## Env vars
     CLIENT_INSTANTIATION_SENT_REGEX = '"client.*Client(.*)"'
-    TEST_PROJECT = os.getenv("TEST_PROJECT")
-    TEST_API_KEY = os.getenv("TEST_API_KEY")
+    # TEST_PROJECT = os.environ["TEST_PROJECT"]
+    # TEST_API_KEY = os.environ["TEST_API_KEY"]
+    TEST_ACTIVATION_TOKEN = os.environ["TEST_ACTIVATION_TOKEN"]
     CLIENT_INSTANTIATION_STR_REGEX = "\((.*?)\)"
+    # CLIENT_INSTANTIATION_STR_REPLACE = (
+    #     f'(project=\\"{TEST_PROJECT}\\", api_key=\\"{TEST_API_KEY}\\")'
+    # )
     CLIENT_INSTANTIATION_STR_REPLACE = (
-        f'(project=\\"{TEST_PROJECT}\\", api_key=\\"{TEST_API_KEY}\\")'
+        f'(token=\\"{TEST_ACTIVATION_TOKEN}\\")'
     )
-
     CLIENT_INSTANTIATION_BASE = f'"client = Client()"'
+    client_instantiation_args={
+        'find_sent_regex': CLIENT_INSTANTIATION_SENT_REGEX,
+        'find_str_regex': CLIENT_INSTANTIATION_STR_REGEX,
+        'replace_str': CLIENT_INSTANTIATION_STR_REPLACE,
+    }
 
-    README_NOTEBOOK_ERROR_FPATH = "readme_notebook_errors.txt"
+    client_instantiation_base_args={
+        'find_sent_regex': CLIENT_INSTANTIATION_SENT_REGEX,
+        'find_str_regex': CLIENT_INSTANTIATION_SENT_REGEX,
+        'replace_str': CLIENT_INSTANTIATION_BASE,
+    }
+
+    ALL_NOTEBOOKS = [
+        x[0] if isinstance(x, list) else x for x in list(Path(DOCS_PATH).glob("**/*.ipynb"))
+    ]
+
+    static_args= {
+        'relevanceai_sdk_version': RELEVANCEAI_SDK_VERSION,
+        'pip_install_args': pip_install_args,
+        'client_instantiation_args': client_instantiation_args,
+        'client_instantiation_base_args': client_instantiation_base_args,
+    }
+
     with open(README_NOTEBOOK_ERROR_FPATH, "w") as f:
         f.write("")
 
-    for notebook in Path(DOCS_PATH).glob("**/*.ipynb"):
-        try:
-            logging.info( {notebook})
-            logging.info(f'Updating pip install to latest version {RELEVANCEAI_SDK_VERSION} ...')
-            notebook_find_replace(
-                notebook,
-                PIP_INSTALL_SENT_REGEX,
-                PIP_INSTALL_STR_REGEX,
-                PIP_INSTALL_STR_REPLACE,
-            )
-
-            logging.info(f'Temporarily updating notebook with test creds ...')
-            notebook_find_replace(
-                notebook,
-                CLIENT_INSTANTIATION_SENT_REGEX,
-                CLIENT_INSTANTIATION_STR_REGEX,
-                CLIENT_INSTANTIATION_STR_REPLACE,
-            )
-
-            ## Execute notebook with test creds
-            with open(notebook, "r") as f:
-                logging.info(
-                    f"Executing notebook: {notebook} with SDK version {RELEVANCEAI_SDK_VERSION}"
-                )
-                nb_in = nbformat.read(f, nbformat.NO_CONVERT)
-                ep = ExecutePreprocessor(timeout=600, kernel_name="python3")
-                nb_out = ep.preprocess(nb_in)
-
-            logging.info(f'Replacing client with base auth ...')
-            notebook_find_replace(
-                notebook,
-                CLIENT_INSTANTIATION_SENT_REGEX,
-                CLIENT_INSTANTIATION_SENT_REGEX,
-                CLIENT_INSTANTIATION_BASE,
-            )
-        except Exception as e:
-            ERROR_MESSAGE = f"Error in notebook: {notebook}\n{e}"
-
-            logging.error(ERROR_MESSAGE)
-            print(
-                ERROR_MESSAGE,
-                file=open(README_NOTEBOOK_ERROR_FPATH, "a"),
-            )
-
-            pass
+    results = multiprocess(func=execute_notebook,
+                            iterables=ALL_NOTEBOOKS,
+                            static_args=static_args,
+                            chunksize=1
+                        )
+    # results = [execute_notebook(n) for n in ALL_NOTEBOOKS]
+    results = [r for r in results if r is not None]
+    if len(results) > 0:
+        for r in results:
+            print(r.get("notebook"))
+            print(r.get("Exception reason"))
+        # raise ValueError(f"You have errored notebooks {results}")
 
 
 

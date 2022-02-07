@@ -60,26 +60,29 @@ By following instructions below, you will be able to preview/create any given ve
     @@@+ quickstart_docs; dataset_basics, DATASET_ID=QUICKSTART_DATASET_ID @@@
     @@@+ <SNIPPET_1_NAME>; <SNIPPET_2_NAME>, <SNIPPET_2_PARAMS>; <SNIPPET_3_NAME>, <SNIPPET_3_PARAMS>; @@@
     ```
-4. Go the ReadMEeDash config and export the ReadMe API key `$RELEVANCEAI_README_API_KEY` variable from ReadMe Project Configuration
+4. Go the ReadMe Dash config and export the ReadMe API key `$RELEVANCEAI_README_API_KEY` variable from ReadMe Project Configuration
 
    ![](./assets/readme_api_key.png)
 
    ```zsh
    ❯ export RELEVANCEAI_README_API_KEY='xxx'
    ```
-
-5. Apply the changes and update the ReadMe documentations.
+5. To run notebook tests, make sure to export your `TEST_ACTIVATION_TOKEN` from https://cloud.relevance.ai/sdk/api/.
+    ```zsh
+   ❯ export TEST_ACTIVATION_TOKEN='xxx'
+   ```
+6. Apply the changes and update the ReadMe documentations.
     ```zsh
     ❯ ./scripts/update_readme.sh
     ## Run in debug mode
     ❯ ./scripts/update_readme.sh true
     ```
     View your synced changes in ReadMe eg. https://docs.relevance.ai/v0.31.0/docs/quick-tour
-6. Install pre-commit to check for API keys in notebooks!
+7. Install pre-commit to check for API keys in notebooks!
     ```
     pre-commit install
     ```
-7. Commit your changes if what you see in the ReadMe documentation is correct!
+8. Commit your changes if what you see in the ReadMe documentation is correct!
 
 
 

@@ -8,6 +8,7 @@ import itertools
 from typing import List, Tuple, Union
 import logging
 import argparse
+import yaml
 
 
 def file_find_replace(fname: str, find_sent_regex: str, find_str_regex: str, replace_str: str):
@@ -93,22 +94,21 @@ def main(args):
         logging.debug(f'\tUpdating {f} to {README_VERSION}')
         file_find_replace(f, SEMVER_SENT, SEMVER_STR, SEMVER_REPLACE_STR)
 
+
     ###############################################################################
     # Updating semver ref in snippets
     ###############################################################################
 
-    logging.info(f'Updating semver ref to {README_VERSION} for all snippets')
+    logging.info(f'Updating semver ref to {README_VERSION} in snippet config')
+    SNIPPET_PARAMS_FPATH = Path(DOCS_TEMPLATE_PATH) / "_snippet_params.yml"
+    SNIPPET_PARAMS = yaml.safe_load(open(str(SNIPPET_PARAMS_FPATH), 'r'))
 
-    snippet_paths = [ Path(snippet_path).joinpath(f) for snippet_path in Path(args.path).glob('**/*/_snippets/**') for f in os.listdir(snippet_path)]
-    files = snippet_paths + list(md_files)
-
-    PIP_INSTALL_SENT_REGEX = f'".*pip install .* {args.package_name}.*==.*"'
-    PIP_INSTALL_STR_REGEX = f"==.*[0-9]"
-    PIP_INSTALL_STR_REPLACE = f"=={README_VERSION}"
-
-    for f in files:
-        logging.debug(f'\tUpdating {f} to {README_VERSION}')
-        file_find_replace(f, PIP_INSTALL_SENT_REGEX, PIP_INSTALL_STR_REGEX, PIP_INSTALL_STR_REPLACE)
+    SNIPPET_PARAMS['RELEVANCEAI_SDK_VERSION'] = args.version
+    with open(SNIPPET_PARAMS_FPATH, 'w') as f:
+        try:
+            yaml.dump(SNIPPET_PARAMS, f, default_flow_style=False)
+        except yaml.YAMLError as exc:
+            print(exc)
 
 
 if __name__ == "__main__":

@@ -13,11 +13,11 @@ This conversion from unstructured data to numerical data is called **vectorizing
 
 
 <figure>
-<img src="https://github.com/RelevanceAI/RelevanceAI-readme-docs/blob/v0.31.0/docs_template/GETTING_STARTED/vectors-and-vector-databases/_assets/RelevanceAI_vector_graphic.png?raw=true" width="650" alt="" />
+<img src="https://github.com/RelevanceAI/RelevanceAI-readme-docs/blob/v0.33.1/docs_template/GETTING_STARTED/vectors-and-vector-databases/_assets/RelevanceAI_vector_graphic.png?raw=true" width="650" alt="" />
 <figcaption>Relevance AI's Workflow</figcaption>
 <figure>
 
-For example, the graphics above represents the word 'website' converted to a vector. We only visualise up to a length of 3 for the vector because humans can typically only visualize up to three dimensions (vector length of 3), but to properly encode a word that encapsulates as much of the word's meaning, we may need vector length or dimension in the hundreds or thousands. Although we cannot visualize it, this is an example of how a 6 dimensional-length vector of the word 'website' could look like: 
+For example, the graphics above represents the word 'website' converted to a vector. We only visualise up to a length of 3 for the vector because humans can typically only visualize up to three dimensions (vector length of 3), but to properly encode a word that encapsulates as much of the word's meaning, we may need vector length or dimension in the hundreds or thousands. Although we cannot visualize it, this is an example of how a 6 dimensional-length vector of the word 'website' could look like:
 
 
 ```python Example of a vector
@@ -30,7 +30,7 @@ website = [0.324, 0.241, 0.934, 0.424, 0.141, 0.242]
 Once we have converted this data into vector form, computer algorithms can compare the numerical values among multiple vectors to determine the similarity among various datapoints. Similar to how your fingerprint or DNA is similar to people that are most similar to you: your parents or your siblings. The vector representation is the fingerprint of data, helping you find similarities within the different datapoints.
 
 <figure>
-<img src="https://github.com/RelevanceAI/RelevanceAI-readme-docs/blob/v0.31.0/docs_template/GETTING_STARTED/vectors-and-vector-databases/_assets/RelevanceAI_vector_similarity.png?raw=true" width="650" alt="Vectors are much like fingerprints of data" />
+<img src="https://github.com/RelevanceAI/RelevanceAI-readme-docs/blob/v0.33.1/docs_template/GETTING_STARTED/vectors-and-vector-databases/_assets/RelevanceAI_vector_similarity.png?raw=true" width="650" alt="Vectors are much like fingerprints of data" />
 <figcaption>Vectors are much like fingerprints of data</figcaption>
 <figure>
 
@@ -41,17 +41,17 @@ When we encode thousands of words using the same machine learning algorithm, we 
 In the example below, we have encoded 3 words: 'dog', 'cat', and 'pizza'. The word 'dog' and 'cat' are used in the same context very often and are semantically more similar, as opposed to 'cat' and 'pizza'. This was learnt by the machine learning model and when we produce a vector from it, we can see below that the words 'cat' and 'dog' are closer to each other and far away from 'pizza'.
 
 <figure>
-<img src="https://github.com/RelevanceAI/RelevanceAI-readme-docs/blob/v0.31.0/docs_template/_assets/RelevanceAI_vector_space.png?raw=true" width="650" alt="Vector Spaces" />
+<img src="https://github.com/RelevanceAI/RelevanceAI-readme-docs/blob/v0.33.1/docs_template/_assets/RelevanceAI_vector_space.png?raw=true" width="650" alt="Vector Spaces" />
 <figcaption></figcaption>
 <figure>
 
 > 📘 Vectors can capture semantic meaning and enable better similarity comparisons of data
-> 
+>
 > By capturing all the different semantics and features of data into high dimensional vectors, we can use it to essentially perform better similarity analysis between data of any kind as long as it can be vectorized. By solving this similarity problem, we enable a wide array of use cases such as search, recommendations, predictions, etc.
 
 In the example above, the vectors were produced from BERT, an NLP model from Google which produces a vector length of 768. For interpretation purposes, we have used a method of dimensionality reduction that compresses the vector length into 3 allowing the vector to be visualized.
 
 <figure>
-<img src="https://github.com/RelevanceAI/RelevanceAI-readme-docs/blob/v0.31.0/docs_template/GETTING_STARTED/vectors-and-vector-databases/_assets/RelevanceAI_vector_items.png?raw=true" width="650" alt="Similar items are closer to each other" />
+<img src="https://github.com/RelevanceAI/RelevanceAI-readme-docs/blob/v0.33.1/docs_template/GETTING_STARTED/vectors-and-vector-databases/_assets/RelevanceAI_vector_items.png?raw=true" width="650" alt="Similar items are closer to each other" />
 <figcaption>Similar items are closer to each other</figcaption>
 <figure>

@@ -10,7 +10,7 @@ hidden: false
 
 ### Installation
 
-The easiest way to install our Python SDK is to run: 
+The easiest way to install our Python SDK is to run:
 
 @@@relevanceai_installation, RELEVANCEAI_SDK_VERSION==RELEVANCEAI_SDK_VERSION@@@
 
@@ -43,7 +43,7 @@ pip install -e .
 ### Setting Up Client
 
 > 👍 Free for individual use. 100K free requests for commercial use.
-> 
+>
 > Sign up for your free at https://cloud.relevance.ai/sdk/api, no credit card required! You can view our pricing here at https://relevance.ai/pricing.
 
 After installation is complete, we need to instantiate a Relevance AI client object which requires you to sign up at https://cloud.relevance.ai/
@@ -53,6 +53,6 @@ After installation is complete, we need to instantiate a Relevance AI client obj
 
 
 <figure>
-<img src="https://github.com/RelevanceAI/RelevanceAI-readme-docs/blob/0.31.0/docs_template/GETTING_STARTED/_assets/RelevanceAI_auth_token_details.png?raw=true" alt="Get your Auth Details" />
+<img src="https://github.com/RelevanceAI/RelevanceAI-readme-docs/blob/0.33.1/docs_template/GETTING_STARTED/_assets/RelevanceAI_auth_token_details.png?raw=true" alt="Get your Auth Details" />
 <figcaption>Get your Auth Details</figcaption>
 <figure>
