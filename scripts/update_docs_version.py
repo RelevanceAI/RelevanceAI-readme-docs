@@ -85,7 +85,7 @@ def main(args):
 
     SEMVER_SENT = f'.*v(\d+\.\d+(?:\.\d+)?).*'
     SEMVER_STR = f"v(\d+\.\d+(?:\.\d+)?)"
-    SEMVER_REPLACE_STR = f"{README_VERSION}"
+    SEMVER_REPLACE_STR = f"v{README_VERSION}"
 
     installation_guide =  [Path(args.path) / "docs_template" / "GETTING_STARTED" / "installation.md"] + \
                             [Path(args.path) / "docs" / "GETTING_STARTED" / "installation.md"]
