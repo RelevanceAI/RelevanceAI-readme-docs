@@ -6,6 +6,7 @@ from pathlib import Path
 import re
 import subprocess
 import sys
+import json
 import nbformat
 from nbconvert.preprocessors import ExecutePreprocessor
 
@@ -37,7 +38,6 @@ def get_latest_version(name: str):
 
 def check_latest_version(name: str):
     latest_version = get_latest_version(name)
-
     current_version = str(
         subprocess.run(
             [sys.executable, "-m", "pip", "show", "{}".format(name)],
@@ -55,34 +55,25 @@ def check_latest_version(name: str):
 
 
 def notebook_find_replace(fname: str, find_sent_regex: str, find_str_regex: str, replace_str: str):
-    with open(fname, "r") as f:
-        lines = f.readlines()
+    logging.info(f'\tInput: {fname}')
+    notebook_json = json.loads(open(fname).read())
 
-    with open(fname, "w") as f:
-        for i, line in enumerate(lines):
-            if bool(re.search(find_sent_regex, line)):
-                find_sent = re.search(find_sent_regex, line)
-                if find_sent:
-                    find_sent = find_sent.group()
-                    logging.debug(f"Found sentence: {find_sent}")
-
-                    # if find_str == replace_str: continue
-                    logging.debug(f"Find string regex: {find_str_regex}")
-                    find_replace_str = re.search(find_str_regex, find_sent)
-                    if find_replace_str:
-                        find_replace_str = find_replace_str.group()
-                        logging.debug(f"Found str within sentence: {find_replace_str.strip()}")
-
-                        logging.debug(f"Replace str: {replace_str}")
-                        line = line.replace(find_replace_str, replace_str)
-
-                        logging.debug(f"Updated: {line.strip()}")
-                    else:
-                        logging.debug(f"Not found: {find_replace_str}")
+    for cell in notebook_json['cells']:
+        if bool(re.search(find_sent_regex, str(cell['source']))):
+            logging.debug(f"Found sentence: {str(cell['source'])}")
+            logging.debug(f"Find string regex: {find_str_regex}")
+            for i, cell_source in enumerate(cell['source']):
+                if bool(re.search(find_str_regex, cell_source)):
+                    find_replace_str = re.search(find_str_regex, cell_source).group()
+                    logging.debug(f"Found str within sentence: {find_replace_str.strip()}")
+                    logging.debug(f"Replace str: {replace_str}")
+                    cell_source = cell_source.replace(find_replace_str, replace_str)
+                    logging.debug(f"Updated: {cell_source.strip()}")
+                    cell['source'][i] = cell_source
                 else:
-                    logging.debug(f"Not found: {find_sent_regex}")
-
-            f.write(line)
+                    logging.debug(f"Not found: {find_replace_str}")
+    logging.info(f'\tOutput file: {fname}')
+    json.dump(notebook_json, fp=open(fname, 'w'), indent=4)
 
 
 ###############################################################################
@@ -98,14 +89,12 @@ def execute_notebook(notebook:str, notebook_args: Dict):
         if isinstance(notebook, list):
             notebook = notebook[0]
 
-        # print(notebook_args['pip_install_args'])
         ## Update to latest version
         notebook_find_replace(
             notebook,
             **notebook_args['pip_install_args']
         )
 
-        # print(notebook_args['client_instantiation_args'])
         ## Temporarily updating notebook with test creds
         notebook_find_replace(
             notebook,
@@ -121,7 +110,6 @@ def execute_notebook(notebook:str, notebook_args: Dict):
             ep = ExecutePreprocessor(timeout=600, kernel_name="python3")
             nb_out = ep.preprocess(nb_in)
 
-        # print(notebook_args['client_base_args'])
         ## Replace creds with previous
         notebook_find_replace(
             notebook,
@@ -166,7 +154,7 @@ def main(args):
         f"Executing notebook test with {args.package_name}=={RELEVANCEAI_SDK_VERSION}\n\n"
     )
 
-    PIP_INSTALL_SENT_REGEX = f'".*pip install .* {args.package_name}.*==.*"'
+    PIP_INSTALL_SENT_REGEX = f'.*pip install .* {args.package_name}.*==.*'
     PIP_INSTALL_STR_REGEX = f"==.*[0-9]"
     PIP_INSTALL_STR_REPLACE = f"=={RELEVANCEAI_SDK_VERSION}"
     pip_install_args={
@@ -176,7 +164,7 @@ def main(args):
     }
 
     ## Env vars
-    CLIENT_INSTANTIATION_SENT_REGEX = '\"client.*Client(.*)\"'
+    CLIENT_INSTANTIATION_SENT_REGEX = 'client.*Client(.*)'
     # TEST_PROJECT = os.environ["TEST_PROJECT"]
     # TEST_API_KEY = os.environ["TEST_API_KEY"]
     TEST_ACTIVATION_TOKEN = os.environ["TEST_ACTIVATION_TOKEN"]
@@ -185,9 +173,9 @@ def main(args):
     #     f'(project=\\"{TEST_PROJECT}\\", api_key=\\"{TEST_API_KEY}\\")'
     # )
     CLIENT_INSTANTIATION_STR_REPLACE = (
-        f'(token=\\"{TEST_ACTIVATION_TOKEN}\\")'
+        f'(token="{TEST_ACTIVATION_TOKEN}")'
     )
-    CLIENT_INSTANTIATION_BASE = f'"client = Client()"'
+    CLIENT_INSTANTIATION_BASE = f'client = Client()'
     client_instantiation_args={
         'find_sent_regex': CLIENT_INSTANTIATION_SENT_REGEX,
         'find_str_regex': CLIENT_INSTANTIATION_STR_REGEX,
