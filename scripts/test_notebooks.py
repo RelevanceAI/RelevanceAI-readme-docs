@@ -157,6 +157,7 @@ def main(args):
     # logging.basicConfig(format='%(asctime)s %(message)s', level=logging_level)
     logging.basicConfig(level=logging_level)
 
+
     DOCS_PATH = Path(args.path) / "docs"
     RELEVANCEAI_SDK_VERSION = (
         args.version if args.version else get_latest_version(args.package_name)
@@ -175,7 +176,7 @@ def main(args):
     }
 
     ## Env vars
-    CLIENT_INSTANTIATION_SENT_REGEX = '"client.*Client(.*)"'
+    CLIENT_INSTANTIATION_SENT_REGEX = '\"client.*Client(.*)\"'
     # TEST_PROJECT = os.environ["TEST_PROJECT"]
     # TEST_API_KEY = os.environ["TEST_API_KEY"]
     TEST_ACTIVATION_TOKEN = os.environ["TEST_ACTIVATION_TOKEN"]
@@ -219,6 +220,7 @@ def main(args):
         f.write("")
 
     if args.multiprocess:
+        logging.info('Executing in multiprocess mode')
         results = multiprocess(func=execute_notebook,
                         iterables=notebooks,
                         static_args=static_args,
@@ -235,6 +237,7 @@ def main(args):
             raise ValueError(f"You have errored notebooks {results}")
 
     else:
+        logging.info('Executing in multiprocess mode')
         for notebook in notebooks:
             execute_notebook(notebook, static_args)
 
