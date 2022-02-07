@@ -48,16 +48,7 @@ To be able to use Relevance AI, you need to instantiate a client. This needs a P
 For this experiment, we use our sample e-commerce dataset and preview one of the documents.
 
 
-```python Python (SDK)
-from relevanceai.datasets import get_ecommerce_dataset
-
-# Retrieve our sample dataset. - This comes in the form of a list of documents.
-documents = get_ecommerce_dataset()
-
-documents[0]
-```
-```python
-```
+@@@ get_ecommerce_clean @@@
 
 An example document should have a structure that looks like this.
 
@@ -94,10 +85,8 @@ Next, we will instantiate the universal sentence encoder from VectorHub and enco
 from vectorhub.encoders.text.tfhub import USE2Vec
 enc = USE2Vec()
 
-# We add this function here so that when we encode documents, they are good.
+# To encode the product_title field in all the documents
 documents = enc.encode_documents(["product_title"], documents)
-
-documents[0].keys()
 ```
 ```python
 ```
@@ -109,14 +98,14 @@ If you prefer a different name, simply modify the `__name__` attribute via
 
 ```python Python (SDK)
 
-enc.__name__ = "model_name_goes_here"documents[0].keys()
+enc.__name__ = "model_name_goes_here"
 ```
 ```python
 ```
 
 ### 3. Insert
 
-The data can be easily uploaded to Relevance AI platform via `insert_documents`. Note that all documents must include an `_id` field containing a unique identifier. Here, we generate such an identifier using the Python `uuid` package.
+The data can be easily uploaded to Relevance AI platform via `insert_documents`. Note that all documents must include an `_id` field containing a unique identifier. Such an identifier can be generated using the Python `uuid` package.
 
 
 
@@ -125,13 +114,11 @@ import uuid
 
 for d in documents:
   d['_id'] = uuid.uuid4().__str__()    # Each document must have an `_id` field
-
-# Insert the documents into the quickstart-example below.
-client.insert_documents("quickstart-example", documents)
-documents[0].keys()
 ```
 ```python
 ```
+
+@@@dataset_basics, DATASET_ID=QUICKSTART_TEXT_SEARCH_DATASET_ID@@@
 
 ### 3. Search
 
@@ -149,24 +136,18 @@ query_vector = enc.encode(query)
 Simple vector search against our dataset:
 
 
-
 ```python Python (SDK)
-results = client.services.search.vector(
-    # Dataset ID can go here
-    dataset_id="quickstart-example",
-    # Construct a multivector query here
-    # You can read more about how to construct a multivector query here: MULTIVECTOR QUERY GOES HERE
-    multivector_query=[
+multivector_query=[
         {
             "vector": query_vector,
             "fields": ["product_title_use_vector_"] # Field to search on
         }
-    ],
-    page_size=5
-)
+    ]
 ```
 ```python
 ```
+
+@@@ vector_search
 
 We can see the results on the dashboard via the provided link after the search finishes. Or using Relevance AI json_shower as shown below:
 
@@ -183,3 +164,57 @@ show_json(
 ```
 
 This is just a quick and basic example of using Relevance AI for text search, there are many other search features such as faceted vector search, hybrid search, chunk search, multivector search. For further information please visit [Better text search](doc:better-text-search).
+
+## Final Code
+
+
+
+```python Python (SDK)
+from relevanceai import Client
+
+client = Client()
+
+import pandas as pd
+from relevanceai.datasets import get_ecommerce_dataset_clean
+
+# Retrieve our sample dataset. - This comes in the form of a list of documents.
+documents = get_ecommerce_dataset_clean()
+
+pd.DataFrame.from_dict(documents).head()
+
+from vectorhub.encoders.text.tfhub import USE2Vec
+enc = USE2Vec()
+
+# To encode the product_title field in all the documents
+documents = enc.encode_documents(["product_title"], documents)
+
+# Insert the documents into the quickstart-example below.
+dataset_id = "quickstart-example"
+df = client.Dataset(dataset_id)
+df.delete()
+df.insert_documents(documents)
+
+# vector search
+query = "gift for my son"
+query_vector = enc.encode(query)
+
+multivector_query=[
+        {
+            "vector": query_vector,
+            "fields": ["product_title_use_vector_"] # Field to search on
+        }
+    ]
+
+results = df.vector_search(
+    multivector_query=multivector_query,
+    page_size=5
+)
+
+from relevanceai import show_json
+show_json(
+    results['results'],
+    text_fields=["product_title"],
+)
+```
+```python
+```

@@ -1,2 +1,0 @@
-python
-clusterer = df.auto_cluster("<<KMEANS>>", ["<<EXAMPLE_VEC>>"])
