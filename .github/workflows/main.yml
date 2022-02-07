@@ -95,6 +95,7 @@ jobs:
         env:
           TEST_ACTIVATION_TOKEN: ${{ secrets.TEST_ACTIVATION_TOKEN }}
         run: |
+          echo $TEST_ACTIVATION_TOKEN
           python scripts/test_notebooks.py -d True -p . -pn RelevanceAI -v $README_VERSION --notebooks ${{ matrix.notebook }}
 
 
