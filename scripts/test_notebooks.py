@@ -157,6 +157,7 @@ def main(args):
     # logging.basicConfig(format='%(asctime)s %(message)s', level=logging_level)
     logging.basicConfig(level=logging_level)
 
+
     DOCS_PATH = Path(args.path) / "docs"
     RELEVANCEAI_SDK_VERSION = (
         args.version if args.version else get_latest_version(args.package_name)
@@ -175,7 +176,7 @@ def main(args):
     }
 
     ## Env vars
-    CLIENT_INSTANTIATION_SENT_REGEX = '"client.*Client(.*)"'
+    CLIENT_INSTANTIATION_SENT_REGEX = '\"client.*Client(.*)\"'
     # TEST_PROJECT = os.environ["TEST_PROJECT"]
     # TEST_API_KEY = os.environ["TEST_API_KEY"]
     TEST_ACTIVATION_TOKEN = os.environ["TEST_ACTIVATION_TOKEN"]
@@ -219,6 +220,7 @@ def main(args):
         f.write("")
 
     if args.multiprocess:
+        logging.info('Executing in multiprocess mode')
         results = multiprocess(func=execute_notebook,
                         iterables=notebooks,
                         static_args=static_args,
@@ -235,6 +237,7 @@ def main(args):
             raise ValueError(f"You have errored notebooks {results}")
 
     else:
+        logging.info('Executing in multiprocess mode')
         for notebook in notebooks:
             execute_notebook(notebook, static_args)
 
@@ -252,12 +255,14 @@ if __name__ == "__main__":
         print(f'File not found: {e}')
         print(f'Loading file from latest Pip package release')
 
-    parser.add_argument("-d", "--debug", default=False, help="Run debug mode")
+    parser.add_argument("-d", "--debug", action='store_true', help="Run debug mode")
     parser.add_argument("-p", "--path", default=ROOT_PATH, help="Path of root folder")
     parser.add_argument("-pn", "--package-name", default=PACKAGE_NAME, help="Package Name")
     parser.add_argument("-v", "--version", default=README_VERSION, help="Package Version")
     parser.add_argument("-n", "--notebooks", nargs="+", default=None, help="List of notebooks to execute")
-    parser.add_argument("-m", "--multiprocess", default=True, help="Whether to run multiprocessing")
+    parser.add_argument("-m", "--multiprocess", action='store_true', help="Whether to run multiprocessing")
     args = parser.parse_args()
+
+    print(args)
 
     main(args)

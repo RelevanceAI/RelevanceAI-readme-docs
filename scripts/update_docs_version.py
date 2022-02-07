@@ -119,7 +119,7 @@ if __name__ == "__main__":
     ROOT_PATH = Path(__file__).parent.resolve() / '..'
     README_VERSION_FILE = open(ROOT_PATH / '__version__').read()
 
-    parser.add_argument("-d", "--debug", default=False, help="Run debug mode")
+    parser.add_argument("-d", "--debug", help="Run debug mode", action='store_true')
     parser.add_argument("-p", "--path", default=ROOT_PATH, help="Path of root folder")
     parser.add_argument("-pn", "--package-name", default=PACKAGE_NAME, help="Package Name")
     parser.add_argument("-v", "--version", default=README_VERSION_FILE, help="Package Version")
