@@ -24,9 +24,13 @@ RDMD_SNIPPET_LANGUAGES = {
 # Helper Functions
 ###############################################################################
 
-def load_snippet(snippet_path: str, ext: Literal['md', 'ipynb'], params: Optional[Dict]=None):
+def load_snippet(
+    snippet_path: str,
+    ext: Literal['md', 'ipynb'],
+    params: Optional[Dict]=None
+):
     '''
-    Loads given snippet in ipynb format from the given path
+    Loads given snippet from the given path in a given format
     '''
     try:
         with open(snippet_path, 'r') as f:
@@ -46,11 +50,11 @@ def load_snippet(snippet_path: str, ext: Literal['md', 'ipynb'], params: Optiona
             for m in re.finditer('<<(.*)>>', line):
                 for k, v in params.items():
                     if k in m.group():
-                        if isinstance(v, str):
-                            line = line.replace(f'<<{k}>>', v )
-                        elif isinstance(v, list):
+                        if isinstance(v, list):
+                            v = str(v)
                             if isinstance(v[0], dict): ### List[dict]
-                                line = line.replace(f'<<{k}>>', json.dumps(v))
+                                v =  json.dumps(v)
+                        line = line.replace(f'<<{k}>>', v )
             snippet[i] = line
     if ext == 'md':
         language = snippet[0].split(' ')[0]
@@ -61,41 +65,6 @@ def load_snippet(snippet_path: str, ext: Literal['md', 'ipynb'], params: Optiona
     return snippet
 
 
-# def load_snippet(snippet_path: str, params: Optional[Dict]=None):
-#     '''
-#     Loads given snippet in md format from the given path
-#     '''
-#     try:
-#         with open(snippet_path, 'r') as f:
-#                 text = f.read()
-#     except Exception as e:
-#         raise FileNotFoundError (f'File not found: {snippet_path}')
-
-#     snippet = text.split('\n')
-#     ### Reading language from the first line of the snippet
-#     ### and building rdmd snippet
-#     ## Replacing params
-#     if params:
-#         for i, line in enumerate(snippet):
-#             for m in re.finditer('<<(.*)>>', line):
-#                 for k, v in params.items():
-#                     if k in m.group():
-#                         if isinstance(v, str):
-#                             line = line.replace(f'<<{k}>>', v )
-#                         elif isinstance(v, list):
-#                             if isinstance(v[0], dict): ### List[dict]
-#                                 line = line.replace(f'<<{k}>>', json.dumps(v))
-#             snippet[i] = line
-
-#     language = snippet[0].split(' ')[0]
-#     snippet[0] = f"```{language} {RDMD_SNIPPET_LANGUAGES[language]}"
-#     snippet.append("```")
-#     snippet.append("```"+language)
-#     snippet.append("```")
-
-#     return snippet
-
-
 def generate_ipynb_file(
         input_fname: str,
         output_fname: str,
@@ -103,7 +72,7 @@ def generate_ipynb_file(
         snippet_params=Dict
     ):
     '''
-    Given a list of snippet paths, generate a file `output_fname` with the given `input_fname`
+    Given a list of snippet paths, generate a notebook `output_fname` with the given `input_fname`
     '''
     logging.info(f'\tInput file: {input_fname}')
     notebook_json = json.loads(open(input_fname).read())
@@ -124,7 +93,6 @@ def generate_ipynb_file(
                     print(''.join(snippet))
 
         elif bool(re.search('@@@.*@@@', str(cell["source"]))):
-            logging.debug(f'\tSnippet Paths: {snippet_paths}')
             for i, cell_source in enumerate(cell['source']):
                 if '@@@' in cell_source:
                     snippet_str = cell_source.split('@@@')[1].strip()
@@ -139,7 +107,16 @@ def generate_ipynb_file(
     json.dump(notebook_json, fp=open(output_fname, 'w'), indent=4)
 
 
-def generate_snippet(snippet_str: str, snippet_paths: List, snippet_params: Dict, ext: Literal['md', 'ipynb']):
+def generate_snippet(
+    snippet_str: str,
+    snippet_paths: List,
+    snippet_params: Dict,
+    ext: Literal['md', 'ipynb']
+):
+    '''
+    Load the corresponding snippet with given parameters depending on the extension type
+    Loads snippets in order from root to inner folder - will overwrite the snippets with same name
+    '''
     logging.debug(f'\tSnippet paths: {snippet_paths}')
     snippet = []
     for snippet_path in snippet_paths:
@@ -198,6 +175,7 @@ def generate_md_file(
 
     md_lines = list()
     for line in md_file.split('\n'):
+        ## Concatenated snippets
         if  bool(re.search('@@@\+.*@@@', line)) and (not bool(re.search('.*<--.*-->.*', line))):
             snippet_strs = line.replace('@@@+', '').replace('@@@', '').strip().split(';')
             logging.debug(f'Snippet strs: {snippet_strs}')
@@ -218,8 +196,6 @@ def generate_md_file(
             [md_lines.append(x) for x in snippet]
 
         elif bool(re.search('@@@.*@@@', line)) and (not bool(re.search('.*<--.*-->.*', line))):
-            # Load the corresponding snippet and merge it in the code
-            # Loads snippets in order from root to inner folder - will overwrite the snippets with same name
             snippet_str = line.split('@@@')[1].strip()
             snippet = generate_snippet(snippet_str, snippet_paths, snippet_params, ext='md')
             logging.debug('\n'.join(snippet))
@@ -235,7 +211,7 @@ def generate_md_file(
 
 
 ###############################################################################
-# Generating ReadMe Markdown files with automated snippets
+# Generating ReadMe Markdown files and notebooks with automated snippets
 ###############################################################################
 
 def main(args):
@@ -281,7 +257,7 @@ def main(args):
             logging.debug(f'\tDirs {dirs}')
             logging.debug(f'\tFiles {files}')
 
-            ### Loading snippets_paths
+            ### Loading snippet_paths
             SNIPPETS_DIR = Path(root).joinpath("_snippets")
             if '_snippets' in dirs:
                 snippet_paths += [SNIPPETS_DIR]

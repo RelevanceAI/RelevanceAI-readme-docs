@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 
-from typing import Dict
+from typing import Dict, Literal
 import os
 from pathlib import Path
 import re
@@ -74,6 +74,35 @@ def notebook_find_replace(fname: str, find_sent_regex: str, find_str_regex: str,
     logging.info(f'\tOutput file: {fname}')
     json.dump(notebook_json, fp=open(fname, 'w'), indent=4)
 
+def update_pip_for_shell(fname, shell: Literal['zsh', 'bash']='zsh'):
+    logging.info(f'\tInput: {fname}')
+    notebook_json = json.loads(open(fname).read())
+
+    PIP_INSTALL_SENT_REGEX = f'.*pip install.*'
+    for cell in notebook_json['cells']:
+        if bool(re.search(PIP_INSTALL_SENT_REGEX, str(cell['source']))):
+            logging.debug(f"Source:{str(cell['source'])}")
+            for i, cell_source in enumerate(cell['source']):
+                ## zsh uses square brackets for globbing eg. pip install -U 'RelevanceAI[notebook]==0.33.2'
+                for m in re.finditer(PIP_INSTALL_SENT_REGEX, cell_source):
+                    pip_install_match = m.group()
+                    pip_install_str = pip_install_match.split()[:-1]
+                    package_install_str = pip_install_match.split()[-1]
+                    if shell=='zsh':
+                        new_package_install_str = f"'{package_install_str}'"
+                        logging.debug(f'\tUpdating for zsh {new_package_install_str}')
+                    elif shell=='bash':
+                        new_package_install_str = package_install_str.replace("'", "").replace('"', '')
+                        logging.debug(f'\tUpdating for bash {new_package_install_str}')
+                    cell_source = cell_source.replace(package_install_str, new_package_install_str)
+
+                logging.debug(cell['source'][i])
+                cell['source'][i] = cell_source
+
+
+    logging.info(f'\tOutput file: {fname}')
+    json.dump(notebook_json, fp=open(fname, 'w'), indent=4)
+
 
 ###############################################################################
 # Update SDK version and test
@@ -88,10 +117,14 @@ def execute_notebook(notebook:str, notebook_args: Dict):
         if isinstance(notebook, list):
             notebook = notebook[0]
 
+
+        if 'zsh' in os.environ['SHELL']:
+            update_pip_for_shell(notebook,shell='zsh')
+
         ## Update to latest version
         notebook_find_replace(
             notebook,
-            **notebook_args['pip_install_args']
+            **notebook_args['pip_install_version_args']
         )
 
         ## Temporarily updating notebook with test creds
@@ -109,7 +142,11 @@ def execute_notebook(notebook:str, notebook_args: Dict):
             ep = ExecutePreprocessor(timeout=600, kernel_name="python3")
             nb_out = ep.preprocess(nb_in)
 
-        ## Replace creds with previous
+        ## Replace with bash
+        if 'zsh' in os.environ['SHELL']:
+            update_pip_for_shell(notebook, shell='bash')
+
+        # Replace client test creds
         notebook_find_replace(
             notebook,
             **notebook_args['client_instantiation_base_args']
@@ -117,6 +154,11 @@ def execute_notebook(notebook:str, notebook_args: Dict):
         return
     except Exception as e:
 
+        ## Replace with bash
+        if 'zsh' in os.environ['SHELL']:
+            update_pip_for_shell(notebook, shell='bash')
+
+        ## Replace client test creds
         notebook_find_replace(
             notebook,
             **notebook_args['client_instantiation_base_args']
@@ -144,7 +186,6 @@ def main(args):
     # logging.basicConfig(format='%(asctime)s %(message)s', level=logging_level)
     logging.basicConfig(level=logging_level)
 
-
     DOCS_PATH = Path(args.path) / "docs"
     RELEVANCEAI_SDK_VERSION = (
         args.version if args.version else get_latest_version(args.package_name)
@@ -154,12 +195,12 @@ def main(args):
     )
 
     PIP_INSTALL_SENT_REGEX = f'.*pip install .* {args.package_name}.*==.*'
-    PIP_INSTALL_STR_REGEX = f"==.*[0-9]"
-    PIP_INSTALL_STR_REPLACE = f"=={RELEVANCEAI_SDK_VERSION}"
-    pip_install_args={
+    PIP_INSTALL_VERSION_STR_REGEX = f"==.*[0-9]"
+    PIP_INSTALL_VERSION_STR_REPLACE = f"=={RELEVANCEAI_SDK_VERSION}"
+    pip_install_version_args={
         'find_sent_regex': PIP_INSTALL_SENT_REGEX,
-        'find_str_regex': PIP_INSTALL_STR_REGEX,
-        'replace_str': PIP_INSTALL_STR_REPLACE,
+        'find_str_regex': PIP_INSTALL_VERSION_STR_REGEX,
+        'replace_str': PIP_INSTALL_VERSION_STR_REPLACE,
     }
 
     ## Env vars
@@ -195,18 +236,23 @@ def main(args):
             x[0] if isinstance(x, list) else x for x in list(Path(DOCS_PATH).glob("**/*.ipynb"))
         ]
 
+
     static_args= {
         'relevanceai_sdk_version': RELEVANCEAI_SDK_VERSION,
-        'pip_install_args': pip_install_args,
+        'pip_install_version_args': pip_install_version_args,
         'client_instantiation_args': client_instantiation_args,
         'client_instantiation_base_args': client_instantiation_base_args,
-        'multiprocess': args.multiprocess
+        'multiprocess': False if args.no_multiprocess else True
     }
 
     with open(README_NOTEBOOK_ERROR_FPATH, "w") as f:
         f.write("")
 
-    if args.multiprocess:
+    if args.no_multiprocess:
+        logging.info('Executing sequentially')
+        for notebook in notebooks:
+            execute_notebook(notebook, static_args)
+    else:
         logging.info('Executing in multiprocess mode')
         results = multiprocess(func=execute_notebook,
                         iterables=notebooks,
@@ -222,11 +268,6 @@ def main(args):
                 print('============')
                 print(r.get("notebook"))
             raise ValueError(f"You have errored notebooks {results}")
-
-    else:
-        logging.info('Executing sequentially')
-        for notebook in notebooks:
-            execute_notebook(notebook, static_args)
 
 
 
@@ -247,9 +288,7 @@ if __name__ == "__main__":
     parser.add_argument("-pn", "--package-name", default=PACKAGE_NAME, help="Package Name")
     parser.add_argument("-v", "--version", default=README_VERSION, help="Package Version")
     parser.add_argument("-n", "--notebooks", nargs="+", default=None, help="List of notebooks to execute")
-    parser.add_argument("-m", "--multiprocess", action='store_true', help="Whether to run multiprocessing")
+    parser.add_argument("-nm", "--no-multiprocess", action='store_true', help="Whether to run multiprocessing")
     args = parser.parse_args()
-
-    print(args)
 
     main(args)

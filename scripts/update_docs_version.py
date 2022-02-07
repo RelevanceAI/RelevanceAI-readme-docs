@@ -78,7 +78,7 @@ def main(args):
         file_find_replace(f, ASSET_SENTENCE_REGEX, ASSET_STR_REGEX, ASSET_REPLACE_STR)
 
     ###############################################################################
-    # Updating semver ref in md
+    # Updating semver ref in installation
     ###############################################################################
 
     logging.info(f'Updating semver ref to {README_VERSION} for all installation files')
@@ -96,10 +96,10 @@ def main(args):
 
 
     ###############################################################################
-    # Updating semver ref in snippets
+    # Updating version ref in snippet config
     ###############################################################################
 
-    logging.info(f'Updating semver ref to {README_VERSION} in snippet config')
+    logging.info(f'Updating version ref to {README_VERSION} in snippet config')
     SNIPPET_PARAMS_FPATH = Path(DOCS_TEMPLATE_PATH) / "_snippet_params.json"
     SNIPPET_PARAMS = json.loads(open(str(SNIPPET_PARAMS_FPATH), 'r').read())
 
