@@ -31,8 +31,8 @@ In the vector workflow to solve search and relevance problems, we decided to foc
 
 - **Fully managed API**, so that you don't have to manage infrastructure or DevOps.
 - **Filter and traditional keyword search**, combine traditional methods with vector search to maximize search relevance.
-- **Hybrid vector database**, flexible data structures that allows for storing of multiple vectors and metadata in 1 dataset so that you don't have to manage multiple nearest neighbor indices or 3rd party metadata store for every dataset.
-- **Flexible multi-vector search**, flexible search methods that allows you to easily add and weight multiple different vectors into your search query to query against different data structures such as chunk. To find the best vectors and search methods for each problem.
+- **Hybrid vector database**, flexible data structures that allow for storing of multiple vectors and metadata in 1 dataset so that you don't have to manage multiple nearest neighbor indices or 3rd party metadata store for every dataset.
+- **Flexible multi-vector search**, flexible search methods that allow you to easily add and weight multiple different vectors into your search query to query against different data structures such as chunk. To find the best vectors and search methods for each problem.
 - **Operations beyond vector search**, clustering for topic modelling, vector averaging against a category to create category vectors.
 - **Visualize and interpret vectors**, visualize the biases of your vectors in multi-dimensional space with our embeddings projector and vector comparator graphs.
 - **Real-time vector index**, no index rebuilding or constant retraining. Vectors become searchable as soon as they are inserted.

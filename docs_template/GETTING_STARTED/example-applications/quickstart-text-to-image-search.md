@@ -208,19 +208,17 @@ Now, let us try out a query using a simple vector search against our dataset.
 
 
 ```python Python (SDK)
-results = df.vector_search(
-    multivector_query=[
+multivector_query=[
         {
             "vector": query_vector,
             "fields": ["clip_product_image_vector_"]
         }
-    ],
-    page_size=5,
-    query=query
-)
+    ]
 ```
 ```python
 ```
+
+@@@vector_search
 
 Here our query is just a simple multi-vector query, but our search comes with out of the box support for features such as multi-vector, filters, facets and traditional keyword matching to combine with your vector search. You can read more about how to construct a multivector query with those features [here](vector-search-prerequisites).
 
