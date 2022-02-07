@@ -1,2 +1,2 @@
 python
-furthest = clusterer.furthest_from_center()
+<<CLUSTERER>>.list_furthest_from_center()

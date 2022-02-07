@@ -143,7 +143,7 @@ Run clustering on your vectors to better understand your data. You can view the 
 
 
 ```python Python (SDK)
-clusterer = df.auto_cluster("kmeans-10", "product_image_clip_vector_")
+<<CLUSTERER>> = df.auto_cluster('kmeans-10', ['<<VECTOR_FIELD>>'])
 ```
 ```python
 ```
@@ -151,7 +151,7 @@ clusterer = df.auto_cluster("kmeans-10", "product_image_clip_vector_")
 You can also get a list of documents that are closest to the center of the clusters:
 
 ```python Python (SDK)
-closest = clusterer.list_closest_to_center()
+<<CLUSTERER>>.list_closest_to_center()
 ```
 ```python
 ```

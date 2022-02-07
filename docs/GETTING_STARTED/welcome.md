@@ -68,7 +68,7 @@ df.insert_documents(documents)
 ### 3. Clustering
 
 ```python Python (SDK)
-clusterer = df.auto_cluster("kmeans-2", "example_vector_")
+clusterer = df.auto_cluster('kmeans-2', ['example_vector_'])
 ```
 ```python
 ```
