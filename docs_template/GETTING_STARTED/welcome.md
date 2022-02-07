@@ -34,13 +34,7 @@ Run this Quickstart in Colab: [![Open In Colab](https://colab.research.google.co
 
 ### 3. Clustering
 
-```python Python (SDK)
-
-clusterer = df.auto_cluster("kmeans-2", ["example_vector_"])
-
-```
-```python
-```
+@@@ auto_cluster, KMEANS=KMEANS-2, VECTORS=EXAMPLE_VEC @@@
 
 
 ### 4. Vector Search

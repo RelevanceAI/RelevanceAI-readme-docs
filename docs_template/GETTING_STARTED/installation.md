@@ -49,7 +49,7 @@ pip install -e .
 After installation is complete, we need to instantiate a Relevance AI client object which requires you to sign up at https://cloud.relevance.ai/
 
 
-@@@client_instantiation
+@@@ client_instantiation @@@
 
 
 <figure>
