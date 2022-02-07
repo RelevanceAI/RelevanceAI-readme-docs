@@ -237,7 +237,7 @@ def main(args):
             raise ValueError(f"You have errored notebooks {results}")
 
     else:
-        logging.info('Executing in multiprocess mode')
+        logging.info('Executing sequentially')
         for notebook in notebooks:
             execute_notebook(notebook, static_args)
 
