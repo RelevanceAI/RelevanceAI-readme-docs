@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 
-from typing import Dict, Literal
+from typing import Dict
+from typing_extensions import Literal
 import os
 from pathlib import Path
 import re

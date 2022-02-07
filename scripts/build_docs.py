@@ -7,7 +7,8 @@ import re
 
 import json
 
-from typing import List, Dict, Literal, Optional
+from typing import List, Dict, Optional
+from typing_extensions import Literal
 
 import argparse
 import logging
