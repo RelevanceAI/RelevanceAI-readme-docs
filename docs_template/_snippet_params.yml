@@ -1,10 +1,13 @@
+RELEVANCEAI_SDK_VERSION: 0.33.2
 EXAMPLE_VEC: example_vector_
 IMAGE_CLIP_VEC: product_image_clip_vector_
+PRODUCT_TITLE_CLIP_VEC: product_title_clip_vector_
 KMEANS-10: kmeans-10
 KMEANS-2: kmeans-2
 MULTI_VECTOR_SEARCH_DATASET_ID: quickstart_sample
 QUICKSTART_DATASET_ID: quickstart
 QUICKSTART_QA_DATASET_ID: quickstart_tfhub_qa
 QUICKSTART_TEXT_SEARCH_DATASET_ID: quickstart-example
-RELEVANCEAI_SDK_VERSION: 0.33.2
+QUICKSTART_KMEANS_CLUSTERING_DATASET_ID: quickstart_clustering_kmeans
+
 TEXT_IMAGE_SEARCH_DATASET_ID: quickstart_clip

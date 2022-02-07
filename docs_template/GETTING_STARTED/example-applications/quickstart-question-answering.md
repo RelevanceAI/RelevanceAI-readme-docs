@@ -20,7 +20,7 @@ For each application, we demonstrate the ease of
 
 to build powerful applications
 
-**Try it out in Colab:** [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/drive/1zL2mwBVCPaccjB7o7XoVJVJKOWRom8mq?usp=sharing)
+**Try it out in Colab:** [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/RelevanceAI/RelevanceAI-readme-docs/blob/v0.33.2/docs/GETTING_STARTED/example-applications/_notebooks/RelevanceAI_ReadMe_Quickstart_Question_Answering.ipynb)
 
 ### What I Need
 * Project and API Key: Grab your RelevanceAI project and API key by [signing up](https://cloud.relevance.ai/ )
