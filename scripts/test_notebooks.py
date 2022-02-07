@@ -231,7 +231,7 @@ def main(args):
             print(r.get("Exception reason"))
             print('============')
             print(r.get("notebook"))
-        # raise ValueError(f"You have errored notebooks {results}")
+        raise ValueError(f"You have errored notebooks {results}")
 
 
 

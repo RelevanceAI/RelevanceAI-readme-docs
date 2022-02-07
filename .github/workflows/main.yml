@@ -16,7 +16,7 @@ jobs:
   build-docs:
     runs-on: ubuntu-latest
     outputs:
-      matrix: ${{ steps.set-matrix.outputs.matrix }}
+      notebook-fpaths: ${{ steps.set-notebook-fpaths.outputs.notebook-fpaths }}
     steps:
       - uses: actions/checkout@v2
       - name: Set up Python
@@ -44,12 +44,13 @@ jobs:
         run: |
           python scripts/build_docs.py -d True -p . -pn RelevanceAI -v $README_VERSION
 
-      - id: set-matrix
-        run: echo "::set-output name=matrix::$(ls $PWD/docs/**/*ipynb | jq -Rsc '. / "\n" - [""]')"
+      - id: set-notebook-fpaths
+        name: Setting notebook fpath output
+        run: echo "::set-output name=notebook-fpaths::$(find docs -type f -name "*.ipynb" | jq -Rsc '. / "\n" - [""]')"
 
 
   test-notebooks:
-    name: Testing notebook ${{ matrix.notebook }}
+    name: Test ${{ matrix.notebook }}
     needs: build-docs
     runs-on: ${{ matrix.os }}
     strategy:
@@ -57,7 +58,7 @@ jobs:
         os: [ ubuntu-latest]
         python-version: [ '3.7' ]
         # python-version: [ '3.6', '3.7', '3.8', '3.9' ]
-        notebook: ${{fromJSON(needs.build-docs.outputs.matrix)}}
+        notebook: ${{fromJSON(needs.build-docs.outputs.notebook-fpaths )}}
         include:
           - os: ubuntu-latest
             path: ~/.cache/pip
