@@ -78,6 +78,10 @@ By following instructions below, you will be able to preview/create any given ve
     ❯ ./scripts/update_readme.sh true
     ```
     View your synced changes in ReadMe eg. https://docs.relevance.ai/v0.31.0/docs/quick-tour
+7. Test the notebooks for changes. By default, the script will process all notebooks in the `docs` folder if no `--notebooks` specified.
+    ```
+    ❯ python scripts/test_notebooks.py -d True --notebooks examples/Intro_to_Relevance_AI.ipynb
+    ```
 7. Install pre-commit to check for API keys in notebooks!
     ```
     pre-commit install

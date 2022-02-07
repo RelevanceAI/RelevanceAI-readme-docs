@@ -54,37 +54,36 @@ def check_latest_version(name: str):
         return False
 
 
-def file_find_replace(fname: str, find_sent_regex: str, find_str_regex: str, replace_str: str):
-    if fname[:-4] == "ipynb":
-        with open(fname, "r") as f:
-            lines = f.readlines()
+def notebook_find_replace(fname: str, find_sent_regex: str, find_str_regex: str, replace_str: str):
+    with open(fname, "r") as f:
+        lines = f.readlines()
 
-        with open(fname, "w") as f:
-            for i, line in enumerate(lines):
-                if bool(re.search(find_sent_regex, line)):
-                    find_sent = re.search(find_sent_regex, line)
-                    if find_sent:
-                        find_sent = find_sent.group()
-                        logging.debug(f"Found sentence: {find_sent}")
+    with open(fname, "w") as f:
+        for i, line in enumerate(lines):
+            if bool(re.search(find_sent_regex, line)):
+                find_sent = re.search(find_sent_regex, line)
+                if find_sent:
+                    find_sent = find_sent.group()
+                    logging.debug(f"Found sentence: {find_sent}")
 
-                        # if find_str == replace_str: continue
-                        logging.debug(f"Find string regex: {find_str_regex}")
-                        find_replace_str = re.search(find_str_regex, find_sent)
-                        if find_replace_str:
-                            find_replace_str = find_replace_str.group()
-                            logging.debug(f"Found str within sentence: {find_replace_str.strip()}")
+                    # if find_str == replace_str: continue
+                    logging.debug(f"Find string regex: {find_str_regex}")
+                    find_replace_str = re.search(find_str_regex, find_sent)
+                    if find_replace_str:
+                        find_replace_str = find_replace_str.group()
+                        logging.debug(f"Found str within sentence: {find_replace_str.strip()}")
 
-                            logging.debug(f"Replace str: {replace_str}")
-                            line = line.replace(find_replace_str, replace_str)
+                        logging.debug(f"Replace str: {replace_str}")
+                        line = line.replace(find_replace_str, replace_str)
 
-                            logging.debug(f"Updated: {line.strip()}")
-
-                        else:
-                            logging.debug(f"Not found: {find_replace_str}")
+                        logging.debug(f"Updated: {line.strip()}")
                     else:
-                        logging.debug(f"Not found: {find_sent_regex}")
+                        logging.debug(f"Not found: {find_replace_str}")
+                else:
+                    logging.debug(f"Not found: {find_sent_regex}")
 
-                f.write(line)
+            f.write(line)
+
 
 ###############################################################################
 # Update SDK version and test
@@ -99,14 +98,16 @@ def execute_notebook(notebook:str, notebook_args: Dict):
         if isinstance(notebook, list):
             notebook = notebook[0]
 
+        # print(notebook_args['pip_install_args'])
         ## Update to latest version
-        file_find_replace(
+        notebook_find_replace(
             notebook,
             **notebook_args['pip_install_args']
         )
 
+        # print(notebook_args['client_instantiation_args'])
         ## Temporarily updating notebook with test creds
-        file_find_replace(
+        notebook_find_replace(
             notebook,
             **notebook_args['client_instantiation_args']
         )
@@ -120,13 +121,19 @@ def execute_notebook(notebook:str, notebook_args: Dict):
             ep = ExecutePreprocessor(timeout=600, kernel_name="python3")
             nb_out = ep.preprocess(nb_in)
 
+        # print(notebook_args['client_base_args'])
         ## Replace creds with previous
-        file_find_replace(
+        notebook_find_replace(
             notebook,
-            **notebook_args['client_base_args']
+            **notebook_args['client_instantiation_base_args']
         )
         return
     except Exception as e:
+
+        notebook_find_replace(
+            notebook,
+            **notebook_args['client_instantiation_base_args']
+        )
 
         import traceback
 
@@ -210,18 +217,19 @@ def main(args):
     with open(README_NOTEBOOK_ERROR_FPATH, "w") as f:
         f.write("")
 
-    results = multiprocess(func=execute_notebook,
-                            iterables=notebooks,
-                            static_args=static_args,
-                            chunksize=1
-                        )
-    # results = [execute_notebook(n) for n in ALL_NOTEBOOKS]
-    results = [r for r in results if r is not None]
-    if len(results) > 0:
-        for r in results:
-            print(r.get("notebook"))
-            print(r.get("Exception reason"))
-        # raise ValueError(f"You have errored notebooks {results}")
+    # results = multiprocess(func=execute_notebook,
+    #                         iterables=notebooks,
+    #                         static_args=static_args,
+    #                         chunksize=1
+    #                     )
+    execute_notebook(notebooks[0], static_args)
+    # # results = [execute_notebook(n) for n in ALL_NOTEBOOKS]
+    # results = [r for r in results if r is  not None]
+    # if len(results) > 0:
+    #     for r in results:
+    #         print(r.get("notebook"))
+    #         print(r.get("Exception reason"))
+    #     # raise ValueError(f"You have errored notebooks {results}")
 
 
 
