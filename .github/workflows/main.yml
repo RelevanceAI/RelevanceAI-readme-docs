@@ -62,6 +62,7 @@ jobs:
         include:
           - os: ubuntu-latest
             path: ~/.cache/pip
+
           # - os: macos-latest
           #   path: ~/Library/Caches/pip
           # - os: windows-latest
@@ -92,6 +93,7 @@ jobs:
         run: |
           README_VERSION=$(cat __version__)
           echo "README_VERSION=$README_VERSION" >> $GITHUB_ENV
+          echo TEST_ACTIVATION_TOKEN=${{ secrets.TEST_ACTIVATION_TOKEN }}
           python scripts/test_notebooks.py -d True -p . -pn RelevanceAI -v $README_VERSION --notebooks ${{ matrix.notebook }} -m False
 
 
