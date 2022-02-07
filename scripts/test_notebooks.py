@@ -70,8 +70,7 @@ def notebook_find_replace(fname: str, find_sent_regex: str, find_str_regex: str,
                     cell_source = cell_source.replace(find_replace_str, replace_str)
                     logging.debug(f"Updated: {cell_source.strip()}")
                     cell['source'][i] = cell_source
-                else:
-                    logging.debug(f"Not found: {find_replace_str}")
+
     logging.info(f'\tOutput file: {fname}')
     json.dump(notebook_json, fp=open(fname, 'w'), indent=4)
 
