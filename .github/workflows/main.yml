@@ -4,7 +4,7 @@ name: ReadMe Update
 on:
   push:
       branches: [ main ]
-  pull_request: 
+  pull_request:
   # push:
   #   # branches: [ main, development ]
   # pull_request:
@@ -17,7 +17,7 @@ jobs:
     runs-on: ${{ matrix.os }}
     strategy:
       matrix:
-        os: [ ubuntu-latest] 
+        os: [ ubuntu-latest]
         python-version: [ '3.7' ]
         # python-version: [ '3.6', '3.7', '3.8', '3.9' ]
         include:
@@ -46,38 +46,37 @@ jobs:
 
       - name: Install requirements
         run: pip install -r requirements.txt
-      
+
       - name: Set ReadMe version as Github env
-        run: | 
-          README_VERSION=$(cat __version__) 
+        run: |
+          README_VERSION=$(cat __version__)
           echo "README_VERSION=$README_VERSION" >> $GITHUB_ENV
 
       - name: Test for API keys
-        run: | 
-          python scripts/detect_api_keys.py  
-      
-      - name: Update asset links to match Readme version
-        run: | 
-          python scripts/update_docs_version.py -p . -n RelevanceAI -v $README_VERSION
-      
-      - name: Update asset links to match Readme version
-        run: | 
-          python scripts/build_docs.py -p . -n RelevanceAI -v $README_VERSION
-
-      - name: Test notebooks 
-        env:
-          TEST_PROJECT: ${{ secrets.TEST_PROJECT }}
-          TEST_API_KEY: ${{ secrets.TEST_API_KEY }}
         run: |
-          python scripts/test_notebooks.py -p . -n RelevanceAI -v $README_VERSION
-        
+          python scripts/detect_api_keys.py
+
+      - name: Update asset links to match Readme version
+        run: |
+          python scripts/update_docs_version.py -d True -p . -n RelevanceAI -v $README_VERSION
+
+      - name: Update asset links to match Readme version
+        run: |
+          python scripts/build_docs.py -d True -p . -n RelevanceAI -v $README_VERSION
+
+      - name: Test notebooks
+        env:
+          TEST_ACTIVATION_TOKEN: ${{ secrets.TEST_ACTIVATION_TOKEN }}
+        run: |
+          python scripts/test_notebooks.py -d True -p . -n RelevanceAI -v $README_VERSION
+
 
   sync-readme-docs:
     needs: test-notebooks
     runs-on: ${{ matrix.os }}
     strategy:
       matrix:
-        os: [ ubuntu-latest] 
+        os: [ ubuntu-latest]
         include:
           - os: ubuntu-latest
             path: ~/.cache/pip
@@ -105,15 +104,15 @@ jobs:
             ${{ runner.os }}-build-${{ env.cache-name }}-
             ${{ runner.os }}-build-
             ${{ runner.os }}-
-      
+
       - name: Sync ReadMe docs
         env:
           RELEVANCEAI_README_API_KEY: ${{ secrets.RELEVANCEAI_README_API_KEY }}
-        run: | 
+        run: |
           README_VERSION=$(cat __version__)
           echo "README_VERSION=$README_VERSION"
           ./scripts/sync_readme_docs.sh true $README_VERSION
-      
+
 
 
   # update-readme-main:
@@ -121,7 +120,7 @@ jobs:
   #   runs-on: ${{ matrix.os }}
   #   strategy:
   #     matrix:
-  #       os: [ ubuntu-latest] 
+  #       os: [ ubuntu-latest]
   #       include:
   #         - os: ubuntu-latest
   #           path: ~/.cache/pip
@@ -137,12 +136,12 @@ jobs:
   #     with:
   #       python-version: ${{ matrix.python-version }}
   #       cache: 'pip'
-      
+
   #     - name: Sync ReadMe docs
   #       env:
   #         RELEVANCEAI_README_API_KEY: ${{ secrets.RELEVANCEAI_README_API_KEY }}
-  #       run: | 
+  #       run: |
   #         README_VERSION=$(cat __version__)
   #         echo "README_VERSION=$README_VERSION"
   #         ./scripts/sync_readme_docs.sh true $README_VERSION
-      
+
