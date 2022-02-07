@@ -7,7 +7,7 @@ hidden: false
 ---
 
 <figure>
-<img src="https://github.com/RelevanceAI/RelevanceAI-readme-docs/blob/v0.33.1/docs_template/GETTING_STARTED/example-applications/_assets/RelevanceAI_text_search.png?raw=true"
+<img src="https://github.com/RelevanceAI/RelevanceAI-readme-docs/blob/v0.33.2/docs_template/GETTING_STARTED/example-applications/_assets/RelevanceAI_text_search.png?raw=true"
      alt="RelevanceAI Text to Image"
      style="width: 100% vertical-align: middle"/>
 <figcaption>
@@ -18,7 +18,7 @@ hidden: false
 
 In this section, we will show you how to create and experiment with a powerful text search engine using Google's Universal Sentence Encoder through [VectorHub library](https://github.com/RelevanceAI/vectorhub) and Relevance AI.
 
-**Try it out in Colab:** [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/RelevanceAI/RelevanceAI-readme-docs/blob/v0.33.1/docs/GETTING_STARTED/example-applications/_notebooks/RelevanceAI_ReadMe_Quickstart_Text_Search.ipynb)
+**Try it out in Colab:** [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/RelevanceAI/RelevanceAI-readme-docs/blob/v0.33.2/docs/GETTING_STARTED/example-applications/_notebooks/RelevanceAI_ReadMe_Quickstart_Text_Search.ipynb)
 
 
 ### What I Need
@@ -29,7 +29,7 @@ In this section, we will show you how to create and experiment with a powerful t
 
 
 ```bash Bash
-!pip install -U RelevanceAI[notebook]==0.31.0
+!pip install -U RelevanceAI[notebook]==0.33.2
 
 !pip install -q vectorhub[encoders-text-tfhub]
 ```

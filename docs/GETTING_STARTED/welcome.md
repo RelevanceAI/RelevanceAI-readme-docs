@@ -12,19 +12,19 @@ Relevance AI's ultimate goal is to assist developers to experiment, build and sh
 
 
 <figure>
-<img src="https://github.com/RelevanceAI/RelevanceAI-readme-docs/blob/v0.33.1/docs_template/_assets/RelevanceAI_DS_Workflow.png?raw=true"  width="450" alt="Relevance AI DS Workflow" />
+<img src="https://github.com/RelevanceAI/RelevanceAI-readme-docs/blob/v0.33.2/docs_template/_assets/RelevanceAI_DS_Workflow.png?raw=true"  width="450" alt="Relevance AI DS Workflow" />
 <figcaption>How Relevance AI helps with the data science workflow</figcaption>
 <figure>
 
 
 ## In 5 lines of code, get a shareable dashboard for experiments insight!
 
-Run this Quickstart in Colab: [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/RelevanceAI/RelevanceAI-readme-docs/blob/v0.33.1/docs/GETTING_STARTED/_notebooks/Intro_to_Relevance_AI.ipynb)
+Run this Quickstart in Colab: [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/RelevanceAI/RelevanceAI-readme-docs/blob/v0.33.2/docs/GETTING_STARTED/_notebooks/Intro_to_Relevance_AI.ipynb)
 
 ### 1. Set up Relevance AI
 
 ```bash Bash
-!pip install -U RelevanceAI[notebook]==0.31.0
+!pip install -U RelevanceAI[notebook]==0.33.2
 ```
 ```bash
 ```
