@@ -30,6 +30,8 @@ Run this Quickstart in Colab: [![Open In Colab](https://colab.research.google.co
 
 ```bash Bash
 !pip install -U RelevanceAI[notebook]==0.33.2
+
+!pip install -U -q vectorhub[clip]
 ```
 ```bash
 ```
@@ -64,21 +66,31 @@ Use one of your sample datasets to insert into your own dataset!
 
 
 ```python Python (SDK)
-from relevanceai.datasets import get_sample_ecommerce_dataset
-documents = get_sample_ecommerce_dataset()
-documents[0]
+import pandas as pd
+from relevanceai.datasets import get_ecommerce_dataset_clean
 
-client.insert_documents(dataset_id="quickstart", docs=documents)
+# Retrieve our sample dataset. - This comes in the form of a list of documents.
+documents = get_ecommerce_dataset_clean()
+
+pd.DataFrame.from_dict(documents).head()
 ```
 ```python
 ```
-
 
 
 <figure>
 <img src="https://github.com/RelevanceAI/RelevanceAI-readme-docs/blob/v0.33.2/docs_template/GETTING_STARTED/_assets/RelevanceAI_dataset_dashboard.png?raw=true" alt="See your dataset in the dashboard" />
 <figcaption>See your dataset in the dashboard</figcaption>
 <figure>
+
+```python Python (SDK)
+DATASET_ID = "quickstart"
+df = client.Dataset(DATASET_ID)
+df.delete()
+df.insert_documents(documents)
+```
+```python
+```
 
 
 ### 3. Encode data and upload vectors into your new dataset
@@ -91,13 +103,21 @@ Encode new product image vector using our models out of the box using [Vectorhub
 from vectorhub.bi_encoders.text_image.torch import Clip2Vec
 enc = Clip2Vec()
 
-# Set the default encode to encoding an image
+# Use the encoder to vectorize the `product_image` in the dataset
 enc.encode = enc.encode_image
 documents = enc.encode_documents(fields=["product_image"], docs=documents)
 
-client.update_documents(dataset_id="quickstart", docs=documents)
+```
+```python
+```
 
-client.datasets.schema(dataset_id="quickstart")
+Update the existing dataset with the encoding results and check the results
+
+```python Python (SDK)
+
+df.upsert_documents(documents)
+
+df.schema
 ```
 ```python
 ```
@@ -122,20 +142,16 @@ client.datasets.schema(dataset_id="quickstart")
 Run clustering on your vectors to better understand your data. You can view the clusters in our clustering dashboard following the provided link when clustering finishes.
 
 
+```python Python (SDK)
+clusterer = df.auto_cluster("kmeans-10", "<<EXAMPLE_VEC>>")
+```
+```python
+```
+
+You can also get a list of documents that are closest to the center of the clusters:
 
 ```python Python (SDK)
-centroids = client.vector_tools.cluster.kmeans_cluster(
-    dataset_id = "quickstart",
-    vector_fields = ["product_image_clip_vector_"],
-    k = 10
-)
-
-client.services.cluster.centroids.list_closest_to_center(
-  dataset_id = "quickstart",
-  vector_field = "product_image_clip_vector_",
-  cluster_ids = [],                 # Leave this as an empty list if you want all of the clusters,
-  alias = "kmeans_10"
-)
+clusterer = clusterer.list_closest_to_center()
 ```
 ```python
 ```
@@ -160,16 +176,21 @@ See your search results on the dashboard here https://cloud.relevance.ai/sdk/sea
 query = "xmas gifts"  # query text
 query_vec_txt = client.services.encoders.text(text=query)
 
-client.services.search.vector(
-	dataset_id = "quickstart",
-  multivector_query = [
+multivector_query = [
     {"vector": query_vec_txt["vector"],
      "fields": ["product_image_clip_vector_"]},
-  ],
-  page_size = 3,
-  query = "sample search" # Stored on the dashboard
-)
+  ]
 
+```
+```python
+```
+
+```python Python (SDK)
+#Perform a vector search
+results = df.vector_search(
+    multivector_query=multivector_query,
+    page_size=5
+)
 ```
 ```python
 ```

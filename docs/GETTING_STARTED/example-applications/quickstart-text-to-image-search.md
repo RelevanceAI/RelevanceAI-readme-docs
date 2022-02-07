@@ -237,15 +237,21 @@ Now, let us try out a query using a simple vector search against our dataset.
 
 
 ```python Python (SDK)
-results = df.vector_search(
-    multivector_query=[
+multivector_query=[
         {
             "vector": query_vector,
             "fields": ["clip_product_image_vector_"]
         }
-    ],
-    page_size=5,
-    query=query
+    ]
+```
+```python
+```
+
+```python Python (SDK)
+#Perform a vector search
+results = df.vector_search(
+    multivector_query=multivector_query,
+    page_size=5
 )
 ```
 ```python

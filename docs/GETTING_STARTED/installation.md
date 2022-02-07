@@ -53,7 +53,18 @@ pip install -e .
 After installation is complete, we need to instantiate a Relevance AI client object which requires you to sign up at https://cloud.relevance.ai/
 
 
-@@@ client_instantiation
+```python Python (SDK)
+from relevanceai import Client
+
+"""
+You can sign up/login and find your credentials here: https://cloud.relevance.ai/sdk/api
+Once you have signed up, click on the value under `Authorization token` and paste it here
+"""
+client = Client()
+
+```
+```python
+```
 
 
 <figure>

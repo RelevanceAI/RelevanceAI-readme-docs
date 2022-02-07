@@ -171,7 +171,7 @@ show_json(
 ```
 
 <figure>
-<img src="https://github.com/RelevanceAI/RelevanceAI-readme-docs/blob/v0.33.2/docs_template/_assets/RelevanceAI_questin_answering_res?raw=true" width="650" alt="Vector Spaces" />
+<img src="https://github.com/RelevanceAI/RelevanceAI-readme-docs/blob/v0.33.2/docs_template/GETTING_STARTED/example-applications/_assets/RelevanceAI_questin_answering_res.png?raw=true" width="650" alt="Vector Spaces" />
 <figcaption></figcaption>
 <figure>
 

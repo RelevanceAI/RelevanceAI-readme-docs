@@ -27,7 +27,7 @@ website = [0.324, 0.241, 0.934, 0.424, 0.141, 0.242]
 ```python
 ```
 
-Once we have converted this data into vector form, computer algorithms can compare the numerical values among multiple vectors to determine the similarity among various datapoints. Similar to how your fingerprint or DNA is similar to people that are most similar to you: your parents or your siblings. The vector representation is the fingerprint of data, helping you find similarities within the different datapoints.
+Once we have converted this data into vector form, computer algorithms can compare the numerical values among multiple vectors to determine the similarity among various data points. Similar to how your fingerprint or DNA is similar to people that are most similar to you: your parents or your siblings. The vector representation is the fingerprint of data, helping you find similarities within the different data points.
 
 <figure>
 <img src="https://github.com/RelevanceAI/RelevanceAI-readme-docs/blob/v0.33.2/docs_template/GETTING_STARTED/vectors-and-vector-databases/_assets/RelevanceAI_vector_similarity.png?raw=true" width="650" alt="Vectors are much like fingerprints of data" />
