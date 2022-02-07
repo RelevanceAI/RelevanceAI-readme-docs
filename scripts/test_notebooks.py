@@ -19,7 +19,7 @@ import argparse
 # Helper Functions
 ###############################################################################
 
-README_NOTEBOOK_ERROR_FPATH = "readme_notebook_errors.txt"
+README_NOTEBOOK_ERROR_FPATH = "readme_notebook_error_log.txt"
 
 def get_latest_version(name: str):
     latest_version = str(
@@ -139,7 +139,7 @@ def execute_notebook(notebook:str, notebook_args: Dict):
 
         exception_reason = traceback.format_exc()
         print(
-            f"{notebook}\n{exception_reason}\n\n",
+            f"{notebook}\n{exception_reason}\n\n==============",
             file=open(README_NOTEBOOK_ERROR_FPATH, "a"),
         )
 
@@ -217,19 +217,21 @@ def main(args):
     with open(README_NOTEBOOK_ERROR_FPATH, "w") as f:
         f.write("")
 
-    # results = multiprocess(func=execute_notebook,
-    #                         iterables=notebooks,
-    #                         static_args=static_args,
-    #                         chunksize=1
-    #                     )
-    execute_notebook(notebooks[0], static_args)
-    # # results = [execute_notebook(n) for n in ALL_NOTEBOOKS]
-    # results = [r for r in results if r is  not None]
-    # if len(results) > 0:
-    #     for r in results:
-    #         print(r.get("notebook"))
-    #         print(r.get("Exception reason"))
-    #     # raise ValueError(f"You have errored notebooks {results}")
+    # execute_notebook(notebooks[0], static_args)
+    results = multiprocess(func=execute_notebook,
+                            iterables=notebooks,
+                            static_args=static_args,
+                            chunksize=1
+                        )
+
+    # results = [execute_notebook(n) for n in ALL_NOTEBOOKS]
+    results = [r for r in results if r is not None]
+    if len(results) > 0:
+        for r in results:
+            print(r.get("Exception reason"))
+            print('============')
+            print(r.get("notebook"))
+        # raise ValueError(f"You have errored notebooks {results}")
 
 
 
