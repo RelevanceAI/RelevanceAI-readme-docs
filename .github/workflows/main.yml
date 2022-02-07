@@ -45,11 +45,11 @@ jobs:
           python scripts/build_docs.py -d True -p . -pn RelevanceAI -v $README_VERSION
 
       - id: set-matrix
-        run: echo "::set-output name=matrix::$(ls */**ipynb | jq -Rsc '. / "\n" - [""]')"
+        run: echo "::set-output name=matrix::$(ls $PWD/docs/**/*ipynb | jq -Rsc '. / "\n" - [""]')"
 
 
   test-notebooks:
-    name: ${{ matrix.notebook }}
+    name: Testing notebook ${{ matrix.notebook }}
     needs: build-docs
     runs-on: ${{ matrix.os }}
     strategy:
