@@ -29,11 +29,7 @@ Run this Quickstart in Colab: [![Open In Colab](https://colab.research.google.co
 
 
 ```bash Bash
-<<<<<<< Updated upstream
 !pip install -U RelevanceAI[notebook]==0.33.2
-=======
-!pip install -U RelevanceAI[notebook]==0.32.0
->>>>>>> Stashed changes
 
 !pip install -U -q vectorhub[clip]
 ```
@@ -114,7 +110,6 @@ documents = enc.encode_documents(fields=["product_image"], docs=documents)
 ```
 ```python
 ```
-<<<<<<< Updated upstream
 
 Update the existing dataset with the encoding results and check the results
 
@@ -122,15 +117,6 @@ Update the existing dataset with the encoding results and check the results
 
 df.upsert_documents(documents)
 
-=======
-
-Update the existing dataset with the encoding results and check the results
-
-```python Python (SDK)
-
-df.upsert_documents(documents)
-
->>>>>>> Stashed changes
 df.schema
 ```
 ```python
@@ -156,20 +142,8 @@ df.schema
 Run clustering on your vectors to better understand your data. You can view the clusters in our clustering dashboard following the provided link when clustering finishes.
 
 
-<<<<<<< Updated upstream
 ```python Python (SDK)
-clusterer = df.auto_cluster("kmeans-10", "<<EXAMPLE_VEC>>")
-```
-```python
-```
-
-You can also get a list of documents that are closest to the center of the clusters:
-
-```python Python (SDK)
-clusterer = clusterer.list_closest_to_center()
-=======
-```python Python (SDK)
-clusterer = df.auto_cluster("kmeans-10", "<<EXAMPLE_VEC>>")
+clusterer = df.auto_cluster("kmeans-10", "product_image_clip_vector_")
 ```
 ```python
 ```
@@ -178,7 +152,6 @@ You can also get a list of documents that are closest to the center of the clust
 
 ```python Python (SDK)
 closest = clusterer.list_closest_to_center()
->>>>>>> Stashed changes
 ```
 ```python
 ```
@@ -212,19 +185,14 @@ multivector_query = [
 ```python
 ```
 
-<<<<<<< Updated upstream
 ```python Python (SDK)
-#Perform a vector search
 results = df.vector_search(
-    multivector_query=multivector_query,
-    page_size=5
+    multivector_query=<<MULTIVECTOR_QUERY>>,
+    page_size=<<PAGE_SIZE>>
 )
 ```
 ```python
 ```
-=======
-@@@ vector_search
->>>>>>> Stashed changes
 
 
 

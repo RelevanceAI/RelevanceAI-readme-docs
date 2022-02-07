@@ -104,7 +104,7 @@ def main(args):
     SNIPPET_PARAMS = json.loads(open(str(SNIPPET_PARAMS_FPATH), 'r').read())
 
     SNIPPET_PARAMS['RELEVANCEAI_SDK_VERSION'] = args.version
-    json.dump(SNIPPET_PARAMS, open(SNIPPET_PARAMS_FPATH, 'w'))
+    json.dump(SNIPPET_PARAMS, open(SNIPPET_PARAMS_FPATH, 'w'), separators=(',\n', ': '))
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()

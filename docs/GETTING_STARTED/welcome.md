@@ -24,7 +24,7 @@ Run this Quickstart in Colab: [![Open In Colab](https://colab.research.google.co
 ### 1. Set up Relevance AI
 
 ```bash Bash
-!pip install -U RelevanceAI[notebook]==0.32.0
+!pip install -U RelevanceAI[notebook]==0.33.2
 ```
 ```bash
 ```
@@ -79,7 +79,7 @@ clusterer = df.auto_cluster("kmeans-2", "example_vector_")
 results = df.vector_search(
     multivector_query=[
 		{"vector": [0.2, 0.2, 0.2], "fields": ["example_vector"]}
-],
+	],
     page_size=5
 )
 ```

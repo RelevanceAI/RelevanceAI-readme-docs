@@ -9,7 +9,7 @@ updatedAt: "2022-01-20T05:05:33.448Z"
 This quickstart shows how easy it is to get started and how to quickly build question-answering applications using Relevance AI in just a few lines of code. Visit the documentation pages on use-cases for more in-depth tutorials and explanations for experimenting with stronger vector search.
 
 <figure>
-<img src="https://github.com/RelevanceAI/RelevanceAI-readme-docs/blob/v0.33.2/docs_template/_assets/RelevanceAI_questin_answering.png?raw=true" width="650" alt="Vector Spaces" />
+<img src="https://github.com/RelevanceAI/RelevanceAI-readme-docs/blob/v0.33.2/docs_template/GETTING_STARTED/example-applications/_assets/RelevanceAI_questin_answering.png?raw=true" width="650" alt="Vector Spaces" />
 <figcaption></figcaption>
 <figure>
 
@@ -20,7 +20,7 @@ For each application, we demonstrate the ease of
 
 to build powerful applications
 
-**Try it out in Colab:** [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/drive/1zL2mwBVCPaccjB7o7XoVJVJKOWRom8mq?usp=sharing)
+**Try it out in Colab:** [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/RelevanceAI/RelevanceAI-readme-docs/blob/v0.33.2/docs/GETTING_STARTED/example-applications/_notebooks/RelevanceAI_ReadMe_Quickstart_Question_Answering.ipynb)
 
 ### What I Need
 * Project and API Key: Grab your RelevanceAI project and API key by [signing up](https://cloud.relevance.ai/ )
@@ -30,7 +30,7 @@ to build powerful applications
 
 Prior to starting, we need to install the main dependencies.
 ```bash Bash
-!pip install -U RelevanceAI[notebook]==0.32.0
+!pip install -U RelevanceAI[notebook]==0.33.2
 
 !pip install -q vectorhub[encoders-text-tfhub]
 ```
@@ -149,9 +149,8 @@ multivector_query=[
 ```
 
 ```python Python (SDK)
-# Perform a vector search
 results = df.vector_search(
-    multivector_query="<<MULTIVECTOR_QUERY>>",
+    multivector_query=<<MULTIVECTOR_QUERY>>,
     page_size=<<PAGE_SIZE>>
 )
 ```
@@ -171,7 +170,7 @@ show_json(
 ```
 
 <figure>
-<img src="https://github.com/RelevanceAI/RelevanceAI-readme-docs/blob/v0.33.2/docs_template/_assets/RelevanceAI_questin_answering_res?raw=true" width="650" alt="Vector Spaces" />
+<img src="https://github.com/RelevanceAI/RelevanceAI-readme-docs/blob/v0.33.2/docs_template/GETTING_STARTED/example-applications/_assets/RelevanceAI_questin_answering_res.png?raw=true" width="650" alt="Vector Spaces" />
 <figcaption></figcaption>
 <figure>
 

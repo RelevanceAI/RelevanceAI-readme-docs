@@ -33,7 +33,7 @@ Prior to starting, let's install the main dependencies. This installation provid
 
 
 ```bash Bash
-!pip install -U RelevanceAI[notebook]==0.32.0
+!pip install -U RelevanceAI[notebook]==0.33.2
 ```
 ```bash
 ```
@@ -243,24 +243,18 @@ multivector_query=[
             "fields": ["clip_product_image_vector_"]
         }
     ]
-<<<<<<< Updated upstream
 ```
 ```python
 ```
 
 ```python Python (SDK)
-#Perform a vector search
 results = df.vector_search(
-    multivector_query=multivector_query,
-    page_size=5
+    multivector_query=<<MULTIVECTOR_QUERY>>,
+    page_size=<<PAGE_SIZE>>
 )
-=======
->>>>>>> Stashed changes
 ```
 ```python
 ```
-
-@@@vector_search
 
 Here our query is just a simple multi-vector query, but our search comes with out of the box support for features such as multi-vector, filters, facets and traditional keyword matching to combine with your vector search. You can read more about how to construct a multivector query with those features [here](vector-search-prerequisites).
 

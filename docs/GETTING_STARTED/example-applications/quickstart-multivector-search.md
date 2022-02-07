@@ -27,7 +27,7 @@ Prior to starting, let's install the main dependencies.
 
 
 ```bash Bash
-!pip install -U RelevanceAI[notebook]==0.32.0
+!pip install -U RelevanceAI[notebook]==0.33.2
 ```
 ```bash
 ```
@@ -145,17 +145,9 @@ multivector_query = [
 ```
 
 ```python Python (SDK)
-<<<<<<< Updated upstream
-#Perform a vector search
 results = df.vector_search(
-    multivector_query=multivector_query,
-    page_size=5
-=======
-# Perform a vector search
-results = df.vector_search(
-    multivector_query="<<MULTIVECTOR_QUERY>>",
+    multivector_query=<<MULTIVECTOR_QUERY>>,
     page_size=<<PAGE_SIZE>>
->>>>>>> Stashed changes
 )
 ```
 ```python
