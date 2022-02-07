@@ -1,2 +1,2 @@
 python
-clusterer = df.auto_cluster("<<KMEANS>>", "<<VECTORS>>")
+<<CLUSTERER>> = df.auto_cluster('<<KMEANS>>', ['<<VECTOR_FIELD>>'])

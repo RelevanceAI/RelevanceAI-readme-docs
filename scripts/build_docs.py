@@ -254,7 +254,6 @@ def main(args):
     # # For testing/debugging
     # sample_input_fname = DOCS_TEMPLATE_PATH / 'GETTING_STARTED' /"welcome.md"
     # sample_output_fname = str(sample_input_fname).replace('docs_template', 'docs')
-
     # snippet_paths = [GENERAL_SNIPPETS] + [Path(DOCS_TEMPLATE_PATH) / 'GETTING_STARTED' / '_snippets']
     # generate_md_file(
     #     input_fname=sample_input_fname,
@@ -265,7 +264,6 @@ def main(args):
 
     # sample_input_ipynb_fname = DOCS_TEMPLATE_PATH / 'GETTING_STARTED' / '_notebooks' / "Intro_to_Relevance_AI.ipynb"
     # sample_output_ipynb_fname = str(sample_input_ipynb_fname).replace('docs_template', 'docs')
-
     # snippet_paths = [GENERAL_SNIPPETS] + [Path(DOCS_TEMPLATE_PATH) / 'GETTING_STARTED' / '_snippets']
     # generate_ipynb_file(
     #     input_fname=sample_input_ipynb_fname,
