@@ -52,23 +52,23 @@ jobs:
           README_VERSION=$(cat __version__)
           echo "README_VERSION=$README_VERSION" >> $GITHUB_ENV
 
-      - name: Test for API keys
+      - name: Test for API keys in docs
         run: |
-          python scripts/detect_api_keys.py
+          python scripts/detect_api_keys.py -d True -p .
 
-      - name: Update asset links to match Readme version
+      - name: Update docs_template to match Readme version
         run: |
-          python scripts/update_docs_version.py -d True -p . -n RelevanceAI -v $README_VERSION
+          python scripts/update_docs_version.py -d True -p . -pn RelevanceAI -v $README_VERSION
 
-      - name: Update asset links to match Readme version
+      - name: Building docs from docs_template
         run: |
-          python scripts/build_docs.py -d True -p . -n RelevanceAI -v $README_VERSION
+          python scripts/build_docs.py -d True -p . -pn RelevanceAI -v $README_VERSION
 
       - name: Test notebooks
         env:
           TEST_ACTIVATION_TOKEN: ${{ secrets.TEST_ACTIVATION_TOKEN }}
         run: |
-          python scripts/test_notebooks.py -d True -p . -n RelevanceAI -v $README_VERSION
+          python scripts/test_notebooks.py -d True -p . -pn RelevanceAI -v $README_VERSION
 
 
   sync-readme-docs:

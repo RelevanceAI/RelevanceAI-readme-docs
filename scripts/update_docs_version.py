@@ -121,7 +121,7 @@ if __name__ == "__main__":
 
     parser.add_argument("-d", "--debug", default=False, help="Run debug mode")
     parser.add_argument("-p", "--path", default=ROOT_PATH, help="Path of root folder")
-    parser.add_argument("-n", "--package-name", default=PACKAGE_NAME, help="Package Name")
+    parser.add_argument("-pn", "--package-name", default=PACKAGE_NAME, help="Package Name")
     parser.add_argument("-v", "--version", default=README_VERSION_FILE, help="Package Version")
     args = parser.parse_args()
 

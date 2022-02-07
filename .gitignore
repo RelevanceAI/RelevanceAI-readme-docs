@@ -24,3 +24,5 @@ readme_notebook_errors.txt
 *.ipynb_checkpoints
 
 _*.ipynb
+
+*creds*

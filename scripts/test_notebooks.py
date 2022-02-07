@@ -55,7 +55,7 @@ def check_latest_version(name: str):
 
 
 def file_find_replace(fname: str, find_sent_regex: str, find_str_regex: str, replace_str: str):
-    if fname.is_file():
+    if fname[:-4] == "ipynb":
         with open(fname, "r") as f:
             lines = f.readlines()
 
@@ -192,9 +192,13 @@ def main(args):
         'replace_str': CLIENT_INSTANTIATION_BASE,
     }
 
-    ALL_NOTEBOOKS = [
-        x[0] if isinstance(x, list) else x for x in list(Path(DOCS_PATH).glob("**/*.ipynb"))
-    ]
+    if args.notebooks:
+        notebooks = args.notebooks
+    else:
+        ## All notebooks
+        notebooks = [
+            x[0] if isinstance(x, list) else x for x in list(Path(DOCS_PATH).glob("**/*.ipynb"))
+        ]
 
     static_args= {
         'relevanceai_sdk_version': RELEVANCEAI_SDK_VERSION,
@@ -207,7 +211,7 @@ def main(args):
         f.write("")
 
     results = multiprocess(func=execute_notebook,
-                            iterables=ALL_NOTEBOOKS,
+                            iterables=notebooks,
                             static_args=static_args,
                             chunksize=1
                         )
@@ -235,8 +239,9 @@ if __name__ == "__main__":
 
     parser.add_argument("-d", "--debug", default=False, help="Run debug mode")
     parser.add_argument("-p", "--path", default=ROOT_PATH, help="Path of root folder")
-    parser.add_argument("-n", "--package-name", default=PACKAGE_NAME, help="Package Name")
+    parser.add_argument("-pn", "--package-name", default=PACKAGE_NAME, help="Package Name")
     parser.add_argument("-v", "--version", default=README_VERSION, help="Package Version")
+    parser.add_argument("-n", "--notebooks", nargs="+", default=None, help="List of notebooks to execute")
     args = parser.parse_args()
 
     main(args)
