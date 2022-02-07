@@ -13,13 +13,52 @@ on:
   # workflow_dispatch:
 
 jobs:
+  build-docs:
+    runs-on: ubuntu-latest
+    outputs:
+      notebook-fpaths: ${{ steps.set-notebook-fpaths.outputs.notebook-fpaths }}
+    steps:
+      - uses: actions/checkout@v2
+      - name: Set up Python
+        uses: actions/setup-python@v2
+        with:
+          python-version: '3.x'
+
+      - name: Install requirements
+        run: pip install -r requirements.txt
+
+      - name: Set ReadMe version as Github env
+        run: |
+          README_VERSION=$(cat __version__)
+          echo "README_VERSION=$README_VERSION" >> $GITHUB_ENV
+
+      - name: Test for API keys in docs
+        run: |
+          python scripts/detect_api_keys.py -d True -p docs -s False
+
+      - name: Update docs_template to match Readme version
+        run: |
+          python scripts/update_docs_version.py -d True -p . -pn RelevanceAI -v $README_VERSION
+
+      - name: Building docs from docs_template
+        run: |
+          python scripts/build_docs.py -d True -p . -pn RelevanceAI -v $README_VERSION
+
+      - id: set-notebook-fpaths
+        name: Setting notebook fpath output
+        run: echo "::set-output name=notebook-fpaths::$(find docs -type f -name "*.ipynb" | jq -Rsc '. / "\n" - [""]')"
+
+
   test-notebooks:
+    name: Test ${{ matrix.notebook }}
+    needs: build-docs
     runs-on: ${{ matrix.os }}
     strategy:
       matrix:
         os: [ ubuntu-latest]
         python-version: [ '3.7' ]
         # python-version: [ '3.6', '3.7', '3.8', '3.9' ]
+        notebook: ${{fromJSON(needs.build-docs.outputs.notebook-fpaths )}}
         include:
           - os: ubuntu-latest
             path: ~/.cache/pip
@@ -47,28 +86,15 @@ jobs:
       - name: Install requirements
         run: pip install -r requirements.txt
 
-      - name: Set ReadMe version as Github env
-        run: |
-          README_VERSION=$(cat __version__)
-          echo "README_VERSION=$README_VERSION" >> $GITHUB_ENV
-
-      - name: Test for API keys in docs
-        run: |
-          python scripts/detect_api_keys.py -d True -p .
-
-      - name: Update docs_template to match Readme version
-        run: |
-          python scripts/update_docs_version.py -d True -p . -pn RelevanceAI -v $README_VERSION
-
-      - name: Building docs from docs_template
-        run: |
-          python scripts/build_docs.py -d True -p . -pn RelevanceAI -v $README_VERSION
-
       - name: Test notebooks
         env:
           TEST_ACTIVATION_TOKEN: ${{ secrets.TEST_ACTIVATION_TOKEN }}
         run: |
-          python scripts/test_notebooks.py -d True -p . -pn RelevanceAI -v $README_VERSION
+          README_VERSION=$(cat __version__)
+          echo "README_VERSION=$README_VERSION" >> $GITHUB_ENV
+          python scripts/test_notebooks.py -d True -p . -pn RelevanceAI -v $README_VERSION --notebooks ${{ matrix.notebook }} -m False
+
+
 
 
   sync-readme-docs:

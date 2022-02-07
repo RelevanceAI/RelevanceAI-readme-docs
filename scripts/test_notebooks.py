@@ -19,7 +19,7 @@ import argparse
 # Helper Functions
 ###############################################################################
 
-README_NOTEBOOK_ERROR_FPATH = "readme_notebook_errors.txt"
+README_NOTEBOOK_ERROR_FPATH = "readme_notebook_error_log.txt"
 
 def get_latest_version(name: str):
     latest_version = str(
@@ -136,15 +136,15 @@ def execute_notebook(notebook:str, notebook_args: Dict):
         )
 
         import traceback
-
         exception_reason = traceback.format_exc()
+        ERROR_MESSAGE = f"{notebook}\n{exception_reason}\n"
         print(
-            f"{notebook}\n{exception_reason}\n\n",
+            f"{ERROR_MESSAGE}\n==============",
             file=open(README_NOTEBOOK_ERROR_FPATH, "a"),
         )
-
-        return {"notebook": notebook.__str__(), "Exception reason": exception_reason}
-
+        if notebook_args['multiprocess']:
+            return {"notebook": notebook.__str__(), "Exception reason": exception_reason}
+        raise ValueError(f'{ERROR_MESSAGE}')
 
 
 ###############################################################################
@@ -212,24 +212,31 @@ def main(args):
         'pip_install_args': pip_install_args,
         'client_instantiation_args': client_instantiation_args,
         'client_instantiation_base_args': client_instantiation_base_args,
+        'multiprocess': args.multiprocess
     }
 
     with open(README_NOTEBOOK_ERROR_FPATH, "w") as f:
         f.write("")
 
-    # results = multiprocess(func=execute_notebook,
-    #                         iterables=notebooks,
-    #                         static_args=static_args,
-    #                         chunksize=1
-    #                     )
-    execute_notebook(notebooks[0], static_args)
-    # # results = [execute_notebook(n) for n in ALL_NOTEBOOKS]
-    # results = [r for r in results if r is  not None]
-    # if len(results) > 0:
-    #     for r in results:
-    #         print(r.get("notebook"))
-    #         print(r.get("Exception reason"))
-    #     # raise ValueError(f"You have errored notebooks {results}")
+    if args.multiprocess:
+        results = multiprocess(func=execute_notebook,
+                        iterables=notebooks,
+                        static_args=static_args,
+                        chunksize=1
+                    )
+
+        # results = [execute_notebook(n) for n in ALL_NOTEBOOKS]
+        results = [r for r in results if r is not None]
+        if len(results) > 0:
+            for r in results:
+                print(r.get("Exception reason"))
+                print('============')
+                print(r.get("notebook"))
+            raise ValueError(f"You have errored notebooks {results}")
+
+    else:
+        for notebook in notebooks:
+            execute_notebook(notebook, static_args)
 
 
 
@@ -250,6 +257,7 @@ if __name__ == "__main__":
     parser.add_argument("-pn", "--package-name", default=PACKAGE_NAME, help="Package Name")
     parser.add_argument("-v", "--version", default=README_VERSION, help="Package Version")
     parser.add_argument("-n", "--notebooks", nargs="+", default=None, help="List of notebooks to execute")
+    parser.add_argument("-m", "--multiprocess", default=True, help="Whether to run multiprocessing")
     args = parser.parse_args()
 
     main(args)
