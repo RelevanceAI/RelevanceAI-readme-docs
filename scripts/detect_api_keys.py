@@ -83,7 +83,7 @@ if __name__ == "__main__":
 
 	ROOT_PATH = Path(__file__).parent.resolve() / '..'
 
-	parser.add_argument("-d", "--debug", default=False, help="Run debug mode")
+	parser.add_argument("-d", "--debug", help="Run debug mode", action='store_true')
 	parser.add_argument("-p", "--path", default=ROOT_PATH, help="Path of root folder")
 	parser.add_argument("-ml", "--min-length", default=API_KEY_MIN_LENGTH, help="Minimum length of API key")
 	parser.add_argument("-er", "--entropy-ratio", default=API_KEY_MIN_ENTROPY_RATIO, help="Minimum entropy ratio of API key")

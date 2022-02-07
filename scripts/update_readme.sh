@@ -30,16 +30,16 @@ README_VERSION=${4:-$(cat __version__)}
 
 
 CYAN "=== Updating asset links to v$README_VERSION ==="
-## To overcome parsing $DEBUG_MODE as string "true" or "false" not bool
+
 if $DEBUG_MODE; then
-	python scripts/update_docs_version.py -d $DEBUG_MODE -p $PWD -pn $PIP_PACKAGE_NAME -v $README_VERSION
+	python scripts/update_docs_version.py -d -p $PWD -pn $PIP_PACKAGE_NAME -v $README_VERSION
 else
 	python scripts/update_docs_version.py -p $PWD -pn $PIP_PACKAGE_NAME -v $README_VERSION
 fi
 
 CYAN "=== Rebuilding Readme docs ==="
 if $DEBUG_MODE; then
-	python scripts/build_docs.py  -d $DEBUG_MODE -p $PWD -pn $PIP_PACKAGE_NAME -v $README_VERSION
+	python scripts/build_docs.py  -d -p $PWD -pn $PIP_PACKAGE_NAME -v $README_VERSION
 else
 	python scripts/build_docs.py  -p $PWD -pn $PIP_PACKAGE_NAME -v $README_VERSION
 fi

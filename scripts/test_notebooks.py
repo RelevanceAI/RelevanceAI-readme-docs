@@ -255,12 +255,14 @@ if __name__ == "__main__":
         print(f'File not found: {e}')
         print(f'Loading file from latest Pip package release')
 
-    parser.add_argument("-d", "--debug", default=False, help="Run debug mode")
+    parser.add_argument("-d", "--debug", action='store_true', help="Run debug mode")
     parser.add_argument("-p", "--path", default=ROOT_PATH, help="Path of root folder")
     parser.add_argument("-pn", "--package-name", default=PACKAGE_NAME, help="Package Name")
     parser.add_argument("-v", "--version", default=README_VERSION, help="Package Version")
     parser.add_argument("-n", "--notebooks", nargs="+", default=None, help="List of notebooks to execute")
-    parser.add_argument("-m", "--multiprocess", default=True, help="Whether to run multiprocessing")
+    parser.add_argument("-m", "--multiprocess", action='store_true', help="Whether to run multiprocessing")
     args = parser.parse_args()
+
+    print(args)
 
     main(args)
