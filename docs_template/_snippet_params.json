@@ -1,13 +1,1 @@
-{
-    "RELEVANCEAI_SDK_VERSION": "0.32.0",
-    "QUICKSTART_DATASET_ID": "quickstart",
-    "TEXT_IMAGE_SEARCH_DATASET_ID": "quickstart_clip",
-    "MULTI_VECTOR_SEARCH_DATASET_ID": "quickstart_sample",
-    "QUICKSTART_MULTI_VECTOR_SEARCH_QUERY": "[\n\t\t{\"vector\": [0.2, 0.2, 0.2], \"fields\": [\"example_vector\"]}\n\t]",
-    "QUICKSTART_TEXT_SEARCH_DATASET_ID": "quickstart-example",
-    "QUICKSTART_QA_DATASET_ID": "quickstart_tfhub_qa",
-    "KMEANS-2": "kmeans-2",
-    "KMEANS-10": "kmeans-10",
-    "EXAMPLE_VEC": "example_vector_",
-    "IMAGE_CLIP_VEC": "product_image_clip_vector_"
-}
+{"RELEVANCEAI_SDK_VERSION": "0.33.2", "QUICKSTART_DATASET_ID": "quickstart", "TEXT_IMAGE_SEARCH_DATASET_ID": "quickstart_clip", "MULTI_VECTOR_SEARCH_DATASET_ID": "quickstart_sample", "QUICKSTART_MULTI_VECTOR_SEARCH_QUERY": "[\n\t\t{\"vector\": [0.2, 0.2, 0.2], \"fields\": [\"example_vector\"]}\n\t]", "QUICKSTART_TEXT_SEARCH_DATASET_ID": "quickstart-example", "QUICKSTART_QA_DATASET_ID": "quickstart_tfhub_qa", "KMEANS-2": "kmeans-2", "KMEANS-10": "kmeans-10", "EXAMPLE_VEC": "example_vector_", "IMAGE_CLIP_VEC": "product_image_clip_vector_"}

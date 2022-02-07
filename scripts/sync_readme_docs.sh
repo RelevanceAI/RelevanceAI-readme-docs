@@ -12,7 +12,7 @@ fi
 
 
 ###############################################################################
-# Functions to get env vars  
+# Functions to get env vars
 ###############################################################################
 
 check_readme_api_key_set(){
@@ -29,18 +29,18 @@ get_latest_readme_version() {
     npx rdme versions --key $RELEVANCEAI_README_API_KEY --raw | jq -r 'sort_by(.createdAt)[-1].version'
 }
 
-### Testing if rdme installed
-check_readme_api_key_set
-npx rdme versions --key $RELEVANCEAI_README_API_KEY --raw || echo f'Please install the `rdme` client, running `npm i`'; exit 1
+# ### Testing if rdme installed
+# check_readme_api_key_set
+# npx rdme versions --key $RELEVANCEAI_README_API_KEY --raw || echo f'Please install the `rdme` client, running `npm i`'; exit 1
 
 
 ###############################################################################
-# Setting env vars 
+# Setting env vars
 ###############################################################################
 
 PIP_PACKAGE_NAME="RelevanceAI"
-PACKAGE_JSON_URL="https://pypi.org/pypi/$PIP_PACKAGE_NAME/json"  
-RELEVANCEAI_SDK_VERSIONS=$(curl -L -s "$PACKAGE_JSON_URL" | jq  -r '.releases | keys | .[]' | sort -V)             
+PACKAGE_JSON_URL="https://pypi.org/pypi/$PIP_PACKAGE_NAME/json"
+RELEVANCEAI_SDK_VERSIONS=$(curl -L -s "$PACKAGE_JSON_URL" | jq  -r '.releases | keys | .[]' | sort -V)
 LATEST_RELEVANCEAI_SDK_VERSION=$(curl -L -s "$PACKAGE_JSON_URL" | jq  -r '.releases | keys | .[]' | sort -V | tail -n1)
 LATEST_README_VERSION=$(get_latest_readme_version)
 
@@ -69,7 +69,7 @@ check_sdk_version_in_readme(){
 }
 
 if ! check_sdk_version_in_readme; then
-    npx rdme versions:create  --version=$README_VERSION --key=$RELEVANCEAI_README_API_KEY --fork=$LATEST_README_VERSION --main=False --beta=True --isPublic=True 
+    npx rdme versions:create  --version=$README_VERSION --key=$RELEVANCEAI_README_API_KEY --fork=$LATEST_README_VERSION --main=False --beta=True --isPublic=True
 else
     echo "ReadMe version $README_VERSION already exists"
 fi

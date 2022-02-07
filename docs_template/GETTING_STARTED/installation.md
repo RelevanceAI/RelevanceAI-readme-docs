@@ -24,7 +24,7 @@ This will install the latest version of our Python SDK:
 
 
 ```bash Bash
-!pip install git+https://github.com/RelevanceAI/RelevanceAI@v0.31.0
+!pip install git+https://github.com/RelevanceAI/RelevanceAI@0.33.2
 ```
 ```bash
 ```
