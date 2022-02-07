@@ -41,52 +41,67 @@ By following instructions below, you will be able to preview/create any given ve
 └── __version__          ## Readme version
 ```
 
-1. Create a new branch for the ReadMe version you'd like to create if not already auto-created upon SDK release eg. v1.0.0
+1. Install dependencies if first time; note, this repo has both Python and NPM deps
+    ```zsh
+    ❯ git clone git@github.com:RelevanceAI/RelevanceAI-readme-docs.git
+    ❯ python -m venv .venv                 # Create new Python venv
+    ❯ pip install -r requirements.txt      # Install Python reqs
+    ❯ npm i                                # Install Node reqs
+    ```
+2. Create a new branch for the ReadMe version you'd like to create if not already auto-created upon SDK release eg. v1.0.0
    - Branch off the latest version that you'd like to fork from (if it is not `main`)
     ```zsh
     ❯ git checkout -b v1.0.0
     ```
-2. Update the `__version__` file to match that semver of the branch eg. 1.0.0 (this can be automated in future)
+3. Update the `__version__` file to match that semver of the branch eg. 1.0.0 (this can be automated in future)
    - All automation scripts read from this file by default if no version given.
-3. Make your desired changes to the relevant Markdown/notebooks on `docs_templates`.
+4. Make your desired changes to the relevant Markdown/notebooks on `docs_templates`.
+5. To add new assets:
+   - Add new assets to the corresponding `_assets` folder in `docs_template`.
+   - Update asset links in `md` files to point to corresponding path.
+6. To add new notebooks:
+   - Add new notebooks to the corresponding `_notebooks_` folder in `docs_template`.
+   - Update notebooks to point to the corresponding path.
+   - Colab notebook refs are of the form:
+7. To add new snippets:
    - Add new snippets in the corresponding `_snippets` folder.
    - Snippets are loaded in a nested fashion. Inner most `_snippets` with the same name will override general snippets in [`docs_template/_snippets/`](./docs_template/_snippets/).
    - All snippets in `*.md` and `*.ipynb` files are prefaced with `@@@`.
     ```markdown
-    @@@ client_instantiation @@@
+    @@@ relevanceai_installation, RELEVANCEAI_SDK_VERSION=RELEVANCEAI_SDK_VERSION @@@
+    @@@ <SNIPPET_NAME>, <SNIPPET_PARAM_KEY_1>=<SNIPPET_PARAM_VALUE_1>, <SNIPPET_PARAM_KEY_2>=<SNIPPET_PARAM_VALUE_2>, ...  @@@
     ```
     - If you want to concatenate snippets, please concatenate using the following format.
     ```markdown
     @@@+ quickstart_docs; dataset_basics, DATASET_ID=QUICKSTART_DATASET_ID @@@
     @@@+ <SNIPPET_1_NAME>; <SNIPPET_2_NAME>, <SNIPPET_2_PARAMS>; <SNIPPET_3_NAME>, <SNIPPET_3_PARAMS>; @@@
     ```
-4. Go the ReadMe Dash config and export the ReadMe API key `$RELEVANCEAI_README_API_KEY` variable from ReadMe Project Configuration
-
+8. Go the ReadMe Dash config and export the ReadMe API key `$RELEVANCEAI_README_API_KEY` variable from ReadMe Project Configuration
    ![](./assets/readme_api_key.png)
-
    ```zsh
    ❯ export RELEVANCEAI_README_API_KEY='xxx'
    ```
-5. To run notebook tests, make sure to export your `TEST_ACTIVATION_TOKEN` from https://cloud.relevance.ai/sdk/api/.
+
+9.  To run notebook tests, make sure to export your `TEST_ACTIVATION_TOKEN` from https://cloud.relevance.ai/sdk/api/.
     ```zsh
-   ❯ export TEST_ACTIVATION_TOKEN='xxx'
-   ```
-6. Apply the changes and update the ReadMe documentations.
+    ❯ export TEST_ACTIVATION_TOKEN='xxx'
+    ```
+10. Apply the changes and update the ReadMe documentations.
     ```zsh
     ❯ ./scripts/update_readme.sh
     ## Run in debug mode
     ❯ ./scripts/update_readme.sh true
     ```
     View your synced changes in ReadMe eg. https://docs.relevance.ai/v0.31.0/docs/quick-tour
-7. Test the notebooks for changes. By default, the script will process all notebooks in the `docs` folder if no `--notebooks` specified.
+11. Test the notebooks for changes. By default, the script will process all notebooks in the `docs` folder if no `--notebooks` specified.
     ```
     ❯ python scripts/test_notebooks.py -d True --notebooks examples/Intro_to_Relevance_AI.ipynb
     ```
-7. Install pre-commit to check for API keys in notebooks!
+12. Install pre-commit to check for API keys in notebooks!
     ```
     pre-commit install
     ```
-8. Commit your changes if what you see in the ReadMe documentation is correct!
+13. Commit your changes if what you see in the ReadMe documentation is correct!
 
 
 

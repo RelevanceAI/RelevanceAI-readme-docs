@@ -27,7 +27,7 @@ Prior to starting, let's install the main dependencies.
 
 
 ```bash Bash
-!pip install -U RelevanceAI[notebook]==0.33.2
+!pip install -U RelevanceAI[notebook]==0.32.0
 ```
 ```bash
 ```
@@ -90,7 +90,7 @@ documents = get_ecommerce_dataset_encoded()
 
 ### 2. Insert
 
-To insert data to a dataset under your account, you can use the `insert_documents` method. 
+To insert data to a dataset under your account, you can use the `insert_documents` method.
 
 
 ```python Python (SDK)
@@ -115,7 +115,7 @@ After finalizing the insert task, the client returns a link guiding you to a das
 
 ### 3. Search
 
-In the cell below, we will 
+In the cell below, we will
 1. get a random document from our dataset as a query data
 2. form a multivector search to find other documents similart to our query document
 
@@ -145,10 +145,17 @@ multivector_query = [
 ```
 
 ```python Python (SDK)
+<<<<<<< Updated upstream
 #Perform a vector search
 results = df.vector_search(
     multivector_query=multivector_query,
     page_size=5
+=======
+# Perform a vector search
+results = df.vector_search(
+    multivector_query="<<MULTIVECTOR_QUERY>>",
+    page_size=<<PAGE_SIZE>>
+>>>>>>> Stashed changes
 )
 ```
 ```python

@@ -9,14 +9,14 @@ updatedAt: "2022-01-20T05:05:33.448Z"
 This quickstart shows how easy it is to get started and how to quickly build question-answering applications using Relevance AI in just a few lines of code. Visit the documentation pages on use-cases for more in-depth tutorials and explanations for experimenting with stronger vector search.
 
 <figure>
-<img src="https://github.com/RelevanceAI/RelevanceAI-readme-docs/blob/v0.33.2/docs_template/GETTING_STARTED/example-applications/_assets/RelevanceAI_questin_answering.png?raw=true" width="650" alt="Vector Spaces" />
+<img src="https://github.com/RelevanceAI/RelevanceAI-readme-docs/blob/v0.33.2/docs_template/_assets/RelevanceAI_questin_answering.png?raw=true" width="650" alt="Vector Spaces" />
 <figcaption></figcaption>
 <figure>
 
-For each application, we demonstrate the ease of 
-* encoding data, 
+For each application, we demonstrate the ease of
+* encoding data,
 * indexing the data
-* vector search 
+* vector search
 
 to build powerful applications
 
@@ -30,7 +30,7 @@ to build powerful applications
 
 Prior to starting, we need to install the main dependencies.
 ```bash Bash
-!pip install -U RelevanceAI[notebook]==0.33.2
+!pip install -U RelevanceAI[notebook]==0.32.0
 
 !pip install -q vectorhub[encoders-text-tfhub]
 ```
@@ -67,7 +67,7 @@ pd.DataFrame.from_dict(documents).head()
 ```python
 ```
 
-## Question Answering (Using TFHub's Universal Sentence Encoder QA) 
+## Question Answering (Using TFHub's Universal Sentence Encoder QA)
 
 Question answering can be a useful application of vector databases particularly for customer support and supporting search for FAQ documents. Here, we show an example of using TFHub's Question Answering Model.
 
@@ -90,7 +90,7 @@ def encode_query(query: str):
 # We then want to define how we encode the answers
 def encode_answer(answer: str):
     return module.signatures['response_encoder'](
-        input=tf.constant([answer]), 
+        input=tf.constant([answer]),
         context=tf.constant([answer]))['outputs'][0].numpy().tolist()
 
 ```
@@ -149,10 +149,10 @@ multivector_query=[
 ```
 
 ```python Python (SDK)
-#Perform a vector search
+# Perform a vector search
 results = df.vector_search(
-    multivector_query=multivector_query,
-    page_size=5
+    multivector_query="<<MULTIVECTOR_QUERY>>",
+    page_size=<<PAGE_SIZE>>
 )
 ```
 ```python
@@ -171,7 +171,7 @@ show_json(
 ```
 
 <figure>
-<img src="https://github.com/RelevanceAI/RelevanceAI-readme-docs/blob/v0.33.2/docs_template/GETTING_STARTED/example-applications/_assets/RelevanceAI_questin_answering_res.png?raw=true" width="650" alt="Vector Spaces" />
+<img src="https://github.com/RelevanceAI/RelevanceAI-readme-docs/blob/v0.33.2/docs_template/_assets/RelevanceAI_questin_answering_res?raw=true" width="650" alt="Vector Spaces" />
 <figcaption></figcaption>
 <figure>
 
@@ -179,7 +179,7 @@ show_json(
 
 ```python Python (SDK)
 
-from relevanceai import Client 
+from relevanceai import Client
 
 client = Client()
 
@@ -207,7 +207,7 @@ def encode_query(query: str):
 # We then want to define how we encode the answers
 def encode_answer(answer: str):
     return module.signatures['response_encoder'](
-        input=tf.constant([answer]), 
+        input=tf.constant([answer]),
         context=tf.constant([answer]))['outputs'][0].numpy().tolist()
 
 # Endoing the dataset
@@ -227,7 +227,7 @@ df = client.Dataset(dataset_id)
 df.delete()
 df.insert_documents(documents)
 
-# Vector search 
+# Vector search
 query = "for my baby daughter"
 query_vector = encode_query(query)
 

@@ -1,6 +1,5 @@
 python
-#Perform a vector search
 results = df.vector_search(
-    multivector_query=multivector_query,
-    page_size=5
+    multivector_query=<<MULTIVECTOR_QUERY>>,
+    page_size=<<PAGE_SIZE>>
 )

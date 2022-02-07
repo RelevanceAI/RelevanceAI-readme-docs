@@ -25,6 +25,7 @@ Run this Quickstart in Colab: [![Open In Colab](https://colab.research.google.co
 
 @@@ relevanceai_installation, RELEVANCEAI_SDK_VERSION=RELEVANCEAI_SDK_VERSION @@@
 
+
 @@@ client_instantiation @@@
 
 ### 2. Create a dataset with vectors
@@ -32,24 +33,14 @@ Run this Quickstart in Colab: [![Open In Colab](https://colab.research.google.co
 
 @@@+ quickstart_docs; dataset_basics, DATASET_ID=QUICKSTART_DATASET_ID @@@
 
+
 ### 3. Clustering
 
-@@@ auto_cluster, KMEANS=KMEANS-2, VECTORS=EXAMPLE_VEC @@@
-
+@@@ auto_cluster, KMEANS=KMEANS-2,  VECTORS=EXAMPLE_VEC @@@
 
 ### 4. Vector Search
 
-
-```python Python (SDK)
-vector_search = df.vector_search(
-    multivector_query=[
-        {"vector": [0.2, 0.2, 0.2], "fields": ["example_vector_"]},
-    ],
-    page_size=3,
-    query="sample search" )
-```
-```python
-```
+@@@ vector_search, MULTIVECTOR_QUERY=QUICKSTART_MULTI_VECTOR_SEARCH_QUERY, PAGE_SIZE=5 @@@
 
 
 
@@ -70,4 +61,5 @@ This is just the start. Relevance AI comes out of the box with support for more 
 - [Multi-vector search with your own vectors](doc:search-with-your-own-vectors)
 - [Hybrid Text search with Universal Sentence Encoder using Vectorhub](doc:quickstart-text-search)
 - [Text search with Universal Sentence Encoder Question Answer from Google](doc:quickstart-question-answering)
+
 

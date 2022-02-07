@@ -8,7 +8,7 @@ import itertools
 from typing import List, Tuple, Union
 import logging
 import argparse
-import yaml
+import json
 
 
 def file_find_replace(fname: str, find_sent_regex: str, find_str_regex: str, replace_str: str):
@@ -100,16 +100,11 @@ def main(args):
     ###############################################################################
 
     logging.info(f'Updating semver ref to {README_VERSION} in snippet config')
-    SNIPPET_PARAMS_FPATH = Path(DOCS_TEMPLATE_PATH) / "_snippet_params.yml"
-    SNIPPET_PARAMS = yaml.safe_load(open(str(SNIPPET_PARAMS_FPATH), 'r'))
+    SNIPPET_PARAMS_FPATH = Path(DOCS_TEMPLATE_PATH) / "_snippet_params.json"
+    SNIPPET_PARAMS = json.loads(open(str(SNIPPET_PARAMS_FPATH), 'r').read())
 
     SNIPPET_PARAMS['RELEVANCEAI_SDK_VERSION'] = args.version
-    with open(SNIPPET_PARAMS_FPATH, 'w') as f:
-        try:
-            yaml.dump(SNIPPET_PARAMS, f, default_flow_style=False)
-        except yaml.YAMLError as exc:
-            print(exc)
-
+    json.dump(SNIPPET_PARAMS, open(SNIPPET_PARAMS_FPATH, 'w'))
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()

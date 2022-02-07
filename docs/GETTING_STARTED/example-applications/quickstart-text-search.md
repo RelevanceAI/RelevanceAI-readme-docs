@@ -29,7 +29,7 @@ In this section, we will show you how to create and experiment with a powerful t
 
 
 ```bash Bash
-!pip install -U RelevanceAI[notebook]==0.33.2
+!pip install -U RelevanceAI[notebook]==0.32.0
 
 !pip install -q vectorhub[encoders-text-tfhub]
 ```
@@ -177,6 +177,7 @@ multivector_query=[
             "fields": ["product_title_use_vector_"] # Field to search on
         }
     ]
+<<<<<<< Updated upstream
 ```
 ```python
 ```
@@ -187,9 +188,13 @@ results = df.vector_search(
     multivector_query=multivector_query,
     page_size=5
 )
+=======
+>>>>>>> Stashed changes
 ```
 ```python
 ```
+
+@@@ vector_search
 
 We can see the results on the dashboard via the provided link after the search finishes. Or using Relevance AI json_shower as shown below:
 
