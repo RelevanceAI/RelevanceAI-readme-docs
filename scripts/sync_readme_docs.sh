@@ -10,6 +10,7 @@ if [ "$DEBUG_MODE" = true ]; then
 fi
 
 
+
 ###############################################################################
 # Functions to get env vars  
 ###############################################################################
@@ -25,9 +26,12 @@ check_readme_api_key_set(){
 }
 
 get_latest_readme_version() {
-    check_readme_api_key_set
     npx rdme versions --key $RELEVANCEAI_README_API_KEY --raw | jq -r 'sort_by(.createdAt)[-1].version'
 }
+
+### Testing if rdme installed
+check_readme_api_key_set
+npx rdme versions --key $RELEVANCEAI_README_API_KEY --raw || echo f'Please install the `rdme` client, running `npm i`'; exit 1
 
 
 ###############################################################################
