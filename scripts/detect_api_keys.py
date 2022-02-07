@@ -38,20 +38,21 @@ def line_contains_api_key(line: str, regex_str=None):
 			return (True, result[1])
 	return (False, '')
 
-def scan_file(fpath: Union[Path, str]):
+def scan_file(fpath: Union[Path, str], show_keys=False):
 	"""
 	Prints out lines in the specified file that probably contain an API key or password.
 	"""
-	print(f'Scanning {fpath}...')
+	logging.info(f'Scanning {fpath}...')
 	f = open(fpath)
 	number = 1
 	for line in f:
 		## Searching for lines w/ potential api key declaration
 		regex_str = '(?i)(.*project.*=.*|.*api_key.*=.*|.*token.*=.*)'
-		result = line_contains_api_key(line, regex_str)
+		result = line_contains_api_key(line.replace(' ',''), regex_str)
 		if result[0]:
-			print(f'\033[1m{fpath}: Line {number} : Entropy {result[1]}\033[0m')
-			# print(line)
+			logging.info(f'\033[1m{fpath}: Line {number} : Entropy {result[1]}\033[0m')
+			if show_keys:
+				logging.info(f'\n\033[1m{line}\033[0m')
 			raise ValueError(f'API key found in file {fpath}: Line {number}')
 
 		number += 1
@@ -66,7 +67,7 @@ def main(args):
 	logging.basicConfig(level=logging_level)
 	# logging.basicConfig(format='%(asctime)s %(message)s', level=logging_level)
 
-	logging.info(f'Scanning directory: {args.path}') 
+	logging.info(f'Scanning directory: {args.path}')
 	logging.info(f'For tokens with minimum API key length: {API_KEY_MIN_LENGTH}')
 	logging.info(f'For tokens with minimum entropy ratio: {API_KEY_MIN_ENTROPY_RATIO}')
 
@@ -74,7 +75,7 @@ def main(args):
 	notebooks = get_files(args.path, ext='ipynb')
 
 	for f in itertools.chain(md_files, notebooks):
-		scan_file(str(f))
+		scan_file(str(f), show_keys=args.show_keys)
 
 
 if __name__ == "__main__":
@@ -86,6 +87,7 @@ if __name__ == "__main__":
 	parser.add_argument("-p", "--path", default=ROOT_PATH, help="Path of root folder")
 	parser.add_argument("-ml", "--min-length", default=API_KEY_MIN_LENGTH, help="Minimum length of API key")
 	parser.add_argument("-er", "--entropy-ratio", default=API_KEY_MIN_ENTROPY_RATIO, help="Minimum entropy ratio of API key")
+	parser.add_argument("-s", "--show-keys", default=False, help="Whether to show API key")
 
 	args = parser.parse_args()
 

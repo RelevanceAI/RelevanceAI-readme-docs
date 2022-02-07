@@ -34,7 +34,7 @@ jobs:
 
       - name: Test for API keys in docs
         run: |
-          python scripts/detect_api_keys.py -d True -p .
+          python scripts/detect_api_keys.py -d True -p docs -s False
 
       - name: Update docs_template to match Readme version
         run: |
