@@ -180,7 +180,7 @@ from tqdm.auto import tqdm
 Lets insert documents into the dataset `quickstart_clip`.
 
 
-@@@dataset_basics, DATASET_ID=TEXT_IMAGE_SEARCH_DATASET_ID@@@
+@@@ dataset_basics, DATASET_ID=TEXT_IMAGE_SEARCH_DATASET_ID @@@
 
 Once we have inserted the data into the dataset, we can visit [RelevanceAI dashboard](https://cloud.relevance.ai/dataset/quickstart_clip/dashboard/monitor/vectors). The dashboard gives us a great overview of our dataset as shown below.
 
@@ -218,7 +218,7 @@ multivector_query=[
 ```python
 ```
 
-@@@vector_search
+@@@ vector_search @@@
 
 Here our query is just a simple multi-vector query, but our search comes with out of the box support for features such as multi-vector, filters, facets and traditional keyword matching to combine with your vector search. You can read more about how to construct a multivector query with those features [here](vector-search-prerequisites).
 

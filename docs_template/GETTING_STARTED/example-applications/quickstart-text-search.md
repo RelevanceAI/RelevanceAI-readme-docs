@@ -118,7 +118,7 @@ for d in documents:
 ```python
 ```
 
-@@@dataset_basics, DATASET_ID=QUICKSTART_TEXT_SEARCH_DATASET_ID@@@
+@@@ dataset_basics, DATASET_ID=QUICKSTART_TEXT_SEARCH_DATASET_ID @@@
 
 ### 3. Search
 
@@ -147,7 +147,7 @@ multivector_query=[
 ```python
 ```
 
-@@@ vector_search
+@@@ vector_search @@@
 
 We can see the results on the dashboard via the provided link after the search finishes. Or using Relevance AI json_shower as shown below:
 
