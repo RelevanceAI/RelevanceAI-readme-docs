@@ -7,7 +7,7 @@ import re
 
 import json
 
-from typing import List, Dict, Optional
+from typing import List, Dict, Optional, Union
 from typing_extensions import Literal
 
 import argparse
@@ -67,8 +67,8 @@ def load_snippet(
 
 
 def generate_ipynb_file(
-        input_fname: str,
-        output_fname: str,
+        input_fname: Union[str, Path],
+        output_fname: Union[str, Path],
         snippet_paths: List[Path],
         snippet_params=Dict
     ):
@@ -104,6 +104,7 @@ def generate_ipynb_file(
                     cell['source'][i] = ''.join(snippet)
                     print(''.join(snippet))
 
+    Path(output_fname.parent).mkdir(parents=True, exist_ok=True)
     logging.info(f'\tOutput file: {output_fname}')
     json.dump(notebook_json, fp=open(output_fname, 'w'), indent=4)
 
@@ -162,8 +163,8 @@ def generate_snippet(
 
 
 def generate_md_file(
-        input_fname: str,
-        output_fname: str,
+        input_fname: Union[str, Path],
+        output_fname: Union[str, Path],
         snippet_paths: List[Path],
         snippet_params: Dict
     ):
@@ -205,6 +206,8 @@ def generate_md_file(
         else:
             md_lines.append(line)
 
+    logging.info(f'\tCreating output file: {output_fname}')
+    Path(output_fname.parent).mkdir(parents=True, exist_ok=True)
     with open(output_fname, "w") as fout:
         for element in md_lines:
             fout.write(element + "\n")
@@ -268,7 +271,7 @@ def main(args):
             ## Generating for md
             MD_FILES = Path(root).glob('*.md')
             for input_fname in MD_FILES:
-                output_fname = str(input_fname).replace('docs_template', 'docs')
+                output_fname = Path(str(input_fname).replace('docs_template', 'docs'))
 
                 logging.debug('---')
                 generate_md_file(
@@ -281,7 +284,7 @@ def main(args):
             ### Generating for ipynb
             NOTEBOOK_FILES = Path(root).glob('*/*.ipynb')
             for input_fname in NOTEBOOK_FILES:
-                output_fname = str(input_fname).replace('docs_template', 'docs')
+                output_fname = Path(str(input_fname).replace('docs_template', 'docs'))
 
                 logging.debug('---')
                 generate_ipynb_file(
