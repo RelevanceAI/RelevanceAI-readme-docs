@@ -174,7 +174,7 @@ See your search results on the dashboard here https://cloud.relevance.ai/sdk/sea
 
 
 ```python Python (SDK)
-query = "xmas gifts; vector_search"
+query = xmas gifts; vector_search
 query_vec_txt = client.services.encoders.text(text=query)
 
 ```
