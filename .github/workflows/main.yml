@@ -20,7 +20,8 @@ jobs:
           python-version: '3.x'
 
       - name: Install requirements
-        run: pip install -r requirements.txt
+        run:
+          pip install -r requirements.txt
 
       - name: Set ReadMe version as Github env var
         run: |
@@ -86,10 +87,10 @@ jobs:
       #       ${{ runner.os }}-${{ env.pythonLocation }}-
 
       - name: Install requirements
-        run: pip install -r requirements.txt
+        run: |
+          pip install --upgrade pip
+          pip install -r requirements.txt
 
-      # - name: Install Colab requirements
-      #   run: pip install -r colab_requirements.txt
 
       - name: Test notebooks
         env:
