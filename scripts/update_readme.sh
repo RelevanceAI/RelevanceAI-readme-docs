@@ -26,7 +26,9 @@ function blue(){
 
 ROOT_PATH=${2:-$PWD}
 PIP_PACKAGE_NAME=${3:-"RelevanceAI"}
-README_VERSION=${4:-$(cat __version__)}
+
+GIT_BRANCH_VERSION=$(git rev-parse --abbrev-ref HEAD | sed 's/[v]//g')
+README_VERSION=${4:-$GIT_BRANCH_VERSION}
 
 
 CYAN "=== Updating asset links to v$README_VERSION ==="
