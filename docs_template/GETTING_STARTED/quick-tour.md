@@ -64,7 +64,7 @@ Use one of your sample datasets to insert into your own dataset!
 Encode new product image vector using our models out of the box using [Vectorhub's](https://hub.getvectorai.com/) `Clip2Vec` models and update your dataset.
 
 
-@@@ clip2vec_encode_image_documents, IMAGE_VECTOR_FIELDS=['product_image_clip_vector_'] @@@
+@@@ clip2vec_encode_image_documents, IMAGE_VECTOR_FIELDS=['product_image'] @@@
 
 
 Update the existing dataset with the encoding results and check the results
