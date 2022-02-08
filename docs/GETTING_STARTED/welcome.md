@@ -102,7 +102,7 @@ This is just the start. Relevance AI comes out of the box with support for more 
 
 **Get started with some example applications you can build with Relevance AI. Check out some other guides below!**
 - [Text-to-image search with OpenAI's CLIP](doc:quickstart-text-to-image-search)
-- [Multi-vector search with your own vectors](doc:search-with-your-own-vectors)
+- [Multi-vector search with your own vectors](docs:quickstart-multivector-search)
 - [Hybrid Text search with Universal Sentence Encoder using Vectorhub](doc:quickstart-text-search)
 - [Text search with Universal Sentence Encoder Question Answer from Google](doc:quickstart-question-answering)
 

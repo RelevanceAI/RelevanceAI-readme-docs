@@ -13,10 +13,10 @@ This quickstart shows how easy it is to get started and how to quickly build que
 <figcaption></figcaption>
 <figure>
 
-For each application, we demonstrate the ease of
-* encoding data,
+For each application, we demonstrate the ease of 
+* encoding data, 
 * indexing the data
-* vector search
+* vector search 
 
 to build powerful applications
 
@@ -36,8 +36,8 @@ Prior to starting, we need to install the main dependencies.
 ```
 ```bash
 ```
-### Setting Up Client
 
+### Setting Up Client
 To be able to use Relevance AI, you need to instantiate a client. This needs a Project and API key that can be accessed at https://cloud.relevance.ai/ in the settings area! Alternatively, you can run the code below and follow the link and the guide.
 
 ```python Python (SDK)
@@ -67,7 +67,7 @@ pd.DataFrame.from_dict(documents).head()
 ```python
 ```
 
-## Question Answering (Using TFHub's Universal Sentence Encoder QA)
+## Question Answering (Using TFHub's Universal Sentence Encoder QA) 
 
 Question answering can be a useful application of vector databases particularly for customer support and supporting search for FAQ documents. Here, we show an example of using TFHub's Question Answering Model.
 
@@ -90,7 +90,7 @@ def encode_query(query: str):
 # We then want to define how we encode the answers
 def encode_answer(answer: str):
     return module.signatures['response_encoder'](
-        input=tf.constant([answer]),
+        input=tf.constant([answer]), 
         context=tf.constant([answer]))['outputs'][0].numpy().tolist()
 
 ```
@@ -178,7 +178,7 @@ show_json(
 
 ```python Python (SDK)
 
-from relevanceai import Client
+from relevanceai import Client 
 
 client = Client()
 
@@ -206,7 +206,7 @@ def encode_query(query: str):
 # We then want to define how we encode the answers
 def encode_answer(answer: str):
     return module.signatures['response_encoder'](
-        input=tf.constant([answer]),
+        input=tf.constant([answer]), 
         context=tf.constant([answer]))['outputs'][0].numpy().tolist()
 
 # Endoing the dataset
@@ -226,7 +226,7 @@ df = client.Dataset(dataset_id)
 df.delete()
 df.insert_documents(documents)
 
-# Vector search
+# Vector search 
 query = "for my baby daughter"
 query_vector = encode_query(query)
 
