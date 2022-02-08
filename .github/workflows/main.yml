@@ -27,10 +27,8 @@ jobs:
           README_VERSION=$(cat __version__)
           echo "README_VERSION=$README_VERSION" >> $GITHUB_ENV
 
-      - name: Get branch name
-        shell: bash
-        run: echo "##[set-output name=branch;]$(echo ${GITHUB_REF#refs/heads/})"
-        id: get_branch
+      - id: get_branch
+        uses: ConduitVC/action-get-branch@master
 
       - name: Test for API keys in docs
         run: |
