@@ -105,7 +105,7 @@ enc = Clip2Vec()
 
 # Set the default encode to encoding an image
 enc.encode = enc.encode_image
-dataset = enc.encode_documents(fields=['product_image_clip_vector_'], documents=documents)
+dataset = enc.encode_documents(fields=['product_image'], documents=documents)
 
 ```
 ```python
