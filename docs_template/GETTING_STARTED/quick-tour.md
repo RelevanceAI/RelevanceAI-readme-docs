@@ -37,7 +37,7 @@ After installation, we need to also set up an API client. If you are missing an 
 
 
 <figure>
-<img src="https://github.com/RelevanceAI/RelevanceAI-readme-docs/blob/v0.33.2/docs_template/GETTING_STARTED/_assets/RelevanceAI_auth_token_details.png?raw=true" alt="Get your Auth Details" />
+<img src="https://github.com/RelevanceAI/RelevanceAI-readme-docs/blob/main/docs_template/_assets/RelevanceAI_dataset_dashboard.png?raw=true" alt="Get your Auth Details" />
 <figcaption>Get your Auth Details</figcaption>
 <figure>
 
@@ -52,7 +52,7 @@ Use one of your sample datasets to insert into your own dataset!
 
 
 <figure>
-<img src="https://github.com/RelevanceAI/RelevanceAI-readme-docs/blob/v0.33.2/docs_template/GETTING_STARTED/_assets/RelevanceAI_dataset_dashboard.png?raw=true" alt="See your dataset in the dashboard" />
+<img src="https://github.com/RelevanceAI/RelevanceAI-readme-docs/blob/main/docs_template/_assets/RelevanceAI_dataset_dashboard.png?raw=true" alt="See your dataset in the dashboard" />
 <figcaption>See your dataset in the dashboard</figcaption>
 <figure>
 
@@ -90,13 +90,13 @@ df.schema
 
 
 <figure>
-<img src="https://github.com/RelevanceAI/RelevanceAI-readme-docs/blob/v0.33.2/docs_template/GETTING_STARTED/_assets/RelevanceAI_vectors_dashboard.png?raw=true" alt="Monitor your vectors in the dashboard" />
+<img src="https://github.com/RelevanceAI/RelevanceAI-readme-docs/blob/main/docs_template/_assets/RelevanceAI_dataset_dashboard.png?raw=true" alt="Monitor your vectors in the dashboard" />
 <figcaption>Monitor your vectors in the dashboard</figcaption>
 <figure>
 
 
 <figure>
-<img src="https://github.com/RelevanceAI/RelevanceAI-readme-docs/blob/v0.33.2/docs_template/GETTING_STARTED/_assets/RelevanceAI_images_dashboard.png?raw=true" alt="View your dataset in the dashboard" />
+<img src="https://github.com/RelevanceAI/RelevanceAI-readme-docs/blob/main/docs_template/_assets/RelevanceAI_dataset_dashboard.png?raw=true" alt="View your dataset in the dashboard" />
 <figcaption>View your dataset in the dashboard</figcaption>
 <figure>
 
@@ -116,7 +116,7 @@ You can also get a list of documents that are closest to the center of the clust
 
 
 <figure>
-<img src="https://github.com/RelevanceAI/RelevanceAI-readme-docs/blob/v0.33.2/docs_template/GETTING_STARTED/_assets/RelevanceAI_cluster_dashboard.png?raw=true" alt="See what your clusters represent" />
+<img src="https://github.com/RelevanceAI/RelevanceAI-readme-docs/blob/main/docs_template/_assets/RelevanceAI_dataset_dashboard.png?raw=true" alt="See what your clusters represent" />
 <figcaption>See what your clusters represent</figcaption>
 <figure>
 
@@ -148,7 +148,7 @@ multivector_query = [
 
 
 <figure>
-<img src="https://github.com/RelevanceAI/RelevanceAI-readme-docs/blob/v0.33.2/docs_template/GETTING_STARTED/_assets/RelevanceAI_search_dashboard.png?raw=true"  alt="Visualise your search results" />
+<img src="https://github.com/RelevanceAI/RelevanceAI-readme-docs/blob/main/docs_template/_assets/RelevanceAI_dataset_dashboard.png?raw=true"  alt="Visualise your search results" />
 <figcaption>Visualise your search results</figcaption>
 <figure>
 
