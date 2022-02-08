@@ -146,7 +146,7 @@ Run clustering on your vectors to better understand your data. You can view the 
 
 
 ```python Python (SDK)
-clusterer = df.auto_cluster('kmeans-10', ['<<VECTOR_FIELD>>'])
+clusterer = df.auto_cluster('kmeans-10', ['product_image_clip_vector_'])
 ```
 ```python
 ```
@@ -181,7 +181,7 @@ query_vec_txt = client.services.encoders.text(text=query)
 results = df.vector_search(
     multivector_query=[
 		{"vector": query_vec_txt["vector"],
-"fields": ["product_image_clip_vector_"]}
+		"fields": ["product_image_clip_vector_"]}
 	],
     page_size=10
 )
