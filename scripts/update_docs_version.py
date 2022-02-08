@@ -23,7 +23,6 @@ def file_find_replace(fname: str, find_sent_regex: str, find_str_regex: str, rep
                     if find_sent:
                         find_sent = find_sent.group()
                         logging.debug(f"Found sentence: {find_sent}")
-
                         # if find_str == replace_str: continue
                         logging.debug(f"Find string regex: {find_str_regex}")
                         find_replace_str = re.search(find_str_regex, find_sent)
