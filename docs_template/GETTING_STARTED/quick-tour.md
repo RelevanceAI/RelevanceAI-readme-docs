@@ -114,8 +114,7 @@ You can read more about how to analyse clusters in your data [here](doc:quicksta
 See your search results on the dashboard here https://cloud.relevance.ai/sdk/search.
 
 
-@@@ encode_text_query, QUERY=xmas gifts; vector_search, MULTIVECTOR_QUERY=FEATURE_TOUR_MULTI_VECTOR_SEARCH_QUERY, PAGE_SIZE=10 @@@
-
+@@@+ encode_text_query, QUERY="xmas gifts"; vector_search, MULTIVECTOR_QUERY=FEATURE_TOUR_MULTI_VECTOR_SEARCH_QUERY, PAGE_SIZE=10 @@@
 
 
 

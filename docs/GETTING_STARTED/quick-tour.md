@@ -174,13 +174,20 @@ See your search results on the dashboard here https://cloud.relevance.ai/sdk/sea
 
 
 ```python Python (SDK)
-query = xmas gifts; vector_search
+query = "xmas gifts"
 query_vec_txt = client.services.encoders.text(text=query)
 
+
+results = df.vector_search(
+    multivector_query=[
+		{"vector": query_vec_txt["vector"],
+"fields": ["product_image_clip_vector_"]}
+	],
+    page_size=10
+)
 ```
 ```python
 ```
-
 
 
 
