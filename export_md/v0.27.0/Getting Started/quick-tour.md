@@ -52,7 +52,7 @@ client = Client()
 ```
 
 <figure>
-<img src="https://github.com/RelevanceAI/RelevanceAI-readme-docs/blob/main/docs/GETTING_STARTED/_assets/RelevanceAI_auth_token_details.png?raw=true" alt="Get your Auth Details" />
+<img src="https://github.com/RelevanceAI/RelevanceAI-readme-docs/blob/main/docs/_assets/RelevanceAI_auth_token_details.png?raw=true" alt="Get your Auth Details" />
 <figcaption>Get your Auth Details</figcaption>
 <figure>
 
@@ -79,7 +79,7 @@ client.insert_documents(dataset_id="quickstart", docs=documents)
 
 
 <figure>
-<img src="https://github.com/RelevanceAI/RelevanceAI-readme-docs/blob/main/docs/GETTING_STARTED/_assets/RelevanceAI_dataset_dashboard.png?raw=true" alt="See your dataset in the dashboard" />
+<img src="https://github.com/RelevanceAI/RelevanceAI-readme-docs/blob/main/docs/_assets/RelevanceAI_dataset_dashboard.png?raw=true" alt="See your dataset in the dashboard" />
 <figcaption>See your dataset in the dashboard</figcaption>
 <figure>
 
@@ -145,7 +145,7 @@ client.services.cluster.centroids.list_closest_to_center(
 
 
 <figure>
-<img src="https://github.com/RelevanceAI/RelevanceAI-readme-docs/blob/main/docs/GETTING_STARTED/_assets/RelevanceAI_cluster_dashboard.png?raw=true" alt="See what your clusters represent" />
+<img src="https://github.com/RelevanceAI/RelevanceAI-readme-docs/blob/main/docs/_assets/RelevanceAI_cluster_dashboard.png?raw=true" alt="See what your clusters represent" />
 <figcaption>See what your clusters represent</figcaption>
 <figure>
 
@@ -180,7 +180,7 @@ client.services.search.vector(
 
 
 <figure>
-<img src="https://github.com/RelevanceAI/RelevanceAI-readme-docs/blob/main/docs/GETTING_STARTED/_assets/RelevanceAI_search_dashboard.png?raw=true"  alt="Visualise your search results" />
+<img src="https://github.com/RelevanceAI/RelevanceAI-readme-docs/blob/main/docs_template/_assets/RelevanceAI_dataset_dashboard.png?raw=true"  alt="Visualise your search results" />
 <figcaption>Visualise your search results</figcaption>
 <figure>
 
