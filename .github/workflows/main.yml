@@ -27,13 +27,22 @@ jobs:
           README_VERSION=$(cat __version__)
           echo "README_VERSION=$README_VERSION" >> $GITHUB_ENV
 
+      - name: Get branch name
+        shell: bash
+        run: echo "##[set-output name=branch;]$(echo ${GITHUB_REF#refs/heads/})"
+        id: get_branch
+
       - name: Test for API keys in docs
         run: |
           python scripts/detect_api_keys.py -d -p docs -s False
 
-      - name: Update docs_template to match Readme version
+      - name: Update asset links
         run: |
-          python scripts/update_docs_version.py -d -p . -pn RelevanceAI -v $README_VERSION
+          python scripts/update_asset_ref.py -d -p . -pn RelevanceAI -v ${{ steps.get_branch.outputs.branch }}
+
+      - name: Update semver ref
+        run: |
+          python scripts/update_semver_ref.py -d -p . -pn RelevanceAI -v ${{ steps.get_branch.outputs.branch }}
 
       - name: Building docs from docs_template
         run: |
