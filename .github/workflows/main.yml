@@ -90,8 +90,8 @@ jobs:
       - name: Install requirements
         run: pip install -r requirements.txt
 
-      - name: Install Colab requirements
-        run: pip install -r colab_requirements.txt
+      # - name: Install Colab requirements
+      #   run: pip install -r colab_requirements.txt
 
       - name: Test notebooks
         env:
