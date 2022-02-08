@@ -36,7 +36,7 @@ Run this Quickstart in Colab: [![Open In Colab](https://colab.research.google.co
 
 ### 3. Clustering
 
-@@@ auto_cluster,  CLUSTERER=clusterer, KMEANS=KMEANS-2,  VECTOR_FIELD=EXAMPLE_VEC @@@
+@@@ auto_cluster, KMEANS=KMEANS-2,  VECTOR_FIELD=EXAMPLE_VEC @@@
 
 ### 4. Vector Search
 
