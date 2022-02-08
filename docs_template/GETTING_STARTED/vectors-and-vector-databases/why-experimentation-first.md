@@ -13,7 +13,7 @@ While vector databases are used to power recommendations and search engines - th
 ### Why are vector databases not easy to experiment with?
 
 <figure>
-<img src="https://github.com/RelevanceAI/RelevanceAI-readme-docs/blob/v0.33.2/docs_template/GETTING_STARTED/vectors-and-vector-databases/_assets/RelevanceAI_vectorbase_workflow.png?raw=true" width="650" alt="Typical Vector Database Workflow" />
+<img src="https://github.com/RelevanceAI/RelevanceAI-readme-docs/blob/v0.33.2-general-features/docs_template/GETTING_STARTED/vectors-and-vector-databases/_assets/RelevanceAI_vectorbase_workflow.png?raw=true" width="650" alt="Typical Vector Database Workflow" />
 <figcaption>Typical Vector Database Workflow</figcaption>
 <figure>
 
@@ -51,7 +51,7 @@ While these range from model problems to data problems, one thing is clear:
 ## Relevance AI's provides an experimentation-first vector database
 
 <figure>
-<img src="https://github.com/RelevanceAI/RelevanceAI-readme-docs/blob/v0.33.2/docs_template/GETTING_STARTED/vectors-and-vector-databases/_assets/RelevanceAI_experimentation_first_example_flow.png?raw=true" width="650" alt="Experimentation-first Vector Database Workflow" />
+<img src="https://github.com/RelevanceAI/RelevanceAI-readme-docs/blob/v0.33.2-general-features/docs_template/GETTING_STARTED/vectors-and-vector-databases/_assets/RelevanceAI_experimentation_first_example_flow.png?raw=true" width="650" alt="Experimentation-first Vector Database Workflow" />
 <figcaption>Experimentation-first Vector Database Workflow</figcaption>
 <figure>
 
@@ -74,7 +74,7 @@ Our models allow you to significantly reduce the time it takes for vector experi
 In addition to our vector database, we will also be open-sourcing a few tools to help users make the most out of the experimentation workflows. These tools include:
 - a Python SDK to our Vector Database
 - JSONShower to allow researchers and practitioners to quickly investigate the performance of their models from JSONs inside Jupyter Notebook environments
-- Search Comparator is a tool to quickly compare numerous queries and search configurations with customizable metrics and various other utilities like identifying the most different queries across configurations 
+- Search Comparator is a tool to quickly compare numerous queries and search configurations with customizable metrics and various other utilities like identifying the most different queries across configurations
 
 | **Attribute** |  **Relevance AI**  | **Other Solutions** |
 |:-----:|:--------:|:------:|

@@ -9,18 +9,18 @@ updatedAt: "2022-01-20T05:05:33.448Z"
 This quickstart shows how easy it is to get started and how to quickly build question-answering applications using Relevance AI in just a few lines of code. Visit the documentation pages on use-cases for more in-depth tutorials and explanations for experimenting with stronger vector search.
 
 <figure>
-<img src="https://github.com/RelevanceAI/RelevanceAI-readme-docs/blob/v0.33.2/docs_template/GETTING_STARTED/example-applications/_assets/RelevanceAI_questin_answering.png?raw=true" width="650" alt="Vector Spaces" />
+<img src="https://github.com/RelevanceAI/RelevanceAI-readme-docs/blob/v0.33.2-general-features/docs_template/GETTING_STARTED/example-applications/_assets/RelevanceAI_questin_answering.png?raw=true" width="650" alt="Vector Spaces" />
 <figcaption></figcaption>
 <figure>
 
-For each application, we demonstrate the ease of 
-* encoding data, 
+For each application, we demonstrate the ease of
+* encoding data,
 * indexing the data
-* vector search 
+* vector search
 
 to build powerful applications
 
-**Try it out in Colab:** [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/RelevanceAI/RelevanceAI-readme-docs/blob/v0.33.2/docs/GETTING_STARTED/example-applications/_notebooks/RelevanceAI_ReadMe_Quickstart_Question_Answering.ipynb)
+**Try it out in Colab:** [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/RelevanceAI/RelevanceAI-readme-docs/blob/v0.33.2-general-features/docs/GETTING_STARTED/example-applications/_notebooks/RelevanceAI_ReadMe_Quickstart_Question_Answering.ipynb)
 
 ### What I Need
 * Project and API Key: Grab your RelevanceAI project and API key by [signing up](https://cloud.relevance.ai/ )
@@ -40,7 +40,7 @@ To be able to use Relevance AI, you need to instantiate a client. This needs a P
 For this guide, we use our sample ecommerce dataset as shown below:
 @@@ get_ecommerce_clean @@@
 
-## Question Answering (Using TFHub's Universal Sentence Encoder QA) 
+## Question Answering (Using TFHub's Universal Sentence Encoder QA)
 
 Question answering can be a useful application of vector databases particularly for customer support and supporting search for FAQ documents. Here, we show an example of using TFHub's Question Answering Model.
 
@@ -63,7 +63,7 @@ def encode_query(query: str):
 # We then want to define how we encode the answers
 def encode_answer(answer: str):
     return module.signatures['response_encoder'](
-        input=tf.constant([answer]), 
+        input=tf.constant([answer]),
         context=tf.constant([answer]))['outputs'][0].numpy().tolist()
 
 ```
@@ -129,7 +129,7 @@ show_json(
 ```
 
 <figure>
-<img src="https://github.com/RelevanceAI/RelevanceAI-readme-docs/blob/v0.33.2/docs_template/GETTING_STARTED/example-applications/_assets/RelevanceAI_questin_answering_res.png?raw=true" width="650" alt="Vector Spaces" />
+<img src="https://github.com/RelevanceAI/RelevanceAI-readme-docs/blob/v0.33.2-general-features/docs_template/GETTING_STARTED/example-applications/_assets/RelevanceAI_questin_answering_res.png?raw=true" width="650" alt="Vector Spaces" />
 <figcaption></figcaption>
 <figure>
 
@@ -137,7 +137,7 @@ show_json(
 
 ```python Python (SDK)
 
-from relevanceai import Client 
+from relevanceai import Client
 
 client = Client()
 
@@ -165,7 +165,7 @@ def encode_query(query: str):
 # We then want to define how we encode the answers
 def encode_answer(answer: str):
     return module.signatures['response_encoder'](
-        input=tf.constant([answer]), 
+        input=tf.constant([answer]),
         context=tf.constant([answer]))['outputs'][0].numpy().tolist()
 
 # Endoing the dataset
@@ -185,7 +185,7 @@ df = client.Dataset(dataset_id)
 df.delete()
 df.insert_documents(documents)
 
-# Vector search 
+# Vector search
 query = "for my baby daughter"
 query_vector = encode_query(query)
 
