@@ -3,6 +3,7 @@
 "TEXT_IMAGE_SEARCH_DATASET_ID": "quickstart_clip",
 "MULTI_VECTOR_SEARCH_DATASET_ID": "quickstart_sample",
 "QUICKSTART_MULTI_VECTOR_SEARCH_QUERY": "[\n\t\t{\"vector\": [0.2, 0.2, 0.2], \"fields\": [\"example_vector\"]}\n\t]",
+"FEATURE_TOUR_MULTI_VECTOR_SEARCH_QUERY": "[\n\t\t{\"vector\": query_vec_txt[\"vector\"], \n\"fields\": [\"product_image_clip_vector_\"]}\n\t]",
 "QUICKSTART_TEXT_SEARCH_DATASET_ID": "quickstart-example",
 "QUICKSTART_QA_DATASET_ID": "quickstart_tfhub_qa",
 "KMEANS-2": "kmeans-2",
