@@ -172,41 +172,55 @@ show_json(results, image_fields=["product_image"], text_fields=["product_title"]
 
 ## Final Code
 
-
-
 ```python Python (SDK)
 from relevanceai import Client
 
+"""
+You can sign up/login and find your credentials here: https://cloud.relevance.ai/sdk/api
+Once you have signed up, click on the value under `Authorization token` and paste it here
+"""
 client = Client()
 
-# Retrieve our sample dataset. - This comes in the form of a list of documents.
-documents = get_sample_ecommerce_dataset()
-pd.DataFrame.from_dict(documents).head()
 
-client.datasets.delete("quickstart_sample")
-client.insert_documents("quickstart_sample", documents)
+from relevanceai.datasets import get_ecommerce_dataset_encoded
 
-# Let us get a document and its vector
-doc = client.datasets.documents.get(dataset_id="quickstart_sample", id="711161256")
-vector = doc['document']['product_image_clip_vector_']
+documents = get_ecommerce_dataset_encoded()
+{k:v for k, v in documents[0].items() if '_vector_' not in k}
 
-# Create a vector query - which is a list of Python dictionaries with the fields "vector" and "fields"
+DATASET_ID = "quickstart_sample"
+df = client.Dataset(DATASET_ID)
+df.delete()
+df.insert_documents(documents)
+
+# Query sample data
+sample_id = documents[0]['_id']
+documents = df.get_documents_by_ids([sample_id])["documents"]
+document = documents[sample_id]
+image_vector = document['product_image_clip_vector_']
+text_vector = document['product_title_clip_vector_']
+
+# Create a multivector query
 multivector_query = [
-    {"vector": vector, "fields": ['product_image_clip_vector_']}
+    {"vector": image_vector, "fields": ['product_image_clip_vector_']},
+    {"vector": text_vector, "fields": ['product_title_clip_vector_']}
 ]
 
-results = client.services.search.vector(
-    dataset_id="quickstart_sample",
+
+
+results = df.vector_search(
     multivector_query=multivector_query,
     page_size=5
 )
 
 from relevanceai import show_json
+
 print('=== QUERY === ')
-display(show_json([doc['document']], image_fields=["product_image"], text_fields=["product_title"]))
+display(show_json([document], image_fields=["product_image"], text_fields=["product_title"]))
 
 print('=== RESULTS ===')
 show_json(results, image_fields=["product_image"], text_fields=["product_title"])
 ```
 ```python
 ```
+
+

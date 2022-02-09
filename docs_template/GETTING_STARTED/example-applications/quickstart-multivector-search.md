@@ -111,41 +111,5 @@ Now lets show the results with `show_json`.
 
 ## Final Code
 
+@@@+ client_instantiation; get_ecommerce_dataset_encoded; dataset_basics, DATASET_ID=MULTI_VECTOR_SEARCH_DATASET_ID; quickstart_multivector_query, IMAGE_VECTOR='product_image_clip_vector_', TEXT_VECTOR='product_title_clip_vector_'; vector_search, MULTIVECTOR_QUERY=multivector_query, PAGE_SIZE=5; show_json_results, IMAGE_FIELDS=["product_image"], TEXT_FIELDS=["product_title"] @@@
 
-
-```python Python (SDK)
-from relevanceai import Client
-
-client = Client()
-
-# Retrieve our sample dataset. - This comes in the form of a list of documents.
-documents = get_sample_ecommerce_dataset()
-pd.DataFrame.from_dict(documents).head()
-
-client.datasets.delete("quickstart_sample")
-client.insert_documents("quickstart_sample", documents)
-
-# Let us get a document and its vector
-doc = client.datasets.documents.get(dataset_id="quickstart_sample", id="711161256")
-vector = doc['document']['product_image_clip_vector_']
-
-# Create a vector query - which is a list of Python dictionaries with the fields "vector" and "fields"
-multivector_query = [
-    {"vector": vector, "fields": ['product_image_clip_vector_']}
-]
-
-results = client.services.search.vector(
-    dataset_id="quickstart_sample",
-    multivector_query=multivector_query,
-    page_size=5
-)
-
-from relevanceai import show_json
-print('=== QUERY === ')
-display(show_json([doc['document']], image_fields=["product_image"], text_fields=["product_title"]))
-
-print('=== RESULTS ===')
-show_json(results, image_fields=["product_image"], text_fields=["product_title"])
-```
-```python
-```
