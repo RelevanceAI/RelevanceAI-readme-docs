@@ -59,7 +59,6 @@ def load_snippet(
             snippet[i] = line
     if ext == 'md':
         language = snippet[0].split(' ')[0]
-        print(f'Language{language}')
         snippet[0] = f"```{language} {RDMD_SNIPPET_LANGUAGES[language]}"
         snippet.append("```")
         snippet.append("```"+language)

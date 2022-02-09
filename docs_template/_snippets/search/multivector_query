@@ -1,6 +1,7 @@
 python
-# Create a multivector query
-multivector_query = [
-    {"vector": <<IMAGE_VECTOR>>>, "fields": <<IMAGE_VECTOR_FIELDS>>},
-    {"vector": <<TEXT_VECTOR>>, "fields": <<TEXT_VECTOR_FIELDS>>}
-]
+multivector_query=[
+        {
+            "vector": <<VECTOR_FIELD>>,
+            "fields": <<VECTOR_FIELDS>>
+        }
+    ]

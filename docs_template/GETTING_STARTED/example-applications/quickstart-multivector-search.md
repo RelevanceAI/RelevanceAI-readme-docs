@@ -88,14 +88,14 @@ Since this will be using your own vectors, we will skip vectorizing the query an
 Now, let us try out a query using a simple vector search against our dataset.
 
 
-@@@+ quickstart_multivector_query, IMAGE_VECTOR='product_image_clip_vector_',TEXT_VECTOR='product_title_clip_vector_'; vector_search, MULTIVECTOR_QUERY=multivector_query, PAGE_SIZE=5 @@@
+@@@+ multivector_query_sample_data, IMAGE_VECTOR='product_image_clip_vector_',TEXT_VECTOR='product_title_clip_vector_'; vector_search, MULTIVECTOR_QUERY=multivector_query, PAGE_SIZE=5 @@@
 
 Here our query is just a simple multi vector query, but our search comes with out of the box support for features such as multi-vector, filters, facets and traditional keyword matching to combine with your vector search. You can read more about how to construct a multivector query with those features [here](vector-search-prerequisites).
 
 Now lets show the results with `show_json`.
 
 
-@@@ show_json_results, IMAGE_FIELDS=["product_image"], TEXT_FIELDS=["product_title"] @@@
+@@@ multivector_query_show_json, IMAGE_FIELDS=["product_image"], TEXT_FIELDS=["product_title"] @@@
 
 <figure>
 <img src="https://github.com/RelevanceAI/RelevanceAI-readme-docs/blob/v0.33.2-getting-started/docs_template/GETTING_STARTED/example-applications/_assets/RelevanceAI_multivector_search_results.png?raw=true" width="650" alt="Multi-vector Search Results" />
@@ -111,5 +111,5 @@ Now lets show the results with `show_json`.
 
 ## Final Code
 
-@@@+ client_instantiation; get_ecommerce_dataset_encoded; dataset_basics, DATASET_ID=MULTI_VECTOR_SEARCH_DATASET_ID; quickstart_multivector_query, IMAGE_VECTOR='product_image_clip_vector_', TEXT_VECTOR='product_title_clip_vector_'; vector_search, MULTIVECTOR_QUERY=multivector_query, PAGE_SIZE=5; show_json_results, IMAGE_FIELDS=["product_image"], TEXT_FIELDS=["product_title"] @@@
+@@@+ client_instantiation; get_ecommerce_dataset_encoded; dataset_basics, DATASET_ID=MULTI_VECTOR_SEARCH_DATASET_ID; multivector_query_sample_data, IMAGE_VECTOR='product_image_clip_vector_', TEXT_VECTOR='product_title_clip_vector_'; vector_search, MULTIVECTOR_QUERY=multivector_query, PAGE_SIZE=5; multivector_query_show_json, IMAGE_FIELDS=["product_image"], TEXT_FIELDS=["product_title"] @@@
 

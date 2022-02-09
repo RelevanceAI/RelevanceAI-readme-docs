@@ -108,50 +108,13 @@ CLIP is a vectorizer from OpenAI that is trained to find similarities between te
 
 CLIP installation
 
-
-```bash Bash
-!pip install -q ftfy regex tqdm
-!pip install -q git+https://github.com/openai/CLIP.git
-```
-```bash
-```
-
+@@@ clip_installation @@@
 
 
 We instantiate the model and create functions to encode both image and text.
 
 
-
-```python Python (SDK)
-import torch
-import clip
-import requests
-from PIL import Image
-
-device = "cuda" if torch.cuda.is_available() else "cpu"
-model, preprocess = clip.load("ViT-B/32", device=device)
-
-# First - let's encode the image based on CLIP
-def encode_image(image):
-    # Let us download the image and then preprocess it
-    image = preprocess(Image.open(requests.get(image, stream=True).raw)).unsqueeze(0).to(device)
-    # We then feed our processed image through the neural net to get a vector
-    with torch.no_grad():
-      image_features = model.encode_image(image)
-    # Lastly we convert it to a list so that we can send it through the SDK
-    return image_features.tolist()[0]
-
-# Next - let's encode text based on CLIP
-def encode_text(text):
-    # let us get text and then tokenize it
-    text = clip.tokenize([text]).to(device)
-    # We then feed our processed text through the neural net to get a vector
-    with torch.no_grad():
-        text_features = model.encode_text(text)
-    return text_features.tolist()[0]
-```
-```python
-```
+@@@ clip_encoding_functions @@@
 
 
 We then encode the data.
@@ -162,18 +125,7 @@ We then encode the data.
 > Skip if you don't want to wait and re-encode the data as the e-commerce dataset already includes vectors.
 
 
-
-```python Python (SDK)
-def encode_image_document(d):
-  d['clip_product_image_vector_'] = encode_image(d['product_image'])
-
-# Let's import TQDM for a nice progress bar!
-from tqdm.auto import tqdm
-[encode_image_document(d) for d in tqdm(documents)]
-```
-```python
-```
-
+@@@ clip_encode_image_documents, IMAGE_VECTOR='product_image_clip_vector_', IMAGE_FIELD='product_image'  @@@
 
 ### 3. Insert
 
@@ -194,49 +146,19 @@ Once we have inserted the data into the dataset, we can visit [RelevanceAI dashb
 
 Lets first encode our text search query to vectors using CLIP.
 
-
-
-```python Python (SDK)
-query = "for my baby daughter"
-query_vector = encode_text(query)
-```
-```python
-```
+@@@ clip_encode_query, QUERY='for my baby daughter' @@@
 
 
 Now, let us try out a query using a simple vector search against our dataset.
 
-
-```python Python (SDK)
-multivector_query=[
-        {
-            "vector": query_vector,
-            "fields": ["clip_product_image_vector_"]
-        }
-    ]
-```
-```python
-```
-
-@@@ vector_search @@@
+@@@+ multivector_query, VECTOR_FIELD=query_vector, VECTOR_FIELDS=["clip_product_image_vector_"]; vector_search, MULTIVECTOR_QUERY=multivector_query, PAGE_SIZE=5 @@@
 
 Here our query is just a simple multi-vector query, but our search comes with out of the box support for features such as multi-vector, filters, facets and traditional keyword matching to combine with your vector search. You can read more about how to construct a multivector query with those features [here](vector-search-prerequisites).
 
 Next, we use `show_json` to visualize images and text easily and quickly!
 
 
-```python Python (SDK)
-from relevanceai import show_json
-
-show_json(
-    results['results'],
-    image_fields=["product_image"],
-    text_fields=["product_title"]
-)
-```
-```python
-```
-
+@@@ query_show_json, QUERY='for my baby daughter', IMAGE_FIELDS=["product_image"], TEXT_FIELDS=["product_title"] @@@
 
 
 <figure>

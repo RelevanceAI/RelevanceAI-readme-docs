@@ -130,18 +130,16 @@ CLIP is a vectorizer from OpenAI that is trained to find similarities between te
 
 CLIP installation
 
-
 ```bash Bash
-!pip install -q ftfy regex tqdm
-!pip install -q git+https://github.com/openai/CLIP.git
+# Clip installation
+!pip install ftfy regex tqdm
+!pip install git+https://github.com/openai/CLIP.git
 ```
 ```bash
 ```
 
 
-
 We instantiate the model and create functions to encode both image and text.
-
 
 
 ```python Python (SDK)
@@ -184,10 +182,9 @@ We then encode the data.
 > Skip if you don't want to wait and re-encode the data as the e-commerce dataset already includes vectors.
 
 
-
 ```python Python (SDK)
 def encode_image_document(d):
-  d['clip_product_image_vector_'] = encode_image(d['product_image'])
+  d['product_image_clip_vector_'] = encode_image(d['product_image'])
 
 # Let's import TQDM for a nice progress bar!
 from tqdm.auto import tqdm
@@ -195,7 +192,6 @@ from tqdm.auto import tqdm
 ```
 ```python
 ```
-
 
 ### 3. Insert
 
@@ -223,10 +219,8 @@ Once we have inserted the data into the dataset, we can visit [RelevanceAI dashb
 
 Lets first encode our text search query to vectors using CLIP.
 
-
-
 ```python Python (SDK)
-query = "for my baby daughter"
+query = 'for my baby daughter'
 query_vector = encode_text(query)
 ```
 ```python
@@ -235,7 +229,6 @@ query_vector = encode_text(query)
 
 Now, let us try out a query using a simple vector search against our dataset.
 
-
 ```python Python (SDK)
 multivector_query=[
         {
@@ -243,14 +236,10 @@ multivector_query=[
             "fields": ["clip_product_image_vector_"]
         }
     ]
-```
-```python
-```
 
-```python Python (SDK)
 results = df.vector_search(
-    multivector_query=<<MULTIVECTOR_QUERY>>,
-    page_size=<<PAGE_SIZE>>
+    multivector_query=multivector_query,
+    page_size=5
 )
 ```
 ```python
@@ -264,15 +253,14 @@ Next, we use `show_json` to visualize images and text easily and quickly!
 ```python Python (SDK)
 from relevanceai import show_json
 
-show_json(
-    results['results'],
-    image_fields=["product_image"],
-    text_fields=["product_title"]
-)
+print('=== QUERY === ')
+print('for my baby daughter')
+
+print('=== RESULTS ===')
+show_json(results, image_fields=["product_image"], text_fields=["product_title"])
 ```
 ```python
 ```
-
 
 
 <figure>

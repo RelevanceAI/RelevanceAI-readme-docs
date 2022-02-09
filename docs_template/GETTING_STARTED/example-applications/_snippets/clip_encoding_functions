@@ -1,0 +1,27 @@
+python
+import torch
+import clip
+import requests
+from PIL import Image
+
+device = "cuda" if torch.cuda.is_available() else "cpu"
+model, preprocess = clip.load("ViT-B/32", device=device)
+
+# First - let's encode the image based on CLIP
+def encode_image(image):
+    # Let us download the image and then preprocess it
+    image = preprocess(Image.open(requests.get(image, stream=True).raw)).unsqueeze(0).to(device)
+    # We then feed our processed image through the neural net to get a vector
+    with torch.no_grad():
+      image_features = model.encode_image(image)
+    # Lastly we convert it to a list so that we can send it through the SDK
+    return image_features.tolist()[0]
+
+# Next - let's encode text based on CLIP
+def encode_text(text):
+    # let us get text and then tokenize it
+    text = clip.tokenize([text]).to(device)
+    # We then feed our processed text through the neural net to get a vector
+    with torch.no_grad():
+        text_features = model.encode_text(text)
+    return text_features.tolist()[0]
