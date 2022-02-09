@@ -1,0 +1,14 @@
+python
+import torch
+from transformers import AutoTokenizer, AutoModel
+
+model_name = "bert-base-uncased"
+model = AutoModel.from_pretrained(model_name)
+tokenizer = AutoTokenizer.from_pretrained(model_name)
+
+def vectorize(text):
+ return (
+ torch.mean(model(**tokenizer(text, return_tensors="pt"))[0], axis=1)
+ .detach()
+ .tolist()[0]
+ )

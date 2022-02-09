@@ -1,10 +1,5 @@
 python
-def encode_documents(documents):
- for d in documents:
-    d["new_parameter"] = "new_value"
- return documents
-
 client.pull_update_push(
     dataset_id="<<DATASET_ID>>",
-    update_function=encode_documents
+    update_function=<<FUNCTION>>
 )

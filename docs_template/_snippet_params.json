@@ -10,4 +10,22 @@
 "KMEANS-10": "kmeans-10",
 "EXAMPLE_VEC": "example_vector_",
 "IMAGE_CLIP_VEC": "product_image_clip_vector_",
-"ECOMMERCE_SAMPLE_DATASET_ID": "ecommerce-sample-dataset"}
+"ECOMMERCE_SAMPLE_DATASET_ID": "ecommerce-sample-dataset",
+"ENCODING_SAMPLE": "I love working with vectors.",
+"SAMPLE_DOCS": [
+    {"sentence":"This is the first sentence.",
+    "_id":1},
+    {"sentence":"This is the second sentence.",
+    "_id":2}
+    ],
+"ENCODE_FIELD": "sentence",
+"ENCODE_DOCUMENTS_FUNC": "encode_documents",
+"ECOMMERCE_DATASET_ID": "ecommerce_dataset",
+"PRODUCT_DESCRIPTION_FIELD": "product_description",
+"PRODUCT_IMG_FIELD": "product_image",
+"IMGAGE_SAMPLE": "https://relevance.ai/wp-content/uploads/2021/10/statue-illustration.png",
+"SAMPLE_IMG_DOCS": [
+    {"image_url": "https://relevance.ai/wp-content/uploads/2021/10/statue-illustration.png"},
+    {"image_url": "https://relevance.ai/wp-content/uploads/2021/09/Group-193-1.png"}],
+"IMG_URL_FIELD": "image_url"
+}

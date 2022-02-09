@@ -37,7 +37,9 @@ The easiest way to modify and update all documents in a dataset is to run `pull_
 > To quickly try out new experiments on your entire dataset, we built `pull_update_push` to easily update all documents in a dataset. It uses Python's function callables to help accelerate the modification process and immediately update documents in the vector database.
 An example of `pull_update_push` can be found here in which a new field `new_parameter` is added to every single document in a specified dataset.
 
-@@@ pull_update_push, DATASET_ID=QUICKSTART_DATASET_ID @@@
+@@@ encode_documents_sample_func @@@
+
+@@@ pull_update_push, DATASET_ID=QUICKSTART_DATASET_ID, FUNCTION=ENCODE_DOCUMENTS_FUNC @@@
 
 ## About Pull Update Push
 
