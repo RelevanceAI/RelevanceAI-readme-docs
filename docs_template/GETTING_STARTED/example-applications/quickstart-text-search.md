@@ -123,6 +123,15 @@ We can see the results on the dashboard via the provided link after the search f
 
 
 
+<figure>
+<img src="https://github.com/RelevanceAI/RelevanceAI-readme-docs/blob/v0.33.2-getting-started/docs_template/GETTING_STARTED/example-applications/_assets/RelevanceAI_text_search.png?raw=true"
+     alt="RelevanceAI Text to Image"
+     style="width: 100% vertical-align: middle"/>
+<figcaption>
+<a href="https://tfhub.dev/google/universal-sentence-encoder/4">Universal Sentence Encoder encoding process</a>
+</figcaption>
+
+<figure>
 
 This is just a quick and basic example of using Relevance AI for text search, there are many other search features such as faceted vector search, hybrid search, chunk search, multivector search. For further information please visit [Better text search](doc:better-text-search).
 

@@ -99,11 +99,11 @@ Encode new product image vector using our models out of the box using [Vectorhub
 ```python Python (SDK)
 from vectorhub.bi_encoders.text_image.torch import Clip2Vec
 
-enc = Clip2Vec()
+model = Clip2Vec()
 
 # Set the default encode to encoding an image
-enc.encode = enc.encode_image
-dataset = enc.encode_documents(fields=['product_image'], documents=documents)
+model.encode = enc.encode_image
+dataset = model.encode_documents(fields=['product_image'], documents=documents)
 
 ```
 ```python
@@ -170,22 +170,23 @@ See your search results on the dashboard here https://cloud.relevance.ai/sdk/sea
 
 
 ```python Python (SDK)
-query = "xmas gifts"
-query_vec_txt = client.services.encoders.text(text=query)
+query = "gifts for the holidays"
+query_vector = model.encode(query)
 
+multivector_query=[
+        {
+            "vector": query_vector,
+            "fields": ["product_image_clip_vector_"]
+        }
+    ]
 
 results = df.vector_search(
-    multivector_query=[
-		{"vector": query_vec_txt["vector"],
-		"fields": ["product_image_clip_vector_"]}
-	],
+    multivector_query=multivector_query,
     page_size=10
 )
 ```
 ```python
 ```
-
-
 
 <figure>
 <img src="https://github.com/RelevanceAI/RelevanceAI-readme-docs/blob/v0.33.2-getting-started/docs_template/_assets/RelevanceAI_search_dashboard.png?raw=true"  alt="Visualise your search results" />
