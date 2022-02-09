@@ -91,6 +91,9 @@ documents = get_ecommerce_dataset_encoded()
 To insert data to a dataset, you can use the `insert_documents` method.  Note that this step is also already done in our sample dataset.
 
 ```python Python (SDK)
+DATASET_ID = "quickstart_sample"
+df = client.Dataset(DATASET_ID)
+df.delete()
 df.insert_documents(documents)
 ```
 ```python
@@ -111,31 +114,25 @@ After finalizing the insert task, the client returns a link guiding you to a das
 Since this will be using your own vectors, we will skip vectorizing the query and just retrieve a vector from an existing document in the dataset.
 
 
-```python Python (SDK)
-documents = df.get_documents_by_ids([documents[0]['_id']])["documents"]
-document = documents[documents[0]['_id']]
-image_vector = document['product_image_clip_vector_']
-text_vector = document['product_title_clip_vector_']
-```
-```python
-```
-
 Now, let us try out a query using a simple vector search against our dataset.
 
 
-
 ```python Python (SDK)
-# Create a multivector_query parameter - which is a list of Python dictionaries with 2 keys  "vector" and "fields"
+# Query sample data
+sample_id = documents[0]['id']
+documents = df.get_documents_by_ids([sample_id])["documents"]
+document = documents[sample_id]
+image_vector = document['product_image_clip_vector_']
+text_vector = document['product_title_clip_vector_']
+
+# Create a multivector query
 multivector_query = [
     {"vector": image_vector, "fields": ['product_image_clip_vector_']},
-    {"vector": text_vector, "fields": ['product_title_use_vector_']}
+    {"vector": text_vector, "fields": ['product_title_clip_vector_']}
 ]
 
-```
-```python
-```
 
-```python Python (SDK)
+
 results = df.vector_search(
     multivector_query=multivector_query,
     page_size=5

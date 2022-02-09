@@ -68,7 +68,7 @@ Here, we get a dataset that has been already encoded into vectors; so we will be
 
 To insert data to a dataset, you can use the `insert_documents` method.  Note that this step is also already done in our sample dataset.
 
-@@@ insert_documents, DATASET_ID=MULTI_VECTOR_SEARCH_DATASET_ID @@@
+@@@ dataset_basics, DATASET_ID=MULTI_VECTOR_SEARCH_DATASET_ID @@@
 
 After finalizing the insert task, the client returns a link guiding you to a dashboard to check your schema and vector health!
 
@@ -85,31 +85,10 @@ After finalizing the insert task, the client returns a link guiding you to a das
 Since this will be using your own vectors, we will skip vectorizing the query and just retrieve a vector from an existing document in the dataset.
 
 
-```python Python (SDK)
-documents = df.get_documents_by_ids([documents[0]['_id']])["documents"]
-document = documents[documents[0]['_id']]
-image_vector = document['product_image_clip_vector_']
-text_vector = document['product_title_clip_vector_']
-```
-```python
-```
-
 Now, let us try out a query using a simple vector search against our dataset.
 
 
-
-```python Python (SDK)
-# Create a multivector_query parameter - which is a list of Python dictionaries with 2 keys  "vector" and "fields"
-multivector_query = [
-    {"vector": image_vector, "fields": ['product_image_clip_vector_']},
-    {"vector": text_vector, "fields": ['product_title_use_vector_']}
-]
-
-```
-```python
-```
-
-@@@ vector_search, MULTIVECTOR_QUERY=multivector_query, PAGE_SIZE=5 @@@
+@@@+ quickstart_multivector_query, IMAGE_VECTOR='product_image_clip_vector_',TEXT_VECTOR='product_title_clip_vector_'; vector_search, MULTIVECTOR_QUERY=multivector_query, PAGE_SIZE=5 @@@
 
 Here our query is just a simple multi vector query, but our search comes with out of the box support for features such as multi-vector, filters, facets and traditional keyword matching to combine with your vector search. You can read more about how to construct a multivector query with those features [here](vector-search-prerequisites).
 
