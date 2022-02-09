@@ -231,10 +231,7 @@ Now, let us try out a query using a simple vector search against our dataset.
 
 ```python Python (SDK)
 multivector_query=[
-        {
-            "vector": query_vector,
-            "fields": ["product_image_clip_vector_"]
-        }
+        { "vector": query_vector, "fields": ["product_image_clip_vector_"]}
     ]
 
 results = df.vector_search(
@@ -334,10 +331,7 @@ query = 'for my baby daughter'
 query_vector = encode_text(query)
 
 multivector_query=[
-        {
-            "vector": query_vector,
-            "fields": ["product_image_clip_vector_"]
-        }
+        { "vector": query_vector, "fields": ["product_image_clip_vector_"]}
     ]
 
 results = df.vector_search(

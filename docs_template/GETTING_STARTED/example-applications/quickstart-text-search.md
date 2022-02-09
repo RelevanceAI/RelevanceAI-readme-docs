@@ -96,11 +96,10 @@ enc.__name__ = "model_name_goes_here"
 
 ### 3. Insert
 
-The data can be easily uploaded to Relevance AI platform via `insert_documents`. Note that all documents must include an `_id` field containing a unique identifier. Such an identifier can be generated using the Python `uuid` package.
+The data can be easily uploaded to Relevance AI platform via `insert_documents`.
 
 
-
-@@@+ uuid; dataset_basics, DATASET_ID=QUICKSTART_TEXT_SEARCH_DATASET_ID @@@
+@@@+  dataset_basics, DATASET_ID=QUICKSTART_TEXT_SEARCH_DATASET_ID @@@
 
 ### 3. Search
 

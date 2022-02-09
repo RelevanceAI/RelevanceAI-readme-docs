@@ -110,7 +110,7 @@ Next, we will instantiate the universal sentence encoder from VectorHub and enco
 from vectorhub.encoders.text.tfhub import USE2Vec
 model = USE2Vec()
 
-documents = model.encode_documents(fields=['product_title'], documents)
+documents = model.encode_documents(fields=['product_title'], documents=documents)
 
 ```
 ```python
@@ -131,17 +131,10 @@ enc.__name__ = "model_name_goes_here"
 
 ### 3. Insert
 
-The data can be easily uploaded to Relevance AI platform via `insert_documents`. Note that all documents must include an `_id` field containing a unique identifier. Such an identifier can be generated using the Python `uuid` package.
-
+The data can be easily uploaded to Relevance AI platform via `insert_documents`.
 
 
 ```python Python (SDK)
-import uuid
-
-for d in documents:
-  d['_id'] = uuid.uuid4().__str__()    # Each document must have a field '_id'
-
-
 DATASET_ID = "quickstart-example"
 df = client.Dataset(DATASET_ID)
 df.delete()
@@ -167,10 +160,7 @@ Simple vector search against our dataset:
 
 ```python Python (SDK)
 multivector_query=[
-        {
-            "vector": query_vector,
-            "fields": ["product_title_use_vector_"]
-        }
+        { "vector": query_vector, "fields": ["product_title_use_vector_"]}
     ]
 
 results = df.vector_search(
@@ -200,6 +190,15 @@ show_json(results, image_fields=["product_image"], text_fields=["product_title"]
 
 
 
+<figure>
+<img src="https://github.com/RelevanceAI/RelevanceAI-readme-docs/blob/v0.33.2-getting-started/docs_template/GETTING_STARTED/example-applications/_assets/RelevanceAI_text_search.png?raw=true"
+     alt="RelevanceAI Text to Image"
+     style="width: 100% vertical-align: middle"/>
+<figcaption>
+<a href="https://tfhub.dev/google/universal-sentence-encoder/4">Universal Sentence Encoder encoding process</a>
+</figcaption>
+
+<figure>
 
 This is just a quick and basic example of using Relevance AI for text search, there are many other search features such as faceted vector search, hybrid search, chunk search, multivector search. For further information please visit [Better text search](doc:better-text-search).
 

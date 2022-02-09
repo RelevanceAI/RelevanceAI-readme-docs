@@ -174,10 +174,7 @@ query = "gifts for the holidays"
 query_vector = model.encode(query)
 
 multivector_query=[
-        {
-            "vector": query_vector,
-            "fields": ["product_image_clip_vector_"]
-        }
+        { "vector": query_vector, "fields": ["product_image_clip_vector_"]}
     ]
 
 results = df.vector_search(
