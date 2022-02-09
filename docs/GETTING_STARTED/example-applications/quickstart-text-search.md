@@ -170,7 +170,7 @@ We can see the results on the dashboard via the provided link after the search f
 from relevanceai import show_json
 
 print('=== QUERY === ')
-print('Gift for my son')
+print(query)
 
 print('=== RESULTS ===')
 show_json(results, image_fields=["product_image"], text_fields=["product_title"])

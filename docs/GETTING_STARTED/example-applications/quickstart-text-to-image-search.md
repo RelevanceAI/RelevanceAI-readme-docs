@@ -244,7 +244,7 @@ Next, we use `show_json` to visualize images and text easily and quickly!
 from relevanceai import show_json
 
 print('=== QUERY === ')
-print('for my baby daughter')
+print(query)
 
 print('=== RESULTS ===')
 show_json(results, image_fields=["product_image"], text_fields=["product_title"])
@@ -335,7 +335,7 @@ results = df.vector_search(
 from relevanceai import show_json
 
 print('=== QUERY === ')
-print('for my baby daughter')
+print(query)
 
 print('=== RESULTS ===')
 show_json(results, image_fields=["product_image"], text_fields=["product_title"])
