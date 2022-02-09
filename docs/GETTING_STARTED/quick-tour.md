@@ -102,7 +102,7 @@ from vectorhub.bi_encoders.text_image.torch import Clip2Vec
 model = Clip2Vec()
 
 # Set the default encode to encoding an image
-model.encode = enc.encode_image
+model.encode = model.encode_image
 dataset = model.encode_documents(fields=['product_image'], documents=documents)
 
 ```

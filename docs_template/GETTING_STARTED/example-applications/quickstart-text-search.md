@@ -53,26 +53,7 @@ For this experiment, we use our sample e-commerce dataset and preview one of the
 An example document should have a structure that looks like this.
 
 
-
-```json JSON
-{
-  "_id": "711158459",
-  "_unit_id": 711158459,
-  "product_description": "The PlayStation 4 system opens the door to an incredible journey through immersive new gaming worlds and a deeply connected gaming community. Step into living, breathing worlds where you are hero of your epic journey. Explore gritty urban environments, vast galactic landscapes, and fantastic historical settings brought to life on an epic scale, without limits. With an astounding launch lineup and over 180 games in development the PS4 system offers more top-tier blockbusters and inventive indie hits than any other next-gen console. The PS4 system is developer inspired, gamer focused. The PS4 system learns how you play and intuitively curates the content you use most often. Fire it up, and your PS4 system points the way to new, amazing experiences you can jump into alone or with friends. Create your own legend using a sophisticated, intuitive network built for gamers. Broadcast your gameplay live and direct to the world, complete with your commentary. Or immortalize your most epic moments and share at the press of a button. Access the best in music, movies, sports and television. PS4 system doesn t require a membership fee to access your digital entertainment subscriptions. You get the full spectrum of entertainment that matters to you on the PS4 system. PlayStation 4: The Best Place to Play The PlayStation 4 system provides dynamic, connected gaming, powerful graphics and speed, intelligent personalization, deeply integrated social capabilities, and innovative second-screen features. Combining unparalleled content, immersive gaming experiences, all of your favorite digital entertainment apps, and PlayStation exclusives, the PS4 system focuses on the gamers.Gamer Focused, Developer InspiredThe PS4 system focuses on the gamer, ensuring that the very best games and the most immersive experiences are possible on the platform.<br>Read more about the PS4 on ebay guides.</br>",
-  "product_image": "https://thumbs2.ebaystatic.com/d/l225/m/mzvzEUIknaQclZ801YCY1ew.jpg",
-  "product_link": "https://www.ebay.com/itm/Sony-PlayStation-4-PS4-Latest-Model-500-GB-Jet-Black-Console-/321459436277?pt=LH_DefaultDomain_0&hash=item4ad879baf5",
-  "product_price": "$329.98 ",
-  "product_title": "Sony PlayStation 4 (PS4) (Latest Model)- 500 GB Jet Black Console",
-  "query": "playstation 4",
-  "rank": 1,
-  "relevance": 3.67,
-  "relevance:variance": 0.47100000000000003,
-  "source": "eBay",
-  "url": "https://www.ebay.com/sch/i.html?_from=R40&_trksid=p2050601.m570.l1313.TR11.TRC1.A0.H0.Xplant.TRS0&_nkw=playstation%204"
-}
-```
-```json
-```
+@@@ ecommerce_dataset_clean_sample_document@@@
 
 ### 2. Encode
 
@@ -99,7 +80,7 @@ enc.__name__ = "model_name_goes_here"
 The data can be easily uploaded to Relevance AI platform via `insert_documents`.
 
 
-@@@+  dataset_basics, DATASET_ID=QUICKSTART_TEXT_SEARCH_DATASET_ID @@@
+@@@+ dataset_basics, DATASET_ID=QUICKSTART_TEXT_SEARCH_DATASET_ID @@@
 
 ### 3. Search
 
@@ -114,21 +95,17 @@ Simple vector search against our dataset:
 @@@+ multivector_query, VECTOR_FIELD=query_vector, VECTOR_FIELDS=["product_title_use_vector_"];  vector_search, MULTIVECTOR_QUERY=multivector_query, PAGE_SIZE=5 @@@
 
 
-We can see the results on the dashboard via the provided link after the search finishes. Or using Relevance AI json_shower as shown below:
-
-
+We can see the results on the dashboard via the provided link after the search finishes. Or using Relevance AI `json_shower` as shown below:
 
 @@@ query_show_json, QUERY='Gift for my son', IMAGE_FIELDS=["product_image"], TEXT_FIELDS=["product_title"] @@@
 
 
 
 <figure>
-<img src="https://github.com/RelevanceAI/RelevanceAI-readme-docs/blob/v0.33.2-getting-started/docs_template/GETTING_STARTED/example-applications/_assets/RelevanceAI_text_search.png?raw=true"
-     alt="RelevanceAI Text to Image"
+<img src="https://github.com/RelevanceAI/RelevanceAI-readme-docs/blob/v0.33.2-getting-started/docs_template/GETTING_STARTED/example-applications/_assets/RelevanceAI_text_search_results.png?raw=true"
+     alt="Text Search Results"
      style="width: 100% vertical-align: middle"/>
-<figcaption>
-<a href="https://tfhub.dev/google/universal-sentence-encoder/4">Universal Sentence Encoder encoding process</a>
-</figcaption>
+<figcaption>Text Search Results</figcaption>
 
 <figure>
 
@@ -141,54 +118,4 @@ This is just a quick and basic example of using Relevance AI for text search, th
 
 ## Final Code
 
-
-
-```python Python (SDK)
-from relevanceai import Client
-
-client = Client()
-
-import pandas as pd
-from relevanceai.datasets import get_ecommerce_dataset_clean
-
-# Retrieve our sample dataset. - This comes in the form of a list of documents.
-documents = get_ecommerce_dataset_clean()
-
-pd.DataFrame.from_dict(documents).head()
-
-from vectorhub.encoders.text.tfhub import USE2Vec
-enc = USE2Vec()
-
-# To encode the product_title field in all the documents
-documents = enc.encode_documents(["product_title"], documents)
-
-# Insert the documents into the quickstart-example below.
-dataset_id = "quickstart-example"
-df = client.Dataset(dataset_id)
-df.delete()
-df.insert_documents(documents)
-
-# vector search
-query = "gift for my son"
-query_vector = enc.encode(query)
-
-multivector_query=[
-        {
-            "vector": query_vector,
-            "fields": ["product_title_use_vector_"] # Field to search on
-        }
-    ]
-
-results = df.vector_search(
-    multivector_query=multivector_query,
-    page_size=5
-)
-
-from relevanceai import show_json
-show_json(
-    results['results'],
-    text_fields=["product_title"],
-)
-```
-```python
-```
+@@@+ client_instantiation; get_ecommerce_dataset_clean; use2vec_encode_documents, TEXT_VECTOR_FIELDS=['product_title']; dataset_basics, DATASET_ID=QUICKSTART_TEXT_SEARCH_DATASET_ID;  model_encode_query, QUERY='Gift for my son'; multivector_query, VECTOR_FIELD=query_vector, VECTOR_FIELDS=["product_title_use_vector_"];  vector_search, MULTIVECTOR_QUERY=multivector_query, PAGE_SIZE=5; query_show_json, QUERY='Gift for my son', IMAGE_FIELDS=["product_image"], TEXT_FIELDS=["product_title"] @@@
