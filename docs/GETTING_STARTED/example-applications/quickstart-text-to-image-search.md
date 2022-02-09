@@ -7,7 +7,7 @@ hidden: false
 
 
 <figure>
-<img src="https://github.com/RelevanceAI/RelevanceAI-readme-docs/blob/v0.33.2-getting-started/docs_template/GETTING_STARTED/example-applications/_assets/RelevanceAI_text_to_image.gif?raw=true"
+<img src="https://github.com/RelevanceAI/RelevanceAI-readme-docs/blob/v0.33.2/docs_template/GETTING_STARTED/example-applications/_assets/RelevanceAI_text_to_image.gif?raw=true"
      alt="RelevanceAI Text to Image"
      style="width: 100% vertical-align: middle"/>
 <figcaption>
@@ -19,7 +19,7 @@ hidden: false
 This section, we will show you how to create and experiment with a powerful text-to-image search engine using OpenAI's CLIP and Relevance AI.
 
 
-**Try it out in Colab:** [![Open In Colab](https://colab.research.google.com/_assets/colab-badge.svg)](https://colab.research.google.com/github/RelevanceAI/RelevanceAI-readme-docs/blob/v0.33.2-getting-started/docs/GETTING_STARTED/example-applications/_notebooks/RelevanceAI-ReadMe-Text-to-Image-Search.ipynb)
+**Try it out in Colab:** [![Open In Colab](https://colab.research.google.com/_assets/colab-badge.svg)](https://colab.research.google.com/github/RelevanceAI/RelevanceAI-readme-docs/blob/v0.33.2/docs/GETTING_STARTED/example-applications/_notebooks/RelevanceAI-ReadMe-Text-to-Image-Search.ipynb)
 
 
 ### What I Need
@@ -71,7 +71,7 @@ To be able to perform text-to-image search, we will show you how to:
 
 
 <figure>
-<img src="https://github.com/RelevanceAI/RelevanceAI-readme-docs/blob/v0.33.2-getting-started/docs_template/GETTING_STARTED/example-applications/_assets/RelevanceAI_search_steps.png?raw=true" width="650" alt="Steps to search" />
+<img src="https://github.com/RelevanceAI/RelevanceAI-readme-docs/blob/v0.33.2/docs_template/GETTING_STARTED/example-applications/_assets/RelevanceAI_search_steps.png?raw=true" width="650" alt="Steps to search" />
 <figcaption>Steps to search</figcaption>
 <figure>
 
@@ -80,42 +80,35 @@ To be able to perform text-to-image search, we will show you how to:
 
 Here, we use our sample e-commerce dataset and preview one of the documents.
 
-
-
 ```python Python (SDK)
-from relevanceai.datasets import get_ecommerce_dataset_encoded
+import pandas as pd
+from relevanceai.datasets import get_ecommerce_dataset_clean
 
-documents = get_ecommerce_dataset_encoded()
-{k:v for k, v in documents[0].items() if '_vector_' not in k}
+# Retrieve our sample dataset. - This comes in the form of a list of documents.
+documents = get_ecommerce_dataset_clean()
+
+pd.DataFrame.from_dict(documents).head()
 ```
 ```python
 ```
 
 An example document should have a structure that looks like this:
 
-
 ```json JSON
-{
-  "_id": "711158459",
-  "_unit_id": 711158459,
-  "product_description": "The PlayStation 4 system opens the door to an incredible journey through immersive new gaming worlds and a deeply connected gaming community. Step into living, breathing worlds where you are hero of your epic journey. Explore gritty urban environments, vast galactic landscapes, and fantastic historical settings brought to life on an epic scale, without limits. With an astounding launch lineup and over 180 games in development the PS4 system offers more top-tier blockbusters and inventive indie hits than any other next-gen console. The PS4 system is developer inspired, gamer focused. The PS4 system learns how you play and intuitively curates the content you use most often. Fire it up, and your PS4 system points the way to new, amazing experiences you can jump into alone or with friends. Create your own legend using a sophisticated, intuitive network built for gamers. Broadcast your gameplay live and direct to the world, complete with your commentary. Or immortalize your most epic moments and share at the press of a button. Access the best in music, movies, sports and television. PS4 system doesn t require a membership fee to access your digital entertainment subscriptions. You get the full spectrum of entertainment that matters to you on the PS4 system. PlayStation 4: The Best Place to Play The PlayStation 4 system provides dynamic, connected gaming, powerful graphics and speed, intelligent personalization, deeply integrated social capabilities, and innovative second-screen features. Combining unparalleled content, immersive gaming experiences, all of your favorite digital entertainment apps, and PlayStation exclusives, the PS4 system focuses on the gamers.Gamer Focused, Developer InspiredThe PS4 system focuses on the gamer, ensuring that the very best games and the most immersive experiences are possible on the platform.<br>Read more about the PS4 on ebay guides.</br>",
-  "product_image": "https://thumbs2.ebaystatic.com/d/l225/m/mzvzEUIknaQclZ801YCY1ew.jpg",
-  "product_link": "https://www.ebay.com/itm/Sony-PlayStation-4-PS4-Latest-Model-500-GB-Jet-Black-Console-/321459436277?pt=LH_DefaultDomain_0&hash=item4ad879baf5",
-  "product_price": "$329.98 ",
-  "product_title": "Sony PlayStation 4 (PS4) (Latest Model)- 500 GB Jet Black Console",
-  "query": "playstation 4",
-  "rank": 1,
-  "relevance": 3.67,
-  "relevance:variance": 0.47100000000000003,
-  "source": "eBay",
-  "url": "https://www.ebay.com/sch/i.html?_from=R40&_trksid=p2050601.m570.l1313.TR11.TRC1.A0.H0.Xplant.TRS0&_nkw=playstation%204"
+{'_id': '711160239',
+  'product_image': 'https://thumbs4.ebaystatic.com/d/l225/pict/321567405391_1.jpg',
+  'product_link': 'https://www.ebay.com/itm/20-36-Mens-Silver-Stainless-Steel-Braided-Wheat-Chain-Necklace-Jewelry-3-4-5-6MM-/321567405391?pt=LH_DefaultDomain_0&var=&hash=item4adee9354f',
+  'product_price': '$7.99 to $12.99',
+  'product_title': '20-36Mens Silver Stainless Steel Braided Wheat Chain Necklace Jewelry 3/4/5/6MM"',
+  'query': 'steel necklace',
+  'source': 'eBay'
 }
-
 ```
 ```json
 ```
 
-As you can see each data entry contains both text (`product_title`, `product_description`) and image (`product_image`).
+
+As you can see each data entry contains both text (`product_title`) and image (`product_image`).
 
 
 ### 2. Encode
@@ -123,7 +116,7 @@ As you can see each data entry contains both text (`product_title`, `product_des
 CLIP is a vectorizer from OpenAI that is trained to find similarities between text and image pairs. In the code below we set up and install CLIP.
 
 <figure>
-<img src="https://github.com/RelevanceAI/RelevanceAI-readme-docs/blob/v0.33.2-getting-started/docs_template/GETTING_STARTED/example-applications/_assets/RelevanceAI_CLIP_contrastive_pretraining.png?raw=true" width="650" alt="Photo of OpenAI's CLIP architecture from OpenAI" />
+<img src="https://github.com/RelevanceAI/RelevanceAI-readme-docs/blob/v0.33.2/docs_template/GETTING_STARTED/example-applications/_assets/RelevanceAI_CLIP_contrastive_pretraining.png?raw=true" width="650" alt="Photo of OpenAI's CLIP architecture from OpenAI" />
 <figcaption>Photo of OpenAI's CLIP architecture from OpenAI (https://openai.com/blog/clip/)</figcaption>
 <figure>
 
@@ -210,7 +203,7 @@ df.insert_documents(documents)
 Once we have inserted the data into the dataset, we can visit [RelevanceAI dashboard](https://cloud.relevance.ai/dataset/quickstart_clip/dashboard/monitor/vectors). The dashboard gives us a great overview of our dataset as shown below.
 
 <figure>
-<img src="https://github.com/RelevanceAI/RelevanceAI-readme-docs/blob/v0.33.2-getting-started/docs_template/GETTING_STARTED/example-applications/_assets/RelevanceAI_quickstart_clip_dashboard.png?raw=true" width="650" alt="RelevanceAI Dashboard" />
+<img src="https://github.com/RelevanceAI/RelevanceAI-readme-docs/blob/v0.33.2/docs_template/GETTING_STARTED/example-applications/_assets/RelevanceAI_quickstart_clip_dashboard.png?raw=true" width="650" alt="RelevanceAI Dashboard" />
 <figcaption>Relevance AI dashboard</figcaption>
 <figure>
 
@@ -231,10 +224,7 @@ Now, let us try out a query using a simple vector search against our dataset.
 
 ```python Python (SDK)
 multivector_query=[
-        {
-            "vector": query_vector,
-            "fields": ["product_image_clip_vector_"]
-        }
+        { "vector": query_vector, "fields": ["product_image_clip_vector_"]}
     ]
 
 results = df.vector_search(
@@ -264,27 +254,33 @@ show_json(results, image_fields=["product_image"], text_fields=["product_title"]
 
 
 <figure>
-<img src="https://github.com/RelevanceAI/RelevanceAI-readme-docs/blob/v0.33.2-getting-started/docs_template/GETTING_STARTED/example-applications/_assets/RelevanceAI_JSONShower_results.png?raw=true" width="650" alt="JSONShower Results" />
-<figcaption>JSONShower Results</figcaption>
+<img src="https://github.com/RelevanceAI/RelevanceAI-readme-docs/blob/v0.33.2/docs_template/GETTING_STARTED/example-applications/_assets/RelevanceAI_text_image_search_results.png?raw=true" width="650" alt="Text Image Search Results" />
+<figcaption>Text Image Search Results</figcaption>
 <figure>
 
 
 
-**Try it out in Colab:** [![Open In Colab](https://colab.research.google.com/_assets/colab-badge.svg)](https://colab.research.google.com/github/RelevanceAI/RelevanceAI-readme-docs/blob/v0.33.2-getting-started/docs/GETTING_STARTED/example-applications/_notebooks/RelevanceAI-ReadMe-Text-to-Image-Search.ipynb)
+**Try it out in Colab:** [![Open In Colab](https://colab.research.google.com/_assets/colab-badge.svg)](https://colab.research.google.com/github/RelevanceAI/RelevanceAI-readme-docs/blob/v0.33.2/docs/GETTING_STARTED/example-applications/_notebooks/RelevanceAI-ReadMe-Text-to-Image-Search.ipynb)
 
 ## Final Code
+
+
 
 ```python Python (SDK)
 from relevanceai import Client
 
+"""
+You can sign up/login and find your credentials here: https://cloud.relevance.ai/sdk/api
+Once you have signed up, click on the value under `Authorization token` and paste it here
+"""
 client = Client()
 
-# Now we get an e-commerce dataset
+
 from relevanceai.datasets import get_ecommerce_dataset_encoded
 
-docs = get_ecommerce_dataset_encoded()
+documents = get_ecommerce_dataset_encoded()
+{k:v for k, v in documents[0].items() if '_vector_' not in k}
 
-# Encoding
 import torch
 import clip
 import requests
@@ -312,35 +308,40 @@ def encode_text(text):
         text_features = model.encode_text(text)
     return text_features.tolist()[0]
 
-dataset_id = "quickstart_clip"
-df = client.Dataset(dataset_id)
-#df.delete()
-df.insert_documents(docs)
+def encode_image_document(d):
+  d['product_image_clip_vector_'] = encode_image(d['product_image])
 
-query = "for my baby daughter"
+# Let's import TQDM for a nice progress bar!
+from tqdm.auto import tqdm
+[encode_image_document(d) for d in tqdm(documents)]
+
+DATASET_ID = "quickstart_clip"
+df = client.Dataset(DATASET_ID)
+df.delete()
+df.insert_documents(documents)
+
+query = 'for my baby daughter'
 query_vector = encode_text(query)
 
+multivector_query=[
+        { "vector": query_vector, "fields": ["product_image_clip_vector_"]}
+    ]
+
 results = df.vector_search(
-    multivector_query=[
-        {
-            "vector": query_vector,
-            "fields": ["product_image_clip_vector_"]
-        }
-    ],
-    page_size=5,
-    query=query
+    multivector_query=multivector_query,
+    page_size=5
 )
 
 from relevanceai import show_json
-show_json(
-    results['results'],
-    image_fields=["product_image"],
-    text_fields=["product_title"]
-)
+
+print('=== QUERY === ')
+print('for my baby daughter')
+
+print('=== RESULTS ===')
+show_json(results, image_fields=["product_image"], text_fields=["product_title"])
 ```
 ```python
 ```
-
 
 
 In this page, we saw a quick start to text-to-image search. Following this guide, we will explain how to conduct a search using multiple vectors!
