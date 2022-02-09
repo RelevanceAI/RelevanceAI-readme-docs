@@ -176,6 +176,78 @@ show_json(results, image_fields=["product_image"], text_fields=["product_title"]
 
 ## Final Code
 
+
+```python Python (SDK)
+from relevanceai import Client
+
+"""
+You can sign up/login and find your credentials here: https://cloud.relevance.ai/sdk/api
+Once you have signed up, click on the value under `Authorization token` and paste it here
+"""
+client = Client()
+
+
+import pandas as pd
+from relevanceai.datasets import get_ecommerce_dataset_clean
+
+# Retrieve our sample dataset. - This comes in the form of a list of documents.
+documents = get_ecommerce_dataset_clean()
+
+pd.DataFrame.from_dict(documents).head()
+
+import tensorflow as tf
+import tensorflow_hub as hub
+import numpy as np
+import tensorflow_text
+
+# Here we load the model and define how we encode
+module = hub.load('https://tfhub.dev/google/universal-sentence-encoder-qa/3')
+
+# First we define how we encode the queries
+def encode_query(query: str):
+    return module.signatures['question_encoder'](tf.constant([query]))['outputs'][0].numpy().tolist()
+
+# We then want to define how we encode the answers
+def encode_answer(answer: str):
+    return module.signatures['response_encoder'](
+        input=tf.constant([answer]),
+        context=tf.constant([answer]))['outputs'][0].numpy().tolist()
+
+
+from tqdm.auto import tqdm
+
+for d in tqdm(documents):
+    d['product_title_use_qa_vector_'] = encode_answer(d['product_title'])
+
+
+DATASET_ID = "quickstart_tfhub_qa"
+df = client.Dataset(DATASET_ID)
+df.delete()
+df.insert_documents(documents)
+
+query = 'What is an expensive gift?'
+query_vector = encode_query(query)
+
+multivector_query=[
+        { "vector": query_vector, "fields": ["product_title_use_qa_vector_"]}
+    ]
+
+results = df.vector_search(
+    multivector_query=multivector_query,
+    page_size=5
+)
+
+from relevanceai import show_json
+
+print('=== QUERY === ')
+print('What is an expensive gift?')
+
+print('=== RESULTS ===')
+show_json(results, image_fields=["product_image"], text_fields=["product_title"])
+```
+```python
+```
+
 ```python Python (SDK)
 
 from relevanceai import Client

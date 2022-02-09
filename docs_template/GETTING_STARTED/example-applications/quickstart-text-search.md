@@ -97,7 +97,7 @@ Simple vector search against our dataset:
 
 We can see the results on the dashboard via the provided link after the search finishes. Or using Relevance AI `json_shower` as shown below:
 
-@@@ query_show_json, QUERY='Gift for my son', IMAGE_FIELDS=["product_image"], TEXT_FIELDS=["product_title"] @@@
+@@@ query_show_json, QUERY=query, IMAGE_FIELDS=["product_image"], TEXT_FIELDS=["product_title"] @@@
 
 
 
