@@ -151,7 +151,7 @@ Lets first encode our text search query to vectors using CLIP.
 
 Now, let us try out a query using a simple vector search against our dataset.
 
-@@@+ multivector_query, VECTOR_FIELD=query_vector, VECTOR_FIELDS=["clip_product_image_vector_"]; vector_search, MULTIVECTOR_QUERY=multivector_query, PAGE_SIZE=5 @@@
+@@@+ multivector_query, VECTOR_FIELD=query_vector, VECTOR_FIELDS=["product_image_clip_vector_"]; vector_search, MULTIVECTOR_QUERY=multivector_query, PAGE_SIZE=5 @@@
 
 Here our query is just a simple multi-vector query, but our search comes with out of the box support for features such as multi-vector, filters, facets and traditional keyword matching to combine with your vector search. You can read more about how to construct a multivector query with those features [here](vector-search-prerequisites).
 
@@ -222,7 +222,7 @@ results = df.vector_search(
     multivector_query=[
         {
             "vector": query_vector,
-            "fields": ["clip_product_image_vector_"]
+            "fields": ["product_image_clip_vector_"]
         }
     ],
     page_size=5,
