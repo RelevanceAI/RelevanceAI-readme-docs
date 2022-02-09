@@ -23,15 +23,14 @@ jobs:
         run: |
           rm -rf /opt/hostedtoolcache/Python/3.7.12/x64/lib/python3.7/site-packages/typing_extensions-4.0.1.dist-info
           pip install --upgrade pip
+          pip install --force-reinstall typing_extensions==4.0.1
           pip install -r requirements.txt
 
       - name: Set ReadMe version as Github env var
         run: |
           README_VERSION=$(cat __version__)
           echo "README_VERSION=$README_VERSION" >> $GITHUB_ENV
-
-      - id: get_branch
-        uses: ConduitVC/action-get-branch@master
+          echo "GIT_BRANCH_VERSION=${GITHUB_REF##*/}" >> $GITHUB_ENV
 
       - name: Test for API keys in docs
         run: |
@@ -39,15 +38,15 @@ jobs:
 
       - name: Update asset links
         run: |
-          python scripts/update_asset_ref.py -d -p . -pn RelevanceAI -v ${{ steps.get_branch.outputs.branch }}
+          python scripts/update_asset_ref.py -d -p . -pn RelevanceAI -v $GIT_BRANCH_VERSION
 
       - name: Update semver ref
         run: |
-          python scripts/update_semver_ref.py -d -p . -pn RelevanceAI -v ${{ steps.get_branch.outputs.branch }}
+          python scripts/update_semver_ref.py -d -p . -pn RelevanceAI -v $README_VERSION
 
       - name: Building docs from docs_template
         run: |
-          python scripts/build_docs.py -d -p . -pn RelevanceAI -v $README_VERSION
+          python scripts/build_docs.py -d -p . -pn RelevanceAI -v $GIT_BRANCH_VERSION
 
       - id: set-notebook-fpaths
         name: Setting notebook fpath output
@@ -143,7 +142,7 @@ jobs:
         run: |
           README_VERSION=$(cat __version__)
           echo "README_VERSION=$README_VERSION"
-          ./scripts/sync_readme_docs.sh true $README_VERSION
+          ./scripts/sync_readme_docs.sh true $GIT_BRANCH_VERSION
 
 
 
