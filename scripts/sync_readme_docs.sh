@@ -82,3 +82,4 @@ fi
 
 echo "Syncing ReadMe version $README_VERSION_NAME"
 npx rdme docs ./docs/ --version=$README_VERSION_NAME  --key $RELEVANCEAI_README_API_KEY
+

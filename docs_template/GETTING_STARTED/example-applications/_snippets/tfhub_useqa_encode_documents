@@ -1,0 +1,5 @@
+python
+from tqdm.auto import tqdm
+
+for d in tqdm(documents):
+    d[<<VECTOR_FIELD>>] = encode_answer(d[<<TEXT_FIELD>>])

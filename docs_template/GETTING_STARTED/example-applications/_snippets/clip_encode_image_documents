@@ -1,0 +1,7 @@
+python
+def encode_image_document(d):
+  d[<<IMAGE_VECTOR>>] = encode_image(d[<<IMAGE_FIELD>>])
+
+# Let's import TQDM for a nice progress bar!
+from tqdm.auto import tqdm
+[encode_image_document(d) for d in tqdm(documents)]
