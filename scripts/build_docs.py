@@ -8,7 +8,6 @@ import re
 import json
 
 from typing import List, Dict, Optional, Union
-from typing_extensions import Literal
 
 import argparse
 import logging
@@ -28,7 +27,7 @@ RDMD_SNIPPET_LANGUAGES = {
 
 def load_snippet(
     snippet_path: str,
-    ext: Literal['md', 'ipynb'],
+    ext: str,
     params: Optional[Dict]=None
 ):
     '''
@@ -117,7 +116,7 @@ def generate_snippet(
     snippet_str: str,
     snippet_paths: List,
     snippet_params: Dict,
-    ext: Literal['md', 'ipynb']
+    ext: str
 ):
     '''
     Load the corresponding snippet with given parameters depending on the extension type
@@ -213,7 +212,6 @@ def generate_md_file(
         except Exception as e:
             raise ValueError(f'Error in cell {i} {traceback.format_exc()}')
 
-    logging.info(f'\tCreating output file: {output_fname}')
     Path(output_fname.parent).mkdir(parents=True, exist_ok=True)
     with open(output_fname, "w") as fout:
         for element in md_lines:
