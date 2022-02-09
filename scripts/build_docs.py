@@ -243,7 +243,7 @@ def main(args):
     #     snippet_params=SNIPPET_PARAMS
     #     )
 
-    # sample_input_ipynb_fname = DOCS_TEMPLATE_PATH / 'GETTING_STARTED' / '_notebooks' / "Intro_to_Relevance_AI.ipynb"
+    # sample_input_ipynb_fname = DOCS_TEMPLATE_PATH / 'GETTING_STARTED' / '_notebooks' / "Intro-to-Relevance-AI.ipynb"
     # sample_output_ipynb_fname = str(sample_input_ipynb_fname).replace('docs_template', 'docs')
     # snippet_paths = [GENERAL_SNIPPETS] + [Path(DOCS_TEMPLATE_PATH) / 'GETTING_STARTED' / '_snippets']
     # generate_ipynb_file(
