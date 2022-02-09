@@ -1,5 +1,5 @@
 python
 from vectorhub.encoders.text.tfhub import USE2Vec
-enc = USE2Vec()
+model = USE2Vec()
 
-documents = enc.encode_documents(fields=<<TEXT_VECTOR_FIELDS>>, documents)
+documents = model.encode_documents(fields=<<TEXT_VECTOR_FIELDS>>, documents=documents)

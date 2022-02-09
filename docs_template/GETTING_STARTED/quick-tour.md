@@ -110,9 +110,7 @@ You can read more about how to analyse clusters in your data [here](doc:quicksta
 See your search results on the dashboard here https://cloud.relevance.ai/sdk/search.
 
 
-@@@+ encode_text_query, QUERY="xmas gifts"; vector_search, MULTIVECTOR_QUERY=FEATURE_TOUR_MULTI_VECTOR_SEARCH_QUERY, PAGE_SIZE=10 @@@
-
-
+@@@+  model_encode_query, QUERY="gifts for the holidays"; multivector_query, VECTOR_FIELD=query_vector, VECTOR_FIELDS=["product_image_clip_vector_"]; vector_search, MULTIVECTOR_QUERY=multivector_query, PAGE_SIZE=10 @@@
 
 <figure>
 <img src="https://github.com/RelevanceAI/RelevanceAI-readme-docs/blob/v0.33.2-getting-started/docs_template/_assets/RelevanceAI_search_dashboard.png?raw=true"  alt="Visualise your search results" />
