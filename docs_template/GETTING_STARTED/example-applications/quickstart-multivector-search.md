@@ -13,7 +13,7 @@ hidden: false
 
 
 
-**Try it out in Colab:** [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/RelevanceAI/RelevanceAI-readme-docs/blob/v0.33.2/docs/GETTING_STARTED/example-applications/_notebooks/RelevanceAI_ReadMe_Quickstart_Multivector_Search.ipynb)
+**Try it out in Colab:** [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/RelevanceAI/RelevanceAI-readme-docs/blob/v0.33.2/docs/GETTING_STARTED/example-applications/_notebooks/RelevanceAI-ReadMe-Multi-Vector-Search.ipynb)
 
 
 
@@ -55,11 +55,9 @@ After installation, we need to also set up an API client. If you are missing an 
 
 ### 1. Data + Encode
 
-Here, we get a dataset with a few fields already vectorized; so we will not need to run any encoding/vectorizng step in this page; visit other pages in our guides, such as [Text-to-image search (using OpenAI's CLIP Pytorch)](doc:quickstart-text-to-image-search), to learn about encoding with a variety of Pytorch/Tensorflow models!)
+Here, we get a dataset that has been already encoded into vectors; so we will be skipping the encoding step in this page, but feel free to visit other pages in our guides, such as [Text-to-image search (using OpenAI's CLIP Pytorch)](doc:quickstart-text-to-image-search), to learn about encoding with a variety of Pytorch/Tensorflow models!)
 
-
-
-@@@ get_ecommerce_encoded @@@
+@@@ get_ecommerce_dataset_encoded @@@
 
 <figure>
 <img src="https://github.com/RelevanceAI/RelevanceAI-readme-docs/blob/v0.33.2/docs_template/GETTING_STARTED/example-applications/_assets/RelevanceAI_ecommerce_dataset_preview.png?raw=true" width="650" alt="E-commerce Dataset Preview" />
@@ -68,11 +66,9 @@ Here, we get a dataset with a few fields already vectorized; so we will not need
 
 ### 2. Insert
 
-To insert data to a dataset under your account, you can use the `insert_documents` method. 
+To insert data to a dataset, you can use the `insert_documents` method.  Note that this step is also already done in our sample dataset.
 
-
-@@@dataset_basics, DATASET_ID=MULTI_VECTOR_SEARCH_DATASET_ID@@@
-
+@@@ dataset_basics, DATASET_ID=MULTI_VECTOR_SEARCH_DATASET_ID @@@
 
 After finalizing the insert task, the client returns a link guiding you to a dashboard to check your schema and vector health!
 
@@ -86,57 +82,20 @@ After finalizing the insert task, the client returns a link guiding you to a das
 
 ### 3. Search
 
-In the cell below, we will 
-1. get a random document from our dataset as a query data
-2. form a multivector search to find other documents similart to our query document
+Since this will be using your own vectors, we will skip vectorizing the query and just retrieve a vector from an existing document in the dataset.
 
-
-```python Python (SDK)
-documents = df.get_documents_by_ids(["e61e33de-3142-4646-91d3-dad440f67b79"])
-document = documents["documents"]["e61e33de-3142-4646-91d3-dad440f67b79"]
-image_vector = document['product_image_clip_vector_']
-text_vector = document['product_title_clip_vector_']
-
-```
-```python
-```
 
 Now, let us try out a query using a simple vector search against our dataset.
 
 
-
-```python Python (SDK)
-# Create a multivector query
-multivector_query = [
-    {"vector": image_vector, "fields": ['product_image_clip_vector_']},
-    {"vector": text_vector, "fields": ['product_title_clip_vector_']}
-]
-```
-```python
-```
-
-@@@ vector_search @@@
-
-
+@@@+ quickstart_multivector_query, IMAGE_VECTOR='product_image_clip_vector_',TEXT_VECTOR='product_title_clip_vector_'; vector_search, MULTIVECTOR_QUERY=multivector_query, PAGE_SIZE=5 @@@
 
 Here our query is just a simple multi vector query, but our search comes with out of the box support for features such as multi-vector, filters, facets and traditional keyword matching to combine with your vector search. You can read more about how to construct a multivector query with those features [here](vector-search-prerequisites).
 
 Now lets show the results with `show_json`.
 
 
-```python Python (SDK)
-
-from relevanceai import show_json
-
-print('=== QUERY === ')
-display(show_json([document], image_fields=["product_image"], text_fields=["product_title"]))
-
-print('=== RESULTS ===')
-show_json(results, image_fields=["product_image"], text_fields=["product_title"])
-
-```
-```python
-```
+@@@ show_json_results, IMAGE_FIELDS=["product_image"], TEXT_FIELDS=["product_title"] @@@
 
 <figure>
 <img src="https://github.com/RelevanceAI/RelevanceAI-readme-docs/blob/v0.33.2/docs_template/GETTING_STARTED/example-applications/_assets/RelevanceAI_multivector_search_results.png?raw=true" width="650" alt="Multi-vector Search Results" />
@@ -146,8 +105,7 @@ show_json(results, image_fields=["product_image"], text_fields=["product_title"]
 
 
 
-**Try it out in Colab:** [![Open In Colab](https://colab.research.google.com/_assets/colab-badge.svg)](https://colab.research.google.com/github/RelevanceAI/RelevanceAI-readme-docs/blob/v0.33.2/docs/GETTING_STARTED/example-applications/_notebooks/RelevanceAI_ReadMe_Multi_Vector_Search.ipynb)
-
+**Try it out in Colab:** [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/RelevanceAI/RelevanceAI-readme-docs/blob/v0.33.2/docs/GETTING_STARTED/example-applications/_notebooks/RelevanceAI-ReadMe-Multi-Vector-Search.ipynb)
 
 
 
@@ -160,41 +118,31 @@ from relevanceai import Client
 
 client = Client()
 
-import pandas as pd
-from relevanceai.datasets import get_ecommerce_dataset_encoded
-
 # Retrieve our sample dataset. - This comes in the form of a list of documents.
-docs = get_ecommerce_dataset_encoded()[:500]
+documents = get_sample_ecommerce_dataset()
+pd.DataFrame.from_dict(documents).head()
 
-pd.DataFrame.from_dict(docs).head()
+client.datasets.delete("quickstart_sample")
+client.insert_documents("quickstart_sample", documents)
 
-dataset_id = "quickstart_sample"
-df = client.Dataset(dataset_id)
-df.delete()
-df.insert_documents(docs)
+# Let us get a document and its vector
+doc = client.datasets.documents.get(dataset_id="quickstart_sample", id="711161256")
+vector = doc['document']['product_image_clip_vector_']
 
-# Query sample data
-documents = df.get_documents_by_ids(["e61e33de-3142-4646-91d3-dad440f67b79"])
-document = documents["documents"]["e61e33de-3142-4646-91d3-dad440f67b79"]
-image_vector = document['product_image_clip_vector_']
-text_vector = document['product_title_clip_vector_']
-
-# Create a multivector query
+# Create a vector query - which is a list of Python dictionaries with the fields "vector" and "fields"
 multivector_query = [
-    {"vector": image_vector, "fields": ['product_image_clip_vector_']},
-    {"vector": text_vector, "fields": ['product_title_clip_vector_']}
+    {"vector": vector, "fields": ['product_image_clip_vector_']}
 ]
 
-#Perform a vector search
-results = df.vector_search(
+results = client.services.search.vector(
+    dataset_id="quickstart_sample",
     multivector_query=multivector_query,
     page_size=5
 )
 
 from relevanceai import show_json
-
 print('=== QUERY === ')
-display(show_json([document], image_fields=["product_image"], text_fields=["product_title"]))
+display(show_json([doc['document']], image_fields=["product_image"], text_fields=["product_title"]))
 
 print('=== RESULTS ===')
 show_json(results, image_fields=["product_image"], text_fields=["product_title"])

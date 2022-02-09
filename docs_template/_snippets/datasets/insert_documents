@@ -1,2 +1,2 @@
 python
-client.insert_documents(dataset_id="<<DATASET_ID>>", documents=documents)
+df.insert_documents(documents)

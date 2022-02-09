@@ -18,7 +18,7 @@ hidden: false
 
 In this section, we will show you how to create and experiment with a powerful text search engine using Google's Universal Sentence Encoder through [VectorHub library](https://github.com/RelevanceAI/vectorhub) and Relevance AI.
 
-**Try it out in Colab:** [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/RelevanceAI/RelevanceAI-readme-docs/blob/v0.33.2/docs/GETTING_STARTED/example-applications/_notebooks/RelevanceAI_ReadMe_Quickstart_Text_Search.ipynb)
+**Try it out in Colab:** [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/RelevanceAI/RelevanceAI-readme-docs/blob/v0.33.2/docs/GETTING_STARTED/example-applications/_notebooks/RelevanceAI-ReadMe-Text-Search-using-USE-VectorHub.ipynb)
 
 
 ### What I Need
@@ -48,7 +48,7 @@ To be able to use Relevance AI, you need to instantiate a client. This needs a P
 For this experiment, we use our sample e-commerce dataset and preview one of the documents.
 
 
-@@@ get_ecommerce_clean @@@
+@@@ get_ecommerce_dataset_clean @@@
 
 An example document should have a structure that looks like this.
 
@@ -79,17 +79,8 @@ An example document should have a structure that looks like this.
 Next, we will instantiate the universal sentence encoder from VectorHub and encode the `product_title` field among all documents.
 
 
+@@@ use2vec_encode_documents, TEXT_VECTOR_FIELDS=['product_title'] @@@
 
-```python Python (SDK)
-
-from vectorhub.encoders.text.tfhub import USE2Vec
-enc = USE2Vec()
-
-# To encode the product_title field in all the documents
-documents = enc.encode_documents(["product_title"], documents)
-```
-```python
-```
 
 We can see that there is now a field called `product_title_use_vector_` in our data.
 `_use_vector_` is the name assigned to the model in Vectorhub and we use it when generating vectors.
@@ -147,7 +138,7 @@ multivector_query=[
 ```python
 ```
 
-@@@ vector_search @@@
+@@@ vector_search,  MULTIVECTOR_QUERY=multivector_query, PAGE_SIZE=5 @@@
 
 We can see the results on the dashboard via the provided link after the search finishes. Or using Relevance AI json_shower as shown below:
 
@@ -164,6 +155,11 @@ show_json(
 ```
 
 This is just a quick and basic example of using Relevance AI for text search, there are many other search features such as faceted vector search, hybrid search, chunk search, multivector search. For further information please visit [Better text search](doc:better-text-search).
+
+
+[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/RelevanceAI/RelevanceAI-readme-docs/blob/v0.33.2/docs/GETTING_STARTED/example-applications/_notebooks/RelevanceAI-ReadMe-Text-Search-using-USE-VectorHub.ipynb)
+
+
 
 ## Final Code
 

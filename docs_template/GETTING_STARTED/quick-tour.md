@@ -48,7 +48,7 @@ Use one of your sample datasets to insert into your own dataset!
 
 
 
-@@@ get_ecommerce_clean @@@
+@@@ get_ecommerce_dataset_clean @@@
 
 
 <figure>
@@ -64,29 +64,15 @@ Use one of your sample datasets to insert into your own dataset!
 Encode new product image vector using our models out of the box using [Vectorhub's](https://hub.getvectorai.com/) `Clip2Vec` models and update your dataset.
 
 
+@@@ clip2vec_encode_image_documents, IMAGE_VECTOR_FIELDS=['product_image'] @@@
 
-```python Python (SDK)
-from vectorhub.bi_encoders.text_image.torch import Clip2Vec
-enc = Clip2Vec()
-
-# Use the encoder to vectorize the `product_image` in the dataset
-enc.encode = enc.encode_image
-documents = enc.encode_documents(fields=["product_image"], docs=documents)
-
-```
-```python
-```
 
 Update the existing dataset with the encoding results and check the results
 
-```python Python (SDK)
 
-df.upsert_documents(documents)
 
-df.schema
-```
-```python
-```
+@@@+ upsert_documents; dataset_schema @@@
+
 
 
 <figure>
@@ -101,14 +87,12 @@ df.schema
 <figure>
 
 
-
-
 ### 4. Run clustering on your vectors
 
 Run clustering on your vectors to better understand your data. You can view the clusters in our clustering dashboard following the provided link when clustering finishes.
 
 
-@@@ auto_cluster, KMEANS=KMEANS-10, VECTORS=IMAGE_CLIP_VEC @@@
+@@@ auto_cluster, KMEANS=KMEANS-10, VECTOR_FIELD=IMAGE_CLIP_VEC @@@
 
 You can also get a list of documents that are closest to the center of the clusters:
 
@@ -128,22 +112,7 @@ You can read more about how to analyse clusters in your data [here](doc:quicksta
 See your search results on the dashboard here https://cloud.relevance.ai/sdk/search.
 
 
-
-```python Python (SDK)
-
-query = "xmas gifts"  # query text
-query_vec_txt = client.services.encoders.text(text=query)
-
-multivector_query = [
-    {"vector": query_vec_txt["vector"],
-     "fields": ["product_image_clip_vector_"]},
-  ]
-
-```
-```python
-```
-
-@@@ vector_search @@@
+@@@+ encode_text_query, QUERY="xmas gifts"; vector_search, MULTIVECTOR_QUERY=FEATURE_TOUR_MULTI_VECTOR_SEARCH_QUERY, PAGE_SIZE=10 @@@
 
 
 

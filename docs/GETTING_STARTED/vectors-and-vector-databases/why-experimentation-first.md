@@ -74,7 +74,7 @@ Our models allow you to significantly reduce the time it takes for vector experi
 In addition to our vector database, we will also be open-sourcing a few tools to help users make the most out of the experimentation workflows. These tools include:
 - a Python SDK to our Vector Database
 - JSONShower to allow researchers and practitioners to quickly investigate the performance of their models from JSONs inside Jupyter Notebook environments
-- Search Comparator is a tool to quickly compare numerous queries and search configurations with customizable metrics and various other utilities like identifying the most different queries across configurations 
+- Search Comparator is a tool to quickly compare numerous queries and search configurations with customizable metrics and various other utilities like identifying the most different queries across configurations
 
 | **Attribute** |  **Relevance AI**  | **Other Solutions** |
 |:-----:|:--------:|:------:|

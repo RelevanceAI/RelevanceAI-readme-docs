@@ -98,29 +98,32 @@ df.insert_documents(documents)
 Encode new product image vector using our models out of the box using [Vectorhub's](https://hub.getvectorai.com/) `Clip2Vec` models and update your dataset.
 
 
-
 ```python Python (SDK)
 from vectorhub.bi_encoders.text_image.torch import Clip2Vec
+
 enc = Clip2Vec()
 
-# Use the encoder to vectorize the `product_image` in the dataset
+# Set the default encode to encoding an image
 enc.encode = enc.encode_image
-documents = enc.encode_documents(fields=["product_image"], docs=documents)
+dataset = enc.encode_documents(fields=['product_image'], documents=documents)
 
 ```
 ```python
 ```
 
+
 Update the existing dataset with the encoding results and check the results
 
-```python Python (SDK)
 
+
+```python Python (SDK)
 df.upsert_documents(documents)
 
 df.schema
 ```
 ```python
 ```
+
 
 
 <figure>
@@ -135,15 +138,13 @@ df.schema
 <figure>
 
 
-
-
 ### 4. Run clustering on your vectors
 
 Run clustering on your vectors to better understand your data. You can view the clusters in our clustering dashboard following the provided link when clustering finishes.
 
 
 ```python Python (SDK)
-<<CLUSTERER>> = df.auto_cluster('kmeans-10', ['<<VECTOR_FIELD>>'])
+clusterer = df.auto_cluster('kmeans-10', ['product_image_clip_vector_'])
 ```
 ```python
 ```
@@ -151,7 +152,7 @@ Run clustering on your vectors to better understand your data. You can view the 
 You can also get a list of documents that are closest to the center of the clusters:
 
 ```python Python (SDK)
-<<CLUSTERER>>.list_closest_to_center()
+clusterer.list_closest_to_center()
 ```
 ```python
 ```
@@ -170,25 +171,17 @@ You can read more about how to analyse clusters in your data [here](doc:quicksta
 See your search results on the dashboard here https://cloud.relevance.ai/sdk/search.
 
 
-
 ```python Python (SDK)
-
-query = "xmas gifts"  # query text
+query = "xmas gifts"
 query_vec_txt = client.services.encoders.text(text=query)
 
-multivector_query = [
-    {"vector": query_vec_txt["vector"],
-     "fields": ["product_image_clip_vector_"]},
-  ]
 
-```
-```python
-```
-
-```python Python (SDK)
 results = df.vector_search(
-    multivector_query=<<MULTIVECTOR_QUERY>>,
-    page_size=<<PAGE_SIZE>>
+    multivector_query=[
+		{"vector": query_vec_txt["vector"],
+		"fields": ["product_image_clip_vector_"]}
+	],
+    page_size=10
 )
 ```
 ```python
