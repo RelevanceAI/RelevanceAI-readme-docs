@@ -188,6 +188,9 @@ def main(args):
     logging.basicConfig(level=logging_level)
 
     DOCS_PATH = Path(args.path) / "docs"
+
+    NOTEBOOK_IGNORE = open(Path(__file__).parent / "notebook_ignore.txt").read().strip().splitlines()
+    print(f"NOTEBOOK_IGNORE: {NOTEBOOK_IGNORE}")
     RELEVANCEAI_SDK_VERSION = (
         args.version if args.version else get_latest_version(args.package_name)
     )
@@ -237,6 +240,8 @@ def main(args):
             x[0] if isinstance(x, list) else x for x in list(Path(DOCS_PATH).glob("**/*.ipynb"))
         ]
 
+    ## Filter notebooks
+    notebooks = [n for n in notebooks if n not in NOTEBOOK_IGNORE]
 
     static_args= {
         'relevanceai_sdk_version': RELEVANCEAI_SDK_VERSION,
