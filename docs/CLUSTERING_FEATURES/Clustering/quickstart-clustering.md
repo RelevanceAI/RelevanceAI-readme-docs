@@ -24,23 +24,65 @@ In this guide, you will learn to run clustering based on the K-Means algorithm w
 
 First, you need to install Relevance AI's Python SDK and set up a client object to interact with RelevanceAI. For more information, please read the [installation](doc:installation) guide.
 
-@@@ relevanceai_installation, RELEVANCEAI_SDK_VERSION=RELEVANCEAI_SDK_VERSION @@@
+```bash Bash
+!pip install -U RelevanceAI[notebook]==0.33.2
+```
+```bash
+```
 
-@@@ client_instantiation @@@
+```python Python (SDK)
+from relevanceai import Client
+
+"""
+You can sign up/login and find your credentials here: https://cloud.relevance.ai/sdk/api
+Once you have signed up, click on the value under `Authorization token` and paste it here
+"""
+client = Client()
+
+```
+```python
+```
 
 You also need to have a dataset under your Relevance AI account. You can either use our dummy sample data as shown in this step or follow the tutorial on [how to create your own dataset](https://docs.relevance.ai/docs/creating-a-dataset-prerequisites).
 
 In this guide, we use our e-commerce database, which includes fields such as `product_name`, as well as the vectorized version of the field `product_name_default_vector_`. Loading these documents can be done via:
 
-@@@ get_ecommerce_dataset_encoded @@@
+```python Python (SDK)
+from relevanceai.datasets import get_ecommerce_dataset_encoded
+
+documents = get_ecommerce_dataset_encoded()
+{k:v for k, v in documents[0].items() if '_vector_' not in k}
+```
+```python
+```
 
 Next, we can upload these documents into your personal Relevance AI account under the name *quickstart_clustering_kmeans*
 
-@@@+ quickstart_docs; dataset_basics, DATASET_ID=QUICKSTART_KMEANS_CLUSTERING_DATASET_ID @@@
+```python Python (SDK)
+documents = [
+	{"_id": "1", "example_vector_": [0.1, 0.1, 0.1], "data": "Documentation"},
+	{"_id": "2", "example_vector_": [0.2, 0.2, 0.2], "data": "Best document!"},
+	{"_id": "3", "example_vector_": [0.3, 0.3, 0.3], "data": "Document example"},
+	{"_id": "5", "example_vector_": [0.4, 0.4, 0.4], "data": "This is a doc"},
+	{"_id": "4", "example_vector_": [0.5, 0.5, 0.5], "data": "This is another doc"},
+]
+
+
+DATASET_ID = "quickstart_clustering_kmeans"
+df = client.Dataset(DATASET_ID)
+df.delete()
+df.insert_documents(documents)
+```
+```python
+```
 
 Let's have a look at the schema to see what vector fields are available for clustering.
 
-@@@ dataset_schema @@@
+```python Python (SDK)
+df.schema
+```
+```python
+```
 
 The result is a JSON output similar to what is shown below. As can be seen, there are two vector fields in the dataset `product_image_clip_vector_` and `product_title_clip_vector_`.
 

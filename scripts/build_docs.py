@@ -14,6 +14,8 @@ import logging
 
 import traceback
 
+from tensorboard import notebook
+
 RDMD_SNIPPET_LANGUAGES = {
     'python': 'Python (SDK)',
     'bash': 'Bash',
@@ -98,6 +100,9 @@ def generate_ipynb_file(
                 for i, cell_source in enumerate(cell['source']):
                     if '@@@' in cell_source:
                         snippet_str = cell_source.split('@@@')[1].strip()
+                        if ';' in snippet_str:
+                            raise ValueError(f'\nYou have multiple snippets in one line.\n@@@ {snippet_str} @@@\nPlease replace @@@ with @@@+ in {input_fname} line {i}.')
+
                         snippet_name = snippet_str.split(',')[0]
                         logging.debug(f'\tSnippet name: {snippet_name}')
 
@@ -105,6 +110,7 @@ def generate_ipynb_file(
                         cell['source'][i] = ''.join(snippet)
                         print(''.join(snippet))
         except Exception as e:
+            logging.info(f'\n-------\nFile Error: {input_fname}\n---------\n')
             raise ValueError(f'Error in cell {i} {traceback.format_exc()}')
 
     Path(output_fname.parent).mkdir(parents=True, exist_ok=True)
@@ -203,6 +209,9 @@ def generate_md_file(
 
             elif bool(re.search('@@@.*@@@', line)) and (not bool(re.search('.*<--.*-->.*', line))):
                 snippet_str = line.split('@@@')[1].strip()
+                if ';' in snippet_str:
+                    raise ValueError(f'\nYou have multiple snippets in one line.\n@@@ {snippet_str} @@@\nPlease replace @@@ with @@@+ in {input_fname} line {i}.')
+
                 snippet = generate_snippet(snippet_str, snippet_paths, snippet_params, ext='md')
                 logging.debug('\n'.join(snippet))
 
@@ -210,6 +219,7 @@ def generate_md_file(
             else:
                 md_lines.append(line)
         except Exception as e:
+            logging.info(f'\n-------\nFile Error: {input_fname}\n---------\n')
             raise ValueError(f'Error in cell {i} {traceback.format_exc()}')
 
     Path(output_fname.parent).mkdir(parents=True, exist_ok=True)
