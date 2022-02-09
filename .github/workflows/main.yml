@@ -21,10 +21,7 @@ jobs:
 
       - name: Install requirements
         run: |
-          # rm -rf /opt/hostedtoolcache/Python/3.7.12/x64/lib/python3.7/site-packages/typing_extensions-4.0.1.dist-info
           pip install --upgrade pip
-          # pip install --upgrade setuptools
-          # # pip install --force-reinstall typing_extensions==4.0.1
           pip install -r requirements.txt
 
       - name: Set ReadMe version as Github env var
