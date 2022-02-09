@@ -21,7 +21,7 @@ jobs:
 
       - name: Install requirements
         run:
-          # pip install --upgrade pip
+          pip install --upgrade pip
           pip install -r requirements.txt
 
       - name: Set ReadMe version as Github env var
@@ -77,21 +77,20 @@ jobs:
       - uses: actions/setup-python@v2
         with:
           python-version: ${{ matrix.python-version }}
-          cache: 'pip'
-      # - name: Cache Python deps
-      #   uses: actions/cache@v2
-      #   with:
-      #     path: ${{ matrix.path }}
-      #     key: ${{ runner.os }}-${{ env.pythonLocation }}-pip-${{ hashFiles('colab_requirements.txt') }}
-      #     restore-keys: |
-      #       ${{ runner.os }}-${{ env.pythonLocation }}-pip-
-      #       ${{ runner.os }}-${{ env.pythonLocation }}-
+          # cache: 'pip'
+      - name: Cache Python deps
+        uses: actions/cache@v2
+        with:
+          path: ${{ matrix.path }}
+          key: ${{ runner.os }}-${{ env.pythonLocation }}-pip-${{ hashFiles('requirements.txt') }}
+          restore-keys: |
+            ${{ runner.os }}-${{ env.pythonLocation }}-pip-
+            ${{ runner.os }}-${{ env.pythonLocation }}-
 
       - name: Install requirements
         run: |
-          # pip install --upgrade pip
+          pip install --upgrade pip
           pip install -r requirements.txt
-
 
       - name: Test notebooks
         env:
