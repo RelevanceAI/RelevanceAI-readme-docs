@@ -138,8 +138,6 @@ df.schema
 <figure>
 
 
-
-
 ### 4. Run clustering on your vectors
 
 Run clustering on your vectors to better understand your data. You can view the clusters in our clustering dashboard following the provided link when clustering finishes.

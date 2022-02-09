@@ -18,7 +18,7 @@ hidden: false
 
 In this section, we will show you how to create and experiment with a powerful text search engine using Google's Universal Sentence Encoder through [VectorHub library](https://github.com/RelevanceAI/vectorhub) and Relevance AI.
 
-**Try it out in Colab:** [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/RelevanceAI/RelevanceAI-readme-docs/blob/v0.33.2-getting-started/docs/GETTING_STARTED/example-applications/_notebooks/RelevanceAI_ReadMe_Quickstart_Text_Search.ipynb)
+**Try it out in Colab:** [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/RelevanceAI/RelevanceAI-readme-docs/blob/v0.33.2-getting-started/docs/GETTING_STARTED/example-applications/_notebooks/RelevanceAI-ReadMe-Text-Search-using-USE-VectorHub.ipynb)
 
 
 ### What I Need
@@ -106,17 +106,16 @@ An example document should have a structure that looks like this.
 Next, we will instantiate the universal sentence encoder from VectorHub and encode the `product_title` field among all documents.
 
 
-
 ```python Python (SDK)
-
 from vectorhub.encoders.text.tfhub import USE2Vec
 enc = USE2Vec()
 
-# To encode the product_title field in all the documents
-documents = enc.encode_documents(["product_title"], documents)
+documents = enc.encode_documents(fields=['product_title'], documents)
+
 ```
 ```python
 ```
+
 
 We can see that there is now a field called `product_title_use_vector_` in our data.
 `_use_vector_` is the name assigned to the model in Vectorhub and we use it when generating vectors.
@@ -183,8 +182,8 @@ multivector_query=[
 
 ```python Python (SDK)
 results = df.vector_search(
-    multivector_query=<<MULTIVECTOR_QUERY>>,
-    page_size=<<PAGE_SIZE>>
+    multivector_query=multivector_query,
+    page_size=5
 )
 ```
 ```python
@@ -205,6 +204,11 @@ show_json(
 ```
 
 This is just a quick and basic example of using Relevance AI for text search, there are many other search features such as faceted vector search, hybrid search, chunk search, multivector search. For further information please visit [Better text search](doc:better-text-search).
+
+
+[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/RelevanceAI/RelevanceAI-readme-docs/blob/v0.33.2-getting-started/docs/GETTING_STARTED/example-applications/_notebooks/RelevanceAI-ReadMe-Text-Search-using-USE-VectorHub.ipynb)
+
+
 
 ## Final Code
 

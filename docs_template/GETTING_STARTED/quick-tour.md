@@ -48,7 +48,7 @@ Use one of your sample datasets to insert into your own dataset!
 
 
 
-@@@ get_ecommerce_clean @@@
+@@@ get_ecommerce_dataset_clean @@@
 
 
 <figure>
@@ -85,8 +85,6 @@ Update the existing dataset with the encoding results and check the results
 <img src="https://github.com/RelevanceAI/RelevanceAI-readme-docs/blob/v0.33.2-getting-started/docs_template/_assets/RelevanceAI_images_dashboard.png?raw=true" alt="View your dataset in the dashboard" />
 <figcaption>View your dataset in the dashboard</figcaption>
 <figure>
-
-
 
 
 ### 4. Run clustering on your vectors

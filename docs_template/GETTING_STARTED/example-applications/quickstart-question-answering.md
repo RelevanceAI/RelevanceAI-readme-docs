@@ -38,7 +38,7 @@ To be able to use Relevance AI, you need to instantiate a client. This needs a P
 
 
 For this guide, we use our sample ecommerce dataset as shown below:
-@@@ get_ecommerce_clean @@@
+@@@ get_ecommerce_dataset_clean @@@
 
 ## Question Answering (Using TFHub's Universal Sentence Encoder QA)
 
