@@ -1,0 +1,3 @@
+python
+documents = [{"_id": "example_id", "value": 3}]
+df.upsert_documents(documents=documents)

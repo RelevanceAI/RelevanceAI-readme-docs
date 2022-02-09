@@ -1,0 +1,3 @@
+python
+copied_dataset_id = COPIED_DATASET_ID
+client.clone_dataset(src_dataset_id, copied_dataset_id)

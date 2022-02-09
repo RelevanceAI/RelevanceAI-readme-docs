@@ -1,0 +1,2 @@
+python
+client.delete_dataset(dataset_id="<<DATASET_ID>>")

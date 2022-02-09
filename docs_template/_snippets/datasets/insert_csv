@@ -1,0 +1,11 @@
+python
+CSV_PATH = "PATH-TO-THE-CSV-FILE"
+DATASET_ID = "<<DATASET_ID>>"
+COL_FOR_ID = "REF-No"
+
+client.insert_csv(
+ dataset_id=DATASET_ID,
+ filepath_or_buffer = CSV_PATH,
+ col_for_id = COL_FOR_ID,
+ index_col = 0
+)
