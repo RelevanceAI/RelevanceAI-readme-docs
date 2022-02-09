@@ -52,8 +52,10 @@ jobs:
       - id: set-notebook-fpaths
         name: Setting notebook fpath output
         run: |
-          export NOTEBOOKS=$(./scripts/notebook_ignore.sh)
-          echo "::set-output name=notebook-fpaths::$NOTEBOOKS"
+          export NOTEBOOK_IGNORE=$(cat scripts/notebook_ignore.txt)
+          export NOTEBOOKS=$(find docs -type f -name "*.ipynb")
+          export NOTEBOOK_FPATHS=$(for n in  ${NOTEBOOKS[@]}; do echo $n; done | grep -wv "$NOTEBOOK_IGNORE"  | jq -Rsc '. / "\n" - [""]')
+          echo "::set-output name=notebook-fpaths::$NOTEBOOK_FPATHS"
 
 
   test-notebooks:
