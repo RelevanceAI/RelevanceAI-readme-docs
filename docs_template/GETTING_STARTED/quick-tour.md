@@ -46,8 +46,6 @@ After installation, we need to also set up an API client. If you are missing an 
 
 Use one of your sample datasets to insert into your own dataset!
 
-
-
 @@@ get_ecommerce_dataset_clean @@@
 
 

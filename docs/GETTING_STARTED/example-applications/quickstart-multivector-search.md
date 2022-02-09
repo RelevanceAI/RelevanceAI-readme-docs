@@ -119,7 +119,7 @@ Now, let us try out a query using a simple vector search against our dataset.
 
 ```python Python (SDK)
 # Query sample data
-sample_id = documents[0]['id']
+sample_id = documents[0]['_id']
 documents = df.get_documents_by_ids([sample_id])["documents"]
 document = documents[sample_id]
 image_vector = document['product_image_clip_vector_']

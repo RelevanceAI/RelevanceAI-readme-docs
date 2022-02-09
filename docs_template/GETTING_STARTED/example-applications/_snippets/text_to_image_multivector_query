@@ -1,0 +1,15 @@
+python
+query = <<QUERY>>
+query_vector = encode_text(query) # vectorizing query
+
+
+results = df.vector_search(
+    multivector_query=[
+        {
+            "vector": query_vector,
+            "fields": ["clip_product_image_vector_"]
+        }
+    ],
+    page_size=5,
+    query=query
+)

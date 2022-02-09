@@ -63,8 +63,6 @@ client = Client()
 
 Use one of your sample datasets to insert into your own dataset!
 
-
-
 ```python Python (SDK)
 import pandas as pd
 from relevanceai.datasets import get_ecommerce_dataset_clean
