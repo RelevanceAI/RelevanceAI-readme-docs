@@ -1,0 +1,15 @@
+python
+import pandas as pd
+from relevanceai.datasets import get_realestate_dataset
+
+# Retrieve our sample dataset. - This comes in the form of a list of documents.
+documents = get_realestate_dataset()
+
+# ToDo: Remove this cell when the dataset is updated
+
+for d in documents:
+  if '_clusters_' in d:
+    del d['_clusters_']
+
+pd.DataFrame.from_dict(documents).head()
+
