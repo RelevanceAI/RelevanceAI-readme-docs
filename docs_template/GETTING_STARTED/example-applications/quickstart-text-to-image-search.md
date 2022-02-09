@@ -172,6 +172,10 @@ Next, we use `show_json` to visualize images and text easily and quickly!
 
 ## Final Code
 
+
+
+@@@+ client_instantiation; get_ecommerce_dataset_encoded; clip_encoding_functions; clip_encode_image_documents, IMAGE_VECTOR='product_image_clip_vector_', IMAGE_FIELD='product_image; dataset_basics, DATASET_ID=TEXT_IMAGE_SEARCH_DATASET_ID; clip_encode_query, QUERY='for my baby daughter'; multivector_query, VECTOR_FIELD=query_vector, VECTOR_FIELDS=["product_image_clip_vector_"]; vector_search, MULTIVECTOR_QUERY=multivector_query, PAGE_SIZE=5;  query_show_json, QUERY='for my baby daughter', IMAGE_FIELDS=["product_image"], TEXT_FIELDS=["product_title"] @@@
+
 ```python Python (SDK)
 from relevanceai import Client
 

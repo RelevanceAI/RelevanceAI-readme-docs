@@ -10,6 +10,7 @@ import sys
 import json
 import nbformat
 from nbconvert.preprocessors import ExecutePreprocessor
+import traceback
 
 from utils import multiprocess
 
@@ -165,7 +166,7 @@ def execute_notebook(notebook:str, notebook_args: Dict):
             **notebook_args['client_instantiation_base_args']
         )
 
-        import traceback
+
         exception_reason = traceback.format_exc()
         ERROR_MESSAGE = f"{notebook}\n{exception_reason}\n"
         print(
