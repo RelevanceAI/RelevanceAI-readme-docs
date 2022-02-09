@@ -243,6 +243,10 @@ def main(args):
     ## Filter notebooks
     notebooks = [n for n in notebooks if n not in NOTEBOOK_IGNORE]
 
+    if not notebooks:
+        print(f'No notebooks found not in {NOTEBOOK_IGNORE}')
+        sys.exit(1)
+
     static_args= {
         'relevanceai_sdk_version': RELEVANCEAI_SDK_VERSION,
         'pip_install_version_args': pip_install_version_args,
