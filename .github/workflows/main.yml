@@ -20,7 +20,7 @@ jobs:
           python-version: '3.x'
 
       - name: Install requirements
-        run:
+        run: |
           rm -rf /opt/hostedtoolcache/Python/3.7.12/x64/lib/python3.7/site-packages/typing_extensions-4.0.1.dist-info
           pip install --upgrade pip
           pip install -r requirements.txt
