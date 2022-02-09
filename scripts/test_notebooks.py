@@ -1,7 +1,6 @@
 #!/usr/bin/env python3
 
 from typing import Dict
-from typing_extensions import Literal
 import os
 from pathlib import Path
 import re
@@ -76,7 +75,7 @@ def notebook_find_replace(fname: str, find_sent_regex: str, find_str_regex: str,
     logging.info(f'\tOutput file: {fname}')
     json.dump(notebook_json, fp=open(fname, 'w'), indent=4)
 
-def update_pip_for_shell(fname, shell: Literal['zsh', 'bash']='zsh'):
+def update_pip_for_shell(fname: str, shell: str='zsh'):
     logging.info(f'\tInput: {fname}')
     notebook_json = json.loads(open(fname).read())
 
