@@ -32,7 +32,7 @@ jobs:
 
       - name: Test for API keys in docs
         run: |
-          python scripts/detect_secrets.py -d -p docs -s False
+          python scripts/detect_secrets.py -d -p docs
 
       - name: Update asset links
         run: |
