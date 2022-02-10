@@ -103,7 +103,7 @@ def generate_snippet(
                 ## Loading params
 
                 NUM_REGEX_PARAM='(([A-Z])\w+=[0-9.])'
-                VALUE_REGEX_PARAM='([A-Z])\w+=([A-Za-z_])\w+'
+                VALUE_REGEX_PARAM='([A-Z])\w+=([A-Za-z0-9_-]+)'
                 LIST_REGEX_PARAM='([A-Z])\w+=\[(.*?)\]'
                 STR_REGEX_PARAM_DOUBLE_QUOTE='([A-Z])\w+=\".*\"'
                 STR_REGEX_PARAM_SINGLE_QUOTE='([A-Z])\w+=\".*\"'
