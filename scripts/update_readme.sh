@@ -24,34 +24,41 @@ function blue(){
 	echo -e "\n${blue}${1}${NC}"
 }
 
-ROOT_PATH=${2:-$PWD}
+DOCS_PATH=${2:-"$PWD/docs/"}
 PIP_PACKAGE_NAME=${3:-"RelevanceAI"}
 
-GIT_BRANCH_VERSION=$(git rev-parse --abbrev-ref HEAD | sed 's/[v]//g')
-README_VERSION=${4:-$(cat __version__)}
+GIT_BRANCH_NAME=$(git rev-parse --abbrev-ref HEAD)
+GIT_BRANCH_NAME_VERSION=$(echo $GIT_BRANCH_NAME | sed 's/[^0-9.]//g')
+VERSION_FILE=$(cat __version__)
 
-CYAN "=== Updating asset links to v$GIT_BRANCH_VERSION ==="
-
-if $DEBUG_MODE; then
-	python scripts/update_asset_ref.py -d -p $PWD -pn $PIP_PACKAGE_NAME -v $GIT_BRANCH_VERSION
-else
-	python scripts/update_asset_ref.py -p $PWD -pn $PIP_PACKAGE_NAME -v $GIT_BRANCH_VERSION
+if [[ $VERSION_FILE != $GIT_BRANCH_NAME_VERSION ]]; then
+	echo $GIT_BRANCH_NAME_VERSION > __version__
 fi
 
-CYAN "=== Updating semver ref to v$README_VERSION ==="
+README_VERSION=${4:-$GIT_BRANCH_NAME_VERSION}
+
+CYAN "=== Updating asset links to $GIT_BRANCH_NAME ==="
 
 if $DEBUG_MODE; then
-	python scripts/update_semver_ref.py -d -p $PWD -pn $PIP_PACKAGE_NAME -v $README_VERSION
+	python scripts/update_asset_ref.py -d -p $PWD -pn $PIP_PACKAGE_NAME -v $GIT_BRANCH_NAME
 else
-	python scripts/update_semver_ref.py -p $PWD -pn $PIP_PACKAGE_NAME -v $README_VERSION
+	python scripts/update_asset_ref.py -p $PWD -pn $PIP_PACKAGE_NAME -v $GIT_BRANCH_NAME
 fi
 
-CYAN "=== Rebuilding Readme docs v$GIT_BRANCH_VERSION ==="
+CYAN "=== Updating semver ref to $README_VERSION ==="
+
 if $DEBUG_MODE; then
-	python scripts/build_docs.py  -d -p $PWD -pn $PIP_PACKAGE_NAME -v $GIT_BRANCH_VERSION
+	python scripts/update_semver_ref.py -d -p $PWD -pn $PIP_PACKAGE_NAME -v $GIT_BRANCH_NAME_VERSION
 else
-	python scripts/build_docs.py  -p $PWD -pn $PIP_PACKAGE_NAME -v $GIT_BRANCH_VERSION
+	python scripts/update_semver_ref.py -p $PWD -pn $PIP_PACKAGE_NAME -v $GIT_BRANCH_NAME_VERSION
 fi
 
-CYAN "=== Syncing ReadMe version v$GIT_BRANCH_VERSION ==="
-./scripts/sync_readme_docs.sh $DEBUG_MODE $GIT_BRANCH_VERSION
+CYAN "=== Rebuilding Readme docs $GIT_BRANCH_NAME ==="
+if $DEBUG_MODE; then
+	python scripts/build_docs.py  -d -p $PWD -pn $PIP_PACKAGE_NAME -v $GIT_BRANCH_NAME
+else
+	python scripts/build_docs.py  -p $PWD -pn $PIP_PACKAGE_NAME -v $GIT_BRANCH_NAME
+fi
+
+CYAN "=== Syncing ReadMe version $GIT_BRANCH_NAME ==="
+./scripts/sync_readme_docs.sh $DEBUG_MODE $DOCS_PATH $GIT_BRANCH_NAME

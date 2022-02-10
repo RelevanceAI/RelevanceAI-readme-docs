@@ -114,10 +114,9 @@ def execute_notebook(notebook:str, notebook_args: Dict):
     try:
         print(notebook)
 
-        # to support the multiprocessing function
-        if isinstance(notebook, list):
-            notebook = notebook[0]
-
+        if notebook_args['multiprocess']:
+            if isinstance(notebook, list):
+                notebook = notebook[0]
 
         if os.getenv('SHELL') and 'zsh' in os.getenv('SHELL'):
             update_pip_for_shell(notebook,shell='zsh')

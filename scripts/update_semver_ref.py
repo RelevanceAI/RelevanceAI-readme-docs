@@ -5,7 +5,7 @@ import os
 import re
 from pathlib import Path
 import itertools
-from typing import List, Tuple, Union
+from typing import List, Literal, Tuple, Union
 import logging
 import argparse
 import json
@@ -45,7 +45,7 @@ def file_find_replace(fname: str, find_sent_regex: str, find_str_regex: str, rep
 
 
 
-def get_files(path: Union[Path, str], ext: Union['md', 'ipynb']):
+def get_files(path: Union[Path, str], ext: Literal['md', 'ipynb']):
 	return Path(path).glob(f"**/*.{ext}")
 
 
