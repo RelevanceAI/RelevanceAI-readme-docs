@@ -1,0 +1,11 @@
+python
+filter = [
+    {"field" : "<<FIELD1>>",
+    "filter_type" : "<<FILTER_TYPE1>>",
+    "condition":"CONDITION1",
+    "condition_value":<<CONDITION_VAL1>>},
+    {"field" : "<<FIELD2>>",
+    "filter_type" : "<<FILTER_TYPE2>>",
+    "condition":"CONDITION2",
+    "condition_value":<<CONDITION_VAL2>>}
+    ]
