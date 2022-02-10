@@ -8,13 +8,13 @@ updatedAt: "2022-01-24T04:32:36.426Z"
 ---
 Centroids from your clustering algorithm describe the 'average' of each cluster. You can insert these centroids into RelevanceAI to facilitate:
 
-- Future acceleration of vector search 
+- Future acceleration of vector search
 - Identification of the cluster to which a new document belongs
 - Storing the centroid vectors with relevant metadata such as a topic
 
 
 ## Insert centroids
-You will need to have 
+You will need to have
 1. uploaded a dataset to Relevance AO
 2. performed clustering and uploaded the results to Relevance AI
 3. Have the centroids ready to be inserted into the dataset

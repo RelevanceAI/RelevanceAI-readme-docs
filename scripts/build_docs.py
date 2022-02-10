@@ -267,6 +267,7 @@ def main(args):
     #     snippet_params=SNIPPET_PARAMS
     #     )
 
+
     logging.info(f'Generating files from `docs_template` to `docs` ...')
     snippet_paths = []
     for root, dirs, files in os.walk(DOCS_TEMPLATE_PATH, topdown=True):
@@ -310,6 +311,9 @@ def main(args):
                 )
 
             logging.debug('---------')
+
+
+
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
