@@ -28,5 +28,10 @@
 "SAMPLE_IMG_DOCS": [
     {"image_url": "https://relevance.ai/wp-content/uploads/2021/10/statue-illustration.png"},
     {"image_url": "https://relevance.ai/wp-content/uploads/2021/09/Group-193-1.png"}],
-"IMG_URL_FIELD": "image_url"
+"IMG_URL_FIELD": "image_url",
+"WHITE_SNEAKER_QUERY": "white sneakers",
+"ENCODER_ENC": "enc",
+"ENC_TXT_RES": "query_vec_txt",
+"TITLE_VECTOR": "title_vector_",
+"DESCRIPTION_VECTOR": "description_vector_"
 }
