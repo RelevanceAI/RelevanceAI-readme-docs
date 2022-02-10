@@ -241,7 +241,8 @@ def main(args):
         ]
 
     ## Filter notebooks
-    notebooks = [n for n in notebooks if n not in NOTEBOOK_IGNORE]
+    if args.notebook_ignore:
+        notebooks = [n for n in notebooks if n not in NOTEBOOK_IGNORE]
 
     if not notebooks:
         print(f'No notebooks found not in {NOTEBOOK_IGNORE}')
@@ -299,6 +300,7 @@ if __name__ == "__main__":
     parser.add_argument("-v", "--version", default=README_VERSION, help="Package Version")
     parser.add_argument("-n", "--notebooks", nargs="+", default=None, help="List of notebooks to execute")
     parser.add_argument("-nm", "--no-multiprocess", action='store_true', help="Whether to run multiprocessing")
+    parser.add_argument("-i", "--notebook-ignore", action='store_true', help="Whether to include notebook ignore list")
     args = parser.parse_args()
 
     main(args)
