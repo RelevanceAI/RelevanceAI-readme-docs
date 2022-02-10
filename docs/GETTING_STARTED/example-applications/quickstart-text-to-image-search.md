@@ -176,7 +176,7 @@ We then encode the data.
 
 ```python Python (SDK)
 def encode_image_document(d):
-  d[<<IMAGE_VECTOR>>] = encode_image(d[<<IMAGE_FIELD>>])
+  d['product_image_clip_vector_'] = encode_image(d['product_image'])
 
 # Let's import TQDM for a nice progress bar!
 from tqdm.auto import tqdm
@@ -212,7 +212,7 @@ Once we have inserted the data into the dataset, we can visit [RelevanceAI dashb
 Lets first encode our text search query to vectors using CLIP.
 
 ```python Python (SDK)
-query = <<QUERY>>
+query = 'for my baby daughter'
 query_vector = encode_text(query)
 ```
 ```python
@@ -307,7 +307,7 @@ def encode_text(text):
     return text_features.tolist()[0]
 
 def encode_image_document(d):
-  d[<<IMAGE_VECTOR>>] = encode_image(d[<<IMAGE_FIELD>>])
+  d['product_image_clip_vector_'] = encode_image(d['product_image])
 
 # Let's import TQDM for a nice progress bar!
 from tqdm.auto import tqdm
@@ -318,7 +318,7 @@ df = client.Dataset(DATASET_ID)
 df.delete()
 df.insert_documents(documents)
 
-query = <<QUERY>>
+query = 'for my baby daughter'
 query_vector = encode_text(query)
 
 multivector_query=[

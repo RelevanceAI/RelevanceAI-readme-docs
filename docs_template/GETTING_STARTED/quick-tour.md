@@ -94,7 +94,7 @@ Run clustering on your vectors to better understand your data. You can view the 
 
 You can also get a list of documents that are closest to the center of the clusters:
 
-@@@ list_closest @@@
+@@@ list_closest_to_center @@@
 
 
 <figure>

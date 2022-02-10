@@ -67,28 +67,8 @@ Finally, these categorised documents are uploaded back to the dataset as an addi
 
 Get the centroid's vector and insert them as centroids into Relevance AI.
 
-```python Python (SDK)
-centroids = clusterer.get_centroid_documents()
-clusterer.insert_centroid_documents(centroids, df)
-
-```
-```python
-```
+@@@+ get_centroid_documents; insert_centroid_documents @@@
 
 Downloading a few sample documents from the dataset, we show to which cluster they belong:
 
-```python Python (SDK)
-from relevanceai import show_json
-
-sample_documents = df.sample(n=5)
-
-samples = [{
-    'product_title':d['product_title'],
-    'cluster':d['_cluster_'][VECTOR_FIELD][ALIAS]
-} for d in sample_documents]
-
-show_json(samples, text_fields=['product_title', 'cluster'])
-
-```
-```python
-```
+@@@ cluster_sample_results, N_SAMPLES=5, VECTOR_FIELD=VECTOR_FIELD, ALIAS=ALIAS, TEXT_FIELDS=['product_title', 'cluster'] @@@

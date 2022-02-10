@@ -148,7 +148,7 @@ clusterer = df.auto_cluster('kmeans-10', ['product_image_clip_vector_'])
 You can also get a list of documents that are closest to the center of the clusters:
 
 ```python Python (SDK)
-clusterer.list_closest_to_center()
+clusterer DF.list_closest_to_center(<<DF>>)
 ```
 ```python
 ```
