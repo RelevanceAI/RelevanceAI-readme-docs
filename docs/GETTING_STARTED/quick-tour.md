@@ -31,7 +31,7 @@ Run this Quickstart in Colab: [![Open In Colab](https://colab.research.google.co
 ```bash Bash
 !pip install -U RelevanceAI[notebook]==0.33.2
 
-!pip install -U sentence-transformers
+!pip install -U vectorhub[clip]
 ```
 ```bash
 ```

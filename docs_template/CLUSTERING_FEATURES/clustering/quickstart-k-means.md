@@ -52,7 +52,7 @@ The easiest way to run a Kmeans clustering algorithm under the Relevance AI plat
 
 Another way of clustering is to use the ClusterOps class as shown in the snippet below:
 
-@@@ clusterops_fit_predict, VECTOR=PRODUCT_TITLE_CLIP_VEC, N_KMEANS=10 @@@
+@@@  clusterops_fit_predict, VECTOR_FIELD=PRODUCT_TITLE_CLIP_VEC, N_KMEANS=10 @@@
 
 
 The `fit_predict_update()` function performs the following steps:

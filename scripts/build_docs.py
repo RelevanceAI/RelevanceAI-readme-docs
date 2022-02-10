@@ -234,10 +234,11 @@ def load_snippet_paths(dir: Path):
     '''
     Loads all snippets from dir path
     '''
-    for root, _, files in os.walk(dir):
-        for f in files:
-            if f.endswith('.ipynb') or f.endswith('.md'):
-                yield Path(root).joinpath(f)
+    snippet_paths = []
+    # for root, _, files in os.walk(dir):
+    #     for f in files:
+    #         if f.endswith('.ipynb') or f.endswith('.md'):
+    #             yield Path(root).joinpath(f)
 
 
 ###############################################################################
@@ -257,16 +258,16 @@ def main(args):
     SNIPPET_PARAMS_FPATH = Path(DOCS_TEMPLATE_PATH) / "_snippet_params.json"
     SNIPPET_PARAMS = json.loads(open(str(SNIPPET_PARAMS_FPATH), 'r').read())
 
-    # For testing/debugging
-    sample_input_fname = DOCS_TEMPLATE_PATH / 'CLUSTERING_FEATURES' / 'clustering' / "quickstart-k-means.md"
-    sample_output_fname = Path(str(sample_input_fname).replace('docs_template', 'docs'))
-    snippet_paths = [GENERAL_SNIPPETS] + [Path(DOCS_TEMPLATE_PATH) / 'CLUSTERING_FEATURES' / 'clustering' /'_snippets']
-    generate_md_file(
-        input_fname=sample_input_fname,
-        output_fname=sample_output_fname,
-        snippet_paths=snippet_paths,
-        snippet_params=SNIPPET_PARAMS
-        )
+    # # For testing/debugging
+    # sample_input_fname = DOCS_TEMPLATE_PATH / 'CLUSTERING_FEATURES' / 'clustering' / "quickstart-k-means.md"
+    # sample_output_fname = Path(str(sample_input_fname).replace('docs_template', 'docs'))
+    # snippet_paths = [GENERAL_SNIPPETS] + [Path(DOCS_TEMPLATE_PATH) / 'CLUSTERING_FEATURES' / 'clustering' /'_snippets']
+    # generate_md_file(
+    #     input_fname=sample_input_fname,
+    #     output_fname=sample_output_fname,
+    #     snippet_paths=snippet_paths,
+    #     snippet_params=SNIPPET_PARAMS
+    #     )
 
     # sample_input_ipynb_fname = DOCS_TEMPLATE_PATH / 'CLUSTERING_FEATURES' / '_notebooks' / "Intro-to-Relevance-AI.ipynb"
     # sample_output_ipynb_fname = str(sample_input_ipynb_fname).replace('docs_template', 'docs')
@@ -279,49 +280,49 @@ def main(args):
     #     )
 
 
-    # logging.info(f'Generating files from `docs_template` to `docs` ...')
-    # snippet_paths = []
-    # for root, dirs, files in os.walk(DOCS_TEMPLATE_PATH, topdown=True):
-    #     root_name = root.split('/')[-1]
-    #     if root_name[0] != '_' and files and (not '_snippets' in root):
-    #         logging.debug(f'\tRoot {root}')
-    #         logging.debug(f'\tDirs {dirs}')
-    #         logging.debug(f'\tFiles {files}')
+    logging.info(f'Generating files from `docs_template` to `docs` ...')
+    snippet_paths = []
+    for root, dirs, files in os.walk(DOCS_TEMPLATE_PATH, topdown=True):
+        root_name = root.split('/')[-1]
+        if root_name[0] != '_' and files and (not '_snippets' in root):
+            logging.debug(f'\tRoot {root}')
+            logging.debug(f'\tDirs {dirs}')
+            logging.debug(f'\tFiles {files}')
 
-    #         ### Loading snippet_paths
-    #         SNIPPETS_DIR = Path(root).joinpath("_snippets")
-    #         if '_snippets' in dirs:
-    #             snippet_paths += [SNIPPETS_DIR]
+            ### Loading snippet_paths
+            SNIPPETS_DIR = Path(root).joinpath("_snippets")
+            if '_snippets' in dirs:
+                snippet_paths += [SNIPPETS_DIR]
 
-    #         logging.debug(f'\tSnippet paths {snippet_paths}')
+            logging.debug(f'\tSnippet paths {snippet_paths}')
 
-    #         ## Generating for md
-    #         MD_FILES = Path(root).glob('*.md')
-    #         for input_fname in MD_FILES:
-    #             output_fname = Path(str(input_fname).replace('docs_template', 'docs'))
+            ## Generating for md
+            MD_FILES = Path(root).glob('*.md')
+            for input_fname in MD_FILES:
+                output_fname = Path(str(input_fname).replace('docs_template', 'docs'))
 
-    #             logging.debug('---')
-    #             generate_md_file(
-    #                 input_fname=input_fname,
-    #                 output_fname=output_fname,
-    #                 snippet_paths=snippet_paths,
-    #                 snippet_params=SNIPPET_PARAMS
-    #             )
+                logging.debug('---')
+                generate_md_file(
+                    input_fname=input_fname,
+                    output_fname=output_fname,
+                    snippet_paths=snippet_paths,
+                    snippet_params=SNIPPET_PARAMS
+                )
 
-    #         ### Generating for ipynb
-    #         NOTEBOOK_FILES = Path(root).glob('*/*.ipynb')
-    #         for input_fname in NOTEBOOK_FILES:
-    #             output_fname = Path(str(input_fname).replace('docs_template', 'docs'))
+            ### Generating for ipynb
+            NOTEBOOK_FILES = Path(root).glob('*/*.ipynb')
+            for input_fname in NOTEBOOK_FILES:
+                output_fname = Path(str(input_fname).replace('docs_template', 'docs'))
 
-    #             logging.debug('---')
-    #             generate_ipynb_file(
-    #                 input_fname=input_fname,
-    #                 output_fname=output_fname,
-    #                 snippet_paths=snippet_paths,
-    #                 snippet_params=SNIPPET_PARAMS
-    #             )
+                logging.debug('---')
+                generate_ipynb_file(
+                    input_fname=input_fname,
+                    output_fname=output_fname,
+                    snippet_paths=snippet_paths,
+                    snippet_params=SNIPPET_PARAMS
+                )
 
-    #         logging.debug('---------')
+            logging.debug('---------')
 
 
 
