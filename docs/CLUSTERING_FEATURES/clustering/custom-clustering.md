@@ -11,7 +11,7 @@ Relevance AI supports the integration of custom clustering algorithms. The custo
 ## What you will need
 You need to have a dataset under your account in Relevance AI.
 
-[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/RelevanceAI/RelevanceAI-readme-docs/blob/v0.33.2-clustering-feature/docs/CLUSTERING_FEATURES/Clustering/_notebooks/RelevanceAI-ReadMe-Custom-Clustering.ipynb)
+[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/RelevanceAI/RelevanceAI-readme-docs/blob/v0.33.2-clustering-feature/docs/CLUSTERING_FEATURES/clustering/_notebooks/RelevanceAI-ReadMe-Custom-Clustering.ipynb)
 
 ## Code Example
 The following code shows
