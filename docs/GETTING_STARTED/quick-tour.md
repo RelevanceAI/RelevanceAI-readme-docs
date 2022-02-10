@@ -113,7 +113,7 @@ Update the existing dataset with the encoding results and check the results
 
 
 ```python Python (SDK)
-df.upsert_documents(documents=<<DOCUMENTS>>)
+df.upsert_documents(documents=documents)
 
 df.schema
 ```

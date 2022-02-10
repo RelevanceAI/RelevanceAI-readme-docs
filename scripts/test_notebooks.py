@@ -209,16 +209,23 @@ def main(args):
 
     ## Env vars
     CLIENT_INSTANTIATION_SENT_REGEX = 'client.*Client(.*)'
-    # TEST_PROJECT = os.environ["TEST_PROJECT"]
-    # TEST_API_KEY = os.environ["TEST_API_KEY"]
-    TEST_ACTIVATION_TOKEN = os.environ["TEST_ACTIVATION_TOKEN"]
     CLIENT_INSTANTIATION_STR_REGEX = "\((.*?)\)"
-    # CLIENT_INSTANTIATION_STR_REPLACE = (
-    #     f'(project=\\"{TEST_PROJECT}\\", api_key=\\"{TEST_API_KEY}\\")'
-    # )
-    CLIENT_INSTANTIATION_STR_REPLACE = (
-        f'(token="{TEST_ACTIVATION_TOKEN}")'
-    )
+
+    TEST_PROJECT = os.getenv("TEST_PROJECT")
+    TEST_API_KEY = os.getenv("TEST_API_KEY")
+    TEST_ACTIVATION_TOKEN = os.getenv("TEST_ACTIVATION_TOKEN")
+    if TEST_ACTIVATION_TOKEN:
+        CLIENT_INSTANTIATION_STR_REPLACE = (
+            f'(token="{TEST_ACTIVATION_TOKEN}")'
+        )
+    elif (TEST_PROJECT and TEST_API_KEY):
+        CLIENT_INSTANTIATION_STR_REPLACE = (
+            f'(project=\\"{TEST_PROJECT}\\", api_key=\\"{TEST_API_KEY}\\")'
+        )
+    else:
+        raise ValueError(f'Please set the client test credentials\n\
+            export TEST_ACTIVATION_TOKEN=xx or\nexport TEST_PROJECT=xx\nexport TEST_API_KEY=xx')
+
     CLIENT_INSTANTIATION_BASE = f'client = Client()'
     client_instantiation_args={
         'find_sent_regex': CLIENT_INSTANTIATION_SENT_REGEX,

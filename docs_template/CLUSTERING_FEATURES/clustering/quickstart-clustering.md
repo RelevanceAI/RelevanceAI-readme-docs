@@ -18,7 +18,7 @@ Clustering groups items so that those in the same group/cluster have meaningful 
 
 In this guide, you will learn to run clustering based on the K-Means algorithm which aims to partition your dataset into K distinct clusters.
 
-[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/RelevanceAI/RelevanceAI-readme-docs/blob/v0.33.2-clustering-feature/docs/CLUSTERING_FEATURES/Clustering/_notebooks/RelevanceAI-ReadMe-Kmeans-Clustering-Step-by-Step.ipynb)
+[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/RelevanceAI/RelevanceAI-readme-docs/blob/v0.33.2-clustering-feature/docs/CLUSTERING_FEATURES/clustering/_notebooks/RelevanceAI-ReadMe-Kmeans-Clustering-Step-by-Step.ipynb)
 
 ### 1. Create a dataset and insert data
 
@@ -60,13 +60,9 @@ Next, the algorithm is fitted on the vector field, *product_title_clip_vector_*,
 ### 3. Update the dataset with the cluster labels
 
 Finally, these categorised documents are uploaded back to the dataset as an additional field.
-```python Python (SDK)
-# Writing back the clustering results to the dataset
-df.upsert_documents(documents=clustered_docs)
 
-```
-```python
-```
+@@@ upsert_documents, DOCUMENTS=clustered_docs@@@
+
 ### 4. Insert the cluster centroids
 
 Get the centroid's vector and insert them as centroids into Relevance AI.
