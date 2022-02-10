@@ -6,20 +6,19 @@ createdAt: "2021-11-25T22:22:07.285Z"
 updatedAt: "2022-01-19T05:17:10.638Z"
 ---
 <figure>
-<img src="https://files.readme.io/2621527-id.png" width="612" alt="id.png" />
+<img src="https://github.com/RelevanceAI/RelevanceAI-readme-docs/blob/v0.33.2-getting-started/docs_template/GENERAL_FEATURES/_assests/id.png" width="612" alt="id.png" />
 <figcaption>Filtering documents based on their id.</figcaption>
 <figure>
+
 ## `ids`
 This filter returns documents whose unique id exists in a given list. It may look similar to 'categories'. The main difference is the search speed.
-```python Python (SDK)
-from relevanceai import Client
-client = Client()
 
-filter = [{'field' : '_id', # field to look at
- 'filter_type' : 'ids',
- "condition":"==",
- "condition_value":"7790e058cbe1b1e10e20cd22a1e53d36"}]
-filtered_data = client.datasets.documents.get_where(dataset_id, filter)
-```
-```python
-```
+@@@ relevanceai_installation, RELEVANCEAI_SDK_VERSION=RELEVANCEAI_SDK_VERSION @@@
+
+@@@ client_instantiation @@@
+
+@@@ dataset_df, DATASET_ID=ECOMMERCE_SAMPLE_DATASET_ID @@@
+
+@@@ filter_setup, FIELD=ID_FIELD, FILTER_TYPE=IDS_FILTER_TYPE, CONDITION=EQ_COND, CONDITION_VAL=CONDITION_VAL_4 @@@
+
+@@@ filter_dataset @@@

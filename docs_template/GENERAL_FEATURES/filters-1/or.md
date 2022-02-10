@@ -31,10 +31,11 @@ filters = [{
  ]}
 ]
 
-filtered_data = client.datasets.documents.get_where(dataset_id, filters)
 ```
 ```python
 ```
+
+@@@ filter_dataset @@@
 
 ## (A or B) and (C or D)
 
@@ -76,10 +77,13 @@ filter = [{
  ]},
 ]
 
-filtered_data = client.datasets.documents.get_where(dataset_id, filter)
 ```
 ```python
 ```
+
+@@@ filter_dataset @@@
+
+
 ## (A or B or C) and D
 
 Below, we show an example of how to use 2 lists of filters with `or` logic.
@@ -118,7 +122,7 @@ filter = [{
  },
 ]
 
-filtered_data = client.datasets.documents.get_where(dataset_id, filter)
 ```
 ```python
 ```
+@@@ filter_dataset @@@

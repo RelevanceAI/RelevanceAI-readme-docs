@@ -6,9 +6,10 @@ createdAt: "2021-11-21T07:05:21.922Z"
 updatedAt: "2022-01-19T04:01:08.086Z"
 ---
 <figure>
-<img src="https://files.readme.io/fb01cb3-604547f-combined_filters.png" width="1009" alt="604547f-combined_filters.png" />
+<img src="https://github.com/RelevanceAI/RelevanceAI-readme-docs/blob/v0.33.2-getting-started/docs_template/GENERAL_FEATURES/_assests/filters-1.png" width="1009" alt="604547f-combined_filters.png" />
 <figcaption>Example output of filtering Lenovo products all inserted into the database after 01/01/2020</figcaption>
 <figure>
+
 Filters are great tools to retrieve a subset of documents whose data match the criteria specified in the filter.
 For instance, in an e-commerce dataset, we can retrieve all products:
 * with prices between 200 and 300 dollars
@@ -24,14 +25,10 @@ Filters at Relevance AI are defined as Python dictionaries with four main keys:
 - `condition` (i.e. operators such as greater than or equal)
 - `filter_type` (i.e. the type of filter you want to apply - whether it be date/numeric/text etc.)
 - `condition_value` (dependent on the filter type but decides what value to filter on)
-```python Python (SDK)
-filter = [{'field' : 'description', # field to look at
- 'filter_type' : 'contains',
- "condition":"==",
- "condition_value":"Durian Club"}] # searching for "Durian Club 3 sofa"
-```
-```python
-```
+
+
+@@@ filter_setup, FIELD=DESCRIPTION_FIELD, FILTER_TYPE=CONTAINS_FILTER_TYPE, CONDITION=EQ_COND, CONDITION_VAL=CONDITION_VAL_7 @@@
+
 ## Filtering operators
 Relevance AI covers all common operators:
 * "==" (a == b, a equals b)
