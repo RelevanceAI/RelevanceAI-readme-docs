@@ -18,7 +18,7 @@ Clustering groups items so that those in the same group/cluster have meaningful 
 
 In this guide, you will learn to run clustering based on the K-Means algorithm which aims to partition your dataset into K distinct clusters.
 
-[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/RelevanceAI/RelevanceAI-readme-docs/blob/v0.33.2-clustering-feature/docs/CLUSTERING_FEATURES/clustering/_notebooks/RelevanceAI-ReadMe-Kmeans-Clustering-Step-by-Step.ipynb)
+[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/RelevanceAI/RelevanceAI-readme-docs/blob/v0.33.2-clustering-feature/docs/CLUSTERING_FEATURES/Clustering/_notebooks/RelevanceAI-ReadMe-Kmeans-Clustering-Step-by-Step.ipynb)
 
 ### 1. Create a dataset and insert data
 
@@ -44,45 +44,18 @@ Let's have a look at the schema to see what vector fields are available for clus
 
 The result is a JSON output similar to what is shown below. As can be seen, there are two vector fields in the dataset `product_image_clip_vector_` and `product_title_clip_vector_`.
 
-```json JSON
-{
-  "insert_date_": "date",
- "product_image": "text",
- "product_image_clip_vector_": {"vector": 512},
- "product_link": "text",
- "product_price": "text",
- "product_title": "text",
- "product_title_clip_vector_": {"vector": 512},
- "query": "text",
- "source": "text"}
-```
-```json
-```
+@@@ ecommerce_dataset_encoded_schema @@@
 
 ### 2. Run clustering algorithm
 
 To run KMeans Clustering, we need to first define a clustering object, `KMeansModel`, which loads the clustering algorithm with a specified number of clusters.
 
-```python Python (SDK)
-from relevanceai.clusterer import KMeansModel
-kmeans = KMeansModel(k=5)
-clusterer = client.ClusterOps(ALIAS, kmeans)
-
-ALIAS = "kmeans-5"
-VECTOR_FIELD = "product_title_clip_vector_"
-
-```
-```python
-```
+@@@  clusterops, VECTOR_FIELD=PRODUCT_TITLE_CLIP_VEC, N_KMEANS=5 @@@
 
 Next, the algorithm is fitted on the vector field, *product_title_clip_vector_*, to distinguish between clusters. The cluster to which each document belongs is returned.
 
-```python Python (SDK)
-clustered_docs = clusterer.fit_predict_documents(vector_fields = [], documents = documents,inplace=False)
+@@@ fit_predict_documents, VECTOR_FIELDS=['product_title_clip_vector_'] @@@
 
-```
-```python
-```
 
 ### 3. Update the dataset with the cluster labels
 

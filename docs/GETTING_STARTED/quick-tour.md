@@ -47,7 +47,6 @@ You can sign up/login and find your credentials here: https://cloud.relevance.ai
 Once you have signed up, click on the value under `Authorization token` and paste it here
 """
 client = Client()
-
 ```
 ```python
 ```
@@ -104,7 +103,6 @@ model = Clip2Vec()
 # Set the default encode to encoding an image
 model.encode = model.encode_image
 dataset = model.encode_documents(fields=['product_image'], documents=documents)
-
 ```
 ```python
 ```
@@ -115,7 +113,7 @@ Update the existing dataset with the encoding results and check the results
 
 
 ```python Python (SDK)
-df.upsert_documents(documents)
+df.upsert_documents(documents=<<DOCUMENTS>>)
 
 df.schema
 ```

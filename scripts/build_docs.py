@@ -5,7 +5,6 @@ from itertools import chain
 import os
 from pathlib import Path
 import re
-
 import json
 
 from typing import List, Dict, Optional, Union
@@ -15,7 +14,6 @@ import logging
 
 import traceback
 
-from tensorboard import notebook
 
 RDMD_SNIPPET_LANGUAGES = {
     'python': 'Python (SDK)',
@@ -28,6 +26,27 @@ RDMD_SNIPPET_LANGUAGES = {
 # Helper Functions
 ###############################################################################
 
+def load_param_in_snippet(snippet_path: Path, snippet: List, params: Dict):
+    '''
+    Loads params in snippet
+    '''
+    PARAM_REFS = []
+    for i, line in enumerate(snippet):
+        for m in re.finditer('<<([A-Z_]*)>>', line):
+            for k, v in params.items():
+                if k in m.group():
+                    if isinstance(v, list):
+                        v = str(v)
+                        if isinstance(v[0], dict): ### List[dict]
+                            v =  json.dumps(v)
+                    line = line.replace(f'<<{k}>>', v )
+            PARAM_REFS.append(m.group().replace('<<', '').replace('>>', '').strip())
+        snippet[i] = line
+    SNIPPET_PARAM_DIFF =  set(list(params.keys())) - (set(PARAM_REFS))
+    if SNIPPET_PARAM_DIFF:
+        raise ValueError(f'\nIncorrect params {SNIPPET_PARAM_DIFF} in required params {list(PARAM_REFS)}\n{snippet_path}')
+    return snippet
+
 def load_snippet(
     snippet_path: str,
     ext: str,
@@ -36,40 +55,35 @@ def load_snippet(
     '''
     Loads given snippet from the given path in a given format
     '''
-
     try:
         with open(snippet_path, 'r') as f:
             if ext == 'ipynb':
-                text = f.readlines()
+                text = f.readlines()        ## Need to keep '\n' for 'ipynb'
             elif ext == 'md':
-                text = f.read()
+                text = f.read().strip().splitlines()
     except Exception as e:
         raise FileNotFoundError (f'File not found: {snippet_path}')
+
+    ### Loading language and default params
+    language = text[0].split(' ')[0]
+    if len(text[0].split(' ')) > 1:
+        default_params = dict(tuple(args.strip().replace('==', '=').split('=')) for args in text[0].split(' ')[1:])
+        logging.debug(f'Found default params {default_params}')
+    else:
+        default_params = {}
 
     if ext == 'ipynb':
         snippet = text[1:]
     elif ext == 'md':
-        snippet = text.split('\n')
-    if params:
-        PARAM_REFS = []
-        for i, line in enumerate(snippet):
-            for m in re.finditer('<<([A-Z_]*)>>', line):
-                for k, v in params.items():
-                    if k in m.group():
-                        if isinstance(v, list):
-                            v = str(v)
-                            if isinstance(v[0], dict): ### List[dict]
-                                v =  json.dumps(v)
-                        line = line.replace(f'<<{k}>>', v )
-                PARAM_REFS.append(m.group().replace('<<', '').replace('>>', '').strip())
-            snippet[i] = line
-        SNIPPET_PARAM_DIFF =  set(list(params.keys())) - (set(PARAM_REFS))
-        if SNIPPET_PARAM_DIFF:
+        snippet = text
 
-            raise ValueError(f'\nIncorrect params {SNIPPET_PARAM_DIFF} in required params {list(PARAM_REFS)}\n{snippet_path}')
+    ## Loading params data
+    snippet_params = params if params else default_params
+    if snippet_params:
+        load_param_in_snippet(snippet_path, snippet, snippet_params)
 
+    ## Adding snippet wrapper for md
     if ext == 'md':
-        language = snippet[0].split(' ')[0]
         snippet[0] = f"```{language} {RDMD_SNIPPET_LANGUAGES[language]}"
         snippet.append("```")
         snippet.append("```"+language)
@@ -101,13 +115,11 @@ def generate_snippet(
 
             if len(snippet_str.split(',')) > 1:
                 ## Loading params
-
                 NUM_REGEX_PARAM='(([A-Z])\w+=[0-9.])'
                 VALUE_REGEX_PARAM='([A-Z])\w+=([A-Za-z0-9_-]+)'
                 LIST_REGEX_PARAM='([A-Z])\w+=\[(.*?)\]'
                 STR_REGEX_PARAM_DOUBLE_QUOTE='([A-Z])\w+=\".*\"'
                 STR_REGEX_PARAM_SINGLE_QUOTE='([A-Z])\w+=\".*\"'
-
                 params_ref = dict(tuple(m.group().strip().replace('==', '=').split('='))
                     for m in chain(
                         re.finditer(NUM_REGEX_PARAM, snippet_str),
@@ -117,18 +129,7 @@ def generate_snippet(
                         re.finditer(STR_REGEX_PARAM_SINGLE_QUOTE, snippet_str),
                     )
                 )
-
                 logging.debug(f"\tParams ref: {params_ref}")
-                param_str = snippet_str.split(',')[1:]
-                # logging.debug(dict(tuple(i.spl it('=')) for i in param_str.split()))
-                # logging.debug(f"\t{param_str}")
-
-                # if len(param_str) == 0:
-                #     raise ValueError(f'You are missing a comma separator. \n \
-                #         Please make sure snippet reference is of format @@@ SNIPPET_NAME, PARAM_REF_1=PARAM_REF_VALUE_1,  PARAM_REF_2=PARAM_REF_VALUE_2 @@@.')
-
-                # params_ref = dict(tuple(s.strip().replace('==', '=').split('=')) for s in param_str)
-                # logging.debug(f"\tParams ref: {params_ref}")
 
                 params = {}
                 for k, v in params_ref.items():
@@ -157,8 +158,8 @@ def generate_snippet(
 
 
 def generate_ipynb_file(
-        input_fname: Union[str, Path],
-        output_fname: Union[str, Path],
+        input_fname:Path,
+        output_fname: Path,
         snippet_paths: List[Path],
         snippet_params=Dict
     ):
@@ -208,8 +209,8 @@ def generate_ipynb_file(
 
 
 def generate_md_file(
-        input_fname: Union[str, Path],
-        output_fname: Union[str, Path],
+        input_fname: Path,
+        output_fname: Path,
         snippet_paths: List[Path],
         snippet_params: Dict
     ):
@@ -293,8 +294,8 @@ def main(args):
     SNIPPET_PARAMS_FPATH = Path(DOCS_TEMPLATE_PATH) / "_snippet_params.json"
     SNIPPET_PARAMS = json.loads(open(str(SNIPPET_PARAMS_FPATH), 'r').read())
 
-    # # For testing/debugging
-    # sample_input_fname = DOCS_TEMPLATE_PATH / 'CLUSTERING_FEATURES' / 'clustering' / "quickstart-k-means.md"
+    # For testing/debugging
+    # sample_input_fname = DOCS_TEMPLATE_PATH / 'CLUSTERING_FEATURES' / 'clustering' / "custom-clustering.md"
     # sample_output_fname = Path(str(sample_input_fname).replace('docs_template', 'docs'))
     # snippet_paths = [GENERAL_SNIPPETS] + [Path(DOCS_TEMPLATE_PATH) / 'CLUSTERING_FEATURES' / 'clustering' /'_snippets']
     # generate_md_file(
@@ -304,60 +305,61 @@ def main(args):
     #     snippet_params=SNIPPET_PARAMS
     #     )
 
-    # sample_input_ipynb_fname = DOCS_TEMPLATE_PATH / 'CLUSTERING_FEATURES' / '_notebooks' / "Intro-to-Relevance-AI.ipynb"
-    # sample_output_ipynb_fname = str(sample_input_ipynb_fname).replace('docs_template', 'docs')
-    # snippet_paths = [GENERAL_SNIPPETS] + [Path(DOCS_TEMPLATE_PATH) / 'GETTING_STARTED' / '_snippets']
-    # generate_ipynb_file(
-    #     input_fname=sample_input_ipynb_fname,
-    #     output_fname=sample_output_ipynb_fname,
-    #     snippet_paths=snippet_paths,
-    #     snippet_params=SNIPPET_PARAMS
-    #     )
+    sample_input_ipynb_fname = DOCS_TEMPLATE_PATH / 'GETTING_STARTED' / '_notebooks' / "RelevanceAI-ReadMe-Quick-Feature-Tour.ipynb"
+
+    sample_output_ipynb_fname = Path(str(sample_input_ipynb_fname).replace('docs_template', 'docs'))
+    snippet_paths = [GENERAL_SNIPPETS] + [Path(DOCS_TEMPLATE_PATH) / 'GETTING_STARTED' / '_snippets']
+    generate_ipynb_file(
+        input_fname=sample_input_ipynb_fname,
+        output_fname=sample_output_ipynb_fname,
+        snippet_paths=snippet_paths,
+        snippet_params=SNIPPET_PARAMS
+        )
 
 
-    logging.info(f'Generating files from `docs_template` to `docs` ...')
-    snippet_paths = []
-    for root, dirs, files in os.walk(DOCS_TEMPLATE_PATH, topdown=True):
-        root_name = root.split('/')[-1]
-        if root_name[0] != '_' and files and (not '_snippets' in root):
-            logging.debug(f'\tRoot {root}')
-            logging.debug(f'\tDirs {dirs}')
-            logging.debug(f'\tFiles {files}')
+    # logging.info(f'Generating files from `docs_template` to `docs` ...')
+    # snippet_paths = []
+    # for root, dirs, files in os.walk(DOCS_TEMPLATE_PATH, topdown=True):
+    #     root_name = root.split('/')[-1]
+    #     if root_name[0] != '_' and files and (not '_snippets' in root):
+    #         logging.debug(f'\tRoot {root}')
+    #         logging.debug(f'\tDirs {dirs}')
+            # logging.debug(f'\tFiles {files}')
 
-            ### Loading snippet_paths
-            SNIPPETS_DIR = Path(root).joinpath("_snippets")
-            if '_snippets' in dirs:
-                snippet_paths += [SNIPPETS_DIR]
+            # ### Loading snippet_paths
+            # SNIPPETS_DIR = Path(root).joinpath("_snippets")
+            # if '_snippets' in dirs:
+            #     snippet_paths += [SNIPPETS_DIR]
 
-            logging.debug(f'\tSnippet paths {snippet_paths}')
+            # logging.debug(f'\tSnippet paths {snippet_paths}')
 
-            ## Generating for md
-            MD_FILES = Path(root).glob('*.md')
-            for input_fname in MD_FILES:
-                output_fname = Path(str(input_fname).replace('docs_template', 'docs'))
+            # ## Generating for md
+            # MD_FILES = Path(root).glob('*.md')
+            # for input_fname in MD_FILES:
+            #     output_fname = Path(str(input_fname).replace('docs_template', 'docs'))
 
-                logging.debug('---')
-                generate_md_file(
-                    input_fname=input_fname,
-                    output_fname=output_fname,
-                    snippet_paths=snippet_paths,
-                    snippet_params=SNIPPET_PARAMS
-                )
+            #     logging.debug('---')
+            #     generate_md_file(
+            #         input_fname=input_fname,
+            #         output_fname=output_fname,
+            #         snippet_paths=snippet_paths,
+            #         snippet_params=SNIPPET_PARAMS
+            #     )
 
-            ### Generating for ipynb
-            NOTEBOOK_FILES = Path(root).glob('*/*.ipynb')
-            for input_fname in NOTEBOOK_FILES:
-                output_fname = Path(str(input_fname).replace('docs_template', 'docs'))
+            # ### Generating for ipynb
+            # NOTEBOOK_FILES = Path(root).glob('*/*.ipynb')
+            # for input_fname in NOTEBOOK_FILES:
+            #     output_fname = Path(str(input_fname).replace('docs_template', 'docs'))
 
-                logging.debug('---')
-                generate_ipynb_file(
-                    input_fname=input_fname,
-                    output_fname=output_fname,
-                    snippet_paths=snippet_paths,
-                    snippet_params=SNIPPET_PARAMS
-                )
+            #     logging.debug('---')
+            #     generate_ipynb_file(
+            #         input_fname=input_fname,
+            #         output_fname=output_fname,
+            #         snippet_paths=snippet_paths,
+            #         snippet_params=SNIPPET_PARAMS
+            #     )
 
-            logging.debug('---------')
+            # logging.debug('---------')
 
 
 

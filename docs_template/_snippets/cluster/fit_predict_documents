@@ -1,0 +1,5 @@
+python
+clustered_docs = clusterer.fit_predict_documents(
+        vector_fields=<<VECTOR_FIELDS>>,
+        documents=documents, inplace=False
+    )

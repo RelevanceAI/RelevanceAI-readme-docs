@@ -54,7 +54,6 @@ You can sign up/login and find your credentials here: https://cloud.relevance.ai
 Once you have signed up, click on the value under `Authorization token` and paste it here
 """
 client = Client()
-
 ```
 ```python
 ```
@@ -274,7 +273,6 @@ You can sign up/login and find your credentials here: https://cloud.relevance.ai
 Once you have signed up, click on the value under `Authorization token` and paste it here
 """
 client = Client()
-
 
 from relevanceai.datasets import get_ecommerce_dataset_encoded
 

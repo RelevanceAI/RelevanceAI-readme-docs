@@ -1,2 +1,2 @@
-python
-df.insert_documents(documents)
+python DOCUMENTS=documents
+df.insert_documents(documents=<<DOCUMENTS>>)

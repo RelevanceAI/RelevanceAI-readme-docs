@@ -18,7 +18,7 @@ Clustering groups items so that those in the same group/cluster have meaningful 
 
 In this guide, you will learn to run clustering based on the K-Means algorithm which aims to partition your dataset into K distinct clusters.
 
-[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/RelevanceAI/RelevanceAI-readme-docs/blob/v0.33.2-clustering-feature/docs/CLUSTERING_FEATURES/clustering/_notebooks/RelevanceAI-ReadMe-Kmeans-Clustering-Step-by-Step.ipynb)
+[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/RelevanceAI/RelevanceAI-readme-docs/blob/v0.33.2-clustering-feature/docs/CLUSTERING_FEATURES/Clustering/_notebooks/RelevanceAI-ReadMe-Kmeans-Clustering-Step-by-Step.ipynb)
 
 ### 1. Create a dataset and insert data
 
@@ -38,7 +38,6 @@ You can sign up/login and find your credentials here: https://cloud.relevance.ai
 Once you have signed up, click on the value under `Authorization token` and paste it here
 """
 client = Client()
-
 ```
 ```python
 ```
@@ -67,7 +66,6 @@ documents = [
 	{"_id": "4", "example_vector_": [0.5, 0.5, 0.5], "data": "This is another doc"},
 ]
 
-
 DATASET_ID = "quickstart_clustering_kmeans"
 df = client.Dataset(DATASET_ID)
 df.delete()
@@ -88,15 +86,16 @@ The result is a JSON output similar to what is shown below. As can be seen, ther
 
 ```json JSON
 {
-  "insert_date_": "date",
- "product_image": "text",
- "product_image_clip_vector_": {"vector": 512},
- "product_link": "text",
- "product_price": "text",
- "product_title": "text",
- "product_title_clip_vector_": {"vector": 512},
- "query": "text",
- "source": "text"}
+ 'insert_date_': 'date',
+ 'product_image': 'text',
+ 'product_image_clip_vector_': {'vector': 512},
+ 'product_link': 'text',
+ 'product_price': 'text',
+ 'product_title': 'text',
+ 'product_title_clip_vector_': {'vector': 512},
+ 'query': 'text',
+ 'source': 'text'
+}
 ```
 ```json
 ```
@@ -107,12 +106,13 @@ To run KMeans Clustering, we need to first define a clustering object, `KMeansMo
 
 ```python Python (SDK)
 from relevanceai.clusterer import KMeansModel
-kmeans = KMeansModel(k=5)
-clusterer = client.ClusterOps(ALIAS, kmeans)
 
-ALIAS = "kmeans-5"
 VECTOR_FIELD = "product_title_clip_vector_"
+KMEAN_NUMBER_OF_CLUSTERS = 5
+ALIAS = 'kmeans_' + str(KMEAN_NUMBER_OF_CLUSTERS)
 
+model = KMeansModel(k=KMEAN_NUMBER_OF_CLUSTERS)
+clusterer = client.ClusterOps(alias=ALIAS, model=model)
 ```
 ```python
 ```
@@ -120,11 +120,14 @@ VECTOR_FIELD = "product_title_clip_vector_"
 Next, the algorithm is fitted on the vector field, *product_title_clip_vector_*, to distinguish between clusters. The cluster to which each document belongs is returned.
 
 ```python Python (SDK)
-clustered_docs = clusterer.fit_predict_documents(vector_fields = [], documents = documents,inplace=False)
-
+clustered_docs = clusterer.fit_predict_documents(
+        vector_fields=['product_title_clip_vector_'],
+        documents=documents, inplace=False
+    )
 ```
 ```python
 ```
+
 
 ### 3. Update the dataset with the cluster labels
 

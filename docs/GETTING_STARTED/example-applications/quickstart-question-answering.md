@@ -48,7 +48,6 @@ You can sign up/login and find your credentials here: https://cloud.relevance.ai
 Once you have signed up, click on the value under `Authorization token` and paste it here
 """
 client = Client()
-
 ```
 ```python
 ```
@@ -94,7 +93,6 @@ def encode_answer(answer: str):
     return module.signatures['response_encoder'](
         input=tf.constant([answer]),
         context=tf.constant([answer]))['outputs'][0].numpy().tolist()
-
 ```
 ```python
 ```
@@ -107,7 +105,6 @@ from tqdm.auto import tqdm
 
 for d in tqdm(documents):
     d[<<VECTOR_FIELD>>] = encode_answer(d[<<TEXT_FIELD>>])
-
 ```
 ```python
 ```
@@ -186,7 +183,6 @@ Once you have signed up, click on the value under `Authorization token` and past
 """
 client = Client()
 
-
 import pandas as pd
 from relevanceai.datasets import get_ecommerce_dataset_clean
 
@@ -213,12 +209,10 @@ def encode_answer(answer: str):
         input=tf.constant([answer]),
         context=tf.constant([answer]))['outputs'][0].numpy().tolist()
 
-
 from tqdm.auto import tqdm
 
 for d in tqdm(documents):
     d[<<VECTOR_FIELD>>] = encode_answer(d[<<TEXT_FIELD>>])
-
 
 DATASET_ID = "quickstart_tfhub_qa"
 df = client.Dataset(DATASET_ID)

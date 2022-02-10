@@ -37,7 +37,6 @@ You can sign up/login and find your credentials here: https://cloud.relevance.ai
 Once you have signed up, click on the value under `Authorization token` and paste it here
 """
 client = Client()
-
 ```
 ```python
 ```
@@ -135,7 +134,6 @@ samples = [{
 } for d in sample_documents]
 
 show_json(samples, text_fields=['product_title', 'cluster'])
-
 ```
 ```python
 ```

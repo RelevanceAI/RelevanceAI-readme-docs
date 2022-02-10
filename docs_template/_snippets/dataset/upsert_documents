@@ -1,2 +1,2 @@
-python
-df.upsert_documents(documents)
+python DOCUMENTS=documents
+df.upsert_documents(documents=<<DOCUMENTS>>)

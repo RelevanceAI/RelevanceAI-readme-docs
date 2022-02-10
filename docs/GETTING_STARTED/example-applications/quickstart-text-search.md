@@ -49,7 +49,6 @@ You can sign up/login and find your credentials here: https://cloud.relevance.ai
 Once you have signed up, click on the value under `Authorization token` and paste it here
 """
 client = Client()
-
 ```
 ```python
 ```
@@ -101,7 +100,6 @@ from vectorhub.encoders.text.tfhub import USE2Vec
 model = USE2Vec()
 
 documents = model.encode_documents(fields=['product_title'], documents=documents)
-
 ```
 ```python
 ```
@@ -204,7 +202,6 @@ Once you have signed up, click on the value under `Authorization token` and past
 """
 client = Client()
 
-
 import pandas as pd
 from relevanceai.datasets import get_ecommerce_dataset_clean
 
@@ -217,7 +214,6 @@ from vectorhub.encoders.text.tfhub import USE2Vec
 model = USE2Vec()
 
 documents = model.encode_documents(fields=['product_title'], documents=documents)
-
 
 DATASET_ID = "quickstart-example"
 df = client.Dataset(DATASET_ID)

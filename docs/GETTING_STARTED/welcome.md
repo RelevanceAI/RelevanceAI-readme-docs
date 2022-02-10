@@ -38,7 +38,6 @@ You can sign up/login and find your credentials here: https://cloud.relevance.ai
 Once you have signed up, click on the value under `Authorization token` and paste it here
 """
 client = Client()
-
 ```
 ```python
 ```
@@ -54,7 +53,6 @@ documents = [
 	{"_id": "5", "example_vector_": [0.4, 0.4, 0.4], "data": "This is a doc"},
 	{"_id": "4", "example_vector_": [0.5, 0.5, 0.5], "data": "This is another doc"},
 ]
-
 
 DATASET_ID = "quickstart"
 df = client.Dataset(DATASET_ID)

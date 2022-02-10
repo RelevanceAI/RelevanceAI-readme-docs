@@ -48,7 +48,6 @@ You can sign up/login and find your credentials here: https://cloud.relevance.ai
 Once you have signed up, click on the value under `Authorization token` and paste it here
 """
 client = Client()
-
 ```
 ```python
 ```
@@ -131,8 +130,6 @@ multivector_query = [
     {"vector": text_vector, "fields": [<<TEXT_VECTOR>>]}
 ]
 
-
-
 results = df.vector_search(
     multivector_query=multivector_query,
     page_size=5
@@ -181,7 +178,6 @@ Once you have signed up, click on the value under `Authorization token` and past
 """
 client = Client()
 
-
 from relevanceai.datasets import get_ecommerce_dataset_encoded
 
 documents = get_ecommerce_dataset_encoded()
@@ -204,8 +200,6 @@ multivector_query = [
     {"vector": image_vector, "fields": [<<IMAGE_VECTOR>>]},
     {"vector": text_vector, "fields": [<<TEXT_VECTOR>>]}
 ]
-
-
 
 results = df.vector_search(
     multivector_query=multivector_query,
