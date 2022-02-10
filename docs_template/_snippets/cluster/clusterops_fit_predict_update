@@ -1,7 +1,7 @@
 python CLUSTERER=clusterer
 from relevanceai.clusterer import KMeansModel
 
-VECTOR_FIELD = "<<VECTOR_FIELD>>"
+VECTOR_FIELD = <<VECTOR_FIELD>>
 KMEAN_NUMBER_OF_CLUSTERS = <<N_KMEANS>>
 ALIAS = 'kmeans_' + str(KMEAN_NUMBER_OF_CLUSTERS)
 

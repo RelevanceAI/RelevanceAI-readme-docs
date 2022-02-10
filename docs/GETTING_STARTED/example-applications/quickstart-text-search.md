@@ -125,7 +125,6 @@ The data can be easily uploaded to Relevance AI platform via `insert_documents`.
 ```python Python (SDK)
 DATASET_ID = "quickstart_text_search"
 df = client.Dataset(DATASET_ID)
-df.delete()
 df.insert_documents(documents)
 ```
 ```python
@@ -217,7 +216,6 @@ documents = model.encode_documents(fields=['product_title'], documents=documents
 
 DATASET_ID = "quickstart_text_search"
 df = client.Dataset(DATASET_ID)
-df.delete()
 df.insert_documents(documents)
 
 query = 'Gift for my son'

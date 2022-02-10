@@ -92,7 +92,6 @@ To insert data to a dataset, you can use the `insert_documents` method.  Note th
 ```python Python (SDK)
 DATASET_ID = "quickstart_multi_vector_search"
 df = client.Dataset(DATASET_ID)
-df.delete()
 df.insert_documents(documents)
 ```
 ```python
@@ -185,7 +184,6 @@ documents = get_ecommerce_dataset_encoded()
 
 DATASET_ID = "quickstart_multi_vector_search"
 df = client.Dataset(DATASET_ID)
-df.delete()
 df.insert_documents(documents)
 
 # Query sample data

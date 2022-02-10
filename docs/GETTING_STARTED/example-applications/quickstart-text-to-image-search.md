@@ -193,7 +193,6 @@ Lets insert documents into the dataset `quickstart_clip`.
 ```python Python (SDK)
 DATASET_ID = "quickstart_clip"
 df = client.Dataset(DATASET_ID)
-df.delete()
 df.insert_documents(documents)
 ```
 ```python
@@ -315,7 +314,6 @@ from tqdm.auto import tqdm
 
 DATASET_ID = "quickstart_clip"
 df = client.Dataset(DATASET_ID)
-df.delete()
 df.insert_documents(documents)
 
 query = 'for my baby daughter'

@@ -68,7 +68,6 @@ documents = [
 
 DATASET_ID = "quickstart_clustering_kmeans"
 df = client.Dataset(DATASET_ID)
-df.delete()
 df.insert_documents(documents)
 ```
 ```python

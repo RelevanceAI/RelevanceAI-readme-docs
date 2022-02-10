@@ -114,7 +114,6 @@ Finally, we can upload the results to a dataset called `quickstart_tfhub_qa` in 
 ```python Python (SDK)
 DATASET_ID = "quickstart_tfhub_qa"
 df = client.Dataset(DATASET_ID)
-df.delete()
 df.insert_documents(documents)
 ```
 ```python
@@ -216,7 +215,6 @@ for d in tqdm(documents):
 
 DATASET_ID = "quickstart_tfhub_qa"
 df = client.Dataset(DATASET_ID)
-df.delete()
 df.insert_documents(documents)
 
 query = 'What is an expensive gift

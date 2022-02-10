@@ -56,7 +56,6 @@ documents = [
 
 DATASET_ID = "quickstart"
 df = client.Dataset(DATASET_ID)
-df.delete()
 df.insert_documents(documents)
 ```
 ```python
@@ -66,7 +65,7 @@ df.insert_documents(documents)
 ### 3. Clustering
 
 ```python Python (SDK)
-clusterer = df.auto_cluster('kmeans-2', ['example_vector_'])
+clusterer = df.auto_cluster(kmeans-2, [example_vector_])
 ```
 ```python
 ```

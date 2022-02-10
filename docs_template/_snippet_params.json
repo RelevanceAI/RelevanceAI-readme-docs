@@ -6,10 +6,10 @@
 "FEATURE_TOUR_MULTI_VECTOR_SEARCH_QUERY": "[\n\t\t{\"vector\": query_vec_txt[\"vector\"], \n\t\t\"fields\": [\"product_image_clip_vector_\"]}\n\t]",
 "QUICKSTART_TEXT_SEARCH_DATASET_ID": "quickstart_text_search",
 "QUICKSTART_QA_DATASET_ID": "quickstart_tfhub_qa",
-"KMEANS-2": "kmeans-2",
+"KMEANS-2": "\"kmeans-2\"",
 "KMEANS-10": "kmeans-10",
 "EXAMPLE_VEC": "example_vector_",
 "IMAGE_CLIP_VEC": "product_image_clip_vector_",
 "QUICKSTART_KMEANS_AUTO_CLUSTERING_DATASET_ID": "quickstart_auto_clustering_kmeans",
 "QUICKSTART_KMEANS_CLUSTERING_DATASET_ID": "quickstart_clustering_kmeans",
-"PRODUCT_TITLE_CLIP_VEC": "product_title_clip_vector_"}
+"PRODUCT_TITLE_CLIP_VEC": "\"product_title_clip_vector_\""}
