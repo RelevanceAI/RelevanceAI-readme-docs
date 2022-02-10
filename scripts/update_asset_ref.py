@@ -69,7 +69,7 @@ def main(args):
 
     ASSET_SENTENCE_REGEX = '.*/RelevanceAI-readme-docs/blob/.*'
     ASSET_STR_REGEX = '/RelevanceAI-readme-docs/blob/.*?/'
-    ASSET_REPLACE_STR = f'/RelevanceAI-readme-docs/blob/v{README_VERSION}/'
+    ASSET_REPLACE_STR = f'/RelevanceAI-readme-docs/blob/{README_VERSION}/'
 
     for f in files:
         logging.debug(f'\tUpdating assets links for {f} to {README_VERSION}')
