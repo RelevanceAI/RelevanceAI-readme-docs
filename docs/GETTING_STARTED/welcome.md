@@ -54,8 +54,7 @@ documents = [
 	{"_id": "4", "example_vector_": [0.5, 0.5, 0.5], "data": "This is another doc"},
 ]
 
-DATASET_ID = "quickstart"
-df = client.Dataset(DATASET_ID)
+df = client.Dataset("quickstart")
 df.insert_documents(documents)
 ```
 ```python
@@ -65,7 +64,7 @@ df.insert_documents(documents)
 ### 3. Clustering
 
 ```python Python (SDK)
-clusterer = df.auto_cluster(kmeans-2, [example_vector_])
+clusterer = df.auto_cluster("kmeans-2", ["example_vector_"])
 ```
 ```python
 ```

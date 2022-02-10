@@ -191,8 +191,7 @@ Lets insert documents into the dataset `quickstart_clip`.
 
 
 ```python Python (SDK)
-DATASET_ID = "quickstart_clip"
-df = client.Dataset(DATASET_ID)
+df = client.Dataset("quickstart_clip")
 df.insert_documents(documents)
 ```
 ```python
@@ -312,8 +311,7 @@ def encode_image_document(d):
 from tqdm.auto import tqdm
 [encode_image_document(d) for d in tqdm(documents)]
 
-DATASET_ID = "quickstart_clip"
-df = client.Dataset(DATASET_ID)
+df = client.Dataset("quickstart_clip")
 df.insert_documents(documents)
 
 query = 'for my baby daughter'

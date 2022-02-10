@@ -20,31 +20,39 @@ The following code shows
 3. how to update the dataset with the results
 
 
-```
+```python Python (SDK)
+df = client.Dataset('faiss_kmeans_clustering')
 
 # Inherit from ClusterBase to keep all the goodies!
-from relevanceai import ClusterBase
+import numpy as np
+from faiss import Kmeans
+from relevanceai import CentroidClusterBase
 
-class CustomCluster(ClusterBase):
-    def fit_predict(self, documents, vector_field, alias = 'random-clustering'):
-        import random
+class FaissKMeans(CentroidClusterBase):
+    def __init__(self, model):
+        self.model = model
 
-        return [{'_cluster_': {vector_field: {alias: 'cluster-'+str(random.randint(0, 1))}},
-                 '_id': document['_id']}
-                for document in documents
-        ]
-clusterer = CustomCluster()
+    def fit_predict(self, vectors):
+        vectors = np.array(vectors).astype("float32")
+        self.model.train(vectors)
+        cluster_labels = self.model.assign(vectors)[1]
+        return cluster_labels
 
+    def metadata(self):
+        return self.model.__dict__
 
-VECTOR_FIELD = "product_title_clip_vector_"
-ALIAS = "random-clustering"
-custom_docs = clusterer.fit_predict(
-  vector_field = VECTOR_FIELD,
-  documents=documents
-)
+    def get_centers(self):
+        return self.model.centroids
 
-df.upsert_documents(custom_docs)
+n_clusters = 10
+d = 512
+alias = f"faiss-kmeans-{n_clusters}"
+vector_fields = ['product_title_clip_vector_']
 
+model = FaissKMeans(model=Kmeans(d=d, k=n_clusters))
+clusterer = client.ClusterOps(model=model, alias=alias)
+clusterer.fit_predict_update(dataset=df, vector_fields=vector_fields)
 ```
 ```python
 ```
+

@@ -240,7 +240,9 @@ def main(args):
 
     if args.notebooks:
         notebooks = args.notebooks
-
+        if len(notebooks)==1:
+            if Path(notebooks[0]).is_dir():
+                notebooks = [f for f in Path(notebooks[0]).glob('**/*.ipynb')]
     else:
         ## All notebooks
         notebooks = [

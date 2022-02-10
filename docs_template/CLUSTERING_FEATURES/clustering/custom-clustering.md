@@ -20,31 +20,4 @@ The following code shows
 3. how to update the dataset with the results
 
 
-```
-
-# Inherit from ClusterBase to keep all the goodies!
-from relevanceai import ClusterBase
-
-class CustomCluster(ClusterBase):
-    def fit_predict(self, documents, vector_field, alias = 'random-clustering'):
-        import random
-
-        return [{'_cluster_': {vector_field: {alias: 'cluster-'+str(random.randint(0, 1))}},
-                 '_id': document['_id']}
-                for document in documents
-        ]
-clusterer = CustomCluster()
-
-
-VECTOR_FIELD = "product_title_clip_vector_"
-ALIAS = "random-clustering"
-custom_docs = clusterer.fit_predict(
-  vector_field = VECTOR_FIELD,
-  documents=documents
-)
-
-df.upsert_documents(custom_docs)
-
-```
-```python
-```
+@@@+ client_dataset, DATASET_ID='faiss_kmeans_clustering'; faiss_kmeans_clustering_sample, VECTOR_FIELD='product_title_clip_vector_' @@@

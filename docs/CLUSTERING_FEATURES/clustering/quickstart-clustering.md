@@ -66,8 +66,7 @@ documents = [
 	{"_id": "4", "example_vector_": [0.5, 0.5, 0.5], "data": "This is another doc"},
 ]
 
-DATASET_ID = "quickstart_clustering_kmeans"
-df = client.Dataset(DATASET_ID)
+df = client.Dataset("quickstart_clustering_kmeans")
 df.insert_documents(documents)
 ```
 ```python
@@ -108,7 +107,7 @@ from relevanceai.clusterer import KMeansModel
 
 VECTOR_FIELD = "product_title_clip_vector_"
 KMEAN_NUMBER_OF_CLUSTERS = 5
-ALIAS = 'kmeans_' + str(KMEAN_NUMBER_OF_CLUSTERS)
+ALIAS = "kmeans_" + str(KMEAN_NUMBER_OF_CLUSTERS)
 
 model = KMeansModel(k=KMEAN_NUMBER_OF_CLUSTERS)
 clusterer = client.ClusterOps(alias=ALIAS, model=model)
