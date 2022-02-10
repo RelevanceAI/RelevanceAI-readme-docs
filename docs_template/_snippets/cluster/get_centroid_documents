@@ -1,2 +1,2 @@
-python CENTROIDS=centroids CLUSTERER=clusterer
+python CENTROIDS=centroids, CLUSTERER=clusterer
 <<CENTROIDS>> = <<CLUSTERER>>.get_centroid_documents()

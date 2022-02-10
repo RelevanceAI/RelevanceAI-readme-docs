@@ -59,7 +59,7 @@ By following instructions below, you will be able to preview/create any given ve
    - Add new assets to the corresponding `_assets` folder in `docs_template`.
    - Update asset links in `md` files to point to corresponding path.
 5. To add new notebooks:
-   - Add new notebooks to the corresponding `_notebooks_` folder in `docs_template`.
+   - Add new notebooks to the corresponding `_notebooks` folder in `docs_template`.
    - Update notebooks to point to the corresponding path.
    - Colab notebook refs are of the form:
   ```zsh

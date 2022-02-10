@@ -1,4 +1,4 @@
-python
+python CLUSTERER=clusterer
 from relevanceai.clusterer import KMeansModel
 
 VECTOR_FIELD = "<<VECTOR_FIELD>>"
@@ -6,5 +6,5 @@ KMEAN_NUMBER_OF_CLUSTERS = <<N_KMEANS>>
 ALIAS = 'kmeans_' + str(KMEAN_NUMBER_OF_CLUSTERS)
 
 model = KMeansModel(k=KMEAN_NUMBER_OF_CLUSTERS)
-clusterer = client.ClusterOps(alias=ALIAS, model=model)
-clusterer.fit_predict_update(df, [VECTOR_FIELD])
+<<CLUSTERER>> = client.ClusterOps(alias=ALIAS, model=model)
+<<CLUSTERER>>.fit_predict_update(df, [VECTOR_FIELD])

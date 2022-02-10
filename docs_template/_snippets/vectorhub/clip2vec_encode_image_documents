@@ -1,4 +1,4 @@
-python ENCODED_DOCUMENTS=documents DOCUMENTS=documents
+python ENCODED_DOCUMENTS=documents, DOCUMENTS=documents
 from vectorhub.bi_encoders.text_image.torch import Clip2Vec
 
 model = Clip2Vec()

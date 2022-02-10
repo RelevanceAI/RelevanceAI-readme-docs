@@ -33,10 +33,10 @@ def load_params_ref(param_str: str) -> dict:
     eg. CENTROIDS=centroids CLUSTERER=clusterer DF=df
     '''
     NUM_REGEX_PARAM='(([A-Z])\w+=[0-9.])'
-    VALUE_REGEX_PARAM='([A-Z])\w+=([\'\"A-Za-z0-9_-]+)'
+    VALUE_REGEX_PARAM='([A-Z])\w+=([\s\'\"A-Za-z0-9_-]+)'
     LIST_REGEX_PARAM='([A-Z])\w+=\[(.*?)\]'
-    STR_REGEX_PARAM_DOUBLE_QUOTE='([A-Z])\w+=\".*\"'
-    STR_REGEX_PARAM_SINGLE_QUOTE='([A-Z])\w+=\".*\"'
+    STR_REGEX_PARAM_DOUBLE_QUOTE='([A-Z])\w+=\"\"'
+    STR_REGEX_PARAM_SINGLE_QUOTE="([A-Z])\w+=\'\'"
     params_ref = dict(tuple(m.group().strip().replace('==', '=').replace('""', '').replace("''", '').split('='))
         for m in chain(
             re.finditer(NUM_REGEX_PARAM, param_str),
@@ -45,8 +45,9 @@ def load_params_ref(param_str: str) -> dict:
             re.finditer(STR_REGEX_PARAM_DOUBLE_QUOTE, param_str),
             re.finditer(STR_REGEX_PARAM_SINGLE_QUOTE, param_str),
         )
+        # print(m.group())
     )
-
+    # params_ref = {}
     return params_ref
 
 
@@ -238,7 +239,7 @@ def generate_md_file(
     for i, line in enumerate(md_file.split('\n')):
         ## Concatenated snippets
         try:
-            if  bool(re.search('@@@\+.*@@@', line)) and (not bool(re.search('.*<--.*-->.*', line))):
+            if (not bool(re.search('<!--.*', line))) and bool(re.search('@@@\+.*@@@', line)):
                 snippet_strs = line.replace('@@@+', '').replace('@@@', '').strip().split(';')
                 logging.debug(f'Snippet strs: {snippet_strs}')
                 snippet = []
@@ -259,7 +260,7 @@ def generate_md_file(
 
                 [md_lines.append(x) for x in snippet]
 
-            elif bool(re.search('@@@.*@@@', line)) and (not bool(re.search('.*<--.*-->.*', line))):
+            elif (not bool(re.search('<!--.*', line))) and bool(re.search('@@@.*@@@', line)):
                 snippet_str = line.split('@@@')[1].strip()
                 if ';' in snippet_str:
                     raise ValueError(f'\nYou have multiple snippets in one line.\n@@@ {snippet_str} @@@\nPlease replace @@@ with @@@+ in {input_fname} line {i}.')
@@ -323,8 +324,8 @@ def main(args):
     SNIPPET_PARAMS = json.loads(open(str(SNIPPET_PARAMS_FPATH), 'r').read())
 
     if args.files:
-        MD_FILES = [f for f in args.files if str(f.endswith('.md'))]
-        NOTEBOOKS = [f for f in args.files  if str(f.endswith('.ipynb'))]
+        MD_FILES = [f for f in args.files if f.endswith('.md')]
+        NOTEBOOKS = [f for f in args.files  if f.endswith('.ipynb')]
     else:
         MD_FILES = Path(DOCS_TEMPLATE_PATH).glob('**/**/*.md')
         NOTEBOOKS = Path(DOCS_TEMPLATE_PATH).glob('**/**/*.ipynb')

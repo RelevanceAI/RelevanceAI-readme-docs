@@ -240,6 +240,7 @@ def main(args):
 
     if args.notebooks:
         notebooks = args.notebooks
+
     else:
         ## All notebooks
         notebooks = [

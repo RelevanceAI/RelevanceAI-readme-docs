@@ -142,4 +142,5 @@ show_json(samples, text_fields=['product_title', 'cluster'])
 <img src="https://github.com/RelevanceAI/RelevanceAI-readme-docs/blob/v0.33.2-clustering-feature/docs_template/CLUSTERING_FEATURES/_assets/RelevanceAI_clustering_quickstart_kmeans_results.png?raw=true"  width="450" alt="Clustering results" />
 <figcaption></figcaption>
 <figure>
+
 If you are interested to know more details about what happens behind the scene, visit our next page on step-by-step clustering.

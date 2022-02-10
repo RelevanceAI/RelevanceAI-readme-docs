@@ -212,7 +212,7 @@ Once we have inserted the data into the dataset, we can visit [RelevanceAI dashb
 Lets first encode our text search query to vectors using CLIP.
 
 ```python Python (SDK)
-query = 'for
+query = 'for my baby daughter'
 query_vector = encode_text(query)
 ```
 ```python
@@ -318,7 +318,7 @@ df = client.Dataset(DATASET_ID)
 df.delete()
 df.insert_documents(documents)
 
-query = 'for
+query = 'for my baby daughter'
 query_vector = encode_text(query)
 
 multivector_query=[

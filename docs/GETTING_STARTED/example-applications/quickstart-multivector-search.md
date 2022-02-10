@@ -90,7 +90,7 @@ documents = get_ecommerce_dataset_encoded()
 To insert data to a dataset, you can use the `insert_documents` method.  Note that this step is also already done in our sample dataset.
 
 ```python Python (SDK)
-DATASET_ID = "quickstart_sample"
+DATASET_ID = "quickstart_multi_vector_search"
 df = client.Dataset(DATASET_ID)
 df.delete()
 df.insert_documents(documents)
@@ -183,7 +183,7 @@ from relevanceai.datasets import get_ecommerce_dataset_encoded
 documents = get_ecommerce_dataset_encoded()
 {k:v for k, v in documents[0].items() if '_vector_' not in k}
 
-DATASET_ID = "quickstart_sample"
+DATASET_ID = "quickstart_multi_vector_search"
 df = client.Dataset(DATASET_ID)
 df.delete()
 df.insert_documents(documents)

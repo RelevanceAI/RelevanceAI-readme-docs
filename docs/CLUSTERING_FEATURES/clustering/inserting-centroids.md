@@ -23,10 +23,9 @@ These steps are all included on [step-by-step Kmeans clustering](https://docs.re
 The following code snippet gets the centroids from a clustering object and adds them to the corresponding dataset on RelevanceAI's platform. `DATASET_ID` refers to the name of the dataset, `VECTOR_FIELD` is the field based on which the clustering is done, and ALIAS is the name specified by the user to save the clustering results.
 
 ```python Python (SDK)
-
 centroids = clusterer.get_centroid_documents()
-clusterer.insert_centroid_documents(centroids, df)
 
+clusterer.insert_centroid_documents(centroids, df)
 ```
 ```python
 ```

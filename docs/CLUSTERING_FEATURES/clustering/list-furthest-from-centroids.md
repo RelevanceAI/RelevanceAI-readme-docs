@@ -16,13 +16,14 @@ All these steps are explained in detail on [the quickstart clustering guide](doc
 
 After clustering is done and the dataset is updated with the results, listing the furthest points from the center of each cluster can be done via `list_furthest_from_center` function as shown in the code snippet below where DATASET_ID refers to the name of the dataset, VECTOR_FIELD is the field based on which the clustering is done, and ALIAS is the name specified by the user to save the clustering results.
 
-```
 
-
+```python Python (SDK)
 df = client.Dataset(DATASET_ID)
-clusterer = df.auto_cluster(ALIAS, [VECTOR_FIELD])
-furthest_from_center = clusterer.list_furthest_from_center(df)
 
+clusterer = df.auto_cluster('<<KMEANS>>', ['<<VECTOR_FIELD>>'])
+
+clusterer.list_furthest_from_center()
 ```
 ```python
 ```
+

@@ -1,0 +1,13 @@
+python
+# Inherit from ClusterBase to keep all the goodies!
+from relevanceai import ClusterBase
+
+class CustomCluster(ClusterBase):
+    def fit_predict(self, documents, vector_field, alias = 'random-clustering'):
+        import random
+
+        return [{'_cluster_': {vector_field: {alias: 'cluster-'+str(random.randint(0, 1))}},
+                 '_id': document['_id']}
+                for document in documents
+        ]
+clusterer = CustomCluster()

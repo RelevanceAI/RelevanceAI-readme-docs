@@ -52,7 +52,7 @@ The easiest way to run a Kmeans clustering algorithm under the Relevance AI plat
 
 Another way of clustering is to use the ClusterOps class as shown in the snippet below:
 
-@@@  clusterops_fit_predict, VECTOR_FIELD=PRODUCT_TITLE_CLIP_VEC, N_KMEANS=10 @@@
+@@@  clusterops_fit_predict_update, VECTOR_FIELD=PRODUCT_TITLE_CLIP_VEC, N_KMEANS=10 @@@
 
 
 The `fit_predict_update()` function performs the following steps:
@@ -68,4 +68,5 @@ By loading the data from the dataset after clustering is done, you can see to wh
 <img src="https://github.com/RelevanceAI/RelevanceAI-readme-docs/blob/v0.33.2-clustering-feature/docs_template/CLUSTERING_FEATURES/_assets/RelevanceAI_clustering_quickstart_kmeans_results.png?raw=true"  width="450" alt="Clustering results" />
 <figcaption></figcaption>
 <figure>
+
 If you are interested to know more details about what happens behind the scene, visit our next page on step-by-step clustering.

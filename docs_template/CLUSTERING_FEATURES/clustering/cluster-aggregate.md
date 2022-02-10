@@ -19,17 +19,5 @@ You will also need to have knowledge of [aggregations](doc:aggregations).
 
 The following code example groups the data based on the `product_price` field, also use the average metrics on `product_price` for each cluster. `DATASET_ID` refers to the name of the dataset, `VECTOR_FIELD` is the field based on which the clustering is done, and ALIAS is the name specified by the user to save the clustering results.
 
-```
 
-df = client.Dataset(DATASET_ID)
-clusterer = df.auto_cluster(ALIAS, [VECTOR_FIELD])
-
-# Aggregate based on the clusters
-result = clusterer.aggregate(df, groupby=[
-      {"name": "brand", "field": "query", "agg": "category"}],
-    metrics = [
-      {"name": "avg_retail_price", "field": "product_price", "agg": "avg"}]
-)
-```
-```python
-```
+@@@+ client_dataset; auto_cluster; cluster_aggregate, GROUPBY_NAME="brand", GROUPBY_FIELD="query", GROUPBY_AGG_TYPE="category", METRICS_NAME="avg_retail_price", METRICS_VECTOR_FIELD="product_price", METRICS_AGG_TYPE="avg" @@@

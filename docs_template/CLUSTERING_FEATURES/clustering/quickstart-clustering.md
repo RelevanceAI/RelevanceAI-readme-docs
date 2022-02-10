@@ -54,7 +54,7 @@ To run KMeans Clustering, we need to first define a clustering object, `KMeansMo
 
 Next, the algorithm is fitted on the vector field, *product_title_clip_vector_*, to distinguish between clusters. The cluster to which each document belongs is returned.
 
-@@@ fit_predict_documents, VECTOR_FIELDS=['product_title_clip_vector_'] @@@
+@@@ clusterops_fit_predict_documents, VECTOR_FIELDS=['product_title_clip_vector_'] @@@
 
 
 ### 3. Update the dataset with the cluster labels

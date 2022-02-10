@@ -17,12 +17,14 @@ All these steps are explained in detail on [the quickstart clustering guide](doc
 
 
 After clustering is done and the dataset is updated with the results, listing closest to centroids can be done via `list_closest_to_center` function as shown in the code snippet below where DATASET_ID refers to the name of the dataset, VECTOR_FIELD is the field based on which the clustering is done, and ALIAS is the name specified by the user to save the clustering results.
-```
 
+```python Python (SDK)
 df = client.Dataset(DATASET_ID)
-clusterer = df.auto_cluster(ALIAS, [VECTOR_FIELD])
-closest_to_center = clusterer.list_closest_to_center(df)
 
+clusterer = df.auto_cluster('<<KMEANS>>', ['<<VECTOR_FIELD>>'])
+
+clusterer.list_closest_to_center()
 ```
 ```python
 ```
+

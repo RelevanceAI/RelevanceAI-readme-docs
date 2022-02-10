@@ -1,2 +1,2 @@
-python CLUSTERER=clusterer DF=''
+python CLUSTERER=clusterer, DF=''
 <<CLUSTERER>>.list_furthest_from_center(<<DF>>)
