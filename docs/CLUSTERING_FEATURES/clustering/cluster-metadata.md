@@ -40,13 +40,11 @@ client = Client()
 
 Once you have stored the metadata, you can view them using the following code.
 
-```
-
+```python Python (SDK)
 df = client.Dataset(DATASET_ID)
-clusterer = df.auto_cluster(ALIAS, [VECTOR_FIELD])
 
-# metadata
-clusterer.metadata
+clusterer = df.auto_cluster('<<KMEANS>>', ['<<VECTOR_FIELD>>'])
 ```
 ```python
 ```
+

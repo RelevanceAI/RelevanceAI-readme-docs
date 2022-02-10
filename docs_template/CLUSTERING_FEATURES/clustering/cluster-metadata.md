@@ -25,13 +25,4 @@ The following code snippets extract the metadata from the clustering algorithm a
 
 Once you have stored the metadata, you can view them using the following code.
 
-```
-
-df = client.Dataset(DATASET_ID)
-clusterer = df.auto_cluster(ALIAS, [VECTOR_FIELD])
-
-# metadata
-clusterer.metadata
-```
-```python
-```
+@@@+ client_dataset, DATASET_ID=DATASET_ID; auto_cluster, KMEANS='kmeans-10', VECTOR_FIELD='product_title_clip_vector_' @@@

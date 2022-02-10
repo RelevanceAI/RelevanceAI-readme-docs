@@ -77,15 +77,16 @@ df.schema
 The result is a JSON output similar to what is shown below. As can be seen, there are two vector fields in the dataset `product_image_clip_vector_` and `product_title_clip_vector_`.
 
 ```json JSON
-{'_id': '711160239',
-  'product_image': 'https://thumbs4.ebaystatic.com/d/l225/pict/321567405391_1.jpg',
-  'product_image_clip_vector_':  [0.1, 0.1, 0.1, ...],
-  'product_link': 'https://www.ebay.com/itm/20-36-Mens-Silver-Stainless-Steel-Braided-Wheat-Chain-Necklace-Jewelry-3-4-5-6MM-/321567405391?pt=LH_DefaultDomain_0&var=&hash=item4adee9354f',
-  'product_price': '$7.99 to $12.99',
-  'product_title': '20-36Mens Silver Stainless Steel Braided Wheat Chain Necklace Jewelry 3/4/5/6MM"',
-  'product_title':  [0.1, 0.1, 0.1, ...],
-  'query': 'steel necklace',
-  'source': 'eBay'
+{
+ 'insert_date_': 'date',
+ 'product_image': 'text',
+ 'product_image_clip_vector_': {'vector': 512},
+ 'product_link': 'text',
+ 'product_price': 'text',
+ 'product_title': 'text',
+ 'product_title_clip_vector_': {'vector': 512},
+ 'query': 'text',
+ 'source': 'text'
 }
 ```
 ```json

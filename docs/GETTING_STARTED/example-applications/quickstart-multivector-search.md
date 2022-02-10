@@ -122,13 +122,13 @@ Now, let us try out a query using a simple vector search against our dataset.
 sample_id = documents[0]['_id']
 documents = df.get_documents_by_ids([sample_id])["documents"]
 document = documents[sample_id]
-image_vector = document['product_image_clip_vector_']
-text_vector = document['product_title_clip_vector_']
+image_vector = document[<<IMAGE_VECTOR>>]
+text_vector = document[<<TEXT_VECTOR>>]
 
 # Create a multivector query
 multivector_query = [
-    {"vector": image_vector, "fields": ['product_image_clip_vector_']},
-    {"vector": text_vector, "fields": ['product_title_clip_vector_']}
+    {"vector": image_vector, "fields": [<<IMAGE_VECTOR>>]},
+    {"vector": text_vector, "fields": [<<TEXT_VECTOR>>]}
 ]
 
 
@@ -196,13 +196,13 @@ df.insert_documents(documents)
 sample_id = documents[0]['_id']
 documents = df.get_documents_by_ids([sample_id])["documents"]
 document = documents[sample_id]
-image_vector = document['product_image_clip_vector_']
-text_vector = document['product_title_clip_vector_']
+image_vector = document[<<IMAGE_VECTOR>>]
+text_vector = document[<<TEXT_VECTOR>>]
 
 # Create a multivector query
 multivector_query = [
-    {"vector": image_vector, "fields": ['product_image_clip_vector_']},
-    {"vector": text_vector, "fields": ['product_title_clip_vector_']}
+    {"vector": image_vector, "fields": [<<IMAGE_VECTOR>>]},
+    {"vector": text_vector, "fields": [<<TEXT_VECTOR>>]}
 ]
 
 
