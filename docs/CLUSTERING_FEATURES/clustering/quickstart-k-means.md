@@ -95,7 +95,7 @@ The result is a JSON output similar to what is shown below. As can be seen, ther
 The easiest way to run a Kmeans clustering algorithm under the Relevance AI platform is the `auto_cluster` function. The following code snippet shows how generate 10 clusters using the `product_title_clip_vector_` vector field.
 
 ```python Python (SDK)
-clusterer = df.auto_cluster('kmeans-10', ['product_title_clip_vector_'])
+clusterer = df.auto_cluster('KMEANS', ['product_title_clip_vector_'])
 ```
 ```python
 ```
@@ -106,7 +106,7 @@ Another way of clustering is to use the ClusterOps class as shown in the snippet
 from relevanceai.clusterer import KMeansModel
 
 VECTOR_FIELD = "product_title_clip_vector_"
-KMEAN_NUMBER_OF_CLUSTERS = 10
+KMEAN_NUMBER_OF_CLUSTERS = 1
 ALIAS = 'kmeans_' + str(KMEAN_NUMBER_OF_CLUSTERS)
 
 model = KMeansModel(k=KMEAN_NUMBER_OF_CLUSTERS)

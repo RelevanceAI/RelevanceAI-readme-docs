@@ -62,7 +62,7 @@ The `fit_predict_update()` function performs the following steps:
 
 By loading the data from the dataset after clustering is done, you can see to which cluster each data point belongs. Here, we see how the first 5 data points are clustered:
 
-@@@ quickstart_kmeans_sample_results @@@
+@@@ cluster_sample_results, N_SAMPLES=5, VECTOR_FIELD=VECTOR_FIELD, ALIAS=ALIAS, TEXT_FIELDS=['product_title', 'cluster'] @@@
 
 <figure>
 <img src="https://github.com/RelevanceAI/RelevanceAI-readme-docs/blob/v0.33.2-clustering-feature/docs_template/CLUSTERING_FEATURES/_assets/RelevanceAI_clustering_quickstart_kmeans_results.png?raw=true"  width="450" alt="Clustering results" />
