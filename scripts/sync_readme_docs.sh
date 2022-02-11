@@ -59,7 +59,7 @@ fi
 # Create a new readme version if not exists
 ###############################################################################
 
-README_VERSION_NAME_STRIPPED=$(echo $README_VERSION_NAME | sed 's/[v]//g')   ## stripping 'v' from version string
+README_VERSION_NAME_STRIPPED="${README_VERSION_NAME_STRIPPED:1}" ## stripping 'v' from version string
 
 check_sdk_version_exists(){
     if [[ $RELEVANCEAI_SDK_VERSIONS =~ $RELEVANCEAI_SDK_VERSION ]]; then
