@@ -21,28 +21,74 @@ Relevance AI provides you with the tools to perform all these analyses. The resu
 
 First, you need to install Relevance AI's Python SDK and set up a client object to interact with Relevance AI.
 
-@@@ relevanceai_installation, RELEVANCEAI_SDK_VERSION=RELEVANCEAI_SDK_VERSION @@@
+```bash Bash
+!pip install -U RelevanceAI[notebook]==0.33.2
+```
+```bash
+```
 
-@@@ client_instantiation @@@
+```python Python (SDK)
+from relevanceai import Client
+
+"""
+You can sign up/login and find your credentials here: https://cloud.relevance.ai/sdk/api
+Once you have signed up, click on the value under `Authorization token` and paste it here
+"""
+client = Client()
+```
+```python
+```
 
 
 You also need to have a dataset under your Relevance AI account. You can either use our ecommerce sample data as shown in this step or follow the tutorial on [how to create your own dataset](https://docs.relevance.ai/docs/creating-a-dataset-prerequisites). Running the code below, the fetched documents will be uploaded into your personal Relevance AI account under the name *quickstart_clustering*.
 
-@@@ get_ecommerce_dataset_encoded @@@
+```python Python (SDK)
+from relevanceai.datasets import get_ecommerce_dataset_encoded
 
-@@@ dataset_basics, DATASET_ID=QUICKSTART_KMEANS_CLUSTERING_DATASET_ID @@@
+documents = get_ecommerce_dataset_encoded()
+{k:v for k, v in documents[0].items() if '_vector_' not in k}
+```
+```python
+```
 
-@@@ dataset_health @@@
+```python Python (SDK)
+df = client.Dataset("quickstart_clustering_kmeans")
+df.insert_documents(documents)
+```
+```python
+```
+
+```python Python (SDK)
+df.health
+```
+```python
+```
 
 ### 2. Run Kmeans clustering algorithm
 The following code clusters the *product_image_clip_vector_* field using the KMeans algorithm. For more information, see [Quickstart (K means)](doc:quickstart-k-means)].
 
 
-@@@ clusterops_fit_predict_update, VECTOR_FIELD=PRODUCT_TITLE_CLIP_VEC, N_KMEANS=10 @@@
+```python Python (SDK)
+from relevanceai.clusterer import KMeansModel
+
+VECTOR_FIELD = "product_title_clip_vector_"
+KMEAN_NUMBER_OF_CLUSTERS = 10
+ALIAS = "kmeans_" + str(KMEAN_NUMBER_OF_CLUSTERS)
+
+model = KMeansModel(k=KMEAN_NUMBER_OF_CLUSTERS)
+clusterer = client.ClusterOps(alias=ALIAS, model=model)
+clusterer.fit_predict_update(df, [VECTOR_FIELD])
+```
+```python
+```
 
 ### 3. Cluster evaluation
 
-@@@ evaluate @@@
+```python Python (SDK)
+clusterer.evaluate()
+```
+```python
+```
 
 
 

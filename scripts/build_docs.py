@@ -184,7 +184,7 @@ def generate_ipynb_file(
             if bool(re.search('@@@.*@@@', str(cell["source"]))):
                 for j, cell_source in enumerate(cell['source']):
                     if '@@@' in cell_source:
-                        snippet_strs = cell_source.replace('@@@+', '').replace('@@@', '').strip().split(';')
+                        snippet_strs = cell_source.replace('@@@', '').strip().split(';')
                         logging.debug(f'Snippet strs: {snippet_strs}')
                         snippet = []
                         for snippet_str in snippet_strs:
@@ -223,8 +223,8 @@ def generate_md_file(
     for i, line in enumerate(md_file.split('\n')):
         ## Concatenated snippets
         try:
-            if (not bool(re.search('<!--.*', line))) and bool(re.search('@@@\+.*@@@', line)):
-                snippet_strs = line.replace('@@@+', '').replace('@@@', '').strip().split(';')
+            if (not bool(re.search('<!--.*', line))) and bool(re.search('@@@.*@@@', line)):
+                snippet_strs = line.replace('@@@', '').strip().split(';')
                 logging.debug(f'Snippet strs: {snippet_strs}')
                 snippet = []
                 for i, snippet_str in enumerate(snippet_strs):

@@ -28,12 +28,28 @@ Run this Quickstart in Colab: [![Open In Colab](https://colab.research.google.co
 ### 1. Set up Relevance AI and Vectorhub for Encoding!
 
 
-@@@ relevanceai_installation, RELEVANCEAI_SDK_VERSION=RELEVANCEAI_SDK_VERSION; vectorhub_clip_installation @@@
+```bash Bash
+!pip install -U RelevanceAI[notebook]==0.33.2
+
+!pip install -U vectorhub[clip]
+```
+```bash
+```
 
 After installation, we need to also set up an API client. If you are missing an API key, you can easily sign up and get your API key from [https://cloud.relevance.ai/](https://cloud.relevance.ai/) in the settings area.
 
 
-@@@ client_instantiation @@@
+```python Python (SDK)
+from relevanceai import Client
+
+"""
+You can sign up/login and find your credentials here: https://cloud.relevance.ai/sdk/api
+Once you have signed up, click on the value under `Authorization token` and paste it here
+"""
+client = Client()
+```
+```python
+```
 
 
 <figure>
@@ -46,7 +62,17 @@ After installation, we need to also set up an API client. If you are missing an 
 
 Use one of your sample datasets to insert into your own dataset!
 
-@@@ get_ecommerce_dataset_clean @@@
+```python Python (SDK)
+import pandas as pd
+from relevanceai.datasets import get_ecommerce_dataset_clean
+
+# Retrieve our sample dataset. - This comes in the form of a list of documents.
+documents = get_ecommerce_dataset_clean()
+
+pd.DataFrame.from_dict(documents).head()
+```
+```python
+```
 
 
 <figure>
@@ -54,7 +80,12 @@ Use one of your sample datasets to insert into your own dataset!
 <figcaption>See your dataset in the dashboard</figcaption>
 <figure>
 
-@@@ dataset_basics, DATASET_ID=QUICKSTART_DATASET_ID @@@
+```python Python (SDK)
+df = client.Dataset("quickstart")
+df.insert_documents(documents)
+```
+```python
+```
 
 
 ### 3. Encode data and upload vectors into your new dataset
@@ -62,14 +93,30 @@ Use one of your sample datasets to insert into your own dataset!
 Encode new product image vector using our models out of the box using [Vectorhub's](https://hub.getvectorai.com/) `Clip2Vec` models and update your dataset.
 
 
-@@@ clip2vec_encode_image_documents, IMAGE_VECTOR_FIELDS=['product_image'] @@@
+```python Python (SDK)
+from vectorhub.bi_encoders.text_image.torch import Clip2Vec
+
+model = Clip2Vec()
+
+# Set the default encode to encoding an image
+model.encode = model.encode_image
+documents = model.encode_documents(fields=['product_image'], documents=documents)
+```
+```python
+```
 
 
 Update the existing dataset with the encoding results and check the results
 
 
 
-@@@ upsert_documents; dataset_schema @@@
+```python Python (SDK)
+df.upsert_documents(documents=documents)
+
+df.schema
+```
+```python
+```
 
 
 
@@ -90,11 +137,19 @@ Update the existing dataset with the encoding results and check the results
 Run clustering on your vectors to better understand your data. You can view the clusters in our clustering dashboard following the provided link when clustering finishes.
 
 
-@@@ auto_cluster, KMEANS=KMEANS-10, VECTOR_FIELD=IMAGE_CLIP_VEC @@@
+```python Python (SDK)
+clusterer = df.auto_cluster("kmeans-10", ["product_image_clip_vector_"])
+```
+```python
+```
 
 You can also get a list of documents that are closest to the center of the clusters:
 
-@@@ list_closest_to_center @@@
+```python Python (SDK)
+clusterer.list_closest_to_center()
+```
+```python
+```
 
 
 <figure>
@@ -110,7 +165,21 @@ You can read more about how to analyse clusters in your data [here](doc:quicksta
 See your search results on the dashboard here https://cloud.relevance.ai/sdk/search.
 
 
-@@@  model_encode_query, QUERY="gifts for the holidays"; multivector_query, VECTOR_FIELD=query_vector, VECTOR_FIELDS=["product_image_clip_vector_"]; vector_search, MULTIVECTOR_QUERY=multivector_query, PAGE_SIZE=10 @@@
+```python Python (SDK)
+query = "gifts for the holidays"
+query_vector = model.encode(query)
+
+multivector_query=[
+        { "vector": query_vector, "fields": ["product_image_clip_vector_"]}
+    ]
+
+results = df.vector_search(
+    multivector_query=multivector_query,
+    page_size=10
+)
+```
+```python
+```
 
 <figure>
 <img src="https://github.com/RelevanceAI/RelevanceAI-readme-docs/blob/v0.33.2/docs_template/_assets/RelevanceAI_search_dashboard.png?raw=true"  alt="Visualise your search results" />
