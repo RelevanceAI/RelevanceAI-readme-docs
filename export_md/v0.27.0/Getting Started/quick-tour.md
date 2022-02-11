@@ -4,7 +4,7 @@ slug: "quick-tour"
 excerpt: "Try out RelevanceAI in 5 steps!"
 hidden: false
 createdAt: "2022-01-10T01:31:01.336Z"
-updatedAt: "2022-01-27T07:38:58.425Z"
+updatedAt: "2022-01-27T06:19:01.292Z"
 ---
 Relevance AI is designed and built to help developers to experiment, build and share the best vectors to solve similarity and relevance based problems across the organisation.
 
@@ -52,7 +52,7 @@ client = Client()
 ```
 
 <figure>
-<img src="https://github.com/RelevanceAI/RelevanceAI-readme-docs/blob/main/docs/_assets/RelevanceAI_auth_token_details.png?raw=true" alt="Get your Auth Details" />
+<img src="https://github.com/RelevanceAI/RelevanceAI-readme-docs/blob/main/docs/GETTING_STARTED/_assets/RelevanceAI_auth_token_details.png?raw=true" alt="Get your Auth Details" />
 <figcaption>Get your Auth Details</figcaption>
 <figure>
 
@@ -69,7 +69,7 @@ from relevanceai.datasets import get_sample_ecommerce_dataset
 documents = get_sample_ecommerce_dataset()
 documents[0]
 
-client.insert_documents(dataset_id="quickstart", docs=documents)
+client.insert_documents(dataset_id="quickstart", documents=documents)
 
 
 ```
@@ -79,7 +79,7 @@ client.insert_documents(dataset_id="quickstart", docs=documents)
 
 
 <figure>
-<img src="https://github.com/RelevanceAI/RelevanceAI-readme-docs/blob/main/docs/_assets/RelevanceAI_dataset_dashboard.png?raw=true" alt="See your dataset in the dashboard" />
+<img src="https://github.com/RelevanceAI/RelevanceAI-readme-docs/blob/main/docs/GETTING_STARTED/_assets/RelevanceAI_dataset_dashboard.png?raw=true" alt="See your dataset in the dashboard" />
 <figcaption>See your dataset in the dashboard</figcaption>
 <figure>
 
@@ -96,9 +96,9 @@ enc = Clip2Vec()
 
 # Set the default encode to encoding an image
 enc.encode = enc.encode_image
-documents = enc.encode_documents(fields=["product_image"], docs=documents)
+documents = enc.encode_documents(fields=["product_image"], documents=documents)
 
-client.update_documents(dataset_id="quickstart", docs=documents)
+client.update_documents(dataset_id="quickstart", documents=documents)
 
 client.datasets.schema(dataset_id="quickstart")
 ```
@@ -145,11 +145,14 @@ client.services.cluster.centroids.list_closest_to_center(
 
 
 <figure>
-<img src="https://github.com/RelevanceAI/RelevanceAI-readme-docs/blob/main/docs/_assets/RelevanceAI_cluster_dashboard.png?raw=true" alt="See what your clusters represent" />
+<img src="https://github.com/RelevanceAI/RelevanceAI-readme-docs/blob/main/docs/GETTING_STARTED/_assets/RelevanceAI_cluster_dashboard.png?raw=true" alt="See what your clusters represent" />
 <figcaption>See what your clusters represent</figcaption>
 <figure>
 
-You can read more about how to analyse clusters in your data [here](doc:quickstart-k-means).
+
+
+
+You can read more about how to analyse clusters in your data  [here](doc:quickstart-k-means).
 
 
 ### 5. Run a vector search
@@ -180,9 +183,11 @@ client.services.search.vector(
 
 
 <figure>
-<img src="https://github.com/RelevanceAI/RelevanceAI-readme-docs/blob/main/docs_template/_assets/RelevanceAI_dataset_dashboard.png?raw=true"  alt="Visualise your search results" />
+<img src="https://github.com/RelevanceAI/RelevanceAI-readme-docs/blob/main/docs/GETTING_STARTED/_assets/RelevanceAI_search_dashboard.png?raw=true"  alt="Visualise your search results" />
 <figcaption>Visualise your search results</figcaption>
 <figure>
+
+
 
 You can read more about how to construct a multi-vector query with those features [here](doc:vector-search-prerequisites).
 

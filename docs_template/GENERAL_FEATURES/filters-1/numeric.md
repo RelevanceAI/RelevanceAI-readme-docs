@@ -5,32 +5,21 @@ hidden: false
 createdAt: "2021-11-25T06:28:37.534Z"
 updatedAt: "2022-01-19T05:17:05.147Z"
 ---
-[block:image]
-{
-  "images": [
-    {
-      "image": [
-        "https://files.readme.io/27f8c47-Numeric.png",
-        "Numeric.png",
-        446,
-        486,
-        "#ededed"
-      ],
-      "caption": "Filtering documents with retail price higher than 5000."
-    }
-  ]
-}
-[/block]
+<figure>
+<img src="https://github.com/RelevanceAI/RelevanceAI-readme-docs/blob/v0.33.2-general-features/docs_template/GENERAL_FEATURES/_assests/numeric.png" width="446" alt="Numeric.png" />
+<figcaption>Filtering documents with retail price higher than 5000.</figcaption>
+<figure>
+
 ## `numeric`
 This filter is to perform the filtering operators on a numeric value. For instance, returning the documents with a price larger than 1000 dollars.
-[block:code]
-{
-  "codes": [
-    {
-      "code": "from relevanceai import Client \nclient = Client()\n\nfilter =  [{'field' : 'retail_price',     # field to look at\n            'filter_type' : 'numeric', \n            \"condition\":\">\", \n            \"condition_value\":5000}]\nfiltered_data = client.datasets.documents.get_where(dataset_id, filter)",
-      "language": "python",
-      "name": "Python (SDK)"
-    }
-  ]
-}
-[/block]
+
+@@@ relevanceai_installation, RELEVANCEAI_SDK_VERSION=RELEVANCEAI_SDK_VERSION @@@
+
+@@@ client_instantiation @@@
+
+@@@ dataset_df, DATASET_ID=ECOMMERCE_SAMPLE_DATASET_ID @@@
+
+@@@ filter_setup, FIELD=RETAIL_PRICE_FIELD, FILTER_TYPE=NUMERIC_FILTER_TYPE, CONDITION=GT_COND, CONDITION_VAL=5000 @@@
+
+@@@ filter_dataset @@@
+

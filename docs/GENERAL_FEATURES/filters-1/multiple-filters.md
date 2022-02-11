@@ -5,36 +5,54 @@ hidden: false
 createdAt: "2021-11-25T22:31:19.531Z"
 updatedAt: "2022-01-19T05:17:17.089Z"
 ---
-[block:image]
-{
-  "images": [
-    {
-      "image": [
-        "https://files.readme.io/604547f-combined_filters.png",
-        "combined filters.png",
-        1009,
-        368,
-        "#e7e7e7"
-      ],
-      "caption": "Filtering results when using multiple filters: categories, contains, and date."
-    }
-  ]
-}
-[/block]
+<figure>
+<img src="https://github.com/RelevanceAI/RelevanceAI-readme-docs/blob/v0.33.2-general-features/docs_template/GENERAL_FEATURES/_assests/multiple-filters.png" width="1009" alt="combined filters.png" />
+<figcaption>Filtering results when using multiple filters: categories, contains, and date.</figcaption>
+<figure>
+
 ## Combining filters
 It is possible to combine multiple filters. For instance, the sample code below shows a filter that searches for
 * a Lenovo flip cover
 * produced after January 2020
 * by either Lapguard or 4D brand.
 A screenshot of the results can be seen on top.
-[block:code]
-{
-  "codes": [
-    {
-      "code": "from relevanceai import Client \nclient = Client()\n\nfilter =  [\n   {\"field\": 'description', \n    \"filter_type\" : 'contains', \n    \"condition\":\"==\", \n    \"condition_value\":\"Lenovo\"},\n \t {\"field\" : 'brand', \n    \"filter_type\" : 'categories', \n    \"condition\":\"==\", \n    \"condition_value\":\"Lapguard\",\"4D\"]},\n   {\"field\": 'insert_date_',\n    \"filter_type\" : 'date', \n    \"condition\":\">=\", \n    \"condition_value\":\"2020-01-01\"}\n ]\nfiltered_data = client.datasets.documents.get_where(dataset_id, filter)",
-      "language": "python",
-      "name": "Python (SDK)"
-    }
-  ]
-}
-[/block]
+
+```bash Bash
+!pip install -U RelevanceAI[notebook]==0.33.2
+```
+```bash
+```
+
+```python Python (SDK)
+from relevanceai import Client
+
+"""
+You can sign up/login and find your credentials here: https://cloud.relevance.ai/sdk/api
+Once you have signed up, click on the value under `Authorization token` and paste it here
+"""
+client = Client()
+
+```
+```python
+```
+
+```python Python (SDK)
+DATASET_ID = "ecommerce-sample-dataset"
+df = client.Dataset(DATASET_ID)
+```
+```python
+```
+
+@@@ filters_three_setup,
+FIELD1=DESCRIPTION_FIELD, FILTER_TYPE1=CONTAINS_FILTER_TYPE, CONDITION1=EQ_COND, CONDITION_VAL1=CONDITION_VAL_5,
+FIELD2=BRAND_FIELD, FILTER_TYPE2=CATEGORY_FILTER_TYPE, CONDITION2=EQ_COND, CONDITION_VAL2=BRAND_CATEGORY_VAL2
+FIELD3=INSERT_DATE_FIELD, FILTER_TYPE3=DATE_FILTER_TYPE, CONDITION3=GE_COND, CONDITION_VAL3=DATE_VAL_2 @@@
+
+```python Python (SDK)
+### TODO: update to match the latest SDK
+filtered_data = df.get_where(filter)
+```
+```python
+```
+
+

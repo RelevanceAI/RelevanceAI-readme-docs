@@ -15,65 +15,65 @@ A very common format for saving data is `CSV`. The `insert_csv` function enables
 
 ### Handling document unique identifier (`_id`)
 * If the dataset includes a unique identifier per document but the name of the field is not `_id`, simply pass the name under `col_for_id`. For instance, in the example below, the field `REF-No` contains the unique identifier that can be passed as `_id`.
-[block:image]
-{
-  "images": [
-    {
-      "image": [
-        "https://files.readme.io/10ec3ec-4ac37a1-Screen_Shot_2022-01-11_at_5.43.32_pm.png",
-        "4ac37a1-Screen_Shot_2022-01-11_at_5.43.32_pm.png",
-        332,
-        134,
-        "#efefef"
-      ],
-      "caption": "Sample data"
-    }
-  ]
-}
-[/block]
+<figure>
+<img src="https://github.com/RelevanceAI/RelevanceAI-readme-docs/blob/v0.33.2-general-features/docs_template/GENERAL_FEATURES/creating-a-dataset/assets/csv-data-sample.png" width="332" alt="4ac37a1-Screen_Shot_2022-01-11_at_5.43.32_pm.png" />
+<figcaption>Sample data</figcaption>
+<figure>
+
 ### Using `insert_csv`
 
 First, the Relevance AI SDK package must be installed.
-[block:code]
-{
-  "codes": [
-    {
-      "code": "pip install -U RelevanceAI==0.27.0",
-      "language": "shell"
-    }
-  ]
-}
-[/block]
-Next, a Relevance AI client object must be instantiated:
-[block:code]
-{
-  "codes": [
-    {
-      "code": "from relevanceai import Client \n\n\"\"\"\nRunning this cell will provide you with \nthe link to sign up/login page where you can find your credentials.\nOnce you have signed up, click on the value under `Authorization token` \nin the API tab\nand paste it in the Auth token box that appears below.\n\"\"\"\n\nclient = Client()",
-      "language": "python"
-    }
-  ]
-}
-[/block]
+
+```bash Bash
+!pip install -U RelevanceAI[notebook]==0.33.2
+```
+```bash
+```
+
+
+```python Python (SDK)
+from relevanceai import Client
+
+"""
+You can sign up/login and find your credentials here: https://cloud.relevance.ai/sdk/api
+Once you have signed up, click on the value under `Authorization token` and paste it here
+"""
+client = Client()
+
+```
+```python
+```
+
 Uploading a CSV file while marking a field called `REF-No` as the unique identifier:
-[block:code]
-{
-  "codes": [
-    {
-      "code": "CSV_PATH = \"PATH-TO-THE-CSV-FILE\"\nDATASET_ID  = \"CHOSEN-NAME-FOR-THE-DATASET\"\nCOL_FOR_ID = \"REF-No\"\n\nclient.insert_csv(\n    dataset_id=DATASET_ID, \n    filepath_or_buffer = CSV_PATH, \n    col_for_id = COL_FOR_ID, \n    index_col = 0\n)",
-      "language": "python"
-    }
-  ]
-}
-[/block]
+
+```python Python (SDK)
+CSV_PATH = "PATH-TO-THE-CSV-FILE"
+DATASET_ID = "quickstart"
+COL_FOR_ID = "REF-No"
+
+client.insert_csv(
+ dataset_id=DATASET_ID,
+ filepath_or_buffer = CSV_PATH,
+ col_for_id = COL_FOR_ID,
+ index_col = 0
+)
+```
+```python
+```
+
 If your dataset does not include any unique identifier per document, we can create one for you. You can turn off this feature by setting `auto_generate_id=False` when inserting.
-[block:code]
-{
-  "codes": [
-    {
-      "code": "CAV_PATH = \"PATH-TO-THE-CSV-FILE\"\nDATASET_ID  = \"CHOSEN-NAME-FOR-THE-DATASET\"\n\nclient.insert_csv(\n    dataset_id=DATASET_ID, \n    filepath_or_buffer=CAV_PATH,\n    auto_generate_id=True,  # to allow automatic id generation\n    index_col = 0\n)",
-      "language": "python"
-    }
-  ]
-}
-[/block]
+
+```python Python (SDK)
+CSV_PATH = "PATH-TO-THE-CSV-FILE"
+DATASET_ID = "quickstart"
+
+client.insert_csv(
+ dataset_id=DATASET_ID,
+ filepath_or_buffer=CSV_PATH,
+ auto_generate_id=True, # to allow automatic id generation
+ index_col = 0
+)
+```
+```python
+```
+

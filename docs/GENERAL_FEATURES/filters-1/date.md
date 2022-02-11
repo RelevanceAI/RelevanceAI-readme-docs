@@ -5,44 +5,68 @@ hidden: false
 createdAt: "2021-11-25T06:20:15.175Z"
 updatedAt: "2022-01-19T05:16:58.720Z"
 ---
-[block:image]
-{
-  "images": [
-    {
-      "image": [
-        "https://files.readme.io/885c3f7-date.png",
-        "date.png",
-        1208,
-        1074,
-        "#eeeeee"
-      ],
-      "caption": "Filtering documents which were added to the database after January 2021."
-    }
-  ]
-}
-[/block]
+<figure>
+<img src="https://github.com/RelevanceAI/RelevanceAI-readme-docs/blob/v0.33.2-general-features/docs_template/GENERAL_FEATURES/_assests/date.png" width="1208" alt="date.png" />
+<figcaption>Filtering documents which were added to the database after January 2021.</figcaption>
+<figure>
+
 ## `date`
 This filter performs date analysis and filters documents based on their date information. For instance, it is possible to filter out any documents with a production date before January 2021.
-[block:code]
-{
-  "codes": [
-    {
-      "code": "from relevanceai import Client \nclient = Client()\n\nfilter =  [{'field' : 'insert_date_',    # field to look at\n            'filter_type' : 'date', \n            \"condition\":\">=\", \n            \"condition_value\":\"2021-01-01\"}] # searching for production date after 2020-01-01\nfiltered_data = client.datasets.documents.get_where(dataset_id, filter)",
-      "language": "python",
-      "name": "Python (SDK)"
-    }
-  ]
-}
-[/block]
+
+```bash Bash
+!pip install -U RelevanceAI[notebook]==0.33.2
+```
+```bash
+```
+
+```python Python (SDK)
+from relevanceai import Client
+
+"""
+You can sign up/login and find your credentials here: https://cloud.relevance.ai/sdk/api
+Once you have signed up, click on the value under `Authorization token` and paste it here
+"""
+client = Client()
+
+```
+```python
+```
+
+```python Python (SDK)
+DATASET_ID = "ecommerce-sample-dataset"
+df = client.Dataset(DATASET_ID)
+```
+```python
+```
+
+```python Python (SDK)
+filter = [
+    {"field" : "insert_date_",
+    "filter_type" : "date",
+    "condition":"CONDITION",
+    "condition_value":2020-07-01}]
+```
+```python
+```
+
 Note that the default format is "yyyy-mm-dd" but can be changed to "yyyy-dd-mm" through the `format` parameter as shown in the example below.
-[block:code]
-{
-  "codes": [
-    {
-      "code": "client = Client(project, api_key)\n\nfilter =  [{'field' : 'insert_date_',  # field to look at\n            'filter_type' : 'date', \n            \"condition\":\">=\", \n            \"condition_value\": \"2020-15-05\", # searching for production date after May 15th \n            \"format\":\"yyyy-dd-MM\"\n           }] \nfiltered_data = client.datasets.documents.get_where(dataset_id, filter)",
-      "language": "python",
-      "name": "Python (SDK)"
-    }
-  ]
-}
-[/block]
+
+```python Python (SDK)
+filter = [
+    {"field" : "insert_date_",
+    "filter_type" : "date",
+    "condition":"CONDITION",
+    "condition_value":2020-07-01,
+     "format":"yyyy-dd-MM"
+    }]
+```
+```python
+```
+
+```python Python (SDK)
+### TODO: update to match the latest SDK
+filtered_data = df.get_where(filter)
+```
+```python
+```
+

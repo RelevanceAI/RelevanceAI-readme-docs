@@ -1,2 +1,2 @@
 bash
-!pip install -U -q vectorhub[clip]
+!pip install -U vectorhub[clip]

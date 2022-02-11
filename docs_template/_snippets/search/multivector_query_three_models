@@ -1,0 +1,7 @@
+python
+# Create a multivector query
+multivector_query = [
+    {"vector": <<VECTOR_1>>, "fields": <<VECTOR_1_FIELDS>>},
+    {"vector": <<VECTOR_2>>, "fields": <<VECTOR_2_FIELDS>>},
+    {"vector": <<VECTOR_3>>, "fields": <<VECTOR_3_FIELDS>>}
+]

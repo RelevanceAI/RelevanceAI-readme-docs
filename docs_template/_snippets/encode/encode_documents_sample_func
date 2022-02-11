@@ -1,0 +1,5 @@
+python
+def encode_documents(documents):
+    for d in documents:
+        d["new_parameter"] = "new_value"
+    return documents

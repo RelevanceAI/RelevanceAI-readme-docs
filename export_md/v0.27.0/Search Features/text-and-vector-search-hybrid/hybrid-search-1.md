@@ -4,7 +4,7 @@ slug: "hybrid-search-1"
 excerpt: "Adjustable word matching and semantics"
 hidden: false
 createdAt: "2021-11-19T01:41:49.896Z"
-updatedAt: "2022-01-27T07:00:39.874Z"
+updatedAt: "2022-01-27T06:22:06.285Z"
 ---
 ### Hybrid search (adjustable word matching and semantics)
 [block:image]
@@ -85,17 +85,6 @@ Sample codes using Relevance AI SDK for hybrid search endpoint are shown below. 
 }
 [/block]
 4. Hit the hybrid search endpoint as shown below. Note that since we are working with vectors and the dataset is vectorised with the CLIP model, here, we first encode/vectorize the query using the same model:
-[block:code]
-{
-  "codes": [
-    {
-      "code": "# vectorizer \n# vectorizer\nfrom vectorhub.encoders.text.sentence_transformers import SentenceTransformer2Vec\n\nenc = SentenceTransformer2Vec('clip-ViT-B-32')",
-      "language": "python"
-    }
-  ]
-}
-[/block]
-
 [block:code]
 {
   "codes": [

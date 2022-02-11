@@ -1,0 +1,3 @@
+python
+# The encoder accesses an image through the URL
+vec =enc.encode("<<IMG>>")

@@ -16,65 +16,50 @@ The `monitor.health` endpoint reports what fields exist in the whole dataset, ho
 
 ### Checking if the encoding is finished via the `monitor.health` API call
 First, we need to install Relevance AI's Python SDK and then instantiate a client object:
-[block:code]
-{
-  "codes": [
-    {
-      "code": "pip install RelevanceAI==0.27.0",
-      "language": "shell"
-    }
-  ]
-}
-[/block]
+```shell Python (SDK)
+pip install RelevanceAI==0.27.0
+```
+```shell
+```
 
-[block:code]
-{
-  "codes": [
-    {
-      "code": "from relevanceai import Client \n\n\"\"\"\nRunning this cell will provide you with \nthe link to sign up/login page where you can find your credentials.\nOnce you have signed up, click on the value under `Authorization token` \nin the API tab\nand paste it in the appreared Auth token box below\n\"\"\"\n\nclient = Client()",
-      "language": "python"
-    }
-  ]
-}
-[/block]
+```python Python (SDK)
+from relevanceai import Client
+
+"""
+Running this cell will provide you with
+the link to sign up/login page where you can find your credentials.
+Once you have signed up, click on the value under `Authorization token`
+in the API tab
+and paste it in the appreared Auth token box below
+"""
+
+client = Client()
+```
+```python
+```
 Making the API call
-[block:code]
-{
-  "codes": [
-    {
-      "code": "DATASET_ID = <name of the dataset>\n\nclient.datasets.health(DATASET_ID)",
-      "language": "python",
-      "name": "Pyhton (SDK)"
-    }
-  ]
-}
-[/block]
+```python Pyhton (SDK)
+DATASET_ID = <name of the dataset>
+
+client.datasets.health(DATASET_ID)
+```
+```python
+```
 The output is similar to the json result shown below.
 All existing fields in our eCommerce dataset are listed with two components for each field `missing` and  `exists`. Looking at the numbers under `description_text2vec_vector_` indicates that the encoding has just begun since only 120 documents include the vector.
 While vectorizing is in progress, the missing and existing numbers keep changing for the vector fields due to the fact that more documents receive their vectors.
-[block:code]
-{
-  "codes": [
-    {
-      "code": "{'description': {'missing': 0, 'exists': 19920},\n 'description_text2vec_vector_': {'missing': 19800, 'exists': 120, 'number_of_documents_with_zero_vectors': 0},\n 'insert_date_': {'missing': 0, 'exists': 19920},\n 'product_name': {'missing': 0, 'exists': 19920},\n 'retail_price': {'missing': 0, 'exists': 19920}}",
-      "language": "json"
-    }
-  ]
-}
-[/block]
+```json Python (SDK)
+{'description': {'missing': 0, 'exists': 19920},
+ 'description_text2vec_vector_': {'missing': 19800, 'exists': 120, 'number_of_documents_with_zero_vectors': 0},
+ 'insert_date_': {'missing': 0, 'exists': 19920},
+ 'product_name': {'missing': 0, 'exists': 19920},
+ 'retail_price': {'missing': 0, 'exists': 19920}}
+```
+```json
+```
 The interpretation of this data is simple, it means that the encoding process has started and has only been completed partially. We will need more time before experimenting with the API.
-[block:image]
-{
-  "images": [
-    {
-      "image": [
-        "https://files.readme.io/6d10760-better_search_9.png",
-        "better_search_9.png",
-        1463,
-        653,
-        "#e4dfda"
-      ]
-    }
-  ]
-}
-[/block]
+<figure>
+<img src="https://files.readme.io/6d10760-better_search_9.png" width="1463" alt="better_search_9.png" />
+<figcaption></figcaption>
+<figure>
+

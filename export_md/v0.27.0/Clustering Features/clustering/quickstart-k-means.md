@@ -3,7 +3,7 @@ title: "Quickstart (K Means)"
 slug: "quickstart-k-means"
 hidden: false
 createdAt: "2021-12-10T01:56:27.206Z"
-updatedAt: "2022-02-01T00:54:13.875Z"
+updatedAt: "2022-01-24T06:24:19.933Z"
 ---
 [block:image]
 {
@@ -27,7 +27,7 @@ Clustering groups items so that those in the same group/cluster have meaningful 
 
 In this guide, you will learn to run KMeans clustering via **only one line of code**. K-Means clustering partitions your dataset into K distinct clusters.
 
-[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/drive/1U0CWbG6ngU9hSdiLRg8YQ7b5nv5_vDCL?usp=sharing)
+[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/drive/1Laa19J1QdWpjY2j35J1zgY9V6EPVKCSg?usp=sharing)
 
 ### 1. Create a dataset and insert data
 

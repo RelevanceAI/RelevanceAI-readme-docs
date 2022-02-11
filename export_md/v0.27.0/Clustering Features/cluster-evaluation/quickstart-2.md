@@ -25,7 +25,8 @@ First, you need to install Relevance AI's Python SDK and set up a client object 
   "codes": [
     {
       "code": "pip install -U RelevanceAI==0.27.0",
-      "language": "shell"
+      "language": "shell",
+      "name": "Python (SDK)"
     }
   ]
 }
@@ -36,7 +37,8 @@ First, you need to install Relevance AI's Python SDK and set up a client object 
   "codes": [
     {
       "code": "from relevanceai import Client \n\n\"\"\"\nRunning this cell will provide you with \nthe link to sign up/login page where you can find your credentials.\nOnce you have signed up, click on the value under `Authorization token` \nin the API tab\nand paste it in the appreared Auth token box below\n\"\"\"\n\nclient = Client()",
-      "language": "python"
+      "language": "python",
+      "name": "Python (SDK)"
     }
   ]
 }
@@ -60,7 +62,8 @@ The following code clusters the *product_image_clip_vector_* field using the KMe
   "codes": [
     {
       "code": "VECTOR_FIELD = 'product_image_clip_vector_'\nk = 10\nALIAS = 'kmeans_'+str(k)\n\ncentroids = client.vector_tools.cluster.kmeans_cluster(\n    dataset_id = DATASET_ID, \n    vector_fields=[VECTOR_FIELD],\n    k = k,\n    alias = ALIAS,\n    overwrite = True\n)",
-      "language": "python"
+      "language": "python",
+      "name": "Python (SDK)"
     }
   ]
 }

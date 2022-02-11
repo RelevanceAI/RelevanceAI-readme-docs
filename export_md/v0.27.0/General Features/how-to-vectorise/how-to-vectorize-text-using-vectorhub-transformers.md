@@ -4,7 +4,7 @@ slug: "how-to-vectorize-text-using-vectorhub-transformers"
 excerpt: "A guide on vectorizing text using Vectorhub"
 hidden: false
 createdAt: "2022-01-20T01:23:22.178Z"
-updatedAt: "2022-01-28T04:39:14.396Z"
+updatedAt: "2022-01-24T00:15:14.549Z"
 ---
 ## Using VectorHub
 
@@ -30,7 +30,7 @@ Then from the `sentence_transformers` category, we import our desired transforme
 {
   "codes": [
     {
-      "code": "from vectorhub.encoders.text.sentence_transformers import SentenceTransformer2Vec\n\nenc = SentenceTransformer2Vec(\"all-mpnet-base-v2\")",
+      "code": "from vectorhub.encoders.text.sentence_transformers import SentenceTransformer2Vec\n\nenc = SentenceTransformer2Vec(\"all-mpnet-base-v2 \")",
       "language": "python"
     }
   ]

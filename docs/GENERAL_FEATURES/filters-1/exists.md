@@ -5,32 +5,55 @@ hidden: false
 createdAt: "2021-11-25T06:09:19.375Z"
 updatedAt: "2022-01-19T05:16:52.455Z"
 ---
-[block:image]
-{
-  "images": [
-    {
-      "image": [
-        "https://files.readme.io/c6d0d9c-exist.png",
-        "exist.png",
-        880,
-        1072,
-        "#ededed"
-      ],
-      "caption": "Filtering documents which include the field \"brand\" in their information."
-    }
-  ]
-}
-[/block]
+<figure>
+<img src="https://github.com/RelevanceAI/RelevanceAI-readme-docs/blob/v0.33.2-general-features/docs_template/GENERAL_FEATURES/_assests/exists.png" width="880" alt="exist.png" />
+<figcaption>Filtering documents which include the field "brand" in their information.</figcaption>
+<figure>
+
 ## `exists`
 This filter returns entries in a database if a certain field (as opposed to the field values in previously mentioned filter types) exists or doesn't exist in them. For instance, filtering out documents in which there is no field 'purchase-info'. *Note that this filter is case-sensitive.*
-[block:code]
-{
-  "codes": [
-    {
-      "code": "from relevanceai import Client \nclient = Client()\n\nfilter =  [{'field' : 'brand',    # field to look at\n            'filter_type' : 'exists', \n            \"condition\":\"==\", \n            \"condition_value\":\"\"}] \nfiltered_data = client.datasets.documents.get_where(dataset_id, filter)",
-      "language": "python",
-      "name": "Python (SDK)"
-    }
-  ]
-}
-[/block]
+
+```bash Bash
+!pip install -U RelevanceAI[notebook]==0.33.2
+```
+```bash
+```
+
+```python Python (SDK)
+from relevanceai import Client
+
+"""
+You can sign up/login and find your credentials here: https://cloud.relevance.ai/sdk/api
+Once you have signed up, click on the value under `Authorization token` and paste it here
+"""
+client = Client()
+
+```
+```python
+```
+
+```python Python (SDK)
+DATASET_ID = "ecommerce-sample-dataset"
+df = client.Dataset(DATASET_ID)
+```
+```python
+```
+
+```python Python (SDK)
+filter = [
+    {"field" : "brand",
+    "filter_type" : "exists",
+    "condition":"CONDITION",
+    "condition_value": }]
+```
+```python
+```
+
+```python Python (SDK)
+### TODO: update to match the latest SDK
+filtered_data = df.get_where(filter)
+```
+```python
+```
+
+

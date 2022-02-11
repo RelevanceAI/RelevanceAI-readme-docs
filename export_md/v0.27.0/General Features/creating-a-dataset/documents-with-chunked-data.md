@@ -83,9 +83,7 @@ We talked about how to trigger the vectorizing task when calling the `bulk_inser
   "codes": [
     {
       "code": "jobs_to_trigger=[{\n  \"encode\": {\n    \"chunk_field\": 'description_chunk_',\n    \"fields\": [\"description\"],\n    \"model_name\": 'content-kc',\n    \"alias\":\"text2vec\"\n  }}]",
-      "language": "python",
-      "name": null
-    }
+      "language": "python"    }
   ]
 }
 [/block]

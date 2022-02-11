@@ -16,83 +16,36 @@ The first option is perfect when the data already includes the desired vectors. 
 
 To upload multiple documents to RelevanceAI, you can use the **insert_documents** method.
 
-Note that if you specify a non-existing dataset upon insertion, a new dataset will be automatically created.
-
 ### Inserting the data in one go
 
-If the dataset is not too big (not bigger than 100MB), there is no need to break it into batches. Here, you can see an example of how to upload all your data in one go. As was mentioned at [Preparing data from CSV / Pandas Dataframe](https://docs.relevance.ai/docs/preparing-data-from-csv-pandas-df), data is a list of dictionaries and is passed to the endpoint via the `documents` argument.
-[block:code]
-{
-  "codes": [
-    {
-      "code": "client.insert_documents(dataset_id=\"ecommerce-sample-dataset\", documents=documents)",
-      "language": "python",
-      "name": "Python (SDK)"
-    }
-  ]
-}
-[/block]
+@@@ dataset_basics, DATASET_ID=QUICKSTART_DATASET_ID @@@
+
 ### Updating documents
 
-To only update specific documents, use `update_documents` as shown below:
-[block:code]
-{
-  "codes": [
-    {
-      "code": "documents = [{\"_id\": \"example_id\", \"value\": 3}]\nclient.update_documents( dataset_id=\"ecommerce-sample-dataset\",  documents=documents)\n",
-      "language": "python",
-      "name": "Python (SDK)"
-    }
-  ]
-}
-[/block]
+To only update specific documents, use `update_documents` as shown in the example below:
 
-[block:callout]
-{
-  "type": "warning",
-  "title": "When To Use Update Vs Insert",
-  "body": "`insert` replaces the entire document whereas `update` only changes the fields that are specified or newly added. It will not delete fields that are already in the dataset, nor insert new documents."
-}
-[/block]
+@@@ upsert_example @@@
+
+> 🚧 When To Use Upsert Vs Insert
+>
+> `insert` replaces the entire document whereas `upsert` only changes the fields that are specified or newly added. It will not delete fields that are already in the dataset, nor insert new documents.
 The easiest way to modify and update all documents in a dataset is to run `pull_update_push` in the Python SDK.
 
 ### Updating An Entire Dataset
-[block:callout]
-{
-  "type": "info",
-  "title": "pull_update_push is the easiest way to edit documents in a single dataset",
-  "body": "To quickly try out new experiments on your entire dataset, we built `pull_update_push` to easily update all documents in a dataset. It uses Python's function callables to help accelerate the modification process and immediately update documents in the vector database."
-}
-[/block]
+> 📘 pull_update_push is the easiest way to edit documents in a single dataset
+>
+> To quickly try out new experiments on your entire dataset, we built `pull_update_push` to easily update all documents in a dataset. It uses Python's function callables to help accelerate the modification process and immediately update documents in the vector database.
 An example of `pull_update_push` can be found here in which a new field `new_parameter` is added to every single document in a specified dataset.
-[block:code]
-{
-  "codes": [
-    {
-      "code": "def encode_documents(documents):\n    for d in documents:\n        d[\"new_parameter\"] = \"new_value\"\n    return documents\n\nclient.pull_update_push(\n\tdataset_id=\"ecommerce-sample-dataset\",\n  update_function=encode_documents\n)",
-      "language": "python",
-      "name": "Python (SDK)"
-    }
-  ]
-}
-[/block]
+
+@@@ encode_documents_sample_func @@@
+
+@@@ pull_update_push, DATASET_ID=QUICKSTART_DATASET_ID, FUNCTION=ENCODE_DOCUMENTS_FUNC @@@
+
 ## About Pull Update Push
 
 In `pull_update_push`, we are modifying documents and updating them into the vector database. However, there is always a chance that the process can break. We do not want to necessarily re-process the already processed ones. Therefore, it also logs IDs that are processed to a separate logging collection. If we want to continue processing, we can specify the `logging_collection` parameter in `pull_update_push`.
 
-[block:image]
-{
-  "images": [
-    {
-      "image": [
-        "https://files.readme.io/ab65a6d-untitled2x_1.png",
-        "untitled@2x (1).png",
-        2492,
-        1184,
-        "#3381c6"
-      ],
-      "caption": "Architecture diagram of `pull_update_push`"
-    }
-  ]
-}
-[/block]
+<figure>
+<img src="https://github.com/RelevanceAI/RelevanceAI-readme-docs/blob/v0.33.2-general-features/docs_template/GENERAL_FEATURES/creating-a-dataset/assets/pull-update-push.png" width="2492" alt="untitled@2x (1).png" />
+<figcaption>Architecture diagram of `pull_update_push`</figcaption>
+<figure>

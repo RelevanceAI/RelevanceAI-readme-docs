@@ -1,0 +1,3 @@
+python
+query = <<QUERY>>
+query_vec_txt = <<ENCODER>>.encode(query)

@@ -1,0 +1,14 @@
+python
+# Query sample data
+sample_id = documents[0]['_id']
+documents = df.get_documents_by_ids([sample_id])["documents"]
+document = documents[sample_id]
+image_vector = document[<<IMAGE_VECTOR>>]
+text_vector = document[<<TEXT_VECTOR>>]
+
+# Create a multivector query
+multivector_query = [
+    {"vector": image_vector, "fields": [<<IMAGE_VECTOR>>]},
+    {"vector": text_vector, "fields": [<<TEXT_VECTOR>>]}
+]
+

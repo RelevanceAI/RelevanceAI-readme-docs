@@ -1,0 +1,8 @@
+python
+# Create a multivector query
+multivector_query=[
+	{
+	"vector": <<VECTOR>>,
+	"fields": {"<<VECTOR_1_FIELD>>":0.6, "<<VECTOR_2_FIELD>>":0.3}},
+	},
+	]

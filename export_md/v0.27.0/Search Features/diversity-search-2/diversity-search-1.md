@@ -4,7 +4,7 @@ slug: "diversity-search-1"
 excerpt: "No word matching, just semantics with clustering"
 hidden: false
 createdAt: "2021-11-19T01:41:21.525Z"
-updatedAt: "2022-01-27T07:08:39.254Z"
+updatedAt: "2022-01-27T06:27:26.158Z"
 ---
 ## Diversity in search (no word matching, just semantics with clustering)
 [block:image]
@@ -32,57 +32,12 @@ Diversity is similar to vector search and performs the search in the vector spac
 Looking for "sneakers" under this search in a sportswear dataset will result in an answer list but not just a list of 1 particular shoe like Nike but a combination of Nike, Adidas, Asics, etc. This is important because in vector spaces - it may automatically tie a specific brand to one item in particular. As a result - we may want to get a larger diversity of the most relevant results in a streamlined manner.
 
 ### Sample code
-Sample codes using RelevanceAI SDK for diversity search endpoint are shown below. Note that to be able to use this search endpoint you need to:
-1. install Relevance AI's python SDK (for more information please visit the [installation](https://docs.relevance.ai/docs/installation) page). To use vectors for search, we must vectorize our data as well as the query. We will use the CLIP encoder for this guide. For more information please visit [how-to-vectorise](https://docs.relevance.ai/docs/how-to-vectorise).
+Sample codes using RelevanceAI SDK for diversity search endpoint are shown below.
 [block:code]
 {
   "codes": [
     {
-      "code": "pip install RelevanceAI==0.27.0\npip install vectorhub[sentence-transformers]",
-      "language": "shell"
-    }
-  ]
-}
-[/block]
-2. Instantiate a client object to be able to use the services provided by Relevance AI:
-[block:code]
-{
-  "codes": [
-    {
-      "code": "from relevanceai import Client \n\n\"\"\"\nRunning this cell will provide you with \nthe link to sign up/login page where you can find your credentials.\nOnce you have signed up, click on the value under `Authorization token` \nin the API tab\nand paste it in the appreared Auth token box below\n\"\"\"\n\nclient = Client()",
-      "language": "python"
-    }
-  ]
-}
-[/block]
-3. Upload a dataset under your account (for more information please visit the guide on [datasets](https://docs.relevance.ai/docs/project-and-dataset)). Here, we use our eCommerce sample.
-[block:code]
-{
-  "codes": [
-    {
-      "code": "from relevanceai.datasets import get_dummy_ecommerce_dataset\n\ndocuments = get_dummy_ecommerce_dataset()\n\nDATASET_ID = 'quickstart_search'\nclient.datasets.delete(DATASET_ID)\nclient.insert_documents(dataset_id=DATASET_ID, docs=documents)",
-      "language": "python"
-    }
-  ]
-}
-[/block]
-Hit the diversity search endpoint as shown below. Note that since we are working with vectors and the dataset is vectorised with the CLIP model, here, we first encode/vectorize the query using the same model:
-[block:code]
-{
-  "codes": [
-    {
-      "code": "# vectorizer\nfrom vectorhub.encoders.text.sentence_transformers import SentenceTransformer2Vec\n\nenc_txt = SentenceTransformer2Vec('clip-ViT-B-32')",
-      "language": "python"
-    }
-  ]
-}
-[/block]
-
-[block:code]
-{
-  "codes": [
-    {
-      "code": "# query text\nquery = \"large bag\"\n# query vector\nquery_vec = enc_txt.encode(query)\n\nVECTOR_FIELD1 = 'product_title_clip_vector_'\nVECTOR_FIELD2 = \"product_image_clip_vector_\"\nFIELD = \"description\"\n\ndiversity_search = client.services.search.diversity(\n    # dataset name\n    dataset_id= DATASET_ID,\n\n    # list of vector fields to run the query against\n    multivector_query= [\n      {\"vector\": query_vec, \n       \"fields\": [VECTOR_FIELD1]}\n    ],\n\n    # vector field on which the clustering is done\n    cluster_vector_field= VECTOR_FIELD2,\n  \n    # number of clusters\n    n_clusters=5,\n  \n    # number of returned results\n    page_size=20,\n  \n    # minimum similarity score to return a match as a result\n    min_score=0.2,\n)\n",
+      "code": "from relevanceai import Client\n\ndataset_id = \"ecommerce-search-example\"\n\nclient = Client()\n\nquery = \"birthday gift\"  # query text\nquery_vec = client.services.encoders.text(text=query)\n\nurl = \"https://gateway-api-aueast.relevance.ai/v1/\"\ndiversity_search = client.services.search.diversity(\n    # dataset name\n    \"dataset_id\": dataset_id,\n\n    # list of vector fields to run the query against\n    \"multivector_query\": [\n      {\"vector\": client.services.encoders.multi_text(text=query)['vector'], \n       \"fields\": [\"descriptiontextmulti_vector_\", \"product_nametextmulti_vector_\"]},\n\n      {\"vector\": client.services.encoders.textimage(text=query)['vector'],\n       \"fields\": [\"description_imagetext_vector_\"]}\n    ],\n\n    # vector field on which the clustering is done\n    \"cluster_vector_field\": \"product_nametextmulti_vector_\",\n  \n    # number of clusters\n    n_clusters=5,\n  \n    # number of returned results\n    page_size=20,\n  \n    # minimum similarity score to return a match as a result\n    min_score=0.2,\n)\n",
       "language": "python",
       "name": "Python(SDK)"
     }

@@ -63,7 +63,11 @@ By following instructions below, you will be able to preview/create any given ve
    - Add new notebooks to the corresponding `_notebooks_` folder in `docs_template`.
    - Update notebooks to point to the corresponding path.
    - Colab notebook refs are of the form:
-7. To add new snippets:
+  ```zsh
+   [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/RelevanceAI/RelevanceAI-readme-docs/blob/v0.33.2/docs/GETTING_STARTED/_notebooks/Intro-to-Relevance-AI.ipynb)
+  ```
+  - Please add this badge in top cell of notebook as well so it can be accessed from Github.
+7. To add new snippet
    - Add new snippets in the corresponding `_snippets` folder.
    - Snippets are loaded in a nested fashion. Inner most `_snippets` with the same name will override general snippets in [`docs_template/_snippets/`](./docs_template/_snippets/).
    - All snippets in `*.md` and `*.ipynb` files are prefaced with `@@@`.
@@ -81,7 +85,6 @@ By following instructions below, you will be able to preview/create any given ve
    ```zsh
    ❯ export RELEVANCEAI_README_API_KEY='xxx'
    ```
-
 9.  To run notebook tests, make sure to export your `TEST_ACTIVATION_TOKEN` from https://cloud.relevance.ai/sdk/api/.
     ```zsh
     ❯ export TEST_ACTIVATION_TOKEN='xxx'
@@ -93,17 +96,15 @@ By following instructions below, you will be able to preview/create any given ve
     ❯ ./scripts/update_readme.sh true
     ```
     View your synced changes in ReadMe eg. https://docs.relevance.ai/v0.31.0/docs/quick-tour
-11. Test the notebooks for changes. By default, the script will process all notebooks in the `docs` folder if no `--notebooks` specified.
+11. Test the notebooks for changes. By default, the script will process all notebooks in the `docs` folder if no `--notebooks` specified. This script will output error logs to the file `readme_notebook_error_log.txt`
     ```
-    ❯ python scripts/test_notebooks.py -d True --notebooks examples/Intro_to_Relevance_AI.ipynb
+    ❯ python scripts/test_notebooks.py -d True --notebooks examples/Intro-to-Relevance-AI.ipynb
     ```
 12. Install pre-commit to check for API keys in notebooks!
     ```
     pre-commit install
     ```
-13. Commit your changes if what you see in the ReadMe documentation is correct!
-
-
+13. Commit your changes if what you see in the ReadMe documentation is correct! 🎉💪🏻
 
 
 

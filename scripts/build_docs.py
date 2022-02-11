@@ -8,11 +8,11 @@ import re
 import json
 
 from typing import List, Dict, Optional, Union
-from typing_extensions import Literal
 
 import argparse
 import logging
 
+import traceback
 
 RDMD_SNIPPET_LANGUAGES = {
     'python': 'Python (SDK)',
@@ -27,7 +27,7 @@ RDMD_SNIPPET_LANGUAGES = {
 
 def load_snippet(
     snippet_path: str,
-    ext: Literal['md', 'ipynb'],
+    ext: str,
     params: Optional[Dict]=None
 ):
     '''
@@ -78,31 +78,34 @@ def generate_ipynb_file(
     logging.info(f'\tInput file: {input_fname}')
     notebook_json = json.loads(open(input_fname).read())
 
-    for cell in notebook_json['cells']:
-        if bool(re.search('@@@\+.*@@@', str(cell["source"]))):
-            for i, cell_source in enumerate(cell['source']):
-                if '@@@+' in cell_source:
-                    snippet_strs = cell_source.replace('@@@+', '').replace('@@@', '').strip().split(';')
-                    logging.debug(f'Snippet strs: {snippet_strs}')
-                    snippet = []
-                    for snippet_str in snippet_strs:
-                        snippet_str = snippet_str.strip()
-                        logging.debug(f'Snippet str {snippet_str}')
-                        snippet += generate_snippet(snippet_str, snippet_paths, snippet_params, ext='ipynb')
-                        snippet += ['\n']
-                    cell['source'][i] = ''.join(snippet)
-                    print(''.join(snippet))
+    for i, cell in enumerate(notebook_json['cells']):
+        try:
+            if bool(re.search('@@@\+.*@@@', str(cell["source"]))):
+                for i, cell_source in enumerate(cell['source']):
+                    if '@@@+' in cell_source:
+                        snippet_strs = cell_source.replace('@@@+', '').replace('@@@', '').strip().split(';')
+                        logging.debug(f'Snippet strs: {snippet_strs}')
+                        snippet = []
+                        for snippet_str in snippet_strs:
+                            snippet_str = snippet_str.strip()
+                            logging.debug(f'Snippet str {snippet_str}')
+                            snippet += generate_snippet(snippet_str, snippet_paths, snippet_params, ext='ipynb')
+                            snippet += ['\n']
+                        cell['source'][i] = ''.join(snippet)
+                        print(''.join(snippet))
 
-        elif bool(re.search('@@@.*@@@', str(cell["source"]))):
-            for i, cell_source in enumerate(cell['source']):
-                if '@@@' in cell_source:
-                    snippet_str = cell_source.split('@@@')[1].strip()
-                    snippet_name = snippet_str.split(',')[0]
-                    logging.debug(f'\tSnippet name: {snippet_name}')
+            elif bool(re.search('@@@.*@@@', str(cell["source"]))):
+                for i, cell_source in enumerate(cell['source']):
+                    if '@@@' in cell_source:
+                        snippet_str = cell_source.split('@@@')[1].strip()
+                        snippet_name = snippet_str.split(',')[0]
+                        logging.debug(f'\tSnippet name: {snippet_name}')
 
-                    snippet = generate_snippet(snippet_str, snippet_paths, snippet_params, ext='ipynb')
-                    cell['source'][i] = ''.join(snippet)
-                    print(''.join(snippet))
+                        snippet = generate_snippet(snippet_str, snippet_paths, snippet_params, ext='ipynb')
+                        cell['source'][i] = ''.join(snippet)
+                        print(''.join(snippet))
+        except Exception as e:
+            raise ValueError(f'Error in cell {i} {traceback.format_exc()}')
 
     Path(output_fname.parent).mkdir(parents=True, exist_ok=True)
     logging.info(f'\tOutput file: {output_fname}')
@@ -113,7 +116,7 @@ def generate_snippet(
     snippet_str: str,
     snippet_paths: List,
     snippet_params: Dict,
-    ext: Literal['md', 'ipynb']
+    ext: str
 ):
     '''
     Load the corresponding snippet with given parameters depending on the extension type
@@ -176,37 +179,39 @@ def generate_md_file(
         md_file = f.read()
 
     md_lines = list()
-    for line in md_file.split('\n'):
+    for i, line in enumerate(md_file.split('\n')):
         ## Concatenated snippets
-        if  bool(re.search('@@@\+.*@@@', line)) and (not bool(re.search('.*<--.*-->.*', line))):
-            snippet_strs = line.replace('@@@+', '').replace('@@@', '').strip().split(';')
-            logging.debug(f'Snippet strs: {snippet_strs}')
-            snippet = []
-            for i, snippet_str in enumerate(snippet_strs):
-                snippet_str = snippet_str.strip()
-                logging.debug(f'Snippet str {snippet_str}')
-                _snippet = generate_snippet(snippet_str, snippet_paths, snippet_params, ext='md')
+        try:
+            if  bool(re.search('@@@\+.*@@@', line)) and (not bool(re.search('.*<--.*-->.*', line))):
+                snippet_strs = line.replace('@@@+', '').replace('@@@', '').strip().split(';')
+                logging.debug(f'Snippet strs: {snippet_strs}')
+                snippet = []
+                for i, snippet_str in enumerate(snippet_strs):
+                    snippet_str = snippet_str.strip()
+                    logging.debug(f'Snippet str {snippet_str}')
+                    _snippet = generate_snippet(snippet_str, snippet_paths, snippet_params, ext='md')
 
-                ## Removing snippet code wrapper union
-                if i != 0:
-                    _snippet[0] = ''
-                if i != len(snippet_strs) -1:
-                    _snippet = _snippet[:-3]
-                snippet += _snippet
-                print('\n'.join(snippet))
+                    ## Removing snippet code wrapper union
+                    if i != 0:
+                        _snippet[0] = ''
+                    if i != len(snippet_strs) -1:
+                        _snippet = _snippet[:-3]
+                    snippet += _snippet
+                    print('\n'.join(snippet))
 
-            [md_lines.append(x) for x in snippet]
+                [md_lines.append(x) for x in snippet]
 
-        elif bool(re.search('@@@.*@@@', line)) and (not bool(re.search('.*<--.*-->.*', line))):
-            snippet_str = line.split('@@@')[1].strip()
-            snippet = generate_snippet(snippet_str, snippet_paths, snippet_params, ext='md')
-            logging.debug('\n'.join(snippet))
+            elif bool(re.search('@@@.*@@@', line)) and (not bool(re.search('.*<--.*-->.*', line))):
+                snippet_str = line.split('@@@')[1].strip()
+                snippet = generate_snippet(snippet_str, snippet_paths, snippet_params, ext='md')
+                logging.debug('\n'.join(snippet))
 
-            [md_lines.append(x) for x in snippet]
-        else:
-            md_lines.append(line)
+                [md_lines.append(x) for x in snippet]
+            else:
+                md_lines.append(line)
+        except Exception as e:
+            raise ValueError(f'Error in cell {i} {traceback.format_exc()}')
 
-    logging.info(f'\tCreating output file: {output_fname}')
     Path(output_fname.parent).mkdir(parents=True, exist_ok=True)
     with open(output_fname, "w") as fout:
         for element in md_lines:
@@ -242,7 +247,7 @@ def main(args):
     #     snippet_params=SNIPPET_PARAMS
     #     )
 
-    # sample_input_ipynb_fname = DOCS_TEMPLATE_PATH / 'GETTING_STARTED' / '_notebooks' / "Intro_to_Relevance_AI.ipynb"
+    # sample_input_ipynb_fname = DOCS_TEMPLATE_PATH / 'GETTING_STARTED' / '_notebooks' / "Intro-to-Relevance-AI.ipynb"
     # sample_output_ipynb_fname = str(sample_input_ipynb_fname).replace('docs_template', 'docs')
     # snippet_paths = [GENERAL_SNIPPETS] + [Path(DOCS_TEMPLATE_PATH) / 'GETTING_STARTED' / '_snippets']
     # generate_ipynb_file(

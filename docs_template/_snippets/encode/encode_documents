@@ -1,0 +1,6 @@
+python
+# documents are saved as a list of dictionaries
+documents = <<DOCS>>
+
+# Encode the `<<FIELD>>` field in a list of documents
+docs_with_vectors = enc.encode_documents(["<<FIELD>>"], documents)

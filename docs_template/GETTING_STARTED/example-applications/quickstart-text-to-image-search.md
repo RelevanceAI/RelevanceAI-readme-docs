@@ -19,7 +19,7 @@ hidden: false
 This section, we will show you how to create and experiment with a powerful text-to-image search engine using OpenAI's CLIP and Relevance AI.
 
 
-**Try it out in Colab:** [![Open In Colab](https://colab.research.google.com/_assets/colab-badge.svg)](https://colab.research.google.com/github/RelevanceAI/RelevanceAI-readme-docs/blob/v0.33.2-general-features/docs/GETTING_STARTED/example-applications/_notebooks/RelevanceAI_ReadMe_Quickstart_Text_to_Image_Search.ipynb)
+**Try it out in Colab:** [![Open In Colab](https://colab.research.google.com/_assets/colab-badge.svg)](https://colab.research.google.com/github/RelevanceAI/RelevanceAI-readme-docs/blob/v0.33.2-general-features/docs/GETTING_STARTED/example-applications/_notebooks/RelevanceAI-ReadMe-Text-to-Image-Search.ipynb)
 
 
 ### What I Need
@@ -65,35 +65,14 @@ To be able to perform text-to-image search, we will show you how to:
 
 Here, we use our sample e-commerce dataset and preview one of the documents.
 
-
-
-@@@ get_ecommerce_encoded @@@
+@@@ get_ecommerce_dataset_clean @@@
 
 An example document should have a structure that looks like this:
 
+@@@ ecommerce_dataset_clean_sample_document@@@
 
-```json JSON
-{
-  "_id": "711158459",
-  "_unit_id": 711158459,
-  "product_description": "The PlayStation 4 system opens the door to an incredible journey through immersive new gaming worlds and a deeply connected gaming community. Step into living, breathing worlds where you are hero of your epic journey. Explore gritty urban environments, vast galactic landscapes, and fantastic historical settings brought to life on an epic scale, without limits. With an astounding launch lineup and over 180 games in development the PS4 system offers more top-tier blockbusters and inventive indie hits than any other next-gen console. The PS4 system is developer inspired, gamer focused. The PS4 system learns how you play and intuitively curates the content you use most often. Fire it up, and your PS4 system points the way to new, amazing experiences you can jump into alone or with friends. Create your own legend using a sophisticated, intuitive network built for gamers. Broadcast your gameplay live and direct to the world, complete with your commentary. Or immortalize your most epic moments and share at the press of a button. Access the best in music, movies, sports and television. PS4 system doesn t require a membership fee to access your digital entertainment subscriptions. You get the full spectrum of entertainment that matters to you on the PS4 system. PlayStation 4: The Best Place to Play The PlayStation 4 system provides dynamic, connected gaming, powerful graphics and speed, intelligent personalization, deeply integrated social capabilities, and innovative second-screen features. Combining unparalleled content, immersive gaming experiences, all of your favorite digital entertainment apps, and PlayStation exclusives, the PS4 system focuses on the gamers.Gamer Focused, Developer InspiredThe PS4 system focuses on the gamer, ensuring that the very best games and the most immersive experiences are possible on the platform.<br>Read more about the PS4 on ebay guides.</br>",
-  "product_image": "https://thumbs2.ebaystatic.com/d/l225/m/mzvzEUIknaQclZ801YCY1ew.jpg",
-  "product_link": "https://www.ebay.com/itm/Sony-PlayStation-4-PS4-Latest-Model-500-GB-Jet-Black-Console-/321459436277?pt=LH_DefaultDomain_0&hash=item4ad879baf5",
-  "product_price": "$329.98 ",
-  "product_title": "Sony PlayStation 4 (PS4) (Latest Model)- 500 GB Jet Black Console",
-  "query": "playstation 4",
-  "rank": 1,
-  "relevance": 3.67,
-  "relevance:variance": 0.47100000000000003,
-  "source": "eBay",
-  "url": "https://www.ebay.com/sch/i.html?_from=R40&_trksid=p2050601.m570.l1313.TR11.TRC1.A0.H0.Xplant.TRS0&_nkw=playstation%204"
-}
 
-```
-```json
-```
-
-As you can see each data entry contains both text (`product_title`, `product_description`) and image (`product_image`).
+As you can see each data entry contains both text (`product_title`) and image (`product_image`).
 
 
 ### 2. Encode
@@ -108,50 +87,13 @@ CLIP is a vectorizer from OpenAI that is trained to find similarities between te
 
 CLIP installation
 
-
-```bash Bash
-!pip install -q ftfy regex tqdm
-!pip install -q git+https://github.com/openai/CLIP.git
-```
-```bash
-```
-
+@@@ clip_installation @@@
 
 
 We instantiate the model and create functions to encode both image and text.
 
 
-
-```python Python (SDK)
-import torch
-import clip
-import requests
-from PIL import Image
-
-device = "cuda" if torch.cuda.is_available() else "cpu"
-model, preprocess = clip.load("ViT-B/32", device=device)
-
-# First - let's encode the image based on CLIP
-def encode_image(image):
-    # Let us download the image and then preprocess it
-    image = preprocess(Image.open(requests.get(image, stream=True).raw)).unsqueeze(0).to(device)
-    # We then feed our processed image through the neural net to get a vector
-    with torch.no_grad():
-      image_features = model.encode_image(image)
-    # Lastly we convert it to a list so that we can send it through the SDK
-    return image_features.tolist()[0]
-
-# Next - let's encode text based on CLIP
-def encode_text(text):
-    # let us get text and then tokenize it
-    text = clip.tokenize([text]).to(device)
-    # We then feed our processed text through the neural net to get a vector
-    with torch.no_grad():
-        text_features = model.encode_text(text)
-    return text_features.tolist()[0]
-```
-```python
-```
+@@@ clip_encoding_functions @@@
 
 
 We then encode the data.
@@ -162,18 +104,7 @@ We then encode the data.
 > Skip if you don't want to wait and re-encode the data as the e-commerce dataset already includes vectors.
 
 
-
-```python Python (SDK)
-def encode_image_document(d):
-  d['clip_product_image_vector_'] = encode_image(d['product_image'])
-
-# Let's import TQDM for a nice progress bar!
-from tqdm.auto import tqdm
-[encode_image_document(d) for d in tqdm(documents)]
-```
-```python
-```
-
+@@@ clip_encode_image_documents, IMAGE_VECTOR='product_image_clip_vector_', IMAGE_FIELD='product_image'  @@@
 
 ### 3. Insert
 
@@ -194,130 +125,35 @@ Once we have inserted the data into the dataset, we can visit [RelevanceAI dashb
 
 Lets first encode our text search query to vectors using CLIP.
 
-
-
-```python Python (SDK)
-query = "for my baby daughter"
-query_vector = encode_text(query)
-```
-```python
-```
+@@@ clip_encode_query, QUERY='for my baby daughter' @@@
 
 
 Now, let us try out a query using a simple vector search against our dataset.
 
-
-```python Python (SDK)
-multivector_query=[
-        {
-            "vector": query_vector,
-            "fields": ["clip_product_image_vector_"]
-        }
-    ]
-```
-```python
-```
-
-@@@ vector_search @@@
+@@@+ multivector_query, VECTOR_FIELD=query_vector, VECTOR_FIELDS=["product_image_clip_vector_"]; vector_search, MULTIVECTOR_QUERY=multivector_query, PAGE_SIZE=5 @@@
 
 Here our query is just a simple multi-vector query, but our search comes with out of the box support for features such as multi-vector, filters, facets and traditional keyword matching to combine with your vector search. You can read more about how to construct a multivector query with those features [here](vector-search-prerequisites).
 
 Next, we use `show_json` to visualize images and text easily and quickly!
 
 
-```python Python (SDK)
-from relevanceai import show_json
-
-show_json(
-    results['results'],
-    image_fields=["product_image"],
-    text_fields=["product_title"]
-)
-```
-```python
-```
-
+@@@ query_show_json, QUERY=query, IMAGE_FIELDS=["product_image"], TEXT_FIELDS=["product_title"] @@@
 
 
 <figure>
-<img src="https://github.com/RelevanceAI/RelevanceAI-readme-docs/blob/v0.33.2-general-features/docs_template/GETTING_STARTED/example-applications/_assets/RelevanceAI_JSONShower_results.png?raw=true" width="650" alt="JSONShower Results" />
-<figcaption>JSONShower Results</figcaption>
+<img src="https://github.com/RelevanceAI/RelevanceAI-readme-docs/blob/v0.33.2-general-features/docs_template/GETTING_STARTED/example-applications/_assets/RelevanceAI_text_image_search_results.png?raw=true" width="650" alt="Text Image Search Results" />
+<figcaption>Text Image Search Results</figcaption>
 <figure>
 
 
 
-**Try it out in Colab:** [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/RelevanceAI/RelevanceAI-readme-docs/blob/v0.33.2-general-features/docs/GETTING_STARTED/example-applications/_notebooks/RelevanceAI_ReadMe_Quickstart_Text_to_Image_Search.ipynb)
-
+**Try it out in Colab:** [![Open In Colab](https://colab.research.google.com/_assets/colab-badge.svg)](https://colab.research.google.com/github/RelevanceAI/RelevanceAI-readme-docs/blob/v0.33.2-general-features/docs/GETTING_STARTED/example-applications/_notebooks/RelevanceAI-ReadMe-Text-to-Image-Search.ipynb)
 
 ## Final Code
 
-```python Python (SDK)
-from relevanceai import Client
 
-client = Client()
 
-# Now we get an e-commerce dataset
-from relevanceai.datasets import get_ecommerce_dataset_encoded
-
-docs = get_ecommerce_dataset_encoded()
-
-# Encoding
-import torch
-import clip
-import requests
-from PIL import Image
-
-device = "cuda" if torch.cuda.is_available() else "cpu"
-model, preprocess = clip.load("ViT-B/32", device=device)
-
-# First - let's encode the image based on CLIP
-def encode_image(image):
-    # Let us download the image and then preprocess it
-    image = preprocess(Image.open(requests.get(image, stream=True).raw)).unsqueeze(0).to(device)
-    # We then feed our processed image through the neural net to get a vector
-    with torch.no_grad():
-      image_features = model.encode_image(image)
-    # Lastly we convert it to a list so that we can send it through the SDK
-    return image_features.tolist()[0]
-
-# Next - let's encode text based on CLIP
-def encode_text(text):
-    # let us get text and then tokenize it
-    text = clip.tokenize([text]).to(device)
-    # We then feed our processed text through the neural net to get a vector
-    with torch.no_grad():
-        text_features = model.encode_text(text)
-    return text_features.tolist()[0]
-
-dataset_id = "quickstart_clip"
-df = client.Dataset(dataset_id)
-#df.delete()
-df.insert_documents(docs)
-
-query = "for my baby daughter"
-query_vector = encode_text(query)
-
-results = df.vector_search(
-    multivector_query=[
-        {
-            "vector": query_vector,
-            "fields": ["clip_product_image_vector_"]
-        }
-    ],
-    page_size=5,
-    query=query
-)
-
-from relevanceai import show_json
-show_json(
-    results['results'],
-    image_fields=["product_image"],
-    text_fields=["product_title"]
-)
-```
-```python
-```
-
+@@@+ client_instantiation; get_ecommerce_dataset_encoded; clip_encoding_functions; clip_encode_image_documents, IMAGE_VECTOR='product_image_clip_vector_', IMAGE_FIELD='product_image; dataset_basics, DATASET_ID=TEXT_IMAGE_SEARCH_DATASET_ID; clip_encode_query, QUERY='for my baby daughter'; multivector_query, VECTOR_FIELD=query_vector, VECTOR_FIELDS=["product_image_clip_vector_"]; vector_search, MULTIVECTOR_QUERY=multivector_query, PAGE_SIZE=5;  query_show_json, QUERY=query, IMAGE_FIELDS=["product_image"], TEXT_FIELDS=["product_title"] @@@
 
 
 In this page, we saw a quick start to text-to-image search. Following this guide, we will explain how to conduct a search using multiple vectors!

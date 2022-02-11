@@ -1,0 +1,3 @@
+python
+# Encode a single input
+enc.encode("<<SAMPLE>>")

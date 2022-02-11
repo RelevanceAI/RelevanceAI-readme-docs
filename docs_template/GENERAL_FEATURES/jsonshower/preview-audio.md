@@ -8,30 +8,26 @@ updatedAt: "2022-01-19T05:34:47.591Z"
 JSONShower supports previewing audio.
 
 You can easily preview audio data if they can be rendered in HTML. This is achievable in 1 line of code as shown below:
-[block:code]
-{
-  "codes": [
-    {
-      "code": "# Create audio documents\naudio_documents = []\nfor i in range(1, 5):\n    audio_documents.append({\n        'audio': f'https://vecsearch-bucket.s3.us-east-2.amazonaws.com/voices/common_voice_en_{i}.wav',\n        'name' : f'common_voice_en_{i}.wav',\n        '_id': str(i)\n    })\n    \n# Preview audio\nshow_json(\n    audio_documents,\n    audio_fields=[\"audio\"]\n)",
-      "language": "python",
-      "name": "Python (SDK)"
-    }
-  ]
-}
-[/block]
+```python Python (SDK)
+# Create audio documents
+audio_documents = []
+for i in range(1, 5):
+ audio_documents.append({
+ 'audio': f'https://vecsearch-bucket.s3.us-east-2.amazonaws.com/voices/common_voice_en_{i}.wav',
+ 'name' : f'common_voice_en_{i}.wav',
+ '_id': str(i)
+ })
+
+# Preview audio
+show_json(
+ audio_documents,
+ audio_fields=["audio"]
+)
+```
+```python
+```
 After running this, you should see the following in your Jupyter Notebook:
-[block:image]
-{
-  "images": [
-    {
-      "image": [
-        "https://files.readme.io/cb01629-audio.png",
-        "audio.png",
-        475,
-        411,
-        "#f4f5f5"
-      ]
-    }
-  ]
-}
-[/block]
+<figure>
+<img src="https://github.com/RelevanceAI/RelevanceAI-readme-docs/blob/v0.33.2-general-features/docs_template/GENERAL_FEATURES/_assests/preview_audio.png" width="475" alt="audio.png" />
+<figcaption></figcaption>
+<figure>

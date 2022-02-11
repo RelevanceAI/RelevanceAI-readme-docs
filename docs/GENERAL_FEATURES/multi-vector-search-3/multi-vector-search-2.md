@@ -11,71 +11,105 @@ Multi-vector search means
 - Vector search across multiple vector fields (e.g. searching across `title` and `description` with different weightings)
 
 Both of these can be combined to offer a powerful, flexible search.
-[block:callout]
-{
-  "type": "info",
-  "body": "Multi-vector search offers a more powerful and more flexible search by combining several vectors across different fields and vectorizers, allowing us to experiment with more combinations of models and configurations.",
-  "title": "Multi vector search allows us to combine multiple vectors and vector spaces!"
-}
-[/block]
+> 📘 Multi vector search allows us to combine multiple vectors and vector spaces!
+>
+> Multi-vector search offers a more powerful and more flexible search by combining several vectors across different fields and vectorizers, allowing us to experiment with more combinations of models and configurations.
 ## Multi-vector search with multiple models
 
-In this section, we present a step-by-step guide on how to perform search via three sets of vectors:
+In this section, we present how to perform search via three sets of vectors:
 1. produced by a model trained on pure text data in English (called it **default** in this guide)
 2. produced by a model trained on pure text data from a multi-language dataset (called it **textmulti** in this guide)
 3. produced by a model trained on combined text and image (called it **imagetext** in this guide).
+The models behind them are universal sentence encoder and CLIP, more information can be found on [How to vectorize](doc:vectorize-text).
 
 ### Step 1. Vectorizing the dataset
 Search via vector type X is possible only if the dataset includes data vectorized by model X. This means if we want to search against fields such as `title` and `description`, we need to vectorize them using the available models (i.e. default, textmulti, and imagetext in our example). Please refer to a full guide on how to [create and upload a database](doc:creating-a-dataset) and how to use vectorizers to update a dataset with vectors at [How to vectorize](doc:vectorize-text).
 
 ### Step 2. Vectorizing the query
-To make a search against vectors of type X, the query must be of the same type. So, if the plan is to use three models, we need three query vectors corresponding to the three models/vectorizers. Sample code showing how to use the three vectorizer endpoints is provided below.  Keep it in mind that, first RelevanceAI must be installed and a client object must be instantiated:
-[block:code]
-{
-  "codes": [
-    {
-      "code": "pip install RelevanceAI",
-      "language": "shell"
-    }
-  ]
-}
-[/block]
+To make a search against vectors of type X, the query must be of the same type. So, if the plan is to use three models, we need three query vectors corresponding to the three models/vectorizers.
 
-[block:code]
-{
-  "codes": [
-    {
-      "code": "from relevanceai import Client \n\n\"\"\"\nRunning this cell will provide you with \nthe link to sign up/login page where you can find your credentials.\nOnce you have signed up, click on the value under `Authorization token` \nin the API tab\nand paste it in the appreared Auth token box below\n\"\"\"\n\nclient = Client()",
-      "language": "python"
-    }
-  ]
-}
-[/block]
+Vectorizing under Relevance AI's platform requires three steps:
+1. installation of the related model
+2. defining an encoder object
+3. vectorizing
+
+ Keep it in mind that, first RelevanceAI must be installed and a client object must be instantiated:
+
+```bash Bash
+!pip install -U RelevanceAI[notebook]==0.33.2
+```
+```bash
+```
+
+```python Python (SDK)
+from relevanceai import Client
+
+"""
+You can sign up/login and find your credentials here: https://cloud.relevance.ai/sdk/api
+Once you have signed up, click on the value under `Authorization token` and paste it here
+"""
+client = Client()
+
+```
+```python
+```
+
+See the guide on [How to vectorize](doc:vectorize-text) to learn how to define different vectorizers. Here, we call them `enc_default`, `enc_textmulti` and `enc_imagetext`.
+
 Calling the three different vectorizers to vectorize the quary:
-[block:code]
-{
-  "codes": [
-    {
-      "code": "query = \"white sneakers\"  # query text\n\n# three vectorizers\nquery_vec_txt = client.services.encoders.text(text=query)\nquery_vec_txtmulti = client.services.encoders.multi_text(text=query)\nquery_vec_txtimg = client.services.encoders.textimage(text=query)",
-      "language": "python",
-      "name": "Python (SDK)"
-    }
-  ]
-}
-[/block]
+
+```python Python (SDK)
+query = white sneakers
+query_vec_txt = enc_default.encode(query)
+
+```
+```python
+```
+```python Python (SDK)
+query = white sneakers
+query_vec_txt = enc_textmulti.encode(query)
+
+```
+```python
+```
+```python Python (SDK)
+query = white sneakers
+query_vec_txt = enc_imagetext.encode(query)
+
+```
+```python
+```
+
 ### Step 3. Vector search
 As it was mentioned earlier, Relevance AI has provided you with a variety of vector search endpoints with different use-cases; please see guide pages such as [Better text Search](https://docs.relevance.ai/docs/better-text-search) for more information on each search endpoint.
 
 #### 3.1. Vector search with multiple vectors
 In the sample code below, we show how a vector search can be done by combining all three vector types:
-[block:code]
-{
-  "codes": [
-    {
-      "code": "from relevanceai import Client\n\nclient = Client()\n\nquery = \"white sneakers\"  # query text\n\n# three vectorizers\nquery_vec_txt = client.services.encoders.text(text=query)\nquery_vec_txtmulti = client.services.encoders.multi_text(text=query)\nquery_vec_txtimg = client.services.encoders.textimage(text=query)\n\nDATASET_ID = 'ecommerce-demo'\n\nvector_search = client.services.search.vector(\n\t\t# dataset name\n  \tdataset_id = DATASET_ID,\n\t\t# fields to use for a vector search\n    multivector_query=[\n        {\n            \"vector\": query_vec_txt[\"vector\"],\n            \"fields\": [\"description_default_vector_\"],\n        },\n        {\n            \"vector\": query_vec_txtmulti[\"vector\"],\n            \"fields\": [\"descriptiontextmulti_vector_\"],\n        },\n        {\n            \"vector\": query_vec_txtimg[\"vector\"],\n            \"fields\": [\"description_imagetext_vector_\"],\n        }\n    ],\n    # number of returned results\n    page_size=5,\n)",
-      "language": "python",
-      "name": "Python (SDK)"
-    }
-  ]
-}
-[/block]
+
+```python Python (SDK)
+# Create a multivector query
+multivector_query = [
+    {"vector": query_vec_txt, "fields": description_default_vector_},
+    {"vector": query_vec_txtmulti, "fields": descriptiontextmulti_vector_},
+    {"vector": query_vec_txtimg, "fields": description_imagetext_vector_}
+]
+```
+```python
+```
+
+```python Python (SDK)
+DATASET_ID = "ecommerce-sample-dataset"
+df = client.Dataset(DATASET_ID)
+```
+```python
+```
+
+```python Python (SDK)
+results = df.vector_search(
+    multivector_query=multivector_query,
+    page_size=5
+)
+```
+```python
+```
+
