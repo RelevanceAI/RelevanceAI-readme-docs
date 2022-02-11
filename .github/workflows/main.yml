@@ -100,7 +100,7 @@ jobs:
         run: |
           README_VERSION=$(cat __version__)
           echo "README_VERSION=$README_VERSION" >> $GITHUB_ENV
-          python scripts/test_notebooks.py -d -p . -pn RelevanceAI -v $README_VERSION --notebooks ${{ matrix.notebook }}
+          python scripts/test_notebooks.py -d -p . -pn RelevanceAI -v $README_VERSION --notebooks ${{ matrix.notebook }} -nm
 
 
 
