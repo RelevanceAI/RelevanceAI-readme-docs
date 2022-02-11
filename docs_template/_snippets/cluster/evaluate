@@ -1,2 +1,2 @@
-python
-clusterer.evaluate()
+python CLUSTERER=clusterer
+<<CLUSTERER>>.evaluate()
