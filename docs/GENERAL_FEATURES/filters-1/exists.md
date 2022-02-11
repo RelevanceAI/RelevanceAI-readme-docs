@@ -6,7 +6,7 @@ createdAt: "2021-11-25T06:09:19.375Z"
 updatedAt: "2022-01-19T05:16:52.455Z"
 ---
 <figure>
-<img src="https://github.com/RelevanceAI/RelevanceAI-readme-docs/blob/v0.33.2-general-features/docs_template/GENERAL_FEATURES/_assests/exists.png" width="880" alt="exist.png" />
+<img src="https://github.com/RelevanceAI/RelevanceAI-readme-docs/blob/v0.33.2/docs_template/GENERAL_FEATURES/_assests/exists.png" width="880" alt="exist.png" />
 <figcaption>Filtering documents which include the field "brand" in their information.</figcaption>
 <figure>
 

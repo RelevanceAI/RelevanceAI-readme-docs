@@ -6,7 +6,7 @@ createdAt: "2021-11-25T06:28:37.534Z"
 updatedAt: "2022-01-19T05:17:05.147Z"
 ---
 <figure>
-<img src="https://github.com/RelevanceAI/RelevanceAI-readme-docs/blob/v0.33.2-general-features/docs_template/GENERAL_FEATURES/_assests/numeric.png" width="446" alt="Numeric.png" />
+<img src="https://github.com/RelevanceAI/RelevanceAI-readme-docs/blob/v0.33.2/docs_template/GENERAL_FEATURES/_assests/numeric.png" width="446" alt="Numeric.png" />
 <figcaption>Filtering documents with retail price higher than 5000.</figcaption>
 <figure>
 

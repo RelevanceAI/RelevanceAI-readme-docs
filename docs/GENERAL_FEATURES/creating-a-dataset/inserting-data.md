@@ -70,7 +70,7 @@ client.pull_update_push(
 In `pull_update_push`, we are modifying documents and updating them into the vector database. However, there is always a chance that the process can break. We do not want to necessarily re-process the already processed ones. Therefore, it also logs IDs that are processed to a separate logging collection. If we want to continue processing, we can specify the `logging_collection` parameter in `pull_update_push`.
 
 <figure>
-<img src="https://github.com/RelevanceAI/RelevanceAI-readme-docs/blob/v0.33.2-general-features/docs_template/GENERAL_FEATURES/creating-a-dataset/assets/pull-update-push.png" width="2492" alt="untitled@2x (1).png" />
+<img src="https://github.com/RelevanceAI/RelevanceAI-readme-docs/blob/v0.33.2/docs_template/GENERAL_FEATURES/creating-a-dataset/assets/pull-update-push.png" width="2492" alt="untitled@2x (1).png" />
 <figcaption>Architecture diagram of `pull_update_push`</figcaption>
 <figure>
 

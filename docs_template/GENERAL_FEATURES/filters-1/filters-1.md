@@ -6,7 +6,7 @@ createdAt: "2021-11-21T07:05:21.922Z"
 updatedAt: "2022-01-19T04:01:08.086Z"
 ---
 <figure>
-<img src="https://github.com/RelevanceAI/RelevanceAI-readme-docs/blob/v0.33.2-general-features/docs_template/GENERAL_FEATURES/_assests/filters-1.png" width="1009" alt="604547f-combined_filters.png" />
+<img src="https://github.com/RelevanceAI/RelevanceAI-readme-docs/blob/v0.33.2/docs_template/GENERAL_FEATURES/_assests/filters-1.png" width="1009" alt="604547f-combined_filters.png" />
 <figcaption>Example output of filtering Lenovo products all inserted into the database after 01/01/2020</figcaption>
 <figure>
 
