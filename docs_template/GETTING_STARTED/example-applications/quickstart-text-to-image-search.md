@@ -130,7 +130,7 @@ Lets first encode our text search query to vectors using CLIP.
 
 Now, let us try out a query using a simple vector search against our dataset.
 
-@@@+ multivector_query, VECTOR_FIELD=query_vector, VECTOR_FIELDS=["product_image_clip_vector_"]; vector_search, MULTIVECTOR_QUERY=multivector_query, PAGE_SIZE=5 @@@
+@@@ multivector_query, VECTOR_FIELD=query_vector, VECTOR_FIELDS=["product_image_clip_vector_"]; vector_search, MULTIVECTOR_QUERY=multivector_query, PAGE_SIZE=5 @@@
 
 Here our query is just a simple multi-vector query, but our search comes with out of the box support for features such as multi-vector, filters, facets and traditional keyword matching to combine with your vector search. You can read more about how to construct a multivector query with those features [here](vector-search-prerequisites).
 
@@ -153,7 +153,7 @@ Next, we use `show_json` to visualize images and text easily and quickly!
 
 
 
-@@@+ client_instantiation; get_ecommerce_dataset_encoded; clip_encoding_functions; clip_encode_image_documents, IMAGE_VECTOR='product_image_clip_vector_', IMAGE_FIELD='product_image; dataset_basics, DATASET_ID=TEXT_IMAGE_SEARCH_DATASET_ID; clip_encode_query, QUERY='for my baby daughter'; multivector_query, VECTOR_FIELD=query_vector, VECTOR_FIELDS=["product_image_clip_vector_"]; vector_search, MULTIVECTOR_QUERY=multivector_query, PAGE_SIZE=5;  query_show_json, QUERY=query, IMAGE_FIELDS=["product_image"], TEXT_FIELDS=["product_title"] @@@
+@@@ client_instantiation; get_ecommerce_dataset_encoded; clip_encoding_functions; clip_encode_image_documents, IMAGE_VECTOR='product_image_clip_vector_', IMAGE_FIELD='product_image; dataset_basics, DATASET_ID=TEXT_IMAGE_SEARCH_DATASET_ID; clip_encode_query, QUERY='for my baby daughter'; multivector_query, VECTOR_FIELD=query_vector, VECTOR_FIELDS=["product_image_clip_vector_"]; vector_search, MULTIVECTOR_QUERY=multivector_query, PAGE_SIZE=5;  query_show_json, QUERY=query, IMAGE_FIELDS=["product_image"], TEXT_FIELDS=["product_title"] @@@
 
 
 In this page, we saw a quick start to text-to-image search. Following this guide, we will explain how to conduct a search using multiple vectors!

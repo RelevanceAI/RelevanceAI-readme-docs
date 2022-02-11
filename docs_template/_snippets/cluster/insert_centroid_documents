@@ -1,0 +1,2 @@
+python CENTROIDS=centroids, CLUSTERER=clusterer, DF=df
+<<CLUSTERER>>.insert_centroid_documents(<<CENTROIDS>>, <<DF>>)

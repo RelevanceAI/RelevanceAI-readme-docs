@@ -32,7 +32,7 @@ jobs:
 
       - name: Test for API keys in docs
         run: |
-          python scripts/detect_api_keys.py -d -p docs -s False
+          python scripts/detect_secrets.py -d -p docs
 
       - name: Update asset links
         run: |
@@ -100,7 +100,7 @@ jobs:
         run: |
           README_VERSION=$(cat __version__)
           echo "README_VERSION=$README_VERSION" >> $GITHUB_ENV
-          python scripts/test_notebooks.py -d -p . -pn RelevanceAI -v $README_VERSION --notebooks ${{ matrix.notebook }}
+          python scripts/test_notebooks.py -d -p . -pn RelevanceAI -v $README_VERSION --notebooks ${{ matrix.notebook }} -nm
 
 
 
@@ -144,7 +144,7 @@ jobs:
         run: |
           README_VERSION=$(cat __version__)
           echo "README_VERSION=$README_VERSION"
-          ./scripts/sync_readme_docs.sh true $GIT_BRANCH_VERSION
+          ./scripts/sync_readme_docs.sh true $README_VERSION
 
 
 
