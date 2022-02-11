@@ -20,4 +20,4 @@ The following code shows
 3. how to update the dataset with the results
 
 
-@@@+ client_dataset, DATASET_ID='faiss_kmeans_clustering'; faiss_kmeans_clustering_sample, VECTOR_FIELD='product_title_clip_vector_' @@@
+@@@ client_dataset, DATASET_ID='faiss_kmeans_clustering'; faiss_kmeans_clustering_sample, VECTOR_FIELD='product_title_clip_vector_' @@@

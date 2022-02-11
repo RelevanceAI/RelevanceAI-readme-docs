@@ -33,7 +33,7 @@ def load_params_ref(param_str: str) -> dict:
     eg. CENTROIDS=centroids CLUSTERER=clusterer DF=df
     '''
     NUM_REGEX_PARAM='(([A-Z])\w+=[0-9.])'
-    VALUE_REGEX_PARAM='([A-Z])\w+=([\s\'\"A-Za-z0-9_-]+)'
+    VALUE_REGEX_PARAM='([A-Z])\w+=([\s\'\"\?A-Za-z0-9_-]+)'
     LIST_REGEX_PARAM='([A-Z])\w+=\[(.*?)\]'
     STR_REGEX_PARAM_DOUBLE_QUOTE='([A-Z])\w+=\"\"'
     STR_REGEX_PARAM_SINGLE_QUOTE="([A-Z])\w+=\'\'"
@@ -181,9 +181,9 @@ def generate_ipynb_file(
 
     for i, cell in enumerate(notebook_json['cells']):
         try:
-            if bool(re.search('@@@\+.*@@@', str(cell["source"]))):
+            if bool(re.search('@@@.*@@@', str(cell["source"]))):
                 for j, cell_source in enumerate(cell['source']):
-                    if '@@@+' in cell_source:
+                    if '@@@' in cell_source:
                         snippet_strs = cell_source.replace('@@@+', '').replace('@@@', '').strip().split(';')
                         logging.debug(f'Snippet strs: {snippet_strs}')
                         snippet = []
@@ -192,22 +192,6 @@ def generate_ipynb_file(
                             logging.debug(f'Snippet str {snippet_str}')
                             snippet += generate_snippet(snippet_str, snippet_paths, snippet_params, ext='ipynb')
                             snippet += ['\n']
-                        cell['source'][j] = ''.join(snippet)
-                        logging.debug('=================')
-                        logging.debug(''.join(snippet))
-                        logging.debug('=================')
-
-            elif bool(re.search('@@@.*@@@', str(cell["source"]))):
-                for j, cell_source in enumerate(cell['source']):
-                    if '@@@' in cell_source:
-                        snippet_str = cell_source.split('@@@')[1].strip()
-                        if ';' in snippet_str:
-                            raise ValueError(f'\nYou have multiple snippets in one line.\n@@@ {snippet_str} @@@\nPlease replace @@@ with @@@+ in {input_fname} line {i+1}.')
-
-                        snippet_name = snippet_str.split(',')[0]
-                        logging.debug(f'\tSnippet name: {snippet_name}')
-
-                        snippet = generate_snippet(snippet_str, snippet_paths, snippet_params, ext='ipynb')
                         cell['source'][j] = ''.join(snippet)
                         logging.debug('=================')
                         logging.debug(''.join(snippet))
@@ -260,17 +244,6 @@ def generate_md_file(
 
                 [md_lines.append(x) for x in snippet]
 
-            elif (not bool(re.search('<!--.*', line))) and bool(re.search('@@@.*@@@', line)):
-                snippet_str = line.split('@@@')[1].strip()
-                if ';' in snippet_str:
-                    raise ValueError(f'\nYou have multiple snippets in one line.\n@@@ {snippet_str} @@@\nPlease replace @@@ with @@@+ in {input_fname} line {i}.')
-
-                snippet = generate_snippet(snippet_str, snippet_paths, snippet_params, ext='md')
-                logging.debug('=================')
-                logging.debug('\n'.join(snippet))
-                logging.debug('=================')
-
-                [md_lines.append(x) for x in snippet]
             else:
                 md_lines.append(line)
         except Exception as e:

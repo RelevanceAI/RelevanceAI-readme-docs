@@ -23,64 +23,24 @@ Run this Quickstart in Colab: [![Open In Colab](https://colab.research.google.co
 
 ### 1. Set up Relevance AI
 
-```bash Bash
-!pip install -U RelevanceAI[notebook]==0.33.2
-```
-```bash
-```
+@@@ relevanceai_installation, RELEVANCEAI_SDK_VERSION=RELEVANCEAI_SDK_VERSION @@@
 
 
-```python Python (SDK)
-from relevanceai import Client
-
-"""
-You can sign up/login and find your credentials here: https://cloud.relevance.ai/sdk/api
-Once you have signed up, click on the value under `Authorization token` and paste it here
-"""
-client = Client()
-```
-```python
-```
+@@@ client_instantiation @@@
 
 ### 2. Create a dataset with vectors
 
 
-```python Python (SDK)
-documents = [
-	{"_id": "1", "example_vector_": [0.1, 0.1, 0.1], "data": "Documentation"},
-	{"_id": "2", "example_vector_": [0.2, 0.2, 0.2], "data": "Best document!"},
-	{"_id": "3", "example_vector_": [0.3, 0.3, 0.3], "data": "Document example"},
-	{"_id": "5", "example_vector_": [0.4, 0.4, 0.4], "data": "This is a doc"},
-	{"_id": "4", "example_vector_": [0.5, 0.5, 0.5], "data": "This is another doc"},
-]
-
-df = client.Dataset("quickstart")
-df.insert_documents(documents)
-```
-```python
-```
+@@@ quickstart_docs; dataset_basics, DATASET_ID=QUICKSTART_DATASET_ID @@@
 
 
 ### 3. Clustering
 
-```python Python (SDK)
-clusterer = df.auto_cluster("kmeans-2", ["example_vector_"])
-```
-```python
-```
+@@@ auto_cluster, KMEANS=KMEANS-2,  VECTOR_FIELD=EXAMPLE_VEC @@@
 
 ### 4. Vector Search
 
-```python Python (SDK)
-results = df.vector_search(
-    multivector_query=[
-		{"vector": [0.2, 0.2, 0.2], "fields": ["example_vector"]}
-	],
-    page_size=5
-)
-```
-```python
-```
+@@@ vector_search, MULTIVECTOR_QUERY=QUICKSTART_MULTI_VECTOR_SEARCH_QUERY, PAGE_SIZE=5 @@@
 
 
 

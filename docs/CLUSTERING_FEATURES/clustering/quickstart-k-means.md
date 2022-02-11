@@ -23,96 +23,36 @@ In this guide, you will learn to run KMeans clustering via **only one line of co
 
 First, you need to install Relevance AI's Python SDK and set up a client object to interact with RelevanceAI. For more information, please read the [installation](doc:installation) guide.
 
-```bash Bash
-!pip install -U RelevanceAI[notebook]==0.33.2
-```
-```bash
-```
+@@@ relevanceai_installation, RELEVANCEAI_SDK_VERSION=RELEVANCEAI_SDK_VERSION @@@
 
-```python Python (SDK)
-from relevanceai import Client
-
-"""
-You can sign up/login and find your credentials here: https://cloud.relevance.ai/sdk/api
-Once you have signed up, click on the value under `Authorization token` and paste it here
-"""
-client = Client()
-```
-```python
-```
+@@@ client_instantiation @@@
 
 You also need to have a dataset under your Relevance AI account. You can either use our sample sample data as shown in this step or follow the tutorial on [how to create your own dataset](https://docs.relevance.ai/docs/creating-a-dataset-prerequisites).
 
 In this guide, we use our e-commerce database, which includes fields such as `product_name`, as well as the vectorized version of the field `product_name_default_vector_`. Loading these documents can be done via:
 
-```python Python (SDK)
-from relevanceai.datasets import get_ecommerce_dataset_encoded
-
-documents = get_ecommerce_dataset_encoded()
-{k:v for k, v in documents[0].items() if '_vector_' not in k}
-```
-```python
-```
+@@@ get_ecommerce_dataset_encoded @@@
 
 Next, we can upload these documents into your personal Relevance AI account under the name *quickstart_clustering_kmeans*
 
-```python Python (SDK)
-df = client.Dataset("quickstart_clustering_kmeans")
-df.insert_documents(documents)
-```
-```python
-```
+@@@ dataset_basics, DATASET_ID=QUICKSTART_KMEANS_CLUSTERING_DATASET_ID @@@
 
 Let's have a look at the schema to see what vector fields are available for clustering.
 
-```python Python (SDK)
-df.schema
-```
-```python
-```
+@@@ dataset_schema @@@
 
 The result is a JSON output similar to what is shown below. As can be seen, there are two vector fields in the dataset `product_image_clip_vector_` and `product_title_clip_vector_`.
 
-```json JSON
-{
- 'insert_date_': 'date',
- 'product_image': 'text',
- 'product_image_clip_vector_': {'vector': 512},
- 'product_link': 'text',
- 'product_price': 'text',
- 'product_title': 'text',
- 'product_title_clip_vector_': {'vector': 512},
- 'query': 'text',
- 'source': 'text'
-}
-```
-```json
-```
+@@@ ecommerce_dataset_encoded_schema @@@
 
 ### 2. Run Kmeans clustering algorithm in one go
 The easiest way to run a Kmeans clustering algorithm under the Relevance AI platform is the `auto_cluster` function. The following code snippet shows how generate 10 clusters using the `product_title_clip_vector_` vector field.
 
-```python Python (SDK)
-clusterer = df.auto_cluster("kmeans-10", ["product_title_clip_vector_"])
-```
-```python
-```
+@@@ auto_cluster, KMEANS=KMEANS-10, VECTOR_FIELD=PRODUCT_TITLE_CLIP_VEC @@@
 
 Another way of clustering is to use the ClusterOps class as shown in the snippet below:
 
-```python Python (SDK)
-from relevanceai.clusterer import KMeansModel
-
-VECTOR_FIELD = "product_title_clip_vector_"
-KMEAN_NUMBER_OF_CLUSTERS = 10
-ALIAS = "kmeans_" + str(KMEAN_NUMBER_OF_CLUSTERS)
-
-model = KMeansModel(k=KMEAN_NUMBER_OF_CLUSTERS)
-clusterer = client.ClusterOps(alias=ALIAS, model=model)
-clusterer.fit_predict_update(df, [VECTOR_FIELD])
-```
-```python
-```
+@@@  clusterops_fit_predict_update, VECTOR_FIELD=PRODUCT_TITLE_CLIP_VEC, N_KMEANS=10 @@@
 
 
 The `fit_predict_update()` function performs the following steps:
@@ -122,19 +62,7 @@ The `fit_predict_update()` function performs the following steps:
 
 By loading the data from the dataset after clustering is done, you can see to which cluster each data point belongs. Here, we see how the first 5 data points are clustered:
 
-```python Python (SDK)
-from relevanceai import show_json
-
-sample_documents = df.sample(n=5)
-samples = [{
-    'product_title':d['product_title'],
-    'cluster':d['_cluster_'][VECTOR_FIELD][ALIAS]
-} for d in sample_documents]
-
-show_json(samples, text_fields=['product_title', 'cluster'])
-```
-```python
-```
+@@@ cluster_sample_results, N_SAMPLES=5, VECTOR_FIELD=VECTOR_FIELD, ALIAS=ALIAS, TEXT_FIELDS=['product_title', 'cluster'] @@@
 
 <figure>
 <img src="https://github.com/RelevanceAI/RelevanceAI-readme-docs/blob/v0.33.2-clustering-feature/docs_template/CLUSTERING_FEATURES/_assets/RelevanceAI_clustering_quickstart_kmeans_results.png?raw=true"  width="450" alt="Clustering results" />

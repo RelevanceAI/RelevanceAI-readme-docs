@@ -31,7 +31,7 @@ Run this Quickstart in Colab: [![Open In Colab](https://colab.research.google.co
 ### 2. Create a dataset with vectors
 
 
-@@@+ quickstart_docs; dataset_basics, DATASET_ID=QUICKSTART_DATASET_ID @@@
+@@@ quickstart_docs; dataset_basics, DATASET_ID=QUICKSTART_DATASET_ID @@@
 
 
 ### 3. Clustering

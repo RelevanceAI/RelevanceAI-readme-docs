@@ -20,39 +20,5 @@ The following code shows
 3. how to update the dataset with the results
 
 
-```python Python (SDK)
-df = client.Dataset('faiss_kmeans_clustering')
-
-# Inherit from ClusterBase to keep all the goodies!
-import numpy as np
-from faiss import Kmeans
-from relevanceai import CentroidClusterBase
-
-class FaissKMeans(CentroidClusterBase):
-    def __init__(self, model):
-        self.model = model
-
-    def fit_predict(self, vectors):
-        vectors = np.array(vectors).astype("float32")
-        self.model.train(vectors)
-        cluster_labels = self.model.assign(vectors)[1]
-        return cluster_labels
-
-    def metadata(self):
-        return self.model.__dict__
-
-    def get_centers(self):
-        return self.model.centroids
-
-n_clusters = 10
-d = 512
-alias = f"faiss-kmeans-{n_clusters}"
-vector_fields = ['product_title_clip_vector_']
-
-model = FaissKMeans(model=Kmeans(d=d, k=n_clusters))
-clusterer = client.ClusterOps(model=model, alias=alias)
-clusterer.fit_predict_update(dataset=df, vector_fields=vector_fields)
-```
-```python
-```
+@@@ client_dataset, DATASET_ID='faiss_kmeans_clustering'; faiss_kmeans_clustering_sample, VECTOR_FIELD='product_title_clip_vector_' @@@
 

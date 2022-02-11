@@ -19,31 +19,11 @@ All these steps are explained in detail on [the quickstart clustering guide](doc
 
 The following code snippets extract the metadata from the clustering algorithm and adds this information to Relevance AI where DATASET_ID refers to the name of the dataset, VECTOR_FIELD is the field based on which the clustering is done, and ALIAS is the name specified by the user to save the clustering results.
 
-```bash Bash
-!pip install -U RelevanceAI[notebook]==0.33.2
-```
-```bash
-```
+@@@ relevanceai_installation, RELEVANCEAI_SDK_VERSION=RELEVANCEAI_SDK_VERSION @@@
 
-```python Python (SDK)
-from relevanceai import Client
-
-"""
-You can sign up/login and find your credentials here: https://cloud.relevance.ai/sdk/api
-Once you have signed up, click on the value under `Authorization token` and paste it here
-"""
-client = Client()
-```
-```python
-```
+@@@ client_instantiation @@@
 
 Once you have stored the metadata, you can view them using the following code.
 
-```python Python (SDK)
-df = client.Dataset(DATASET_ID)
-
-clusterer = df.auto_cluster('kmeans-10', ['product_title_clip_vector_'])
-```
-```python
-```
+@@@ client_dataset, DATASET_ID=DATASET_ID; auto_cluster, KMEANS='kmeans-10', VECTOR_FIELD='product_title_clip_vector_' @@@
 

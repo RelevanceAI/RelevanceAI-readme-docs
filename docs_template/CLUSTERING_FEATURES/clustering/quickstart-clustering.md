@@ -36,7 +36,7 @@ In this guide, we use our e-commerce database, which includes fields such as `pr
 
 Next, we can upload these documents into your personal Relevance AI account under the name *quickstart_clustering_kmeans*
 
-@@@+ quickstart_docs; dataset_basics, DATASET_ID=QUICKSTART_KMEANS_CLUSTERING_DATASET_ID @@@
+@@@ quickstart_docs; dataset_basics, DATASET_ID=QUICKSTART_KMEANS_CLUSTERING_DATASET_ID @@@
 
 Let's have a look at the schema to see what vector fields are available for clustering.
 
@@ -67,7 +67,7 @@ Finally, these categorised documents are uploaded back to the dataset as an addi
 
 Get the centroid's vector and insert them as centroids into Relevance AI.
 
-@@@+ get_centroid_documents; insert_centroid_documents @@@
+@@@ get_centroid_documents; insert_centroid_documents @@@
 
 Downloading a few sample documents from the dataset, we show to which cluster they belong:
 
