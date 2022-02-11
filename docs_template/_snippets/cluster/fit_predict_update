@@ -1,0 +1,3 @@
+python CLUSTERER=clusterer
+
+<<CLUSTERER>>.fit_predict_update(df, [<<VECTOR_FIELD>>])

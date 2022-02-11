@@ -114,10 +114,9 @@ def execute_notebook(notebook:str, notebook_args: Dict):
     try:
         print(notebook)
 
-        # to support the multiprocessing function
-        if isinstance(notebook, list):
-            notebook = notebook[0]
-
+        if notebook_args['multiprocess']:
+            if isinstance(notebook, list):
+                notebook = notebook[0]
 
         if os.getenv('SHELL') and 'zsh' in os.getenv('SHELL'):
             update_pip_for_shell(notebook,shell='zsh')
@@ -209,16 +208,23 @@ def main(args):
 
     ## Env vars
     CLIENT_INSTANTIATION_SENT_REGEX = 'client.*Client(.*)'
-    # TEST_PROJECT = os.environ["TEST_PROJECT"]
-    # TEST_API_KEY = os.environ["TEST_API_KEY"]
-    TEST_ACTIVATION_TOKEN = os.environ["TEST_ACTIVATION_TOKEN"]
     CLIENT_INSTANTIATION_STR_REGEX = "\((.*?)\)"
-    # CLIENT_INSTANTIATION_STR_REPLACE = (
-    #     f'(project=\\"{TEST_PROJECT}\\", api_key=\\"{TEST_API_KEY}\\")'
-    # )
-    CLIENT_INSTANTIATION_STR_REPLACE = (
-        f'(token="{TEST_ACTIVATION_TOKEN}")'
-    )
+
+    TEST_PROJECT = os.getenv("TEST_PROJECT")
+    TEST_API_KEY = os.getenv("TEST_API_KEY")
+    TEST_ACTIVATION_TOKEN = os.getenv("TEST_ACTIVATION_TOKEN")
+    if TEST_ACTIVATION_TOKEN:
+        CLIENT_INSTANTIATION_STR_REPLACE = (
+            f'(token="{TEST_ACTIVATION_TOKEN}")'
+        )
+    elif (TEST_PROJECT and TEST_API_KEY):
+        CLIENT_INSTANTIATION_STR_REPLACE = (
+            f'(project=\\"{TEST_PROJECT}\\", api_key=\\"{TEST_API_KEY}\\")'
+        )
+    else:
+        raise ValueError(f'Please set the client test credentials\n\
+            export TEST_ACTIVATION_TOKEN=xx or\nexport TEST_PROJECT=xx\nexport TEST_API_KEY=xx')
+
     CLIENT_INSTANTIATION_BASE = f'client = Client()'
     client_instantiation_args={
         'find_sent_regex': CLIENT_INSTANTIATION_SENT_REGEX,
@@ -234,6 +240,9 @@ def main(args):
 
     if args.notebooks:
         notebooks = args.notebooks
+        if len(notebooks)==1:
+            if Path(notebooks[0]).is_dir():
+                notebooks = [f for f in Path(notebooks[0]).glob('**/*.ipynb')]
     else:
         ## All notebooks
         notebooks = [
@@ -241,7 +250,8 @@ def main(args):
         ]
 
     ## Filter notebooks
-    notebooks = [n for n in notebooks if n not in NOTEBOOK_IGNORE]
+    if args.notebook_ignore:
+        notebooks = [n for n in notebooks if n not in NOTEBOOK_IGNORE]
 
     if not notebooks:
         print(f'No notebooks found not in {NOTEBOOK_IGNORE}')
@@ -299,6 +309,7 @@ if __name__ == "__main__":
     parser.add_argument("-v", "--version", default=README_VERSION, help="Package Version")
     parser.add_argument("-n", "--notebooks", nargs="+", default=None, help="List of notebooks to execute")
     parser.add_argument("-nm", "--no-multiprocess", action='store_true', help="Whether to run multiprocessing")
+    parser.add_argument("-i", "--notebook-ignore", action='store_true', help="Whether to include notebook ignore list")
     args = parser.parse_args()
 
     main(args)

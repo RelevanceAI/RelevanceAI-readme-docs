@@ -1,0 +1,2 @@
+python DOCUMENTS=documents
+df.upsert_documents(documents=<<DOCUMENTS>>)

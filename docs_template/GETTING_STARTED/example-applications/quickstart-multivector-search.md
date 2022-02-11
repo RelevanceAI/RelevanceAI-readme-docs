@@ -7,13 +7,13 @@ hidden: false
 
 
 <figure>
-<img src="https://github.com/RelevanceAI/RelevanceAI-readme-docs/blob/v0.33.2-getting-started/docs_template/_assets/RelevanceAI_vector_space.png?raw=true" width="650" alt="Vector Spaces" />
+<img src="https://github.com/RelevanceAI/RelevanceAI-readme-docs/blob/v0.33.2-clustering-feature/docs_template/_assets/RelevanceAI_vector_space.png?raw=true" width="650" alt="Vector Spaces" />
 <figcaption></figcaption>
 <figure>
 
 
 
-**Try it out in Colab:** [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/RelevanceAI/RelevanceAI-readme-docs/blob/v0.33.2-getting-started/docs/GETTING_STARTED/example-applications/_notebooks/RelevanceAI-ReadMe-Multi-Vector-Search.ipynb)
+**Try it out in Colab:** [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/RelevanceAI/RelevanceAI-readme-docs/blob/v0.33.2-clustering-feature/docs/GETTING_STARTED/example-applications/_notebooks/RelevanceAI-ReadMe-Multi-Vector-Search.ipynb)
 
 
 
@@ -48,7 +48,7 @@ After installation, we need to also set up an API client. If you are missing an 
 
 
 <figure>
-<img src="https://github.com/RelevanceAI/RelevanceAI-readme-docs/blob/v0.33.2-getting-started/docs_template/GETTING_STARTED/example-applications/_assets/RelevanceAI_search_steps.png?raw=true" width="650" alt="Steps to search" />
+<img src="https://github.com/RelevanceAI/RelevanceAI-readme-docs/blob/v0.33.2-clustering-feature/docs_template/GETTING_STARTED/example-applications/_assets/RelevanceAI_search_steps.png?raw=true" width="650" alt="Steps to search" />
 <figcaption>Steps to search</figcaption>
 <figure>
 
@@ -60,7 +60,7 @@ Here, we get a dataset that has been already encoded into vectors; so we will be
 @@@ get_ecommerce_dataset_encoded @@@
 
 <figure>
-<img src="https://github.com/RelevanceAI/RelevanceAI-readme-docs/blob/v0.33.2-getting-started/docs_template/GETTING_STARTED/example-applications/_assets/RelevanceAI_ecommerce_dataset_preview.png?raw=true" width="650" alt="E-commerce Dataset Preview" />
+<img src="https://github.com/RelevanceAI/RelevanceAI-readme-docs/blob/v0.33.2-clustering-feature/docs_template/GETTING_STARTED/example-applications/_assets/RelevanceAI_ecommerce_dataset_preview.png?raw=true" width="650" alt="E-commerce Dataset Preview" />
 <figcaption>E-commerce Dataset Preview</figcaption>
 <figure>
 
@@ -74,7 +74,7 @@ After finalizing the insert task, the client returns a link guiding you to a das
 
 
 <figure>
-<img src="https://github.com/RelevanceAI/RelevanceAI-readme-docs/blob/v0.33.2-getting-started/docs_template/GETTING_STARTED/example-applications/_assets/RelevanceAI_quickstart_multivector_search.png?raw=true" width="650" alt="Relevance AI Dashboard" />
+<img src="https://github.com/RelevanceAI/RelevanceAI-readme-docs/blob/v0.33.2-clustering-feature/docs_template/GETTING_STARTED/example-applications/_assets/RelevanceAI_quickstart_multivector_search.png?raw=true" width="650" alt="Relevance AI Dashboard" />
 <figcaption>Relevance AI Dashboard</figcaption>
 <figure>
 
@@ -88,7 +88,7 @@ Since this will be using your own vectors, we will skip vectorizing the query an
 Now, let us try out a query using a simple vector search against our dataset.
 
 
-@@@+ multivector_query_sample_data, IMAGE_VECTOR='product_image_clip_vector_',TEXT_VECTOR='product_title_clip_vector_'; vector_search, MULTIVECTOR_QUERY=multivector_query, PAGE_SIZE=5 @@@
+@@@ multivector_query_sample_data, IMAGE_VECTOR='product_image_clip_vector_',TEXT_VECTOR='product_title_clip_vector_'; vector_search, MULTIVECTOR_QUERY=multivector_query, PAGE_SIZE=5 @@@
 
 Here our query is just a simple multi vector query, but our search comes with out of the box support for features such as multi-vector, filters, facets and traditional keyword matching to combine with your vector search. You can read more about how to construct a multivector query with those features [here](vector-search-prerequisites).
 
@@ -98,18 +98,18 @@ Now lets show the results with `show_json`.
 @@@ multivector_query_show_json, IMAGE_FIELDS=["product_image"], TEXT_FIELDS=["product_title"] @@@
 
 <figure>
-<img src="https://github.com/RelevanceAI/RelevanceAI-readme-docs/blob/v0.33.2-getting-started/docs_template/GETTING_STARTED/example-applications/_assets/RelevanceAI_multivector_search_results.png?raw=true" width="650" alt="Multi-vector Search Results" />
+<img src="https://github.com/RelevanceAI/RelevanceAI-readme-docs/blob/v0.33.2-clustering-feature/docs_template/GETTING_STARTED/example-applications/_assets/RelevanceAI_multivector_search_results.png?raw=true" width="650" alt="Multi-vector Search Results" />
 <figcaption>Multi-vector Search Results</figcaption>
 <figure>
 
 
 
 
-**Try it out in Colab:** [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/RelevanceAI/RelevanceAI-readme-docs/blob/v0.33.2-getting-started/docs/GETTING_STARTED/example-applications/_notebooks/RelevanceAI-ReadMe-Multi-Vector-Search.ipynb)
+**Try it out in Colab:** [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/RelevanceAI/RelevanceAI-readme-docs/blob/v0.33.2-clustering-feature/docs/GETTING_STARTED/example-applications/_notebooks/RelevanceAI-ReadMe-Multi-Vector-Search.ipynb)
 
 
 
 ## Final Code
 
-@@@+ client_instantiation; get_ecommerce_dataset_encoded; dataset_basics, DATASET_ID=MULTI_VECTOR_SEARCH_DATASET_ID; multivector_query_sample_data, IMAGE_VECTOR='product_image_clip_vector_', TEXT_VECTOR='product_title_clip_vector_'; vector_search, MULTIVECTOR_QUERY=multivector_query, PAGE_SIZE=5; multivector_query_show_json, IMAGE_FIELDS=["product_image"], TEXT_FIELDS=["product_title"] @@@
+@@@ client_instantiation; get_ecommerce_dataset_encoded; dataset_basics, DATASET_ID=MULTI_VECTOR_SEARCH_DATASET_ID; multivector_query_sample_data, IMAGE_VECTOR='product_image_clip_vector_', TEXT_VECTOR='product_title_clip_vector_'; vector_search, MULTIVECTOR_QUERY=multivector_query, PAGE_SIZE=5; multivector_query_show_json, IMAGE_FIELDS=["product_image"], TEXT_FIELDS=["product_title"] @@@
 

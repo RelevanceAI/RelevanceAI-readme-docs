@@ -24,7 +24,7 @@ By following instructions below, you will be able to preview/create any given ve
 ❯ tree -L 1
 .
 ├── build_docs.py          ### Builds docs from docs_template
-├── detect_api_keys.py     ### Extra check to check for API keys in repo/noteboks
+├── detect_secrets.py     ### Extra check to check for API keys in repo/noteboks
 ├── README.md
 ├── readme_migration.py    ## Ignore; Migration script from exports `block` to `md` format
 ├── sync_readme_docs.sh    ## Syncs Readme docs w/ rdme client; creates new version if does not exist; syncs w/ latest SDK release
@@ -49,7 +49,13 @@ By following instructions below, you will be able to preview/create any given ve
     ❯ ./scripts/update_readme.sh
     ## Run in debug mode
     ❯ ./scripts/update_readme.sh true
+    ## Sync only a specific section, by default will sync everything in the generated `docs` folder.
+    ❯ ./scripts/update_readme.sh false docs/CLUSTERING_FEATURES
+    ## Override the version, by default will create a new version from your current Git branch name
+    ❯ ./scripts/update_readme.sh false docs/CLUSTERING_FEATURES v1.0.0-my-new-version
     ```
+
+
 
 ## For further reference
 

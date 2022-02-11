@@ -7,13 +7,13 @@ hidden: false
 
 
 <figure>
-<img src="https://github.com/RelevanceAI/RelevanceAI-readme-docs/blob/v0.33.2-getting-started/docs_template/_assets/RelevanceAI_vector_space.png?raw=true" width="650" alt="Vector Spaces" />
+<img src="https://github.com/RelevanceAI/RelevanceAI-readme-docs/blob/v0.33.2-clustering-feature/docs_template/_assets/RelevanceAI_vector_space.png?raw=true" width="650" alt="Vector Spaces" />
 <figcaption></figcaption>
 <figure>
 
 
 
-**Try it out in Colab:** [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/RelevanceAI/RelevanceAI-readme-docs/blob/v0.33.2-getting-started/docs/GETTING_STARTED/example-applications/_notebooks/RelevanceAI-ReadMe-Multi-Vector-Search.ipynb)
+**Try it out in Colab:** [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/RelevanceAI/RelevanceAI-readme-docs/blob/v0.33.2-clustering-feature/docs/GETTING_STARTED/example-applications/_notebooks/RelevanceAI-ReadMe-Multi-Vector-Search.ipynb)
 
 
 
@@ -26,11 +26,7 @@ hidden: false
 Prior to starting, let's install the main dependencies.
 
 
-```bash Bash
-!pip install -U RelevanceAI[notebook]==0.33.2
-```
-```bash
-```
+@@@ relevanceai_installation, RELEVANCEAI_SDK_VERSION=RELEVANCEAI_SDK_VERSION @@@
 
 
 This will give you access to Relevance AI's Python SDK.
@@ -40,18 +36,7 @@ This will give you access to Relevance AI's Python SDK.
 After installation, we need to also set up an API client. If you are missing an API key, you can easily sign up and get your API key from [https://cloud.relevance.ai/](https://cloud.relevance.ai/) in the settings area.
 
 
-```python Python (SDK)
-from relevanceai import Client
-
-"""
-You can sign up/login and find your credentials here: https://cloud.relevance.ai/sdk/api
-Once you have signed up, click on the value under `Authorization token` and paste it here
-"""
-client = Client()
-
-```
-```python
-```
+@@@ client_instantiation @@@
 
 
 ## Steps to perform multi-vector search
@@ -63,7 +48,7 @@ client = Client()
 
 
 <figure>
-<img src="https://github.com/RelevanceAI/RelevanceAI-readme-docs/blob/v0.33.2-getting-started/docs_template/GETTING_STARTED/example-applications/_assets/RelevanceAI_search_steps.png?raw=true" width="650" alt="Steps to search" />
+<img src="https://github.com/RelevanceAI/RelevanceAI-readme-docs/blob/v0.33.2-clustering-feature/docs_template/GETTING_STARTED/example-applications/_assets/RelevanceAI_search_steps.png?raw=true" width="650" alt="Steps to search" />
 <figcaption>Steps to search</figcaption>
 <figure>
 
@@ -72,17 +57,10 @@ client = Client()
 
 Here, we get a dataset that has been already encoded into vectors; so we will be skipping the encoding step in this page, but feel free to visit other pages in our guides, such as [Text-to-image search (using OpenAI's CLIP Pytorch)](doc:quickstart-text-to-image-search), to learn about encoding with a variety of Pytorch/Tensorflow models!)
 
-```python Python (SDK)
-from relevanceai.datasets import get_ecommerce_dataset_encoded
-
-documents = get_ecommerce_dataset_encoded()
-{k:v for k, v in documents[0].items() if '_vector_' not in k}
-```
-```python
-```
+@@@ get_ecommerce_dataset_encoded @@@
 
 <figure>
-<img src="https://github.com/RelevanceAI/RelevanceAI-readme-docs/blob/v0.33.2-getting-started/docs_template/GETTING_STARTED/example-applications/_assets/RelevanceAI_ecommerce_dataset_preview.png?raw=true" width="650" alt="E-commerce Dataset Preview" />
+<img src="https://github.com/RelevanceAI/RelevanceAI-readme-docs/blob/v0.33.2-clustering-feature/docs_template/GETTING_STARTED/example-applications/_assets/RelevanceAI_ecommerce_dataset_preview.png?raw=true" width="650" alt="E-commerce Dataset Preview" />
 <figcaption>E-commerce Dataset Preview</figcaption>
 <figure>
 
@@ -90,20 +68,13 @@ documents = get_ecommerce_dataset_encoded()
 
 To insert data to a dataset, you can use the `insert_documents` method.  Note that this step is also already done in our sample dataset.
 
-```python Python (SDK)
-DATASET_ID = "quickstart_sample"
-df = client.Dataset(DATASET_ID)
-df.delete()
-df.insert_documents(documents)
-```
-```python
-```
+@@@ dataset_basics, DATASET_ID=MULTI_VECTOR_SEARCH_DATASET_ID @@@
 
 After finalizing the insert task, the client returns a link guiding you to a dashboard to check your schema and vector health!
 
 
 <figure>
-<img src="https://github.com/RelevanceAI/RelevanceAI-readme-docs/blob/v0.33.2-getting-started/docs_template/GETTING_STARTED/example-applications/_assets/RelevanceAI_quickstart_multivector_search.png?raw=true" width="650" alt="Relevance AI Dashboard" />
+<img src="https://github.com/RelevanceAI/RelevanceAI-readme-docs/blob/v0.33.2-clustering-feature/docs_template/GETTING_STARTED/example-applications/_assets/RelevanceAI_quickstart_multivector_search.png?raw=true" width="650" alt="Relevance AI Dashboard" />
 <figcaption>Relevance AI Dashboard</figcaption>
 <figure>
 
@@ -117,110 +88,29 @@ Since this will be using your own vectors, we will skip vectorizing the query an
 Now, let us try out a query using a simple vector search against our dataset.
 
 
-```python Python (SDK)
-# Query sample data
-sample_id = documents[0]['_id']
-documents = df.get_documents_by_ids([sample_id])["documents"]
-document = documents[sample_id]
-image_vector = document['product_image_clip_vector_']
-text_vector = document['product_title_clip_vector_']
-
-# Create a multivector query
-multivector_query = [
-    {"vector": image_vector, "fields": ['product_image_clip_vector_']},
-    {"vector": text_vector, "fields": ['product_title_clip_vector_']}
-]
-
-
-
-results = df.vector_search(
-    multivector_query=multivector_query,
-    page_size=5
-)
-```
-```python
-```
+@@@ multivector_query_sample_data, IMAGE_VECTOR='product_image_clip_vector_',TEXT_VECTOR='product_title_clip_vector_'; vector_search, MULTIVECTOR_QUERY=multivector_query, PAGE_SIZE=5 @@@
 
 Here our query is just a simple multi vector query, but our search comes with out of the box support for features such as multi-vector, filters, facets and traditional keyword matching to combine with your vector search. You can read more about how to construct a multivector query with those features [here](vector-search-prerequisites).
 
 Now lets show the results with `show_json`.
 
 
-```python Python (SDK)
-from relevanceai import show_json
-
-print('=== QUERY === ')
-display(show_json([document], image_fields=["product_image"], text_fields=["product_title"]))
-
-print('=== RESULTS ===')
-show_json(results, image_fields=["product_image"], text_fields=["product_title"])
-```
-```python
-```
+@@@ multivector_query_show_json, IMAGE_FIELDS=["product_image"], TEXT_FIELDS=["product_title"] @@@
 
 <figure>
-<img src="https://github.com/RelevanceAI/RelevanceAI-readme-docs/blob/v0.33.2-getting-started/docs_template/GETTING_STARTED/example-applications/_assets/RelevanceAI_multivector_search_results.png?raw=true" width="650" alt="Multi-vector Search Results" />
+<img src="https://github.com/RelevanceAI/RelevanceAI-readme-docs/blob/v0.33.2-clustering-feature/docs_template/GETTING_STARTED/example-applications/_assets/RelevanceAI_multivector_search_results.png?raw=true" width="650" alt="Multi-vector Search Results" />
 <figcaption>Multi-vector Search Results</figcaption>
 <figure>
 
 
 
 
-**Try it out in Colab:** [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/RelevanceAI/RelevanceAI-readme-docs/blob/v0.33.2-getting-started/docs/GETTING_STARTED/example-applications/_notebooks/RelevanceAI-ReadMe-Multi-Vector-Search.ipynb)
+**Try it out in Colab:** [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/RelevanceAI/RelevanceAI-readme-docs/blob/v0.33.2-clustering-feature/docs/GETTING_STARTED/example-applications/_notebooks/RelevanceAI-ReadMe-Multi-Vector-Search.ipynb)
 
 
 
 ## Final Code
 
-```python Python (SDK)
-from relevanceai import Client
-
-"""
-You can sign up/login and find your credentials here: https://cloud.relevance.ai/sdk/api
-Once you have signed up, click on the value under `Authorization token` and paste it here
-"""
-client = Client()
-
-
-from relevanceai.datasets import get_ecommerce_dataset_encoded
-
-documents = get_ecommerce_dataset_encoded()
-{k:v for k, v in documents[0].items() if '_vector_' not in k}
-
-DATASET_ID = "quickstart_sample"
-df = client.Dataset(DATASET_ID)
-df.delete()
-df.insert_documents(documents)
-
-# Query sample data
-sample_id = documents[0]['_id']
-documents = df.get_documents_by_ids([sample_id])["documents"]
-document = documents[sample_id]
-image_vector = document['product_image_clip_vector_']
-text_vector = document['product_title_clip_vector_']
-
-# Create a multivector query
-multivector_query = [
-    {"vector": image_vector, "fields": ['product_image_clip_vector_']},
-    {"vector": text_vector, "fields": ['product_title_clip_vector_']}
-]
-
-
-
-results = df.vector_search(
-    multivector_query=multivector_query,
-    page_size=5
-)
-
-from relevanceai import show_json
-
-print('=== QUERY === ')
-display(show_json([document], image_fields=["product_image"], text_fields=["product_title"]))
-
-print('=== RESULTS ===')
-show_json(results, image_fields=["product_image"], text_fields=["product_title"])
-```
-```python
-```
+@@@ client_instantiation; get_ecommerce_dataset_encoded; dataset_basics, DATASET_ID=MULTI_VECTOR_SEARCH_DATASET_ID; multivector_query_sample_data, IMAGE_VECTOR='product_image_clip_vector_', TEXT_VECTOR='product_title_clip_vector_'; vector_search, MULTIVECTOR_QUERY=multivector_query, PAGE_SIZE=5; multivector_query_show_json, IMAGE_FIELDS=["product_image"], TEXT_FIELDS=["product_title"] @@@
 
 
