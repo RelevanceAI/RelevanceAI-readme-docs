@@ -64,7 +64,7 @@ RelevanceAI's dashboard at https://cloud.relevance.ai is the most straightforwar
 <figure>
 Alternatively, you can monitor the health of a dataset using the command below which returns the count of total missing and existing fields in the data points in the named dataset.
 
-@@@ datasets_monitor_health @@@
+@@@ dataset_health @@@
 
 <figure>
 <img src="https://github.com/RelevanceAI/RelevanceAI-readme-docs/blob/v0.33.2-general-features/docs_template/GENERAL_FEATURES/creating-a-dataset/assets/health.png" width="607" alt="0aa6b74-Screen_Shot_2022-01-10_at_3.44.42_pm.png" />

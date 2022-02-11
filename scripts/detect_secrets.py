@@ -58,16 +58,16 @@ def scan_file(fpath: Path, show_keys=False):
 					for i, cell_source in enumerate(cell["source"]):
 						result = line_contains_api_key(cell_source.strip(), API_REGEX_STR)
 						if result[0]:
-							logging.info(f'\033[1m{fpath}: Line {i} : Entropy {result[1]}\033[0m')
+							logging.info(f'\033[1m{fpath}: Line {i}: Entropy {result[1]}\033[0m {API_REGEX_STR}')
 							if show_keys:
 								logging.info(f'\n\033[1m{cell_source}\033[0m')
 							raise ValueError(f'API key found in file {fpath}: Line {i+1}')
 		elif fpath.endswith('.md'):
 			f = open(fpath)
 			for i,  line in enumerate(f):
-				result = line_contains_api_key(line.replace(' ',''), API_REGEX_STR)
+				result = line_contains_api_key(line, API_REGEX_STR)
 				if result[0]:
-					logging.info(f'\033[1m{fpath}: Line {i} : Entropy {result[1]}\033[0m')
+					logging.info(f'\033[1m{fpath}: Line {i} : Entropy {result[1]}\033[0m {API_REGEX_STR}')
 					if show_keys:
 						logging.info(f'\n\033[1m{line}\033[0m')
 					raise ValueError(f'API key found in file {fpath}: Line {i+1}')

@@ -1,4 +1,4 @@
 python
 multivector_query=[
-        { "vector": <<VECTOR>>, "fields": <<VECTOR_FIELD>>}
+        { "vector": <<QUERY_VECTOR>>, "fields": <<VECTOR_FIELDS>>}
     ]

@@ -2,7 +2,7 @@ python
 filter = [
     {"field" : "<<FIELD>>",
     "filter_type" : "<<FILTER_TYPE>>",
-    "condition":"CONDITION",
+    "condition":"<<CONDITION>>",
     "condition_value":<<CONDITION_VAL>>,
      "format":"yyyy-dd-MM"
     }]

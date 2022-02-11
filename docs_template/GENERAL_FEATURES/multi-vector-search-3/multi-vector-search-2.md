@@ -45,7 +45,7 @@ Calling the three different vectorizers to vectorize the quary:
 
 @@@ encode_text_query, QUERY=WHITE_SNEAKER_QUERY, ENCODER=ENCODER_TXT_DEFAULT @@@
 @@@ encode_text_query, QUERY=WHITE_SNEAKER_QUERY, ENCODER=ENCODER_TET_IMG @@@
-@@@ encode_text_query, QUERY=WHITE_SNEAKER_QUERY, ENCODER=ENCODER_TXT_MULTI @@@
+@@@ encode_text_query, QUERY=WHITE_SNEAKER_QUERY, ENCODER="enc_imagetext" @@@
 
 ### Step 3. Vector search
 As it was mentioned earlier, Relevance AI has provided you with a variety of vector search endpoints with different use-cases; please see guide pages such as [Better text Search](https://docs.relevance.ai/docs/better-text-search) for more information on each search endpoint.
@@ -53,7 +53,7 @@ As it was mentioned earlier, Relevance AI has provided you with a variety of vec
 #### 3.1. Vector search with multiple vectors
 In the sample code below, we show how a vector search can be done by combining all three vector types:
 
-@@@ multivector_query_three_models, VECTOR_1=QUERY_TXT_VEC, VECTOR_2=QUERY_TXT_MULTI_VEC, VECTOR_3=QUERY_TXT_IMG_VEC, VECTOR_1_FIELDS=DESC_DEFAULT_VEC, VECTOR_2_FIELDS=DESC_TXTMULTI_VEC, VECTOR_3_FIELDS=DESC_TXTIMG_VEC @@@
+@@@ multivector_query_three_models, VECTOR_1=QUERY_TXT_VEC, VECTOR_2=QUERY_TXT_MULTI_VEC, VECTOR_3=QUERY_TXT_IMG_VEC, VECTOR_1_FIELDS=DESC_DEFAULT_VEC, VECTOR_2_FIELDS=descriptiontextmulti_vector_, VECTOR_3_FIELDS=DESC_TXTIMG_VEC @@@
 
 @@@ dataset_df, DATASET_ID=ECOMMERCE_SAMPLE_DATASET_ID @@@
 

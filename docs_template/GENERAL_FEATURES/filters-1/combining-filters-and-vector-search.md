@@ -26,10 +26,10 @@ Please refer to a full guide on how to [create and upload a database](doc:creati
 
 @@@ dataset_df, DATASET_ID=ECOMMERCE_SAMPLE_DATASET_ID @@@
 
-@@@ encode_text_query, QUERY=WHITE_SNEAKER_QUERY, ENCODER=ENCODER_TXT_MULTI @@@
+@@@ encode_text_query, QUERY="white sneakers", ENCODER="enc_imagetext" @@@
 
-@@@ filters_setup, FIELD1=BRAND_FIELD, FILTER_TYPE1=CONTAINS_FILTER_TYPE, CONDITION1=EQ_COND, CONDITION_VAL1=CONTAINS_VAL, FIELD2=INSERT_DATE_FIELD, FILTER_TYPE2=DATE_FILTER_TYPE, CONDITION2=GE_COND, CONDITION_VAL2=DATE_VAL_1 @@@
+@@@ filters_setup, FIELD1="brand", FILTER_TYPE1="contains", CONDITION1="==", CONDITION_VAL1="Asian", FIELD2="insert_date_", FILTER_TYPE2="date", CONDITION2=">=", CONDITION_VAL2="2020-07-01" @@@
 
-@@@ multivector_query, VECTOR=QUERY_TXT_VEC, VECTOR_FIELD=DESC_TXTMULTI_VEC@@@
+@@@ multivector_query, QUERY_VECTOR="query_vec_txt", VECTOR_FIELDS="descriptiontextmulti_vector_" @@@
 
 @@@ vector_search_with_filter, PAGE_SIZE=5 @@@

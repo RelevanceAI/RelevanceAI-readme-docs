@@ -38,7 +38,7 @@
 "QUERY_TXT_IMG_VEC": "query_vec_txtimg",
 "DESCRIPTION_VECTOR": "description_vector_",
 "DESC_DEFAULT_VEC": "description_default_vector_",
-"DESC_TXTMULTI_VEC": "descriptiontextmulti_vector_",
+"descriptiontextmulti_vector_": "descriptiontextmulti_vector_",
 "DESC_TXTIMG_VEC": "description_imagetext_vector_",
 "BRAND_CATEGORY_VAL": ["LG",
 "samsung"],

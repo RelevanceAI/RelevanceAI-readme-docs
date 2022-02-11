@@ -37,7 +37,9 @@ def load_params_ref(param_str: str) -> dict:
     LIST_REGEX_PARAM='([A-Z])\w+=\[(.*?)\]'
     STR_REGEX_PARAM_DOUBLE_QUOTE='([A-Z])\w+=\"\"'
     STR_REGEX_PARAM_SINGLE_QUOTE="([A-Z])\w+=\'\'"
-    params_ref = dict(tuple(m.group().strip().replace('==', '=').replace('""', '').replace("''", '').split('='))
+    params_ref = dict(tuple(m.group().strip()
+                    .replace('==', '=').replace('""', '')
+                    .replace("''", '').split('='))
         for m in chain(
             re.finditer(NUM_REGEX_PARAM, param_str),
             re.finditer(VALUE_REGEX_PARAM, param_str),
@@ -51,16 +53,16 @@ def load_params_ref(param_str: str) -> dict:
     return params_ref
 
 
-
 def load_param_in_snippet(snippet_path: Path, snippet: List, params: Dict):
     '''
     Loads params in snippet
     '''
     PARAM_REFS = []
     for i, line in enumerate(snippet):
-        for m in re.finditer('<<([A-Z_]*)>>', line):
+        for m in re.finditer('<<([A-Z_0-9]*)>>', line):
             for k, v in params.items():
                 if k in m.group():
+
                     if isinstance(v, list):
                         v = str(v)
                         if isinstance(v[0], dict): ### List[dict]
@@ -68,10 +70,12 @@ def load_param_in_snippet(snippet_path: Path, snippet: List, params: Dict):
                     line = line.replace(f'<<{k}>>', v )
             PARAM_REFS.append(m.group().replace('<<', '').replace('>>', '').strip())
         snippet[i] = line
+
     SNIPPET_PARAM_DIFF =  set(list(params.keys())) - (set(PARAM_REFS))
     if SNIPPET_PARAM_DIFF:
         raise ValueError(f'\nIncorrect params {SNIPPET_PARAM_DIFF} in required params {list(PARAM_REFS)}\n{snippet_path}')
     return snippet
+
 
 def load_snippet(
     snippet_path: str,

@@ -20,8 +20,6 @@ Encoding a single image input via the `encode` function and encoding a specified
 
 @@@ clip_enc_image @@@
 
-@@@ clip_enc_image, IMG=IMGAGE_SAMPLE @@@
-
 @@@ clip_enc_img_docs, IMG_DOCS=SAMPLE_IMG_DOCS, FIELD=IMG_URL_FIELD @@@
 
 
