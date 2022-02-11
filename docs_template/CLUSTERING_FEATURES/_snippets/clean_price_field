@@ -1,0 +1,9 @@
+python DOCUMENTS=documents, PRICE_FIELD="product_price"
+for i, doc in enumerate(<<DOCUMENTS>>):
+  # Creating price field in the number format to be used for metrics later
+  try:
+    doc[<<PRICE_FIELD>>] = int(round(float((doc[<<PRICE_FIELD>>].replace(" ",'').replace(",",'').replace("$",'')))))
+  except Exception as e:
+    del doc[<<PRICE_FIELD>>]
+
+<<DOCUMENTS>>[0].keys()

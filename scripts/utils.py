@@ -7,7 +7,7 @@ def chunk(iterables, n=20):
 
 
 def multithread(
-    func, iterables, max_workers=8, chunksize=20, show_progress_bar: bool = False
+    func, iterables, max_workers=8, chunksize=20
 ):
     with ThreadPoolExecutor(max_workers=max_workers) as executor:
         futures = [executor.submit(func, it) for it in chunk(iterables, chunksize)]

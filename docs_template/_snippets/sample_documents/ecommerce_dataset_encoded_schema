@@ -1,0 +1,12 @@
+json
+{
+ 'insert_date_': 'date',
+ 'product_image': 'text',
+ 'product_image_clip_vector_': {'vector': 512},
+ 'product_link': 'text',
+ 'product_price': 'text',
+ 'product_title': 'text',
+ 'product_title_clip_vector_': {'vector': 512},
+ 'query': 'text',
+ 'source': 'text'
+}

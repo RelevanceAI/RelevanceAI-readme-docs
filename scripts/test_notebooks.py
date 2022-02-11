@@ -1,7 +1,6 @@
 #!/usr/bin/env python3
 
 from typing import Dict
-from typing_extensions import Literal
 import os
 from pathlib import Path
 import re
@@ -10,6 +9,7 @@ import sys
 import json
 import nbformat
 from nbconvert.preprocessors import ExecutePreprocessor
+import traceback
 
 from utils import multiprocess
 
@@ -75,7 +75,7 @@ def notebook_find_replace(fname: str, find_sent_regex: str, find_str_regex: str,
     logging.info(f'\tOutput file: {fname}')
     json.dump(notebook_json, fp=open(fname, 'w'), indent=4)
 
-def update_pip_for_shell(fname, shell: Literal['zsh', 'bash']='zsh'):
+def update_pip_for_shell(fname: str, shell: str='zsh'):
     logging.info(f'\tInput: {fname}')
     notebook_json = json.loads(open(fname).read())
 
@@ -114,10 +114,9 @@ def execute_notebook(notebook:str, notebook_args: Dict):
     try:
         print(notebook)
 
-        # to support the multiprocessing function
-        if isinstance(notebook, list):
-            notebook = notebook[0]
-
+        if notebook_args['multiprocess']:
+            if isinstance(notebook, list):
+                notebook = notebook[0]
 
         if os.getenv('SHELL') and 'zsh' in os.getenv('SHELL'):
             update_pip_for_shell(notebook,shell='zsh')
@@ -165,7 +164,7 @@ def execute_notebook(notebook:str, notebook_args: Dict):
             **notebook_args['client_instantiation_base_args']
         )
 
-        import traceback
+
         exception_reason = traceback.format_exc()
         ERROR_MESSAGE = f"{notebook}\n{exception_reason}\n"
         print(
@@ -188,6 +187,9 @@ def main(args):
     logging.basicConfig(level=logging_level)
 
     DOCS_PATH = Path(args.path) / "docs"
+
+    NOTEBOOK_IGNORE = open(Path(__file__).parent / "notebook_ignore.txt").read().strip().splitlines()
+    print(f"NOTEBOOK_IGNORE: {NOTEBOOK_IGNORE}")
     RELEVANCEAI_SDK_VERSION = (
         args.version if args.version else get_latest_version(args.package_name)
     )
@@ -206,16 +208,23 @@ def main(args):
 
     ## Env vars
     CLIENT_INSTANTIATION_SENT_REGEX = 'client.*Client(.*)'
-    # TEST_PROJECT = os.environ["TEST_PROJECT"]
-    # TEST_API_KEY = os.environ["TEST_API_KEY"]
-    TEST_ACTIVATION_TOKEN = os.environ["TEST_ACTIVATION_TOKEN"]
     CLIENT_INSTANTIATION_STR_REGEX = "\((.*?)\)"
-    # CLIENT_INSTANTIATION_STR_REPLACE = (
-    #     f'(project=\\"{TEST_PROJECT}\\", api_key=\\"{TEST_API_KEY}\\")'
-    # )
-    CLIENT_INSTANTIATION_STR_REPLACE = (
-        f'(token="{TEST_ACTIVATION_TOKEN}")'
-    )
+
+    TEST_PROJECT = os.getenv("TEST_PROJECT")
+    TEST_API_KEY = os.getenv("TEST_API_KEY")
+    TEST_ACTIVATION_TOKEN = os.getenv("TEST_ACTIVATION_TOKEN")
+    if TEST_ACTIVATION_TOKEN:
+        CLIENT_INSTANTIATION_STR_REPLACE = (
+            f'(token="{TEST_ACTIVATION_TOKEN}")'
+        )
+    elif (TEST_PROJECT and TEST_API_KEY):
+        CLIENT_INSTANTIATION_STR_REPLACE = (
+            f'(project=\\"{TEST_PROJECT}\\", api_key=\\"{TEST_API_KEY}\\")'
+        )
+    else:
+        raise ValueError(f'Please set the client test credentials\n\
+            export TEST_ACTIVATION_TOKEN=xx or\nexport TEST_PROJECT=xx\nexport TEST_API_KEY=xx')
+
     CLIENT_INSTANTIATION_BASE = f'client = Client()'
     client_instantiation_args={
         'find_sent_regex': CLIENT_INSTANTIATION_SENT_REGEX,
@@ -231,12 +240,22 @@ def main(args):
 
     if args.notebooks:
         notebooks = args.notebooks
+        if len(notebooks)==1:
+            if Path(notebooks[0]).is_dir():
+                notebooks = [f for f in Path(notebooks[0]).glob('**/*.ipynb')]
     else:
         ## All notebooks
         notebooks = [
             x[0] if isinstance(x, list) else x for x in list(Path(DOCS_PATH).glob("**/*.ipynb"))
         ]
 
+    ## Filter notebooks
+    if args.notebook_ignore:
+        notebooks = [n for n in notebooks if n not in NOTEBOOK_IGNORE]
+
+    if not notebooks:
+        print(f'No notebooks found not in {NOTEBOOK_IGNORE}')
+        sys.exit(1)
 
     static_args= {
         'relevanceai_sdk_version': RELEVANCEAI_SDK_VERSION,
@@ -290,6 +309,7 @@ if __name__ == "__main__":
     parser.add_argument("-v", "--version", default=README_VERSION, help="Package Version")
     parser.add_argument("-n", "--notebooks", nargs="+", default=None, help="List of notebooks to execute")
     parser.add_argument("-nm", "--no-multiprocess", action='store_true', help="Whether to run multiprocessing")
+    parser.add_argument("-i", "--notebook-ignore", action='store_true', help="Whether to include notebook ignore list")
     args = parser.parse_args()
 
     main(args)

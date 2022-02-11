@@ -41,6 +41,7 @@ By following instructions below, you will be able to preview/create any given ve
 └── __version__          ## Readme version
 ```
 
+
 1. Install dependencies if first time; note, this repo has both Python and NPM deps
     ```zsh
     ❯ git clone git@github.com:RelevanceAI/RelevanceAI-readme-docs.git
@@ -53,21 +54,19 @@ By following instructions below, you will be able to preview/create any given ve
     ```zsh
     ❯ git checkout -b v1.0.0
     ```
-3. Update the `__version__` file to match that semver of the branch eg. 1.0.0 (this can be automated in future)
-   - All automation scripts read from this file by default if no version given.
-4. Make your desired changes to the relevant Markdown/notebooks on `docs_templates`.
-5. To add new assets:
+3. Make your desired changes to the relevant Markdown/notebooks on `docs_templates`.
+4. To add new assets:
    - Add new assets to the corresponding `_assets` folder in `docs_template`.
    - Update asset links in `md` files to point to corresponding path.
-6. To add new notebooks:
-   - Add new notebooks to the corresponding `_notebooks_` folder in `docs_template`.
+5. To add new notebooks:
+   - Add new notebooks to the corresponding `_notebooks` folder in `docs_template`.
    - Update notebooks to point to the corresponding path.
    - Colab notebook refs are of the form:
   ```zsh
-   [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/RelevanceAI/RelevanceAI-readme-docs/blob/v0.33.2/docs/GETTING_STARTED/_notebooks/Intro_to_Relevance_AI.ipynb)
+   [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/RelevanceAI/RelevanceAI-readme-docs/blob/v0.33.2/docs/GETTING_STARTED/_notebooks/Intro-to-Relevance-AI.ipynb)
   ```
   - Please add this badge in top cell of notebook as well so it can be accessed from Github.
-7. To add new snippet
+6. To add new snippet
    - Add new snippets in the corresponding `_snippets` folder.
    - Snippets are loaded in a nested fashion. Inner most `_snippets` with the same name will override general snippets in [`docs_template/_snippets/`](./docs_template/_snippets/).
    - All snippets in `*.md` and `*.ipynb` files are prefaced with `@@@`.
@@ -77,10 +76,10 @@ By following instructions below, you will be able to preview/create any given ve
     ```
     - If you want to concatenate snippets, please concatenate using the following format.
     ```markdown
-    @@@+ quickstart_docs; dataset_basics, DATASET_ID=QUICKSTART_DATASET_ID @@@
-    @@@+ <SNIPPET_1_NAME>; <SNIPPET_2_NAME>, <SNIPPET_2_PARAMS>; <SNIPPET_3_NAME>, <SNIPPET_3_PARAMS>; @@@
+    @@@ quickstart_docs; dataset_basics, DATASET_ID=QUICKSTART_DATASET_ID @@@
+    @@@ <SNIPPET_1_NAME>; <SNIPPET_2_NAME>, <SNIPPET_2_PARAMS>; <SNIPPET_3_NAME>, <SNIPPET_3_PARAMS>; @@@
     ```
-8. Go the ReadMe Dash config and export the ReadMe API key `$RELEVANCEAI_README_API_KEY` variable from ReadMe Project Configuration
+7. Go the ReadMe Dash config and export the ReadMe API key `$RELEVANCEAI_README_API_KEY` variable from ReadMe Project Configuration
    ![](./assets/readme_api_key.png)
    ```zsh
    ❯ export RELEVANCEAI_README_API_KEY='xxx'
@@ -89,22 +88,33 @@ By following instructions below, you will be able to preview/create any given ve
     ```zsh
     ❯ export TEST_ACTIVATION_TOKEN='xxx'
     ```
-10. Apply the changes and update the ReadMe documentations.
+9. Apply the changes and update the ReadMe documentations. By default, this script will sync all files in `docs`.
     ```zsh
     ❯ ./scripts/update_readme.sh
     ## Run in debug mode
     ❯ ./scripts/update_readme.sh true
+    ## Sync only a specific section, by default will sync everything in the generated `docs` folder.
+    ❯ ./scripts/update_readme.sh false docs/CLUSTERING_FEATURES
+    ## Override the version, by default will create a new version from your current Git branch name
+    ❯ ./scripts/update_readme.sh false docs/CLUSTERING_FEATURES v1.0.0-my-new-version
     ```
     View your synced changes in ReadMe eg. https://docs.relevance.ai/v0.31.0/docs/quick-tour
-11. Test the notebooks for changes. By default, the script will process all notebooks in the `docs` folder if no `--notebooks` specified. This script will output error logs to the file `readme_notebook_error_log.txt`
+10. Test the notebooks for changes. By default, the script will process all notebooks in the `docs` folder if no `--notebooks` specified. This script will output error logs to the file `readme_notebook_error_log.txt`
+    ```zsh
+    ❯ python scripts/test_notebooks.py
+    ## Run in debug mode
+    ❯ python scripts/test_notebooks.py -d
+    ## Test on a selection of notebooks
+    ❯ python scripts/test_notebooks.py -d --notebooks examples/Intro-to-Relevance-AI.ipynb examples/RelevanceAI-ReadMe-Quick-Feature-Tour.ipynb
     ```
-    ❯ python scripts/test_notebooks.py -d True --notebooks examples/Intro_to_Relevance_AI.ipynb
-    ```
-12. Install pre-commit to check for API keys in notebooks!
+
+11. Install pre-commit! This helps with things like merge conflicts, linting and checking API keys to help with cleaner commits. 😊
     ```
     pre-commit install
     ```
-13. Commit your changes if what you see in the ReadMe documentation is correct! 🎉💪🏻
+12. Commit your changes if what you see in the ReadMe documentation is correct! 🎉💪🏻
+
+See [./scripts/README](./scripts/README) for more details about the build and sync scripts.
 
 
 

@@ -1,0 +1,5 @@
+python
+import uuid
+
+for d in documents:
+  d['_id'] = uuid.uuid4().__str__()    # Each document must have a field '_id'

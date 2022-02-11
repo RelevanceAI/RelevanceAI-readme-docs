@@ -1,0 +1,18 @@
+python
+import tensorflow as tf
+import tensorflow_hub as hub
+import numpy as np
+import tensorflow_text
+
+# Here we load the model and define how we encode
+module = hub.load('https://tfhub.dev/google/universal-sentence-encoder-qa/3')
+
+# First we define how we encode the queries
+def encode_query(query: str):
+    return module.signatures['question_encoder'](tf.constant([query]))['outputs'][0].numpy().tolist()
+
+# We then want to define how we encode the answers
+def encode_answer(answer: str):
+    return module.signatures['response_encoder'](
+        input=tf.constant([answer]),
+        context=tf.constant([answer]))['outputs'][0].numpy().tolist()

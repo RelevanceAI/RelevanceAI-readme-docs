@@ -1,0 +1,6 @@
+python
+results = df.vector_search(
+    query=<<query>>,
+    multivector_query=<<MULTIVECTOR_QUERY>>,
+    page_size=<<PAGE_SIZE>>
+)

@@ -1,5 +1,0 @@
-python
-DATASET_ID = "<<DATASET_ID>>"
-df = client.Dataset(DATASET_ID)
-df.delete()
-df.insert_documents(documents)
