@@ -12,7 +12,7 @@ Relevance AI's ultimate goal is to assist developers to experiment, build and sh
 
 
 <figure>
-<img src="https://github.com/RelevanceAI/RelevanceAI-readme-docs/blob/v0.33.2/docs_template/_assets/RelevanceAI_DS_Workflow.png?raw=true"  width="450" alt="Relevance AI DS Workflow" />
+<img src="https://github.com/RelevanceAI/RelevanceAI-readme-docs/blob/v0.33.2/docs_template/_assets/RelevanceAI_DS_Workflow.png?raw=true"   alt="Relevance AI DS Workflow" />
 <figcaption>How Relevance AI helps with the data science workflow</figcaption>
 <figure>
 
@@ -64,7 +64,7 @@ df.insert_documents(documents)
 ### 3. Clustering
 
 ```python Python (SDK)
-clusterer = df.auto_cluster(kmeans-2, [example_vector_])
+clusterer = df.auto_cluster("kmeans-2", [example_vector_])
 ```
 ```python
 ```

@@ -103,7 +103,7 @@ results = client.services.aggregate.aggregate("quickstart_aggregation", metrics 
 ```python
 ```
 
-#Use jsonshower to demonstrate json result
+# Use jsonshower to demonstrate json result
 from jsonshower import show_json
 show_json(results, text_fields= list(results[0].keys()))
 

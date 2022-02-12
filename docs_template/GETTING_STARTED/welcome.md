@@ -12,7 +12,7 @@ Relevance AI's ultimate goal is to assist developers to experiment, build and sh
 
 
 <figure>
-<img src="https://github.com/RelevanceAI/RelevanceAI-readme-docs/blob/v0.33.2/docs_template/_assets/RelevanceAI_DS_Workflow.png?raw=true"  width="450" alt="Relevance AI DS Workflow" />
+<img src="https://github.com/RelevanceAI/RelevanceAI-readme-docs/blob/v0.33.2/docs_template/_assets/RelevanceAI_DS_Workflow.png?raw=true"   alt="Relevance AI DS Workflow" />
 <figcaption>How Relevance AI helps with the data science workflow</figcaption>
 <figure>
 
@@ -36,7 +36,7 @@ Run this Quickstart in Colab: [![Open In Colab](https://colab.research.google.co
 
 ### 3. Clustering
 
-@@@ auto_cluster, KMEANS=KMEANS-2,  VECTOR_FIELD=EXAMPLE_VEC @@@
+@@@ auto_cluster, KMEANS="kmeans-2",  VECTOR_FIELD=EXAMPLE_VEC @@@
 
 ### 4. Vector Search
 

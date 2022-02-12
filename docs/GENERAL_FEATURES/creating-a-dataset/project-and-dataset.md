@@ -11,10 +11,12 @@ To be able to conduct vector experiments using Relevance AI, you need to sign up
 ## Datasets
 
 After uploading a dataset to your account in Relevance AI, you can preview your data in the dashboard https://cloud.relevance.ai under Dataset. Note that if you just started, your account will be empty!
+
 <figure>
-<img src="https://github.com/RelevanceAI/RelevanceAI-readme-docs/blob/v0.33.2/docs_template/GENERAL_FEATURES/creating-a-dataset/assets/datasets-RAI.png" width="1300" alt="quickstart_datasets_view.png" />
-<figcaption>RelevanceAI Datasets</figcaption>
+<img src="https://github.com/RelevanceAI/RelevanceAI-readme-docs/blob/v0.33.2/docs_template/_assets/RelevanceAI_dataset_dashboard.png?raw=true" alt="See your dataset in the dashboard" />
+<figcaption>See your dataset in the dashboard</figcaption>
 <figure>
+
 ## Interacting With Datasets
 
 By storing data on our platform, you can directly invoke vectorization models, perform an optimized nearest-neighbor search, cluster data, etc.
@@ -67,9 +69,11 @@ See [Inserting and updating documents](doc:inserting-data) for more details on h
 
 You can see a list of all datasets you have uploaded to your account in the dashboard.
 <figure>
-<img src="https://github.com/RelevanceAI/RelevanceAI-readme-docs/blob/v0.33.2/docs_template/GENERAL_FEATURES/creating-a-dataset/assets/list-of-datasets.png" width="484" alt="Screen Shot 2022-01-17 at 12.21.57 pm.png" />
+<img src="https://github.com/RelevanceAI/RelevanceAI-readme-docs/blob/v0.33.2/docs_template/GENERAL_FEATURES/creating-a-dataset/_assets/dataset-list-view.png" width="484" alt="Datasets List View" />
 <figcaption>List of datasets in the dashboard</figcaption>
 <figure>
+
+
 Alternatively, you can use the list endpoint under Python SDK as shown below:
 
 ```python Python (SDK)
@@ -82,7 +86,7 @@ client.list_datasets()
 
 RelevanceAI's dashboard at https://cloud.relevance.ai is the most straightforward place to monitor your data.
 <figure>
-<img src="https://github.com/RelevanceAI/RelevanceAI-readme-docs/blob/v0.33.2/docs_template/GENERAL_FEATURES/creating-a-dataset/assets/monitor-dataset.png" width="1263" alt="vector_health.png" />
+<img src="https://github.com/RelevanceAI/RelevanceAI-readme-docs/blob/v0.33.2/docs_template/GENERAL_FEATURES/creating-a-dataset/_assets/monitor-dataset.png" width="1263" alt="vector_health.png" />
 <figcaption>Monitor your vector health</figcaption>
 <figure>
 Alternatively, you can monitor the health of a dataset using the command below which returns the count of total missing and existing fields in the data points in the named dataset.
@@ -94,9 +98,10 @@ df.health
 ```
 
 <figure>
-<img src="https://github.com/RelevanceAI/RelevanceAI-readme-docs/blob/v0.33.2/docs_template/GENERAL_FEATURES/creating-a-dataset/assets/health.png" width="607" alt="0aa6b74-Screen_Shot_2022-01-10_at_3.44.42_pm.png" />
+<img src="https://github.com/RelevanceAI/RelevanceAI-readme-docs/blob/v0.33.2/docs_template/GENERAL_FEATURES/creating-a-dataset/_assets/health.png" width="607" alt="Dataset health".png" />
 <figcaption>Monitoring dataset health</figcaption>
 <figure>
+
 ### Deleting a dataset
 
 Deleting an existing dataset can be done on the dashboard using the delete option availabal for each dataset. Or through the Python SDK:

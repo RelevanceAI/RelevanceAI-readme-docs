@@ -79,7 +79,7 @@ metrics = [avg_price_metric,
 Simply use the dataset_id and the `aggregate` endpoint as shown below; `jsonshower` is our tool for easy and efficient result presentation.
 @@@ aggregate_dataset, DATASET_ID=AGGREGATION_DATASET_ID @@@
 
-#Use jsonshower to demonstrate json result
+# Use jsonshower to demonstrate json result
 from jsonshower import show_json
 show_json(results, text_fields= list(results[0].keys()))
 
