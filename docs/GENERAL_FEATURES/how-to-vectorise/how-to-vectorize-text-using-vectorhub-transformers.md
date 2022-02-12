@@ -41,10 +41,10 @@ enc.encode("I love working with vectors.")
 
 ```python Python (SDK)
 # documents are saved as a list of dictionaries
-documents = [{'sentence': 'This is the first sentence.', '_id': 1}, {'sentence': 'This is the second sentence.', '_id': 2}]
+documents = [{'sentence': '"This is the first sentence."', '_id': 1}, {'sentence': '"This is the second sentence."', '_id': 2}]
 
 # Encode the `sentence` field in a list of documents
-docs_with_vectors = enc.encode_documents(["sentence"], documents)
+docs_with_vectors = enc.encode_documents([sentence], documents)
 ```
 ```python
 ```
@@ -58,15 +58,15 @@ For instance, in the sample code below, we use a dataset called `ecommerce_datas
 ```python Python (SDK)
 def encode_documents(documents):
     # Field and then the documents go here
-    return enc.encode_documents(["product_description"], documents)
+    return enc.encode_documents([product_description], documents)
 ```
 ```python
 ```
 
 ```python Python (SDK)
 client.pull_update_push(
-    dataset_id="ecommerce_dataset",
-    update_function=encode_documents
+    dataset_id = ecommerce_dataset,
+    update_function = encode_documents
 )
 ```
 ```python
@@ -101,7 +101,7 @@ Below, we show an example of how to get vectors from the popular [**CLIP**](http
 from vectorhub.encoders.text.sentence_transformers import SentenceTransformer2Vec
 
 enc = SentenceTransformer2Vec('clip-ViT-B-32')
-vec = enc.encode("I love working with vectors.")
+image_vector = enc.encode("I love working with vectors.")
 ```
 ```python
 ```

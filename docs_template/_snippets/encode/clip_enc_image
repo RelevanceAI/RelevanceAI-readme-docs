@@ -1,4 +1,4 @@
-python
+python FINETUNED_MODEL_PATH="<FINETUNED_MODEL_PATH>"
 from vectorhub.bi_encoders.text_image.torch import Clip2Vec
 
 enc = Clip2Vec()
@@ -6,5 +6,6 @@ enc.encode = enc.encode_image
 
 """
 If you have a fine-tuned model, place the **filepath** into the model as shown below:
-enc = Clip2Vec("path_to_local_finetuning")
 """
+
+enc = Clip2Vec(<<FINETUNED_MODEL_PATH>>)

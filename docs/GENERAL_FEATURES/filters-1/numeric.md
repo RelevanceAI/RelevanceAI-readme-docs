@@ -40,10 +40,13 @@ df = client.Dataset(DATASET_ID)
 
 ```python Python (SDK)
 filter = [
-    {"field" : "retail_price",
-    "filter_type" : "numeric",
-    "condition":">",
-    "condition_value":5000}]
+    {
+        "field": retail_price,
+        "filter_type": numeric,
+        "condition": >,
+        "condition_value": 5000
+    }
+]
 ```
 ```python
 ```

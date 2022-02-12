@@ -1,2 +1,2 @@
-python
-df.create(dataset_id="<<DATASET_ID>>")
+python DATASET_ID=DATASET_ID
+df.create(dataset_id=<<DATASET_ID>>)

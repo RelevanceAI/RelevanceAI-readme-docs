@@ -54,15 +54,19 @@ query_vec_txt = "enc_imagetext".encode(query)
 
 ```python Python (SDK)
 filter = [
-    {"field" : "brand",
-    "filter_type" : "contains",
-    "condition": ",
-    "condition_value": "Asian"},
-    {"field" : "insert_date_",
-    "filter_type" : "date",
-    "condition": ",
-    "condition_value": "2020-07-01"}
-    ]
+    {
+        "field" : "brand",
+        "filter_type" : "contains",
+        "condition": ",
+        "condition_value": "Asian"
+    },
+    {
+        "field" : "insert_date_",
+        "filter_type" : "date",
+        "condition": ",
+        "condition_value": "2020-07-01"
+    }
+]
 ```
 ```python
 ```

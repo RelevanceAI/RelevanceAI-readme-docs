@@ -29,10 +29,13 @@ Filters at Relevance AI are defined as Python dictionaries with four main keys:
 
 ```python Python (SDK)
 filter = [
-    {"field" : "description",
-    "filter_type" : "contains",
-    "condition":"==",
-    "condition_value":Durian Club}]
+    {
+        "field": description,
+        "filter_type": contains,
+        "condition": ==,
+        "condition_value": Durian Club
+    }
+]
 ```
 ```python
 ```

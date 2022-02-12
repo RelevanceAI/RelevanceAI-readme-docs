@@ -3,8 +3,8 @@ python
 src_dataset_id = SOURCE_DATASET_ID
 
 ## Source project details you are copying to
-dest_project = "Destination project name here"
-dest_api_key = "Destination API key here"
+dest_project = "<Destination project name here>"
+dest_api_key = "<Destination API key here>"
 
 client.send_dataset(
     src_dataset_id,

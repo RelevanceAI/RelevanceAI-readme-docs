@@ -1,2 +1,2 @@
-python
-client.delete_dataset(dataset_id="<<DATASET_ID>>")
+python DATASET_ID=DATASET_ID
+client.delete_dataset(dataset_id=<<DATASET_ID>>)

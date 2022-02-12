@@ -1,5 +1,5 @@
-python
+python DATASET_ID=DATASET_ID
 client.pull_update_push(
-    dataset_id="<<DATASET_ID>>",
-    update_function=<<FUNCTION>>
+    dataset_id = <<DATASET_ID>>,
+    update_function = <<FUNCTION>>
 )

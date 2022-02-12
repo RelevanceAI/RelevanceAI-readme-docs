@@ -81,7 +81,7 @@ pd.DataFrame.from_dict(documents).head()
 <figure>
 
 ```python Python (SDK)
-df = client.Dataset(quickstart)
+df = client.Dataset("quickstart")
 df.insert_documents(documents)
 ```
 ```python
@@ -138,7 +138,7 @@ Run clustering on your vectors to better understand your data. You can view the 
 
 
 ```python Python (SDK)
-clusterer = df.auto_cluster(kmeans-10, [product_image_clip_vector_])
+clusterer = df.auto_cluster(kmeans-10, ["product_image_clip_vector_"])
 ```
 ```python
 ```

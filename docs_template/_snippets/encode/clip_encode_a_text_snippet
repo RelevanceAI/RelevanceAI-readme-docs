@@ -2,4 +2,4 @@ python
 from vectorhub.encoders.text.sentence_transformers import SentenceTransformer2Vec
 
 enc = SentenceTransformer2Vec('clip-ViT-B-32')
-vec = enc.encode("<<SAMPLE>>")
+image_vector = enc.encode(<<SAMPLE>>)

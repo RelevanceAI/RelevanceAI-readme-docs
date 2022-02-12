@@ -12,6 +12,9 @@ To be able to conduct vector experiments using Relevance AI, you need to sign up
 
 After uploading a dataset to your account in Relevance AI, you can preview your data in the dashboard https://cloud.relevance.ai under Dataset. Note that if you just started, your account will be empty!
 
+[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/RelevanceAI/RelevanceAI-readme-docs/blob/v0.33.2/docs/GENERAL_FEATURES/creating-a-dataset/_notebooks/creating-a-dataset.ipynb)
+
+
 <figure>
 <img src="https://github.com/RelevanceAI/RelevanceAI-readme-docs/blob/v0.33.2/docs_template/_assets/RelevanceAI_dataset_dashboard.png?raw=true" alt="See your dataset in the dashboard" />
 <figcaption>See your dataset in the dashboard</figcaption>
@@ -40,9 +43,12 @@ To create a new empty dataset pass the name under which you wish to save the dat
 @@@ dataset_basics, DATASET_ID=ECOMMERCE_SAMPLE_DATASET_ID @@@
 
 See [Inserting and updating documents](doc:inserting-data) for more details on how to insert/upload documents into a dataset.
+
 > 🚧 Remember!
 >
 > * You cannot rename datasets or rename/edit existing field names. However, you can copy datasets and edit field names using the [`clone`](https://relevanceai.github.io/RelevanceAI/docs/html/relevanceai.api.endpoints.html?highlight=clone#relevanceai.api.endpoints.datasets.Datasets.clone) feature.
+
+
 * Id field: Relevance AI platform identifies unique data entries within a dataset using a field called `_id` (i.e. every document in the dataset must include an `_id` field with a unique value per document).
 * Vector fields: the name of vector fields must end in `_vector_`
 
@@ -50,7 +56,7 @@ See [Inserting and updating documents](doc:inserting-data) for more details on h
 
 You can see a list of all datasets you have uploaded to your account in the dashboard.
 <figure>
-<img src="https://github.com/RelevanceAI/RelevanceAI-readme-docs/blob/v0.33.2/docs_template/GENERAL_FEATURES/creating-a-dataset/_assets/dataset-list-view.png" width="484" alt="Datasets List View" />
+<img src="https://github.com/RelevanceAI/RelevanceAI-readme-docs/blob/v0.33.2/docs_template/GENERAL_FEATURES/creating-a-dataset/_assets/dataset-list-view.png?raw=true" alt="Datasets List View" />
 <figcaption>List of datasets in the dashboard</figcaption>
 <figure>
 
@@ -63,7 +69,8 @@ Alternatively, you can use the list endpoint under Python SDK as shown below:
 
 RelevanceAI's dashboard at https://cloud.relevance.ai is the most straightforward place to monitor your data.
 <figure>
-<img src="https://github.com/RelevanceAI/RelevanceAI-readme-docs/blob/v0.33.2/docs_template/GENERAL_FEATURES/creating-a-dataset/_assets/monitor-dataset.png" width="1263" alt="vector_health.png" />
+<img src="https://github.com/RelevanceAI/RelevanceAI-readme-docs/blob/v0.33.2/docs_template/GENERAL_FEATURES/creating-a-dataset/_assets/monitor-dataset.png?raw=true" width="1263" alt="vector_health.png" />
+
 <figcaption>Monitor your vector health</figcaption>
 <figure>
 Alternatively, you can monitor the health of a dataset using the command below which returns the count of total missing and existing fields in the data points in the named dataset.
@@ -71,7 +78,7 @@ Alternatively, you can monitor the health of a dataset using the command below w
 @@@ dataset_health @@@
 
 <figure>
-<img src="https://github.com/RelevanceAI/RelevanceAI-readme-docs/blob/v0.33.2/docs_template/GENERAL_FEATURES/creating-a-dataset/_assets/health.png" width="607" alt="Dataset health".png" />
+<img src="https://github.com/RelevanceAI/RelevanceAI-readme-docs/blob/v0.33.2/docs_template/GENERAL_FEATURES/creating-a-dataset/_assets/health.png?raw=true" width="607" alt="Dataset health".png" />
 <figcaption>Monitoring dataset health</figcaption>
 <figure>
 

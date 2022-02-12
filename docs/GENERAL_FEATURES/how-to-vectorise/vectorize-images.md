@@ -30,8 +30,9 @@ enc.encode = enc.encode_image
 
 """
 If you have a fine-tuned model, place the **filepath** into the model as shown below:
-enc = Clip2Vec("path_to_local_finetuning")
 """
+
+enc = Clip2Vec(")
 ```
 ```python
 ```
@@ -52,18 +53,19 @@ docs_with_vecs = enc.encode_documents(["image_url"], documents)
 The easiest way to update an existing dataset with encoding results is to run `pull_update_push`. This function fetches all the data-points in a dataset, runs the specified function (i.e. encoding in this case) and writes the result back to the dataset.
 
 For instance, in the sample code below, we use a dataset called `ecommerce_dataset` and encode the `product_image` field using the `clip` encoder.
+
 ```python Python (SDK)
 def encode_documents(documents):
     # Field and then the documents go here
-    return enc.encode_documents(["PRODUCT_IMGG_FIELD"], documents)
+    return enc.encode_documents(["product_image"], documents)
 ```
 ```python
 ```
 
 ```python Python (SDK)
 client.pull_update_push(
-    dataset_id="ecommerce_dataset",
-    update_function=encode_documents
+    dataset_id = ecommerce_dataset,
+    update_function = encode_documents
 )
 ```
 ```python

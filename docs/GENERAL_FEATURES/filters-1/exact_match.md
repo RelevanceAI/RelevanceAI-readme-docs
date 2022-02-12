@@ -40,10 +40,13 @@ df = client.Dataset(DATASET_ID)
 
 ```python Python (SDK)
 filter = [
-    {"field" : "product_name",
-    "filter_type" : "exact_match",
-    "condition":"==",
-    "condition_value":Durian Leather 2 Seater Sofa}]
+    {
+        "field": product_name,
+        "filter_type": exact_match,
+        "condition": ==,
+        "condition_value": Durian Leather 2 Seater Sofa
+    }
+]
 ```
 ```python
 ```

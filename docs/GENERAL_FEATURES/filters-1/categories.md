@@ -15,10 +15,13 @@ This filter checks the entries in a database and returns ones in which a field v
 
 ```python Python (SDK)
 filter = [
-    {"field" : "brand",
-    "filter_type" : "categories",
-    "condition":">=",
-    "condition_value":['LG', 'samsung']}]
+    {
+        "field": brand,
+        "filter_type": categories,
+        "condition": >=,
+        "condition_value": ['LG', 'samsung']
+    }
+]
 ```
 ```python
 ```

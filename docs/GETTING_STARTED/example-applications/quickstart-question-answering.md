@@ -112,7 +112,7 @@ for d in tqdm(documents):
 Finally, we can upload the results to a dataset called `quickstart_tfhub_qa` in the Relevance AI platform:
 
 ```python Python (SDK)
-df = client.Dataset(quickstart_tfhub_qa)
+df = client.Dataset("quickstart_tfhub_qa")
 df.insert_documents(documents)
 ```
 ```python
@@ -212,7 +212,7 @@ from tqdm.auto import tqdm
 for d in tqdm(documents):
     d['product_title_use_qa_vector_'] = encode_answer(d['product_title'])
 
-df = client.Dataset(quickstart_tfhub_qa)
+df = client.Dataset("quickstart_tfhub_qa")
 df.insert_documents(documents)
 
 query = 'What is an expensive gift?'

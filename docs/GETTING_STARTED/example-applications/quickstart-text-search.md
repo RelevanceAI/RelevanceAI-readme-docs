@@ -123,7 +123,7 @@ The data can be easily uploaded to Relevance AI platform via `insert_documents`.
 
 
 ```python Python (SDK)
-df = client.Dataset(quickstart-example)
+df = client.Dataset("quickstart_text_searc")
 df.insert_documents(documents)
 ```
 ```python
@@ -213,7 +213,7 @@ model = USE2Vec()
 
 documents = model.encode_documents(fields=['product_title'], documents=documents)
 
-df = client.Dataset(quickstart-example)
+df = client.Dataset("quickstart_text_searc")
 df.insert_documents(documents)
 
 query = 'Gift for my son'

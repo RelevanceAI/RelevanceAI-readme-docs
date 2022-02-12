@@ -40,10 +40,13 @@ df = client.Dataset(DATASET_ID)
 
 ```python Python (SDK)
 filter = [
-    {"field" : "insert_date_",
-    "filter_type" : "date",
-    "condition":"==",
-    "condition_value":2020-07-01}]
+    {
+        "field": insert_date_,
+        "filter_type": date,
+        "condition": ==,
+        "condition_value": 2020-07-01
+    }
+]
 ```
 ```python
 ```
@@ -52,12 +55,14 @@ Note that the default format is "yyyy-mm-dd" but can be changed to "yyyy-dd-mm" 
 
 ```python Python (SDK)
 filter = [
-    {"field" : "insert_date_",
-    "filter_type" : "date",
-    "condition":"==",
-    "condition_value":2020-07-01,
-     "format":"yyyy-dd-MM"
-    }]
+    {
+        "field": insert_date_,
+        "filter_type": date,
+        "condition": ==,
+        "condition_value": 2020-07-01,
+        "format": "yyyy-dd-MM"
+    }
+]
 ```
 ```python
 ```

@@ -40,10 +40,13 @@ df = client.Dataset(DATASET_ID)
 
 ```python Python (SDK)
 filter = [
-    {"field" : "description",
-    "filter_type" : "word_match",
-    "condition":"==",
-    "condition_value":Home curtain}]
+    {
+        "field": description,
+        "filter_type": word_match,
+        "condition": ==,
+        "condition_value": Home curtain
+    }
+]
 ```
 ```python
 ```

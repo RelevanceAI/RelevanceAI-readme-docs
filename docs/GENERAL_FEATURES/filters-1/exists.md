@@ -40,10 +40,13 @@ df = client.Dataset(DATASET_ID)
 
 ```python Python (SDK)
 filter = [
-    {"field" : "brand",
-    "filter_type" : "exists",
-    "condition":"==",
-    "condition_value": }]
+    {
+        "field": brand,
+        "filter_type": exists,
+        "condition": ==,
+        "condition_value":
+    }
+]
 ```
 ```python
 ```

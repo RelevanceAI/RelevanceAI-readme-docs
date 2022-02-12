@@ -40,10 +40,13 @@ df = client.Dataset(DATASET_ID)
 
 ```python Python (SDK)
 filter = [
-    {"field" : "_id",
-    "filter_type" : "ids",
-    "condition":"==",
-    "condition_value":7790e058cbe1b1e10e20cd22a1e53d36}]
+    {
+        "field": _id,
+        "filter_type": ids,
+        "condition": ==,
+        "condition_value": 7790e058cbe1b1e10e20cd22a1e53d36
+    }
+]
 ```
 ```python
 ```

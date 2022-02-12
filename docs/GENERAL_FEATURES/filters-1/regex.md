@@ -44,10 +44,13 @@ df = client.Dataset(DATASET_ID)
 
 ```python Python (SDK)
 filter = [
-    {"field" : "description",
-    "filter_type" : "regexp",
-    "condition":"==",
-    "condition_value":.*Durian (\w+)}]
+    {
+        "field": description,
+        "filter_type": regexp,
+        "condition": ==,
+        "condition_value": .*Durian (\w+)
+    }
+]
 ```
 ```python
 ```

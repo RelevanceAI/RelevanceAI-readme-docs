@@ -41,10 +41,13 @@ df = client.Dataset(DATASET_ID)
 
 ```python Python (SDK)
 filter = [
-    {"field" : "description",
-    "filter_type" : "contains",
-    "condition":"==",
-    "condition_value":Durian BID}]
+    {
+        "field": description,
+        "filter_type": contains,
+        "condition": ==,
+        "condition_value": Durian BID
+    }
+]
 ```
 ```python
 ```

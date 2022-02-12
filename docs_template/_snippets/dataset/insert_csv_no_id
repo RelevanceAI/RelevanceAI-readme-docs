@@ -1,10 +1,10 @@
-python
-CSV_PATH = "PATH-TO-THE-CSV-FILE"
-DATASET_ID = "<<DATASET_ID>>"
+python DATASET_ID=DATASET_ID, CSV_PATH="PATH_TO_THE_CSV_FILE"
+CSV_PATH = <<CSV_PATH>>
+DATASET_ID = <<DATASET_ID>>
 
 client.insert_csv(
- dataset_id=DATASET_ID,
- filepath_or_buffer=CSV_PATH,
- auto_generate_id=True, # to allow automatic id generation
+ dataset_id = DATASET_ID,
+ filepath_or_buffer = CSV_PATH,
+ auto_generate_id = True, # to allow automatic id generation
  index_col = 0
 )
