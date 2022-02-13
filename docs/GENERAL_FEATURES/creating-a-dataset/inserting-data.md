@@ -56,7 +56,7 @@ You can see the list of the available list of models for vectorising here using 
 
 
 ```python Python (SDK)
-df["sentence"].apply(lambda: x: model.encode(x), output_field="sentence_vector")
+df["sentence"].apply(lambda x: model.encode(x), output_field="sentence_vector")
 ```
 ```python
 ```

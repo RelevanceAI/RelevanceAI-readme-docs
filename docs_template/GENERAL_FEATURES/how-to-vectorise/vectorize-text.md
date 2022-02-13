@@ -36,7 +36,7 @@ First, `vectorhub[sentence-transformers]` must be installed. Restart the noteboo
 
 Then we import SentenceTransformers and instantiate an encoder object.
 
-@@@ use_enc @@@
+@@@ transformer_enc @@@
 
 Encoding a single text input via the `encode` function and encoding a specified text field in the whole data (i.e. list of dictionaries) via the `encode_documents` function are shown below.
 

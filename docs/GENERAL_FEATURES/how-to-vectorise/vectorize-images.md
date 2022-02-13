@@ -11,7 +11,7 @@ updatedAt: "2022-01-20T04:45:02.324Z"
 [VectorHub](https://github.com/RelevanceAI/vectorhub) provides users with access to various state of the art encoders to vectorize different data types such as text or image. It manages the encoding process as well, allowing users to focus on the data they want to encode rather than the actual model behind the scene.
 On this page, we introduce the CLIP image encoder.
 
-First, `vectorhub clip` must be installed.
+First, `vectorhub[clip]` must be installed.
 Notes: you might also run `!pip install "opencv-python-headless<4.3"`, restart your notebook when installation finishes.
 
 ```bash Bash
@@ -55,7 +55,7 @@ The easiest way to update an existing dataset with encoding results is to run `d
 For instance, in the sample code below, we use a dataset called `ecommerce_dataset` and encode the `product_image` field using the `clip` encoder.
 
 ```python Python (SDK)
-df["sentence"].apply(lambda: x: model.encode(x), output_field="sentence_vector")
+df["sentence"].apply(lambda x: model.encode(x), output_field="sentence_vector")
 ```
 ```python
 ```

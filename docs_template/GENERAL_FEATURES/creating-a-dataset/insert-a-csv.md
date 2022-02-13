@@ -31,5 +31,5 @@ First, the Relevance AI SDK package must be installed.
 
 Uploading a CSV file is as simple as specifying the CSV path to your file.
 
-@@@ insert_csv @@@
 
+@@@ client_dataset, DATASET_ID='quickstart_insert_csv'; insert_csv, CSV_PATH="./sample_data/california_housing_test.csv" @@@

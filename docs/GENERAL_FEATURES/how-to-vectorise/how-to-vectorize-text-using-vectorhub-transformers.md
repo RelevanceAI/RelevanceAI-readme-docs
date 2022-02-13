@@ -59,7 +59,7 @@ The easiest way to update an existing dataset with encoding results is to run `d
 For instance, in the sample code below, we use a dataset called `ecommerce_dataset`, and encode the `product_description` field using the `SentenceTransformer2Vec` encoder.
 
 ```python Python (SDK)
-df["sentence"].apply(lambda: x: model.encode(x), output_field="sentence_vector")
+df["sentence"].apply(lambda x: model.encode(x), output_field="sentence_vector")
 ```
 ```python
 ```

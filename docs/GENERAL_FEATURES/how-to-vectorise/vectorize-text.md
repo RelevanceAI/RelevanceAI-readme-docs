@@ -64,9 +64,9 @@ First, `vectorhub[sentence-transformers]` must be installed. Restart the noteboo
 Then we import SentenceTransformers and instantiate an encoder object.
 
 ```python Python (SDK)
-from vectorhub.encoders.text.tfhub import USE2Vec
+from vectorhub.encoders.text.sentence_transformers import SentenceTransformer2Vec
 
-model = USE2Vec()
+model = SentenceTransformer2Vec("all-mpnet-base-v2")
 ```
 ```python
 ```
