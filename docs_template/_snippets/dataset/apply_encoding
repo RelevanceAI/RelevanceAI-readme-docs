@@ -1,0 +1,2 @@
+python FIELD=VECTOR_FIELD, VECTOR_FIELD=VECTOR_FIELD, MODEL=model
+df[<<FIELD>>].apply(lambda: x: <<MODEL>>.encode(x), output_field=<<VECTOR_FIELD>>)

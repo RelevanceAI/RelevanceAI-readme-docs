@@ -1,5 +1,5 @@
 ---
-title: "How to vectorize text using VectorHub-Transformers"
+title: "How to vectorize text using VectorHub - Transformers"
 slug: "how-to-vectorize-text-using-vectorhub-transformers"
 excerpt: "A guide on vectorizing text using Vectorhub"
 hidden: false
@@ -26,7 +26,7 @@ Then from the `sentence_transformers` category, we import our desired transforme
 ```python Python (SDK)
 from vectorhub.encoders.text.sentence_transformers import SentenceTransformer2Vec
 
-enc = SentenceTransformer2Vec("all-mpnet-base-v2 ")
+model = SentenceTransformer2Vec("all-mpnet-base-v2")
 ```
 ```python
 ```
@@ -35,7 +35,7 @@ Encoding a single text input via the `encode` function and encoding a specified 
 
 ```python Python (SDK)
 # Encode a single input
-enc.encode("I love working with vectors.")
+model.encode("I love working with vectors.")
 ```
 ```python
 ```
@@ -45,35 +45,29 @@ enc.encode("I love working with vectors.")
 documents = [{'sentence': '"This is the first sentence."', '_id': 1}, {'sentence': '"This is the second sentence."', '_id': 2}]
 
 # Encode the `"sentence"` field in a list of documents
-docs_with_vectors = enc.encode_documents(["sentence"], documents)
+encoded_documents = model.encode_documents(["sentence"], documents)
+
+df.upsert_documents(documents=encoded_documents)
 ```
 ```python
 ```
 
-### Encoding an entire dataset
+### Encoding an entire dataset using df.apply()
 
-The easiest way to update an existing dataset with encoding results is to run `pull_update_push`. This function fetches all the data-points in a dataset, runs the specified function (i.e. encoding in this case) and writes the result back to the dataset.
+The easiest way to update an existing dataset with encoding results is to run `df.apply`. This function fetches all the data-points in a dataset, runs the specified function (i.e. encoding in this case) and writes the result back to the dataset.
 
 For instance, in the sample code below, we use a dataset called `ecommerce_dataset`, and encode the `product_description` field using the `SentenceTransformer2Vec` encoder.
 
 ```python Python (SDK)
-def encode_documents(documents):
-    # Field and then the documents go here
-    return enc.encode_documents(["product_description"], documents)
+df["sentence"].apply(lambda: x: model.encode(x), output_field="sentence_vector")
 ```
 ```python
 ```
-
-```python Python (SDK)
-client.pull_update_push(
-    dataset_id = "ecommerce_dataset",
-    update_function = encode_documents
-)
-```
-```python
-```
-
 ### Some famous models
+
+#### Encoding using native Transformers
+
+
 * BERT
 Below, we show an example of how to get vectors from the popular [**BERT**](https://huggingface.co/transformers/v3.0.2/model_doc/bert.html) model from HuggingFace Transformers library.
 
@@ -95,15 +89,30 @@ def vectorize(text):
 ```python
 ```
 
+#### Encoding using Vectorhub's Sentence Transformers
+
+Vectorhub helps us to more easily work with models to encode fields in our documents of different modal types.
+
+
 * CLIP
 Below, we show an example of how to get vectors from the popular [**CLIP**](https://huggingface.co/sentence-transformers/clip-ViT-B-32) model from HuggingFace Transformers library.
 
 ```python Python (SDK)
 from vectorhub.encoders.text.sentence_transformers import SentenceTransformer2Vec
 
-enc = SentenceTransformer2Vec('clip-ViT-B-32')
-image_vector = enc.encode("I love working with vectors.")
+model = SentenceTransformer2Vec('clip-ViT-B-32')
+image_vector = model.encode("I love working with vectors.")
 ```
 ```python
 ```
 
+
+```python Python (SDK)
+# documents are saved as a list of dictionaries
+documents=[{'image_url': 'https://relevance.ai/wp-content/uploads/2021/10/statue-illustration.png'}, {'image_url': 'https://relevance.ai/wp-content/uploads/2021/09/Group-193-1.png'}]
+
+# Encode the images accessible from the URL saved in `image_url` field in a list of documents
+docs_with_vecs = model.encode_documents(["image_url"], documents)
+```
+```python
+```

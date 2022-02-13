@@ -18,34 +18,35 @@ To upload multiple documents to RelevanceAI, you can use the **insert_documents*
 
 ### Inserting the data in one go
 
+
 @@@ dataset_basics, DATASET_ID=QUICKSTART_DATASET_ID @@@
 
 ### Updating documents
 
-To only update specific documents, use `update_documents` as shown in the example below:
+To only update specific documents, use `upsert_documents` as shown in the example below:
 
 @@@ upsert_example @@@
 
 > 🚧 When To Use Upsert Vs Insert
 >
 > `insert` replaces the entire document whereas `upsert` only changes the fields that are specified or newly added. It will not delete fields that are already in the dataset, nor insert new documents.
-The easiest way to modify and update all documents in a dataset is to run `pull_update_push` in the Python SDK.
+The easiest way to modify and update all documents in a dataset is to run `df.apply` in the Python SDK.
 
-### Updating An Entire Dataset
-> 📘 pull_update_push is the easiest way to edit documents in a single dataset
+
+
+
+### Applying functions to fields
+
+> 📘How to update fields
 >
-> To quickly try out new experiments on your entire dataset, we built `pull_update_push` to easily update all documents in a dataset. It uses Python's function callables to help accelerate the modification process and immediately update documents in the vector database.
-An example of `pull_update_push` can be found here in which a new field `new_parameter` is added to every single document in a specified dataset.
+> The easiest way to update an existing dataset with encoding results is to run `df.apply`. This function fetches all the data-points in a dataset, runs the specified function (i.e. encoding in this case) and writes the result back to the dataset.
+>
 
-@@@ encode_documents_sample_func @@@
+For instance, in the sample code below, we use a dataset called `ecommerce_dataset`, and encodes the `product_description` field using the `USE2Vec` encoder.
+You can see the list of the available list of models for vectorising here using [Vectorhub](https://github.com/RelevanceAI/vectorhub) or feel free to bring your own model(s).
 
-@@@ pull_update_push, DATASET_ID=QUICKSTART_DATASET_ID, FUNCTION=ENCODE_DOCUMENTS_FUNC @@@
 
-## About Pull Update Push
+@@@ apply_encoding, FIELD="sentence", VECTOR_FIELD="sentence_vector"  @@@
 
-In `pull_update_push`, we are modifying documents and updating them into the vector database. However, there is always a chance that the process can break. We do not want to necessarily re-process the already processed ones. Therefore, it also logs IDs that are processed to a separate logging collection. If we want to continue processing, we can specify the `logging_collection` parameter in `pull_update_push`.
 
-<figure>
-<img src="https://github.com/RelevanceAI/RelevanceAI-readme-docs/blob/v0.33.2/docs_template/GENERAL_FEATURES/creating-a-dataset/_assets/pull-update-push.png?raw=true" width="2492" alt="untitled@2x (1).png" />
-<figcaption>Architecture diagram of `pull_update_push`</figcaption>
-<figure>
+

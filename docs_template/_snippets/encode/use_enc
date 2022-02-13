@@ -1,4 +1,4 @@
 python
 from vectorhub.encoders.text.tfhub import USE2Vec
 
-enc = USE2Vec()
+model = USE2Vec()

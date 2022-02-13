@@ -1,3 +1,3 @@
 python
 # The encoder accesses an image through the URL
-image_vector = enc.encode(<<IMG_URL>>)
+image_vector = model.encode(<<IMG_URL>>)

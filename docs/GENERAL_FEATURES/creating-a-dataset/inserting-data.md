@@ -27,7 +27,7 @@ df.insert_documents(documents)
 
 ### Updating documents
 
-To only update specific documents, use `update_documents` as shown in the example below:
+To only update specific documents, use `upsert_documents` as shown in the example below:
 
 ```python Python (SDK)
 df.upsert_documents(documents=[{"_id": "example_id", "value": 3}])
@@ -38,38 +38,5 @@ df.upsert_documents(documents=[{"_id": "example_id", "value": 3}])
 > 🚧 When To Use Upsert Vs Insert
 >
 > `insert` replaces the entire document whereas `upsert` only changes the fields that are specified or newly added. It will not delete fields that are already in the dataset, nor insert new documents.
-The easiest way to modify and update all documents in a dataset is to run `pull_update_push` in the Python SDK.
-
-### Updating An Entire Dataset
-> 📘 pull_update_push is the easiest way to edit documents in a single dataset
->
-> To quickly try out new experiments on your entire dataset, we built `pull_update_push` to easily update all documents in a dataset. It uses Python's function callables to help accelerate the modification process and immediately update documents in the vector database.
-An example of `pull_update_push` can be found here in which a new field `new_parameter` is added to every single document in a specified dataset.
-
-```python Python (SDK)
-def encode_documents(documents):
-    for d in documents:
-        d["new_parameter"] = "new_value"
-    return documents
-```
-```python
-```
-
-```python Python (SDK)
-client.pull_update_push(
-    dataset_id = "quickstart",
-    update_function = encode_documents
-)
-```
-```python
-```
-
-## About Pull Update Push
-
-In `pull_update_push`, we are modifying documents and updating them into the vector database. However, there is always a chance that the process can break. We do not want to necessarily re-process the already processed ones. Therefore, it also logs IDs that are processed to a separate logging collection. If we want to continue processing, we can specify the `logging_collection` parameter in `pull_update_push`.
-
-<figure>
-<img src="https://github.com/RelevanceAI/RelevanceAI-readme-docs/blob/v0.33.2/docs_template/GENERAL_FEATURES/creating-a-dataset/_assets/pull-update-push.png?raw=true" width="2492" alt="untitled@2x (1).png" />
-<figcaption>Architecture diagram of `pull_update_push`</figcaption>
-<figure>
+The easiest way to modify and update all documents in a dataset is to run `df.apply` in the Python SDK.
 

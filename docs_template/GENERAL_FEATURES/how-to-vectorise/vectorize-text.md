@@ -10,15 +10,15 @@ updatedAt: "2022-01-20T04:15:52.154Z"
 
 [VectorHub](https://github.com/RelevanceAI/vectorhub) provides users with access to various state of the art encoders to vectorize different data types such as text or image. It manages the encoding process as well, allowing users to focus on the data they want to encode rather than the actual model behind the scene.
 On this page, we introduce some of the text encoders:
-* **encoders-text-tfhub**
+* encoders-text-tfhub
 * sentence-transformers
 
 ### encoders-text-tfhub
-First, `vectorhub encoders-text-tfhub` must be installed. Restart the notebook when the installation is finished.
+First, `vectorhub[encoders-text-tfhub]` must be installed. Restart the notebook when the installation is finished.
 
 @@@ vectorhub_encoders_text_tfhub_installation @@@
 
-Then we import Universal Sentence Encoder (USE) and instantiate and encoder object.
+Then we import Universal Sentence Encoder (USE) and instantiate an encoder object.
 
 @@@ use_enc @@@
 
@@ -26,7 +26,24 @@ Encoding a single text input via the `encode` function and encoding a specified 
 
 @@@ encode_a_sample, SAMPLE=ENCODING_SAMPLE @@@
 
-@@@ encode_documents, DOCS=SAMPLE_DOCS, FIELD=ENCODE_FIELD @@@
+@@@ encode_documents, DOCUMENTS=SAMPLE_DOCUMENTS, FIELD=ENCODE_FIELD @@@
+
+
+### sentence-transformers
+First, `vectorhub[sentence-transformers]` must be installed. Restart the notebook when the installation is finished.
+
+@@@ vectorhub_encoders_sentence_transformers @@@
+
+Then we import SentenceTransformers and instantiate an encoder object.
+
+@@@ use_enc @@@
+
+Encoding a single text input via the `encode` function and encoding a specified text field in the whole data (i.e. list of dictionaries) via the `encode_documents` function are shown below.
+
+@@@ encode_a_sample, SAMPLE=ENCODING_SAMPLE @@@
+
+@@@ encode_documents, DOCUMENTS=SAMPLE_DOCUMENTS, FIELD=ENCODE_FIELD @@@
+
 
 ### Encoding an entire dataset
 

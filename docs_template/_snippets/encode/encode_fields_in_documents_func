@@ -1,4 +1,4 @@
 python
 def encode_documents(documents):
     # Field and then the documents go here
-    return enc.encode_documents([<<FIELD>>], documents)
+    return model.encode_documents([<<FIELD>>], documents)

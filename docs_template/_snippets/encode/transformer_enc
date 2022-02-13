@@ -1,4 +1,4 @@
-python
+python MODEL_NAME="all-mpnet-base-v2"
 from vectorhub.encoders.text.sentence_transformers import SentenceTransformer2Vec
 
-enc = SentenceTransformer2Vec("all-mpnet-base-v2 ")
+model = SentenceTransformer2Vec(<<MODEL_NAME>>)

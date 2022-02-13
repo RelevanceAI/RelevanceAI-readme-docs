@@ -1,6 +1,6 @@
-python
+python IMG_DOCS=documents
 # documents are saved as a list of dictionaries
 documents=<<IMG_DOCS>>
 
 # Encode the images accessible from the URL saved in `image_url` field in a list of documents
-docs_with_vecs = enc.encode_documents(["<<FIELD>>"], documents)
+docs_with_vecs = model.encode_documents([<<FIELD>>], documents)

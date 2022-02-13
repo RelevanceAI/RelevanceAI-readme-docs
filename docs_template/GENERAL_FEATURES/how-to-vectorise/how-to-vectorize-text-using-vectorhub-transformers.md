@@ -1,5 +1,5 @@
 ---
-title: "How to vectorize text using VectorHub-Transformers"
+title: "How to vectorize text using VectorHub - Transformers"
 slug: "how-to-vectorize-text-using-vectorhub-transformers"
 excerpt: "A guide on vectorizing text using Vectorhub"
 hidden: false
@@ -25,25 +25,34 @@ Encoding a single text input via the `encode` function and encoding a specified 
 
 @@@ encode_a_sample, SAMPLE=ENCODING_SAMPLE @@@
 
-@@@ encode_documents, DOCS=SAMPLE_DOCS, FIELD=ENCODE_FIELD @@@
+@@@ encode_documents, DOCUMENTS=SAMPLE_DOCS, FIELD=ENCODE_FIELD; upsert_documents, DOCUMENTS=encoded_documents @@@
 
-### Encoding an entire dataset
+### Encoding an entire dataset using df.apply()
 
-The easiest way to update an existing dataset with encoding results is to run `pull_update_push`. This function fetches all the data-points in a dataset, runs the specified function (i.e. encoding in this case) and writes the result back to the dataset.
+The easiest way to update an existing dataset with encoding results is to run `df.apply`. This function fetches all the data-points in a dataset, runs the specified function (i.e. encoding in this case) and writes the result back to the dataset.
 
 For instance, in the sample code below, we use a dataset called `ecommerce_dataset`, and encode the `product_description` field using the `SentenceTransformer2Vec` encoder.
 
-@@@ encode_fields_in_documents_func, FIELD=PRODUCT_DESCRIPTION_FIELD @@@
-
-@@@ pull_update_push, DATASET_ID=ECOMMERCE_DATASET_ID, FUNCTION=ENCODE_DOCUMENTS_FUNC @@@
-
+@@@ apply_encoding, FIELD="sentence", VECTOR_FIELD="sentence_vector" @@@
 ### Some famous models
+
+#### Encoding using native Transformers
+
+
 * BERT
 Below, we show an example of how to get vectors from the popular [**BERT**](https://huggingface.co/transformers/v3.0.2/model_doc/bert.html) model from HuggingFace Transformers library.
 
 @@@ bert_full_snippet @@@
 
+#### Encoding using Vectorhub's Sentence Transformers
+
+Vectorhub helps us to more easily work with models to encode fields in our documents of different modal types.
+
+
 * CLIP
 Below, we show an example of how to get vectors from the popular [**CLIP**](https://huggingface.co/sentence-transformers/clip-ViT-B-32) model from HuggingFace Transformers library.
 
 @@@ clip_encode_a_text_snippet, SAMPLE=ENCODING_SAMPLE @@@
+
+
+@@@ clip_enc_img_docs, IMG_DOCS=SAMPLE_IMG_DOCS, FIELD=IMG_URL_FIELD @@@

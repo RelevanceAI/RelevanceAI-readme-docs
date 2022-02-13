@@ -23,12 +23,11 @@ Encoding a single image input via the `encode` function and encoding a specified
 @@@ clip_enc_img_docs, IMG_DOCS=SAMPLE_IMG_DOCS, FIELD=IMG_URL_FIELD @@@
 
 
-### Encoding an entire dataset
+### Encoding an entire dataset using `df.apply()`
 
-The easiest way to update an existing dataset with encoding results is to run `pull_update_push`. This function fetches all the data-points in a dataset, runs the specified function (i.e. encoding in this case) and writes the result back to the dataset.
+The easiest way to update an existing dataset with encoding results is to run `df.apply`. This function fetches all the data-points in a dataset, runs the specified function (i.e. encoding in this case) and writes the result back to the dataset.
 
 For instance, in the sample code below, we use a dataset called `ecommerce_dataset` and encode the `product_image` field using the `clip` encoder.
 
-@@@ encode_fields_in_documents_func, FIELD="product_image" @@@
+@@@ apply_encoding, FIELD="sentence", VECTOR_FIELD="sentence_vector"  @@@
 
-@@@ pull_update_push, DATASET_ID=ECOMMERCE_DATASET_ID, FUNCTION=ENCODE_DOCUMENTS_FUNC @@@

@@ -12,7 +12,7 @@ To be able to conduct vector experiments using Relevance AI, you need to sign up
 
 After uploading a dataset to your account in Relevance AI, you can preview your data in the dashboard https://cloud.relevance.ai under Dataset. Note that if you just started, your account will be empty!
 
-[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/RelevanceAI/RelevanceAI-readme-docs/blob/v0.33.2/docs/GENERAL_FEATURES/creating-a-dataset/_notebooks/creating-a-dataset.ipynb)
+Open an example in Colab: [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/RelevanceAI/RelevanceAI-readme-docs/blob/v0.33.2/docs/GENERAL_FEATURES/creating-a-dataset/_notebooks/creating-a-dataset.ipynb)
 
 
 <figure>

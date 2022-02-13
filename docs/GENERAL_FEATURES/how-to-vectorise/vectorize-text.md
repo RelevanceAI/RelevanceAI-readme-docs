@@ -10,11 +10,11 @@ updatedAt: "2022-01-20T04:15:52.154Z"
 
 [VectorHub](https://github.com/RelevanceAI/vectorhub) provides users with access to various state of the art encoders to vectorize different data types such as text or image. It manages the encoding process as well, allowing users to focus on the data they want to encode rather than the actual model behind the scene.
 On this page, we introduce some of the text encoders:
-* **encoders-text-tfhub**
+* encoders-text-tfhub
 * sentence-transformers
 
 ### encoders-text-tfhub
-First, `vectorhub encoders-text-tfhub` must be installed. Restart the notebook when the installation is finished.
+First, `vectorhub[encoders-text-tfhub]` must be installed. Restart the notebook when the installation is finished.
 
 ```bash Bash
 !pip install vectorhub[encoders-text-tfhub]
@@ -22,12 +22,12 @@ First, `vectorhub encoders-text-tfhub` must be installed. Restart the notebook w
 ```bash
 ```
 
-Then we import Universal Sentence Encoder (USE) and instantiate and encoder object.
+Then we import Universal Sentence Encoder (USE) and instantiate an encoder object.
 
 ```python Python (SDK)
 from vectorhub.encoders.text.tfhub import USE2Vec
 
-enc = USE2Vec()
+model = USE2Vec()
 ```
 ```python
 ```
@@ -36,20 +36,60 @@ Encoding a single text input via the `encode` function and encoding a specified 
 
 ```python Python (SDK)
 # Encode a single input
-enc.encode("I love working with vectors.")
+model.encode("I love working with vectors.")
 ```
 ```python
 ```
 
 ```python Python (SDK)
 # documents are saved as a list of dictionaries
-documents = [{'sentence': '"This is the first sentence."', '_id': 1}, {'sentence': '"This is the second sentence."', '_id': 2}]
+documents = SAMPLE_DOCUMENTS
 
 # Encode the `"sentence"` field in a list of documents
-docs_with_vectors = enc.encode_documents(["sentence"], documents)
+encoded_documents = model.encode_documents(["sentence"], documents)
 ```
 ```python
 ```
+
+
+### sentence-transformers
+First, `vectorhub[sentence-transformers]` must be installed. Restart the notebook when the installation is finished.
+
+```bash Bash
+!pip install vectorhub[sentence-transformers]
+```
+```bash
+```
+
+Then we import SentenceTransformers and instantiate an encoder object.
+
+```python Python (SDK)
+from vectorhub.encoders.text.tfhub import USE2Vec
+
+model = USE2Vec()
+```
+```python
+```
+
+Encoding a single text input via the `encode` function and encoding a specified text field in the whole data (i.e. list of dictionaries) via the `encode_documents` function are shown below.
+
+```python Python (SDK)
+# Encode a single input
+model.encode("I love working with vectors.")
+```
+```python
+```
+
+```python Python (SDK)
+# documents are saved as a list of dictionaries
+documents = SAMPLE_DOCUMENTS
+
+# Encode the `"sentence"` field in a list of documents
+encoded_documents = model.encode_documents(["sentence"], documents)
+```
+```python
+```
+
 
 ### Encoding an entire dataset
 
@@ -61,7 +101,7 @@ You can see the list of the available list of models for vectorising here using 
 ```python Python (SDK)
 def encode_documents(documents):
     # Field and then the documents go here
-    return enc.encode_documents(["product_description"], documents)
+    return model.encode_documents(["product_description"], documents)
 ```
 ```python
 ```
