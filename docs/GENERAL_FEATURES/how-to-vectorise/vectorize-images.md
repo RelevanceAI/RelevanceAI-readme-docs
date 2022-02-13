@@ -32,7 +32,7 @@ enc.encode = enc.encode_image
 If you have a fine-tuned model, place the **filepath** into the model as shown below:
 """
 
-enc = Clip2Vec(")
+enc = Clip2Vec("<FINETUNED_MODEL_PATH>")
 ```
 ```python
 ```
@@ -42,7 +42,7 @@ enc = Clip2Vec(")
 documents=[{'image_url': 'https://relevance.ai/wp-content/uploads/2021/10/statue-illustration.png'}, {'image_url': 'https://relevance.ai/wp-content/uploads/2021/09/Group-193-1.png'}]
 
 # Encode the images accessible from the URL saved in `image_url` field in a list of documents
-docs_with_vecs = enc.encode_documents(["image_url"], documents)
+docs_with_vecs = enc.encode_documents([""image_url""], documents)
 ```
 ```python
 ```
@@ -64,7 +64,7 @@ def encode_documents(documents):
 
 ```python Python (SDK)
 client.pull_update_push(
-    dataset_id = ecommerce_dataset,
+    dataset_id = "ecommerce_dataset",
     update_function = encode_documents
 )
 ```

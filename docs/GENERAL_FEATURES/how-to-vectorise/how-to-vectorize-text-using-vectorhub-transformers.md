@@ -11,6 +11,7 @@ updatedAt: "2022-01-24T00:15:14.549Z"
 [VectorHub](https://github.com/RelevanceAI/vectorhub) provides users with access to various state of the art encoders to vectorize different data types such as text or image. It manages the encoding process as well, allowing users to focus on the data they want to encode rather than the actual model behind the scene.
 On this page, we introduce sentence-transformer based text encoders.
 
+[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/RelevanceAI/RelevanceAI-readme-docs/blob/v0.33.2/docs/GENERAL_FEATURES/how-to-vectorizet/_notebooks/how-to-vectorize.ipynb)
 ### sentence-transformers
 First, `sentence-transformers` must be installed. Restart the notebook when the installation is finished.
 
@@ -43,8 +44,8 @@ enc.encode("I love working with vectors.")
 # documents are saved as a list of dictionaries
 documents = [{'sentence': '"This is the first sentence."', '_id': 1}, {'sentence': '"This is the second sentence."', '_id': 2}]
 
-# Encode the `sentence` field in a list of documents
-docs_with_vectors = enc.encode_documents([sentence], documents)
+# Encode the `"sentence"` field in a list of documents
+docs_with_vectors = enc.encode_documents(["sentence"], documents)
 ```
 ```python
 ```
@@ -58,14 +59,14 @@ For instance, in the sample code below, we use a dataset called `ecommerce_datas
 ```python Python (SDK)
 def encode_documents(documents):
     # Field and then the documents go here
-    return enc.encode_documents([product_description], documents)
+    return enc.encode_documents(["product_description"], documents)
 ```
 ```python
 ```
 
 ```python Python (SDK)
 client.pull_update_push(
-    dataset_id = ecommerce_dataset,
+    dataset_id = "ecommerce_dataset",
     update_function = encode_documents
 )
 ```

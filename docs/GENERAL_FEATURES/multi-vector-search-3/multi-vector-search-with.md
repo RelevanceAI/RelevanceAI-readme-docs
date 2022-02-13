@@ -58,7 +58,7 @@ See the guide on [How to vectorize](doc:vectorize-text) to learn how to define d
 And vectorizing your text query.
 
 ```python Python (SDK)
-query = white sneakers
+query = "white sneakers"
 query_vec_txt = enc.encode(query)
 ```
 ```python
@@ -75,7 +75,7 @@ Another great sample of multivector search in the Relevance AI platform is how m
 multivector_query=[
 	{
 	"vector": query_vec_txt,
-	"fields": {"title_vector_":0.6, "description_vector_":0.3}},
+	"fields": {""title_vector_"":0.6, ""description_vector_"":0.3}},
 	},
 	]
 ```

@@ -45,8 +45,8 @@ enc.encode("I love working with vectors.")
 # documents are saved as a list of dictionaries
 documents = [{'sentence': '"This is the first sentence."', '_id': 1}, {'sentence': '"This is the second sentence."', '_id': 2}]
 
-# Encode the `sentence` field in a list of documents
-docs_with_vectors = enc.encode_documents([sentence], documents)
+# Encode the `"sentence"` field in a list of documents
+docs_with_vectors = enc.encode_documents(["sentence"], documents)
 ```
 ```python
 ```
@@ -61,14 +61,14 @@ You can see the list of the available list of models for vectorising here using 
 ```python Python (SDK)
 def encode_documents(documents):
     # Field and then the documents go here
-    return enc.encode_documents([product_description], documents)
+    return enc.encode_documents(["product_description"], documents)
 ```
 ```python
 ```
 
 ```python Python (SDK)
 client.pull_update_push(
-    dataset_id = ecommerce_dataset,
+    dataset_id = "ecommerce_dataset",
     update_function = encode_documents
 )
 ```

@@ -30,7 +30,6 @@ First, the Relevance AI SDK package must be installed.
 ```bash
 ```
 
-
 ```python Python (SDK)
 from relevanceai import Client
 
@@ -43,36 +42,14 @@ client = Client()
 ```python
 ```
 
-Uploading a CSV file while marking a field called `REF-No` as the unique identifier:
+
+Uploading a CSV file is as simple as specifying the CSV path to your file.
 
 ```python Python (SDK)
-CSV_PATH = "
-DATASET_ID = "quickstart"
-COL_FOR_ID = "REF-No"
-
-client.insert_csv(
- dataset_id = DATASET_ID,
- filepath_or_buffer = CSV_PATH,
- col_for_id = COL_FOR_ID,
- index_col = 0
-)
+csv_fpath = "<CSV_PATH>"
+df.insert_csv(filepath_or_buffer = csv_fpath)
 ```
 ```python
 ```
 
-If your dataset does not include any unique identifier per document, we can create one for you. You can turn off this feature by setting `auto_generate_id=False` when inserting.
-
-```python Python (SDK)
-CSV_PATH = "PATH_TO_THE_CSV_FILE"
-DATASET_ID = "quickstart"
-
-client.insert_csv(
- dataset_id = DATASET_ID,
- filepath_or_buffer = CSV_PATH,
- auto_generate_id = True, # to allow automatic id generation
- index_col = 0
-)
-```
-```python
-```
 

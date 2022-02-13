@@ -26,13 +26,10 @@ First, the Relevance AI SDK package must be installed.
 
 @@@ relevanceai_installation, RELEVANCEAI_SDK_VERSION=RELEVANCEAI_SDK_VERSION @@@
 
-
 @@@ client_instantiation @@@
 
-Uploading a CSV file while marking a field called `REF-No` as the unique identifier:
 
-@@@ insert_csv, DATASET_ID=QUICKSTART_DATASET_ID@@@
+Uploading a CSV file is as simple as specifying the CSV path to your file.
 
-If your dataset does not include any unique identifier per document, we can create one for you. You can turn off this feature by setting `auto_generate_id=False` when inserting.
+@@@ insert_csv @@@
 
-@@@ insert_csv_no_id, DATASET_ID=QUICKSTART_DATASET_ID @@@

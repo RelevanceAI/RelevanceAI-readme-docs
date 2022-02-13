@@ -30,8 +30,7 @@ df.insert_documents(documents)
 To only update specific documents, use `update_documents` as shown in the example below:
 
 ```python Python (SDK)
-documents = [{"_id": "example_id", "value": 3}]
-df.upsert_documents(documents=documents)
+df.upsert_documents(documents=[{"_id": "example_id", "value": 3}])
 ```
 ```python
 ```

@@ -1,11 +1,3 @@
-python DATASET_ID=DATASET_ID, CSV_PATH="<CSV_FILE_PATH>", COL_FOR_ID="REF-No"
-CSV_PATH = <<CSV_PATH>>
-DATASET_ID = <<DATASET_ID>>
-COL_FOR_ID = <<COL_FOR_ID>>
-
-client.insert_csv(
- dataset_id = DATASET_ID,
- filepath_or_buffer = CSV_PATH,
- col_for_id = COL_FOR_ID,
- index_col = 0
-)
+python CSV_PATH="<CSV_PATH>"
+csv_fpath = <<CSV_PATH>>
+df.insert_csv(filepath_or_buffer = csv_fpath)

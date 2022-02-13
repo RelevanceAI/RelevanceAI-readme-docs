@@ -58,19 +58,19 @@ See the guide on [How to vectorize](doc:vectorize-text) to learn how to define d
 Calling the three different vectorizers to vectorize the quary:
 
 ```python Python (SDK)
-query = white sneakers
+query = "white sneakers"
 query_vec_txt = enc_default.encode(query)
 ```
 ```python
 ```
 ```python Python (SDK)
-query = white sneakers
+query = "white sneakers"
 query_vec_txt = enc_textmulti.encode(query)
 ```
 ```python
 ```
 ```python Python (SDK)
-query = white sneakers
+query = "white sneakers"
 query_vec_txt = "enc_imagetext".encode(query)
 ```
 ```python
@@ -85,9 +85,9 @@ In the sample code below, we show how a vector search can be done by combining a
 ```python Python (SDK)
 # Create a multivector query
 multivector_query = [
-    {"vector": query_vec_txt, "fields": description_default_vector_},
-    {"vector": query_vec_txtmulti, "fields": descriptiontextmulti_vector_},
-    {"vector": query_vec_txtimg, "fields": description_imagetext_vector_}
+    {"vector": query_vec_txt, "fields": "description_default_vector_"},
+    {"vector": query_vec_txtmulti, "fields": "descriptiontextmulti_vector_"},
+    {"vector": query_vec_txtimg, "fields": "description_imagetext_vector_"}
 ]
 ```
 ```python

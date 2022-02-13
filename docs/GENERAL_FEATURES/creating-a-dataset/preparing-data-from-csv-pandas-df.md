@@ -1,7 +1,7 @@
 ---
 title: "Preparing data from CSV / Pandas Dataframe"
 slug: "preparing-data-from-csv-pandas-df"
-hidden: false
+hidden: true
 createdAt: "2021-11-02T00:00:24.907Z"
 updatedAt: "2022-01-17T02:18:18.269Z"
 ---

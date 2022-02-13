@@ -63,7 +63,7 @@ filter = [
     {
         "field" : "insert_date_",
         "filter_type" : "date",
-        "condition": ",
+        "condition": ">,
         "condition_value": "2020-07-01"
     }
 ]

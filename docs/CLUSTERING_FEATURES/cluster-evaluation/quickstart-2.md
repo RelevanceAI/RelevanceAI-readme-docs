@@ -52,7 +52,7 @@ documents = get_ecommerce_dataset_encoded()
 ```
 
 ```python Python (SDK)
-df = client.Dataset(QUICKSTART_KMEANS_CLUSTERING_DATASET_ID)
+df = client.Dataset("quickstart_kmeans_clustering")
 df.insert_documents(documents)
 ```
 ```python
@@ -71,7 +71,7 @@ The following code clusters the *product_image_clip_vector_* field using the KMe
 ```python Python (SDK)
 from relevanceai.clusterer import KMeansModel
 
-VECTOR_FIELD = PRODUCT_TITLE_CLIP_VEC
+VECTOR_FIELD = "product_title_clip_vector_"
 KMEAN_NUMBER_OF_CLUSTERS = 10
 ALIAS = "kmeans_" + str(KMEAN_NUMBER_OF_CLUSTERS)
 

@@ -66,7 +66,7 @@ documents = [
 	{"_id": "4", "example_vector_": [0.5, 0.5, 0.5], "data": "This is another doc"},
 ]
 
-df = client.Dataset(QUICKSTART_KMEANS_CLUSTERING_DATASET_ID)
+df = client.Dataset("quickstart_kmeans_clustering")
 df.insert_documents(documents)
 ```
 ```python
@@ -105,7 +105,7 @@ To run KMeans Clustering, we need to first define a clustering object, `KMeansMo
 ```python Python (SDK)
 from relevanceai.clusterer import KMeansModel
 
-VECTOR_FIELD = PRODUCT_TITLE_CLIP_VEC
+VECTOR_FIELD = "product_title_clip_vector_"
 KMEAN_NUMBER_OF_CLUSTERS = 5
 ALIAS = "kmeans_" + str(KMEAN_NUMBER_OF_CLUSTERS)
 

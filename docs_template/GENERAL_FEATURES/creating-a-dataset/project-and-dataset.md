@@ -46,7 +46,7 @@ See [Inserting and updating documents](doc:inserting-data) for more details on h
 
 > 🚧 Remember!
 >
-> * You cannot rename datasets or rename/edit existing field names. However, you can copy datasets and edit field names using the [`clone`](https://relevanceai.github.io/RelevanceAI/docs/html/relevanceai.api.endpoints.html?highlight=clone#relevanceai.api.endpoints.datasets.Datasets.clone) feature.
+> * You cannot rename datasets or rename/edit existing field names. However, you can copy datasets and edit field names using the [`clone`](https://relevanceai.readthedocs.io/en/v0.33.2/client.html#relevanceai.http_client.Client.clone_dataset) feature.
 
 
 * Id field: Relevance AI platform identifies unique data entries within a dataset using a field called `_id` (i.e. every document in the dataset must include an `_id` field with a unique value per document).
