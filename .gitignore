@@ -19,12 +19,15 @@ env.bak/
 venv.bak/
 .vscode/
 
+## RelevanceAI ReadMe Error Log
 readme_notebook_error_log*.txt
 
-*.bak
-
+## Notebook metatadata
 *.ipynb_checkpoints
-
 _*.ipynb
 
+
+## RelevanceAI SDK Metadata
 *creds*
+
+*.log

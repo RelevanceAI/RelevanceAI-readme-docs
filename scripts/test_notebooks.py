@@ -242,7 +242,7 @@ def main(args):
         notebooks = args.notebooks
         if len(notebooks)==1:
             if Path(notebooks[0]).is_dir():
-                notebooks = [f for f in Path(notebooks[0]).glob('**/*.ipynb') if '.ipynb_checkpoints' not in f ]
+                notebooks = [f for f in Path(notebooks[0]).glob('**/*.ipynb') if '.ipynb_checkpoints' not in str(f) ]
     else:
         ## All notebooks
         notebooks = [

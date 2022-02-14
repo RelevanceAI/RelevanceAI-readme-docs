@@ -93,24 +93,28 @@ encoded_documents = model.encode_documents(["sentence"], documents)
 
 ### Encoding an entire dataset
 
-The easiest way to update an existing dataset with encoding results is to run `pull_update_push`. This function fetches all the data-points in a dataset, runs the specified function (i.e. encoding in this case) and writes the result back to the dataset.
+The easiest way to update an existing dataset with encoding results is to run `df.apply`. This function fetches all the data-points in a dataset, runs the specified function (i.e. encoding in this case) and writes the result back to the dataset.
 
 For instance, in the sample code below, we use a dataset called `ecommerce_dataset`, and encodes the `product_description` field using the `USE2Vec` encoder.
 You can see the list of the available list of models for vectorising here using [Vectorhub](https://github.com/RelevanceAI/vectorhub) or feel free to bring your own model(s).
 
 ```python Python (SDK)
-def encode_documents(documents):
-    # Field and then the documents go here
-    return model.encode_documents(["product_description"], documents)
+import pandas as pd
+from relevanceai.datasets import get_ecommerce_dataset_clean
+
+# Retrieve our sample dataset. - This comes in the form of a list of documents.
+documents = get_ecommerce_dataset_clean()
+
+pd.DataFrame.from_dict(documents).head()
+
+df = client.Dataset('quickstart_example_encoding')
+df.insert_documents(documents)
 ```
 ```python
 ```
 
 ```python Python (SDK)
-client.pull_update_push(
-    dataset_id = "ecommerce_dataset",
-    update_function = encode_documents
-)
+df["product_title"].apply(lambda x: model.encode(x), output_field="product_title_vector_")
 ```
 ```python
 ```

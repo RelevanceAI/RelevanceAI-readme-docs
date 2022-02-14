@@ -1,6 +1,6 @@
 ---
 title: "Filters"
-slug: "contains"
+slug: "filters-1"
 hidden: false
 createdAt: "2021-11-21T07:05:21.922Z"
 updatedAt: "2022-01-19T04:01:08.086Z"
@@ -15,9 +15,11 @@ For instance, in an e-commerce dataset, we can retrieve all products:
 * with prices between 200 and 300 dollars
 * with the phrase "free return" included in `description` field
 * that are produced after January 2020
+
 > 📘 Filters help us find what we need.
 >
 > Filters are great tools to retrieve a subset of documents whose data match certain criteria. This allows us to have a more fine-grained overview of the data since only documents that meet the filtering criteria will be displayed.
+>
 # How to form a filter?
 
 Filters at Relevance AI are defined as Python dictionaries with four main keys:

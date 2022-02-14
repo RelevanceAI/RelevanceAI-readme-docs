@@ -6,7 +6,7 @@ hidden: false
 createdAt: "2021-12-14T02:24:01.377Z"
 updatedAt: "2022-01-19T05:18:17.107Z"
 ---
-# Or
+# `or`
 
 
 The `or` filter helps you filter for multiple conditions. Unlike other filters, the only values used here are `filter_type` and `condition_value`.

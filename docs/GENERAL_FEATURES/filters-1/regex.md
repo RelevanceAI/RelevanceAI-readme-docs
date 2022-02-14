@@ -10,7 +10,7 @@ updatedAt: "2022-01-19T05:16:17.784Z"
 <figcaption>Filtering documents containing "Durian (\w+)" in description using filter_type `regexp`.</figcaption>
 <figure>
 
-## `Regex`
+## `regex`
 This filter returns a document only if it matches regexp (i.e. regular expression). Note that substrings are covered in this category. For instance, if a product name is composed of a name and a number (e.g. ABC-123), one might remember the name but not the number. This filter can easily return all products including the ABC string.
 
 Relevance AI has the same regular expression schema as Apache Lucene's ElasticSearch to parse queries.

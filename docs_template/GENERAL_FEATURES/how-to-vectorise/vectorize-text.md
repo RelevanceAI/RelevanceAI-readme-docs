@@ -47,11 +47,11 @@ Encoding a single text input via the `encode` function and encoding a specified 
 
 ### Encoding an entire dataset
 
-The easiest way to update an existing dataset with encoding results is to run `pull_update_push`. This function fetches all the data-points in a dataset, runs the specified function (i.e. encoding in this case) and writes the result back to the dataset.
+The easiest way to update an existing dataset with encoding results is to run `df.apply`. This function fetches all the data-points in a dataset, runs the specified function (i.e. encoding in this case) and writes the result back to the dataset.
 
 For instance, in the sample code below, we use a dataset called `ecommerce_dataset`, and encodes the `product_description` field using the `USE2Vec` encoder.
 You can see the list of the available list of models for vectorising here using [Vectorhub](https://github.com/RelevanceAI/vectorhub) or feel free to bring your own model(s).
 
-@@@ encode_fields_in_documents_func, FIELD=PRODUCT_DESCRIPTION_FIELD @@@
+@@@ get_ecommerce_dataset_clean; dataset_basics, DATASET_ID='quickstart_example_encoding'@@@
 
-@@@ pull_update_push, DATASET_ID=ECOMMERCE_DATASET_ID, FUNCTION=ENCODE_DOCUMENTS_FUNC @@@
+@@@ apply_encoding, FIELD="product_title", VECTOR_FIELD="product_title_vector_" @@@
