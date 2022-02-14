@@ -13,7 +13,7 @@ The JSONViewer allows Jupyter Notebook users to quickly view JSONs as if they we
 To install, users simply run:
 
 ```bash Bash
-!pip install -U RelevanceAI[notebook]==1.0.6
+!pip install -U RelevanceAI[notebook]==1.0.7
 ```
 ```bash
 ```
