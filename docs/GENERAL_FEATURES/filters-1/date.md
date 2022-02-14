@@ -6,7 +6,7 @@ createdAt: "2021-11-25T06:20:15.175Z"
 updatedAt: "2022-01-19T05:16:58.720Z"
 ---
 <figure>
-<img src="https://github.com/RelevanceAI/RelevanceAI-readme-docs/blob/v0.33.2/docs_template/GENERAL_FEATURES/_assests/date.png" width="1208" alt="date.png" />
+<img src="https://github.com/RelevanceAI/RelevanceAI-readme-docs/blob/v0.33.2/docs_template/GENERAL_FEATURES/_assets/date.png?raw=true" width="600"  alt="date.png" />
 <figcaption>Filtering documents which were added to the database after January 2021.</figcaption>
 <figure>
 
@@ -41,7 +41,7 @@ df = client.Dataset(DATASET_ID)
 ```python Python (SDK)
 filter = [
     {
-        "field": insert_date_,
+        "field": "insert_date_",
         "filter_type": date,
         "condition": ==,
         "condition_value": 2020-07-01
@@ -56,7 +56,7 @@ Note that the default format is "yyyy-mm-dd" but can be changed to "yyyy-dd-mm" 
 ```python Python (SDK)
 filter = [
     {
-        "field": insert_date_,
+        "field": "insert_date_",
         "filter_type": date,
         "condition": ==,
         "condition_value": 2020-07-01,

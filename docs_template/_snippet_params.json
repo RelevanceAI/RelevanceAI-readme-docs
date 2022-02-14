@@ -48,7 +48,7 @@
 "4D"],
 "CONTAINS_VAL": "Asian",
 "BRAND_FIELD": "brand",
-"INSERT_DATE_FIELD": "insert_date_",
+"INSERT_DATE_FIELD": "\"insert_date_\"",
 "CATEGORY_FILTER_TYPE": "categories",
 "CONTAINS_FILTER_TYPE": "contains",
 "DATE_FILTER_TYPE": "date",
