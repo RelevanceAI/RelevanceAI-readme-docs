@@ -6,7 +6,7 @@ createdAt: "2021-11-25T22:22:07.285Z"
 updatedAt: "2022-01-19T05:17:10.638Z"
 ---
 <figure>
-<img src="https://github.com/RelevanceAI/RelevanceAI-readme-docs/blob/v0.33.2/docs_template/GENERAL_FEATURES/_assets/id.png?raw=true" width="612" alt="id.png" />
+<img src="https://github.com/RelevanceAI/RelevanceAI-readme-docs/blob/v1.0.5/docs_template/GENERAL_FEATURES/_assets/id.png?raw=true" width="612" alt="id.png" />
 <figcaption>Filtering documents based on their id.</figcaption>
 <figure>
 

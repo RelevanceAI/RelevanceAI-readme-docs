@@ -23,6 +23,7 @@ pip install RelevanceAI==0.27.0
 ```shell
 ```
 Next a client object must be instantiated:
+
 ```python Python (SDK)
 from relevanceai import Client
 

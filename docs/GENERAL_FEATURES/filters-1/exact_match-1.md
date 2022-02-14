@@ -6,7 +6,7 @@ createdAt: "2021-11-25T05:44:25.366Z"
 updatedAt: "2022-01-19T05:16:37.437Z"
 ---
 <figure>
-<img src="https://github.com/RelevanceAI/RelevanceAI-readme-docs/blob/v0.33.2/docs_template/GENERAL_FEATURES/_assets/word-match.png?raw=true" width="1974" alt="wordmatch.png" />
+<img src="https://github.com/RelevanceAI/RelevanceAI-readme-docs/blob/v1.0.5/docs_template/GENERAL_FEATURES/_assets/word-match.png?raw=true" width="1974" alt="wordmatch.png" />
 <figcaption>Filtering documents matching "Home curtain" in the description field.</figcaption>
 <figure>
 
@@ -14,7 +14,7 @@ updatedAt: "2022-01-19T05:16:37.437Z"
 This filter has similarities to both `exact_match` and `contains`. It returns a document only if it contains a **word** value matching the filter; meaning substrings are covered in this category but as long as they can be extracted with common word separators like the white-space (blank). For instance, the filter value "Home Gallery",  can lead to extraction of a document with "Buy Home Fashion Gallery Polyester ..." in the description field as both words are explicitly seen in the text. *Note that this filter is case-sensitive.*
 
 ```bash Bash
-!pip install -U RelevanceAI[notebook]==0.33.2
+!pip install -U RelevanceAI[notebook]==1.0.5
 ```
 ```bash
 ```

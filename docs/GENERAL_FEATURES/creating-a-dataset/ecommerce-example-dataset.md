@@ -13,7 +13,7 @@ In this section, we show you how to create a copy of a dataset from one project 
 First Relevance AI's Python SDK must be installed and then a client object must be instantiated as shown below:
 
 ```bash Bash
-!pip install -U RelevanceAI[notebook]==0.33.2
+!pip install -U RelevanceAI[notebook]==1.0.5
 ```
 ```bash
 ```
