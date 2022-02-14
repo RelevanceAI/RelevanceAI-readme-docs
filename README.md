@@ -114,7 +114,7 @@ By following instructions below, you will be able to preview/create any given ve
     ```
 12. Commit your changes if what you see in the ReadMe documentation is correct! 🎉💪🏻
 
-See [./scripts/README](./scripts/README) for more details about the build and sync scripts.
+See [./scripts/README.md](./scripts/README.md) for more details about the build and sync scripts.
 
 
 

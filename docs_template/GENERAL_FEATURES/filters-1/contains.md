@@ -1,6 +1,6 @@
 ---
 title: "Contains"
-slug: "filters-2"
+slug: "contains"
 hidden: false
 createdAt: "2021-11-25T05:18:31.045Z"
 updatedAt: "2022-01-19T05:16:24.396Z"
@@ -9,6 +9,8 @@ updatedAt: "2022-01-19T05:16:24.396Z"
 <img src="https://github.com/RelevanceAI/RelevanceAI-readme-docs/blob/v0.33.2/docs_template/GENERAL_FEATURES/_assets/contains.png?raw=true" width="2048" alt="contains.png" />
 <figcaption>Filtering documents containing "Durian BID" in description using filter_type `contains`.</figcaption>
 <figure>
+
+
 ## `contains`
 
 This filter returns a document only if it contains a string value. Note that substrings are covered in this category. For instance, if a product name is composed of a name and a number (e.g. ABC-123), one might remember the name but not the number. This filter can easily return all products including the ABC string.

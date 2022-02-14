@@ -1,6 +1,6 @@
 ---
 title: "Filters"
-slug: "filters-1"
+slug: "contains"
 hidden: false
 createdAt: "2021-11-21T07:05:21.922Z"
 updatedAt: "2022-01-19T04:01:08.086Z"
