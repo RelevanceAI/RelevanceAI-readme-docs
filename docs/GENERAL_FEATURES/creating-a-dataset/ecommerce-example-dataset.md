@@ -13,7 +13,7 @@ In this section, we show you how to create a copy of a dataset from one project 
 First Relevance AI's Python SDK must be installed and then a client object must be instantiated as shown below:
 
 ```bash Bash
-!pip install -U RelevanceAI[notebook]==1.0.7
+!pip install -U RelevanceAI[notebook]==1.1.1
 ```
 ```bash
 ```
@@ -23,7 +23,7 @@ from relevanceai import Client
 
 """
 You can sign up/login and find your credentials here: https://cloud.relevance.ai/sdk/api
-Once you have signed up, click on the value under `Authorization token` and paste it here
+Once you have signed up, click on the value under `Activation token` and paste it here
 """
 client = Client()
 ```

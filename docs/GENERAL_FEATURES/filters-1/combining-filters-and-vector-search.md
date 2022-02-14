@@ -6,7 +6,7 @@ createdAt: "2021-11-25T22:33:06.798Z"
 updatedAt: "2022-01-19T05:12:49.766Z"
 ---
 <figure>
-<img src="https://github.com/RelevanceAI/RelevanceAI-readme-docs/blob/v1.0.7/docs_template/GENERAL_FEATURES/_assets/combine.png?raw=true" width="1014" alt="filter+vectors.png" />
+<img src="https://github.com/RelevanceAI/RelevanceAI-readme-docs/blob/v1.1.1/docs_template/GENERAL_FEATURES/_assets/combine.png?raw=true" width="1014" alt="filter+vectors.png" />
 <figcaption>Including filters in a vector search.</figcaption>
 <figure>
 ## Including filters in vector search
@@ -21,7 +21,7 @@ Note that the code below needs
 Please refer to a full guide on how to [create and upload a database](doc:creating-a-dataset) and how to use vectorizers to update a dataset with vectors at [How to vectorize](doc:vectorize-text).
 
 ```bash Bash
-!pip install -U RelevanceAI[notebook]==1.0.7
+!pip install -U RelevanceAI[notebook]==1.1.1
 ```
 ```bash
 ```
@@ -31,7 +31,7 @@ from relevanceai import Client
 
 """
 You can sign up/login and find your credentials here: https://cloud.relevance.ai/sdk/api
-Once you have signed up, click on the value under `Authorization token` and paste it here
+Once you have signed up, click on the value under `Activation token` and paste it here
 """
 client = Client()
 ```

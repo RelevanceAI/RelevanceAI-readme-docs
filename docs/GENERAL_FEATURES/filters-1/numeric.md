@@ -6,7 +6,7 @@ createdAt: "2021-11-25T06:28:37.534Z"
 updatedAt: "2022-01-19T05:17:05.147Z"
 ---
 <figure>
-<img src="https://github.com/RelevanceAI/RelevanceAI-readme-docs/blob/v1.0.7/docs_template/GENERAL_FEATURES/_assets/numeric.png?raw=true" width="446" alt="Numeric.png" />
+<img src="https://github.com/RelevanceAI/RelevanceAI-readme-docs/blob/v1.1.1/docs_template/GENERAL_FEATURES/_assets/numeric.png?raw=true" width="446" alt="Numeric.png" />
 <figcaption>Filtering documents with retail price higher than 5000.</figcaption>
 <figure>
 
@@ -14,7 +14,7 @@ updatedAt: "2022-01-19T05:17:05.147Z"
 This filter is to perform the filtering operators on a numeric value. For instance, returning the documents with a price larger than 1000 dollars.
 
 ```bash Bash
-!pip install -U RelevanceAI[notebook]==1.0.7
+!pip install -U RelevanceAI[notebook]==1.1.1
 ```
 ```bash
 ```
@@ -24,7 +24,7 @@ from relevanceai import Client
 
 """
 You can sign up/login and find your credentials here: https://cloud.relevance.ai/sdk/api
-Once you have signed up, click on the value under `Authorization token` and paste it here
+Once you have signed up, click on the value under `Activation token` and paste it here
 """
 client = Client()
 ```

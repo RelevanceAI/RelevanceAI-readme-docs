@@ -6,7 +6,7 @@ createdAt: "2021-11-25T06:20:15.175Z"
 updatedAt: "2022-01-19T05:16:58.720Z"
 ---
 <figure>
-<img src="https://github.com/RelevanceAI/RelevanceAI-readme-docs/blob/v1.0.7/docs_template/GENERAL_FEATURES/_assets/date.png?raw=true" width="600"  alt="date.png" />
+<img src="https://github.com/RelevanceAI/RelevanceAI-readme-docs/blob/v1.1.1/docs_template/GENERAL_FEATURES/_assets/date.png?raw=true" width="600"  alt="date.png" />
 <figcaption>Filtering documents which were added to the database after January 2021.</figcaption>
 <figure>
 
@@ -14,7 +14,7 @@ updatedAt: "2022-01-19T05:16:58.720Z"
 This filter performs date analysis and filters documents based on their date information. For instance, it is possible to filter out any documents with a production date before January 2021.
 
 ```bash Bash
-!pip install -U RelevanceAI[notebook]==1.0.7
+!pip install -U RelevanceAI[notebook]==1.1.1
 ```
 ```bash
 ```
@@ -24,7 +24,7 @@ from relevanceai import Client
 
 """
 You can sign up/login and find your credentials here: https://cloud.relevance.ai/sdk/api
-Once you have signed up, click on the value under `Authorization token` and paste it here
+Once you have signed up, click on the value under `Activation token` and paste it here
 """
 client = Client()
 ```
