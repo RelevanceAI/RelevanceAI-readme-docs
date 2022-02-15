@@ -1,8 +1,8 @@
-python
+python QUERY=query
 from relevanceai import show_json
 
 print('=== QUERY === ')
-print("<<QUERY>>")
+print(<<QUERY>>)
 
 print('=== RESULTS ===')
 show_json(results, image_fields=<<IMAGE_FIELDS>>, text_fields=<<TEXT_FIELDS>>)

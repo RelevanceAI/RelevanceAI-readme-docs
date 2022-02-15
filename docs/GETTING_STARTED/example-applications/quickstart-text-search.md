@@ -164,7 +164,7 @@ We can see the results on the dashboard via the provided link after the search f
 from relevanceai import show_json
 
 print('=== QUERY === ')
-print("query")
+print(query)
 
 print('=== RESULTS ===')
 show_json(results, image_fields=["product_image"], text_fields=["product_title"])
@@ -231,7 +231,7 @@ results = df.vector_search(
 from relevanceai import show_json
 
 print('=== QUERY === ')
-print("'Gift for my son'")
+print('Gift for my son')
 
 print('=== RESULTS ===')
 show_json(results, image_fields=["product_image"], text_fields=["product_title"])

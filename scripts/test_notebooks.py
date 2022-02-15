@@ -164,7 +164,6 @@ def execute_notebook(notebook:str, notebook_args: Dict):
             **notebook_args['client_instantiation_base_args']
         )
 
-
         exception_reason = traceback.format_exc()
         ERROR_MESSAGE = f"{notebook}\n{exception_reason}\n"
         print(
@@ -242,12 +241,15 @@ def main(args):
         notebooks = args.notebooks
         if len(notebooks)==1:
             if Path(notebooks[0]).is_dir():
-                notebooks = [f for f in Path(notebooks[0]).glob('**/*.ipynb') if '.ipynb_checkpoints' not in str(f) ]
+                notebooks = [f for f in Path(notebooks[0]).glob('**/*.ipynb') ]
     else:
         ## All notebooks
         notebooks = [
             x[0] if isinstance(x, list) else x for x in list(Path(DOCS_PATH).glob("**/*.ipynb"))
         ]
+
+    ## Filter checkpoints
+    notebooks = [f for f in notebooks if '.ipynb_checkpoints' not in str(f)]
 
     ## Filter notebooks
     if args.notebook_ignore:

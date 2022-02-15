@@ -84,7 +84,7 @@ By following instructions below, you will be able to preview/create any given ve
    ```zsh
    ❯ export RELEVANCEAI_README_API_KEY='xxx'
    ```
-9.  To run notebook tests, make sure to export your `TEST_ACTIVATION_TOKEN` from https://cloud.relevance.ai/sdk/api/.
+8.  To run notebook tests, make sure to export your `TEST_ACTIVATION_TOKEN` from https://cloud.relevance.ai/sdk/api/.
     ```zsh
     ❯ export TEST_ACTIVATION_TOKEN='xxx'
     ```
@@ -107,7 +107,7 @@ By following instructions below, you will be able to preview/create any given ve
     ## Test on a selection of notebooks
     ❯ python scripts/test_notebooks.py -d --notebooks examples/Intro-to-Relevance-AI.ipynb examples/RelevanceAI-ReadMe-Quick-Feature-Tour.ipynb
     ```
-
+    If you have a notebook you'd like to ignore in tests, add to the [notebook_ignore.txt](./scripts/notebook_ignore.txt) file.
 11. Install pre-commit! This helps with things like merge conflicts, linting and checking API keys to help with cleaner commits. 😊
     ```
     pre-commit install

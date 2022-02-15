@@ -33,9 +33,9 @@ def load_params_ref(param_str: str) -> dict:
     eg. CENTROIDS=centroids, CLUSTERER=clusterer, DF=df
     '''
     NUM_REGEX_PARAM='(([A-Z])\w+=[0-9.])'
-    VALUE_REGEX_PARAM='([A-Z])\w+=([\s\'\"\./<>A-Za-z0-9_-]+)'
+    VALUE_REGEX_PARAM='([A-Z])\w+=([\s\'\"?\./<>A-Za-z0-9_-]+)'
     LIST_REGEX_PARAM='([A-Z])\w+=\[(.*?)\]'
-    JSON_REGEX_PARAM='([A-Z])\w+=(\[([\s\"\'<>\{\}:,A-Za-z0-9_-]+\]))'
+    JSON_REGEX_PARAM='([A-Z])\w+=(\[([\s\"\'<>\{\}:?.,A-Za-z0-9_-]+\]))'
     STR_REGEX_PARAM_DOUBLE_QUOTE='([A-Z])\w+=\"\"'
     STR_REGEX_PARAM_SINGLE_QUOTE="([A-Z])\w+=\'\'"
     params_ref = dict(tuple(m.group().strip()
