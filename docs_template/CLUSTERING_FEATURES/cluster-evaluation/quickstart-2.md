@@ -1,8 +1,8 @@
 ---
 title: "Quickstart"
-slug: "quickstart-2"
+slug: "cluster-evaluate"
 excerpt: "Evaluate your clusters 5 quick steps"
-hidden: false
+hidden: true
 createdAt: "2021-12-22T00:47:17.465Z"
 updatedAt: "2022-01-27T00:56:39.533Z"
 ---
