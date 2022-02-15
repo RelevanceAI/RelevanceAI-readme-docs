@@ -1,8 +1,7 @@
-python DF=df
+python
 # Aggregate based on the clusters
-result = clusterer.aggregate(<<DF>>,
+result = clusterer.aggregate(
     groupby=[
-      {"name": <<GROUPBY_NAME>>, "field": <<GROUPBY_FIELD>>, "agg": <<GROUPBY_AGG_TYPE>>}],
-    metrics = [
-      {"name": <<METRICS_NAME>>, "field": <<METRICS_VECTOR_FIELD>>, "agg": <<METRICS_AGG_TYPE>>}]
+      {"name": <<GROUPBY_NAME>>, "field": <<GROUPBY_FIELD>>, "agg": <<GROUPBY_AGG_TYPE>>}
+    ]
 )
