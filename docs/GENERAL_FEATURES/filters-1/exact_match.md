@@ -6,7 +6,7 @@ createdAt: "2021-11-25T05:20:53.996Z"
 updatedAt: "2022-01-19T05:16:30.996Z"
 ---
 <figure>
-<img src="https://github.com/RelevanceAI/RelevanceAI-readme-docs/blob/v1.1.1/docs_template/GENERAL_FEATURES/_assets/exact-match.png?raw=true" width="2062" alt="Exact match.png" />
+<img src="https://github.com/RelevanceAI/RelevanceAI-readme-docs/blob/v1.1.3/docs_template/GENERAL_FEATURES/_assets/exact-match.png?raw=true" width="2062" alt="Exact match.png" />
 <figcaption>Filtering documents with "Durian Leather 2 Seater Sofa" as the product_name.</figcaption>
 <figure>
 
@@ -14,7 +14,7 @@ updatedAt: "2022-01-19T05:16:30.996Z"
 This filter works with string values and only returns documents with a field value that exactly matches the filtered criteria. For instance under filtering by 'Samsung galaxy s21', the result will only contain products explicitly having 'Samsung galaxy s21' in their specified field. *Note that this filter is case-sensitive.*
 
 ```bash Bash
-!pip install -U RelevanceAI[notebook]==1.1.1
+!pip install -U RelevanceAI[notebook]==1.1.3
 ```
 ```bash
 ```

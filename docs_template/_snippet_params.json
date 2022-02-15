@@ -1,4 +1,4 @@
-{"RELEVANCEAI_SDK_VERSION": "1.1.1",
+{"RELEVANCEAI_SDK_VERSION": "1.1.3",
 "QUICKSTART_DATASET_ID": "\"quickstart\"",
 "TEXT_IMAGE_SEARCH_DATASET_ID": "\"quickstart_clip\"",
 "AGGREGATION_DATASET_ID": "\"quickstart_aggregation\"",

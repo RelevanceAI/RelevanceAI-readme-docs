@@ -59,7 +59,9 @@ fi
 # Create a new readme version if not exists
 ###############################################################################
 
-README_VERSION_NAME_STRIPPED="${README_VERSION_NAME:1}" ## stripping 'v' from version string
+if [[ ${README_VERSION_NAME::1} == "v" ]]; then
+    README_VERSION_NAME="${README_VERSION_NAME:1}" ## stripping 'v' from version string
+fi
 
 check_sdk_version_exists(){
     if [[ $RELEVANCEAI_SDK_VERSIONS =~ $RELEVANCEAI_SDK_VERSION ]]; then
@@ -71,7 +73,7 @@ check_sdk_version_exists(){
 
 
 check_readme_version_exists(){
-    if [[ $README_VERSIONS =~ $README_VERSION_NAME_STRIPPED ]]; then
+    if [[ $README_VERSIONS =~ $README_VERSION_NAME ]]; then
         true
     else
         false
@@ -84,9 +86,9 @@ if ! check_sdk_version_exists; then
 fi
 
 if ! check_readme_version_exists; then
-    npx rdme versions:create  --version=$README_VERSION_NAME_STRIPPED --key=$RELEVANCEAI_README_API_KEY --fork=$LATEST_README_VERSION --main=False --beta=True --isPublic=True
+    npx rdme versions:create  --version=$README_VERSION_NAME --key=$RELEVANCEAI_README_API_KEY --fork=$LATEST_README_VERSION --main=False --beta=True --isPublic=True
 else
-    echo "ReadMe version $README_VERSION_NAME already exists"
+    echo "ReadMe version v$README_VERSION_NAME already exists"
 fi
 
 
@@ -94,6 +96,6 @@ fi
 # Sync documentation
 ###############################################################################
 
-echo "Syncing $DOCS_PATH to ReadMe version $README_VERSION_NAME"
-npx rdme docs $DOCS_PATH --version=$README_VERSION_NAME_STRIPPED  --key $RELEVANCEAI_README_API_KEY
+echo "Syncing $DOCS_PATH to ReadMe version v$README_VERSION_NAME"
+npx rdme docs $DOCS_PATH --version=$README_VERSION_NAME  --key $RELEVANCEAI_README_API_KEY
 
