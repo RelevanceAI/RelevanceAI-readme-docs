@@ -30,7 +30,7 @@ RDMD_SNIPPET_LANGUAGES = {
 def load_params_ref(param_str: str) -> dict:
     '''
     Loads params ref dict from a param str
-    eg. CENTROIDS=centroids CLUSTERER=clusterer DF=df
+    eg. CENTROIDS=centroids, CLUSTERER=clusterer, DF=df
     '''
     NUM_REGEX_PARAM='(([A-Z])\w+=[0-9.])'
     VALUE_REGEX_PARAM='([A-Z])\w+=([\s\'\"\./<>A-Za-z0-9_-]+)'
@@ -45,7 +45,7 @@ def load_params_ref(param_str: str) -> dict:
             re.finditer(NUM_REGEX_PARAM, param_str),
             re.finditer(VALUE_REGEX_PARAM, param_str),
             re.finditer(LIST_REGEX_PARAM, param_str),
-             re.finditer(JSON_REGEX_PARAM, param_str),
+            re.finditer(JSON_REGEX_PARAM, param_str),
             re.finditer(STR_REGEX_PARAM_DOUBLE_QUOTE, param_str),
             re.finditer(STR_REGEX_PARAM_SINGLE_QUOTE, param_str),
         )

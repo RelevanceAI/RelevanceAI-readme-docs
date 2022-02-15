@@ -257,7 +257,7 @@ def main(args):
         print(f'No notebooks found not in {NOTEBOOK_IGNORE}')
         sys.exit(1)
 
-    static_args= {
+    static_args = {
         'relevanceai_sdk_version': RELEVANCEAI_SDK_VERSION,
         'pip_install_version_args': pip_install_version_args,
         'client_instantiation_args': client_instantiation_args,
