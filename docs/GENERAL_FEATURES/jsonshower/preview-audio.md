@@ -28,7 +28,7 @@ show_json(
 ```
 After running this, you should see the following in your Jupyter Notebook:
 <figure>
-<img src="https://github.com/RelevanceAI/RelevanceAI-readme-docs/blob/v1.1.3/docs_template/GENERAL_FEATURES/_assets/preview_audio.png?raw=true" width="475" alt="audio.png" />
+<img src="https://github.com/RelevanceAI/RelevanceAI-readme-docs/blob/1.1.5/docs_template/GENERAL_FEATURES/_assets/preview_audio.png?raw=true" width="475" alt="audio.png" />
 <figcaption></figcaption>
 <figure>
 

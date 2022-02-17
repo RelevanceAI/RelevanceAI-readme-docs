@@ -7,7 +7,7 @@ updatedAt: "2022-02-01T00:54:13.875Z"
 ---
 
 <figure>
-<img src="https://github.com/RelevanceAI/RelevanceAI-readme-docs/blob/v1.1.3/docs_template/CLUSTERING_FEATURES/_assets/RelevanceAI_clustering.png?raw=true"  width="450" alt="Clustering effect on pricing" />
+<img src="https://github.com/RelevanceAI/RelevanceAI-readme-docs/blob/1.1.5/docs_template/CLUSTERING_FEATURES/_assets/RelevanceAI_clustering.png?raw=true"  width="450" alt="Clustering effect on pricing" />
 <figcaption>Clustering showing how a certain variety of images can improve pricing</figcaption>
 <figure>
 
@@ -17,7 +17,7 @@ Clustering groups items so that those in the same group/cluster have meaningful 
 
 In this guide, you will learn to run KMeans clustering via **only one line of code**. K-Means clustering partitions your dataset into K distinct clusters.
 
-[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/RelevanceAI/RelevanceAI-readme-docs/blob/v1.1.3/docs/CLUSTERING_FEATURES/clustering/_notebooks/RelevanceAI-ReadMe-Kmeans-Clustering.ipynb)
+[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/RelevanceAI/RelevanceAI-readme-docs/blob/1.1.5/docs/CLUSTERING_FEATURES/clustering/_notebooks/RelevanceAI-ReadMe-Kmeans-Clustering.ipynb)
 
 ### 1. Create a dataset and insert data
 
@@ -65,7 +65,7 @@ By loading the data from the dataset after clustering is done, you can see to wh
 @@@ cluster_sample_results, N_SAMPLES=5, VECTOR_FIELD=VECTOR_FIELD, ALIAS=ALIAS, TEXT_FIELDS=['product_title', 'cluster'] @@@
 
 <figure>
-<img src="https://github.com/RelevanceAI/RelevanceAI-readme-docs/blob/v1.1.3/docs_template/CLUSTERING_FEATURES/_assets/RelevanceAI_clustering_quickstart_kmeans_results.png?raw=true"  width="450" alt="Clustering results" />
+<img src="https://github.com/RelevanceAI/RelevanceAI-readme-docs/blob/1.1.5/docs_template/CLUSTERING_FEATURES/_assets/RelevanceAI_clustering_quickstart_kmeans_results.png?raw=true"  width="450" alt="Clustering results" />
 <figcaption></figcaption>
 <figure>
 
