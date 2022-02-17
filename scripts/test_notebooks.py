@@ -11,7 +11,7 @@ import nbformat
 from nbconvert.preprocessors import ExecutePreprocessor
 import traceback
 
-from relevanceai.concurrency import multiprocess
+from utils import multiprocess
 
 import logging
 import argparse
