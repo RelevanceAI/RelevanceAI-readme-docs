@@ -15,6 +15,7 @@ First, `vectorhub[clip]` must be installed.
 Notes: you might also run `!pip install "opencv-python-headless<4.3"`, restart your notebook when installation finishes.
 
 ```bash Bash
+# remove `!` if running the line in a terminal
 !pip install -U vectorhub[clip]
 ```
 ```bash

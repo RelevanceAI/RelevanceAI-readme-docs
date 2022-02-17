@@ -36,7 +36,8 @@ Vectorizing under Relevance AI's platform requires three steps:
  Keep it in mind that, first RelevanceAI must be installed and a client object must be instantiated:
 
 ```bash Bash
-!pip install -U RelevanceAI[notebook]==1.1.4
+# remove `!` if running the line in a terminal
+!pip install -U RelevanceAI[notebook]==1.1.3
 ```
 ```bash
 ```
