@@ -6,7 +6,7 @@ hidden: false
 createdAt: "2021-11-10T00:51:08.719Z"
 updatedAt: "2022-01-05T10:54:04.561Z"
 ---
--> ## Introduction
+## Introduction
 
 ### Three main categories for text search use-cases
 1. Pure word matching, pure vector search, or combination of both
@@ -23,10 +23,10 @@ updatedAt: "2022-01-05T10:54:04.561Z"
      * Advanced multistep chunk search
 
 Each of these endpoints is explained separately in the following sub-pages.
--> ## What is a text search?
+## What is a text search?
 Text search is the process of matching a **text** query against the available text data in a dataset, to find the most relevant entries to the query. In Relevance AI, text search can be done using text and/or vectors.
 
--> ## How can vectors help in text search?
+## How can vectors help in text search?
 ## What are vectors and vector spaces
 
 Let us imagine each word can be positioned in a 2 or 3-dimensional space; meaning each word can be represented with [x,y,z] coordinates, based on its meaning. This [x,y,z] coordinate is called a vector, and the whole space containing all the words is called a **vector space**. In reality, the number of dimensions is significantly bigger than two or three (for more information visit [What are vectors](doc:what-are-vectors))
@@ -53,7 +53,7 @@ Once text data is turned into vectors, the vectors can also provide much more ca
 >
 > Vectors are representations of concepts as a list of numbers. Conceptual relations are embedded in vectors in the form of vector algebra which allows us to perform a search within concepts without the need to use explicit words.
 
--> ## Text search in Relevance AI
+## Text search in Relevance AI
 ## What are Relevance AI text search endpoints?
 * Traditional search
 * Vector search
@@ -103,7 +103,7 @@ query_vec = client.services.encoders.multi_text(text = query)
 ```python
 ```
 
--> ## How to choose the best text-search endpoint?
+## How to choose the best text-search endpoint?
 Choosing the best endpoint is highly dependant on the data and what the queries look like. In the subsequent pages, we explain endpoints, their best use-case(s), their pros/cons, followed by a sample code snippet showing how to use each endpoint.
 In all provided examples, we consider a database that looks like the table below. All entries have a unique id (`_id`), two text fields (`product_name` and `description`) and the  four vector fields:
 * `product_name_default_vector_ ` : vectorized title using a model trained on an English corpus

@@ -8,7 +8,7 @@ updatedAt: "2021-12-07T22:59:26.501Z"
 type: "link"
 link_url: "https://docs.relevance.ai/docs/welcome"
 ---
--> ## Try us out in 5 lines of code!
+## Try us out in 5 lines of code!
 Run this Quickstart in Colab: [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/drive/1qMLzS4pAQfFBQ1wvCePbkSB6lOlrAcof?usp=sharing)
 
 ### 1. Set up Relevance AI
