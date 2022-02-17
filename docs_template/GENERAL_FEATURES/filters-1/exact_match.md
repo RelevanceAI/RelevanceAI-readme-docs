@@ -6,7 +6,7 @@ createdAt: "2021-11-25T05:20:53.996Z"
 updatedAt: "2022-01-19T05:16:30.996Z"
 ---
 <figure>
-<img src="https://github.com/RelevanceAI/RelevanceAI-readme-docs/blob/v1.1.3-fixes/docs_template/GENERAL_FEATURES/_assets/exact-match.png?raw=true" width="2062" alt="Exact match.png" />
+<img src="https://github.com/RelevanceAI/RelevanceAI-readme-docs/blob/v1.1.4-update/docs_template/GENERAL_FEATURES/_assets/exact-match.png?raw=true" width="2062" alt="Exact match.png" />
 <figcaption>Filtering documents with "Durian Leather 2 Seater Sofa" as the product_name.</figcaption>
 <figure>
 

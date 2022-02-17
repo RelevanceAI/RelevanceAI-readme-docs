@@ -8,7 +8,7 @@ updatedAt: "2022-01-24T06:26:11.281Z"
 ---
 
 <figure>
-<img src="https://github.com/RelevanceAI/RelevanceAI-readme-docs/blob/v1.1.3-fixes/docs_template/CLUSTERING_FEATURES/_assets/RelevanceAI_clustering.png?raw=true"  width="450" alt="Clustering effect on pricing" />
+<img src="https://github.com/RelevanceAI/RelevanceAI-readme-docs/blob/v1.1.4-update/docs_template/CLUSTERING_FEATURES/_assets/RelevanceAI_clustering.png?raw=true"  width="450" alt="Clustering effect on pricing" />
 <figcaption>Clustering showing how a certain variety of images can improve pricing</figcaption>
 <figure>
 
@@ -18,7 +18,7 @@ Clustering groups items so that those in the same group/cluster have meaningful 
 
 In this guide, you will learn to run clustering based on the K-Means algorithm which aims to partition your dataset into K distinct clusters.
 
-**Try it out in Colab:** [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/RelevanceAI/RelevanceAI-readme-docs/blob/v1.1.3-fixes/docs/CLUSTERING_FEATURES/clustering/_notebooks/RelevanceAI-ReadMe-Kmeans-Clustering-Step-by-Step.ipynb)
+**Try it out in Colab:** [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/RelevanceAI/RelevanceAI-readme-docs/blob/v1.1.4-update/docs/CLUSTERING_FEATURES/clustering/_notebooks/RelevanceAI-ReadMe-Kmeans-Clustering-Step-by-Step.ipynb)
 
 ### 1. Create a dataset and insert data
 
@@ -26,7 +26,7 @@ First, you need to install Relevance AI's Python SDK and set up a client object 
 
 ```bash Bash
 # remove `!` if running the line in a terminal
-!pip install -U RelevanceAI[notebook]==1.1.3
+!pip install -U RelevanceAI[notebook]==1.1.4
 ```
 ```bash
 ```
