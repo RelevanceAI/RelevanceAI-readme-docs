@@ -9,13 +9,9 @@ updatedAt: "2022-01-20T05:05:33.448Z"
 This quickstart shows how easy it is to get started and how to quickly build question-answering applications using Relevance AI in just a few lines of code. Visit the documentation pages on use-cases for more in-depth tutorials and explanations for experimenting with stronger vector search.
 
 <figure>
-<<<<<<< HEAD
 <img src="https://github.com/RelevanceAI/RelevanceAI-readme-docs/blob/v1.1.3/docs_template/GETTING_STARTED/example-applications/_assets/RelevanceAI_question_answering_search_results.png?raw=true"
      alt="RelevanceAI question answering"
      style="width: 100% vertical-align: middle"/>
-=======
-<img src="https://github.com/RelevanceAI/RelevanceAI-readme-docs/blob/v1.1.4/docs_template/GETTING_STARTED/example-applications/_assets/RelevanceAI_question_answering.png?raw=true" width="650" alt="Vector Spaces" />
->>>>>>> origin/v1.1.4
 <figcaption></figcaption>
 
 <figure>
