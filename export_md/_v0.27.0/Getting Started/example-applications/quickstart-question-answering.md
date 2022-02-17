@@ -144,7 +144,7 @@ show_json(
 <figcaption>Sample of text search results for "for my baby daughter"</figcaption>
 <figure>
 
--> ## Final Code
+## Final Code
 
 ```python Python (SDK)
 import pandas as pd
