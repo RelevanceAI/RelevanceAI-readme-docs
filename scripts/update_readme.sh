@@ -9,10 +9,14 @@ if [ "$DEBUG_MODE" = true ]; then
   set -x
 fi
 
-LUE=`tput bold && tput setaf 4`
-CYAN=`tput bold && tput setaf 6`
-blue=`tput setaf 4`
-NC=`tput sgr0`
+
+RED=; GREEN=; YELLOW=; BLUE=; BOLD=; RESET=;
+case ${TERM} in '') ;;  *)
+	BLUE=`tput bold && tput setaf 4`
+	CYAN=`tput bold && tput setaf 6`
+	blue=`tput setaf 4`
+	NC=`tput sgr0`
+esac
 
 function BLUE(){
 	echo -e "\n${BLUE}${1}${NC}"
