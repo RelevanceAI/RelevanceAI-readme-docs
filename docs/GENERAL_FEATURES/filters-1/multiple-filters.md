@@ -6,7 +6,7 @@ createdAt: "2021-11-25T22:31:19.531Z"
 updatedAt: "2022-01-19T05:17:17.089Z"
 ---
 <figure>
-<img src="https://github.com/RelevanceAI/RelevanceAI-readme-docs/blob/v1.1.3/docs_template/GENERAL_FEATURES/_assets/multiple-filters.png?raw=true" width="1009" alt="combined filters.png" />
+<img src="https://github.com/RelevanceAI/RelevanceAI-readme-docs/blob/v1.2.0/docs_template/GENERAL_FEATURES/_assets/multiple-filters.png?raw=true" width="1009" alt="combined filters.png" />
 <figcaption>Filtering results when using multiple filters: categories, contains, and date.</figcaption>
 <figure>
 
@@ -18,7 +18,7 @@ It is possible to combine multiple filters. For instance, the sample code below 
 A screenshot of the results can be seen on top.
 
 ```bash Bash
-!pip install -U RelevanceAI[notebook]==1.1.3
+!pip install -U RelevanceAI[notebook]==1.2.0
 ```
 ```bash
 ```
