@@ -8,9 +8,10 @@ updatedAt: "2022-01-27T05:19:58.484Z"
 ---
 ## Traditional search (exact word matching)
 <figure>
-<img src="https://files.readme.io/5a47237-traditional.png" width="1930" alt="traditional.png" />
+<img src="https://github.com/RelevanceAI/RelevanceAI-readme-docs/blob/v1.1.4/docs_template/SEARCH_FEATURES/_assets/Relevance_ai_traditional_search.png?raw=true" width="1930" alt="traditional.png" />
 <figcaption>Traditional search results for query "HP DV6-20"</figcaption>
 <figure>
+
 ### Concept
 This search looks for the closest answer (most relevant data entry) via **exact word matching**.  Therefore, the best use case for the traditional search is when the search result is required to include an exact term within the query string.
 
