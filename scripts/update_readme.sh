@@ -32,10 +32,14 @@ DOCS_PATH=${2:-"$PWD/docs/"}
 PIP_PACKAGE_NAME=${3:-"RelevanceAI"}
 
 GIT_BRANCH_NAME=$(git rev-parse --abbrev-ref HEAD)
-GIT_BRANCH_NAME_VERSION=$(echo $GIT_BRANCH_NAME | sed 's/[^0-9.]//g')
 VERSION_FILE=$(cat __version__)
 
-if [[ $VERSION_FILE != $GIT_BRANCH_NAME_VERSION ]]; then
+if [[ $GIT_BRANCH_NAME == "main" ]]; then
+	GIT_BRANCH_NAME="v$VERSION_FILE"
+	GIT_BRANCH_NAME_VERSION=$VERSION_FILE
+	echo 'Branch ver is main'
+else
+	GIT_BRANCH_NAME_VERSION=$(echo $GIT_BRANCH_NAME | sed 's/[^0-9.]//g')
 	echo $GIT_BRANCH_NAME_VERSION > __version__
 fi
 
@@ -44,7 +48,7 @@ README_VERSION=${4:-$GIT_BRANCH_NAME_VERSION}
 CYAN "=== Updating asset links to $GIT_BRANCH_NAME ==="
 
 if $DEBUG_MODE; then
-	python scripts/update_asset_ref.py -d -p $PWD -pn $PIP_PACKAGE_NAME -v $GIT_BRANCH_NAME
+	python scripts/update_asset_ref.py -p $PWD -pn $PIP_PACKAGE_NAME -v $GIT_BRANCH_NAME
 else
 	python scripts/update_asset_ref.py -p $PWD -pn $PIP_PACKAGE_NAME -v $GIT_BRANCH_NAME
 fi
@@ -52,7 +56,7 @@ fi
 CYAN "=== Updating semver ref to $README_VERSION ==="
 
 if $DEBUG_MODE; then
-	python scripts/update_semver_ref.py -d -p $PWD -pn $PIP_PACKAGE_NAME -v $GIT_BRANCH_NAME_VERSION
+	python scripts/update_semver_ref.py  -p $PWD -pn $PIP_PACKAGE_NAME -v $GIT_BRANCH_NAME_VERSION
 else
 	python scripts/update_semver_ref.py -p $PWD -pn $PIP_PACKAGE_NAME -v $GIT_BRANCH_NAME_VERSION
 fi
