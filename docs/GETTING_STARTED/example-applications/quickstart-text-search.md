@@ -7,7 +7,7 @@ hidden: false
 ---
 
 <figure>
-<img src="https://github.com/RelevanceAI/RelevanceAI-readme-docs/blob/v1.1.3/docs_template/GETTING_STARTED/example-applications/_assets/RelevanceAI_text_search.png?raw=true"
+<img src="https://github.com/RelevanceAI/RelevanceAI-readme-docs/blob/v1.2.2/docs_template/GETTING_STARTED/example-applications/_assets/RelevanceAI_text_search.png?raw=true"
      alt="RelevanceAI Text to Image"
      style="width: 100% vertical-align: middle"/>
 <figcaption>
@@ -18,7 +18,7 @@ hidden: false
 
 In this section, we will show you how to create and experiment with a powerful text search engine using Google's Universal Sentence Encoder through [VectorHub library](https://github.com/RelevanceAI/vectorhub) and Relevance AI.
 
-**Try it out in Colab:** [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/RelevanceAI/RelevanceAI-readme-docs/blob/v1.1.3/docs/GETTING_STARTED/example-applications/_notebooks/RelevanceAI-ReadMe-Text-Search-using-USE-VectorHub.ipynb)
+**Try it out in Colab:** [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/RelevanceAI/RelevanceAI-readme-docs/blob/v1.2.2/docs/GETTING_STARTED/example-applications/_notebooks/RelevanceAI-ReadMe-Text-Search-using-USE-VectorHub.ipynb)
 
 
 ### What I Need
@@ -29,7 +29,7 @@ In this section, we will show you how to create and experiment with a powerful t
 
 
 ```bash Bash
-!pip install -U RelevanceAI[notebook]==1.1.3
+!pip install -U RelevanceAI[notebook]==1.2.2
 ```
 ```bash
 ```
@@ -175,7 +175,7 @@ show_json(results, image_fields=["product_image"], text_fields=["product_title"]
 
 
 <figure>
-<img src="https://github.com/RelevanceAI/RelevanceAI-readme-docs/blob/v1.1.3/docs_template/GETTING_STARTED/example-applications/_assets/RelevanceAI_text_search_results.png?raw=true"
+<img src="https://github.com/RelevanceAI/RelevanceAI-readme-docs/blob/v1.2.2/docs_template/GETTING_STARTED/example-applications/_assets/RelevanceAI_text_search_results.png?raw=true"
      alt="Text Search Results"
      style="width: 100% vertical-align: middle"/>
 <figcaption>Text Search Results</figcaption>
@@ -185,7 +185,7 @@ show_json(results, image_fields=["product_image"], text_fields=["product_title"]
 This is just a quick and basic example of using Relevance AI for text search, there are many other search features such as faceted vector search, hybrid search, chunk search, multivector search. For further information please visit [Better text search](doc:better-text-search).
 
 
-[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/RelevanceAI/RelevanceAI-readme-docs/blob/v1.1.3/docs/GETTING_STARTED/example-applications/_notebooks/RelevanceAI-ReadMe-Text-Search-using-USE-VectorHub.ipynb)
+[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/RelevanceAI/RelevanceAI-readme-docs/blob/v1.2.2/docs/GETTING_STARTED/example-applications/_notebooks/RelevanceAI-ReadMe-Text-Search-using-USE-VectorHub.ipynb)
 
 
 
