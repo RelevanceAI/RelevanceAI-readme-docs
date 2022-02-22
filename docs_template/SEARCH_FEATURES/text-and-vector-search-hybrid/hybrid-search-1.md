@@ -52,7 +52,7 @@ Sample codes using Relevance AI SDK for hybrid search endpoint are shown below. 
 
 @@@ encode_text_query, QUERY="large tote sack" @@@
 
-@@@ multivector_query, QUERY_VECTOR=query_vec_txt, VECTOR_FIELDS=[PRODUCT_TITLE_CLIP_VEC] @@@
+@@@ multivector_query, QUERY_VECTOR=query_vec_txt, VECTOR_FIELDS=["product_title_clip_vector_"] @@@
 
 @@@ hybrid_search, QUERY=query, FIELD=PRODUCT_TITLE_FIELD @@@
 

@@ -14,6 +14,7 @@ updatedAt: "2022-01-27T06:22:06.285Z"
 <figure>
 
 
+
 <figure>
 <img src="https://github.com/RelevanceAI/RelevanceAI-readme-docs/blob/v1.2.3/docs_template/SEARCH_FEATURES/_assets/RelevanceAI-paviliondv6-20-large_w.png?raw=true" alt="hybrid0.7.png" />
 <figcaption>Hybrid search result for query "Pavilion DV6-20" with a large emphasis on word-matching. As can be seen, the first three returned results, all include the id "DV6-20" in the query.</figcaption>
@@ -90,7 +91,7 @@ query_vec_txt = model.encode(query)
 
 ```python Python (SDK)
 multivector_query=[
-        { "vector": query_vec_txt, "fields": [PRODUCT_TITLE_CLIP_VEC]}
+        { "vector": query_vec_txt, "fields": ["product_title_clip_vector_"]}
     ]
 ```
 ```python
@@ -100,7 +101,7 @@ multivector_query=[
 results = df.hybrid_search(
     multivector_query=multivector_query,
     text=query,
-    fields=[<<FIELD>>],
+    fields=["product_title"],
     page_size=5
 )
 ```
