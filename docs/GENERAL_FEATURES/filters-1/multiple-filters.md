@@ -6,7 +6,7 @@ createdAt: "2021-11-25T22:31:19.531Z"
 updatedAt: "2022-01-19T05:17:17.089Z"
 ---
 <figure>
-<img src="https://github.com/RelevanceAI/RelevanceAI-readme-docs/blob/v1.1.3/docs_template/GENERAL_FEATURES/_assets/multiple-filters.png?raw=true" width="1009" alt="combined filters.png" />
+<img src="https://github.com/RelevanceAI/RelevanceAI-readme-docs/blob/v1.1.3-fixes/docs_template/GENERAL_FEATURES/_assets/multiple-filters.png?raw=true" width="1009" alt="combined filters.png" />
 <figcaption>Filtering results when using multiple filters: categories, contains, and date.</figcaption>
 <figure>
 
@@ -18,6 +18,7 @@ It is possible to combine multiple filters. For instance, the sample code below 
 A screenshot of the results can be seen on top.
 
 ```bash Bash
+# remove `!` if running the line in a terminal
 !pip install -U RelevanceAI[notebook]==1.1.3
 ```
 ```bash
@@ -44,7 +45,7 @@ df = client.Dataset(DATASET_ID)
 
 @@@ filters_three_setup,
 FIELD1=DESCRIPTION_FIELD, FILTER_TYPE1=CONTAINS_FILTER_TYPE, CONDITION1=EQ_COND, CONDITION_VAL1=CONDITION_VAL_5,
-FIELD2=BRAND_FIELD, FILTER_TYPE2=CATEGORY_FILTER_TYPE, CONDITION2=EQ_COND, CONDITION_VAL2=BRAND_CATEGORY_VAL2
+FIELD2=BRAND_FIELD, FILTER_TYPE2=CATEGORY_FILTER_TYPE, CONDITION2=EQ_COND, CONDITION_VAL2=BRAND_CATEGORY_VAL2,
 FIELD3=INSERT_DATE_FIELD, FILTER_TYPE3=DATE_FILTER_TYPE, CONDITION3=GE_COND, CONDITION_VAL3=DATE_VAL_2 @@@
 
 ```python Python (SDK)

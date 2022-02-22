@@ -14,7 +14,7 @@ There are several ways to evaluate the success of a clustering algorithm. Broadl
 
 Relevance AI provides you with the tools to perform all these analyses. The results of this analysis should be used to decide on the hyperparameters of your clustering algorithm,  including the number of clusters and clustering methodology.
 
-[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/RelevanceAI/RelevanceAI-readme-docs/blob/v1.1.3/docs/CLUSTERING_FEATURES/cluster-evaluation/_notebooks/RelevanceAI-ReadMe-Cluster-Metrics.ipynb)
+**Try it out in Colab:** [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/RelevanceAI/RelevanceAI-readme-docs/blob/v1.1.3-fixes/docs/CLUSTERING_FEATURES/cluster-evaluation/_notebooks/RelevanceAI-ReadMe-Cluster-Metrics.ipynb)
 
 
 ### 1. Create a dataset and insert data
@@ -26,7 +26,7 @@ First, you need to install Relevance AI's Python SDK and set up a client object 
 @@@ client_instantiation @@@
 
 
-You also need to have a dataset under your Relevance AI account. You can either use our ecommerce sample data as shown in this step or follow the tutorial on [how to create your own dataset](https://docs.relevance.ai/docs/creating-a-dataset-prerequisites). Running the code below, the fetched documents will be uploaded into your personal Relevance AI account under the name *quickstart_clustering*.
+You also need to have a dataset under your Relevance AI account. You can either use our ecommerce sample data as shown in this step or follow the tutorial on [how to create your own dataset](doc:project-and-dataset). Running the code below, the fetched documents will be uploaded into your personal Relevance AI account under the name *quickstart_clustering*.
 
 @@@ get_ecommerce_dataset_encoded @@@
 

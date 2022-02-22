@@ -158,7 +158,7 @@ client.vector_tools.cluster.plot(
 <figure>
 
 [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/drive/1o2eJhBT7lNyb_Yh7msrBMMQuJBgIdlRf?usp=sharing)
--> ## Put it all together
+## Put it all together
 
 ```python Python (SDK)
 import pandas as pd

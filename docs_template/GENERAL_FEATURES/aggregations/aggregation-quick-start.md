@@ -12,12 +12,13 @@ One of the most useful analysis tools is **grouping** and **aggregating** data b
 
 This article briefly explains the main aggregation functions. We use a demo dataset containing different real-estate properties. The goal is to find out how properties differ in terms of average price and other characteristics across different locations in Sydney, Australia.
 
-[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/RelevanceAI/RelevanceAI-readme-docs/blob/v1.1.3/docs/GENERAL_FEATURES/aggregations/_notebooks/aggregation-quick-start.ipynb)
+**Try it out in Colab:** [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/RelevanceAI/RelevanceAI-readme-docs/blob/v1.1.3-fixes/docs/GENERAL_FEATURES/aggregations/_notebooks/aggregation-quick-start.ipynb)
 
 <figure>
-<img src="https://colab.research.google.com/github/RelevanceAI/RelevanceAI-readme-docs/blob/v1.1.3/docs_template/GENERAL_FEATURES/_assets/grouping-results.png" width="1458" alt="Screen Shot 2022-01-05 at 9.37.37 pm.png" />
-<figcaption>Grouping properties based on location, price, number of bathrooms, etc.</figcaption>
+<img src="https://github.com/RelevanceAI/RelevanceAI-readme-docs/blob/v1.1.3-fixes/docs_template/GENERAL_FEATURES/_assets/grouping-results.png?raw=true" width="734" alt="categories.png" />
+<figcaption>Grouping properties based on location, price, number of bathrooms, ect.</figcaption>
 <figure>
+
 
 First, we need to install Relevance AI's Python SDK.
 @@@ relevanceai_installation, RELEVANCEAI_SDK_VERSION=RELEVANCEAI_SDK_VERSION @@@
@@ -26,7 +27,7 @@ First, we need to install Relevance AI's Python SDK.
 To use Relevance AI services, you need to instantiate a client object.
 @@@ client_instantiation @@@
 
-@@@ get_realestate_dataset
+@@@ get_realestate_dataset @@@
 
 @@@ dataset_basics, DATASET_ID=AGGREGATION_DATASET_ID @@@
 

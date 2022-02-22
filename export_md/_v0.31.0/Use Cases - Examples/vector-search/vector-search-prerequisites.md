@@ -6,7 +6,7 @@ hidden: false
 createdAt: "2021-11-10T00:48:21.924Z"
 updatedAt: "2021-11-22T09:19:13.229Z"
 ---
--> ## Vector Search
+## Vector Search
 Vector search is the process of searching for the best match within available data but using vectorized/encoded data and query.
 <figure>
 <img src="https://files.readme.io/2989a8b-2325c0c-Vector_Search_Infographic_Updated.png" width="4288" alt="2325c0c-Vector_Search_Infographic_Updated.png" />
@@ -50,14 +50,14 @@ client.services.search.hybrid(
 ```python
 ```
 A full explanation of concepts, use-case, as well as a sample code snippet of all the above-mentioned endpoints can be found at [Better Text Search](https://docs.relevance.ai/v0.15.0/docs/better-text-search-prerequisites).
--> ## Why vector search?
+## Why vector search?
 Vectors are produced by machine learning models to map concepts and data types familiar to humans (e.g. words or images) to a list of numbers (i.e. a vector). One of the important points about vectors is how vectors referring to similar concepts are close to one another. For instance, vectors representing "tiger" and "lion" are closer to each other and far from points representing words like "automobile", "whiteboard" or "Mars".
 Vector search takes advantage of this quality and looks not only for the exact match but also for similar concepts. For instance, you might make a query using the word "shoes"; vector search knows concepts like "sneakers", "sandals", and "boots" are categorized as shoes.
 > 📘
 >
 > Relying on specific features and quality of vectors, vector search looks not only for the exact match in the database but also for similar concepts.
 
--> ## What I need
+## What I need
 * Project and API Key: Grab your Relevance AI project and API key by [signing up](https://cloud.relevance.ai/ )
 * Python 3 (ideally a Jupyter Notebook/Colab environment)
 * RelevanceAI Installed - Full installation guide can be found [here](https://docs.relevance.ai/docs/installation) or

@@ -5,7 +5,7 @@ hidden: false
 createdAt: "2021-11-14T15:41:33.393Z"
 updatedAt: "2022-01-18T07:51:30.653Z"
 ---
--> ## The `metric` parameter
+## The `metric` parameter
 The metrics parameter is a **list of dictionaries**, with each dictionary consisting of different fields to be used as metrics for grouping data entries.  Keys in each individual dictionary are:
 1. **Name**: A custom unique identifier of the metric
 2. **Field **: The name of the field to aggregate

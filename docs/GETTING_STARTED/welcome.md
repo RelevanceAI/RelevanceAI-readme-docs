@@ -12,18 +12,19 @@ Relevance AI's ultimate goal is to assist developers to experiment, build and sh
 
 
 <figure>
-<img src="https://github.com/RelevanceAI/RelevanceAI-readme-docs/blob/v1.1.3/docs_template/_assets/RelevanceAI_DS_Workflow.png?raw=true"   alt="Relevance AI DS Workflow" />
+<img src="https://github.com/RelevanceAI/RelevanceAI-readme-docs/blob/v1.1.3-fixes/docs_template/_assets/RelevanceAI_DS_Workflow.png?raw=true"   alt="Relevance AI DS Workflow" />
 <figcaption>How Relevance AI helps with the data science workflow</figcaption>
 <figure>
 
 
 ## In 5 lines of code, get a shareable dashboard for experiments insight!
 
-Run this Quickstart in Colab: [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/RelevanceAI/RelevanceAI-readme-docs/blob/v1.1.3/docs/GETTING_STARTED/_notebooks/Intro-to-Relevance-AI.ipynb)
+Run this Quickstart in Colab: [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/RelevanceAI/RelevanceAI-readme-docs/blob/v1.1.3-fixes/docs/GETTING_STARTED/_notebooks/Intro-to-Relevance-AI.ipynb)
 
 ### 1. Set up Relevance AI
 
 ```bash Bash
+# remove `!` if running the line in a terminal
 !pip install -U RelevanceAI[notebook]==1.1.3
 ```
 ```bash
@@ -98,7 +99,7 @@ This is just the start. Relevance AI comes out of the box with support for more 
 
 **Get started with some example applications you can build with Relevance AI. Check out some other guides below!**
 - [Text-to-image search with OpenAI's CLIP](doc:quickstart-text-to-image-search)
-- [Multi-vector search with your own vectors](docs:quickstart-multivector-search)
+- [Multi-vector search with your own vectors](doc:quickstart-multivector-search)
 - [Hybrid Text search with Universal Sentence Encoder using Vectorhub](doc:quickstart-text-search)
 - [Text search with Universal Sentence Encoder Question Answer from Google](doc:quickstart-question-answering)
 

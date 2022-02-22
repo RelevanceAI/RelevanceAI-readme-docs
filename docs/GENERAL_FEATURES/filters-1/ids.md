@@ -6,7 +6,7 @@ createdAt: "2021-11-25T22:22:07.285Z"
 updatedAt: "2022-01-19T05:17:10.638Z"
 ---
 <figure>
-<img src="https://github.com/RelevanceAI/RelevanceAI-readme-docs/blob/v1.1.3/docs_template/GENERAL_FEATURES/_assets/id.png?raw=true" width="612" alt="id.png" />
+<img src="https://github.com/RelevanceAI/RelevanceAI-readme-docs/blob/v1.1.3-fixes/docs_template/GENERAL_FEATURES/_assets/id.png?raw=true" width="612" alt="id.png" />
 <figcaption>Filtering documents based on their id.</figcaption>
 <figure>
 
@@ -14,6 +14,7 @@ updatedAt: "2022-01-19T05:17:10.638Z"
 This filter returns documents whose unique id exists in a given list. It may look similar to 'categories'. The main difference is the search speed.
 
 ```bash Bash
+# remove `!` if running the line in a terminal
 !pip install -U RelevanceAI[notebook]==1.1.3
 ```
 ```bash
