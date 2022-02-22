@@ -24,6 +24,7 @@ Run this Quickstart in Colab: [![Open In Colab](https://colab.research.google.co
 ### 1. Set up Relevance AI
 
 ```bash Bash
+# remove `!` if running the line in a terminal
 !pip install -U RelevanceAI[notebook]==1.2.1
 ```
 ```bash
@@ -98,7 +99,7 @@ This is just the start. Relevance AI comes out of the box with support for more 
 
 **Get started with some example applications you can build with Relevance AI. Check out some other guides below!**
 - [Text-to-image search with OpenAI's CLIP](doc:quickstart-text-to-image-search)
-- [Multi-vector search with your own vectors](docs:quickstart-multivector-search)
+- [Multi-vector search with your own vectors](doc:quickstart-multivector-search)
 - [Hybrid Text search with Universal Sentence Encoder using Vectorhub](doc:quickstart-text-search)
 - [Text search with Universal Sentence Encoder Question Answer from Google](doc:quickstart-question-answering)
 

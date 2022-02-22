@@ -15,7 +15,7 @@ Good clusters have elements, which, when paired, pairs belong to the same cluste
 
 
 - **Rand Index** is a score ranging from 0 to 1 that represents the percentage of element pairs that have a matching cluster and ground truth labels. Rand Index score 1 shows perfect matching while 0 represent random matching. *Note: This measure is adjusted for randomness so does not equal the exact numerical percentage.*
--> ## Code Example
+## Code Example
 The following code examines metrics of clusters through the Silhouette Score and Rand Score. If a ground truth is not provided, only the Silhouette Score is shown.
 ```python Python (SDK)
 DATASET_ID = 'quickstart_clustering'

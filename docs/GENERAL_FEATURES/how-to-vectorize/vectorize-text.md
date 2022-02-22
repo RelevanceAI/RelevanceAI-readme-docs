@@ -17,6 +17,7 @@ On this page, we introduce some of the text encoders:
 First, `vectorhub[encoders-text-tfhub]` must be installed. Restart the notebook when the installation is finished.
 
 ```bash Bash
+# remove `!` if running the line in a terminal
 !pip install vectorhub[encoders-text-tfhub]
 ```
 ```bash
@@ -56,6 +57,7 @@ encoded_documents = model.encode_documents(["sentence"], documents)
 First, `vectorhub[sentence-transformers]` must be installed. Restart the notebook when the installation is finished.
 
 ```bash Bash
+# remove `!` if running the line in a terminal
 !pip install vectorhub[sentence-transformers]
 ```
 ```bash

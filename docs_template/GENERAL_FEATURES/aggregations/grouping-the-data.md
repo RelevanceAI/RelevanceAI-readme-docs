@@ -5,7 +5,7 @@ hidden: false
 createdAt: "2021-11-14T15:41:17.447Z"
 updatedAt: "2022-01-18T07:50:28.081Z"
 ---
--> ## The `groupby` parameter
+## The `groupby` parameter
 The groupby parameter is a **list of dictionaries**, with each dictionary consisting of different fields to be used for grouping data entries. Keys in each individual dictionary are:
 1. **Name**: A custom unique identifier of the group
 2. **Field **: The name of the field to be used for grouping

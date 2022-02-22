@@ -14,6 +14,7 @@ updatedAt: "2022-01-19T05:16:58.720Z"
 This filter performs date analysis and filters documents based on their date information. For instance, it is possible to filter out any documents with a production date before January 2021.
 
 ```bash Bash
+# remove `!` if running the line in a terminal
 !pip install -U RelevanceAI[notebook]==1.2.1
 ```
 ```bash

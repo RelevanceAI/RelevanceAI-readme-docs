@@ -8,7 +8,7 @@ createdAt: "2021-11-08T00:59:35.504Z"
 updatedAt: "2021-11-15T05:09:20.240Z"
 ---
 Here, we introduce some code snippets used for the setup; these are repeated in many of our documents.
--> ## Long boilerplate for set up
+## Long boilerplate for set up
 ### What I Need
 * Project and API Key: Grab your RelevanceAI project and API key by [signing up](https://cloud.relevance.ai/ )
 * Python 3 (ideally a Jupyter Notebook/Colab environment)
@@ -35,11 +35,11 @@ client = Client(project, api_key)
 ```python
 ```
 
--> ## Short boilerplate for set up
+## Short boilerplate for set up
 ### What do I need?
 * **api_key** and **project** obtained in the [settings page](https://cloud.relevance.ai/settings).
 
--> ## What is Next
+## What is Next
 You need
 1- **dataset_id** : name of a dataset stored in Relevance AI. You can find out how to upload a dataset in [Creating a dataset](doc:creating-a-dataset). Alternatively, to get started with the platform, you can use our [ecommerce data](doc:ecommerce-example-dataset).
 2- **Vectorizer**: to be able to search in a vector space, the query must match the nature of the space; meaning we need to move from the common data formats like text, image, sound, etc. to vectors. You can find out about different vectorizers in RelevanceAI platform in documentation pages such as [text-to-image search](https://docs.relevance.ai/v0.14.0/docs/quickstart-text-to-image-search) or [better-text-search](https://docs.relevance.ai/v0.14.0/docs/prerequisites-1).

@@ -32,8 +32,13 @@ DOCS_PATH=${2:-"$PWD/docs/"}
 PIP_PACKAGE_NAME=${3:-"RelevanceAI"}
 
 GIT_BRANCH_NAME=$(git rev-parse --abbrev-ref HEAD)
-GIT_BRANCH_NAME_VERSION=$(echo $GIT_BRANCH_NAME | sed 's/[^0-9.]//g')
 VERSION_FILE=$(cat __version__)
+
+if [[ $GIT_BRANCH_NAME == 'main' ]]; then
+	GIT_BRANCH_NAME="v$VERSION_FILE"
+fi
+
+GIT_BRANCH_NAME_VERSION=$(echo $GIT_BRANCH_NAME | sed 's/[^0-9.]//g')
 
 if [[ $VERSION_FILE != $GIT_BRANCH_NAME_VERSION ]]; then
 	echo $GIT_BRANCH_NAME_VERSION > __version__
