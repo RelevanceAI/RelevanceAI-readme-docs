@@ -6,7 +6,7 @@ createdAt: "2021-11-25T06:28:37.534Z"
 updatedAt: "2022-01-19T05:17:05.147Z"
 ---
 <figure>
-<img src="https://github.com/RelevanceAI/RelevanceAI-readme-docs/blob/v1.1.4/docs_template/GENERAL_FEATURES/_assets/numeric.png?raw=true" width="446" alt="Numeric.png" />
+<img src="https://github.com/RelevanceAI/RelevanceAI-readme-docs/blob/v1.1.4-update/docs_template/GENERAL_FEATURES/_assets/numeric.png?raw=true" width="446" alt="Numeric.png" />
 <figcaption>Filtering documents with retail price higher than 5000.</figcaption>
 <figure>
 
@@ -14,6 +14,7 @@ updatedAt: "2022-01-19T05:17:05.147Z"
 This filter is to perform the filtering operators on a numeric value. For instance, returning the documents with a price larger than 1000 dollars.
 
 ```bash Bash
+# remove `!` if running the line in a terminal
 !pip install -U RelevanceAI[notebook]==1.1.4
 ```
 ```bash

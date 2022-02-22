@@ -7,7 +7,7 @@ createdAt: "2021-11-02T00:37:51.061Z"
 updatedAt: "2022-01-17T02:31:59.061Z"
 ---
 
-[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/RelevanceAI/RelevanceAI-readme-docs/blob/v1.1.4/docs/GENERAL_FEATURES/creating-a-dataset/_notebooks/creating-a-dataset.ipynb)
+**Try it out in Colab:** [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/RelevanceAI/RelevanceAI-readme-docs/blob/v1.1.4-update/docs/GENERAL_FEATURES/creating-a-dataset/_notebooks/creating-a-dataset.ipynb)
 
 ## Inserting data
 In general data insertion to Relevance AI can be done through either of the following options:
