@@ -11,7 +11,7 @@ updatedAt: "2022-01-24T00:15:14.549Z"
 [VectorHub](https://github.com/RelevanceAI/vectorhub) provides users with access to various state of the art encoders to vectorize different data types such as text or image. It manages the encoding process as well, allowing users to focus on the data they want to encode rather than the actual model behind the scene.
 On this page, we introduce sentence-transformer based text encoders.
 
-[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/RelevanceAI/RelevanceAI-readme-docs/blob/v1.1.4/docs/GENERAL_FEATURES/how-to-vectorizet/_notebooks/how-to-vectorize.ipynb)
+[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/RelevanceAI/RelevanceAI-readme-docs/blob/v1.1.4-search/docs/GENERAL_FEATURES/how-to-vectorizet/_notebooks/how-to-vectorize.ipynb)
 ### sentence-transformers
 First, `sentence-transformers` must be installed. Restart the notebook when the installation is finished.
 
@@ -101,7 +101,7 @@ Below, we show an example of how to get vectors from the popular [**CLIP**](http
 from vectorhub.encoders.text.sentence_transformers import SentenceTransformer2Vec
 
 model = SentenceTransformer2Vec('clip-ViT-B-32')
-image_vector = model.encode("I love working with vectors.")
+text_vector = model.encode("I love working with vectors.")
 ```
 ```python
 ```
