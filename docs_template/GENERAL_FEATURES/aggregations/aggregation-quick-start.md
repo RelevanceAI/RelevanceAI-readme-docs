@@ -12,10 +12,10 @@ One of the most useful analysis tools is **grouping** and **aggregating** data b
 
 This article briefly explains the main aggregation functions. We use a demo dataset containing different real-estate properties. The goal is to find out how properties differ in terms of average price and other characteristics across different locations in Sydney, Australia.
 
-**Try it out in Colab:** [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/RelevanceAI/RelevanceAI-readme-docs/blob/v1.1.4-update/docs/GENERAL_FEATURES/aggregations/_notebooks/aggregation-quick-start.ipynb)
+**Try it out in Colab:** [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/RelevanceAI/RelevanceAI-readme-docs/blob/v1.1.4/docs/GENERAL_FEATURES/aggregations/_notebooks/aggregation-quick-start.ipynb)
 
 <figure>
-<img src="https://github.com/RelevanceAI/RelevanceAI-readme-docs/blob/v1.1.4-update/docs_template/GENERAL_FEATURES/_assets/grouping-results.png?raw=true" width="734" alt="categories.png" />
+<img src="https://github.com/RelevanceAI/RelevanceAI-readme-docs/blob/v1.1.4/docs_template/GENERAL_FEATURES/_assets/grouping-results.png?raw=true" width="734" alt="categories.png" />
 <figcaption>Grouping properties based on location, price, number of bathrooms, ect.</figcaption>
 <figure>
 
