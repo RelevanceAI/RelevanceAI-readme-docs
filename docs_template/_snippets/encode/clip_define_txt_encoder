@@ -2,4 +2,3 @@ python
 from vectorhub.encoders.text.sentence_transformers import SentenceTransformer2Vec
 
 model = SentenceTransformer2Vec('clip-ViT-B-32')
-text_vector = model.encode(<<SAMPLE>>)

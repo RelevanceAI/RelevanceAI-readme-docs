@@ -15,7 +15,7 @@ updatedAt: "2022-01-27T05:19:58.484Z"
 ### Concept
 This search looks for the closest answer (most relevant data entry) via **exact word matching**.  Therefore, the best use case for the traditional search is when the search result is required to include an exact term within the query string.
 
-[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/RelevanceAI/RelevanceAI-readme-docs/blob/v1.1.4/docs/SEARCH_FEATURES/_notebooks/RelevanceAI_ReadMe_Exact_Text_Matching.ipynb)
+[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/RelevanceAI/RelevanceAI-readme-docs/blob/v1.1.4/docs/SEARCH_FEATURES/_notebooks/RelevanceAI_Exact_Text_Matching.ipynb)
 
 ### Sample use-cases
 - Searching for reference numbers, IDs, or specific words such as the name of a brand (e.g. Nike, Sony)
