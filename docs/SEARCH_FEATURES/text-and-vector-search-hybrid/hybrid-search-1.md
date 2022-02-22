@@ -100,7 +100,7 @@ multivector_query=[
 results = df.hybrid_search(
     multivector_query=multivector_query,
     text=query,
-    fields=[<<FIELD>>]
+    fields=[<<FIELD>>],
     page_size=5
 )
 ```

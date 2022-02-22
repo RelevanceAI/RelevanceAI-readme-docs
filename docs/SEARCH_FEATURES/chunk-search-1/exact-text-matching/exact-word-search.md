@@ -70,7 +70,7 @@ df.insert_documents(documents)
 results = df.hybrid_search(
     multivector_query=[],
     text="HP 2.4GHz",
-    fields=[<<FIELD>>]
+    fields=["product_title"],
     page_size=5
 )
 ```
@@ -80,7 +80,7 @@ results = df.hybrid_search(
 This search is quick and easy to implement. It works very well in the aforementioned use-cases but cannot offer any semantic search. This is because the model has no idea of semantic relations; for instance, the relation between  "puppy" and "dog", or "sparky" and "electrician" is completely unknown to the model. An instance of a failed search is presented in the screenshot below, where the word "puppies" was searched but the closest returned match is "puppet", even though the database includes many entries about dogs and pets.
 
 <figure>
-<img src="https://github.com/RelevanceAI/RelevanceAI-readme-docs/blob/v1.2.3/docs_template/SEARCH_FEATURES/_assets/lack_of_semantic_info.png" width="1924" alt="lack_of_semantic_info.png" />
+<img src="https://github.com/RelevanceAI/RelevanceAI-readme-docs/blob/v1.2.3/docs_template/SEARCH_FEATURES/_assets/lack_of_semantic_info.png?raw=true" width="1924" alt="lack_of_semantic_info.png" />
 <figcaption>Sample search result where the traditional search fails due to lack of semantic information.</figcaption>
 <figure>
 
