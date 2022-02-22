@@ -19,8 +19,10 @@ This article briefly explains the main aggregation functions. We use a demo data
 <figcaption>Grouping properties based on location, price, number of bathrooms, etc.</figcaption>
 <figure>
 
+
 First, we need to install Relevance AI's Python SDK.
 ```bash Bash
+# remove `!` if running the line in a terminal
 !pip install -U RelevanceAI[notebook]==1.2.3
 ```
 ```bash
@@ -40,7 +42,23 @@ client = Client()
 ```python
 ```
 
-@@@ get_realestate_dataset
+```python Python (SDK)
+import pandas as pd
+from relevanceai.datasets import get_realestate_dataset
+
+# Retrieve our sample dataset. - This comes in the form of a list of documents.
+documents = get_realestate_dataset()
+
+# ToDo: Remove this cell when the dataset is updated
+
+for d in documents:
+  if '_clusters_' in d:
+    del d['_clusters_']
+
+pd.DataFrame.from_dict(documents).head()
+```
+```python
+```
 
 ```python Python (SDK)
 df = client.Dataset("quickstart_aggregation")

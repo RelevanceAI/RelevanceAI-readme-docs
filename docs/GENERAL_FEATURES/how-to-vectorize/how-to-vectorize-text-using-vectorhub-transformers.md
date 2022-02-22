@@ -16,6 +16,7 @@ On this page, we introduce sentence-transformer based text encoders.
 First, `sentence-transformers` must be installed. Restart the notebook when the installation is finished.
 
 ```bash Bash
+# remove `!` if running the line in a terminal
 !pip install vectorhub[sentence-transformers]
 ```
 ```bash

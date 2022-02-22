@@ -13,6 +13,7 @@ hidden: false
 The easiest way to install our Python SDK is to run:
 
 ```bash Bash
+# remove `!` if running the line in a terminal
 !pip install -U RelevanceAI[notebook]==1.2.3
 ```
 ```bash

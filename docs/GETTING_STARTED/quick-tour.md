@@ -28,8 +28,10 @@ Run this Quickstart in Colab: [![Open In Colab](https://colab.research.google.co
 
 
 ```bash Bash
+# remove `!` if running the line in a terminal
 !pip install -U RelevanceAI[notebook]==1.2.3
 
+# remove `!` if running the line in a terminal
 !pip install -U vectorhub[clip]
 ```
 ```bash

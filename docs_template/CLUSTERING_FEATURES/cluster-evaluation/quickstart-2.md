@@ -26,7 +26,7 @@ First, you need to install Relevance AI's Python SDK and set up a client object 
 @@@ client_instantiation @@@
 
 
-You also need to have a dataset under your Relevance AI account. You can either use our ecommerce sample data as shown in this step or follow the tutorial on [how to create your own dataset](https://docs.relevance.ai/docs/creating-a-dataset-prerequisites). Running the code below, the fetched documents will be uploaded into your personal Relevance AI account under the name *quickstart_clustering*.
+You also need to have a dataset under your Relevance AI account. You can either use our ecommerce sample data as shown in this step or follow the tutorial on [how to create your own dataset](doc:project-and-dataset). Running the code below, the fetched documents will be uploaded into your personal Relevance AI account under the name *quickstart_clustering*.
 
 @@@ get_ecommerce_dataset_encoded @@@
 

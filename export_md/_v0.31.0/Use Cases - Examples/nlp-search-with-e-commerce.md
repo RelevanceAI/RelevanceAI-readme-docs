@@ -15,7 +15,7 @@ The contents of this guide will be:
 2) Vectorizing the title and description of each product with `Universal Sentence Encoder` and comparing it to `Bert-based SentenceTransformers`
 3) Comparing the performance of 2 encoders. Here, we will compare `Universal Sentence Encoder` with `BERT Embeddings
 4) Determine which configuration works the best for our queries.
--> ## What do I need to follow this guide?
+## What do I need to follow this guide?
 Grab your project and API key from https://cloud.relevance.ai/ in the settings area and let's get started!
 
 - Project Name
@@ -71,7 +71,7 @@ From this list of queries, we now investigate 4 queries that we are looking to t
 - gifts for my daughter
 - gifts for my son with cashback
 
--> ## Vectorizing
+## Vectorizing
 In this section, we will assign the `_id` of the document and then encode them and insert into a dataset called `ecommerce-experiments`.
 ```python Python (SDK)
 for d in docs:
@@ -114,7 +114,7 @@ This is expected to return:
 ```json
 ```
 
--> ## Testing Universal Sentence Encoder
+## Testing Universal Sentence Encoder
 Now let us begin testing our search performance on the given dataset with a few different queries.  We will begin with a simple vector search. You can read more about vector search here at the ![Vector Search API reference](https://docs.relevance.ai/reference/vector_search_api_services_search_vector_post).
 ```python Python (SDK)
 query = "2.4GHz PC mouse"
@@ -197,7 +197,7 @@ Unfortunately - this is one of the weaknesses of vector search - sometimes the v
 >
 > While vectors generally perform well in semantic search applications, they sometimes fail at exact text matching. Vector search, unfortunately, is not a superset of traditional search. It is merely an alternative. Read on below to see how we tackle this problem with **hybrid search**.
 
--> ## Hybrid Search
+## Hybrid Search
 
 While the previous results were okay - it's strange that `ST2000DM001` doesn't immediately dominate the top search results. For that - we might want to combine traditional search with vector search such that if the title contains the same words as the query - it gets boosted up.
 
@@ -266,7 +266,7 @@ results = client.services.search.hybrid(
 This is more like it! By combining with traditional search - we are able to get the bost of both worlds.
 Now - while items are great, sometimes, we want to be able to also search on the content of the actual product - we will take a look into how we do that next.
 
--> ## Combining with product descriptions
+## Combining with product descriptions
 While we can search titles just fine, we may want to also search for content inside the product description. So let us build this.
 
 We begin by defining how we want to display the results as such:
@@ -278,7 +278,7 @@ def show_results(results, fields_to_show=["title", "content"]):
 ```
 This is a helpful function to allow us to visualise the results.
 
--> ## Clean and encode product descriptions
+## Clean and encode product descriptions
 Here, we encode content - here we show you how to combine both searches and the easiest way to clean and encode your dataset. In this section, we will:
 
 1) Clean the HTML from product descriptions.
@@ -400,7 +400,7 @@ We can further explore these 2 ideas testing either:
 
 We will leave testing chunk search for another tutorial but we will test a new encoder to compare its performance with Universal Sentence Encoder.
 
--> ## Comparing Against SentenceTransformer Vectorizer
+## Comparing Against SentenceTransformer Vectorizer
 We begin by instantiating a new encoder. This encoder has been built on distilroberta as a backbone and finetuned on MSMarco data.
 ```python Python (SDK)
 from vectorhub.encoders.text.sentence_transformers import SentenceTransformer2Vec
@@ -487,5 +487,5 @@ for query in queries:
 ```
 Re-evaluating the results, we notice that the model itself does not seem to perform as well as Universal Sentence Encoder on this dataset. As the initial results do not seem promising, we may decide to end our experimentation here to go either with another encoder or to try out chunking because this approach does not seem to be working.
 
--> ## Conclusion
+## Conclusion
 This notebook shows us a simple experimentation workflow with just a few simple queries. Often in practice, we may try to examine way 30+ queries in order to get a sense of the model's performance. We may want to test against our most popular searches, whether specific scenarios work and then identify how to improve these edge-cases. For these situations, we have built a search comparator to help users test out their searches en masse. Until then!

@@ -28,6 +28,7 @@ A very common format for saving data is `CSV`. The `insert_csv` function enables
 First, the Relevance AI SDK package must be installed.
 
 ```bash Bash
+# remove `!` if running the line in a terminal
 !pip install -U RelevanceAI[notebook]==1.2.3
 ```
 ```bash

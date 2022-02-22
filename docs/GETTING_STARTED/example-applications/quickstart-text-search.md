@@ -29,6 +29,7 @@ In this section, we will show you how to create and experiment with a powerful t
 
 
 ```bash Bash
+# remove `!` if running the line in a terminal
 !pip install -U RelevanceAI[notebook]==1.2.3
 ```
 ```bash

@@ -19,6 +19,7 @@ This article briefly explains the main aggregation functions. We use a demo data
 <figcaption>Grouping properties based on location, price, number of bathrooms, etc.</figcaption>
 <figure>
 
+
 First, we need to install Relevance AI's Python SDK.
 @@@ relevanceai_installation, RELEVANCEAI_SDK_VERSION=RELEVANCEAI_SDK_VERSION @@@
 
@@ -26,7 +27,7 @@ First, we need to install Relevance AI's Python SDK.
 To use Relevance AI services, you need to instantiate a client object.
 @@@ client_instantiation @@@
 
-@@@ get_realestate_dataset
+@@@ get_realestate_dataset @@@
 
 @@@ dataset_basics, DATASET_ID=AGGREGATION_DATASET_ID @@@
 

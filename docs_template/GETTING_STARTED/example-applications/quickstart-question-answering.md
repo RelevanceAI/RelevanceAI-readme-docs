@@ -11,6 +11,7 @@ This quickstart shows how easy it is to get started and how to quickly build que
 <figure>
 <img src="https://github.com/RelevanceAI/RelevanceAI-readme-docs/blob/v1.2.3/docs_template/GETTING_STARTED/example-applications/_assets/RelevanceAI_question_answering.png?raw=true" width="650" alt="Vector Spaces" />
 <figcaption></figcaption>
+
 <figure>
 
 For each application, we demonstrate the ease of

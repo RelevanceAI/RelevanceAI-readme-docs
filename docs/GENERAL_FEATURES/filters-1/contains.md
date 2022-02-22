@@ -17,6 +17,7 @@ This filter returns a document only if it contains a string value. Note that sub
 *Note that this filter is case-sensitive.*
 
 ```bash Bash
+# remove `!` if running the line in a terminal
 !pip install -U RelevanceAI[notebook]==1.2.3
 ```
 ```bash

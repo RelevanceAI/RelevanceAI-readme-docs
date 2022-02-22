@@ -14,6 +14,9 @@ You need to have a dataset under your account in Relevance AI.
 [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/RelevanceAI/RelevanceAI-readme-docs/blob/v1.2.3/docs/CLUSTERING_FEATURES/clustering/_notebooks/RelevanceAI-ReadMe-Custom-Clustering.ipynb)
 
 ## Code Example
+
+**Try it out in Colab:** [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/RelevanceAI/RelevanceAI-readme-docs/blob/v1.2.3/docs/CLUSTERING_FEATURES/clustering/_notebooks/RelevanceAI-ReadMe-Custom-Clustering.ipynb)
+
 The following code shows
 1. an example of a custom clustering algorithm that chooses randomly between Cluster 0 and Cluster 1
 2. how to call`fit_documents` to preform clustering
