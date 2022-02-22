@@ -39,12 +39,12 @@ Sample codes using Relevance AI SDK for traditional search endpoint are shown be
 
 4. We call the hybrid search endpoint with no vectors to perform a pure traditional search:
 
-@@@ traditional_search, QUERY="HP 2.4GHz", FIELD = PRODUCT_TITLE_FIELD @@@
+@@@ traditional_search, QUERY="HP 2.4GHz", FIELD=PRODUCT_TITLE_FIELD @@@
 
 This search is quick and easy to implement. It works very well in the aforementioned use-cases but cannot offer any semantic search. This is because the model has no idea of semantic relations; for instance, the relation between  "puppy" and "dog", or "sparky" and "electrician" is completely unknown to the model. An instance of a failed search is presented in the screenshot below, where the word "puppies" was searched but the closest returned match is "puppet", even though the database includes many entries about dogs and pets.
 
 <figure>
-<img src="https://github.com/RelevanceAI/RelevanceAI-readme-docs/blob/v1.2.3/docs_template/SEARCH_FEATURES/_assets/lack_of_semantic_info.png" width="1924" alt="lack_of_semantic_info.png" />
+<img src="https://github.com/RelevanceAI/RelevanceAI-readme-docs/blob/v1.2.3/docs_template/SEARCH_FEATURES/_assets/lack_of_semantic_info.png?raw=true" width="1924" alt="lack_of_semantic_info.png" />
 <figcaption>Sample search result where the traditional search fails due to lack of semantic information.</figcaption>
 <figure>
 

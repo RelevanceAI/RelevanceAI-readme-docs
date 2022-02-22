@@ -2,6 +2,6 @@ python MULTIVECTOR_QUERY=multivector_query, PAGE_SIZE=5
 results = df.hybrid_search(
     multivector_query=<<MULTIVECTOR_QUERY>>,
     text=<<QUERY>>,
-    fields=[<<FIELD>>]
+    fields=[<<FIELD>>],
     page_size=<<PAGE_SIZE>>
 )
