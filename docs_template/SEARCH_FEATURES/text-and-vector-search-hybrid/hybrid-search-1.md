@@ -14,6 +14,7 @@ updatedAt: "2022-01-27T06:22:06.285Z"
 <figure>
 
 
+
 <figure>
 <img src="https://github.com/RelevanceAI/RelevanceAI-readme-docs/blob/v1.2.3/docs_template/SEARCH_FEATURES/_assets/RelevanceAI-paviliondv6-20-large_w.png?raw=true" alt="hybrid0.7.png" />
 <figcaption>Hybrid search result for query "Pavilion DV6-20" with a large emphasis on word-matching. As can be seen, the first three returned results, all include the id "DV6-20" in the query.</figcaption>
@@ -53,6 +54,6 @@ Sample codes using Relevance AI SDK for hybrid search endpoint are shown below. 
 
 @@@ multivector_query, QUERY_VECTOR=query_vec_txt, VECTOR_FIELDS=[PRODUCT_TITLE_CLIP_VEC] @@@
 
-@@@ hybrid_search, QUERY=query, FIELD = PRODUCT_TITLE_FIELD @@@
+@@@ hybrid_search, QUERY=query, FIELD=PRODUCT_TITLE_FIELD @@@
 
 This search provides you with both word matching and search in context. You have the option of assigning the desired weight to traditional search. For instance, if word matching is important, the `traditional_weight` parameter is set to a higher value to emphasize exact text matching, it is normally set to a small value (e.g. 0.025 to 0.1). Hybrid search relies on machine learning techniques for vectorizing and similarity detection. Therefore, a vectorizer is needed. It is possible to use multiple models for vectorizing and combine them all in search (i.e `multivector_query` in the request body).  This model provides you with more exploration possibilities on the effect of traditional and vector search.
