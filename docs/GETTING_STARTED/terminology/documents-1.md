@@ -5,11 +5,11 @@ slug: "documents-1"
 hidden: false
 ---
 
-## Document Basics
+## Document Basics 
 
-Documents can be described as Python dictionaries and are the core unit of data in RelevanceAI's DB - similar to a row in an SQL table or a document in MongoDB.
+Documents can be described as Python dictionaries and are the core unit of data in RelevanceAI's DB - similar to a row in an SQL table or a document in MongoDB. 
 
-An example of a document is as such:
+An example of a document is as such: 
 
 
 
@@ -39,7 +39,7 @@ An example of a document is as such:
 
 
 
-### Schema Rules
+### Schema Rules 
 
 Schema Rules for working with documents in RelevanceAI.
 
@@ -53,13 +53,13 @@ Schema Rules for working with documents in RelevanceAI.
 
 ## Advanced
 
-### Chunk Documents
+### Chunk Documents 
 
 Chunk documents are essentially documents with a list as one of the values. This can be useful to depict parent-child relationships in documents such as `lines` in a `page` and you want the most relevant line in a page returned.
 
-Chunk documents have `chunks` which are denoted by the suffix `_chunk_`.
+Chunk documents have `chunks` which are denoted by the suffix `_chunk_`. 
 
-An example of a chunk document is as such:
+An example of a chunk document is as such: 
 
 
 ```json JSON
@@ -94,13 +94,13 @@ An example of a chunk document is as such:
 
 Chunk documents need to be used with special chunk search endpoints and have separate vector fields that end with  `_chunkvector_`. These search endpoints are `/services/search/chunk_search`, `/services/search/advanced_chunk_search`, `/services/search/multistep_chunk_search` and `/services/search/multistep_advanced_chunk_search`. Note that when storing chunks in Relevance AI, the order within the chunk is maintained.
 
-### Schema Rules
+### Schema Rules 
 
 Schema Rules for working with chunk documents in RelevanceAI.
 
 
 |**Schema Rule**|**Example**|
 |:-----:|:-----:|
-|When inserting or specifying chunks in a document the suffix (ends with) `_chunk_` for the field name. If you are unfamiliar with chunks, you can [read about them here Documents](doc:documents-1).| `products_chunk_`|
+|When inserting or specifying chunks in a document the suffix (ends with) `_chunk_` for the field name.| `products_chunk_`|
 |When inserting or specifying chunk vectors in a document's chunks use the suffix (ends with) `_chunkvector_` for the field name.| `products_chunk_.product_description_chunkvector_`|
 

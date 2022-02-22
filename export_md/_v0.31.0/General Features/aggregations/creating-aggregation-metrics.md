@@ -5,7 +5,7 @@ hidden: false
 createdAt: "2021-11-14T15:41:33.393Z"
 updatedAt: "2022-01-18T07:51:30.653Z"
 ---
--> ## The `metric` parameter
+## The `metric` parameter
 The metrics parameter is a **list of dictionaries**, with each dictionary consisting of different fields to be used as metrics for grouping data entries.  Keys in each individual dictionary are:
 1. **Name**: A custom unique identifier of the metric
 2. **Field **: The name of the field to aggregate
@@ -50,7 +50,7 @@ cardinality_suburbs_metric = {"name": 'bathroom_cardinality',
 ```python
 ```
 
--> ## Putting it together
+## Putting it together
 Multiple different fields can be combined together to calculate different metrics. In particular, this example calculates the average price, max price, min price and the total number of bathrooms.
 ```python Python (SDK)
 #Initialise Client
