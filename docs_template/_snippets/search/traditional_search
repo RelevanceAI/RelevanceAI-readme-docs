@@ -1,0 +1,7 @@
+python PAGE_SIZE=5
+results = df.hybrid_search(
+    multivector_query=[],
+    text=<<QUERY>>,
+    fields=[<<FIELD>>]
+    page_size=<<PAGE_SIZE>>
+)

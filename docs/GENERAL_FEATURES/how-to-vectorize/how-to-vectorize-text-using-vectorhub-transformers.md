@@ -102,7 +102,7 @@ Below, we show an example of how to get vectors from the popular [**CLIP**](http
 from vectorhub.encoders.text.sentence_transformers import SentenceTransformer2Vec
 
 model = SentenceTransformer2Vec('clip-ViT-B-32')
-image_vector = model.encode("I love working with vectors.")
+text_vector = model.encode("I love working with vectors.")
 ```
 ```python
 ```
