@@ -30,6 +30,7 @@ To make a search against vectors of type X, the query must be of the same type. 
 
 
 ```bash Bash
+# remove `!` if running the line in a terminal
 !pip install -U RelevanceAI[notebook]==1.2.0
 ```
 ```bash

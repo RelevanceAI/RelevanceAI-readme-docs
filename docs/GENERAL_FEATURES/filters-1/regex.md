@@ -18,6 +18,7 @@ Relevance AI has the same regular expression schema as Apache Lucene's ElasticSe
 *Note that this filter is case-sensitive.*
 
 ```bash Bash
+# remove `!` if running the line in a terminal
 !pip install -U RelevanceAI[notebook]==1.2.0
 ```
 ```bash

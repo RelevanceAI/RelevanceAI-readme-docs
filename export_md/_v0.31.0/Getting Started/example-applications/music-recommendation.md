@@ -5,7 +5,7 @@ hidden: true
 createdAt: "2021-11-28T23:56:46.054Z"
 updatedAt: "2022-01-14T06:56:46.836Z"
 ---
--> ## Recommendations based on vector search
+## Recommendations based on vector search
 Vector Search based recommendation is done by employing vectors of specified **liked** and/or **disliked** existing documents. This allows us to not only do recommendations but also personalise the results.
 
 In this section, we will show you how to create and experiment with a powerful `.wav` encoder and a vector search engine using Relevance AI.

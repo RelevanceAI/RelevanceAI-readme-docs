@@ -82,6 +82,7 @@ def main(args):
 
     logging.info(f'Updating version ref to {README_VERSION} in snippet config')
     SNIPPET_PARAMS_FPATH = Path(DOCS_TEMPLATE_PATH) / "_snippet_params.json"
+    print(SNIPPET_PARAMS_FPATH)
     SNIPPET_PARAMS = json.loads(open(str(SNIPPET_PARAMS_FPATH), 'r').read())
 
     SNIPPET_PARAMS['RELEVANCEAI_SDK_VERSION'] = args.version

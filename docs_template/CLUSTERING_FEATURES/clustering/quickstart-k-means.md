@@ -17,7 +17,7 @@ Clustering groups items so that those in the same group/cluster have meaningful 
 
 In this guide, you will learn to run KMeans clustering via **only one line of code**. K-Means clustering partitions your dataset into K distinct clusters.
 
-[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/RelevanceAI/RelevanceAI-readme-docs/blob/v1.2.0/docs/CLUSTERING_FEATURES/clustering/_notebooks/RelevanceAI-ReadMe-Kmeans-Clustering.ipynb)
+**Try it out in Colab:** [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/RelevanceAI/RelevanceAI-readme-docs/blob/v1.2.0/docs/CLUSTERING_FEATURES/clustering/_notebooks/RelevanceAI-ReadMe-Kmeans-Clustering.ipynb)
 
 ### 1. Create a dataset and insert data
 
@@ -27,7 +27,7 @@ First, you need to install Relevance AI's Python SDK and set up a client object 
 
 @@@ client_instantiation @@@
 
-You also need to have a dataset under your Relevance AI account. You can either use our sample sample data as shown in this step or follow the tutorial on [how to create your own dataset](https://docs.relevance.ai/docs/creating-a-dataset-prerequisites).
+You also need to have a dataset under your Relevance AI account. You can either use our sample sample data as shown in this step or follow the tutorial on [how to create your own dataset](doc:project-and-dataset).
 
 In this guide, we use our e-commerce database, which includes fields such as `product_name`, as well as the vectorized version of the field `product_name_default_vector_`. Loading these documents can be done via:
 

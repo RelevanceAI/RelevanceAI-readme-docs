@@ -18,8 +18,7 @@ hidden: false
 
 This section, we will show you how to create and experiment with a powerful text-to-image search engine using OpenAI's CLIP and Relevance AI.
 
-
-**Try it out in Colab:** [![Open In Colab](https://colab.research.google.com/_assets/colab-badge.svg)](https://colab.research.google.com/github/RelevanceAI/RelevanceAI-readme-docs/blob/v1.2.0/docs/GETTING_STARTED/example-applications/_notebooks/RelevanceAI-ReadMe-Text-to-Image-Search.ipynb)
+**Try it out in Colab:** [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/RelevanceAI/RelevanceAI-readme-docs/blob/v1.2.0/docs/GETTING_STARTED/example-applications/_notebooks/RelevanceAI-ReadMe-Text-to-Image-Search.ipynb)
 
 
 ### What I Need
@@ -33,6 +32,7 @@ Prior to starting, let's install the main dependencies. This installation provid
 
 
 ```bash Bash
+# remove `!` if running the line in a terminal
 !pip install -U RelevanceAI[notebook]==1.2.0
 ```
 ```bash

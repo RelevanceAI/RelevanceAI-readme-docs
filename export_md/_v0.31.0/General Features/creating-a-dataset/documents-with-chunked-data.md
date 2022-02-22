@@ -6,7 +6,7 @@ hidden: true
 createdAt: "2021-11-05T04:52:42.745Z"
 updatedAt: "2022-01-14T01:35:17.721Z"
 ---
--> ## What is chunked data
+## What is chunked data
 Chunking refers to breaking a large piece of text into its smaller components. For example, breaking one large paragraph of 10 sentences into a list of 10 sentences. This is specifically beneficial in a more fine-grained search as the data has been broken down into smaller pieces. Also, it can help with more precise vectorizing since some models are very sensitive to the input length.
 
 ## Preparing a dataset to upload
@@ -52,7 +52,7 @@ while data:
 ```python
 ```
 
--> ## Insert with chunking
+## Insert with chunking
 ## Chunking to sentences
 A complete overview of the `bulk_insert` endpoint to upload data with or without vectorizing was explained on [inserting data](doc:inserting-data). Here, we introduce `field_transformers` that is the argument used for chunking. It is a list of dictionaries with parameters as shown in the below example. This setting triggers a sentence-splitter that in our example breaks the `description` field into its sentence and saves them under a new field called `description_chunk_`. **Note that the output field name must end in `_chunk_`** (e.g `description_chunk_`).
 ```python

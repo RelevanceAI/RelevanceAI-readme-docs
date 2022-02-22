@@ -14,6 +14,7 @@ updatedAt: "2022-01-19T05:17:10.638Z"
 This filter returns documents whose unique id exists in a given list. It may look similar to 'categories'. The main difference is the search speed.
 
 ```bash Bash
+# remove `!` if running the line in a terminal
 !pip install -U RelevanceAI[notebook]==1.2.0
 ```
 ```bash

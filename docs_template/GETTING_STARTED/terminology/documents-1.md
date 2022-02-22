@@ -101,5 +101,5 @@ Schema Rules for working with chunk documents in RelevanceAI.
 
 |**Schema Rule**|**Example**|
 |:-----:|:-----:|
-|When inserting or specifying chunks in a document the suffix (ends with) `_chunk_` for the field name. If you are unfamiliar with chunks, you can [read about them here Documents](doc:documents-1).| `products_chunk_`|
+|When inserting or specifying chunks in a document the suffix (ends with) `_chunk_` for the field name.| `products_chunk_`|
 |When inserting or specifying chunk vectors in a document's chunks use the suffix (ends with) `_chunkvector_` for the field name.| `products_chunk_.product_description_chunkvector_`|

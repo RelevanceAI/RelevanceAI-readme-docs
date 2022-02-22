@@ -113,7 +113,7 @@ show_json(output, text_fields= list(output[0].keys()))
 ```python
 ```
 
--> ## Put it all together
+## Put it all together
 
 ```python Python (SDK)
 #Initialise Client

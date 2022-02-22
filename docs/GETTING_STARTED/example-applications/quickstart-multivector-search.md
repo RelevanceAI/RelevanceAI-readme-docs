@@ -27,6 +27,7 @@ Prior to starting, let's install the main dependencies.
 
 
 ```bash Bash
+# remove `!` if running the line in a terminal
 !pip install -U RelevanceAI[notebook]==1.2.0
 ```
 ```bash

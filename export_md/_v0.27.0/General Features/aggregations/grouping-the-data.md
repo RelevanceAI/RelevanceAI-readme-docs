@@ -5,7 +5,7 @@ hidden: false
 createdAt: "2021-11-14T15:41:17.447Z"
 updatedAt: "2022-01-18T07:50:28.081Z"
 ---
--> ## The `groupby` parameter
+## The `groupby` parameter
 The groupby parameter is a **list of dictionaries**, with each dictionary consisting of different fields to be used for grouping data entries. Keys in each individual dictionary are:
 1. **Name**: A custom unique identifier of the group
 2. **Field **: The name of the field to be used for grouping
@@ -38,7 +38,7 @@ bedrooms_group = {"name": 'bedrooms',
 ```python
 ```
 
--> ## Putting it together
+## Putting it together
 Multiple different fields can be combined together to identify specific groups. In particular, this example groups by different locations and the number of bedrooms. Note that the code below includes `metrics` as well which are explained in details in the next page.
 ```python Python (SDK)
 #Initialize Client

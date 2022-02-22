@@ -6,7 +6,7 @@ hidden: true
 createdAt: "2021-12-14T14:08:01.323Z"
 updatedAt: "2021-12-14T14:08:01.323Z"
 ---
--> ## Try us out in 5 lines of code!
+## Try us out in 5 lines of code!
 Run this Quickstart in Colab: [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/drive/1qMLzS4pAQfFBQ1wvCePbkSB6lOlrAcof?usp=sharing)
 
 ### 1. Set up Relevance AI
