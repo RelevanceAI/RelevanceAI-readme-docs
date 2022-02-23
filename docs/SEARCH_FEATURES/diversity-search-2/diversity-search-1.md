@@ -2,7 +2,7 @@
 title: "Diversity Search"
 slug: "diversity-search-1"
 excerpt: "No word matching, just semantics with clustering"
-hidden: false
+hidden: true
 createdAt: "2021-11-19T01:41:21.525Z"
 updatedAt: "2022-01-27T06:27:26.158Z"
 ---
