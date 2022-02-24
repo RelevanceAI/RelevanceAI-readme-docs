@@ -6,7 +6,7 @@ createdAt: "2021-11-29T23:13:52.305Z"
 updatedAt: "2022-01-19T05:16:17.784Z"
 ---
 <figure>
-<img src="https://github.com/RelevanceAI/RelevanceAI-readme-docs/blob/v1.2.1/docs_template/GENERAL_FEATURES/_assets/regex.png?raw=true" width="2048" alt="7cbd106-contains.png" />
+<img src="https://github.com/RelevanceAI/RelevanceAI-readme-docs/blob/v1.2.4/docs_template/GENERAL_FEATURES/_assets/regex.png?raw=true" width="2048" alt="7cbd106-contains.png" />
 <figcaption>Filtering documents containing "Durian (\w+)" in description using filter_type `regexp`.</figcaption>
 <figure>
 
@@ -19,7 +19,7 @@ Relevance AI has the same regular expression schema as Apache Lucene's ElasticSe
 
 ```bash Bash
 # remove `!` if running the line in a terminal
-!pip install -U RelevanceAI[notebook]==1.2.1
+!pip install -U RelevanceAI[notebook]==1.2.4
 ```
 ```bash
 ```

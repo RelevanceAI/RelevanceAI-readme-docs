@@ -29,7 +29,7 @@ show_json(
 ```
 After running this, you should see the following in your Jupyter Notebook:
 <figure>
-<img src="https://github.com/RelevanceAI/RelevanceAI-readme-docs/blob/v1.2.1/docs_template/GENERAL_FEATURES/_assets/preview_images.png?raw=true" width="278" alt="xkcd_comics.png" />
+<img src="https://github.com/RelevanceAI/RelevanceAI-readme-docs/blob/v1.2.4/docs_template/GENERAL_FEATURES/_assets/preview_images.png?raw=true" width="278" alt="xkcd_comics.png" />
 <figcaption>Example showing images</figcaption>
 <figure>
 
