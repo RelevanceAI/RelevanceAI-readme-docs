@@ -6,7 +6,7 @@ createdAt: "2021-11-25T22:22:07.285Z"
 updatedAt: "2022-01-19T05:17:10.638Z"
 ---
 <figure>
-<img src="https://github.com/RelevanceAI/RelevanceAI-readme-docs/blob/v1.2.1/docs_template/GENERAL_FEATURES/_assets/id.png?raw=true" width="612" alt="id.png" />
+<img src="https://github.com/RelevanceAI/RelevanceAI-readme-docs/blob/v1.2.7/docs_template/GENERAL_FEATURES/_assets/id.png?raw=true" width="612" alt="id.png" />
 <figcaption>Filtering documents based on their id.</figcaption>
 <figure>
 
@@ -15,7 +15,7 @@ This filter returns documents whose unique id exists in a given list. It may loo
 
 ```bash Bash
 # remove `!` if running the line in a terminal
-!pip install -U RelevanceAI[notebook]==1.2.1
+!pip install -U RelevanceAI[notebook]==1.2.7
 ```
 ```bash
 ```
