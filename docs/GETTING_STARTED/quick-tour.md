@@ -11,7 +11,7 @@ Relevance AI is designed and built to help developers to experiment, build and s
 
 
 <figure>
-<img src="https://github.com/RelevanceAI/RelevanceAI-readme-docs/blob/v1.2.1/docs_template/_assets/RelevanceAI_DS_Workflow.png?raw=true" alt="Relevance AI DS Workflow" />
+<img src="https://github.com/RelevanceAI/RelevanceAI-readme-docs/blob/v1.2.8/docs_template/_assets/RelevanceAI_DS_Workflow.png?raw=true" alt="Relevance AI DS Workflow" />
 <figcaption>How Relevance AI helps with the data science workflow</figcaption>
 <figure>
 
@@ -21,7 +21,7 @@ Relevance AI is designed and built to help developers to experiment, build and s
 
 
 
-Run this Quickstart in Colab: [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/RelevanceAI/RelevanceAI-readme-docs/blob/v1.2.1/docs/GETTING_STARTED/_notebooks/RelevanceAI-ReadMe-Quick-Feature-Tour.ipynb)
+Run this Quickstart in Colab: [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/RelevanceAI/RelevanceAI-readme-docs/blob/v1.2.8/docs/GETTING_STARTED/_notebooks/RelevanceAI-ReadMe-Quick-Feature-Tour.ipynb)
 
 
 ### 1. Set up Relevance AI and Vectorhub for Encoding!
@@ -29,7 +29,7 @@ Run this Quickstart in Colab: [![Open In Colab](https://colab.research.google.co
 
 ```bash Bash
 # remove `!` if running the line in a terminal
-!pip install -U RelevanceAI[notebook]==1.2.1
+!pip install -U RelevanceAI[notebook]==1.2.8
 
 # remove `!` if running the line in a terminal
 !pip install -U vectorhub[clip]
@@ -54,7 +54,7 @@ client = Client()
 
 
 <figure>
-<img src="https://github.com/RelevanceAI/RelevanceAI-readme-docs/blob/v1.2.1/docs_template/_assets/RelevanceAI_auth_token_details.png?raw=true" alt="Get your Auth Details" />
+<img src="https://github.com/RelevanceAI/RelevanceAI-readme-docs/blob/v1.2.8/docs_template/_assets/RelevanceAI_auth_token_details.png?raw=true" alt="Get your Auth Details" />
 <figcaption>Get your Auth Details</figcaption>
 <figure>
 
@@ -77,7 +77,7 @@ pd.DataFrame.from_dict(documents).head()
 
 
 <figure>
-<img src="https://github.com/RelevanceAI/RelevanceAI-readme-docs/blob/v1.2.1/docs_template/_assets/RelevanceAI_dataset_dashboard.png?raw=true" alt="See your dataset in the dashboard" />
+<img src="https://github.com/RelevanceAI/RelevanceAI-readme-docs/blob/v1.2.8/docs_template/_assets/RelevanceAI_dataset_dashboard.png?raw=true" alt="See your dataset in the dashboard" />
 <figcaption>See your dataset in the dashboard</figcaption>
 <figure>
 
@@ -122,13 +122,13 @@ df.schema
 
 
 <figure>
-<img src="https://github.com/RelevanceAI/RelevanceAI-readme-docs/blob/v1.2.1/docs_template/_assets/RelevanceAI_vectors_dashboard.png?raw=true" alt="Monitor your vectors in the dashboard" />
+<img src="https://github.com/RelevanceAI/RelevanceAI-readme-docs/blob/v1.2.8/docs_template/_assets/RelevanceAI_vectors_dashboard.png?raw=true" alt="Monitor your vectors in the dashboard" />
 <figcaption>Monitor your vectors in the dashboard</figcaption>
 <figure>
 
 
 <figure>
-<img src="https://github.com/RelevanceAI/RelevanceAI-readme-docs/blob/v1.2.1/docs_template/_assets/RelevanceAI_images_dashboard.png?raw=true" alt="View your dataset in the dashboard" />
+<img src="https://github.com/RelevanceAI/RelevanceAI-readme-docs/blob/v1.2.8/docs_template/_assets/RelevanceAI_images_dashboard.png?raw=true" alt="View your dataset in the dashboard" />
 <figcaption>View your dataset in the dashboard</figcaption>
 <figure>
 
@@ -154,7 +154,7 @@ clusterer.list_closest_to_center()
 
 
 <figure>
-<img src="https://github.com/RelevanceAI/RelevanceAI-readme-docs/blob/v1.2.1/docs_template/_assets/RelevanceAI_cluster_dashboard.png?raw=true" alt="See what your clusters represent" />
+<img src="https://github.com/RelevanceAI/RelevanceAI-readme-docs/blob/v1.2.8/docs_template/_assets/RelevanceAI_cluster_dashboard.png?raw=true" alt="See what your clusters represent" />
 <figcaption>See what your clusters represent</figcaption>
 <figure>
 
@@ -183,7 +183,7 @@ results = df.vector_search(
 ```
 
 <figure>
-<img src="https://github.com/RelevanceAI/RelevanceAI-readme-docs/blob/v1.2.1/docs_template/_assets/RelevanceAI_search_dashboard.png?raw=true"  alt="Visualise your search results" />
+<img src="https://github.com/RelevanceAI/RelevanceAI-readme-docs/blob/v1.2.8/docs_template/_assets/RelevanceAI_search_dashboard.png?raw=true"  alt="Visualise your search results" />
 <figcaption>Visualise your search results</figcaption>
 <figure>
 
