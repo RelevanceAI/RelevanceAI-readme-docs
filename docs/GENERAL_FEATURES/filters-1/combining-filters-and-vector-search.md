@@ -6,7 +6,7 @@ createdAt: "2021-11-25T22:33:06.798Z"
 updatedAt: "2022-01-19T05:12:49.766Z"
 ---
 <figure>
-<img src="https://github.com/RelevanceAI/RelevanceAI-readme-docs/blob/v1.2.1/docs_template/GENERAL_FEATURES/_assets/combine.png?raw=true" width="1014" alt="filter+vectors.png" />
+<img src="https://github.com/RelevanceAI/RelevanceAI-readme-docs/blob/v1.3.0/docs_template/GENERAL_FEATURES/_assets/combine.png?raw=true" width="1014" alt="filter+vectors.png" />
 <figcaption>Including filters in a vector search.</figcaption>
 <figure>
 ## Including filters in vector search
@@ -22,7 +22,7 @@ Please refer to a full guide on how to [create and upload a database](doc:creati
 
 ```bash Bash
 # remove `!` if running the line in a terminal
-!pip install -U RelevanceAI[notebook]==1.2.1
+!pip install -U RelevanceAI[notebook]==1.3.0
 ```
 ```bash
 ```
