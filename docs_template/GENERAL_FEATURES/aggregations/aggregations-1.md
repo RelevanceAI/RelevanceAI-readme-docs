@@ -11,7 +11,7 @@ One of the most useful analysis tools is **grouping** and **aggregating** data b
 This article briefly explains the main aggregation functions. We use a demo dataset containing 5885 different real-estate properties. The goal is to find out how properties differ in terms of average price and other characteristics across different locations in Sydney, Australia.
 
 <figure>
-<img src="https://github.com/RelevanceAI/RelevanceAI-readme-docs/blob/v1.2.1/docs_template/GENERAL_FEATURES/_assets/grouping-results.png?raw=true" width="734" alt="categories.png" />
+<img src="https://github.com/RelevanceAI/RelevanceAI-readme-docs/blob/v1.3.1/docs_template/GENERAL_FEATURES/_assets/grouping-results.png?raw=true" width="734" alt="categories.png" />
 <figcaption>Grouping properties based on location, price, number of bathrooms, ect.</figcaption>
 <figure>
 
