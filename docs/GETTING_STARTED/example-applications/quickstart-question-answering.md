@@ -9,7 +9,7 @@ updatedAt: "2022-01-20T05:05:33.448Z"
 This quickstart shows how easy it is to get started and how to quickly build question-answering applications using Relevance AI in just a few lines of code. Visit the documentation pages on use-cases for more in-depth tutorials and explanations for experimenting with stronger vector search.
 
 <figure>
-<img src="https://github.com/RelevanceAI/RelevanceAI-readme-docs/blob/v1.2.1/docs_template/GETTING_STARTED/example-applications/_assets/RelevanceAI_question_answering.png?raw=true" width="650" alt="Vector Spaces" />
+<img src="https://github.com/RelevanceAI/RelevanceAI-readme-docs/blob/v1.3.2/docs_template/GETTING_STARTED/example-applications/_assets/RelevanceAI_question_answering.png?raw=true" width="650" alt="Vector Spaces" />
 <figcaption></figcaption>
 
 <figure>
@@ -21,7 +21,7 @@ For each application, we demonstrate the ease of
 
 to build powerful applications
 
-**Try it out in Colab:** [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/RelevanceAI/RelevanceAI-readme-docs/blob/v1.2.1/docs/GETTING_STARTED/example-applications/_notebooks/RelevanceAI-ReadMe-Question-Answering-using-USE-QA-Tensorflow-Hub.ipynb)
+**Try it out in Colab:** [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/RelevanceAI/RelevanceAI-readme-docs/blob/v1.3.2/docs/GETTING_STARTED/example-applications/_notebooks/RelevanceAI-ReadMe-Question-Answering-using-USE-QA-Tensorflow-Hub.ipynb)
 
 ### What I Need
 * Project and API Key: Grab your RelevanceAI project and API key by [signing up](https://cloud.relevance.ai/ )
@@ -32,7 +32,7 @@ to build powerful applications
 Prior to starting, we need to install the main dependencies.
 ```bash Bash
 # remove `!` if running the line in a terminal
-!pip install -U RelevanceAI[notebook]==1.2.1
+!pip install -U RelevanceAI[notebook]==1.3.2
 
 # remove `!` if running the line in a terminal
 !pip install vectorhub[encoders-text-tfhub]
@@ -166,11 +166,11 @@ show_json(results, image_fields=["product_image"], text_fields=["product_title"]
 
 
 <figure>
-<img src="https://github.com/RelevanceAI/RelevanceAI-readme-docs/blob/v1.2.1/docs_template/GETTING_STARTED/example-applications/_assets/RelevanceAI_question_answering_search_results.png?raw=true" width="650" alt="Question Answering Search Results" />
+<img src="https://github.com/RelevanceAI/RelevanceAI-readme-docs/blob/v1.3.2/docs_template/GETTING_STARTED/example-applications/_assets/RelevanceAI_question_answering_search_results.png?raw=true" width="650" alt="Question Answering Search Results" />
 <figcaption>Question Answering Search Results</figcaption>
 <figure>
 
-[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/RelevanceAI/RelevanceAI-readme-docs/blob/v1.2.1/docs/GETTING_STARTED/example-applications/_notebooks/RelevanceAI-ReadMe-Question-Answering-using-USE-QA-Tensorflow-Hub.ipynb)
+[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/RelevanceAI/RelevanceAI-readme-docs/blob/v1.3.2/docs/GETTING_STARTED/example-applications/_notebooks/RelevanceAI-ReadMe-Question-Answering-using-USE-QA-Tensorflow-Hub.ipynb)
 
 ## Final Code
 
