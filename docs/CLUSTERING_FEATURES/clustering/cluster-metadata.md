@@ -14,14 +14,14 @@ All these steps are explained in detail on [the quickstart clustering guide](doc
 
 ## Code Example
 
-[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/RelevanceAI/RelevanceAI-readme-docs/blob/v1.2.1/docs/CLUSTERING_FEATURES/clustering/_notebooks/RelevanceAI-ReadMe-Clustering-Metadata.ipynb)
+[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/RelevanceAI/RelevanceAI-readme-docs/blob/v1.3.3/docs/CLUSTERING_FEATURES/clustering/_notebooks/RelevanceAI-ReadMe-Clustering-Metadata.ipynb)
 
 
 The following code snippets extract the metadata from the clustering algorithm and adds this information to Relevance AI where DATASET_ID refers to the name of the dataset, VECTOR_FIELD is the field based on which the clustering is done, and ALIAS is the name specified by the user to save the clustering results.
 
 ```bash Bash
 # remove `!` if running the line in a terminal
-!pip install -U RelevanceAI[notebook]==1.2.1
+!pip install -U RelevanceAI[notebook]==1.3.3
 ```
 ```bash
 ```
