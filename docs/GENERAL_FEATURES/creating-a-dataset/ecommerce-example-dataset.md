@@ -14,7 +14,7 @@ First Relevance AI's Python SDK must be installed and then a client object must 
 
 ```bash Bash
 # remove `!` if running the line in a terminal
-!pip install -U RelevanceAI[notebook]==1.2.1
+!pip install -U RelevanceAI[notebook]==1.4.0
 ```
 ```bash
 ```

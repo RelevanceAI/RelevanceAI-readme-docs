@@ -22,7 +22,7 @@ Machine learning can vectorize any kind of data (e.g. text, image, videos, audio
 > Below, we visualise how we map data into a geometrical space that is able to plot the similarity distance between every sample of the dataset. Basically, the closer the vectors are located in the space, the more similar they are.
 
 <figure>
-<img src="https://github.com/RelevanceAI/RelevanceAI-readme-docs/blob/v1.2.1/docs_template/GETTING_STARTED/vectors-and-vector-databases/_assets/RelevanceAI_vector_analysis.png?raw=true" width="650" alt="Similar items are closer to each other" />
+<img src="https://github.com/RelevanceAI/RelevanceAI-readme-docs/blob/v1.4.0/docs_template/GETTING_STARTED/vectors-and-vector-databases/_assets/RelevanceAI_vector_analysis.png?raw=true" width="650" alt="Similar items are closer to each other" />
 <figcaption>Analysing your vectors in 3D space</figcaption>
 <figure>
 
@@ -76,7 +76,7 @@ Since vector databases store different kind of data (vectors), search is conduct
 A traditional database usually searches data through keyword matching. Once given a search query, we can filter the content that contains the exact query or a few characters of it. Although very efficient, this approach can lead to subpar or irrelevant results as it does not consider synonyms, context and personalisation. For example, searching for "dogs" the model has no information on the relation between "dogs" and "puppies".
 
 <figure>
-<img src="https://github.com/RelevanceAI/RelevanceAI-readme-docs/blob/v1.2.1/docs_template/GETTING_STARTED/vectors-and-vector-databases/_assets/RelevanceAI_traditional_db.png?raw=true" width="650" alt="Traditional Databases" />
+<img src="https://github.com/RelevanceAI/RelevanceAI-readme-docs/blob/v1.4.0/docs_template/GETTING_STARTED/vectors-and-vector-databases/_assets/RelevanceAI_traditional_db.png?raw=true" width="650" alt="Traditional Databases" />
 <figcaption>Traditional Databases</figcaption>
 <figure>
 
@@ -86,7 +86,7 @@ Vector databases use a method called vector search (also known as nearest neighb
 
 
 <figure>
-<img src="https://github.com/RelevanceAI/RelevanceAI-readme-docs/blob/v1.2.1/docs_template/GETTING_STARTED/vectors-and-vector-databases/_assets/RelevanceAI_nearest_neighbour.png?raw=true" width="650" alt="Nearest Neighbour" />
+<img src="https://github.com/RelevanceAI/RelevanceAI-readme-docs/blob/v1.4.0/docs_template/GETTING_STARTED/vectors-and-vector-databases/_assets/RelevanceAI_nearest_neighbour.png?raw=true" width="650" alt="Nearest Neighbour" />
 <figcaption>Nearest Neighbour</figcaption>
 <figure>
 
