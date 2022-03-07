@@ -14,7 +14,7 @@ There are several ways to evaluate the success of a clustering algorithm. Broadl
 
 Relevance AI provides you with the tools to perform all these analyses. The results of this analysis should be used to decide on the hyperparameters of your clustering algorithm,  including the number of clusters and clustering methodology.
 
-[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/RelevanceAI/RelevanceAI-readme-docs/blob/v1.2.1/docs/CLUSTERING_FEATURES/cluster-evaluation/_notebooks/RelevanceAI-ReadMe-Cluster-Metrics.ipynb)
+[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/RelevanceAI/RelevanceAI-readme-docs/blob/v1.4.2/docs/CLUSTERING_FEATURES/cluster-evaluation/_notebooks/RelevanceAI-ReadMe-Cluster-Metrics.ipynb)
 
 
 ### 1. Create a dataset and insert data
@@ -23,7 +23,7 @@ First, you need to install Relevance AI's Python SDK and set up a client object 
 
 ```bash Bash
 # remove `!` if running the line in a terminal
-!pip install -U RelevanceAI[notebook]==1.2.1
+!pip install -U RelevanceAI[notebook]==1.4.2
 ```
 ```bash
 ```
