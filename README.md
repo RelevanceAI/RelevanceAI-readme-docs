@@ -4,13 +4,12 @@ This repository updates RelevanceAI's ReadMe Documentation [here](https://docs.r
 
 ## 🧠 Documentation
 
-Migrating RelevanceAI docs from [docs.relevance.ai/v0.27.0/docs/welcome](https://docs.relevance.ai/v0.27.0/docs/welcome).
- to [docs.relevance.ai/v0.28.0/docs/welcome](https://docs.relevance.ai/v0.28.0/docs/welcome).
-
-
 ## 🛠️  Requirements
 
 - [Node.JS ^12.x and NPM](https://docs.npmjs.com/downloading-and-installing-node-js-and-npm)
+
+
+
 - [Python ^3.8.0](https://www.python.org/downloads/release/python-380/) - more Python version to be supported in future
 - [rdme NPM client](https://www.npmjs.com/package/rdme/v/6.2.1)
 
@@ -42,6 +41,7 @@ By following instructions below, you will be able to preview/create any given ve
 ```
 
 
+
 1. Install dependencies if first time; note, this repo has both Python and NPM deps
     ```zsh
     ❯ git clone git@github.com:RelevanceAI/RelevanceAI-readme-docs.git
@@ -53,9 +53,13 @@ By following instructions below, you will be able to preview/create any given ve
    - Branch off the latest version that you'd like to fork from (if it is not `main`)
     ```zsh
     ❯ git checkout -b v1.0.0
+    ❯ git checkout -b v1.0.0-fix-typo
     ```
-3. Make your desired changes to the relevant Markdown/notebooks on `docs_templates`.
-4. To add new assets:
+3. Make your desired changes to the relevant Markdown/notebooks in `docs_templates`. Sync your changes.
+
+## 👩🏻‍💻  Adding a new guide
+
+4. To add new assets (i):
    - Add new assets to the corresponding `_assets` folder in `docs_template`.
    - Update asset links in `md` files to point to corresponding path.
 5. To add new notebooks:
@@ -79,6 +83,10 @@ By following instructions below, you will be able to preview/create any given ve
     @@@ quickstart_docs; dataset_basics, DATASET_ID=QUICKSTART_DATASET_ID @@@
     @@@ <SNIPPET_1_NAME>; <SNIPPET_2_NAME>, <SNIPPET_2_PARAMS>; <SNIPPET_3_NAME>, <SNIPPET_3_PARAMS>; @@@
     ```
+
+## 👩🏻‍💻  Syncing your Changes
+
+
 7. Go the ReadMe Dash config and export the ReadMe API key `$RELEVANCEAI_README_API_KEY` variable from ReadMe Project Configuration
    ![](./assets/readme_api_key.png)
    ```zsh

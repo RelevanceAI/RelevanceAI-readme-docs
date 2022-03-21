@@ -31,3 +31,4 @@ _*.ipynb
 *creds*
 
 *.log
+*.logs
