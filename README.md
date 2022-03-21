@@ -7,9 +7,6 @@ This repository updates RelevanceAI's ReadMe Documentation [here](https://docs.r
 ## 🛠️  Requirements
 
 - [Node.JS ^12.x and NPM](https://docs.npmjs.com/downloading-and-installing-node-js-and-npm)
-
-
-
 - [Python ^3.8.0](https://www.python.org/downloads/release/python-380/) - more Python version to be supported in future
 - [rdme NPM client](https://www.npmjs.com/package/rdme/v/6.2.1)
 
@@ -46,6 +43,7 @@ By following instructions below, you will be able to preview/create any given ve
     ```zsh
     ❯ git clone git@github.com:RelevanceAI/RelevanceAI-readme-docs.git
     ❯ python -m venv .venv                 # Create new Python venv
+    ❯ soruce .venv/bin/actinvate
     ❯ pip install -r requirements.txt      # Install Python reqs
     ❯ npm i                                # Install Node reqs
     ```
