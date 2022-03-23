@@ -27,7 +27,7 @@ By following instructions below, you will be able to preview/create any given ve
 ├── detect_secrets.py     ### Extra check to check for API keys in repo/noteboks
 ├── README.md
 ├── readme_migration.py    ## Ignore; Migration script from exports `block` to `md` format
-├── sync_readme_docs.sh    ## Syncs Readme docs w/ rdme client; creates new version if does not exist; syncs w/ latest SDK release
+├── sync_readme.sh    ## Syncs Readme docs w/ rdme client; creates new version if does not exist; syncs w/ latest SDK release
 ├── test_notebooks.py      ## Executes notebooks e2e
 ├── update_docs_version.py  ## Update all asset links to point to the current branch
 ├── update_readme.sh       ## Master script to update asset links, build docs and sync w/ README

@@ -91,18 +91,10 @@ else
 fi
 
 get_readme_page_slugs() {
-    README_CATEGORY_SLUGS=$(curl --request GET --url "https://dash.readme.com/api/v1/categories?perPage=100&page=1" --header "Authorization: Basic $RELEVANCEAI_README_API_KEY" | jq -r '.[].slug')
+    README_CATEGORY_SLUGS=$(curl --request GET --url "https://dash.readme.com/api/v1/categories?perPage=100&page=1" --header "Authorization: Basic $RELEVANCEAI_README_API_KEY" --header "x-readme-version: $README_VERSION_NAME" | jq -r '.[].slug')
     README_PAGE_SLUGS=()
     for cslug in $README_CATEGORY_SLUGS; do
-        README_PAGE_SLUGS+=$(curl --request GET --url "https://dash.readme.com/api/v1/categories/${cslug}/docs" --header 'Accept: application/json' --header "Authorization: Basic $RELEVANCEAI_README_API_KEY" | jq -r '.[].slug')
-    done
-}
-
-get_readme_page_slugs() {
-    README_CATEGORY_SLUGS=$(curl --request GET --url "https://dash.readme.com/api/v1/categories?perPage=100&page=1" --header "Authorization: Basic $RELEVANCEAI_README_API_KEY" | jq -r '.[].slug')
-    README_PAGE_SLUGS=()
-    for cslug in $README_CATEGORY_SLUGS; do
-        README_PAGE_SLUGS+=$(curl --request GET --url "https://dash.readme.com/api/v1/categories/${cslug}/docs" --header 'Accept: application/json' --header "Authorization: Basic $RELEVANCEAI_README_API_KEY" | jq -r '.[].slug')
+        README_PAGE_SLUGS+=$(curl --request GET --url "https://dash.readme.com/api/v1/categories/${cslug}/docs" --header 'Accept: application/json' --header "Authorization: Basic $RELEVANCEAI_README_API_KEY" --header "x-readme-version: $README_VERSION_NAME" | jq -r '.[].slug')
     done
 }
 
@@ -110,50 +102,13 @@ get_repo_page_slugs(){
    REPO_PAGE_SLUGS=$(find ./docs -type f -name "*.md" -exec sh -c "cat {} |  grep -i 'slug: ' | grep -oP '(?<=\").*?(?=\")'  " {} \;)
 }
 
-get_readme_page_slugs
-get_repo_page_slugs
+# get_readme_page_slugs
+# get_repo_page_slugs
 
-# echo
-# echo $REPO_PAGE_SLUGS
+# DIFF=$(echo ${README_PAGE_SLUGS[@]} ${REPO_PAGE_SLUGS[@]} | tr ' ' '\n' | sort | uniq -u)
+# echo $DIFF
 
-array_diff() {
-#   awk 'BEGIN{RS=ORS=" "}
-#        {NR==FNR?a[$0]++:a[$0]--}
-#        END{for(k in a)if(a[k])print k}' <(echo -n "${!$1}") <(echo -n "${!$2}")
-
-
-    # for i in ${$1[@]}; do
-    #     grep $i <<<$2 >/dev/null
-    #     [ $? -eq 0 ] && echo "Data is matching for:$i" || echo "Data is not matching for: $i"
-    # done
-
-    for i in ${$1[@]}; do
-        f=0
-        for j in ${$2[@]}; do
-    	    [ "$i" == "$j" ] && f=1 && break
-        done
-        [ "$f" -eq "1" ] && echo "Data is matching for: $i" || echo "Data is not matching for: $i"
-    done
-}
-
-# DIFF=($(array_diff "$README_PAGE_SLUGS[@]" "$REPO_PAGE_SLUGS[@]"))
-# echo "diff" ${DIFF[@]}
-
-# echo "ReadME Page Slugs $README_PAGE_SLUGS"
-# echo "Repo Page Slugs $REPO_PAGE_SLUGS"
-
-DIFF=$(echo ${README_PAGE_SLUGS[@]} ${REPO_PAGE_SLUGS[@]} | tr ' ' '\n' | sort | uniq -u)
-echo $DIFF
-
-# comm -1 -2 $README_PAGE_SLUGS $REPO_PAGE_SLUGS
-
-
-# echo ${README_PAGE_SLUGS[@]} ${ArrREPO_PAGE_SLUGSay2[@]} | tr ' ' '\n' | sort | uniq -u
-
-# echo $README_PAGE_SLUGS
-
-# echo $README_PAGE_SLUGS
-# for f in README_CATEGORY_SLUGS; do
+# for f in DIFF; do
 #     echo "Processing $f"
 #     npx rdme pages:create --category=$f --key=$RELEVANCEAI_README_API_KEY --version=$README_VERSION_NAME --title="$f" --body="$f"
 # done
@@ -162,6 +117,6 @@ echo $DIFF
 # # Sync documentation
 # ###############################################################################
 
-# echo "Syncing $DOCS_PATH to ReadMe version v$README_VERSION_NAME"
-# npx rdme docs $DOCS_PATH --version=$README_VERSION_NAME  --key $RELEVANCEAI_README_API_KEY
+echo "Syncing $DOCS_PATH to ReadMe version v$README_VERSION_NAME"
+npx rdme docs $DOCS_PATH --version=$README_VERSION_NAME  --key $RELEVANCEAI_README_API_KEY
 
