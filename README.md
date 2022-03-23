@@ -127,6 +127,14 @@ These are templates because all the files and notebooks in docs_templates are wr
 See [./scripts/README.md](./scripts/README.md) for more details about the build and sync scripts.
 
 
+## 👩🏻‍💻  Build the ReadMe config
+
+
+```
+ ❯ python scripts/readme_config.py --method 'build' --version 'v2.0.0'
+```
+
+
 
 ## For further reference
 ### 👩🏻‍💻 Getting Started with rdme Client

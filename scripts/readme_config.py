@@ -23,26 +23,33 @@ class ReadMeConfig:
         self.version = f'v{version}' if version[0] != 'v' else version
         self.fpath = fpath
         self.readme = ReadMeAPI(self.version)
+        self.select_fields = ['slug', 'title', 'excerpt', 'hidden', 'createdAt', 'updatedAt', 'parentDoc', 'order']
+        self.api_categories = ['relevance-ai-endpoints']
+        self.sdk_categories = ['python-sdk']
 
     # def _build_config(self, config):
     #     if
 
+    def build(self, fpath=None, condensed=False, select_fields: List[str] = None):
+        if fpath: self.fpath = fpath
+        if select_fields: self.select_fields = select_fields
 
-    def build(self):
         category_slugs = [c['slug'] for c in self.readme.get_categories(select_fields=['slug'])]
 
-        # print(readme.get_docs_for_category(category_slug=s, select_fields=['slug']))
         category_detail = {}
         for cs in category_slugs:
-            category_detail[cs] = [ps['slug'] for ps in self.readme.get_docs_for_category(category_slug=cs, select_fields=['slug'])]
+            if not any([f in cs for f in self.api_categories+self.sdk_categories]):
+                category_detail[cs] = { ps['slug']: [c['slug'] for c in ps['children']]
+                        for ps in self.readme.get_docs_for_category(category_slug=cs, select_fields=['slug', 'children'])}
 
-        # pprint(category_detail)
-        for k, v in category_detail.items():
-            if k != 'version':
-                page_details = {s: self.readme.get_doc(page_slug=s,
-                                select_fields=['slug', 'title', 'excerpt', 'hidden', 'createdAt', 'updatedAt', 'parentDoc'])[0]
-                                for s in v}
-                category_detail[k] = page_details
+        if not condensed:
+            for category, pages in category_detail.items():
+                page_details = {}
+                for page, children in pages.items():
+                    page_details[page] = self.readme.get_doc(page_slug=page, select_fields=self.select_fields)[0]
+                    for child in children:
+                        page_details[page][child] = self.readme.get_doc(page_slug=child, select_fields=self.select_fields)
+                category_detail[category] = page_details
 
         config = {'version': self.version}
         config['categories'] = category_detail
@@ -69,6 +76,10 @@ def main(args):
     if args.method == 'build':
         print(f'Building {README_VERSION} config ...')
         config.build()
+    elif args.method == 'build-condensed':
+        print(f'Building {README_VERSION} condensed config ...')
+        fpath = str(README_CONFIG_FPATH).replace('readme-config', 'readme-config-condensed')
+        config.build(fpath, condensed=True)
     elif args.method =='update':
         config.update()
 
@@ -125,7 +136,7 @@ if __name__ == "__main__":
 
     parser.add_argument("-d", "--debug", help="Run debug mode", action='store_true')
     parser.add_argument("-p", "--path", default=ROOT_PATH, help="Path of root folder")
-    parser.add_argument("-pn", "--method", default='update', choices=['build', 'update'], help="Method")
+    parser.add_argument("-pn", "--method", default='update', choices=['build', 'build-condensed', 'update'], help="Method")
     parser.add_argument("-v", "--version", default=README_VERSION_FILE, help="Package Version")
     args = parser.parse_args()
 

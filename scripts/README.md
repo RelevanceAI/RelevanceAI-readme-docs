@@ -56,6 +56,12 @@ By following instructions below, you will be able to preview/create any given ve
     ```
 
 
+## 👩🏻‍💻  Build the ReadMe config
+
+```
+ ❯ python scripts/readme_config.py --method 'build' --version 'v2.0.0'
+```
+
 
 ## For further reference
 
