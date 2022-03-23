@@ -6,7 +6,7 @@ createdAt: "2021-11-25T05:18:31.045Z"
 updatedAt: "2022-01-19T05:16:24.396Z"
 ---
 <figure>
-<img src="https://github.com/RelevanceAI/RelevanceAI-readme-docs/blob/v1.2.3/docs_template/GENERAL_FEATURES/_assets/contains.png?raw=true" width="2048" alt="contains.png" />
+<img src="https://github.com/RelevanceAI/RelevanceAI-readme-docs/blob/v2.0.0/cus-272-create-new-page-in-readme-if-page-slug/docs_template/GENERAL_FEATURES/_assets/contains.png?raw=true" width="2048" alt="contains.png" />
 <figcaption>Filtering documents containing "Durian BID" in description using filter_type `contains`.</figcaption>
 <figure>
 
@@ -18,7 +18,7 @@ This filter returns a document only if it contains a string value. Note that sub
 
 ```bash Bash
 # remove `!` if running the line in a terminal
-!pip install -U RelevanceAI[notebook]==1.2.3
+!pip install -U RelevanceAI[notebook]==2.0.0
 ```
 ```bash
 ```

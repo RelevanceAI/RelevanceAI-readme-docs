@@ -6,7 +6,7 @@ createdAt: "2021-11-25T06:09:19.375Z"
 updatedAt: "2022-01-19T05:16:52.455Z"
 ---
 <figure>
-<img src="https://github.com/RelevanceAI/RelevanceAI-readme-docs/blob/v1.2.3/docs_template/GENERAL_FEATURES/_assets/exists.png?raw=true" width="500" alt="exist.png" />
+<img src="https://github.com/RelevanceAI/RelevanceAI-readme-docs/blob/v2.0.0/cus-272-create-new-page-in-readme-if-page-slug/docs_template/GENERAL_FEATURES/_assets/exists.png?raw=true" width="500" alt="exist.png" />
 <figcaption>Filtering documents which include the field "brand" in their information.</figcaption>
 <figure>
 
@@ -15,7 +15,7 @@ This filter returns entries in a database if a certain field (as opposed to the 
 
 ```bash Bash
 # remove `!` if running the line in a terminal
-!pip install -U RelevanceAI[notebook]==1.2.3
+!pip install -U RelevanceAI[notebook]==2.0.0
 ```
 ```bash
 ```

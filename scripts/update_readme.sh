@@ -69,4 +69,4 @@ else
 fi
 
 CYAN "=== Syncing ReadMe version $GIT_BRANCH_NAME ==="
-./scripts/sync_readme_docs.sh $DEBUG_MODE $DOCS_PATH $GIT_BRANCH_NAME
+./scripts/sync_readme.sh $DEBUG_MODE $DOCS_PATH $GIT_BRANCH_NAME
