@@ -91,6 +91,18 @@ else
     echo "ReadMe version v$README_VERSION_NAME already exists"
 fi
 
+README_PAGE_SLUGS=$(curl --request GET --url "https://dash.readme.com/api/v1/categories?perPage=10&page=1"
+                        --header "Authorization: Basic $RELEVANCEAI_README_API_KEY" | jq -r '.[].slug')
+echo $README_PAGE_SLUGS
+
+check_readme_version_exists(){
+    if [[ $README_PAGE_SLUGS =~ $README_VERSION_NAME ]]; then
+        true
+    else
+        false
+    fi
+}
+
 
 ###############################################################################
 # Sync documentation

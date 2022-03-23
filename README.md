@@ -38,14 +38,16 @@ By following instructions below, you will be able to preview/create any given ve
 ```
 
 
-
 1. Install dependencies if first time; note, this repo has both Python and NPM deps
     ```zsh
     ❯ git clone git@github.com:RelevanceAI/RelevanceAI-readme-docs.git
     ❯ python -m venv .venv                 # Create new Python venv
-    ❯ soruce .venv/bin/actinvate
+    ❯ source .venv/bin/activate            # Activate new venv
+    ❯ pip install -U pip                   # Upgrade pip
     ❯ pip install -r requirements.txt      # Install Python reqs
+    ❯ brew install jq                      # if you are on Mac otherwise `apt install jq`
     ❯ npm i                                # Install Node reqs
+
     ```
 2. Create a new branch for the ReadMe version you'd like to create if not already auto-created upon SDK release eg. v1.0.0
    - Branch off the latest version that you'd like to fork from (if it is not `main`)
@@ -54,6 +56,8 @@ By following instructions below, you will be able to preview/create any given ve
     ❯ git checkout -b v1.0.0-fix-typo
     ```
 3. Make your desired changes to the relevant Markdown/notebooks in `docs_templates`. Sync your changes.
+
+These are templates because all the files and notebooks in docs_templates are written in a templated language and are synced with code snippets.
 
 ## 👩🏻‍💻  Adding a new guide
 
