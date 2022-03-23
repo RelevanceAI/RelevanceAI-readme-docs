@@ -1,0 +1,142 @@
+[
+  {
+    "_id": "623a96a3032c43002ef2c6a2",
+    "title": "Exact text matching",
+    "slug": "exact-text-matching",
+    "order": 0,
+    "hidden": false,
+    "children": [
+      {
+        "_id": "623a96a3032c43002ef2c676",
+        "title": "Exact text matching",
+        "slug": "exact-word-search",
+        "order": 0,
+        "hidden": false
+      }
+    ]
+  },
+  {
+    "_id": "623a96a3032c43002ef2c6a3",
+    "title": "Text and vector search (hybrid)",
+    "slug": "text-and-vector-search-hybrid",
+    "order": 1,
+    "hidden": false,
+    "children": [
+      {
+        "_id": "623a96a3032c43002ef2c674",
+        "title": "Text and vector search (hybrid)",
+        "slug": "hybrid-search-1",
+        "order": 0,
+        "hidden": false
+      }
+    ]
+  },
+  {
+    "_id": "623a96a3032c43002ef2c6a4",
+    "title": "Diversity search",
+    "slug": "diversity-search-2",
+    "order": 2,
+    "hidden": false,
+    "children": [
+      {
+        "_id": "623a96a3032c43002ef2c673",
+        "title": "Diversity Search",
+        "slug": "diversity-search-1",
+        "order": 0,
+        "hidden": true
+      }
+    ]
+  },
+  {
+    "_id": "623a96a3032c43002ef2c6a5",
+    "title": "Chunk search",
+    "slug": "chunk-search-1",
+    "order": 3,
+    "hidden": true,
+    "children": [
+      {
+        "_id": "623a96a3032c43002ef2c677",
+        "title": "Chunk search",
+        "slug": "chunk-search",
+        "order": 0,
+        "hidden": true
+      },
+      {
+        "_id": "623a96a3032c43002ef2c678",
+        "title": "Advanced chunk search",
+        "slug": "advance-chunk-search",
+        "order": 1,
+        "hidden": true
+      }
+    ]
+  },
+  {
+    "_id": "623a96a3032c43002ef2c6a6",
+    "title": "Multi-vector search",
+    "slug": "multi-vector-search-2-1",
+    "order": 4,
+    "hidden": true,
+    "children": []
+  },
+  {
+    "_id": "623a96a3032c43002ef2c670",
+    "title": "Combining exact text with vector search",
+    "slug": "combining-exact-text-with-vector-search",
+    "order": 5,
+    "hidden": true,
+    "children": []
+  },
+  {
+    "_id": "623a96a3032c43002ef2c671",
+    "title": "Diversity Search",
+    "slug": "diversity-search",
+    "order": 6,
+    "hidden": true,
+    "children": []
+  },
+  {
+    "_id": "623a96a3032c43002ef2c672",
+    "title": "Splitting Sentences For Search",
+    "slug": "splitting-sentences-for-search",
+    "order": 7,
+    "hidden": true,
+    "children": []
+  },
+  {
+    "_id": "623a96a3032c43002ef2c69b",
+    "title": "Redirects",
+    "slug": "redirects",
+    "order": 8,
+    "hidden": true,
+    "children": [
+      {
+        "_id": "623a96a3032c43002ef2c69a",
+        "title": "redirect-multivector",
+        "slug": "multi-vector-search-1",
+        "order": 0,
+        "hidden": true
+      },
+      {
+        "_id": "623a96a3032c43002ef2c69c",
+        "title": "redirect-vectorize-text",
+        "slug": "vectorise-text-with-vectorhub",
+        "order": 1,
+        "hidden": true
+      },
+      {
+        "_id": "623a96a3032c43002ef2c69d",
+        "title": "redirect-vectorize-images",
+        "slug": "vectorise-images-with-vectorhub",
+        "order": 2,
+        "hidden": true
+      },
+      {
+        "_id": "623a96a3032c43002ef2c69e",
+        "title": "redirect-multivector",
+        "slug": "vector-search-3",
+        "order": 3,
+        "hidden": true
+      }
+    ]
+  }
+]

@@ -1,0 +1,528 @@
+categories:
+  clustering-features:
+    cluster-evaluation:
+      createdAt: '2021-12-22T00:31:56.816Z'
+      excerpt: ''
+      hidden: false
+      parentDoc: null
+      slug: cluster-evaluation
+      title: Cluster Evaluation
+      updatedAt: '2021-12-22T00:31:56.816Z'
+    clustering:
+      createdAt: '2021-11-26T10:20:49.107Z'
+      excerpt: ''
+      hidden: false
+      parentDoc: null
+      slug: clustering
+      title: Clustering
+      updatedAt: '2021-12-12T14:07:47.030Z'
+  comparator:
+    coming-soon-1:
+      createdAt: '2021-12-24T05:10:02.362Z'
+      excerpt: Comparator features are still in the works!
+      hidden: false
+      parentDoc: null
+      slug: coming-soon-1
+      title: Coming Soon
+      updatedAt: '2021-12-24T05:11:14.801Z'
+    embedding-comparator:
+      createdAt: '2021-12-16T00:36:39.074Z'
+      excerpt: Compare the shift in the embedding spaces
+      hidden: true
+      parentDoc: null
+      slug: embedding-comparator
+      title: Embedding Comparator
+      updatedAt: '2021-12-16T00:37:54.475Z'
+    search-comparator:
+      createdAt: '2021-10-25T04:01:23.170Z'
+      excerpt: A Python tool for comparing different models
+      hidden: true
+      parentDoc: null
+      slug: search-comparator
+      title: Model Search Comparator
+      updatedAt: '2021-12-20T07:38:16.936Z'
+  dashboard:
+    saving-aggregation-queries-from-sdk:
+      createdAt: '2022-01-05T06:29:29.519Z'
+      excerpt: Save SDK queries for use in the Clusters App
+      hidden: true
+      parentDoc: null
+      slug: saving-aggregation-queries-from-sdk
+      title: Saving aggregation queries from SDK
+      updatedAt: '2022-01-05T11:00:55.035Z'
+    writing-aggregation-queries:
+      createdAt: '2022-01-05T06:28:28.695Z'
+      excerpt: Learn how to power your cluster app visualizations
+      hidden: true
+      parentDoc: null
+      slug: writing-aggregation-queries
+      title: Writing aggregation queries
+      updatedAt: '2022-01-05T06:28:35.415Z'
+  general-features:
+    aggregations:
+      createdAt: '2021-11-04T01:13:38.587Z'
+      excerpt: ''
+      hidden: false
+      parentDoc: null
+      slug: aggregations
+      title: Aggregations
+      updatedAt: '2021-11-17T02:44:02.097Z'
+    creating-a-dataset:
+      createdAt: '2021-11-03T19:36:43.582Z'
+      excerpt: Quick guide on how to create a dataset
+      hidden: false
+      parentDoc: null
+      slug: creating-a-dataset
+      title: Creating a dataset
+      updatedAt: '2021-12-21T22:34:47.769Z'
+    filters-1:
+      createdAt: '2021-11-21T07:05:21.922Z'
+      excerpt: ''
+      hidden: false
+      parentDoc: null
+      slug: filters-1
+      title: Filters
+      updatedAt: '2022-03-23T07:07:52.552Z'
+    how-to-vectorize:
+      createdAt: '2021-10-28T08:07:42.539Z'
+      excerpt: ''
+      hidden: false
+      parentDoc: null
+      slug: how-to-vectorize
+      title: How to vectorize
+      updatedAt: '2021-11-10T03:19:46.445Z'
+    jsonshower:
+      createdAt: '2021-11-21T06:21:49.590Z'
+      excerpt: Evaluate search results quickly using our open-source JSONShower
+      hidden: false
+      parentDoc: null
+      slug: jsonshower
+      title: Prettyprint json
+      updatedAt: '2022-03-23T07:02:18.719Z'
+    multi-vector-search-3:
+      createdAt: '2021-12-14T02:43:08.885Z'
+      excerpt: ''
+      hidden: false
+      parentDoc: null
+      slug: multi-vector-search-3
+      title: Multi-vector search
+      updatedAt: '2021-12-14T02:43:08.885Z'
+  getting-started:
+    boilerplate:
+      createdAt: '2021-11-08T00:59:35.504Z'
+      excerpt: ''
+      hidden: true
+      parentDoc: null
+      slug: boilerplate
+      title: Boilerplate
+      updatedAt: '2021-11-15T05:09:20.240Z'
+    example-applications:
+      createdAt: '2021-11-03T14:29:43.339Z'
+      excerpt: ''
+      hidden: false
+      parentDoc: null
+      slug: example-applications
+      title: Example applications
+      updatedAt: '2021-11-17T04:06:48.371Z'
+    features:
+      createdAt: '2021-12-14T13:55:10.312Z'
+      excerpt: Developer-first vector platform
+      hidden: false
+      parentDoc: null
+      slug: features
+      title: Features
+      updatedAt: '2022-03-23T07:02:18.794Z'
+    features-1:
+      createdAt: '2021-12-02T23:26:03.931Z'
+      excerpt: Features of Relevance AI
+      hidden: true
+      parentDoc: null
+      slug: features-1
+      title: Features
+      updatedAt: '2021-12-02T23:26:03.931Z'
+    installation:
+      createdAt: '2021-10-26T04:06:08.694Z'
+      excerpt: Installing RelevanceAI
+      hidden: false
+      parentDoc: null
+      slug: installation
+      title: Installation
+      updatedAt: '2022-03-23T07:02:18.769Z'
+    old-welcome:
+      createdAt: '2021-11-07T00:21:21.957Z'
+      excerpt: Developer-first vector platform
+      hidden: true
+      parentDoc: null
+      slug: old-welcome
+      title: Welcome
+      updatedAt: '2022-01-10T11:31:17.870Z'
+    quick-tour:
+      createdAt: '2022-01-10T01:31:01.336Z'
+      excerpt: Try out RelevanceAI in 5 steps!
+      hidden: false
+      parentDoc: null
+      slug: quick-tour
+      title: Quick Feature Tour
+      updatedAt: '2022-03-23T07:02:18.819Z'
+    quickstart:
+      createdAt: '2021-11-17T03:54:08.625Z'
+      excerpt: Try us out in 5 lines of code!
+      hidden: true
+      parentDoc: null
+      slug: quickstart
+      title: Quickstart
+      updatedAt: '2021-12-07T22:59:26.501Z'
+    quickstart-1:
+      createdAt: '2021-11-09T04:10:49.372Z'
+      excerpt: Get started with Relevance AI in 5 minutes!
+      hidden: true
+      parentDoc: null
+      slug: quickstart-1
+      title: Example application boilerplate
+      updatedAt: '2021-12-21T07:56:23.936Z'
+    quickstart-boilerplate:
+      createdAt: '2021-12-14T14:08:01.323Z'
+      excerpt: Try us out in 5 lines of code!
+      hidden: true
+      parentDoc: null
+      slug: quickstart-boilerplate
+      title: Quickstart boilerplate
+      updatedAt: '2021-12-14T14:08:01.323Z'
+    terminology:
+      createdAt: '2021-10-20T03:08:30.714Z'
+      excerpt: Guide to the terminology used in Relevance AI
+      hidden: false
+      parentDoc: null
+      slug: terminology
+      title: Terminology
+      updatedAt: '2022-01-31T09:14:05.514Z'
+    test-page:
+      createdAt: '2022-03-21T23:48:57.217Z'
+      excerpt: ''
+      hidden: true
+      parentDoc: null
+      slug: test-page
+      title: test-page
+      updatedAt: '2022-03-21T23:48:57.217Z'
+    vectors-and-vector-databases:
+      createdAt: '2021-10-31T00:10:16.579Z'
+      excerpt: ''
+      hidden: false
+      parentDoc: null
+      slug: vectors-and-vector-databases
+      title: New to vectors?
+      updatedAt: '2021-12-21T00:20:59.858Z'
+    welcome:
+      createdAt: '2022-01-10T01:31:01.336Z'
+      excerpt: Start experimenting faster with Relevance AI in 5 minutes!
+      hidden: false
+      parentDoc: null
+      slug: welcome
+      title: Relevance AI
+      updatedAt: '2022-03-23T07:02:18.700Z'
+  integrations:
+    coming-soon-2:
+      createdAt: '2021-12-24T05:11:34.436Z'
+      excerpt: Production Integrations with your vector database of choice coming
+        soon!
+      hidden: false
+      parentDoc: null
+      slug: coming-soon-2
+      title: Coming Soon
+      updatedAt: '2021-12-24T05:12:35.111Z'
+  other-references:
+    data-privacy-policy:
+      createdAt: '2021-11-11T04:36:50.677Z'
+      excerpt: ''
+      hidden: false
+      parentDoc: null
+      slug: data-privacy-policy
+      title: Data Privacy Policy
+      updatedAt: '2021-11-11T04:36:50.677Z'
+    sdk-reference:
+      createdAt: '2021-11-09T00:50:51.323Z'
+      excerpt: ''
+      hidden: false
+      parentDoc: null
+      slug: sdk-reference
+      title: Python SDK Reference
+      updatedAt: '2021-11-09T00:51:39.019Z'
+  projector:
+    coming-soon:
+      createdAt: '2021-12-24T05:08:46.971Z'
+      excerpt: Projection features are still in the works!
+      hidden: false
+      parentDoc: null
+      slug: coming-soon
+      title: Coming Soon
+      updatedAt: '2021-12-24T05:11:07.241Z'
+    quickstart-visualize-your-vectors:
+      createdAt: '2021-11-10T03:11:57.414Z'
+      excerpt: Visualise your vectors in 3D in 1 line of code!
+      hidden: true
+      parentDoc: null
+      slug: quickstart-visualize-your-vectors
+      title: Visualise your vectors in 3D
+      updatedAt: '2021-11-24T03:35:17.036Z'
+  python-sdk:
+    vector-search-1:
+      createdAt: '2021-11-11T04:48:27.277Z'
+      excerpt: ''
+      hidden: true
+      parentDoc: null
+      slug: vector-search-1
+      title: Vector Search
+      updatedAt: '2021-11-11T04:48:27.277Z'
+  relevance-ai-endpoints:
+    admin-1:
+      createdAt: '2022-03-10T04:25:05.080Z'
+      excerpt: ''
+      hidden: false
+      parentDoc: null
+      slug: admin-1
+      title: admin
+      updatedAt: '2022-03-10T04:25:05.080Z'
+    aggregate-2:
+      createdAt: '2022-03-11T05:49:48.079Z'
+      excerpt: ''
+      hidden: false
+      parentDoc: null
+      slug: aggregate-2
+      title: aggregate
+      updatedAt: '2022-03-11T05:49:48.079Z'
+    cluster-1:
+      createdAt: '2022-03-10T04:25:05.081Z'
+      excerpt: ''
+      hidden: false
+      parentDoc: null
+      slug: cluster-1
+      title: cluster
+      updatedAt: '2022-03-10T04:25:05.081Z'
+    datasets:
+      createdAt: '2021-10-20T23:10:36.366Z'
+      excerpt: ''
+      hidden: false
+      parentDoc: null
+      slug: datasets
+      title: datasets
+      updatedAt: '2021-10-20T23:10:36.366Z'
+    deployables-1:
+      createdAt: '2022-03-11T05:49:48.081Z'
+      excerpt: ''
+      hidden: false
+      parentDoc: null
+      slug: deployables-1
+      title: deployables
+      updatedAt: '2022-03-11T05:49:48.081Z'
+    diff-1:
+      createdAt: '2022-03-11T05:49:48.080Z'
+      excerpt: ''
+      hidden: false
+      parentDoc: null
+      slug: diff-1
+      title: diff
+      updatedAt: '2022-03-11T05:49:48.080Z'
+    encode-1:
+      createdAt: '2022-03-11T05:49:48.080Z'
+      excerpt: ''
+      hidden: false
+      parentDoc: null
+      slug: encode-1
+      title: encode
+      updatedAt: '2022-03-11T05:49:48.081Z'
+    prediction-1:
+      createdAt: '2022-03-11T05:49:48.080Z'
+      excerpt: ''
+      hidden: false
+      parentDoc: null
+      slug: prediction-1
+      title: prediction
+      updatedAt: '2022-03-11T05:49:48.080Z'
+    recommend-2:
+      createdAt: '2022-03-11T05:49:48.078Z'
+      excerpt: ''
+      hidden: false
+      parentDoc: null
+      slug: recommend-2
+      title: recommend
+      updatedAt: '2022-03-11T05:49:48.078Z'
+    reports:
+      createdAt: '2022-03-10T04:25:05.080Z'
+      excerpt: ''
+      hidden: false
+      parentDoc: null
+      slug: reports
+      title: reports
+      updatedAt: '2022-03-10T04:25:05.080Z'
+    search:
+      createdAt: '2021-10-20T23:10:36.367Z'
+      excerpt: ''
+      hidden: false
+      parentDoc: null
+      slug: search
+      title: search
+      updatedAt: '2021-10-20T23:10:36.367Z'
+    settings:
+      createdAt: '2022-03-11T05:49:48.075Z'
+      excerpt: ''
+      hidden: false
+      parentDoc: null
+      slug: settings
+      title: settings
+      updatedAt: '2022-03-11T05:49:48.075Z'
+    tagger-1:
+      createdAt: '2022-03-11T05:49:48.079Z'
+      excerpt: ''
+      hidden: false
+      parentDoc: null
+      slug: tagger-1
+      title: tagger
+      updatedAt: '2022-03-11T05:49:48.079Z'
+    version:
+      createdAt: '2022-03-11T05:49:48.076Z'
+      excerpt: ''
+      hidden: false
+      parentDoc: null
+      slug: version
+      title: /version
+      updatedAt: '2022-03-11T05:49:48.076Z'
+    wordclouds-1:
+      createdAt: '2022-03-11T05:49:48.081Z'
+      excerpt: ''
+      hidden: false
+      parentDoc: null
+      slug: wordclouds-1
+      title: wordclouds
+      updatedAt: '2022-03-11T05:49:48.081Z'
+  search-features:
+    chunk-search-1:
+      createdAt: '2021-12-14T02:45:46.981Z'
+      excerpt: ''
+      hidden: true
+      parentDoc: null
+      slug: chunk-search-1
+      title: Chunk search
+      updatedAt: '2021-12-14T13:44:35.624Z'
+    combining-exact-text-with-vector-search:
+      createdAt: '2021-11-19T01:36:01.161Z'
+      excerpt: ''
+      hidden: true
+      parentDoc: null
+      slug: combining-exact-text-with-vector-search
+      title: Combining exact text with vector search
+      updatedAt: '2021-11-19T01:36:01.161Z'
+    diversity-search:
+      createdAt: '2021-11-19T01:38:29.031Z'
+      excerpt: Try out diversity search with your current search!
+      hidden: true
+      parentDoc: null
+      slug: diversity-search
+      title: Diversity Search
+      updatedAt: '2021-11-19T01:38:29.031Z'
+    diversity-search-2:
+      createdAt: '2021-12-14T02:45:25.176Z'
+      excerpt: ''
+      hidden: false
+      parentDoc: null
+      slug: diversity-search-2
+      title: Diversity search
+      updatedAt: '2021-12-14T02:45:25.176Z'
+    exact-text-matching:
+      createdAt: '2021-12-14T02:44:09.913Z'
+      excerpt: ''
+      hidden: false
+      parentDoc: null
+      slug: exact-text-matching
+      title: Exact text matching
+      updatedAt: '2021-12-14T13:44:23.989Z'
+    multi-vector-search-2-1:
+      createdAt: '2021-12-14T13:33:49.517Z'
+      excerpt: Guide to using multi-vector search
+      hidden: true
+      parentDoc: null
+      slug: multi-vector-search-2-1
+      title: Multi-vector search
+      updatedAt: '2022-03-23T07:02:18.758Z'
+    redirects:
+      createdAt: '2021-12-09T08:32:05.808Z'
+      excerpt: ''
+      hidden: true
+      parentDoc: null
+      slug: redirects
+      title: Redirects
+      updatedAt: '2021-12-09T08:32:05.808Z'
+    splitting-sentences-for-search:
+      createdAt: '2021-11-19T01:39:12.188Z'
+      excerpt: ''
+      hidden: true
+      parentDoc: null
+      slug: splitting-sentences-for-search
+      title: Splitting Sentences For Search
+      updatedAt: '2021-11-19T01:39:12.188Z'
+    text-and-vector-search-hybrid:
+      createdAt: '2021-12-14T02:45:08.200Z'
+      excerpt: ''
+      hidden: false
+      parentDoc: null
+      slug: text-and-vector-search-hybrid
+      title: Text and vector search (hybrid)
+      updatedAt: '2021-12-14T02:45:08.200Z'
+  theory-and-concepts:
+    vectors-for-classification:
+      createdAt: '2021-10-24T23:26:12.954Z'
+      excerpt: Vectors are re-framing how we approach traditional deep learning problems
+      hidden: false
+      parentDoc: null
+      slug: vectors-for-classification
+      title: Vectors for classification
+      updatedAt: '2021-12-03T03:33:46.707Z'
+    what-is-vector-search:
+      createdAt: '2021-10-24T23:27:46.979Z'
+      excerpt: An introduction to vector search/nearest neighbors
+      hidden: false
+      parentDoc: null
+      slug: what-is-vector-search
+      title: What is vector search?
+      updatedAt: '2021-10-29T09:02:55.001Z'
+  use-cases:
+    better-text-search:
+      createdAt: '2021-10-20T03:22:58.570Z'
+      excerpt: ''
+      hidden: true
+      parentDoc: null
+      slug: better-text-search
+      title: Better text search
+      updatedAt: '2021-11-10T03:21:39.664Z'
+    better-vector-visualisation:
+      createdAt: '2021-11-12T01:18:13.028Z'
+      excerpt: Finetuning your embedding projections
+      hidden: true
+      parentDoc: null
+      slug: better-vector-visualisation
+      title: Better vector visualisation
+      updatedAt: '2021-11-12T09:00:00.176Z'
+    image-search:
+      createdAt: '2021-10-28T08:53:24.835Z'
+      excerpt: ''
+      hidden: true
+      parentDoc: null
+      slug: image-search
+      title: Image Search
+      updatedAt: '2021-10-28T08:54:35.448Z'
+    nlp-search-with-e-commerce:
+      createdAt: '2021-10-28T08:22:45.636Z'
+      excerpt: ''
+      hidden: true
+      parentDoc: null
+      slug: nlp-search-with-e-commerce
+      title: Experimentation workflow with e-commerce text search
+      updatedAt: '2022-01-05T11:00:11.035Z'
+    vector-search:
+      createdAt: '2021-10-28T08:03:22.566Z'
+      excerpt: ''
+      hidden: true
+      parentDoc: null
+      slug: vector-search
+      title: Vector search
+      updatedAt: '2021-11-10T03:20:33.530Z'
+version: v2.0.0
