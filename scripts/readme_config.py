@@ -65,10 +65,12 @@ class ReadMeConfig(Config):
         self.docs_categories = self._load_docs_categories()
 
     def _load_docs_categories(self):
+        """Loads list of docs categories slugs"""
         categories = self.config["categories"]
         return [category for category, pages in categories.items()]
 
     def _load_readme_page_slugs(self):
+        """Loads list of all readme page slugs"""
         categories = self.config["categories"]
         slugs = []
         for category, pages in categories.items():
@@ -78,7 +80,20 @@ class ReadMeConfig(Config):
                 slugs += children
         return slugs
 
-    def build(self, fpath=None, condensed=False, select_fields: List[str] = None):
+    def build(self, fpath=None, condensed=True, select_fields: List[str] = None):
+        """Builds readme-config file
+
+        Parameters
+        ----------
+        fpath : Config filepath
+            Overrides instance fpath if set
+        condensed: bool
+            If True, builds a condensed version of the readme-config file as well
+        select_fields : List[str]
+            select_fields: List
+            Fields to include in the search results, empty array/list means all fields
+
+        """
         if fpath:
             self.fpath = fpath
         if select_fields:
@@ -88,6 +103,8 @@ class ReadMeConfig(Config):
             c["slug"] for c in self.readme.get_categories(select_fields=["slug"])
         ]
 
+        ## Building condensed
+        condensed_config = {"version": self.version}
         category_detail = {}
         for cs in category_slugs:
             if not any([f in cs for f in self.api_categories + self.sdk_categories]):
@@ -97,23 +114,28 @@ class ReadMeConfig(Config):
                         category_slug=cs, select_fields=["slug", "children"]
                     )
                 }
+        condensed_config["categories"] = category_detail
 
-        if not condensed:
-            for category, pages in category_detail.items():
-                page_details = {}
-                for page, children in pages.items():
-                    page_details[page] = self.readme.get_doc(
-                        page_slug=page, select_fields=self.select_fields
-                    )[0]
-                    for child in children:
-                        page_details[page][child] = self.readme.get_doc(
-                            page_slug=child, select_fields=self.select_fields
-                        )
-                category_detail[category] = page_details
+        if condensed:
+            condensed_fpath = str(self.fpath).replace(".yml", "-condensed.yml")
+            with open(condensed_fpath, "w") as f:
+                yaml.dump(condensed_config, f, default_flow_style=False)
 
-        config = {"version": self.version}
+        config = condensed_config
+        ## Building expanded config (inc children)
+        for category, pages in category_detail.items():
+            page_details = {}
+            for page, children in pages.items():
+                page_details[page] = self.readme.get_doc(
+                    page_slug=page, select_fields=self.select_fields
+                )[0]
+                for child in children:
+                    page_details[page][child] = self.readme.get_doc(
+                        page_slug=child, select_fields=self.select_fields
+                    )
+            category_detail[category] = page_details
+
         config["categories"] = category_detail
-
         with open(self.fpath, "w") as f:
             yaml.dump(config, f, default_flow_style=False)
 
@@ -121,7 +143,6 @@ class ReadMeConfig(Config):
         self,
         slug: str,
         fpath: str = None,
-        condensed: str = False,
         select_fields: List[str] = None,
     ):
         return NotImplementedError
@@ -187,14 +208,8 @@ def main(args):
     if args.method == "build":
         print(f"Building {README_VERSION} config ...")
         readme_config.build()
-    elif args.method == "build-condensed":
-        print(f"Building {README_VERSION} condensed config ...")
-        fpath = str(README_CONFIG_FPATH).replace(
-            "readme-config", "readme-config-condensed"
-        )
-        readme_config.build(fpath, condensed=True)
 
-    elif args.method == "update":
+    elif args.method == "import":
         MD_FILES = Path(DOCS_TEMPLATE_PATH).glob("**/**/*.md")
         EXPORT_MD_FILES = Path(EXPORT_MD_PATH).glob("**/**/*.md")
 
@@ -221,18 +236,24 @@ def main(args):
             root_name = root.split("/")[-1]
             if root_name[0] != "_" and dirs and root_name != args.version:
                 category_name = root_name.lower().replace(" ", "-")
-                print(category_name)
+                if (
+                    category_name
+                    not in readme_config.api_categories + readme_config.sdk_categories
+                ):
 
-                for d in dirs:
-                    docs_dir_path = Path(DOCS_TEMPLATE_PATH / category_name / d)
-                    docs_dir_path.mkdir(parents=True, exist_ok=True)
+                    for d in dirs:
+                        docs_dir_path = Path(DOCS_TEMPLATE_PATH / category_name / d)
+                        docs_dir_path.mkdir(parents=True, exist_ok=True)
 
-                for f in files:
-                    export_path = Path(root).joinpath(f)
-                    docs_path = Path(DOCS_TEMPLATE_PATH / category_name / f)
-                    if not docs_path.exists():
-                        print(f"Copying file: {export_path} to {docs_path}")
-                        shutil.copy(export_path, docs_path)
+                    for f in files:
+                        export_path = Path(root).joinpath(f)
+                        docs_path = Path(DOCS_TEMPLATE_PATH / category_name / f)
+                        if not docs_path.exists():
+                            print(f"Copying file: {export_path} to {docs_path}")
+                            shutil.copy(export_path, docs_path)
+
+    elif args.method == "update":
+        readme_config.update()
 
 
 if __name__ == "__main__":
@@ -249,7 +270,7 @@ if __name__ == "__main__":
         "-pn",
         "--method",
         default="update",
-        choices=["build", "build-condensed", "update"],
+        choices=["build", "update", "import"],
         help="Method",
     )
     parser.add_argument(
