@@ -96,6 +96,7 @@ jobs:
           pip install -r requirements.txt
 
       - name: Test notebooks
+        continue-on-error: true
         env:
           TEST_ACTIVATION_TOKEN: ${{ secrets.TEST_ACTIVATION_TOKEN }}
         run: |
