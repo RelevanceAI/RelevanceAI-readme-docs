@@ -178,7 +178,7 @@ def main(args):
 
     DOCS_PATH = Path(args.path) / "docs"
     DOCS_TEMPLATE_PATH = Path(args.path) / "docs_template"
-    EXPORT_MD_PATH = Path(args.path) / "export_md" / "v0.31.0"
+    EXPORT_MD_PATH = Path(args.path) / "export_md" / "_v0.31.0"
     README_VERSION = args.version
     README_CONFIG_FPATH = Path(__file__).parent.resolve() / ".." / "readme-config.yml"
 
@@ -213,25 +213,29 @@ def main(args):
                     if "slug: " in line
                 ]
 
-        ## Making category folders
-        category_diff = list(
-            set(readme_config.docs_categories) - set(docs_category_slugs)
-        )
-        for f in category_diff:
-            Path(DOCS_TEMPLATE_PATH / f).mkdir(parents=True)
+        # Making category folders
+        export_path = [
+            f for f in EXPORT_MD_FILES if "writing-aggregation-queries" in f.name
+        ]
+        print(export_path)
 
         for category, pages in readme_config.config["categories"].items():
             if category not in docs_category_slugs:
-                Path(DOCS_TEMPLATE_PATH / f).mkdir(parents=True)
+                Path(DOCS_TEMPLATE_PATH / category).mkdir(parents=True)
             for page, children in pages.items():
                 if page not in docs_page_slugs:
-                    print(page)
+                    Path(DOCS_TEMPLATE_PATH / category / page).mkdir(
+                        parents=True, exist_ok=True
+                    )
                     if page not in readme_config.select_fields:
+                        print(page)
                         export_path = [f for f in EXPORT_MD_FILES if page in f.name]
+                        print(export_path)
                         if export_path == []:
                             print(f"{page} not found in export_md")
                             Path(DOCS_TEMPLATE_PATH / category / f"{page}.md").touch()
                         else:
+                            print(f"Copying {page} from export_md")
                             print(
                                 str(export_path[0]),
                                 DOCS_TEMPLATE_PATH / category / f"{page}.md",
@@ -240,10 +244,6 @@ def main(args):
                                 str(export_path[0]),
                                 DOCS_TEMPLATE_PATH / category / f"{page}.md",
                             )
-
-                # Path(DOCS_TEMPLATE_PATH / category / f'{page}.md').touch()
-                # if page in readme_config.select_fields:
-                #     Path(DOCS_TEMPLATE_PATH / category / f'{page}.md').unlink(missing_ok=True)
 
                 for child in children:
                     if child not in docs_page_slugs:
@@ -258,9 +258,13 @@ def main(args):
                                     DOCS_TEMPLATE_PATH / category / page / f"{child}.md"
                                 ).touch()
                             else:
+                                print(f"Copying {child} from export_md")
                                 print(
                                     str(export_path[0]),
-                                    DOCS_TEMPLATE_PATH / category / f"{child}.md",
+                                    DOCS_TEMPLATE_PATH
+                                    / category
+                                    / page
+                                    / f"{child}.md",
                                 )
                                 shutil.copy(
                                     str(export_path[0]),
@@ -270,9 +274,9 @@ def main(args):
                                     / f"{child}.md",
                                 )
                     if child in readme_config.select_fields:
-                        Path(DOCS_TEMPLATE_PATH / category / f"{child}.md").unlink(
-                            missing_ok=True
-                        )
+                        Path(
+                            DOCS_TEMPLATE_PATH / category / page / f"{child}.md"
+                        ).unlink(missing_ok=True)
 
 
 if __name__ == "__main__":

@@ -72,10 +72,7 @@ categories:
     - quickstart-text-search
     - quickstart-question-answering
     - music-recommendation
-    - builiding-better-reddit-search
-    - topic-clustering
     features: []
-    features-1: []
     installation: []
     old-welcome: []
     quick-tour: []
@@ -84,7 +81,6 @@ categories:
     quickstart-boilerplate: []
     terminology:
     - documents-1
-    test-page: []
     vectors-and-vector-databases:
     - what-are-vectors
     - what-are-vector-databases
@@ -115,11 +111,8 @@ categories:
     - exact-word-search
     multi-vector-search-2-1: []
     redirects:
-    - multi-vector-search-1
     - vectorise-text-with-vectorhub
     - vectorise-images-with-vectorhub
-    - vector-search-3
-    splitting-sentences-for-search: []
     text-and-vector-search-hybrid:
     - hybrid-search-1
   theory-and-concepts:
