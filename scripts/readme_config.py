@@ -10,6 +10,8 @@ import argparse
 import json
 from pprint import pprint
 import yaml
+import markdown
+import shutil
 
 from readme_api import ReadMeAPI
 
@@ -57,15 +59,17 @@ class ReadMeConfig(Config):
         self.readme = ReadMeAPI(self.version)
         self.api_categories = ["relevance-ai-endpoints"]
         self.sdk_categories = ["python-sdk"]
+        self.config = yaml.safe_load(open(self.fpath, "r"))
+
         self.readme_page_slugs = self._load_readme_page_slugs()
         self.docs_categories = self._load_docs_categories()
 
     def _load_docs_categories(self):
-        categories = yaml.safe_load(open(self.fpath, "r"))["categories"]
+        categories = self.config["categories"]
         return [category for category, pages in categories.items()]
 
     def _load_readme_page_slugs(self):
-        categories = yaml.safe_load(open(self.fpath, "r"))["categories"]
+        categories = self.config["categories"]
         slugs = []
         for category, pages in categories.items():
             slugs += [category]
@@ -174,23 +178,25 @@ def main(args):
 
     DOCS_PATH = Path(args.path) / "docs"
     DOCS_TEMPLATE_PATH = Path(args.path) / "docs_template"
+    EXPORT_MD_PATH = Path(args.path) / "export_md" / "v0.31.0"
     README_VERSION = args.version
     README_CONFIG_FPATH = Path(__file__).parent.resolve() / ".." / "readme-config.yml"
 
-    config = ReadMeConfig(version=README_VERSION, fpath=README_CONFIG_FPATH)
+    readme_config = ReadMeConfig(version=README_VERSION, fpath=README_CONFIG_FPATH)
 
     if args.method == "build":
         print(f"Building {README_VERSION} config ...")
-        config.build()
+        readme_config.build()
     elif args.method == "build-condensed":
         print(f"Building {README_VERSION} condensed config ...")
         fpath = str(README_CONFIG_FPATH).replace(
             "readme-config", "readme-config-condensed"
         )
-        config.build(fpath, condensed=True)
+        readme_config.build(fpath, condensed=True)
 
     elif args.method == "update":
         MD_FILES = Path(DOCS_TEMPLATE_PATH).glob("**/**/*.md")
+        EXPORT_MD_FILES = Path(EXPORT_MD_PATH).glob("**/**/*.md")
 
         docs_category_slugs = []
         for file in DOCS_TEMPLATE_PATH.iterdir():
@@ -207,58 +213,66 @@ def main(args):
                     if "slug: " in line
                 ]
 
-        category_diff = list(set(config.docs_categories) - set(docs_category_slugs))
+        ## Making category folders
+        category_diff = list(
+            set(readme_config.docs_categories) - set(docs_category_slugs)
+        )
         for f in category_diff:
             Path(DOCS_TEMPLATE_PATH / f).mkdir(parents=True)
 
-        page_diff = list(set(config.readme_page_slugs) - set(docs_page_slugs))
-        print(page_diff)
-        # for f in page_diff:
-        #     Path(DOCS_TEMPLATE_PATH / f).mkdir(parents=True)
+        for category, pages in readme_config.config["categories"].items():
+            if category not in docs_category_slugs:
+                Path(DOCS_TEMPLATE_PATH / f).mkdir(parents=True)
+            for page, children in pages.items():
+                if page not in docs_page_slugs:
+                    print(page)
+                    if page not in readme_config.select_fields:
+                        export_path = [f for f in EXPORT_MD_FILES if page in f.name]
+                        if export_path == []:
+                            print(f"{page} not found in export_md")
+                            Path(DOCS_TEMPLATE_PATH / category / f"{page}.md").touch()
+                        else:
+                            print(
+                                str(export_path[0]),
+                                DOCS_TEMPLATE_PATH / category / f"{page}.md",
+                            )
+                            shutil.copy(
+                                str(export_path[0]),
+                                DOCS_TEMPLATE_PATH / category / f"{page}.md",
+                            )
 
-        #  readme_page_slugs[c] = [p for p in readme_page_slugs[c] if r in readme_page_slugs]
+                # Path(DOCS_TEMPLATE_PATH / category / f'{page}.md').touch()
+                # if page in readme_config.select_fields:
+                #     Path(DOCS_TEMPLATE_PATH / category / f'{page}.md').unlink(missing_ok=True)
 
-        # print(readme_page_slugs)
-
-        # diff = list(set(config.readme_page_slugs) - set(docs_page_slugs))
-        # print(diff)
-
-    ###############################################################################
-    # Updating semver ref in installation
-    ###############################################################################
-    # SNIPPET_PARAMS_FPATH = Path(DOCS_TEMPLATE_PATH) / "_snippet_params.json"
-    # SNIPPET_PARAMS = json.loads(open(str(SNIPPET_PARAMS_FPATH), 'r').read())
-
-    # if args.files:
-    #     MD_FILES = [f for f in args.files if f.endswith('.md')]
-    #     NOTEBOOKS = [f for f in args.files  if f.endswith('.ipynb')]
-    # else:
-    #     MD_FILES = Path(DOCS_TEMPLATE_PATH).glob('**/**/*.md')
-    #     NOTEBOOKS = Path(DOCS_TEMPLATE_PATH).glob('**/**/*.ipynb')
-
-    # for input_fname in MD_FILES:
-    #     input_fname = Path(input_fname)
-    # output_fname = Path(str(input_fname).replace('docs_template', 'docs'))
-    # snippet_paths = load_snippet_paths(base_dir=DOCS_TEMPLATE_PATH, fdir=input_fname.parent)
-    # logging.debug('---')
-    # generate_md_file(
-    #     input_fname=input_fname,
-    #     output_fname=output_fname,
-    #     snippet_paths=snippet_paths,
-    #     snippet_params=SNIPPET_PARAMS
-    #     )
-
-    ###############################################################################
-    # Updating version ref in snippet config
-    ###############################################################################
-
-    # logging.info(f'Updating version ref to {README_VERSION} in snippet config')
-    # SNIPPET_PARAMS_FPATH = Path(DOCS_TEMPLATE_PATH) / "_snippet_params.json"
-    # print(SNIPPET_PARAMS_FPATH)
-    # SNIPPET_PARAMS = json.loads(open(str(SNIPPET_PARAMS_FPATH), 'r').read())
-
-    # SNIPPET_PARAMS['RELEVANCEAI_SDK_VERSION'] = args.version
-    # json.dump(SNIPPET_PARAMS, open(SNIPPET_PARAMS_FPATH, 'w'), separators=(',\n', ': '))
+                for child in children:
+                    if child not in docs_page_slugs:
+                        if child not in readme_config.select_fields:
+                            export_path = [
+                                f for f in EXPORT_MD_FILES if child in f.name
+                            ]
+                            # Path(DOCS_TEMPLATE_PATH / category / f'{child}.md').touch()
+                            if export_path == []:
+                                print(f"{child} not found in export_md")
+                                Path(
+                                    DOCS_TEMPLATE_PATH / category / page / f"{child}.md"
+                                ).touch()
+                            else:
+                                print(
+                                    str(export_path[0]),
+                                    DOCS_TEMPLATE_PATH / category / f"{child}.md",
+                                )
+                                shutil.copy(
+                                    str(export_path[0]),
+                                    DOCS_TEMPLATE_PATH
+                                    / category
+                                    / page
+                                    / f"{child}.md",
+                                )
+                    if child in readme_config.select_fields:
+                        Path(DOCS_TEMPLATE_PATH / category / f"{child}.md").unlink(
+                            missing_ok=True
+                        )
 
 
 if __name__ == "__main__":
