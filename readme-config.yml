@@ -674,7 +674,7 @@ categories:
       createdAt: '2021-12-14T14:08:01.323Z'
       excerpt: Try us out in 5 lines of code!
       hidden: true
-      order: 12
+      order: 11
       parentDoc: null
       slug: quickstart-boilerplate
       title: Quickstart boilerplate
@@ -762,7 +762,7 @@ categories:
       slug: coming-soon-2
       title: Coming Soon
       updatedAt: '2021-12-24T05:12:35.111Z'
-  other-references:
+  other:
     data-privacy-policy:
       createdAt: '2021-11-11T04:36:50.677Z'
       excerpt: ''
@@ -932,7 +932,7 @@ categories:
       createdAt: '2021-12-09T08:32:05.808Z'
       excerpt: ''
       hidden: true
-      order: 8
+      order: 7
       parentDoc: null
       slug: redirects
       title: Redirects
@@ -941,7 +941,7 @@ categories:
       - createdAt: '2021-12-09T08:37:51.800Z'
         excerpt: ''
         hidden: true
-        order: 2
+        order: 1
         parentDoc: 623a96a3032c43002ef2c69b
         slug: vectorise-images-with-vectorhub
         title: redirect-vectorize-images
@@ -950,7 +950,7 @@ categories:
       - createdAt: '2021-12-09T08:37:26.691Z'
         excerpt: ''
         hidden: true
-        order: 1
+        order: 0
         parentDoc: 623a96a3032c43002ef2c69b
         slug: vectorise-text-with-vectorhub
         title: redirect-vectorize-text
