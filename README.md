@@ -129,12 +129,9 @@ See [./scripts/README.md](./scripts/README.md) for more details about the build 
 
 ## 👩🏻‍💻  Build the ReadMe config
 
-
 ```
  ❯ python scripts/readme_config.py --method 'build' --version 'v2.0.0'
 ```
-
-
 
 ## For further reference
 ### 👩🏻‍💻 Getting Started with rdme Client

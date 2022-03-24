@@ -29,6 +29,6 @@ show_json(
 ```
 After running this, you should see the following in your Jupyter Notebook:
 <figure>
-<img src="https://github.com/RelevanceAI/RelevanceAI-readme-docs/blob/v2.0.0/cus-272-create-new-page-in-readme-if-page-slug/docs_template/GENERAL_FEATURES/_assets/preview_images.png?raw=true" width="278" alt="xkcd_comics.png" />
+<img src="https://github.com/RelevanceAI/RelevanceAI-readme-docs/blob/v2.0.0/docs_template/GENERAL_FEATURES/_assets/preview_images.png?raw=true" width="278" alt="xkcd_comics.png" />
 <figcaption>Example showing images</figcaption>
 <figure>

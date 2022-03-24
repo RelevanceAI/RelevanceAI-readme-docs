@@ -6,7 +6,7 @@ createdAt: "2021-11-25T22:22:07.285Z"
 updatedAt: "2022-01-19T05:17:10.638Z"
 ---
 <figure>
-<img src="https://github.com/RelevanceAI/RelevanceAI-readme-docs/blob/v2.0.0/cus-272-create-new-page-in-readme-if-page-slug/docs_template/GENERAL_FEATURES/_assets/id.png?raw=true" width="612" alt="id.png" />
+<img src="https://github.com/RelevanceAI/RelevanceAI-readme-docs/blob/v2.0.0/docs_template/GENERAL_FEATURES/_assets/id.png?raw=true" width="612" alt="id.png" />
 <figcaption>Filtering documents based on their id.</figcaption>
 <figure>
 

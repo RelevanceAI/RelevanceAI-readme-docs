@@ -55,14 +55,6 @@ By following instructions below, you will be able to preview/create any given ve
     ❯ ./scripts/update_readme.sh false docs/CLUSTERING_FEATURES v1.0.0-my-new-version
     ```
 
-
-## 👩🏻‍💻  Build the ReadMe config
-
-```
- ❯ python scripts/readme_config.py --method 'build' --version 'v2.0.0'
-```
-
-
 ## For further reference
 
 ### 👩🏻‍💻 Getting Started with rdme Client
