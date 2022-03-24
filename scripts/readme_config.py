@@ -141,7 +141,7 @@ class ReadMeConfig(Config):
 
         return config
 
-    def update(
+    def create(
         self,
         slug: str,
         select_fields: List[str] = None,
@@ -152,8 +152,8 @@ class ReadMeConfig(Config):
         ----------
         fpath : Config filepath
             Overrides instance fpath if set
-        condensed: bool
-            If True, builds a condensed version of the readme-config file as well
+        slug: str
+            Page slug to create
         select_fields : List[str]
             select_fields: List
             Fields to include in the search results, empty array/list means all fields
@@ -176,6 +176,18 @@ class DocsConfig(Config):
         )
 
     def build(self, fpath=None, condensed=False, select_fields: List[str] = None):
+        """Building config file from docs filetree
+
+        Parameters
+        ----------
+        fpath : docs path
+            docs
+        condensed: bool
+            If True, builds a condensed version of the readme-config file as well
+        select_fields : List[str]
+            select_fields: List
+            Fields to include in the search results, empty array/list means all fields
+        """
         if fpath:
             self.fpath = fpath
         if select_fields:
@@ -187,7 +199,7 @@ class DocsConfig(Config):
             root_name = root.split("/")[-1]
             # print(root)
             if root_name[0] != "_":
-                print(root)
+                logging.info(root)
 
         # category_slugs = [c['slug'] for c in self.readme.get_categories(select_fields=['slug'])]
 
@@ -231,10 +243,12 @@ def main(args):
     docs_config = DocsConfig(version=README_VERSION, fpath=DOCS_TEMPLATE_PATH)
 
     if args.method == "build":
-        print(f"Building {README_VERSION} config ...")
+        logging.info(f"Building {README_VERSION} config ...")
         readme_config.build()
 
     elif args.method == "import":
+        logging.info(f"Importing {README_VERSION} docs to {DOCS_PATH}")
+
         MD_FILES = Path(DOCS_TEMPLATE_PATH).glob("**/**/*.md")
         EXPORT_MD_FILES = Path(EXPORT_MD_PATH).glob("**/**/*.md")
 
@@ -259,12 +273,15 @@ def main(args):
 
         for root, dirs, files in os.walk(EXPORT_MD_PATH):
             root_name = root.split("/")[-1]
-            print(root)
+            logging.debug(f"Root file: {root}")
             if root_name[0] != "_" and root_name != args.version:
-                category_path = (
-                    root.split(args.version)[-1].lower().replace(" ", "-").split("/")[1]
+                category_path = "/".join(
+                    root.split(args.version)[-1]
+                    .lower()
+                    .replace(" ", "-")
+                    .split("/")[1:]
                 )
-                print(category_path)
+                logging.debug(category_path)
                 category_name = root_name.lower().replace(" ", "-")
                 if (
                     category_name
@@ -273,22 +290,20 @@ def main(args):
 
                     for d in dirs:
                         docs_dir_path = Path(DOCS_TEMPLATE_PATH / category_name / d)
-                        print(docs_dir_path)
+                        logging.debug(f"Docs Dir Path: {docs_dir_path}")
                         docs_dir_path.mkdir(parents=True, exist_ok=True)
 
                     for f in files:
                         export_path = Path(root).joinpath(f)
 
                         docs_path = Path(DOCS_TEMPLATE_PATH).joinpath(category_path, f)
-                        print(docs_path)
-                        # print(category_path)
-                        # print(f)
-                        # docs_path.parent.mkdir(parents=True, exist_ok=True)
+                        docs_path.parent.mkdir(parents=True, exist_ok=True)
                         if not docs_path.exists():
-                            print(f"Copying file: {export_path} to {docs_path}")
+                            logging.info(f"Copying file: {export_path} to {docs_path}")
                             shutil.copy(export_path, docs_path)
 
     elif args.method == "update":
+        logging.info(f"Updating {README_VERSION} docs to {DOCS_PATH}")
         docs_config.build()
 
         # readme_config.update()
@@ -311,7 +326,7 @@ if __name__ == "__main__":
         "-pn",
         "--method",
         default="update",
-        choices=["build", "update", "import"],
+        choices=["build", "create", "import"],
         help="Method",
     )
     parser.add_argument(
