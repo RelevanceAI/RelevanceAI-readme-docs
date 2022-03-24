@@ -12,7 +12,7 @@ To be able to conduct vector experiments using Relevance AI, you need to sign up
 
 After uploading a dataset to your account in Relevance AI, you can preview your data in the dashboard https://cloud.relevance.ai under Dataset. Note that if you just started, your account will be empty!
 
-Open an example in Colab: [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/RelevanceAI/RelevanceAI-readme-docs/blob/v2.0.0/docs/GENERAL_FEATURES/creating-a-dataset/_notebooks/creating-a-dataset.ipynb)
+Open an example in Colab: [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/RelevanceAI/RelevanceAI-readme-docs/blob/v2.0.0/docs/general-features/creating-a-dataset/_notebooks/creating-a-dataset.ipynb)
 
 
 <figure>
@@ -76,7 +76,7 @@ See [Inserting and updating documents](doc:inserting-data) for more details on h
 
 You can see a list of all datasets you have uploaded to your account in the dashboard.
 <figure>
-<img src="https://github.com/RelevanceAI/RelevanceAI-readme-docs/blob/v2.0.0/docs_template/GENERAL_FEATURES/creating-a-dataset/_assets/dataset-list-view.png?raw=true" alt="Datasets List View" />
+<img src="https://github.com/RelevanceAI/RelevanceAI-readme-docs/blob/v2.0.0/docs_template/general-features/creating-a-dataset/_assets/dataset-list-view.png?raw=true" alt="Datasets List View" />
 <figcaption>List of datasets in the dashboard</figcaption>
 <figure>
 
@@ -93,7 +93,7 @@ client.list_datasets()
 
 RelevanceAI's dashboard at https://cloud.relevance.ai is the most straightforward place to monitor your data.
 <figure>
-<img src="https://github.com/RelevanceAI/RelevanceAI-readme-docs/blob/v2.0.0/docs_template/GENERAL_FEATURES/creating-a-dataset/_assets/monitor-dataset.png?raw=true" width="1263" alt="vector_health.png" />
+<img src="https://github.com/RelevanceAI/RelevanceAI-readme-docs/blob/v2.0.0/docs_template/general-features/creating-a-dataset/_assets/monitor-dataset.png?raw=true" width="1263" alt="vector_health.png" />
 
 <figcaption>Monitor your vector health</figcaption>
 <figure>
@@ -106,7 +106,7 @@ df.health
 ```
 
 <figure>
-<img src="https://github.com/RelevanceAI/RelevanceAI-readme-docs/blob/v2.0.0/docs_template/GENERAL_FEATURES/creating-a-dataset/_assets/health.png?raw=true" width="607" alt="Dataset health".png" />
+<img src="https://github.com/RelevanceAI/RelevanceAI-readme-docs/blob/v2.0.0/docs_template/general-features/creating-a-dataset/_assets/health.png?raw=true" width="607" alt="Dataset health".png" />
 <figcaption>Monitoring dataset health</figcaption>
 <figure>
 

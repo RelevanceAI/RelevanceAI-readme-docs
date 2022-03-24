@@ -21,7 +21,7 @@ Relevance AI is designed and built to help developers to experiment, build and s
 
 
 
-Run this Quickstart in Colab: [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/RelevanceAI/RelevanceAI-readme-docs/blob/v2.0.0/docs/GETTING_STARTED/_notebooks/RelevanceAI-ReadMe-Quick-Feature-Tour.ipynb)
+Run this Quickstart in Colab: [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/RelevanceAI/RelevanceAI-readme-docs/blob/v2.0.0/docs/getting-started/_notebooks/RelevanceAI-ReadMe-Quick-Feature-Tour.ipynb)
 
 
 ### 1. Set up Relevance AI and Vectorhub for Encoding!

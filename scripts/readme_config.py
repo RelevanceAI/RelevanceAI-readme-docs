@@ -142,10 +142,21 @@ class ReadMeConfig(Config):
     def update(
         self,
         slug: str,
-        fpath: str = None,
         select_fields: List[str] = None,
     ):
-        return NotImplementedError
+        """Creates new page in ReadMe if slug does not exist
+
+        Parameters
+        ----------
+        fpath : Config filepath
+            Overrides instance fpath if set
+        condensed: bool
+            If True, builds a condensed version of the readme-config file as well
+        select_fields : List[str]
+            select_fields: List
+            Fields to include in the search results, empty array/list means all fields
+
+        """
 
 
 class DocsConfig(Config):
@@ -234,7 +245,10 @@ def main(args):
 
         for root, dirs, files in os.walk(EXPORT_MD_PATH):
             root_name = root.split("/")[-1]
-            if root_name[0] != "_" and dirs and root_name != args.version:
+            # print(root)
+            if root_name[0] != "_" and root_name != args.version:
+                category_path = root.split(args.version)[-1].lower().replace(" ", "-")
+                print(category_path)
                 category_name = root_name.lower().replace(" ", "-")
                 if (
                     category_name
@@ -243,11 +257,15 @@ def main(args):
 
                     for d in dirs:
                         docs_dir_path = Path(DOCS_TEMPLATE_PATH / category_name / d)
+                        print(docs_dir_path)
                         docs_dir_path.mkdir(parents=True, exist_ok=True)
 
                     for f in files:
                         export_path = Path(root).joinpath(f)
-                        docs_path = Path(DOCS_TEMPLATE_PATH / category_name / f)
+
+                        docs_path = Path(DOCS_TEMPLATE_PATH).joinpath(category_path, f)
+                        print(docs_path)
+                        docs_path.mkdir(parents=True, exist_ok=True)
                         if not docs_path.exists():
                             print(f"Copying file: {export_path} to {docs_path}")
                             shutil.copy(export_path, docs_path)

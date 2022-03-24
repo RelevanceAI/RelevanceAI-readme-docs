@@ -25,7 +25,7 @@ Assets (images/gifs) need to be wrapped in HTML `<figure>` and `<figcaption>` to
 
 ```html
 <figure>
-<img src="https://github.com/RelevanceAI/RelevanceAI-readme-docs/blob/main/docs/GETTING_STARTED/example-applications/_assets/RelevanceAI_quickstart_clip_dashboard.png?raw=true" width="650" alt="RelevanceAI Dashboard" />
+<img src="https://github.com/RelevanceAI/RelevanceAI-readme-docs/blob/main/docs/getting-started/example-applications/_assets/RelevanceAI_quickstart_clip_dashboard.png?raw=true" width="650" alt="RelevanceAI Dashboard" />
 <figcaption>Relevance AI dashboard</figcaption>
 <figure>
 
@@ -42,7 +42,7 @@ Callouts are rendered by ReadMe's custom CSS depending on your emoji choice.
 
 ```markdown
 > 👍 Free for individual use. 100K free requests for commercial use.
-> 
+>
 > Sign up for your free at https://cloud.relevance.ai/sdk/api, no credit card required! You can view our pricing here at https://relevance.ai/pricing.
 ```
 
@@ -64,7 +64,7 @@ Default themes are specified using one of the following emojis. (You can always 
 See official [docs](https://rdmd.readme.io/docs/callouts) here for more details.
 
 
-## Tables 
+## Tables
 
 Table cells may contain inline decorations only.
 

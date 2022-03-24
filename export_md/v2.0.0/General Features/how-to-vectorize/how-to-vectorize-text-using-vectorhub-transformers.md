@@ -11,7 +11,7 @@ updatedAt: "2022-03-24T02:52:13.751Z"
 [VectorHub](https://github.com/RelevanceAI/vectorhub) provides users with access to various state of the art encoders to vectorize different data types such as text or image. It manages the encoding process as well, allowing users to focus on the data they want to encode rather than the actual model behind the scene.
 On this page, we introduce sentence-transformer based text encoders.
 
-[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/RelevanceAI/RelevanceAI-readme-docs/blob/v2.0.0/docs/GENERAL_FEATURES/how-to-vectorize/_notebooks/how-to-vectorize.ipynb)
+[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/RelevanceAI/RelevanceAI-readme-docs/blob/v2.0.0/docs/general-features/how-to-vectorize/_notebooks/how-to-vectorize.ipynb)
 ### sentence-transformers
 First, `sentence-transformers` must be installed. Restart the notebook when the installation is finished.
 

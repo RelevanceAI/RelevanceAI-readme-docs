@@ -69,7 +69,7 @@ These are templates because all the files and notebooks in docs_templates are wr
    - Update notebooks to point to the corresponding path.
    - Colab notebook refs are of the form:
   ```zsh
-   [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/RelevanceAI/RelevanceAI-readme-docs/blob/v0.33.2/docs/GETTING_STARTED/_notebooks/Intro-to-Relevance-AI.ipynb)
+   [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/RelevanceAI/RelevanceAI-readme-docs/blob/v0.33.2/docs/getting-started/_notebooks/Intro-to-Relevance-AI.ipynb)
   ```
   - Please add this badge in top cell of notebook as well so it can be accessed from Github.
 6. To add new snippet
@@ -104,9 +104,9 @@ These are templates because all the files and notebooks in docs_templates are wr
     ## Run in debug mode
     ❯ ./scripts/update_readme.sh true
     ## Sync only a specific section, by default will sync everything in the generated `docs` folder.
-    ❯ ./scripts/update_readme.sh false docs/CLUSTERING_FEATURES
+    ❯ ./scripts/update_readme.sh false docs/clustering-features
     ## Override the version, by default will create a new version from your current Git branch name
-    ❯ ./scripts/update_readme.sh false docs/CLUSTERING_FEATURES v1.0.0-my-new-version
+    ❯ ./scripts/update_readme.sh false docs/clustering-features v1.0.0-my-new-version
     ```
     View your synced changes in ReadMe eg. https://docs.relevance.ai/v0.31.0/docs/quick-tour
 10. Test the notebooks for changes. By default, the script will process all notebooks in the `docs` folder if no `--notebooks` specified. This script will output error logs to the file `readme_notebook_error_log.txt`

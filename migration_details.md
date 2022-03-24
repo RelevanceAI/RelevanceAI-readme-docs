@@ -45,16 +45,16 @@ The following conventions have been proposed to make this migration and doc orga
 
 
 - Section categories converted to all caps with underscore delimiter
-  - (eg. Getting Started) -> `GETTING_STARTED`
+  - (eg. Getting Started) -> `getting-started`
 - Subsections and Markdown filename is named after its' page slug [1]
-  - eg. https://docs_template.relevance.ai/docs_template/welcome -> [`welcome.md`](https://github.com/RelevanceAI/RelevanceAI-readme-docs_template/blob/main/docs_template/GETTING_STARTED/welcome.md)
-  - eg. https://dash.readme.com/project/relevance/docs_template/vectors-and-vector-databases -> https://github.com/RelevanceAI/RelevanceAI-readme-docs_template/tree/development/docs_template/GETTING_STARTED/vectors-and-vector-databases
+  - eg. https://docs_template.relevance.ai/docs_template/welcome -> [`welcome.md`](https://github.com/RelevanceAI/RelevanceAI-readme-docs_template/blob/main/docs_template/getting-started/welcome.md)
+  - eg. https://dash.readme.com/project/relevance/docs_template/vectors-and-vector-databases -> https://github.com/RelevanceAI/RelevanceAI-readme-docs_template/tree/development/docs_template/getting-started/vectors-and-vector-databases
   - Using `-` as delimiter (default via README)
 - Corresponding assets (eg. images/GIFs) for a particular section/subsection should be in a folder named `_assets`
-  - eg. https://github.com/RelevanceAI/RelevanceAI-readme-docs_template/tree/development/docs_template/GETTING_STARTED/_assets
+  - eg. https://github.com/RelevanceAI/RelevanceAI-readme-docs_template/tree/development/docs_template/getting-started/_assets
   - Assets should prefix with `RelevanceAI_*.png` to ensure image URL/filename has reference to `RelevanceAI` upon download/reference
 - Corresponding notebooks for a particular section/subsection should be in a folder named `_notebooks`
-  - eg. https://github.com/RelevanceAI/RelevanceAI-readme-docs_template/tree/development/docs_template/GETTING_STARTED/_notebooks
+  - eg. https://github.com/RelevanceAI/RelevanceAI-readme-docs_template/tree/development/docs_template/getting-started/_notebooks
   - Notebooks should prefix with `RelevanceAI_ReadMe_<Page_Slug>*.ipynb` to to ensure notebook URL/filename has reference to `RelevanceAI` upon download/reference
   - Using `_` as delimiter (default upon export of `*.ipynb` from Colab)
 
@@ -86,7 +86,7 @@ hidden: false
 - Store corresponding notebooks in relative section under `_notebooks` folder.
 
 ```markdown
-[![Open In Colab](https://colab.research.google.com/_assets/colab-badge.svg)](https://colab.research.google.com/github/RelevanceAI/RelevanceAI-readme-docs_template/blob/main/docs_template/GETTING_STARTED/_notebooks/Intro-to-Relevance-AI.ipynb)
+[![Open In Colab](https://colab.research.google.com/_assets/colab-badge.svg)](https://colab.research.google.com/github/RelevanceAI/RelevanceAI-readme-docs_template/blob/main/docs_template/getting-started/_notebooks/Intro-to-Relevance-AI.ipynb)
 ```
 
 - For each notebook, we also include the Colab badge link at the top of the notebook, so that one may open in Colab from Github.
@@ -168,7 +168,7 @@ eg.
 
 ```html
 <figure>
-<img src="https://github.com/RelevanceAI/RelevanceAI-readme-docs_template/blob/main/docs_template/GETTING_STARTED/example-applications/_assets/RelevanceAI_quickstart_clip_dashboard.png?raw=true" width="650" alt="RelevanceAI Dashboard" />
+<img src="https://github.com/RelevanceAI/RelevanceAI-readme-docs_template/blob/main/docs_template/getting-started/example-applications/_assets/RelevanceAI_quickstart_clip_dashboard.png?raw=true" width="650" alt="RelevanceAI Dashboard" />
 <figcaption>Relevance AI dashboard</figcaption>
 <figure>
 ```

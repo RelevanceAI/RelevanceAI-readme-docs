@@ -50,9 +50,9 @@ By following instructions below, you will be able to preview/create any given ve
     ## Run in debug mode
     ❯ ./scripts/update_readme.sh true
     ## Sync only a specific section, by default will sync everything in the generated `docs` folder.
-    ❯ ./scripts/update_readme.sh false docs/CLUSTERING_FEATURES
+    ❯ ./scripts/update_readme.sh false docs/clustering-features
     ## Override the version, by default will create a new version from your current Git branch name
-    ❯ ./scripts/update_readme.sh false docs/CLUSTERING_FEATURES v1.0.0-my-new-version
+    ❯ ./scripts/update_readme.sh false docs/clustering-features v1.0.0-my-new-version
     ```
 
 ## For further reference

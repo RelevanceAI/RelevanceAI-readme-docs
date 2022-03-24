@@ -6,7 +6,7 @@ createdAt: "2021-11-29T23:13:52.305Z"
 updatedAt: "2022-03-24T02:52:13.626Z"
 ---
 <figure>
-<img src="https://github.com/RelevanceAI/RelevanceAI-readme-docs/blob/v2.0.0/docs_template/GENERAL_FEATURES/_assets/regex.png?raw=true" width="2048" alt="7cbd106-contains.png" />
+<img src="https://github.com/RelevanceAI/RelevanceAI-readme-docs/blob/v2.0.0/docs_template/general-features/_assets/regex.png?raw=true" width="2048" alt="7cbd106-contains.png" />
 <figcaption>Filtering documents containing "Durian (\w+)" in description using filter_type `regexp`.</figcaption>
 <figure>
 

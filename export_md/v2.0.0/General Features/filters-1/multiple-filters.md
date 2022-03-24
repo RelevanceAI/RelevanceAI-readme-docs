@@ -6,7 +6,7 @@ createdAt: "2021-11-25T22:31:19.531Z"
 updatedAt: "2022-03-24T02:52:13.759Z"
 ---
 <figure>
-<img src="https://github.com/RelevanceAI/RelevanceAI-readme-docs/blob/v2.0.0/docs_template/GENERAL_FEATURES/_assets/multiple-filters.png?raw=true" width="1009" alt="combined filters.png" />
+<img src="https://github.com/RelevanceAI/RelevanceAI-readme-docs/blob/v2.0.0/docs_template/general-features/_assets/multiple-filters.png?raw=true" width="1009" alt="combined filters.png" />
 <figcaption>Filtering results when using multiple filters: categories, contains, and date.</figcaption>
 <figure>
 
