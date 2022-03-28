@@ -7,7 +7,7 @@ hidden: false
 ---
 
 <figure>
-<img src="https://github.com/RelevanceAI/RelevanceAI-readme-docs/blob/v2.0.0/getting-started/example-applications/_assets/RelevanceAI_text_search.png?raw=true"
+<img src="https://github.com/RelevanceAI/RelevanceAI-readme-docs/blob/v2.0.0/docs_template/getting-started/example-applications/_assets/RelevanceAI_text_search.png?raw=true"
      alt="RelevanceAI Text to Image"
      style="width: 100% vertical-align: middle"/>
 <figcaption>
@@ -102,7 +102,7 @@ We can see the results on the dashboard via the provided link after the search f
 
 
 <figure>
-<img src="https://github.com/RelevanceAI/RelevanceAI-readme-docs/blob/v2.0.0/getting-started/example-applications/_assets/RelevanceAI_text_search_results.png?raw=true"
+<img src="https://github.com/RelevanceAI/RelevanceAI-readme-docs/blob/v2.0.0/docs_template/getting-started/example-applications/_assets/RelevanceAI_text_search_results.png?raw=true"
      alt="Text Search Results"
      style="width: 100% vertical-align: middle"/>
 <figcaption>Text Search Results</figcaption>

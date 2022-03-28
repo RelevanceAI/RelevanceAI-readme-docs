@@ -56,7 +56,7 @@ See [Inserting and updating documents](doc:inserting-data) for more details on h
 
 You can see a list of all datasets you have uploaded to your account in the dashboard.
 <figure>
-<img src="https://github.com/RelevanceAI/RelevanceAI-readme-docs/blob/v2.0.0/general-features/creating-a-dataset/_assets/dataset-list-view.png?raw=true" alt="Datasets List View" />
+<img src="https://github.com/RelevanceAI/RelevanceAI-readme-docs/blob/v2.0.0/docs_template/general-features/creating-a-dataset/_assets/dataset-list-view.png?raw=true" alt="Datasets List View" />
 <figcaption>List of datasets in the dashboard</figcaption>
 <figure>
 
@@ -69,7 +69,7 @@ Alternatively, you can use the list endpoint under Python SDK as shown below:
 
 RelevanceAI's dashboard at https://cloud.relevance.ai is the most straightforward place to monitor your data.
 <figure>
-<img src="https://github.com/RelevanceAI/RelevanceAI-readme-docs/blob/v2.0.0/general-features/creating-a-dataset/_assets/monitor-dataset.png?raw=true" width="1263" alt="vector_health.png" />
+<img src="https://github.com/RelevanceAI/RelevanceAI-readme-docs/blob/v2.0.0/docs_template/general-features/creating-a-dataset/_assets/monitor-dataset.png?raw=true" width="1263" alt="vector_health.png" />
 
 <figcaption>Monitor your vector health</figcaption>
 <figure>
@@ -78,7 +78,7 @@ Alternatively, you can monitor the health of a dataset using the command below w
 @@@ dataset_health @@@
 
 <figure>
-<img src="https://github.com/RelevanceAI/RelevanceAI-readme-docs/blob/v2.0.0/general-features/creating-a-dataset/_assets/health.png?raw=true" width="607" alt="Dataset health".png" />
+<img src="https://github.com/RelevanceAI/RelevanceAI-readme-docs/blob/v2.0.0/docs_template/general-features/creating-a-dataset/_assets/health.png?raw=true" width="607" alt="Dataset health".png" />
 <figcaption>Monitoring dataset health</figcaption>
 <figure>
 
