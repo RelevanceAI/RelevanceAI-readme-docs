@@ -24,7 +24,7 @@ The following code shows
 
 
 ```python Python (SDK)
-df = client.Dataset('faiss_kmeans_clustering')
+ds = client.Dataset('faiss_kmeans_clustering')
 
 # Inherit from ClusterBase to keep all the goodies!
 import numpy as np

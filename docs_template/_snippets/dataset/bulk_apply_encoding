@@ -1,2 +1,2 @@
 python FIELD=FIELD, MODEL=model
-df["<<FIELD>>"].bulk_apply(lambda: x: <<MODEL>>.encode(x), output_field="<<FIELD>>_vector_")
+ds["<<FIELD>>"].bulk_apply(lambda: x: <<MODEL>>.encode(x), output_field="<<FIELD>>_vector_")

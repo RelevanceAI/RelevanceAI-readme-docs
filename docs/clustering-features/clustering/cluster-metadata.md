@@ -41,9 +41,9 @@ client = Client()
 Once you have stored the metadata, you can view them using the following code.
 
 ```python Python (SDK)
-df = client.Dataset(DATASET_ID)
+ds = client.Dataset(DATASET_ID)
 
-clusterer = df.auto_cluster('kmeans-10', ['product_title_clip_vector_'])
+clusterer = ds.auto_cluster('kmeans-10', ['product_title_clip_vector_'])
 ```
 ```python
 ```

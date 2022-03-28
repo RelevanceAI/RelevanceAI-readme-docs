@@ -55,6 +55,6 @@ In the sample code below, we show how a vector search can be done by combining a
 
 @@@ multivector_query_three_models, VECTOR_1=QUERY_TXT_VEC, VECTOR_2=QUERY_TXT_MULTI_VEC, VECTOR_3=QUERY_TXT_IMG_VEC, VECTOR_1_FIELDS=DESC_DEFAULT_VEC, VECTOR_2_FIELDS=descriptiontextmulti_vector_, VECTOR_3_FIELDS=DESC_TXTIMG_VEC @@@
 
-@@@ dataset_df, DATASET_ID=ECOMMERCE_SAMPLE_DATASET_ID @@@
+@@@ dataset, DATASET_ID=ECOMMERCE_SAMPLE_DATASET_ID @@@
 
 @@@ vector_search, PAGE_SIZE=5 @@@

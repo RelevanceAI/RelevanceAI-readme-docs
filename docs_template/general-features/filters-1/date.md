@@ -17,7 +17,7 @@ This filter performs date analysis and filters documents based on their date inf
 
 @@@ client_instantiation @@@
 
-@@@ dataset_df, DATASET_ID=ECOMMERCE_SAMPLE_DATASET_ID @@@
+@@@ dataset, DATASET_ID=ECOMMERCE_SAMPLE_DATASET_ID @@@
 
 @@@ filter_setup, FIELD=INSERT_DATE_FIELD, FILTER_TYPE=DATE_FILTER_TYPE, CONDITION=EQ_COND, CONDITION_VAL=DATE_VAL_1 @@@
 

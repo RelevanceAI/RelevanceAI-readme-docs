@@ -67,8 +67,8 @@ documents = [
 	{"_id": "4", "example_vector_": [0.5, 0.5, 0.5], "data": "This is another doc"},
 ]
 
-df = client.Dataset("quickstart_kmeans_clustering")
-df.insert_documents(documents)
+ds = client.Dataset("quickstart_kmeans_clustering")
+ds.insert_documents(documents)
 ```
 ```python
 ```
@@ -76,7 +76,7 @@ df.insert_documents(documents)
 Let's have a look at the schema to see what vector fields are available for clustering.
 
 ```python Python (SDK)
-df.schema
+ds.schema
 ```
 ```python
 ```
@@ -133,7 +133,7 @@ clustered_docs = clusterer.fit_predict_documents(
 Finally, these categorised documents are uploaded back to the dataset as an additional field.
 
 ```python Python (SDK)
-df.upsert_documents(documents=clustered_docs)
+ds.upsert_documents(documents=clustered_docs)
 ```
 ```python
 ```
@@ -155,7 +155,7 @@ Downloading a few sample documents from the dataset, we show to which cluster th
 ```python Python (SDK)
 from relevanceai import show_json
 
-sample_documents = df.sample(n=5)
+sample_documents = ds.sample(n=5)
 samples = [{
     'product_title':d['product_title'],
     'cluster':d['_cluster_'][VECTOR_FIELD][ALIAS]

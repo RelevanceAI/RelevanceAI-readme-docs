@@ -61,8 +61,8 @@ pd.DataFrame.from_dict(documents).head()
 ```
 
 ```python Python (SDK)
-df = client.Dataset("quickstart_aggregation")
-df.insert_documents(documents)
+ds = client.Dataset("quickstart_aggregation")
+ds.insert_documents(documents)
 ```
 ```python
 ```

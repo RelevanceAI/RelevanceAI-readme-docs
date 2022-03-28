@@ -21,7 +21,7 @@ Relevance AI has the same regular expression schema as Apache Lucene's ElasticSe
 
 @@@ client_instantiation @@@
 
-@@@ dataset_df, DATASET_ID=ECOMMERCE_SAMPLE_DATASET_ID @@@
+@@@ dataset, DATASET_ID=ECOMMERCE_SAMPLE_DATASET_ID @@@
 
 @@@ filter_setup, FIELD=DESCRIPTION_FIELD, FILTER_TYPE=REGEX_FILTER_TYPE, CONDITION=EQ_COND, CONDITION_VAL=CONDITION_VAL_6 @@@
 

@@ -1,2 +1,2 @@
 python DOCUMENTS=documents
-df.insert_documents(documents=<<DOCUMENTS>>)
+ds.insert_documents(documents=<<DOCUMENTS>>)

@@ -37,7 +37,7 @@ filters = [{
 
 ```python Python (SDK)
 ### TODO: update to match the latest SDK
-filtered_data = df.get_where(filter)
+filtered_data = ds.get_where(filter)
 ```
 ```python
 ```
@@ -88,7 +88,7 @@ filter = [{
 
 ```python Python (SDK)
 ### TODO: update to match the latest SDK
-filtered_data = df.get_where(filter)
+filtered_data = ds.get_where(filter)
 ```
 ```python
 ```
@@ -137,7 +137,7 @@ filter = [{
 ```
 ```python Python (SDK)
 ### TODO: update to match the latest SDK
-filtered_data = df.get_where(filter)
+filtered_data = ds.get_where(filter)
 ```
 ```python
 ```

@@ -109,14 +109,14 @@ documents = get_ecommerce_dataset_clean()
 
 pd.DataFrame.from_dict(documents).head()
 
-df = client.Dataset('quickstart_example_encoding')
-df.insert_documents(documents)
+ds = client.Dataset('quickstart_example_encoding')
+ds.insert_documents(documents)
 ```
 ```python
 ```
 
 ```python Python (SDK)
-df["product_title"].apply(lambda x: model.encode(x), output_field="product_title_vector_")
+ds["product_title"].apply(lambda x: model.encode(x), output_field="product_title_vector_")
 ```
 ```python
 ```

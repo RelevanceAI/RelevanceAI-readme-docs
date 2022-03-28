@@ -85,13 +85,13 @@ multivector_query=[
 
 ```python Python (SDK)
 DATASET_ID = "ecommerce-sample-dataset"
-df = client.Dataset(DATASET_ID)
+ds = client.Dataset(DATASET_ID)
 ```
 ```python
 ```
 
 ```python Python (SDK)
-results = df.vector_search(
+results = ds.vector_search(
     multivector_query=multivector_query,
     page_size=5
 )

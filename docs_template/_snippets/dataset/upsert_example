@@ -1,2 +1,2 @@
 python DOCUMENTS=[{"_id": "example_id", "value": 3}]
-df.upsert_documents(documents=<<DOCUMENTS>>)
+ds.upsert_documents(documents=<<DOCUMENTS>>)

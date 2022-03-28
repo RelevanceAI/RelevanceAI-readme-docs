@@ -17,7 +17,7 @@ This filter returns entries in a database if a certain field (as opposed to the 
 
 @@@ client_instantiation @@@
 
-@@@ dataset_df, DATASET_ID=ECOMMERCE_SAMPLE_DATASET_ID @@@
+@@@ dataset, DATASET_ID=ECOMMERCE_SAMPLE_DATASET_ID @@@
 
 @@@ filter_setup, FIELD=BRAND_FIELD, FILTER_TYPE=EXISTS_FILTER_TYPE, CONDITION=EQ_COND, CONDITION_VAL=NO_CONDITION_VAL @@@
 

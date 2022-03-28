@@ -17,7 +17,7 @@ This filter has similarities to both `exact_match` and `contains`. It returns a 
 
 @@@ client_instantiation @@@
 
-@@@ dataset_df, DATASET_ID=ECOMMERCE_SAMPLE_DATASET_ID @@@
+@@@ dataset, DATASET_ID=ECOMMERCE_SAMPLE_DATASET_ID @@@
 
 @@@ filter_setup, FIELD=DESCRIPTION_FIELD, FILTER_TYPE=WORD_MATCH_FILTER_TYPE, CONDITION=EQ_COND, CONDITION_VAL=CONDITION_VAL_1 @@@
 

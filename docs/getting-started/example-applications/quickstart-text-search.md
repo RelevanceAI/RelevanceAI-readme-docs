@@ -124,8 +124,8 @@ The data can be easily uploaded to Relevance AI platform via `insert_documents`.
 
 
 ```python Python (SDK)
-df = client.Dataset("quickstart_text_searc")
-df.insert_documents(documents)
+ds = client.Dataset("quickstart_text_searc")
+ds.insert_documents(documents)
 ```
 ```python
 ```
@@ -150,7 +150,7 @@ multivector_query=[
         { "vector": query_vector, "fields": ["product_title_use_vector_"]}
     ]
 
-results = df.vector_search(
+results = ds.vector_search(
     multivector_query=multivector_query,
     page_size=5
 )
@@ -214,8 +214,8 @@ model = USE2Vec()
 
 documents = model.encode_documents(fields=['product_title'], documents=documents)
 
-df = client.Dataset("quickstart_text_searc")
-df.insert_documents(documents)
+ds = client.Dataset("quickstart_text_searc")
+ds.insert_documents(documents)
 
 query = 'Gift for my son'
 query_vector = model.encode(query)
@@ -224,7 +224,7 @@ multivector_query=[
         { "vector": query_vector, "fields": ["product_title_use_vector_"]}
     ]
 
-results = df.vector_search(
+results = ds.vector_search(
     multivector_query=multivector_query,
     page_size=5
 )

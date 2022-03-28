@@ -91,8 +91,8 @@ documents = get_ecommerce_dataset_encoded()
 To insert data to a dataset, you can use the `insert_documents` method.  Note that this step is also already done in our sample dataset.
 
 ```python Python (SDK)
-df = client.Dataset("quickstart_multi_vector_search")
-df.insert_documents(documents)
+ds = client.Dataset("quickstart_multi_vector_search")
+ds.insert_documents(documents)
 ```
 ```python
 ```
@@ -128,7 +128,7 @@ multivector_query = [
     {"vector": text_vector, "fields": ['product_title_clip_vector_']}
 ]
 
-results = df.vector_search(
+results = ds.vector_search(
     multivector_query=multivector_query,
     page_size=5
 )
@@ -181,8 +181,8 @@ from relevanceai.datasets import get_ecommerce_dataset_encoded
 documents = get_ecommerce_dataset_encoded()
 {k:v for k, v in documents[0].items() if '_vector_' not in k}
 
-df = client.Dataset("quickstart_multi_vector_search")
-df.insert_documents(documents)
+ds = client.Dataset("quickstart_multi_vector_search")
+ds.insert_documents(documents)
 
 # Query sample data
 sample_id = documents[0]['_id']
@@ -196,7 +196,7 @@ multivector_query = [
     {"vector": text_vector, "fields": ['product_title_clip_vector_']}
 ]
 
-results = df.vector_search(
+results = ds.vector_search(
     multivector_query=multivector_query,
     page_size=5
 )

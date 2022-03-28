@@ -48,7 +48,7 @@ documents = [{'sentence': '"This is the first sentence."', '_id': 1}, {'sentence
 # Encode the `"sentence"` field in a list of documents
 encoded_documents = model.encode_documents(["sentence"], documents)
 
-df.upsert_documents(documents=encoded_documents)
+ds.upsert_documents(documents=encoded_documents)
 ```
 ```python
 ```
@@ -60,7 +60,7 @@ The easiest way to update an existing dataset with encoding results is to run `d
 For instance, in the sample code below, we use a dataset called `ecommerce_dataset`, and encode the `product_description` field using the `SentenceTransformer2Vec` encoder.
 
 ```python Python (SDK)
-df["sentence"].apply(lambda x: model.encode(x), output_field="sentence_vector")
+ds["sentence"].apply(lambda x: model.encode(x), output_field="sentence_vector")
 ```
 ```python
 ```

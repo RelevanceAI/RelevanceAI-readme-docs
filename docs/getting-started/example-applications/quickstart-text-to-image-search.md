@@ -195,8 +195,8 @@ Lets insert documents into the dataset `quickstart_clip`.
 
 
 ```python Python (SDK)
-df = client.Dataset("quickstart_clip")
-df.insert_documents(documents)
+ds = client.Dataset("quickstart_clip")
+ds.insert_documents(documents)
 ```
 ```python
 ```
@@ -228,7 +228,7 @@ multivector_query=[
         { "vector": query_vector, "fields": ["product_image_clip_vector_"]}
     ]
 
-results = df.vector_search(
+results = ds.vector_search(
     multivector_query=multivector_query,
     page_size=5
 )
@@ -318,8 +318,8 @@ def encode_image_document(d):
 from tqdm.auto import tqdm
 [encode_image_document(d) for d in tqdm(documents)]
 
-df = client.Dataset("quickstart_clip")
-df.insert_documents(documents)
+ds = client.Dataset("quickstart_clip")
+ds.insert_documents(documents)
 
 query = 'for my baby daughter'
 query_vector = encode_text(query)
@@ -328,7 +328,7 @@ multivector_query=[
         { "vector": query_vector, "fields": ["product_image_clip_vector_"]}
     ]
 
-results = df.vector_search(
+results = ds.vector_search(
     multivector_query=multivector_query,
     page_size=5
 )

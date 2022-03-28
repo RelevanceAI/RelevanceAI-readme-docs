@@ -82,8 +82,8 @@ pd.DataFrame.from_dict(documents).head()
 <figure>
 
 ```python Python (SDK)
-df = client.Dataset("quickstart")
-df.insert_documents(documents)
+ds = client.Dataset("quickstart")
+ds.insert_documents(documents)
 ```
 ```python
 ```
@@ -112,9 +112,9 @@ Update the existing dataset with the encoding results and check the results
 
 
 ```python Python (SDK)
-df.upsert_documents(documents=documents)
+ds.upsert_documents(documents=documents)
 
-df.schema
+ds.schema
 ```
 ```python
 ```
@@ -139,7 +139,7 @@ Run clustering on your vectors to better understand your data. You can view the 
 
 
 ```python Python (SDK)
-clusterer = df.auto_cluster("kmeans-10", ["product_image_clip_vector_"])
+clusterer = ds.auto_cluster("kmeans-10", ["product_image_clip_vector_"])
 ```
 ```python
 ```
@@ -174,7 +174,7 @@ multivector_query=[
         { "vector": query_vector, "fields": ["product_image_clip_vector_"]}
     ]
 
-results = df.vector_search(
+results = ds.vector_search(
     multivector_query=multivector_query,
     page_size=10
 )

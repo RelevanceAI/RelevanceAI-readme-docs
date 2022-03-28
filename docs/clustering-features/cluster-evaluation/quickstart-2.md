@@ -53,14 +53,14 @@ documents = get_ecommerce_dataset_encoded()
 ```
 
 ```python Python (SDK)
-df = client.Dataset("quickstart_kmeans_clustering")
-df.insert_documents(documents)
+ds = client.Dataset("quickstart_kmeans_clustering")
+ds.insert_documents(documents)
 ```
 ```python
 ```
 
 ```python Python (SDK)
-df.health
+ds.health
 ```
 ```python
 ```

@@ -17,7 +17,7 @@ This filter works with string values and only returns documents with a field val
 
 @@@ client_instantiation @@@
 
-@@@ dataset_df, DATASET_ID=ECOMMERCE_SAMPLE_DATASET_ID @@@
+@@@ dataset, DATASET_ID=ECOMMERCE_SAMPLE_DATASET_ID @@@
 
 @@@ filter_setup, FIELD=PRODUCT_NAME_FIELD, FILTER_TYPE=EXACT_MATCH_FILTER_TYPE, CONDITION=EQ_COND, CONDITION_VAL=CONDITION_VAL_2 @@@
 

@@ -1,7 +1,7 @@
 python
 from relevanceai import show_json
 
-sample_documents = df.sample(n=<<N_SAMPLES>>)
+sample_documents = ds.sample(n=<<N_SAMPLES>>)
 samples = [{
     'product_title':d['product_title'],
     'cluster':d['_cluster_'][<<VECTOR_FIELD>>][<<ALIAS>>]

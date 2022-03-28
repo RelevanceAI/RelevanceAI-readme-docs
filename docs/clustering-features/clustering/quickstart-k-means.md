@@ -58,8 +58,8 @@ documents = get_ecommerce_dataset_encoded()
 Next, we can upload these documents into your personal Relevance AI account under the name *quickstart_clustering_kmeans*
 
 ```python Python (SDK)
-df = client.Dataset("quickstart_kmeans_clustering")
-df.insert_documents(documents)
+ds = client.Dataset("quickstart_kmeans_clustering")
+ds.insert_documents(documents)
 ```
 ```python
 ```
@@ -67,7 +67,7 @@ df.insert_documents(documents)
 Let's have a look at the schema to see what vector fields are available for clustering.
 
 ```python Python (SDK)
-df.schema
+ds.schema
 ```
 ```python
 ```
@@ -94,7 +94,7 @@ The result is a JSON output similar to what is shown below. As can be seen, ther
 The easiest way to run a Kmeans clustering algorithm under the Relevance AI platform is the `auto_cluster` function. The following code snippet shows how generate 10 clusters using the `product_title_clip_vector_` vector field.
 
 ```python Python (SDK)
-clusterer = df.auto_cluster("kmeans-10", ["product_title_clip_vector_"])
+clusterer = ds.auto_cluster("kmeans-10", ["product_title_clip_vector_"])
 ```
 ```python
 ```
@@ -126,7 +126,7 @@ By loading the data from the dataset after clustering is done, you can see to wh
 ```python Python (SDK)
 from relevanceai import show_json
 
-sample_documents = df.sample(n=5)
+sample_documents = ds.sample(n=5)
 samples = [{
     'product_title':d['product_title'],
     'cluster':d['_cluster_'][VECTOR_FIELD][ALIAS]

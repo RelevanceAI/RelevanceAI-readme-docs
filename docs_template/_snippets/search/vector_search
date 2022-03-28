@@ -1,5 +1,5 @@
 python MULTIVECTOR_QUERY=multivector_query, PAGE_SIZE=5
-results = df.vector_search(
+results = ds.vector_search(
     multivector_query=<<MULTIVECTOR_QUERY>>,
     page_size=<<PAGE_SIZE>>
 )

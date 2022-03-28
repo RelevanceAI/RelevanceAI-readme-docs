@@ -55,8 +55,8 @@ documents = [
 	{"_id": "4", "example_vector_": [0.5, 0.5, 0.5], "data": "This is another doc"},
 ]
 
-df = client.Dataset("quickstart")
-df.insert_documents(documents)
+ds = client.Dataset("quickstart")
+ds.insert_documents(documents)
 ```
 ```python
 ```
@@ -65,7 +65,7 @@ df.insert_documents(documents)
 ### 3. Clustering
 
 ```python Python (SDK)
-clusterer = df.auto_cluster("kmeans-2", ["example_vector_"])
+clusterer = ds.auto_cluster("kmeans-2", ["example_vector_"])
 ```
 ```python
 ```
@@ -73,7 +73,7 @@ clusterer = df.auto_cluster("kmeans-2", ["example_vector_"])
 ### 4. Vector Search
 
 ```python Python (SDK)
-results = df.vector_search(
+results = ds.vector_search(
     multivector_query=[
 		{"vector": [0.2, 0.2, 0.2], "fields": ["example_vector"]}
 	],

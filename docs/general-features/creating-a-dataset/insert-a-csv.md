@@ -51,10 +51,10 @@ Uploading a CSV file is as simple as specifying the CSV path to your file.
 
 
 ```python Python (SDK)
-df = client.Dataset('quickstart_insert_csv')
+ds = client.Dataset('quickstart_insert_csv')
 
 csv_fpath = "./sample_data/california_housing_test.csv"
-df.insert_csv(filepath_or_buffer = csv_fpath)
+ds.insert_csv(filepath_or_buffer = csv_fpath)
 ```
 ```python
 ```

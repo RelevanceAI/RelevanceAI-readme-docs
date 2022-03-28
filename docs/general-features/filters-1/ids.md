@@ -34,7 +34,7 @@ client = Client()
 
 ```python Python (SDK)
 DATASET_ID = "ecommerce-sample-dataset"
-df = client.Dataset(DATASET_ID)
+ds = client.Dataset(DATASET_ID)
 ```
 ```python
 ```
@@ -54,7 +54,7 @@ filter = [
 
 ```python Python (SDK)
 ### TODO: update to match the latest SDK
-filtered_data = df.get_where(filter)
+filtered_data = ds.get_where(filter)
 ```
 ```python
 ```

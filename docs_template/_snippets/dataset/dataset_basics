@@ -1,3 +1,3 @@
 python DATASET_ID=DATASET_ID, DOCUMENTS=documents
-df = client.Dataset(<<DATASET_ID>>)
-df.insert_documents(<<DOCUMENTS>>)
+ds = client.Dataset(<<DATASET_ID>>)
+ds.insert_documents(<<DOCUMENTS>>)

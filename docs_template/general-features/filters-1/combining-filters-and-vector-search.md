@@ -24,7 +24,7 @@ Please refer to a full guide on how to [create and upload a database](doc:creati
 
 @@@ client_instantiation @@@
 
-@@@ dataset_df, DATASET_ID=ECOMMERCE_SAMPLE_DATASET_ID @@@
+@@@ dataset, DATASET_ID=ECOMMERCE_SAMPLE_DATASET_ID @@@
 
 @@@ encode_text_query, QUERY="white sneakers", ENCODER="enc_imagetext" @@@
 

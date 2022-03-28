@@ -18,9 +18,9 @@ After clustering is done and the dataset is updated with the results, listing th
 
 
 ```python Python (SDK)
-df = client.Dataset(DATASET_ID)
+ds = client.Dataset(DATASET_ID)
 
-clusterer = df.auto_cluster('kmeans-5', [VECTOR_FIELD])
+clusterer = ds.auto_cluster('kmeans-5', [VECTOR_FIELD])
 
 clusterer.list_furthest_from_center()
 ```

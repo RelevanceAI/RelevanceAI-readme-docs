@@ -17,7 +17,7 @@ This filter is to perform the filtering operators on a numeric value. For instan
 
 @@@ client_instantiation @@@
 
-@@@ dataset_df, DATASET_ID=ECOMMERCE_SAMPLE_DATASET_ID @@@
+@@@ dataset, DATASET_ID=ECOMMERCE_SAMPLE_DATASET_ID @@@
 
 @@@ filter_setup, FIELD=RETAIL_PRICE_FIELD, FILTER_TYPE=NUMERIC_FILTER_TYPE, CONDITION=GT_COND, CONDITION_VAL=5000 @@@
 

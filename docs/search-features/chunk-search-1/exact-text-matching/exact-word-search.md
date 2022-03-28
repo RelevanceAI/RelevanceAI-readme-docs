@@ -58,8 +58,8 @@ documents = get_ecommerce_dataset_encoded()
 ```
 
 ```python Python (SDK)
-df = client.Dataset("quickstart_search")
-df.insert_documents(documents)
+ds = client.Dataset("quickstart_search")
+ds.insert_documents(documents)
 ```
 ```python
 ```
@@ -67,7 +67,7 @@ df.insert_documents(documents)
 4. We call the hybrid search endpoint with no vectors to perform a pure traditional search:
 
 ```python Python (SDK)
-results = df.hybrid_search(
+results = ds.hybrid_search(
     multivector_query=[],
     text="HP 2.4GHz",
     fields=["product_title"],

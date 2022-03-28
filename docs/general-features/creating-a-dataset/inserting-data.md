@@ -23,8 +23,8 @@ To upload multiple documents to RelevanceAI, you can use the **insert_documents*
 
 
 ```python Python (SDK)
-df = client.Dataset("quickstart")
-df.insert_documents(documents)
+ds = client.Dataset("quickstart")
+ds.insert_documents(documents)
 ```
 ```python
 ```
@@ -34,7 +34,7 @@ df.insert_documents(documents)
 To only update specific documents, use `upsert_documents` as shown in the example below:
 
 ```python Python (SDK)
-df.upsert_documents(documents=[{"_id": "example_id", "value": 3}])
+ds.upsert_documents(documents=[{"_id": "example_id", "value": 3}])
 ```
 ```python
 ```
@@ -59,7 +59,7 @@ You can see the list of the available list of models for vectorising here using 
 
 
 ```python Python (SDK)
-df["sentence"].apply(lambda x: model.encode(x), output_field="sentence_vector")
+ds["sentence"].apply(lambda x: model.encode(x), output_field="sentence_vector")
 ```
 ```python
 ```

@@ -53,7 +53,7 @@ Another great sample of multivector search in the Relevance AI platform is how m
 
 @@@ multivector_query_multiple_models_weighted, VECTOR=ENC_TXT_RES, VECTOR_1_FIELD=TITLE_VECTOR, VECTOR_2_FIELD=DESCRIPTION_VECTOR @@@
 
-@@@ dataset_df, DATASET_ID=ECOMMERCE_SAMPLE_DATASET_ID @@@
+@@@ dataset, DATASET_ID=ECOMMERCE_SAMPLE_DATASET_ID @@@
 
 @@@ vector_search, PAGE_SIZE=5 @@@
 

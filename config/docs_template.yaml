@@ -276,7 +276,7 @@ docs_template:
     - filter_setup
     - pull_update_push
     - dataset_health
-    - dataset_df
+    - dataset
     - insert_documents
     - create_dataset
     - dataset_schema

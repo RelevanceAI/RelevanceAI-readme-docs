@@ -74,8 +74,8 @@ documents = get_ecommerce_dataset_encoded()
 ```
 
 ```python Python (SDK)
-df = client.Dataset("quickstart_search")
-df.insert_documents(documents)
+ds = client.Dataset("quickstart_search")
+ds.insert_documents(documents)
 ```
 ```python
 ```
@@ -98,7 +98,7 @@ multivector_query=[
 ```
 
 ```python Python (SDK)
-results = df.hybrid_search(
+results = ds.hybrid_search(
     multivector_query=multivector_query,
     text=query,
     fields=["product_title"],

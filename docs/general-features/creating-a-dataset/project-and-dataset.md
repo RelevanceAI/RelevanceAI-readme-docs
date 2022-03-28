@@ -56,8 +56,8 @@ client = Client()
 To create a new empty dataset pass the name under which you wish to save the dataset to the `create` function as shown below. In this example, we have used `ecommerce-sample-dataset` as the name.
 
 ```python Python (SDK)
-df = client.Dataset("ecommerce-sample-dataset")
-df.insert_documents(documents)
+ds = client.Dataset("ecommerce-sample-dataset")
+ds.insert_documents(documents)
 ```
 ```python
 ```
@@ -100,7 +100,7 @@ RelevanceAI's dashboard at https://cloud.relevance.ai is the most straightforwar
 Alternatively, you can monitor the health of a dataset using the command below which returns the count of total missing and existing fields in the data points in the named dataset.
 
 ```python Python (SDK)
-df.health
+ds.health
 ```
 ```python
 ```
