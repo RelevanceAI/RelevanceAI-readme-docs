@@ -23,37 +23,13 @@ By following instructions below, you will be able to preview/create any given ve
 ```zsh
 ❯ tree -L 1
 .
-├── build_docs.py          ### Builds docs from docs_template
-├── detect_secrets.py     ### Extra check to check for API keys in repo/noteboks
+├── build           ## Build scripts
+├── readme          ## ReadMe wrapper classes
 ├── README.md
-├── readme_migration.py    ## Ignore; Migration script from exports `block` to `md` format
-├── sync_readme.sh    ## Syncs Readme docs w/ rdme client; creates new version if does not exist; syncs w/ latest SDK release
-├── test_notebooks.py      ## Executes notebooks e2e
-├── update_docs_version.py  ## Update all asset links to point to the current branch
-├── update_readme.sh       ## Master script to update asset links, build docs and sync w/ README
+├── sync_readme.sh       ## Sync docs to ReadMe
+├── tests
+├── update_readme.sh     ## Master script to build and sync
 └── utils.py
-
-
-❯ tree -L 1
-.
-├── assets
-├── colab_requirements.txt
-├── config
-├── docs
-├── docs_template
-├── examples
-├── export_md
-├── migration
-├── node_modules
-├── _notebook.ipynb
-├── package.json
-├── package-lock.json
-├── rdmd.md
-├── rdme.md
-├── README.md
-├── readme_notebook_error_log.txt
-├── requirements.txt
-├── sync
 
 
 ```
@@ -69,13 +45,13 @@ By following instructions below, you will be able to preview/create any given ve
 3. Make your desired changes to the relevant Markdown/notebooks etc.
 4. Sync changes w/ README!
     ```zsh
-    ❯ ./sync/update_readme.sh
+    ❯ ./readme_sync/update_readme.sh
     ## Run in debug mode
-    ❯ ./sync/update_readme.sh true
+    ❯ ./readme_sync/update_readme.sh true
     ## Sync only a specific section, by default will sync everything in the generated `docs` folder.
-    ❯ ./sync/update_readme.sh false docs/clustering-features
+    ❯ ./readme_sync/update_readme.sh false docs/clustering-features
     ## Override the version, by default will create a new version from your current Git branch name
-    ❯ ./sync/update_readme.sh false docs/clustering-features v1.0.0-my-new-version
+    ❯ ./readme_sync/update_readme.sh false docs/clustering-features v1.0.0-my-new-version
     ```
 
 ## For further reference

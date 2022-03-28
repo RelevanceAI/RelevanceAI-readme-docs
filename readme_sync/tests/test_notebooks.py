@@ -11,7 +11,7 @@ import nbformat
 from nbconvert.preprocessors import ExecutePreprocessor
 import traceback
 
-from utils import multiprocess
+from sync.utils.sync.utils.sync.utils.utils import multiprocess
 
 import logging
 import argparse

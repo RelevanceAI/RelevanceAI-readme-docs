@@ -14,6 +14,9 @@ from pprint import pprint
 from readme_api import ReadMeAPI
 
 
+ROOT_PATH = Path(__file__).parent.resolve() / ".." / ".."
+
+
 def get_files(path: Union[Path, str], ext: Literal["md", "ipynb"]):
     return Path(path).glob(f"**/*.{ext}")
 
@@ -241,6 +244,9 @@ class DocsConfig(Config):
         config = self.dir_to_dict(self.dir_path)
 
         ## TODO: Merge docs_config and readme_config schema
+
+        ## For now, converting config to ReadMe config format
+
         # for category in config['docs_template']:
         #     if isinstance(category, dict):
         #         # config[category_name] = {}
@@ -371,12 +377,8 @@ def main(args):
     DOCS_TEMPLATE_PATH = Path(args.path) / "docs_template"
     EXPORT_MD_PATH = Path(args.path) / "export_md" / args.version
     README_VERSION = args.version
-    README_CONFIG_FPATH = (
-        Path(__file__).parent.resolve() / ".." / "config" / "readme-config.yaml"
-    )
-    DOCS_TEMPLATE_CONFIG_FPATH = (
-        Path(__file__).parent.resolve() / ".." / "config" / "docs_template.yaml"
-    )
+    README_CONFIG_FPATH = ROOT_PATH / "config" / "readme-config.yaml"
+    DOCS_TEMPLATE_CONFIG_FPATH = ROOT_PATH / "config" / "docs_template.yaml"
 
     readme_config = ReadMeConfig(version=README_VERSION, fpath=README_CONFIG_FPATH)
     docs_config = DocsConfig(
@@ -448,7 +450,7 @@ def main(args):
     elif args.method == "update":
         logging.info(f"Updating {README_VERSION} docs to {DOCS_PATH}")
 
-        docs_config = yaml.safe
+        # docs_config = yaml.safe
 
         # readme_config.update()
         # for category, pages in readme_config.config["categories"].items():
@@ -461,7 +463,7 @@ if __name__ == "__main__":
 
     PACKAGE_NAME = "RelevanceAI"
 
-    ROOT_PATH = Path(__file__).parent.resolve() / ".." / ".."
+    # ROOT_PATH = Path(__file__).parent.resolve() / ".." / ".."
     README_VERSION_FILE = open(ROOT_PATH / "__version__").read().strip()
 
     parser.add_argument("-d", "--debug", help="Run debug mode", action="store_true")
