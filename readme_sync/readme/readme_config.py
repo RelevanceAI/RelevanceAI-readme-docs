@@ -3,13 +3,14 @@
 import os
 import re
 from pathlib import Path
-from typing import Dict, List, Literal, Tuple, Union
+from typing import Dict, List, Literal, Optional, Tuple, Union
 import logging
 import argparse
 import json
 import yaml
 import shutil
 from pprint import pprint
+from abc import abstractmethod, ABC
 
 from readme_api import ReadMeAPI
 
@@ -21,12 +22,12 @@ def get_files(path: Union[Path, str], ext: Literal["md", "ipynb"]):
     return Path(path).glob(f"**/*.{ext}")
 
 
-class Config:
+class Config(ABC):
     def __init__(
         self,
         fpath: str = None,
         version: str = None,
-        select_fields: List[str] = None,
+        select_fields: Optional[List[str]] = None,
         *args,
         **kwargs,
     ):
@@ -44,28 +45,44 @@ class Config:
                 "order",
             ]
 
+    @abstractmethod
+    def build(
+        self, *args, fpath: str = None, select_fields: List[str] = None, **kwargs
+    ) -> Dict:
+        """Builds readme config dict and outputs to readme-config file
+
+        Parameters
+        ----------
+        fpath : Config filepath
+            Overrides instance fpath if set
+        condensed: bool
+            If True, builds a condensed version of the readme-config file as well
+        select_fields : List[str]
+            select_fields: List
+            Fields to include in the search results, empty array/list means all fields
+
+        """
+        return NotImplementedError
+
 
 class ReadMeConfig(Config):
     def __init__(
         self,
-        fpath: str = None,
-        version: str = None,
-        select_fields: List[str] = None,
+        fpath: str,
+        version: str,
+        select_fields: Optional[List[str]] = None,
         *args,
         **kwargs,
     ):
         super().__init__(
             fpath=fpath, version=version, select_fields=select_fields, *args, **kwargs
         )
-        self.fpath = fpath
-        self.version = version
-        self.select_fields = select_fields
         self.readme = ReadMeAPI(self.version)
         self.api_categories = ["relevance-ai-endpoints"]
         self.sdk_categories = ["python-sdk"]
         self.config = yaml.safe_load(open(self.fpath, "r"))
 
-        self.readme_page_slugs = self._load_readme_page_slugs()
+        self.readme_page_slugs = self._load_page_slugs()
         self.docs_categories = self._load_docs_categories()
 
     def _load_docs_categories(self):
@@ -73,7 +90,7 @@ class ReadMeConfig(Config):
         categories = self.config["categories"]
         return [category for category, pages in categories.items()]
 
-    def _load_readme_page_slugs(self):
+    def _load_page_slugs(self):
         """Loads list of all readme page slugs"""
         categories = self.config["categories"]
         slugs = []
@@ -128,13 +145,20 @@ class ReadMeConfig(Config):
                 yaml.dump(condensed_config, f, default_flow_style=False)
 
         config = condensed_config
+
         ## Building expanded config (inc children)
         for category, pages in category_detail.items():
             page_details = {}
             for page, children in pages.items():
-                page_details[page] = self.readme.get_doc(
+                print(type(page), type(children))
+                print(page, children)
+
+                page_detail = self.readme.get_doc(
                     page_slug=page, select_fields=self.select_fields
-                )[0]
+                )
+                page_details[page] = (
+                    page_detail[0] if isinstance(page_detail, list) else page_detail
+                )
                 for child in children:
                     page_details[page][child] = self.readme.get_doc(
                         page_slug=child, select_fields=self.select_fields
@@ -149,7 +173,7 @@ class ReadMeConfig(Config):
     def create(
         self,
         slug: str,
-        select_fields: List[str] = None,
+        select_fields: Optional[List[str]] = None,
     ):
         """Creates new page in ReadMe if slug does not exist
 
@@ -181,7 +205,7 @@ class DocsConfig(Config):
         dir_path: str = None,
         fpath: str = None,
         version: str = None,
-        select_fields: List[str] = None,
+        select_fields: Optional[List[str]] = None,
         *args,
         **kwargs,
     ):
@@ -189,13 +213,9 @@ class DocsConfig(Config):
             fpath=fpath, version=version, select_fields=select_fields, *args, **kwargs
         )
         self.dir_path = dir_path
-        self.fpath = fpath
-        self.version = version
-        self.select_fields = select_fields
-        print(self.fpath)
         self.config = yaml.safe_load(open(self.fpath, "r"))
 
-        self.docs_page_slugs = self._load_docs_page_slugs()
+        self.docs_page_slugs = self._load_page_slugs()
         self.docs_categories = self._load_docs_categories()
 
     def _load_docs_categories(self):
@@ -208,7 +228,7 @@ class DocsConfig(Config):
             for category_name, pages in category.items()
         ]
 
-    def _load_docs_page_slugs(self):
+    def _load_page_slugs(self):
         """Loads list of all docs page slugs"""
         slugs = {}
         return slugs
@@ -218,7 +238,7 @@ class DocsConfig(Config):
         dir_path: Path = None,
         fpath: Path = None,
         condensed: bool = False,
-        select_fields: List[str] = None,
+        select_fields: Optional[List[str]] = None,
     ):
         """Building config file from docs filetree
 
@@ -243,62 +263,6 @@ class DocsConfig(Config):
 
         config = self.dir_to_dict(self.dir_path)
 
-        ## TODO: Merge docs_config and readme_config schema
-
-        ## For now, converting config to ReadMe config format
-
-        # for category in config['docs_template']:
-        #     if isinstance(category, dict):
-        #         # config[category_name] = {}
-        #         for category_name, pages in category.items():
-        #             # logging.debug(f'{category_name}, {pages}')
-        #             if isinstance(pages[0], dict):
-        #                 logging.debug(category_name)
-        #                 for page, children in pages[0].items():
-        #                     logging.debug(f'{page}, {children}')
-
-        # logging.debug(children)
-        # print(config[category_name])
-        # config[category_name][page] = self.readme.get_doc(
-        #             page_slug=page, select_fields=self.select_fields
-        #         )
-
-        #                     for c in children:
-        #                         slug = c.split('.md')[0]
-        #                         config[category_name][page][slug] = self.readme.get_doc(
-        #                             page_slug=c, select_fields=self.select_fields
-        #                         )
-        # if '_' not in page:
-        #     # logging.debug(page, children)
-        #     for c in children:
-        # logging.debug(c)
-        # config[category_name][page][c] = self.readme.get_doc(
-        #     page_slug=c, select_fields=self.select_fields
-        # )
-        # logging.info(json.dumps(config, indent=4))
-        # for k, v in category.items():
-        #     print(k, v)
-        # pprint(category)
-
-        # category_detail = {}
-        # for root, dirs, files in os.walk(self.fpath):
-        #     root_name = root.split("/")[-1]
-        #     # print(root)
-        #     if root_name[0] != "_":
-        #         category_path = "/".join(
-        #             root.split('docs_template')[-1].split("/")[1:]
-        #         )
-        #         print(dirs)
-        #         if category_path and '_' not in category_path:
-        #             # logging.info(category_path)
-        #             print(category_path.split('/')[1:])
-        #             category_detail[category_path.split('/')[0]] = category_path.split('/')[1:]
-        # pprint(category_detail)
-        #                 # print(c)
-        #                 # category_detail[c] = {}
-        #             # category_detail
-        #             # print(root)
-        #             # print(category_path)
         return config
 
     def dict_to_dir(self, data: dict, path: Path):
@@ -360,11 +324,26 @@ class DocsConfig(Config):
     def update(
         self,
         slug: str,
-        fpath: str = None,
-        condensed: str = False,
-        select_fields: List[str] = None,
+        fpath: Path = None,
+        select_fields: Optional[List[str]] = None,
     ):
+        """Update docs config if new slug in ReadMe
 
+        Parameters
+        ----------
+        slug : str
+            Page slug
+        fpath : str, optional
+            Config output filepath
+        select_fields : List[str]
+            select_fields: List
+            Fields to include in the search results, empty array/list means all fields
+
+        Returns
+        -------
+        config : Dict
+            Config of new docs
+        """
         return NotImplementedError
 
 
@@ -390,7 +369,7 @@ def main(args):
     if args.method == "build":
         logging.info(f"Building {README_VERSION} config ...")
         docs_config.build()
-        # readme_config.build()
+        readme_config.build()
 
     elif args.method == "import":
         logging.info(f"Importing {README_VERSION} doc export to {DOCS_PATH}")
@@ -450,12 +429,37 @@ def main(args):
     elif args.method == "update":
         logging.info(f"Updating {README_VERSION} docs to {DOCS_PATH}")
 
-        # docs_config = yaml.safe
+        ## TODO: Merge docs_config and readme_config schema
+        config = docs_config.config
 
-        # readme_config.update()
-        # for category, pages in readme_config.config["categories"].items():
-        #     if category not in docs_category_slugs:
-        #         Path(DOCS_TEMPLATE_PATH / category).mkdir(parents=True)
+        ## For now, convert docs config to ReadMe config condensed format to check for delta
+        docs_readme_config = {}
+        category_detail = {}
+        for category in config["docs_template"]:
+            if isinstance(category, dict):
+                # config[category_name] = {}
+                for category_name, pages in category.items():
+                    if "_" not in category_name:
+                        # logging.debug(f'{category_name}, {pages}')
+                        # logging.debug(category_name)
+                        # category_detail[category_name] = pages
+                        if isinstance(pages[0], dict):
+
+                            for page, children in pages[0].items():
+
+                                if "_" not in page[0]:
+                                    children = [c.replace(".md", "") for c in children]
+                                    # logging.debug(f'P {page}, C:{children}')
+                                    logging.debug(f"P {page}, C:{children}")
+                                    #     # print(page)
+
+                                    category_detail[category_name] = {page: children}
+        pprint(docs_readme_config)
+
+        fpath = ROOT_PATH / "config" / "docs_readme_config.yaml"
+        docs_readme_config["categories"] = category_detail
+        with open(fpath, "w") as f:
+            yaml.dump(docs_readme_config, f, default_flow_style=False)
 
 
 if __name__ == "__main__":
@@ -464,7 +468,7 @@ if __name__ == "__main__":
     PACKAGE_NAME = "RelevanceAI"
 
     # ROOT_PATH = Path(__file__).parent.resolve() / ".." / ".."
-    README_VERSION_FILE = open(ROOT_PATH / "__version__").read().strip()
+    README_VERSION_FILE = f"v{open(ROOT_PATH / '__version__').read().strip()}"
 
     parser.add_argument("-d", "--debug", help="Run debug mode", action="store_true")
     parser.add_argument("-p", "--path", default=ROOT_PATH, help="Path of root folder")

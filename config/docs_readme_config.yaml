@@ -1,0 +1,44 @@
+categories:
+  comparator:
+    search-comparator:
+    - set-up
+    - search-comparison-and-evaluation
+    - search-comparator-2
+  general-features:
+    filters-1:
+    - exact_match-1
+    - exact_match
+    - numeric
+    - regex
+    - categories
+    - contains
+    - date
+    - multiple-filters
+    - filters-1
+    - exists
+    - or
+    - combining-filters-and-vector-search
+    - ids
+  projector:
+    quickstart-visualize-your-vectors:
+    - visualise-your-vectors-in-3d
+    - color-by-category
+    - adding-labels
+    - add-clustering
+  theory-and-concepts:
+    what-is-vector-search:
+    - _applications-of-vectors
+    - how-to-vector-search
+    - _limitations-of-vectors
+  use-cases:
+    better-text-search:
+    - better-text-search-prerequisites
+    - fine-grained-search-search-on-chunks-of-text-data-2
+    - better-text-search-with-hybrid
+    - pure-word-matching-pure-vector-search-or-combination-of-both
+    - better-text-search-diversified-search-results
+    - pure-word-matching-pure-vector-search-or-combination-of-both-2
+    - better-text-search-chunk-search
+    - pure-word-matching-pure-vector-search-or-combination-of-both-1
+    - fine-grained-search-search-on-chunks-of-text-data-1
+    - fine-grained-search-search-on-chunks-of-text-data

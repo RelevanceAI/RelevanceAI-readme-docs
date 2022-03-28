@@ -18,7 +18,7 @@ categories:
         parentDoc: 623a96a3032c43002ef2c6ac
         slug: cluster-evaluate
         title: Quickstart
-        updatedAt: '2022-01-27T00:56:39.533Z'
+        updatedAt: '2022-03-28T05:20:14.668Z'
       cluster-metrics:
       - createdAt: '2021-12-22T00:51:39.184Z'
         excerpt: ''
@@ -54,7 +54,7 @@ categories:
         parentDoc: 623a96a3032c43002ef2c68d
         slug: cluster-aggregate
         title: Cluster Aggregate
-        updatedAt: '2022-03-24T06:33:44.878Z'
+        updatedAt: '2022-03-28T04:58:36.806Z'
       cluster-metadata:
       - createdAt: '2021-12-02T14:01:15.693Z'
         excerpt: ''
@@ -63,7 +63,7 @@ categories:
         parentDoc: 623a96a3032c43002ef2c68d
         slug: cluster-metadata
         title: Cluster Metadata
-        updatedAt: '2022-03-24T06:33:44.924Z'
+        updatedAt: '2022-03-28T04:58:37.406Z'
       createdAt: '2021-11-26T10:20:49.107Z'
       custom-clustering:
       - createdAt: '2021-12-02T14:01:29.321Z'
@@ -73,7 +73,7 @@ categories:
         parentDoc: 623a96a3032c43002ef2c68d
         slug: custom-clustering
         title: Custom Clustering
-        updatedAt: '2022-03-24T06:33:44.832Z'
+        updatedAt: '2022-03-28T04:58:36.822Z'
       excerpt: ''
       hidden: false
       inserting-centroids:
@@ -93,7 +93,7 @@ categories:
         parentDoc: 623a96a3032c43002ef2c68d
         slug: list-closest-to-centroids
         title: List closest to centroids
-        updatedAt: '2022-03-24T06:33:44.747Z'
+        updatedAt: '2022-03-28T04:58:37.482Z'
       list-furthest-from-centroids:
       - createdAt: '2021-12-02T13:13:54.940Z'
         excerpt: ''
@@ -102,7 +102,7 @@ categories:
         parentDoc: 623a96a3032c43002ef2c68d
         slug: list-furthest-from-centroids
         title: List furthest from centroids
-        updatedAt: '2022-03-24T06:33:44.797Z'
+        updatedAt: '2022-03-28T04:58:37.604Z'
       order: 0
       parentDoc: null
       quickstart-clustering:
@@ -113,7 +113,7 @@ categories:
         parentDoc: 623a96a3032c43002ef2c68d
         slug: quickstart-clustering
         title: Quickstart (step by step)
-        updatedAt: '2022-03-24T06:33:44.111Z'
+        updatedAt: '2022-03-28T04:58:37.636Z'
       quickstart-k-means:
       - createdAt: '2021-12-10T01:56:27.206Z'
         excerpt: ''
@@ -122,7 +122,7 @@ categories:
         parentDoc: 623a96a3032c43002ef2c68d
         slug: quickstart-k-means
         title: Quickstart (K Means)
-        updatedAt: '2022-03-24T06:33:44.928Z'
+        updatedAt: '2022-03-28T04:58:37.633Z'
       slug: clustering
       title: Clustering
       updatedAt: '2021-12-12T14:07:47.030Z'
@@ -210,7 +210,7 @@ categories:
         parentDoc: 623a96a3032c43002ef2c652
         slug: aggregation-quick-start
         title: Quickstart
-        updatedAt: '2022-03-24T06:33:45.635Z'
+        updatedAt: '2022-03-28T04:58:37.631Z'
       aggregations-1:
       - createdAt: '2021-11-14T15:42:46.167Z'
         excerpt: ''
@@ -219,7 +219,7 @@ categories:
         parentDoc: 623a96a3032c43002ef2c652
         slug: aggregations-1
         title: Prerequisites
-        updatedAt: '2022-03-24T06:33:44.866Z'
+        updatedAt: '2022-03-28T04:17:12.894Z'
       createdAt: '2021-11-04T01:13:38.587Z'
       creating-aggregation-metrics:
       - createdAt: '2021-11-14T15:41:33.393Z'
@@ -276,7 +276,7 @@ categories:
         parentDoc: 623a96a3032c43002ef2c651
         slug: insert-a-csv
         title: Insert a CSV
-        updatedAt: '2022-03-24T06:33:44.874Z'
+        updatedAt: '2022-03-28T04:58:37.598Z'
       insert-a-df:
       - createdAt: '2022-01-12T06:07:56.382Z'
         excerpt: ''
@@ -285,7 +285,7 @@ categories:
         parentDoc: 623a96a3032c43002ef2c651
         slug: insert-a-df
         title: Insert A Dataframe
-        updatedAt: '2022-03-24T09:43:58.580Z'
+        updatedAt: '2022-03-28T04:17:12.741Z'
       inserting-data:
       - createdAt: '2021-11-02T00:37:51.061Z'
         excerpt: Guide on how to insert data into RelevanceAI
@@ -294,7 +294,7 @@ categories:
         parentDoc: 623a96a3032c43002ef2c651
         slug: inserting-data
         title: Inserting and updating documents
-        updatedAt: '2022-03-24T06:33:44.864Z'
+        updatedAt: '2022-03-28T04:58:37.414Z'
       order: 0
       parentDoc: null
       preparing-data-from-csv-pandas-df:
@@ -305,7 +305,7 @@ categories:
         parentDoc: 623a96a3032c43002ef2c651
         slug: preparing-data-from-csv-pandas-df
         title: Preparing data from CSV / Pandas Dataframe
-        updatedAt: '2022-03-24T06:33:44.877Z'
+        updatedAt: '2022-03-28T04:17:12.770Z'
       project-and-dataset:
       - createdAt: '2021-10-28T06:57:07.293Z'
         excerpt: Dedicated section to managing your RelevanceAI space
@@ -314,7 +314,7 @@ categories:
         parentDoc: 623a96a3032c43002ef2c651
         slug: project-and-dataset
         title: Dataset Basics
-        updatedAt: '2022-03-24T06:33:44.866Z'
+        updatedAt: '2022-03-28T04:58:37.614Z'
       slug: creating-a-dataset
       title: Creating a dataset
       updatedAt: '2021-12-21T22:34:47.769Z'
@@ -327,7 +327,7 @@ categories:
         parentDoc: 623a96a3032c43002ef2c67a
         slug: categories
         title: Categories
-        updatedAt: '2022-03-24T06:33:44.067Z'
+        updatedAt: '2022-03-28T04:58:37.578Z'
       combining-filters-and-vector-search:
       - createdAt: '2021-11-25T22:33:06.798Z'
         excerpt: ''
@@ -336,7 +336,7 @@ categories:
         parentDoc: 623a96a3032c43002ef2c67a
         slug: combining-filters-and-vector-search
         title: Combining filters and vector search
-        updatedAt: '2022-03-24T06:33:44.821Z'
+        updatedAt: '2022-03-28T04:58:37.587Z'
       contains:
       - createdAt: '2021-11-25T05:18:31.045Z'
         excerpt: ''
@@ -345,7 +345,7 @@ categories:
         parentDoc: 623a96a3032c43002ef2c67a
         slug: contains
         title: Contains
-        updatedAt: '2022-03-24T06:33:44.078Z'
+        updatedAt: '2022-03-28T04:58:36.820Z'
       createdAt: '2021-11-21T07:05:21.922Z'
       date:
       - createdAt: '2021-11-25T06:20:15.175Z'
@@ -355,7 +355,7 @@ categories:
         parentDoc: 623a96a3032c43002ef2c67a
         slug: date
         title: Date
-        updatedAt: '2022-03-24T06:33:44.829Z'
+        updatedAt: '2022-03-28T04:58:36.827Z'
       exact_match:
       - createdAt: '2021-11-25T05:20:53.996Z'
         excerpt: ''
@@ -364,7 +364,7 @@ categories:
         parentDoc: 623a96a3032c43002ef2c67a
         slug: exact_match
         title: Exact match
-        updatedAt: '2022-03-24T06:33:44.828Z'
+        updatedAt: '2022-03-28T04:58:37.604Z'
       exact_match-1:
       - createdAt: '2021-11-25T05:44:25.366Z'
         excerpt: ''
@@ -373,7 +373,7 @@ categories:
         parentDoc: 623a96a3032c43002ef2c67a
         slug: exact_match-1
         title: Word match
-        updatedAt: '2022-03-24T06:33:44.076Z'
+        updatedAt: '2022-03-28T04:58:37.559Z'
       excerpt: ''
       exists:
       - createdAt: '2021-11-25T06:09:19.375Z'
@@ -383,7 +383,7 @@ categories:
         parentDoc: 623a96a3032c43002ef2c67a
         slug: exists
         title: Exists
-        updatedAt: '2022-03-24T10:11:25.540Z'
+        updatedAt: '2022-03-28T04:58:37.482Z'
       hidden: false
       ids:
       - createdAt: '2021-11-25T22:22:07.285Z'
@@ -393,7 +393,7 @@ categories:
         parentDoc: 623a96a3032c43002ef2c67a
         slug: ids
         title: Ids
-        updatedAt: '2022-03-24T06:33:44.852Z'
+        updatedAt: '2022-03-28T04:58:37.388Z'
       multiple-filters:
       - createdAt: '2021-11-25T22:31:19.531Z'
         excerpt: ''
@@ -402,7 +402,7 @@ categories:
         parentDoc: 623a96a3032c43002ef2c67a
         slug: multiple-filters
         title: Multiple filters
-        updatedAt: '2022-03-24T06:33:44.787Z'
+        updatedAt: '2022-03-28T04:58:36.862Z'
       numeric:
       - createdAt: '2021-11-25T06:28:37.534Z'
         excerpt: ''
@@ -411,7 +411,7 @@ categories:
         parentDoc: 623a96a3032c43002ef2c67a
         slug: numeric
         title: Numeric
-        updatedAt: '2022-03-24T06:33:44.832Z'
+        updatedAt: '2022-03-28T04:58:37.628Z'
       or:
       - createdAt: '2021-12-14T02:24:01.377Z'
         excerpt: How to filter when you have multiple filter requirements
@@ -420,7 +420,7 @@ categories:
         parentDoc: 623a96a3032c43002ef2c67a
         slug: or
         title: Or
-        updatedAt: '2022-02-14T01:59:23.665Z'
+        updatedAt: '2022-03-28T04:58:37.679Z'
       order: 4
       parentDoc: null
       regex:
@@ -431,10 +431,10 @@ categories:
         parentDoc: 623a96a3032c43002ef2c67a
         slug: regex
         title: Regex
-        updatedAt: '2022-03-24T06:33:44.819Z'
+        updatedAt: '2022-03-28T04:58:37.610Z'
       slug: filters-1
       title: Filters
-      updatedAt: '2022-03-24T10:11:25.628Z'
+      updatedAt: '2022-03-28T05:20:14.634Z'
     how-to-vectorize:
       createdAt: '2021-10-28T08:07:42.539Z'
       excerpt: ''
@@ -447,7 +447,7 @@ categories:
         parentDoc: 623a96a3032c43002ef2c644
         slug: how-to-vectorize-text-using-vectorhub-transformers
         title: How to vectorize text using VectorHub - Transformers
-        updatedAt: '2022-03-24T06:33:44.833Z'
+        updatedAt: '2022-03-28T04:58:37.763Z'
       how-to-vectorize-using-the-sdk:
       - createdAt: '2022-01-19T22:20:35.514Z'
         excerpt: A guide on vectorizing text using Vectorhub
@@ -470,7 +470,7 @@ categories:
         parentDoc: 623a96a3032c43002ef2c644
         slug: vectorize-images
         title: How to vectorize images
-        updatedAt: '2022-02-22T10:13:54.730Z'
+        updatedAt: '2022-03-28T04:58:37.418Z'
       vectorize-text:
       - createdAt: '2021-10-28T09:09:18.680Z'
         excerpt: A guide on vectorizing text using Vectorhub
@@ -479,7 +479,7 @@ categories:
         parentDoc: 623a96a3032c43002ef2c644
         slug: vectorize-text
         title: How to vectorize text using VectorHub - TFhub
-        updatedAt: '2022-02-22T10:13:54.734Z'
+        updatedAt: '2022-03-28T04:58:36.876Z'
       waiting-for-the-encoding-to-end:
       - createdAt: '2021-11-08T22:12:52.358Z'
         excerpt: Encoding requires some time to finish, in the meantime...
@@ -501,7 +501,7 @@ categories:
         parentDoc: 623a96a3032c43002ef2c679
         slug: highlighting
         title: Highlighting
-        updatedAt: '2022-03-24T06:33:44.836Z'
+        updatedAt: '2022-03-28T04:17:12.908Z'
       image-fields:
       - createdAt: '2021-11-22T04:01:02.046Z'
         excerpt: View image fields inside image documents easily in JSONShower!
@@ -510,7 +510,7 @@ categories:
         parentDoc: 623a96a3032c43002ef2c679
         slug: image-fields
         title: Preview Images
-        updatedAt: '2022-03-24T06:33:44.701Z'
+        updatedAt: '2022-03-28T04:17:12.863Z'
       order: 5
       parentDoc: null
       preview-audio:
@@ -521,7 +521,7 @@ categories:
         parentDoc: 623a96a3032c43002ef2c679
         slug: preview-audio
         title: Preview Audio
-        updatedAt: '2022-03-24T06:33:44.775Z'
+        updatedAt: '2022-03-28T04:17:12.862Z'
       slug: jsonshower
       title: Prettyprint json
       updatedAt: '2022-03-23T07:02:18.719Z'
@@ -537,7 +537,7 @@ categories:
         parentDoc: 623a96a3032c43002ef2c6a1
         slug: multi-vector-search-2
         title: Multi-vector search with multiple models
-        updatedAt: '2022-03-23T07:02:18.793Z'
+        updatedAt: '2022-03-28T04:58:37.622Z'
       multi-vector-search-with:
       - createdAt: '2021-12-24T03:13:06.821Z'
         excerpt: Guide to using multi-vector search with multiple fields
@@ -546,7 +546,7 @@ categories:
         parentDoc: 623a96a3032c43002ef2c6a1
         slug: multi-vector-search-with
         title: Multi-vector search with multiple fields
-        updatedAt: '2022-03-23T07:02:18.807Z'
+        updatedAt: '2022-03-28T04:58:37.462Z'
       order: 3
       parentDoc: null
       slug: multi-vector-search-3
@@ -585,7 +585,7 @@ categories:
         parentDoc: 623a96a3032c43002ef2c650
         slug: quickstart-multivector-search
         title: Multi-vector search with your own vectors
-        updatedAt: '2022-03-24T06:33:44.887Z'
+        updatedAt: '2022-03-28T04:58:37.613Z'
       quickstart-question-answering:
       - createdAt: '2021-11-05T06:25:12.543Z'
         excerpt: Get started with Relevance AI in 5 minutes!
@@ -594,7 +594,7 @@ categories:
         parentDoc: 623a96a3032c43002ef2c650
         slug: quickstart-question-answering
         title: Question answering (using USE QA Tensorflow Hub)
-        updatedAt: '2022-03-24T06:33:44.925Z'
+        updatedAt: '2022-03-28T04:58:37.634Z'
       quickstart-text-search:
       - createdAt: '2021-11-05T06:24:29.236Z'
         excerpt: ''
@@ -603,7 +603,7 @@ categories:
         parentDoc: 623a96a3032c43002ef2c650
         slug: quickstart-text-search
         title: Text search (using USE VectorHub)
-        updatedAt: '2022-03-24T06:33:44.838Z'
+        updatedAt: '2022-03-28T04:58:37.623Z'
       quickstart-text-to-image-search:
       - createdAt: '2021-11-05T06:20:43.205Z'
         excerpt: Get started with Relevance AI in 5 minutes!
@@ -612,7 +612,7 @@ categories:
         parentDoc: 623a96a3032c43002ef2c650
         slug: quickstart-text-to-image-search
         title: Text-to-image search (using OpenAI's CLIP Pytorch)
-        updatedAt: '2022-03-24T06:33:45.113Z'
+        updatedAt: '2022-03-28T04:58:37.497Z'
       slug: example-applications
       title: Example applications
       updatedAt: '2021-11-17T04:06:48.371Z'
@@ -624,7 +624,7 @@ categories:
       parentDoc: null
       slug: features
       title: Features
-      updatedAt: '2022-03-24T02:52:13.805Z'
+      updatedAt: '2022-03-28T04:13:19.492Z'
     installation:
       createdAt: '2021-10-26T04:06:08.694Z'
       excerpt: Installing RelevanceAI
@@ -633,7 +633,7 @@ categories:
       parentDoc: null
       slug: installation
       title: Installation
-      updatedAt: '2022-03-24T02:52:13.629Z'
+      updatedAt: '2022-03-28T04:27:56.742Z'
     old-welcome:
       createdAt: '2021-11-07T00:21:21.957Z'
       excerpt: Developer-first vector platform
@@ -642,7 +642,7 @@ categories:
       parentDoc: null
       slug: old-welcome
       title: Welcome
-      updatedAt: '2022-03-24T06:33:44.826Z'
+      updatedAt: '2022-03-28T04:17:12.741Z'
     quick-tour:
       createdAt: '2022-01-10T01:31:01.336Z'
       excerpt: Try out RelevanceAI in 5 steps!
@@ -651,7 +651,7 @@ categories:
       parentDoc: null
       slug: quick-tour
       title: Quick Feature Tour
-      updatedAt: '2022-03-24T06:33:44.123Z'
+      updatedAt: '2022-03-28T04:58:37.484Z'
     quickstart:
       createdAt: '2021-11-17T03:54:08.625Z'
       excerpt: Try us out in 5 lines of code!
@@ -723,7 +723,7 @@ categories:
         parentDoc: 623a96a3032c43002ef2c64c
         slug: what-are-vector-databases
         title: What are vector databases
-        updatedAt: '2022-03-24T06:33:44.854Z'
+        updatedAt: '2022-03-28T04:17:12.783Z'
       what-are-vectors:
       - createdAt: '2021-10-24T23:24:48.901Z'
         excerpt: An introduction to vectors
@@ -732,7 +732,7 @@ categories:
         parentDoc: 623a96a3032c43002ef2c64c
         slug: what-are-vectors
         title: What are vectors
-        updatedAt: '2022-03-24T06:33:44.807Z'
+        updatedAt: '2022-03-28T04:17:12.766Z'
       why-experimentation-first:
       - createdAt: '2021-10-26T11:00:54.856Z'
         excerpt: Why we need an experimentation-first vector database
@@ -741,7 +741,7 @@ categories:
         parentDoc: 623a96a3032c43002ef2c64c
         slug: why-experimentation-first
         title: Why experimentation first
-        updatedAt: '2022-03-24T06:33:44.852Z'
+        updatedAt: '2022-03-28T04:17:12.689Z'
     welcome:
       createdAt: '2022-01-10T01:31:01.336Z'
       excerpt: Start experimenting faster with Relevance AI in 5 minutes!
@@ -750,7 +750,7 @@ categories:
       parentDoc: null
       slug: welcome
       title: Relevance AI
-      updatedAt: '2022-03-24T06:33:44.873Z'
+      updatedAt: '2022-03-28T04:58:37.583Z'
   integrations:
     coming-soon-2:
       createdAt: '2021-12-24T05:11:34.436Z'
@@ -911,7 +911,7 @@ categories:
         parentDoc: 623a96a3032c43002ef2c6a2
         slug: exact-word-search
         title: Exact text matching
-        updatedAt: '2022-03-24T02:52:13.669Z'
+        updatedAt: '2022-03-28T05:20:14.726Z'
       excerpt: ''
       hidden: false
       order: 0
@@ -967,7 +967,7 @@ categories:
         parentDoc: 623a96a3032c43002ef2c6a3
         slug: hybrid-search-1
         title: Text and vector search (hybrid)
-        updatedAt: '2022-03-24T06:33:44.856Z'
+        updatedAt: '2022-03-28T04:58:37.556Z'
       order: 1
       parentDoc: null
       slug: text-and-vector-search-hybrid
@@ -1179,12 +1179,12 @@ categories:
       filters:
       - createdAt: '2021-11-04T01:13:38.587Z'
         excerpt: ''
-        hidden: true
+        hidden: false
         order: 2
         parentDoc: 623a96a3032c43002ef2c641
         slug: filters
         title: Filters
-        updatedAt: '2022-02-14T01:59:23.839Z'
+        updatedAt: '2021-11-17T02:44:02.097Z'
       hidden: true
       hybrid-search:
       - createdAt: '2021-10-28T08:04:03.807Z'
