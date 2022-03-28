@@ -46,7 +46,7 @@ By following instructions below, you will be able to preview/create any given ve
     ❯ git clone git@github.com:RelevanceAI/RelevanceAI-readme-docs.git
     ❯ python -m venv .venv                 # Create new Python venv
     ❯ source .venv/bin/activate            # Activate new venv
-    ❯ ./scripts/setup_env.sh               # Install
+    ❯ ./sync/setup_env.sh               # Install
     ```
 
 2. Create a new branch for the ReadMe version you'd like to create if not already auto-created upon SDK release eg. v1.0.0
@@ -100,13 +100,13 @@ These are templates because all the files and notebooks in docs_templates are wr
     ```
 9. Apply the changes and update the ReadMe documentations. By default, this script will sync all files in `docs`.
     ```zsh
-    ❯ ./scripts/update_readme.sh
+    ❯ ./sync/update_readme.sh
     ## Run in debug mode
-    ❯ ./scripts/update_readme.sh true
+    ❯ ./sync/update_readme.sh true
     ## Sync only a specific section, by default will sync everything in the generated `docs` folder.
-    ❯ ./scripts/update_readme.sh false docs/clustering-features
+    ❯ ./sync/update_readme.sh false docs/clustering-features
     ## Override the version, by default will create a new version from your current Git branch name
-    ❯ ./scripts/update_readme.sh false docs/clustering-features v1.0.0-my-new-version
+    ❯ ./sync/update_readme.sh false docs/clustering-features v1.0.0-my-new-version
     ```
     View your synced changes in ReadMe eg. https://docs.relevance.ai/v0.31.0/docs/quick-tour
 
@@ -115,13 +115,13 @@ These are templates because all the files and notebooks in docs_templates are wr
 
 10. Test the notebooks for changes. By default, the script will process all notebooks in the `docs` folder if no `--notebooks` specified. This script will output error logs to the file `readme_notebook_error_log.txt`
     ```zsh
-    ❯ python scripts/test_notebooks.py
+    ❯ python sync/test_notebooks.py
     ## Run in debug mode
-    ❯ python scripts/test_notebooks.py -d
+    ❯ python sync/test_notebooks.py -d
     ## Test on a selection of notebooks
-    ❯ python scripts/test_notebooks.py -d --notebooks examples/Intro-to-Relevance-AI.ipynb examples/RelevanceAI-ReadMe-Quick-Feature-Tour.ipynb
+    ❯ python sync/test_notebooks.py -d --notebooks examples/Intro-to-Relevance-AI.ipynb examples/RelevanceAI-ReadMe-Quick-Feature-Tour.ipynb
     ```
-    If you have a notebook you'd like to ignore in tests, add to the [notebook_ignore.txt](./scripts/notebook_ignore.txt) file.
+    If you have a notebook you'd like to ignore in tests, add to the [notebook_ignore.txt](./sync/notebook_ignore.txt) file.
 
 
 ## 👩🏻‍💻  Committing your changes
@@ -133,14 +133,14 @@ These are templates because all the files and notebooks in docs_templates are wr
     ```
 12. Commit your changes if what you see in the ReadMe documentation is correct! 🎉💪🏻
 
-See [./scripts/README.md](./scripts/README.md) for more details about the build and sync scripts.
+See [./sync/README.md](./sync/README.md) for more details about the build and sync scripts.
 
 
 ## 👩🏻‍💻  Updating the ReadMe config
 
 To rebuild the config, if want to sync changes made in ReadMe
 ```
- ❯ python scripts/readme_config.py --method 'build' --version 'v2.0.0'
+ ❯ python sync/readme_config.py --method 'build' --version 'v2.0.0'
 ```
 
 ## For further reference
