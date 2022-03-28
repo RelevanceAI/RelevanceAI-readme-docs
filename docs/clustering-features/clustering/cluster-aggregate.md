@@ -23,7 +23,7 @@ The following code example groups the data based on the `product_price` field, a
 ```python Python (SDK)
 ds = client.Dataset(DATASET_ID)
 
-clusterer = ds.auto_cluster('kmeans-5', [VECTOR_FIELD])
+clusterer = ds.auto_cluster('kmeans_5', [VECTOR_FIELD])
 
 # Aggregate based on the clusters
 result = clusterer.aggregate(

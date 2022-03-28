@@ -65,7 +65,7 @@ ds.insert_documents(documents)
 ### 3. Clustering
 
 ```python Python (SDK)
-clusterer = ds.auto_cluster("kmeans-2", ["example_vector_"])
+clusterer = ds.auto_cluster("kmeans_2", ["example_vector_"])
 ```
 ```python
 ```

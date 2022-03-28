@@ -21,7 +21,7 @@ After clustering is done and the dataset is updated with the results, listing cl
 ```python Python (SDK)
 ds = client.Dataset(DATASET_ID)
 
-clusterer = ds.auto_cluster('kmeans-5', [VECTOR_FIELD])
+clusterer = ds.auto_cluster('kmeans_5', [VECTOR_FIELD])
 
 clusterer.list_closest_to_center()
 ```

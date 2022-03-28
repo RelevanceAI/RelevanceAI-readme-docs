@@ -20,7 +20,7 @@ After clustering is done and the dataset is updated with the results, listing th
 ```python Python (SDK)
 ds = client.Dataset(DATASET_ID)
 
-clusterer = ds.auto_cluster('kmeans-5', [VECTOR_FIELD])
+clusterer = ds.auto_cluster('kmeans_5', [VECTOR_FIELD])
 
 clusterer.list_furthest_from_center()
 ```

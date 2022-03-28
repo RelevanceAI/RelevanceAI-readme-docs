@@ -139,7 +139,7 @@ Run clustering on your vectors to better understand your data. You can view the 
 
 
 ```python Python (SDK)
-clusterer = ds.auto_cluster("kmeans-10", ["product_image_clip_vector_"])
+clusterer = ds.auto_cluster("kmeans_10", ["product_image_clip_vector_"])
 ```
 ```python
 ```

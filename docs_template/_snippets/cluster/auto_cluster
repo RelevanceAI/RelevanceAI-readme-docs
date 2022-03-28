@@ -1,2 +1,2 @@
-python KMEANS='kmeans-5', VECTOR_FIELD=VECTOR_FIELD
+python KMEANS='kmeans_5', VECTOR_FIELD=VECTOR_FIELD
 clusterer = ds.auto_cluster(<<KMEANS>>, [<<VECTOR_FIELD>>])

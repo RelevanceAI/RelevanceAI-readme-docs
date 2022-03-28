@@ -49,7 +49,7 @@ class FaissKMeans(CentroidClusterBase):
 
 n_clusters = 10
 d = 512
-alias = f"faiss-kmeans-{n_clusters}"
+alias = f"faiss-kmeans_{n_clusters}"
 vector_fields = ['product_title_clip_vector_']
 
 model = FaissKMeans(model=Kmeans(d=d, k=n_clusters))
