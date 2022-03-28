@@ -22,19 +22,22 @@ By following instructions below, you will be able to preview/create any given ve
 ```zsh
 ❯ tree -L 1
 .
-├── assets      ## Assets for this README
-├── docs        ## Generated docs files
-├── docs_template   ## Templates and all resources for auto-generation
-├── examples        ## For testing notebook tests
-├── migration_details.md ## Ignore: instructions for the initial migration
-├── package.json         ## NPM deps
-├── package-lock.json    ## NPM deps lock
-├── rdmd.md              ## Rdmd cheatsheet
-├── rdme.md              ## Rdme cheatsheet
+├── assets                      ## Assets for this README
+├── colab_requirements.txt      ## Colab env reqs
+├── config                      ## Docs/ReadMe files
+├── docs                        ## Generated docs files
+├── docs_template               ## Templates and all resources for auto-generation
+├── examples                    ## For testing notebook tests
+├── export_md                   ## Ignore: Readme Markdown exports
+├── migration                   ## Ignore: instructions for the initial migration
+├── package.json                ## NPM deps
+├── package-lock.json           ## NPM deps lock
+├── rdmd.md                     ## Rdmd cheatsheet
+├── rdme.md                     ## Rdme cheatsheet
 ├── README.md
-├── requirements.txt     ## Python reqs
-├── scripts              ## Automation scripts
-└── __version__          ## Readme version
+├── requirements.txt            ## Python reqs
+├── sync                        ## Automation scripts to build and sync docs
+└── __version__
 ```
 
 
@@ -43,12 +46,9 @@ By following instructions below, you will be able to preview/create any given ve
     ❯ git clone git@github.com:RelevanceAI/RelevanceAI-readme-docs.git
     ❯ python -m venv .venv                 # Create new Python venv
     ❯ source .venv/bin/activate            # Activate new venv
-    ❯ pip install -U pip                   # Upgrade pip
-    ❯ pip install -r requirements.txt      # Install Python reqs
-    ❯ brew install jq                      # if you are on Mac otherwise `apt install jq`
-    ❯ npm i                                # Install Node reqs
-
+    ❯ ./scripts/setup_env.sh               # Install
     ```
+
 2. Create a new branch for the ReadMe version you'd like to create if not already auto-created upon SDK release eg. v1.0.0
    - Branch off the latest version that you'd like to fork from (if it is not `main`)
     ```zsh
@@ -109,6 +109,10 @@ These are templates because all the files and notebooks in docs_templates are wr
     ❯ ./scripts/update_readme.sh false docs/clustering-features v1.0.0-my-new-version
     ```
     View your synced changes in ReadMe eg. https://docs.relevance.ai/v0.31.0/docs/quick-tour
+
+## 👩🏻‍💻 Testing notebooks
+
+
 10. Test the notebooks for changes. By default, the script will process all notebooks in the `docs` folder if no `--notebooks` specified. This script will output error logs to the file `readme_notebook_error_log.txt`
     ```zsh
     ❯ python scripts/test_notebooks.py
@@ -118,6 +122,11 @@ These are templates because all the files and notebooks in docs_templates are wr
     ❯ python scripts/test_notebooks.py -d --notebooks examples/Intro-to-Relevance-AI.ipynb examples/RelevanceAI-ReadMe-Quick-Feature-Tour.ipynb
     ```
     If you have a notebook you'd like to ignore in tests, add to the [notebook_ignore.txt](./scripts/notebook_ignore.txt) file.
+
+
+## 👩🏻‍💻  Committing your changes
+
+
 11. Install pre-commit! This helps with things like merge conflicts, linting and checking API keys to help with cleaner commits. 😊
     ```
     pre-commit install
@@ -127,8 +136,9 @@ These are templates because all the files and notebooks in docs_templates are wr
 See [./scripts/README.md](./scripts/README.md) for more details about the build and sync scripts.
 
 
-## 👩🏻‍💻  Build the ReadMe config
+## 👩🏻‍💻  Updating the ReadMe config
 
+To rebuild the config, if want to sync changes made in ReadMe
 ```
  ❯ python scripts/readme_config.py --method 'build' --version 'v2.0.0'
 ```

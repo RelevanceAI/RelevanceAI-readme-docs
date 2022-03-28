@@ -166,7 +166,7 @@ class ReadMeAPI:
 
     def get_doc(self, page_slug: str, select_fields: List[str] = None):
         """
-        Returns the doc with this slug.
+        Returns the doc with a given page slug.
 
         Parameters
         ----------
@@ -215,6 +215,9 @@ class ReadMeAPI:
             Whether or not the doc should be hidden in Readme.
         order: int
             The position of the page in your project sidebar.
+        error_code: dict
+            code: str
+            The error code for docs with the "error" type
 
         """
         request_url = f"{self.base_url}/docs"

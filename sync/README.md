@@ -33,6 +33,29 @@ By following instructions below, you will be able to preview/create any given ve
 ├── update_readme.sh       ## Master script to update asset links, build docs and sync w/ README
 └── utils.py
 
+
+❯ tree -L 1
+.
+├── assets
+├── colab_requirements.txt
+├── config
+├── docs
+├── docs_template
+├── examples
+├── export_md
+├── migration
+├── node_modules
+├── _notebook.ipynb
+├── package.json
+├── package-lock.json
+├── rdmd.md
+├── rdme.md
+├── README.md
+├── readme_notebook_error_log.txt
+├── requirements.txt
+├── sync
+
+
 ```
 
 
