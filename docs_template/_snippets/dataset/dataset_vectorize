@@ -1,0 +1,2 @@
+python TEXT_FIELDS=TEXT_FIELDS
+ds.vectorize(text_fields=[<<TEXT_FIELDS>>])
