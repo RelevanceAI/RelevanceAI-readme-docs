@@ -23,6 +23,8 @@ RDMD_SNIPPET_LANGUAGES = {
 # Helper Functions
 ###############################################################################
 
+## Todo: Refactor in DocBuilder class
+
 
 def load_params_ref(param_str: str) -> dict:
     """
@@ -67,7 +69,6 @@ def load_param_in_snippet(snippet_path: Path, snippet: List, params: Dict):
         for m in re.finditer("<<([A-Z_0-9]*)>>", line):
             for k, v in params.items():
                 if k in m.group():
-
                     if isinstance(v, list):
                         v = str(v)
                         if isinstance(v[0], dict):  ### List[dict]

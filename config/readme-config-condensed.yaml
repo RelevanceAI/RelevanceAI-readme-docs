@@ -1,77 +1,77 @@
 categories:
   clustering-features:
     cluster-evaluation:
-    - cluster-evaluate
     - cluster-distribution
+    - cluster-evaluate
     - cluster-metrics
     - cluster-plot
     clustering:
-    - quickstart-k-means
-    - quickstart-clustering
     - cluster-aggregate
+    - cluster-metadata
+    - custom-clustering
     - inserting-centroids
     - list-closest-to-centroids
     - list-furthest-from-centroids
-    - cluster-metadata
-    - custom-clustering
+    - quickstart-clustering
+    - quickstart-k-means
   comparator:
     coming-soon-1: []
     embedding-comparator: []
     search-comparator:
     - search-comparator-2
-    - set-up
     - search-comparison-and-evaluation
+    - set-up
   dashboard:
     saving-aggregation-queries-from-sdk: []
     writing-aggregation-queries: []
   general-features:
     aggregations:
-    - aggregations-1
     - aggregation-quick-start
-    - grouping-the-data
+    - aggregations-1
     - creating-aggregation-metrics
+    - grouping-the-data
     creating-a-dataset:
-    - project-and-dataset
-    - preparing-data-from-csv-pandas-df
-    - inserting-data
-    - insert-a-csv
-    - ecommerce-example-dataset
     - documents-with-chunked-data
+    - ecommerce-example-dataset
+    - insert-a-csv
     - insert-a-df
+    - inserting-data
+    - preparing-data-from-csv-pandas-df
+    - project-and-dataset
     filters-1:
+    - categories
+    - combining-filters-and-vector-search
     - contains
+    - date
     - exact_match
     - exact_match-1
-    - categories
     - exists
-    - date
-    - numeric
     - ids
     - multiple-filters
-    - combining-filters-and-vector-search
-    - regex
+    - numeric
     - or
+    - regex
     how-to-vectorize:
-    - how-to-vectorize-using-the-sdk
-    - vectorize-text
     - how-to-vectorize-text-using-vectorhub-transformers
+    - how-to-vectorize-using-the-sdk
     - vectorize-images
+    - vectorize-text
     - waiting-for-the-encoding-to-end
     jsonshower:
+    - highlighting
     - image-fields
     - preview-audio
-    - highlighting
     multi-vector-search-3:
     - multi-vector-search-2
     - multi-vector-search-with
   getting-started:
     boilerplate: []
     example-applications:
-    - quickstart-text-to-image-search
-    - quickstart-multivector-search
-    - quickstart-text-search
-    - quickstart-question-answering
     - music-recommendation
+    - quickstart-multivector-search
+    - quickstart-question-answering
+    - quickstart-text-search
+    - quickstart-text-to-image-search
     features: []
     installation: []
     old-welcome: []
@@ -82,10 +82,10 @@ categories:
     terminology:
     - documents-1
     vectors-and-vector-databases:
-    - what-are-vectors
-    - what-are-vector-databases
-    - why-experimentation-first
     - experimentation-workflow
+    - what-are-vector-databases
+    - what-are-vectors
+    - why-experimentation-first
     welcome: []
   integrations:
     coming-soon-2: []
@@ -95,14 +95,14 @@ categories:
   projector:
     coming-soon: []
     quickstart-visualize-your-vectors:
-    - visualise-your-vectors-in-3d
+    - add-clustering
     - adding-labels
     - color-by-category
-    - add-clustering
+    - visualise-your-vectors-in-3d
   search-features:
     chunk-search-1:
-    - chunk-search
     - advance-chunk-search
+    - chunk-search
     combining-exact-text-with-vector-search: []
     diversity-search: []
     diversity-search-2:
@@ -111,28 +111,28 @@ categories:
     - exact-word-search
     multi-vector-search-2-1: []
     redirects:
-    - vectorise-text-with-vectorhub
     - vectorise-images-with-vectorhub
+    - vectorise-text-with-vectorhub
     text-and-vector-search-hybrid:
     - hybrid-search-1
   theory-and-concepts:
     vectors-for-classification: []
     what-is-vector-search:
-    - how-to-vector-search
-    - _limitations-of-vectors
     - _applications-of-vectors
+    - _limitations-of-vectors
+    - how-to-vector-search
   use-cases:
     better-text-search:
+    - better-text-search-chunk-search
+    - better-text-search-diversified-search-results
     - better-text-search-prerequisites
     - better-text-search-with-hybrid
-    - pure-word-matching-pure-vector-search-or-combination-of-both
-    - pure-word-matching-pure-vector-search-or-combination-of-both-1
-    - pure-word-matching-pure-vector-search-or-combination-of-both-2
-    - better-text-search-diversified-search-results
-    - better-text-search-chunk-search
     - fine-grained-search-search-on-chunks-of-text-data
     - fine-grained-search-search-on-chunks-of-text-data-1
     - fine-grained-search-search-on-chunks-of-text-data-2
+    - pure-word-matching-pure-vector-search-or-combination-of-both
+    - pure-word-matching-pure-vector-search-or-combination-of-both-1
+    - pure-word-matching-pure-vector-search-or-combination-of-both-2
     better-vector-visualisation:
     - prerequisites
     image-search:
@@ -140,8 +140,8 @@ categories:
     - text-to-image-search
     nlp-search-with-e-commerce: []
     vector-search:
-    - vector-search-prerequisites
-    - multi-vector-search
     - filters
     - hybrid-search
+    - multi-vector-search
+    - vector-search-prerequisites
 version: v2.0.0

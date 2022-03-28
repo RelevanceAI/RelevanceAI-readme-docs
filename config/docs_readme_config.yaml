@@ -1,11 +1,39 @@
 categories:
+  clustering-features:
+  - {}
+  - clustering:
+    - {}
+    - custom-clustering
+    - cluster-aggregate
+    - cluster-metadata
+    - inserting-centroids
+    - list-closest-to-centroids
+    - quickstart-clustering
+    - quickstart-k-means
+    - list-furthest-from-centroids
+  - {}
+  - cluster-evaluation:
+    - {}
+    - cluster-evaluate
+    - quickstart-2
+    - cluster-plot
+    - cluster-distribution
+    - cluster-metrics
+  - clustering
+  - cluster-evaluation
   comparator:
-    search-comparator:
+  - search-comparator:
     - set-up
     - search-comparison-and-evaluation
     - search-comparator-2
+  - coming-soon-1
+  - embedding-comparator
+  - search-comparator
+  dashboard:
+  - saving-aggregation-queries-from-sdk
+  - writing-aggregation-queries
   general-features:
-    filters-1:
+  - filters-1:
     - exact_match-1
     - exact_match
     - numeric
@@ -19,19 +47,125 @@ categories:
     - or
     - combining-filters-and-vector-search
     - ids
+  - {}
+  - how-to-vectorize:
+    - {}
+    - vectorize-images
+    - waiting-for-the-encoding-to-end
+    - how-to-vectorize-text-using-vectorhub-transformers
+    - vectorize-text
+    - how-to-vectorize-using-the-sdk
+  - aggregations:
+    - {}
+    - creating-aggregation-metrics
+    - grouping-the-data
+    - aggregations-1
+    - aggregation-quick-start
+  - creating-a-dataset:
+    - {}
+    - {}
+    - insert-a-csv
+    - project-and-dataset
+    - insert-a-df
+    - ecommerce-example-dataset
+    - documents-with-chunked-data
+    - preparing-data-from-csv-pandas-df
+    - inserting-data
+  - multi-vector-search-3:
+    - multi-vector-search-with
+    - multi-vector-search-2
+  - {}
+  - jsonshower:
+    - image-fields
+    - preview-audio
+    - highlighting
+  - aggregations
+  - how-to-vectorize
+  - filters-1
+  - filters
+  - multi-vector-search-3
+  - creating-a-dataset
+  - jsonshower
+  getting-started:
+  - {}
+  - example-applications:
+    - {}
+    - {}
+    - {}
+    - quickstart-text-search
+    - quickstart-question-answering
+    - music-recommendation
+    - quickstart-text-to-image-search
+    - quickstart-multivector-search
+  - vectors-and-vector-databases:
+    - {}
+    - experimentation-workflow
+    - what-are-vector-databases
+    - what-are-vectors
+    - why-experimentation-first
+  - terminology:
+    - terminology
+    - documents-1
+  - {}
+  - old-welcome
+  - terminology
+  - boilerplate
+  - features
+  - vectors-and-vector-databases
+  - installation
+  - welcome
+  - quick-tour
+  - quickstart
+  - example-applications
+  - quickstart-boilerplate
+  - quickstart-1
+  integrations:
+  - coming-soon-2
+  other:
+  - data-privacy-policy
+  - sdk-reference
   projector:
-    quickstart-visualize-your-vectors:
+  - quickstart-visualize-your-vectors:
     - visualise-your-vectors-in-3d
     - color-by-category
     - adding-labels
     - add-clustering
+  - coming-soon
+  - quickstart-visualize-your-vectors
+  search-features:
+  - {}
+  - exact-text-matching:
+    - exact-word-search
+  - text-and-vector-search-hybrid:
+    - hybrid-search-1
+  - diversity-search-2:
+    - diversity-search-1
+  - chunk-search-1:
+    - exact-text-matching:
+      - exact-word-search
+    - advance-chunk-search
+    - chunk-search
+  - redirects:
+    - vectorise-text-with-vectorhub
+    - vectorise-images-with-vectorhub
+  - {}
+  - combining-exact-text-with-vector-search
+  - text-and-vector-search-hybrid
+  - exact-text-matching
+  - multi-vector-search-2-1
+  - diversity-search
+  - chunk-search-1
+  - diversity-search-2
+  - redirects
   theory-and-concepts:
-    what-is-vector-search:
+  - what-is-vector-search:
     - _applications-of-vectors
     - how-to-vector-search
     - _limitations-of-vectors
+  - what-is-vector-search
+  - vectors-for-classification
   use-cases:
-    better-text-search:
+  - better-text-search:
     - better-text-search-prerequisites
     - fine-grained-search-search-on-chunks-of-text-data-2
     - better-text-search-with-hybrid
@@ -42,3 +176,18 @@ categories:
     - pure-word-matching-pure-vector-search-or-combination-of-both-1
     - fine-grained-search-search-on-chunks-of-text-data-1
     - fine-grained-search-search-on-chunks-of-text-data
+  - vector-search:
+    - multi-vector-search
+    - filters
+    - vector-search-prerequisites
+    - hybrid-search
+  - better-vector-visualisation:
+    - prerequisites
+  - image-search:
+    - text-to-image-search
+    - image-similarity-search
+  - image-search
+  - better-vector-visualisation
+  - nlp-search-with-e-commerce
+  - vector-search
+  - better-text-search

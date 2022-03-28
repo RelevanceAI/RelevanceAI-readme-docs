@@ -56,7 +56,7 @@ docs_template:
     - bert_full_snippet
   - how-to-vectorize:
     - _notebooks:
-      - how-to-vectorize.ipynb
+      - RelevanceAI_ReadMe_How_to_Vectorize.ipynb
     - vectorize-images.md
     - waiting-for-the-encoding-to-end.md
     - how-to-vectorize-text-using-vectorhub-transformers.md
@@ -64,14 +64,14 @@ docs_template:
     - how-to-vectorize-using-the-sdk.md
   - aggregations:
     - _notebooks:
-      - /RelevanceAI_ReadMe_QuickStart_Aggregations.ipynb
+      - RelevanceAI_ReadMe_Quickstart_Aggregations.ipynb
     - creating-aggregation-metrics.md
     - grouping-the-data.md
     - aggregations-1.md
     - aggregation-quick-start.md
   - creating-a-dataset:
     - _notebooks:
-      - creating-a-dataset.ipynb
+      - RelevanceAI_ReadMe_Creating_A_Dataset.ipynb
     - _assets:
       - insert-csv-pandas.png
       - pull-update-push.png
@@ -170,6 +170,8 @@ docs_template:
   - terminology:
     - terminology.md
     - documents-1.md
+  - _notebooks_convert:
+    - "\u2618\uFE0F_Relevance_AI_Quickstart.ipynb"
   - old-welcome.md
   - terminology.md
   - boilerplate.md
@@ -216,12 +218,10 @@ docs_template:
 - _snippets:
   - sample_documents:
     - quickstart_docs
-    - ecommerce_dataset_clean_sample_document
     - get_realestate_dataset
-    - ecommerce_dataset_encoded_schema
     - get_ecommerce_dataset_encoded
-    - ecommerce_dataset_encoded_sample_document
     - get_ecommerce_dataset_clean
+    - quickstart_docs_1
     - uuid
   - search:
     - multivector_query
@@ -229,6 +229,7 @@ docs_template:
     - vector_search_with_filter
     - traditional_search
     - hybrid_search
+    - launch_search_app
     - multivector_query_multiple_models
     - multivector_query_three_models
     - vector_search
@@ -238,6 +239,7 @@ docs_template:
     - vectorhub_clip_installation
     - vectorhub_encoders_text_tfhub_installation
     - sentence_transformers_installation
+    - relevanceai_dev_installation
     - vectorhub_encoders_transformers
     - vectorhub_encoders_sentence_transformers
     - relevanceai_installation
@@ -270,14 +272,15 @@ docs_template:
     - filters_setup
     - aggregate_dataset
     - insert_csv
+    - dataset_vectorize
     - upsert_example
     - bulk_apply_encoding
     - filter_setup_with_format
     - filter_setup
     - pull_update_push
     - dataset_health
-    - dataset
     - insert_documents
+    - dataset
     - create_dataset
     - dataset_schema
     - apply_encoding
@@ -298,6 +301,11 @@ docs_template:
     - clip2vec_encode_image_documents
     - transformer_enc
     - use_enc
+  - vectorize: []
+  - output:
+    - ecommerce_dataset_clean_sample_document
+    - ecommerce_dataset_encoded_schema
+    - ecommerce_dataset_encoded_sample_document
 - comparator:
   - search-comparator:
     - set-up.md

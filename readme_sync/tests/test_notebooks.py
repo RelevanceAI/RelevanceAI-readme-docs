@@ -11,7 +11,7 @@ import nbformat
 from nbconvert.preprocessors import ExecutePreprocessor
 import traceback
 
-from sync.utils.sync.utils.sync.utils.utils import multiprocess
+from readme_sync.utils.concurrency import multiprocess
 
 import logging
 import argparse
