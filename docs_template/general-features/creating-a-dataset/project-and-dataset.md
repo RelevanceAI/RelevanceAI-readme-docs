@@ -16,7 +16,7 @@ Open an example in Colab: [![Open In Colab](https://colab.research.google.com/as
 
 
 <figure>
-<img src="https://github.com/RelevanceAI/RelevanceAI-readme-docs/blob/v2.0.0/_assets/RelevanceAI_dataset_dashboard.png?raw=true" alt="See your dataset in the dashboard" />
+<img src="https://github.com/RelevanceAI/RelevanceAI-readme-docs/blob/v2.0.0/docs_template/_assets/RelevanceAI_dataset_dashboard.png?raw=true" alt="See your dataset in the dashboard" />
 <figcaption>See your dataset in the dashboard</figcaption>
 <figure>
 

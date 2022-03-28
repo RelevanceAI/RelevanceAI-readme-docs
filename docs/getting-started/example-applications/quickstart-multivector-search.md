@@ -7,7 +7,7 @@ hidden: false
 
 
 <figure>
-<img src="https://github.com/RelevanceAI/RelevanceAI-readme-docs/blob/v2.0.0/_assets/RelevanceAI_vector_space.png?raw=true" width="650" alt="Vector Spaces" />
+<img src="https://github.com/RelevanceAI/RelevanceAI-readme-docs/blob/v2.0.0/docs_template/_assets/RelevanceAI_vector_space.png?raw=true" width="650" alt="Vector Spaces" />
 <figcaption></figcaption>
 <figure>
 
