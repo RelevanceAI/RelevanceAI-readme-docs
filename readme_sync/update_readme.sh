@@ -48,6 +48,7 @@ README_VERSION=${4:-$GIT_BRANCH_NAME_VERSION}
 CYAN "=== Updating asset links to $GIT_BRANCH_NAME ==="
 
 if $DEBUG_MODE; then
+	echo $GIT_BRANCH_NAME
 	python readme_sync/build/update_asset_ref.py -d -p $PWD -pn $PIP_PACKAGE_NAME -v $GIT_BRANCH_NAME
 else
 	python readme_sync/build/update_asset_ref.py -p $PWD -pn $PIP_PACKAGE_NAME -v $GIT_BRANCH_NAME

@@ -61,7 +61,7 @@ docs:
     - how-to-vectorize-using-the-sdk.md
   - aggregations:
     - _notebooks:
-      - aggregation-quick-start.ipynb
+      - /RelevanceAI_ReadMe_QuickStart_Aggregations.ipynb
     - creating-aggregation-metrics.md
     - grouping-the-data.md
     - aggregations-1.md
@@ -92,7 +92,7 @@ docs:
   - jsonshower.md
 - getting-started:
   - _notebooks:
-    - Intro-to-Relevance-AI.ipynb
+    - Intro_to_Relevance_AI.ipynb
     - RelevanceAI-ReadMe-Quick-Feature-Tour.ipynb
   - example-applications:
     - _notebooks:

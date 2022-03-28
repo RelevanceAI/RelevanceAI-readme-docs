@@ -69,7 +69,7 @@ These are templates because all the files and notebooks in docs_templates are wr
    - Update notebooks to point to the corresponding path.
    - Colab notebook refs are of the form:
   ```zsh
-   [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/RelevanceAI/RelevanceAI-readme-docs/blob/v0.33.2/docs/getting-started/_notebooks/Intro-to-Relevance-AI.ipynb)
+   [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/RelevanceAI/RelevanceAI-readme-docs/blob/v0.33.2/docs/getting-started/_notebooks/Intro_to_Relevance_AI.ipynb)
   ```
   - Please add this badge in top cell of notebook as well so it can be accessed from Github.
 6. To add new snippet
@@ -119,7 +119,7 @@ These are templates because all the files and notebooks in docs_templates are wr
     ## Run in debug mode
     ❯ python readme_sync/test_notebooks.py -d
     ## Test on a selection of notebooks
-    ❯ python readme_sync/test_notebooks.py -d --notebooks examples/Intro-to-Relevance-AI.ipynb examples/RelevanceAI-ReadMe-Quick-Feature-Tour.ipynb
+    ❯ python readme_sync/test_notebooks.py -d --notebooks examples/Intro_to_Relevance_AI.ipynb examples/RelevanceAI-ReadMe-Quick-Feature-Tour.ipynb
     ```
     If you have a notebook you'd like to ignore in tests, add to the [notebook_ignore.txt](./readme_sync/notebook_ignore.txt) file.
 

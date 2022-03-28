@@ -86,7 +86,7 @@ hidden: false
 - Store corresponding notebooks in relative section under `_notebooks` folder.
 
 ```markdown
-[![Open In Colab](https://colab.research.google.com/_assets/colab-badge.svg)](https://colab.research.google.com/github/RelevanceAI/RelevanceAI-readme-docs_template/blob/main/docs_template/getting-started/_notebooks/Intro-to-Relevance-AI.ipynb)
+[![Open In Colab](https://colab.research.google.com/_assets/colab-badge.svg)](https://colab.research.google.com/github/RelevanceAI/RelevanceAI-readme-docs_template/blob/main/docs_template/getting-started/_notebooks/Intro_to_Relevance_AI.ipynb)
 ```
 
 - For each notebook, we also include the Colab badge link at the top of the notebook, so that one may open in Colab from Github.

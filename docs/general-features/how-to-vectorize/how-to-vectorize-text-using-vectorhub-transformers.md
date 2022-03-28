@@ -12,7 +12,7 @@ updatedAt: "2022-01-24T00:15:14.549Z"
 On this page, we introduce sentence-transformer based text encoders.
 
 [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/RelevanceAI/RelevanceAI-readme-docs/blob/2.0.0
-/docs/general-features/how-to-vectorize/_notebooks/how-to-vectorize.ipynb)
+/docs/general-features/how-to-vectorize/_notebooks/RelevanceAI_ReadMe_How_to_Vectorize.ipynb)
 ### sentence-transformers
 First, `sentence-transformers` must be installed. Restart the notebook when the installation is finished.
 
