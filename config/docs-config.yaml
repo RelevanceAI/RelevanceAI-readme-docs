@@ -251,6 +251,7 @@ docs_template:
     - insert_centroid_documents
     - cluster_aggregate
     - clusterops
+    - subclustering
     - get_centroid_documents
     - cluster_metadata
     - cluster_sample_results
@@ -330,6 +331,7 @@ docs_template:
     - custom-clustering.md
     - cluster-aggregate.md
     - cluster-metadata.md
+    - subclustering.md
     - inserting-centroids.md
     - list-closest-to-centroids.md
     - quickstart-clustering.md

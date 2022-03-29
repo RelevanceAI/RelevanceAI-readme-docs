@@ -15,6 +15,7 @@ requirements = [
     "RelevanceAI[notebook]",
     "pyyaml",
     "typing_extensions",
+    "python-frontmatter",
 ]
 
 notebook_test_requirements = [

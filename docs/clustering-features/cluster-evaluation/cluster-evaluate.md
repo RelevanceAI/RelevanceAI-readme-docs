@@ -4,7 +4,7 @@ slug: "cluster-evaluate"
 excerpt: "Evaluate your clusters 5 quick steps"
 hidden: true
 createdAt: "2021-12-22T00:47:17.465Z"
-updatedAt: "2022-03-24T02:52:13.644Z"
+updatedAt: "2022-01-27T00:56:39.533Z"
 ---
 ## Introduction
 
@@ -53,14 +53,14 @@ documents = get_ecommerce_dataset_encoded()
 ```
 
 ```python Python (SDK)
-df = client.Dataset("quickstart_kmeans_clustering")
-df.insert_documents(documents)
+ds = client.Dataset("quickstart_kmeans_clustering")
+ds.insert_documents(documents)
 ```
 ```python
 ```
 
 ```python Python (SDK)
-df.health
+ds.health
 ```
 ```python
 ```
@@ -90,3 +90,6 @@ clusterer.evaluate()
 ```
 ```python
 ```
+
+
+

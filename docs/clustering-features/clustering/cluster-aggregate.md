@@ -19,7 +19,6 @@ You will also need to have knowledge of [aggregations](doc:aggregations).
 
 The following code example groups the data based on the `product_price` field, also use the average metrics on `product_price` for each cluster. `DATASET_ID` refers to the name of the dataset, `VECTOR_FIELD` is the field based on which the clustering is done, and ALIAS is the name specified by the user to save the clustering results.
 
-
 ```python Python (SDK)
 ds = client.Dataset(DATASET_ID)
 

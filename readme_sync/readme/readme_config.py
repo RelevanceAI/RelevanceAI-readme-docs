@@ -1,17 +1,22 @@
 #!/usr/bin/env python3
+import collections
 import os
 import re
 from pathlib import Path
-from tkinter import PAGES
+
 from typing import Dict, List, Literal, Optional, Tuple, Union
+from abc import abstractmethod, ABC
+from io import BytesIO
 import logging
 import argparse
+
 import json
 import yaml
-from deepdiff import DeepDiff, Delta
+import frontmatter
+from deepdiff import DeepDiff
 import shutil
 from pprint import pprint
-from abc import abstractmethod, ABC
+from datetime import datetime
 
 from readme_api import ReadMeAPI
 
@@ -481,6 +486,10 @@ def main(args):
         docs_condensed_config = docs_config.condensed_config
         readme_condensed_config = readme_config.condensed_config
 
+        def get_config(fpath: Path):
+
+            return fpath
+
         ## https://zepworks.com/deepdiff/current/view.html#text-view
         ddiff = DeepDiff(
             docs_condensed_config,
@@ -494,24 +503,39 @@ def main(args):
 
         if ddiff:
             diff_items = [i for k, v in ddiff.items() for i in ddiff[k]]
-            logging.debug(f"{len(diff_items)} items in diff")
+            logging.debug(f"{len(diff_items)} items added")
             for d in diff_items:
-                logging.debug(d)
                 path = [
                     i
                     for i in d.path(output_format="list")
                     if i not in ["categories"]
                     if isinstance(i, str)
                 ]
-                logging.debug(path)
+                path += [f"{d.t1}.md"]
 
-        #     if str(item.t1) != 'not present':
-        #         print(item.t1)
-        #     if str(item.t2) != 'not present':
-        #         print(item.t2)
+            path = "/".join(path)
+            DIFF_FPATH = DOCS_TEMPLATE_PATH / path
+            logging.debug(f"Found new file: {DIFF_FPATH} ...")
+
+            with open(DIFF_FPATH, "r") as f:
+                post = frontmatter.load(f)
+                logging.debug(f"Loading frontmatter: {post.to_dict()}")
+
+                dt = datetime.now().strftime("%Y-%m-%dT%H:%M:%S.%fZ")
+
+                post["createdAt"] = dt
+                post["updatedAt"] = dt
+                frontmatter.dump(post, DIFF_FPATH, sort_keys=False)
+
+            return post
+
+            # post = frontmatter.load(DIFF_FPATH)
+            # # f =
+            # frontmatter.dump(post, BytesIO())
+            # print(frontmatter.dumps(dt))
+            # print(f.getvalue().decode('utf-8'))
 
         # for item in ddiff['dictionary_item_removed']:
-
         #     for d in item.items():
         #         print(d)
         #         print(item)
