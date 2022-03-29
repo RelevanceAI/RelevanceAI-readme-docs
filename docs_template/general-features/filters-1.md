@@ -5,34 +5,21 @@ hidden: false
 createdAt: "2021-11-21T07:05:21.922Z"
 updatedAt: "2022-01-19T04:01:08.086Z"
 ---
-[block:image]
-{
-  "images": [
-    {
-      "image": [
-        "https://files.readme.io/fb01cb3-604547f-combined_filters.png",
-        "604547f-combined_filters.png",
-        1009,
-        368,
-        "#e7e7e7"
-      ],
-      "caption": "Example output of filtering Lenovo products all inserted into the database after 01/01/2020"
-    }
-  ]
-}
-[/block]
+<figure>
+<img src="https://github.com/RelevanceAI/RelevanceAI-readme-docs/blob/v2.0.0/docs_template/general-features/_assets/filters-1.png?raw=true" width="1009" alt="604547f-combined_filters.png" />
+<figcaption>Example output of filtering Lenovo products all inserted into the database after 01/01/2020</figcaption>
+<figure>
+
 Filters are great tools to retrieve a subset of documents whose data match the criteria specified in the filter.
 For instance, in an e-commerce dataset, we can retrieve all products:
 * with prices between 200 and 300 dollars
 * with the phrase "free return" included in `description` field
 * that are produced after January 2020
-[block:callout]
-{
-  "type": "info",
-  "body": "Filters are great tools to retrieve a subset of documents whose data match certain criteria. This allows us to have a more fine-grained overview of the data since only documents that meet the filtering criteria will be displayed.",
-  "title": "Filters help us find what we need."
-}
-[/block]
+
+> 📘 Filters help us find what we need.
+>
+> Filters are great tools to retrieve a subset of documents whose data match certain criteria. This allows us to have a more fine-grained overview of the data since only documents that meet the filtering criteria will be displayed.
+>
 # How to form a filter?
 
 Filters at Relevance AI are defined as Python dictionaries with four main keys:
@@ -40,16 +27,10 @@ Filters at Relevance AI are defined as Python dictionaries with four main keys:
 - `condition` (i.e. operators such as greater than or equal)
 - `filter_type` (i.e. the type of filter you want to apply - whether it be date/numeric/text etc.)
 - `condition_value` (dependent on the filter type but decides what value to filter on)
-[block:code]
-{
-  "codes": [
-    {
-      "code": "filter =  [{'field' : 'description',           # field to look at\n            'filter_type' : 'contains',        \n            \"condition\":\"==\",                  \n            \"condition_value\":\"Durian Club\"}]  # searching for \"Durian Club 3 sofa\" ",
-      "language": "python"
-    }
-  ]
-}
-[/block]
+
+
+@@@ filter_setup, FIELD=DESCRIPTION_FIELD, FILTER_TYPE=CONTAINS_FILTER_TYPE, CONDITION=EQ_COND, CONDITION_VAL=CONDITION_VAL_7 @@@
+
 ## Filtering operators
 Relevance AI covers all common operators:
 * "==" (a == b, a equals b)

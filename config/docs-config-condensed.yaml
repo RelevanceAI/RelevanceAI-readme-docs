@@ -5,7 +5,6 @@ categories:
     - cluster-evaluate
     - cluster-metrics
     - cluster-plot
-    - quickstart-2
     clustering:
     - cluster-aggregate
     - cluster-metadata
@@ -39,7 +38,6 @@ categories:
     - inserting-data
     - preparing-data-from-csv-pandas-df
     - project-and-dataset
-    filters: []
     filters-1:
     - categories
     - combining-filters-and-vector-search
@@ -48,7 +46,6 @@ categories:
     - exact_match
     - exact_match-1
     - exists
-    - filters-1
     - ids
     - multiple-filters
     - numeric
@@ -84,7 +81,6 @@ categories:
     quickstart-boilerplate: []
     terminology:
     - documents-1
-    - terminology
     vectors-and-vector-databases:
     - experimentation-workflow
     - what-are-vector-databases
@@ -148,4 +144,4 @@ categories:
     - hybrid-search
     - multi-vector-search
     - vector-search-prerequisites
-  version: v2.0.0
+version: v2.0.0

@@ -1,7 +1,4 @@
 #!/usr/bin/env python3
-
-import collections
-from modulefinder import packagePathMap
 import os
 import re
 from pathlib import Path
@@ -11,6 +8,7 @@ import logging
 import argparse
 import json
 import yaml
+from deepdiff import DeepDiff, Delta
 import shutil
 from pprint import pprint
 from abc import abstractmethod, ABC
@@ -84,6 +82,8 @@ class ReadMeConfig(Config):
         self.api_categories = ["relevance-ai-endpoints"]
         self.sdk_categories = ["python-sdk"]
         self.config = yaml.safe_load(open(self.fpath, "r"))
+        self.condensed_fpath = f"{str(self.fpath).replace('.yaml', '-condensed.yaml')}"
+        self.condensed_config = yaml.safe_load(open(self.condensed_fpath, "r"))
 
         self.readme_page_slugs = self._load_page_slugs()
         self.docs_categories = self._load_docs_categories()
@@ -143,8 +143,8 @@ class ReadMeConfig(Config):
         condensed_config["categories"] = category_detail
 
         if condensed:
-            condensed_fpath = str(self.fpath).replace(".yaml", "-condensed.yaml")
-            with open(condensed_fpath, "w") as f:
+            logging.debug(f"Saving config to { self.condensed_fpath}")
+            with open(self.condensed_fpath, "w") as f:
                 yaml.dump(condensed_config, f, default_flow_style=False, sort_keys=True)
 
         config = condensed_config
@@ -164,9 +164,9 @@ class ReadMeConfig(Config):
                         page_slug=child, select_fields=self.select_fields
                     )
             category_detail[category] = page_details
-        pprint(category_detail)
 
-        # config = sorted(category_detail.keys(), key=lambda x: (category_detail[x]))
+        logging.debug(f"Saving config to {self.fpath} ... ")
+        # logging.debug(f'Config: {json.dumps(category_detail, indent=2)}')
         config["categories"] = category_detail
         with open(self.fpath, "w") as f:
             yaml.dump(config, f, default_flow_style=False, sort_keys=True)
@@ -190,7 +190,6 @@ class ReadMeConfig(Config):
             Fields to include in the search results, empty array/list means all fields
 
         """
-
         # category_detail = {}
         # for root, dirs, files in os.walk(self.fpath):
         #     category_path = "/".join(
@@ -216,6 +215,8 @@ class DocsConfig(Config):
         )
         self.dir_path = dir_path
         self.config = yaml.safe_load(open(self.fpath, "r"))
+        self.condensed_fpath = f"{str(self.fpath).replace('.yaml', '-condensed.yaml')}"
+        self.condensed_config = yaml.safe_load(open(self.condensed_fpath, "r"))
 
         self.docs_page_slugs = self._load_page_slugs()
         self.docs_categories = self._load_docs_categories()
@@ -239,7 +240,7 @@ class DocsConfig(Config):
         self,
         dir_path: Path = None,
         fpath: Path = None,
-        condensed: bool = False,
+        condensed: bool = True,
         select_fields: Optional[List[str]] = None,
     ):
         """Building config file from docs filetree
@@ -268,11 +269,13 @@ class DocsConfig(Config):
         with open(self.fpath, "w") as f:
             yaml.dump(self.config, f, default_flow_style=False, sort_keys=True)
 
+        if condensed:
+            self._build_condensed(fpath=self.condensed_fpath)
+
         return self.config
 
     def dict_to_dir(self, data: dict, path: Path):
         """dict_to_dir expects data to be a dictionary with one top-level key."""
-
         dest = Path.getcwd() / path
         if isinstance(data, dict):
             for k, v in data.items():
@@ -290,7 +293,6 @@ class DocsConfig(Config):
 
     def dir_to_dict(self, path: Path):
         """dir_to_dict returns a dictionary filetree given a path."""
-
         directory = {}
         for root, dirs, files in os.walk(path):
             dn = Path(root).name
@@ -325,16 +327,18 @@ class DocsConfig(Config):
         clean_config = {}
         for category, pages in config.items():
             if not re.match(regex_filter, category):
-                print(category)
-                print(pages)
-                #     # clean_config.pop(category)
                 clean_config[category] = pages
                 page_slugs = [p for p in pages if isinstance(p, str)]
                 page_dicts = {
-                    k: v for p in pages if isinstance(p, dict) for k, v in p.items()
+                    k: v
+                    for p in pages
+                    if isinstance(p, dict)
+                    for k, v in p.items()
+                    if not re.match(regex_filter, k)
                 }
                 logging.debug(f"Page Slugs: {page_slugs}")
-                logging.debug(f"Page Slugs: {page_dicts}")
+                if page_dicts:
+                    logging.debug(f"\tPage Dicts: {list(page_dicts.keys())}")
                 page_detail = {}
                 for slug in page_slugs:
                     if page_dicts.get(slug):
@@ -347,7 +351,7 @@ class DocsConfig(Config):
             clean_config[category] = page_detail
         return clean_config
 
-    def build_docs_readme_config(
+    def _build_condensed(
         self,
         fpath: Path,
     ):
@@ -382,9 +386,8 @@ class DocsConfig(Config):
         #                     clean_dict(p, regex_filter)
 
         category_detail = self._clean_config(category_detail)
-        category_detail["version"] = self.version
-
         docs_readme_config = {"categories": category_detail}
+        docs_readme_config["version"] = self.version
         with open(fpath, "w") as f:
             yaml.dump(docs_readme_config, f, default_flow_style=False, sort_keys=True)
         return docs_readme_config
@@ -400,13 +403,14 @@ def main(args):
     EXPORT_MD_PATH = Path(args.path) / "export_md" / args.version
     README_VERSION = args.version
     README_CONFIG_FPATH = ROOT_PATH / "config" / "readme-config.yaml"
-    DOCS_TEMPLATE_CONFIG_FPATH = ROOT_PATH / "config" / "docs_template.yaml"
+    DOCS_CONDENSED_CONFIG_FPATH = ROOT_PATH / "config" / "docs-config-condensed.yaml"
+    DOCS_CONFIG_FPATH = ROOT_PATH / "config" / "docs-config.yaml"
 
     readme_config = ReadMeConfig(version=README_VERSION, fpath=README_CONFIG_FPATH)
     docs_config = DocsConfig(
         version=README_VERSION,
         dir_path=DOCS_TEMPLATE_PATH,
-        fpath=DOCS_TEMPLATE_CONFIG_FPATH,
+        fpath=DOCS_CONFIG_FPATH,
     )
 
     if args.method == "build":
@@ -470,13 +474,65 @@ def main(args):
                             shutil.copy(export_path, docs_path)
 
     elif args.method == "update":
-        logging.info(f"Updating {README_VERSION} docs to {DOCS_PATH}")
+        logging.info(f"Updating {README_VERSION} ReadMe to current {DOCS_PATH}")
 
         ## TODO: Merge docs_config and readme_config schema
-        fpath = ROOT_PATH / "config" / "docs_readme_config.yaml"
-        docs_readme_config = docs_config.build_docs_readme_config(fpath)
+        docs_config.build()
+        docs_condensed_config = docs_config.condensed_config
+        readme_condensed_config = readme_config.condensed_config
 
-        pprint(docs_readme_config)
+        ## https://zepworks.com/deepdiff/current/view.html#text-view
+        ddiff = DeepDiff(
+            docs_condensed_config,
+            readme_condensed_config,
+            ignore_order=True,
+            report_repetition=True,
+            view="tree",
+        )
+        logging.debug(f"---------")
+        logging.debug(f"Deepdiff {ddiff} ...")
+
+        if ddiff:
+            diff_items = [i for k, v in ddiff.items() for i in ddiff[k]]
+            logging.debug(f"{len(diff_items)} items in diff")
+            for d in diff_items:
+                logging.debug(d)
+                path = [
+                    i
+                    for i in d.path(output_format="list")
+                    if i not in ["categories"]
+                    if isinstance(i, str)
+                ]
+                logging.debug(path)
+
+        #     # print(ddiff)
+        #     # print(d)
+        #     d = list(d)[0]
+        #     print(d.path(output_format='list') )
+        # print(type(d))
+        # while list(d)[0].up:
+        #     list(d)[0].up
+        # print(list(d)[0].up)
+        # print(d)
+
+        #     if str(item.t1) != 'not present':
+        #         print(item.t1)
+        #     if str(item.t2) != 'not present':
+        #         print(item.t2)
+
+        # for item in ddiff['dictionary_item_removed']:
+
+        #     for d in item.items():
+        #         print(d)
+        #         print(item)
+        # print(d)
+        # d = d.split()
+        # print(eval(d))
+        # new_item = d.split()
+        # print(new_item)
+        # print(type(d))
+
+        # self.config = yaml.safe_load(open(self.fpath, "r"))
 
 
 if __name__ == "__main__":
