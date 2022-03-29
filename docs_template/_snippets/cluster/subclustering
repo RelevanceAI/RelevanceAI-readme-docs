@@ -1,0 +1,8 @@
+python ALIAS='kmeans_5', VECTOR_FIELD=VECTOR_FIELD, SUBCLUSTER_ALIAS="kmeeans_3"
+
+# Run separate K Means to get subclusters
+ds.auto_cluster(
+    SUBCLUSTER_ALIAS,
+    vector_fields=VECTOR_FIELD,
+    parent_alias=ALIAS
+)

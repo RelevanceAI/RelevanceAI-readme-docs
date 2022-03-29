@@ -505,16 +505,6 @@ def main(args):
                 ]
                 logging.debug(path)
 
-        #     # print(ddiff)
-        #     # print(d)
-        #     d = list(d)[0]
-        #     print(d.path(output_format='list') )
-        # print(type(d))
-        # while list(d)[0].up:
-        #     list(d)[0].up
-        # print(list(d)[0].up)
-        # print(d)
-
         #     if str(item.t1) != 'not present':
         #         print(item.t1)
         #     if str(item.t2) != 'not present':

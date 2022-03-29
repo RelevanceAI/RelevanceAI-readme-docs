@@ -89,7 +89,7 @@ Update the existing dataset with the encoding results and check the results
 Run clustering on your vectors to better understand your data. You can view the clusters in our clustering dashboard following the provided link when clustering finishes.
 
 
-@@@ auto_cluster, KMEANS=KMEANS-10, VECTOR_FIELD=IMAGE_CLIP_VEC @@@
+@@@ auto_cluster, ALIAS=KMEANS-10, VECTOR_FIELD=IMAGE_CLIP_VEC @@@
 
 You can also get a list of documents that are closest to the center of the clusters:
 
