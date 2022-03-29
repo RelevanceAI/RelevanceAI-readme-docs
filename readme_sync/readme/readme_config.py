@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 
 import collections
+from modulefinder import packagePathMap
 import os
 import re
 from pathlib import Path
@@ -164,6 +165,7 @@ class ReadMeConfig(Config):
                     )
             category_detail[category] = page_details
         pprint(category_detail)
+
         # config = sorted(category_detail.keys(), key=lambda x: (category_detail[x]))
         config["categories"] = category_detail
         with open(self.fpath, "w") as f:
@@ -303,11 +305,51 @@ class DocsConfig(Config):
 
             return directory
 
-    def update(
+    def _iterdict(self, d: Dict, filter_keys: List[str] = ["([_])\w+"]):
+        regex_filter = "(" + ")|(".join(filter_keys) + ")"
+        for k, v in d.items():
+            if not re.match(regex_filter, k):
+                if isinstance(v, dict):
+                    self._iterdict(v)
+                elif isinstance(v, list):
+                    for i, value in enumerate(v):
+                        if isinstance(value, dict):
+                            self._iterdict(value)
+                        elif isinstance(value, str):
+                            v[i] = value.replace(".md", "")
+                return {k: v}
+
+    @staticmethod
+    def _clean_config(config: Dict, filter_keys: List[str] = ["([_])\w+"]):
+        regex_filter = "(" + ")|(".join(filter_keys) + ")"
+        clean_config = {}
+        for category, pages in config.items():
+            if not re.match(regex_filter, category):
+                print(category)
+                print(pages)
+                #     # clean_config.pop(category)
+                clean_config[category] = pages
+                page_slugs = [p for p in pages if isinstance(p, str)]
+                page_dicts = {
+                    k: v for p in pages if isinstance(p, dict) for k, v in p.items()
+                }
+                logging.debug(f"Page Slugs: {page_slugs}")
+                logging.debug(f"Page Slugs: {page_dicts}")
+                page_detail = {}
+                for slug in page_slugs:
+                    if page_dicts.get(slug):
+                        children = sorted(
+                            [c for c in page_dicts.get(slug) if isinstance(c, str)]
+                        )
+                        page_detail[slug] = children
+                    else:
+                        page_detail[slug] = []
+            clean_config[category] = page_detail
+        return clean_config
+
+    def build_docs_readme_config(
         self,
-        slug: str,
-        fpath: Path = None,
-        select_fields: Optional[List[str]] = None,
+        fpath: Path,
     ):
         """Update docs config if new slug in ReadMe
 
@@ -317,16 +359,35 @@ class DocsConfig(Config):
             Page slug
         fpath : str, optional
             Config output filepath
-        select_fields : List[str]
-            select_fields: List
-            Fields to include in the search results, empty array/list means all fields
 
         Returns
         -------
         config : Dict
             Config of new docs
         """
-        return NotImplementedError
+        category_detail = {}
+        for category in self.config["docs_template"]:
+            if isinstance(category, dict):
+                result = self._iterdict(category)
+                if result:
+                    for k, v in result.items():
+                        category_detail[k] = v
+
+        # pprint(category_detail)
+        # def clean_dict(d, regex_filter):
+        #     for k, v in d.items():
+        #         if not re.match(regex_filter, k):
+        #             for p in v:
+        #                 if isinstance(p, dict):
+        #                     clean_dict(p, regex_filter)
+
+        category_detail = self._clean_config(category_detail)
+        category_detail["version"] = self.version
+
+        docs_readme_config = {"categories": category_detail}
+        with open(fpath, "w") as f:
+            yaml.dump(docs_readme_config, f, default_flow_style=False, sort_keys=True)
+        return docs_readme_config
 
 
 def main(args):
@@ -412,134 +473,10 @@ def main(args):
         logging.info(f"Updating {README_VERSION} docs to {DOCS_PATH}")
 
         ## TODO: Merge docs_config and readme_config schema
-        config = docs_config.config
-
-        ## For now, convert docs config to ReadMe config condensed format to check for delta
-        docs_readme_config = {}
-        category_detail = {}
-
-        # def build_doc_readme_config(category, pages=[]):
-        #     if isinstance(category, dict):
-        #         # print(category)
-        #         for k, v in category.items():
-        #             if k[0] != '_':
-        #                 print(category, pages)
-        #                 build_doc_readme_config(k)
-        #                 # for p in pages:
-        #                 #     build_doc_readme_config(category, v)
-        #     elif isinstance(category, str):
-        #         if category[0] != '_':
-        #             return category.replace(".md", "")
-        #         # return {page.replace(".md", ""): [] for page in pages if page[0] != "_" }
-        #     elif isinstance(category, list):
-        #         return category[0]
-
-        ## Recursively building category_detail
-        # for i, value in enumerate(v):
-        #     if isinstance(value, dict):
-        #         if value == {}:
-        #             v.remove(value)
-        def iterdict(d):
-            for k, v in d.items():
-                if k[0] != "_":
-                    if isinstance(v, dict):
-                        iterdict(v)
-                    elif isinstance(v, list):
-                        for i, value in enumerate(v):
-                            if isinstance(value, dict):
-                                iterdict(value)
-                            elif isinstance(value, str):
-                                v[i] = value.replace(".md", "")
-                    return {k: v}
-                else:
-                    d.pop(k)
-                return d
-
-        for category in config["docs_template"]:
-            if isinstance(category, dict):
-                result = iterdict(category)
-                # print(result)
-                if result:
-                    for k, v in result.items():
-                        category_detail[k] = v
-
-                # if k:
-                #     category_detail[k] = v
-                # for category_name, pages in category.items():
-                #     if category_name[0] != '_':
-                #         category_detail[category_name] = iterdict(category)[category_name]
-                # if result:
-                #     category_detail[category_name] = result.get(category_name)
-
-        # iterdict(category_detail)
-        # pprint(category_detail)
-        #     for category_name, pages in category.items():
-        #         page_detail = build_doc_readme_config(category_name, pages)
-        #         # pprint(page_detail)
-        #         # pprint(category)
-        #         # print(type(category))
-        #         print(category_name)
-        #         pprint(page_detail)
-        # category_detail[category_name] = page_detail
-        # category_detail.append({category: build_doc_readme_config(category)})
-        # print('------')
-
-        # pprint(docs_readme_config)
-        # print(category_detail)
-        # for category in config["docs_template"]:
-
-        #     if isinstance(category, dict):
-        #         # config[category_name] = {}
-        #         for category_name, pages in category.items():
-        #             if category_name[0] != "_":
-        #                 # logging.debug(f'{category_name}, {pages}')
-        #                 logging.debug(f'Category: {category_name}')
-        #                 # category_detail[category_name] = pages
-        #                 # category_detail[category_name]
-
-        #                 # pages = pages[0]
-        #                 # category_detail[category_name] = pages
-        #                 # pages = pages[0]
-        #                 if isinstance(pages[0], str):
-        #                     # print(category_name, pages)
-        #                     # print(pages)
-        #                     # for page in pages:
-        #                     #     if page[0] != "_":
-        #                     category_detail[category_name] = {page.replace(".md", ""): [] for page in pages if page[0] != "_" }
-        #                             #print(category_name, page)
-
-        #                 if isinstance(pages[0], dict):
-        #                     category_detail[category_name] = { p.replace(".md", ""): [] for p in pages if isinstance(p, str) }
-        #                     category_detail[category_name] = { page.replace(".md", ""): sorted([c for c in children])
-        #                                                                                     for p in pages
-        #                                                                                     if isinstance(p, dict)
-        #                                                                                     for page, children in p.items() }
-
-        #                     for p in pages:
-        #                         print(p)
-        #                         print(type(p))
-        #                         for k, v in p.items():
-        #                             print(k, v)
-
-        #                             # for page, children in p.items():
-
-        #                             #     if page[0] != "_":
-        #                             #         print(page, children)
-        #                             #         logging.debug(f'P {page}, C:{children}')
-        #                             #         children = sorted([c.replace(".md", "") for c in children if isinstance(c, str)])
-        #                             #         category_detail[category_name] = {page: children}
-
-        # #docs_readme_config = sorted(category_detail.keys(), key=lambda x: (category_detail[x]))
-        # # sorted_config = {}
-        # # for k,v in category_detail.items():
-        # #     sorted_config[k] = collections.OrderedDict(sorted(v.items(), reverse=True))
-        # # docs_readme_config = {k: sorted(v.items(), reverse=True) for k,v in category_detail.items()}
-        # # docs_readme_config = sorted_config
-        # pprint(docs_readme_config)
         fpath = ROOT_PATH / "config" / "docs_readme_config.yaml"
-        docs_readme_config["categories"] = category_detail
-        with open(fpath, "w") as f:
-            yaml.dump(docs_readme_config, f, default_flow_style=False, sort_keys=True)
+        docs_readme_config = docs_config.build_docs_readme_config(fpath)
+
+        pprint(docs_readme_config)
 
 
 if __name__ == "__main__":
