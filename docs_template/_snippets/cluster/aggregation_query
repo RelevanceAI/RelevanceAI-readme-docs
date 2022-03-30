@@ -1,0 +1,2 @@
+python VAR_NAME=agg_query, NAME="sample_query_name", FIELD="sample_field", TYPE="category"
+<<VAR_NAME>> = {"name": <<NAME>>, "field": <<FIELD>>, "agg": <<TYPE>>}

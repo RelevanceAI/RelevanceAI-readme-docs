@@ -53,7 +53,7 @@ This filter performs date analysis and filters documents based on their date inf
 {
   "codes": [
     {
-      "code": "filter = [\n    {\n        \"field\": \"insert_date_\",\n        \"filter_type\": date,\n        \"condition\": ==,\n        \"condition_value\": 2020-07-01\n    }\n]",
+      "code": "filter = [\n    {\n        \"field\": \"\"insert_date_\"\",\n        \"filter_type\": \"date\",\n        \"condition\": \"==\",\n        \"condition_value\": \"2020-07-01\"\n    }\n]",
       "name": "Python (SDK)",
       "language": "python"
     }
@@ -67,7 +67,7 @@ Note that the default format is "yyyy-mm-dd" but can be changed to "yyyy-dd-mm" 
 {
   "codes": [
     {
-      "code": "filter = [\n    {\n        \"field\": \"insert_date_\",\n        \"filter_type\": date,\n        \"condition\": ==,\n        \"condition_value\": 2020-07-01,\n        \"format\": \"yyyy-dd-MM\"\n    }\n]",
+      "code": "filter = [\n    {\n        \"field\": \"\"insert_date_\"\",\n        \"filter_type\": \"date\",\n        \"condition\": \"==\",\n        \"condition_value\": \"2020-07-01\",\n        \"format\": \"\"yyyy-dd-MM\"\"\n    }\n]",
       "name": "Python (SDK)",
       "language": "python"
     }

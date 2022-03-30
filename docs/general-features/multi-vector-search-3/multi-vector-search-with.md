@@ -85,7 +85,7 @@ Another great sample of multivector search in the Relevance AI platform is how m
 {
   "codes": [
     {
-      "code": "# Create a multivector query\nmultivector_query=[\n\t{\n\t\"vector\": query_vec_txt,\n\t\"fields\": {\"\"title_vector_\"\":0.6, \"\"description_vector_\"\":0.3}},\n\t},\n\t]",
+      "code": "# Create a multivector query\nmultivector_query=[\n\t{\n\t\t\"vector\": query_vec_txt,\n\t\t\"fields\": {\"title_vector_\":0.6, \"description_vector_\":0.3}},\n\t}\n]",
       "name": "Python (SDK)",
       "language": "python"
     }

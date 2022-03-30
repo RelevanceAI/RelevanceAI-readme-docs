@@ -1,0 +1,3 @@
+python RESULTS=results
+from jsonshower import show_json
+show_json(<<RESULTS>>, text_fields=list(results[0].keys()))

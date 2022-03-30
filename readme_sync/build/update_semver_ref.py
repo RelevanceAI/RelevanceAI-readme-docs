@@ -1,53 +1,13 @@
 #!/usr/bin/env python3
 
-import os
-import re
 from pathlib import Path
-import itertools
-from typing import List, Literal, Tuple, Union
+
 import logging
 import argparse
 import json
+import yaml
 
-
-def file_find_replace(
-    fname: str, find_sent_regex: str, find_str_regex: str, replace_str: str
-):
-    if fname.is_file():
-        with open(fname, "r") as f:
-            lines = f.readlines()
-
-        with open(fname, "w") as f:
-            for i, line in enumerate(lines):
-                if bool(re.search(find_sent_regex, line)):
-                    find_sent = re.search(find_sent_regex, line)
-                    if find_sent:
-                        find_sent = find_sent.group()
-                        logging.debug(f"Found sentence: {find_sent}")
-                        # if find_str == replace_str: continue
-                        logging.debug(f"Find string regex: {find_str_regex}")
-                        find_replace_str = re.search(find_str_regex, find_sent)
-                        if find_replace_str:
-                            find_replace_str = find_replace_str.group()
-                            logging.debug(
-                                f"Found str within sentence: {find_replace_str.strip()}"
-                            )
-
-                            logging.debug(f"Replace str: {replace_str}")
-                            line = line.replace(find_replace_str, replace_str)
-
-                            logging.debug(f"Updated: {line.strip()}")
-
-                        else:
-                            logging.debug(f"Not found: {find_replace_str}")
-                    else:
-                        logging.debug(f"Not found: {find_sent_regex}")
-
-                f.write(line)
-
-
-def get_files(path: Union[Path, str], ext: Literal["md", "ipynb"]):
-    return Path(path).glob(f"**/*.{ext}")
+from readme_sync.utils.files import get_files, file_find_replace
 
 
 def main(args):
@@ -67,14 +27,17 @@ def main(args):
 
     SEMVER_SENT = f".*v(\d+\.\d+(?:\.\d+)?).*"
     SEMVER_STR = f"v(\d+\.\d+(?:\.\d+)?)"
-    SEMVER_REPLACE_STR = f"v{README_VERSION}"
+    SEMVER_REPLACE_STR = (
+        README_VERSION if README_VERSION[0] == "v" else f"v{README_VERSION}"
+    )
+    print(SEMVER_REPLACE_STR)
 
     installation_guide = [
         Path(args.path) / "docs_template" / "getting-started" / "installation.md"
     ] + [Path(args.path) / "docs" / "getting-started" / "installation.md"]
 
     for f in installation_guide:
-        logging.debug(f"\tUpdating {f} to {README_VERSION}")
+        logging.debug(f"\tUpdating {f} to {README_VERSION} ...")
         file_find_replace(f, SEMVER_SENT, SEMVER_STR, SEMVER_REPLACE_STR)
 
     ###############################################################################
@@ -83,11 +46,26 @@ def main(args):
 
     logging.info(f"Updating version ref to {README_VERSION} in snippet config")
     SNIPPET_PARAMS_FPATH = Path(DOCS_TEMPLATE_PATH) / "_snippet_params.json"
-    print(SNIPPET_PARAMS_FPATH)
+    logging.debug(f"\tUpdating {SNIPPET_PARAMS_FPATH} to {README_VERSION} ...")
     SNIPPET_PARAMS = json.loads(open(str(SNIPPET_PARAMS_FPATH), "r").read())
 
     SNIPPET_PARAMS["RELEVANCEAI_SDK_VERSION"] = args.version
     json.dump(SNIPPET_PARAMS, open(SNIPPET_PARAMS_FPATH, "w"), separators=(",\n", ": "))
+
+    ###############################################################################
+    # Updating version ref in readme config
+    ###############################################################################
+
+    logging.info(f"Updating version ref to {README_VERSION} in readme config")
+
+    config_paths = Path(ROOT_PATH / "config").glob("**/*.yaml")
+    for fpath in config_paths:
+        logging.debug(f"\tUpdating {fpath} to {README_VERSION} ...")
+        config = yaml.safe_load(open(fpath, "r"))
+
+        config["version"] = args.version
+        with open(fpath, "w") as f:
+            yaml.dump(config, f, default_flow_style=False, sort_keys=False)
 
 
 if __name__ == "__main__":

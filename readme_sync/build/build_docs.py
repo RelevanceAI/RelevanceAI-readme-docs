@@ -6,6 +6,7 @@ from pathlib import Path
 from pprint import pprint
 import re
 import json
+import shutil
 
 from typing import List, Dict, Optional, Union
 from typing_extensions import Literal
@@ -24,7 +25,7 @@ RDMD_SNIPPET_LANGUAGES = {
 # Helper Functions
 ###############################################################################
 
-## Todo: Refactor in DocBuilder class
+## TODO: Refactor into DocBuilder class
 
 
 def load_params_ref(param_str: str) -> dict:
@@ -247,7 +248,7 @@ def generate_md_file(
                     language = _snippet["language"]
                     snippet_text = _snippet["snippet"]
 
-                    snippet += ["\n"] + snippet_text
+                    snippet += snippet_text
 
                     logging.debug("=================")
                     logging.debug("\n".join(snippet))
@@ -263,10 +264,9 @@ def generate_md_file(
 
                 ### ReadMe Block Format
                 elif snippet_format == "block":
-                    snippet_text = snippet[1:]
                     snippet_block = ["[block:code]"]
                     snippet_code = {}
-                    snippet_code["code"] = "\n".join(snippet_text)
+                    snippet_code["code"] = "\n".join(snippet)
                     snippet_code["name"] = RDMD_SNIPPET_LANGUAGES[language]
                     snippet_code["language"] = language
                     snippet_codes = {"codes": [snippet_code]}
@@ -338,6 +338,8 @@ def main(args):
         MD_FILES = Path(DOCS_TEMPLATE_PATH).glob("**/**/*.md")
         NOTEBOOKS = Path(DOCS_TEMPLATE_PATH).glob("**/**/*.ipynb")
 
+    if args.clear:
+        shutil.rmtree(DOCS_PATH, ignore_errors=True)
     for input_fname in MD_FILES:
         input_fname = Path(input_fname)
         output_fname = Path(str(input_fname).replace("docs_template", "docs"))
@@ -386,6 +388,9 @@ if __name__ == "__main__":
     )
     parser.add_argument(
         "-f", "--files", nargs="+", default=None, help="Files to generate"
+    )
+    parser.add_argument(
+        "-c", "--clear", action="store_true", help="Whether to clear docs folder"
     )
     args = parser.parse_args()
 

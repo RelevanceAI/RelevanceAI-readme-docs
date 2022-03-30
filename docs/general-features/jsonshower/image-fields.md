@@ -7,26 +7,19 @@ createdAt: "2021-11-22T04:01:02.046Z"
 updatedAt: "2022-01-05T10:49:14.282Z"
 ---
 JSONShower supports previewing images if they can be rendered in HTML. This is achievable in 1 line of code as shown below:
-```python Python (SDK)
-from jsonshower import show_json
 
-# This is in the same format as search results
-documents = [ {
- "image_url": "https://imgs.xkcd.com/comics/voting.png",
- },
- {
- "image_url": "https://imgs.xkcd.com/comics/animal_songs.png",
- }
-]
+[block:code]
+{
+  "codes": [
+    {
+      "code": "from jsonshower import show_json\n\n# This is in the same format as search results\ndocuments = [ \n    {\n        \"image_url\": \"https://imgs.xkcd.com/comics/voting.png\",\n    },\n    {\n        \"image_url\": \"https://imgs.xkcd.com/comics/animal_songs.png\",\n    }\n]\n\nshow_json(\n    documents=documents,\n    image_fields=[\"image_url\"],     # Image fields\n    image_width=200,                # Adjust the image width\n)",
+      "name": "Python (SDK)",
+      "language": "python"
+    }
+  ]
+}
+[/block]
 
-show_json(
- documents=documents,
- image_fields=["image_url"], # Image fields
- image_width=200, # Adjust the image width
-)
-```
-```python
-```
 After running this, you should see the following in your Jupyter Notebook:
 <figure>
 <img src="https://github.com/RelevanceAI/RelevanceAI-readme-docs/blob/v2.0.0/docs_template/general-features/_assets/preview_images.png?raw=true" width="278" alt="xkcd_comics.png" />

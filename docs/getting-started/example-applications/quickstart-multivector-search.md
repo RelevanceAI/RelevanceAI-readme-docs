@@ -5,17 +5,13 @@ slug: "quickstart-multivector-search"
 hidden: false
 ---
 
-
 <figure>
 <img src="https://github.com/RelevanceAI/RelevanceAI-readme-docs/blob/v2.0.0/docs_template/_assets/RelevanceAI_vector_space.png?raw=true" width="650" alt="Vector Spaces" />
 <figcaption></figcaption>
 <figure>
 
 
-
 **Try it out in Colab:** [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/RelevanceAI/RelevanceAI-readme-docs/blob/v2.0.0/docs/getting-started/example-applications/_notebooks/RelevanceAI-ReadMe-Multi-Vector-Search.ipynb)
-
-
 
 ### What I Need
 * Project and API Key: Grab your Relevance AI project and API key by [signing up](https://cloud.relevance.ai/ )
@@ -57,7 +53,6 @@ After installation, we need to also set up an API client. If you are missing an 
   ]
 }
 [/block]
-
 
 ## Steps to perform multi-vector search
 
@@ -119,7 +114,6 @@ After finalizing the insert task, the client returns a link guiding you to a das
 <figure>
 
 
-
 ### 3. Search
 
 Since this will be using your own vectors, we will skip vectorizing the query and just retrieve a vector from an existing document in the dataset.
@@ -132,7 +126,7 @@ Now, let us try out a query using a simple vector search against our dataset.
 {
   "codes": [
     {
-      "code": "# Query sample data\nsample_id = documents[0]['_id']\ndocument = df.get_documents_by_ids([sample_id])[\"documents\"][0]\nimage_vector = document['product_image_clip_vector_']\ntext_vector = document['product_title_clip_vector_']\n\n# Create a multivector query\nmultivector_query = [\n    {\"vector\": image_vector, \"fields\": ['product_image_clip_vector_']},\n    {\"vector\": text_vector, \"fields\": ['product_title_clip_vector_']}\n]\n\n\nresults = ds.vector_search(\n    multivector_query=multivector_query,\n    page_size=5\n)",
+      "code": "# Query sample data\nsample_id = documents[0]['_id']\ndocument = df.get_documents_by_ids([sample_id])[\"documents\"][0]\nimage_vector = document['product_image_clip_vector_']\ntext_vector = document['product_title_clip_vector_']\n\n# Create a multivector query\nmultivector_query = [\n    {\"vector\": image_vector, \"fields\": ['product_image_clip_vector_']},\n    {\"vector\": text_vector, \"fields\": ['product_title_clip_vector_']}\n]\nresults = ds.vector_search(\n    multivector_query=multivector_query,\n    page_size=5\n)",
       "name": "Python (SDK)",
       "language": "python"
     }
@@ -175,7 +169,7 @@ Now lets show the results with `show_json`.
 {
   "codes": [
     {
-      "code": "from relevanceai import Client\n\n\"\"\"\nYou can sign up/login and find your credentials here: https://cloud.relevance.ai/sdk/api\nOnce you have signed up, click on the value under `Activation token` and paste it here\n\"\"\"\nclient = Client()\n\n\nfrom relevanceai.datasets import get_ecommerce_dataset_encoded\n\ndocuments = get_ecommerce_dataset_encoded()\n{k:v for k, v in documents[0].items() if '_vector_' not in k}\n\n\nds = client.Dataset(\"quickstart_multi_vector_search\")\nds.insert_documents(documents)\n\n\n# Query sample data\nsample_id = documents[0]['_id']\ndocument = df.get_documents_by_ids([sample_id])[\"documents\"][0]\nimage_vector = document['product_image_clip_vector_']\ntext_vector = document['product_title_clip_vector_']\n\n# Create a multivector query\nmultivector_query = [\n    {\"vector\": image_vector, \"fields\": ['product_image_clip_vector_']},\n    {\"vector\": text_vector, \"fields\": ['product_title_clip_vector_']}\n]\n\n\nresults = ds.vector_search(\n    multivector_query=multivector_query,\n    page_size=5\n)\n\n\nfrom relevanceai import show_json\n\nprint('=== QUERY === ')\ndisplay(show_json([document], image_fields=[\"product_image\"], text_fields=[\"product_title\"]))\n\nprint('=== RESULTS ===')\nshow_json(results, image_fields=[\"product_image\"], text_fields=[\"product_title\"])",
+      "code": "from relevanceai import Client\n\n\"\"\"\nYou can sign up/login and find your credentials here: https://cloud.relevance.ai/sdk/api\nOnce you have signed up, click on the value under `Activation token` and paste it here\n\"\"\"\nclient = Client()\nfrom relevanceai.datasets import get_ecommerce_dataset_encoded\n\ndocuments = get_ecommerce_dataset_encoded()\n{k:v for k, v in documents[0].items() if '_vector_' not in k}\nds = client.Dataset(\"quickstart_multi_vector_search\")\nds.insert_documents(documents)\n# Query sample data\nsample_id = documents[0]['_id']\ndocument = df.get_documents_by_ids([sample_id])[\"documents\"][0]\nimage_vector = document['product_image_clip_vector_']\ntext_vector = document['product_title_clip_vector_']\n\n# Create a multivector query\nmultivector_query = [\n    {\"vector\": image_vector, \"fields\": ['product_image_clip_vector_']},\n    {\"vector\": text_vector, \"fields\": ['product_title_clip_vector_']}\n]\nresults = ds.vector_search(\n    multivector_query=multivector_query,\n    page_size=5\n)\nfrom relevanceai import show_json\n\nprint('=== QUERY === ')\ndisplay(show_json([document], image_fields=[\"product_image\"], text_fields=[\"product_title\"]))\n\nprint('=== RESULTS ===')\nshow_json(results, image_fields=[\"product_image\"], text_fields=[\"product_title\"])",
       "name": "Python (SDK)",
       "language": "python"
     }

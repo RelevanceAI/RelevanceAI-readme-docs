@@ -55,7 +55,7 @@ Run this Quickstart in Colab: [![Open In Colab](https://colab.research.google.co
 {
   "codes": [
     {
-      "code": "documents = [\n\t{\"_id\": \"1\", \"example_vector_\": [0.1, 0.1, 0.1], \"data\": \"Documentation\"},\n\t{\"_id\": \"2\", \"example_vector_\": [0.2, 0.2, 0.2], \"data\": \"Best document!\"},\n\t{\"_id\": \"3\", \"example_vector_\": [0.3, 0.3, 0.3], \"data\": \"Document example\"},\n\t{\"_id\": \"5\", \"example_vector_\": [0.4, 0.4, 0.4], \"data\": \"This is a doc\"},\n\t{\"_id\": \"4\", \"example_vector_\": [0.5, 0.5, 0.5], \"data\": \"This is another doc\"},\n]\n\n\nds = client.Dataset(\"quickstart\")\nds.insert_documents(documents)",
+      "code": "documents = [\n\t{\"_id\": \"1\", \"example_vector_\": [0.1, 0.1, 0.1], \"data\": \"Documentation\"},\n\t{\"_id\": \"2\", \"example_vector_\": [0.2, 0.2, 0.2], \"data\": \"Best document!\"},\n\t{\"_id\": \"3\", \"example_vector_\": [0.3, 0.3, 0.3], \"data\": \"Document example\"},\n\t{\"_id\": \"5\", \"example_vector_\": [0.4, 0.4, 0.4], \"data\": \"This is a doc\"},\n\t{\"_id\": \"4\", \"example_vector_\": [0.5, 0.5, 0.5], \"data\": \"This is another doc\"},\n]\nds = client.Dataset(\"quickstart\")\nds.insert_documents(documents)",
       "name": "Python (SDK)",
       "language": "python"
     }

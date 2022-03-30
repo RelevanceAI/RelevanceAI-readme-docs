@@ -53,7 +53,7 @@ This filter returns documents whose unique id exists in a given list. It may loo
 {
   "codes": [
     {
-      "code": "filter = [\n    {\n        \"field\": _id,\n        \"filter_type\": ids,\n        \"condition\": ==,\n        \"condition_value\": 7790e058cbe1b1e10e20cd22a1e53d36\n    }\n]",
+      "code": "filter = [\n    {\n        \"field\": \"_id\",\n        \"filter_type\": \"ids\",\n        \"condition\": \"==\",\n        \"condition_value\": \"7790e058cbe1b1e10e20cd22a1e53d36\"\n    }\n]",
       "name": "Python (SDK)",
       "language": "python"
     }

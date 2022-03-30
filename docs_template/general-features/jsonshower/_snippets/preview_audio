@@ -1,0 +1,17 @@
+python
+from jsonshower import show_json
+
+# Create audio documents
+audio_documents = []
+for i in range(1, 5):
+    audio_documents.append({
+    'audio': f'https://vecsearch-bucket.s3.us-east-2.amazonaws.com/voices/common_voice_en_{i}.wav',
+    'name' : f'common_voice_en_{i}.wav',
+    '_id': str(i)
+    })
+
+# Preview audio
+show_json(
+    audio_documents,
+    audio_fields=["audio"]
+)

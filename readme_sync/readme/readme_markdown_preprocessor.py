@@ -77,3 +77,28 @@ class ReadmeMarkdownExporter(MarkdownExporter):
         We want to use the new template we ship with our library.
         """
         return "test_template"  # full
+
+
+if __name__ == "__main__":
+    parser = argparse.ArgumentParser()
+
+    PACKAGE_NAME = "RelevanceAI"
+
+    # ROOT_PATH = Path(__file__).parent.resolve() / ".." / ".."
+    README_VERSION_FILE = f"v{open(ROOT_PATH / '__version__').read().strip()}"
+
+    parser.add_argument("-d", "--debug", help="Run debug mode", action="store_true")
+    parser.add_argument("-p", "--path", default=ROOT_PATH, help="Path of root folder")
+    parser.add_argument(
+        "-m",
+        "--method",
+        default="update",
+        choices=["build", "update", "import_md"],
+        help="Method",
+    )
+    parser.add_argument(
+        "-v", "--version", default=README_VERSION_FILE, help="Package Version"
+    )
+    args = parser.parse_args()
+
+    main(args)

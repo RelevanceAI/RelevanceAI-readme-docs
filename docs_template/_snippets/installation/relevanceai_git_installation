@@ -1,0 +1,2 @@
+shell
+!pip install git+https://github.com/RelevanceAI/RelevanceAI@v<<RELEVANCEAI_SDK_VERSION>>

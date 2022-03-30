@@ -26,7 +26,7 @@ The following code snippet gets the centroids from a clustering object and adds 
 {
   "codes": [
     {
-      "code": "centroids = clusterer.get_centroid_documents()\n\n\nclusterer.insert_centroid_documents(centroids, df)",
+      "code": "centroids = clusterer.get_centroid_documents()\nclusterer.insert_centroid_documents(centroids, df)",
       "name": "Python (SDK)",
       "language": "python"
     }

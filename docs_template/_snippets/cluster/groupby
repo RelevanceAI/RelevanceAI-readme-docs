@@ -1,0 +1,2 @@
+python VAR_NAME=groupby, NAME="sample_query_name", FIELD="sample_field", TYPE="category"
+<<VAR_NAME>> = [location_group, bedrooms_group]

@@ -59,7 +59,7 @@ Encoding a single text input via the `encode` function and encoding a specified 
 {
   "codes": [
     {
-      "code": "# documents are saved as a list of dictionaries\ndocuments = [{'sentence': '\"This is the first sentence.\"', '_id': 1}, {'sentence': '\"This is the second sentence.\"', '_id': 2}]\n\n# Encode the `\"sentence\"` field in a list of documents\nencoded_documents = model.encode_documents([\"sentence\"], documents)\n\n\nds.upsert_documents(documents=encoded_documents)",
+      "code": "# documents are saved as a list of dictionaries\ndocuments = [{'sentence': '\"This is the first sentence.\"', '_id': 1}, {'sentence': '\"This is the second sentence.\"', '_id': 2}]\n\n# Encode the `\"sentence\"` field in a list of documents\nencoded_documents = model.encode_documents([\"sentence\"], documents)\nds.upsert_documents(documents=encoded_documents)",
       "name": "Python (SDK)",
       "language": "python"
     }

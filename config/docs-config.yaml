@@ -64,6 +64,8 @@ docs_template:
   - aggregations:
     - _notebooks:
       - RelevanceAI_ReadMe_Quickstart_Aggregations.ipynb
+    - _snippets:
+      - show_json_text_fields_result_keys
     - creating-aggregation-metrics.md
     - grouping-the-data.md
     - aggregations-1.md
@@ -107,6 +109,10 @@ docs_template:
     - word-match.png
     - exists.png
   - jsonshower:
+    - _snippets:
+      - preview_highlighting
+      - preview_images
+      - preview_audio
     - image-fields.md
     - preview-audio.md
     - highlighting.md
@@ -189,11 +195,9 @@ docs_template:
     - exact-word-search.md
   - text-and-vector-search-hybrid:
     - hybrid-search-1.md
-  - diversity-search-2:
+  - diversity-search:
     - diversity-search-1.md
   - chunk-search-1:
-    - exact-text-matching:
-      - exact-word-search.md
     - advance-chunk-search.md
     - chunk-search.md
   - redirects:
@@ -210,7 +214,6 @@ docs_template:
   - multi-vector-search-2-1.md
   - diversity-search.md
   - chunk-search-1.md
-  - diversity-search-2.md
   - redirects.md
 - _snippets:
   - sample_documents:
@@ -228,17 +231,20 @@ docs_template:
     - hybrid_search
     - launch_search_app
     - multivector_query_multiple_models
+    - show_json_text_fields
     - multivector_query_three_models
     - vector_search
     - multivector_query_show_json
     - query_show_json
   - installation:
+    - relevanceai_git_installation
     - vectorhub_clip_installation
     - vectorhub_encoders_text_tfhub_installation
     - sentence_transformers_installation
     - relevanceai_dev_installation
     - vectorhub_encoders_transformers
     - vectorhub_encoders_sentence_transformers
+    - relevanceai_editable_installation
     - relevanceai_installation
   - cluster:
     - cluster_vizops_distribution
@@ -246,6 +252,7 @@ docs_template:
     - clusterops_fit_predict_documents
     - list_furthest_from_center
     - cluster_aggregate_metrics
+    - aggregate_dataset
     - auto_cluster
     - clusterops_fit_predict_update
     - cluster_vizops_custom
@@ -255,7 +262,9 @@ docs_template:
     - clusterops
     - subclustering
     - get_centroid_documents
+    - aggregation_query
     - cluster_vizops
+    - groupby
     - cluster_metadata
     - cluster_sample_results
     - list_closest_to_center
@@ -273,7 +282,6 @@ docs_template:
     - list_datasets
     - dataset_basics
     - filters_setup
-    - aggregate_dataset
     - insert_csv
     - dataset_vectorize
     - upsert_example
@@ -281,6 +289,7 @@ docs_template:
     - filter_setup_with_format
     - filter_setup
     - pull_update_push
+    - insert_df
     - dataset_health
     - insert_documents
     - dataset
@@ -288,6 +297,8 @@ docs_template:
     - dataset_schema
     - apply_encoding
     - filter_dataset
+  - general:
+    - variable
   - encode:
     - encode_documents
     - clip_define_txt_encoder
@@ -383,3 +394,4 @@ docs_template:
   - RelevanceAI_cluster_dashboard.png
   - RelevanceAI_DS_Workflow_old.png
 - _snippet_params.json
+version: v2.0.0

@@ -72,7 +72,7 @@ Please refer to a full guide on how to [create and upload a database](doc:creati
 {
   "codes": [
     {
-      "code": "filter = [\n    {\n        \"field\" : \"brand\",\n        \"filter_type\" : \"contains\",\n        \"condition\": \",\n        \"condition_value\": \"Asian\"\n    },\n    {\n        \"field\" : \"insert_date_\",\n        \"filter_type\" : \"date\",\n        \"condition\": \">,\n        \"condition_value\": \"2020-07-01\"\n    }\n]",
+      "code": "filter = [\n    {\n        \"field\" : \"\"brand\"\",\n        \"filter_type\" : \"\"contains\"\",\n        \"condition\": \"\"\",\n        \"condition_value\": \"\"Asian\"\"\n    },\n    {\n        \"field\" : \"\"insert_date_\"\",\n        \"filter_type\" : \"\"date\"\",\n        \"condition\": \"\">\",\n        \"condition_value\": \"\"2020-07-01\"\"\n    }\n]",
       "name": "Python (SDK)",
       "language": "python"
     }

@@ -104,8 +104,7 @@ categories:
     - advance-chunk-search
     - chunk-search
     combining-exact-text-with-vector-search: []
-    diversity-search: []
-    diversity-search-2:
+    diversity-search:
     - diversity-search-1
     exact-text-matching:
     - exact-word-search

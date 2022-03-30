@@ -1,0 +1,2 @@
+python DF=df
+ds.insert_df(<<DF>>)

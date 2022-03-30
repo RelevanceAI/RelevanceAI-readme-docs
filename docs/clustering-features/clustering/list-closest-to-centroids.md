@@ -22,7 +22,7 @@ After clustering is done and the dataset is updated with the results, listing cl
 {
   "codes": [
     {
-      "code": "ds = client.Dataset(DATASET_ID)\n\n\nclusterer = ds.auto_cluster('kmeans_5', [VECTOR_FIELD])\n\n\nclusterer.list_closest_to_center()",
+      "code": "ds = client.Dataset(DATASET_ID)\nclusterer = ds.auto_cluster('kmeans_5', [VECTOR_FIELD])\nclusterer.list_closest_to_center()",
       "name": "Python (SDK)",
       "language": "python"
     }

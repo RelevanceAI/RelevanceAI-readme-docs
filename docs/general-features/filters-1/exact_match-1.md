@@ -53,7 +53,7 @@ This filter has similarities to both `exact_match` and `contains`. It returns a 
 {
   "codes": [
     {
-      "code": "filter = [\n    {\n        \"field\": description,\n        \"filter_type\": word_match,\n        \"condition\": ==,\n        \"condition_value\": Home curtain\n    }\n]",
+      "code": "filter = [\n    {\n        \"field\": \"description\",\n        \"filter_type\": \"word_match\",\n        \"condition\": \"==\",\n        \"condition_value\": \"Home curtain\"\n    }\n]",
       "name": "Python (SDK)",
       "language": "python"
     }

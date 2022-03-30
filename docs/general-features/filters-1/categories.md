@@ -18,7 +18,7 @@ This filter checks the entries in a database and returns ones in which a field v
 {
   "codes": [
     {
-      "code": "filter = [\n    {\n        \"field\": brand,\n        \"filter_type\": categories,\n        \"condition\": >=,\n        \"condition_value\": ['LG', 'samsung']\n    }\n]",
+      "code": "filter = [\n    {\n        \"field\": \"brand\",\n        \"filter_type\": \"categories\",\n        \"condition\": \">=\",\n        \"condition_value\": \"['LG', 'samsung']\"\n    }\n]",
       "name": "Python (SDK)",
       "language": "python"
     }

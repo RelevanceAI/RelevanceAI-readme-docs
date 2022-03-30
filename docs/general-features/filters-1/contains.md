@@ -56,7 +56,7 @@ This filter returns a document only if it contains a string value. Note that sub
 {
   "codes": [
     {
-      "code": "filter = [\n    {\n        \"field\": description,\n        \"filter_type\": contains,\n        \"condition\": ==,\n        \"condition_value\": Durian BID\n    }\n]",
+      "code": "filter = [\n    {\n        \"field\": \"description\",\n        \"filter_type\": \"contains\",\n        \"condition\": \"==\",\n        \"condition_value\": \"Durian BID\"\n    }\n]",
       "name": "Python (SDK)",
       "language": "python"
     }

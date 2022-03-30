@@ -33,56 +33,24 @@ To use Relevance AI services, you need to instantiate a client object.
 
 ### 3. Set aggregation parameters
 There are two main parameters to aggregation, `groupby` and `metrics`. They are  both Python dictionaries with specific fields as shown in the following code snippet; more information is available on the next page.
-```python Python (SDK)
-#Grouping the Data
-location_group = {"name": 'location',
- "field": 'propertyDetails.area',
- "agg": 'category'}
 
-bedrooms_group = {"name": 'bedrooms',
- "field": 'propertyDetails.bedrooms',
- "agg": 'numeric'}
+#### Grouping the Data
 
-groupby = [location_group, bedrooms_group]
+@@@ aggregation_query, VAR_NAME=location_group, NAME="location", FIELD="propertyDetails.area", TYPE="category"; aggregation_query, VAR_NAME=bedrooms_group, NAME="bedrooms", FIELD="propertyDetails.bedrooms", TYPE="numeric"; variable, VAR_NAME=groupby, VAR_VALUE=[location_group, bedrooms_group]  @@@
 
-#Creating Aggregation Metrics
-avg_price_metric = {"name": 'avg_price',
- "field": 'priceDetails.price',
- "agg": 'avg'}
 
-max_price_metric = {"name": 'max_price',
- "field": 'priceDetails.price',
- "agg": 'max'}
+#### Creating Aggregation Metrics
 
-min_price_metric = {"name": 'min_price',
- "field": 'priceDetails.price',
- "agg": 'min'}
+@@@ aggregation_query, VAR_NAME=avg_price_metric, NAME="avg_price", FIELD="priceDetails.price", TYPE="avg"; aggregation_query, VAR_NAME=max_price_metric, NAME="max_price", FIELD="priceDetails.price", TYPE="max"; aggregation_query, VAR_NAME=min_price_metric, NAME="min_price", FIELD="priceDetails.price", TYPE="min"; aggregation_query, VAR_NAME=sum_bathroom_metric, NAME="bathroom_sum", FIELD="propertyDetails.bathrooms", TYPE="sum"; aggregation_query, VAR_NAME=cardinality_suburbs_metric, NAME="num_suburbs", FIELD="propertyDetails.suburb", TYPE="cardinality"; variable, VAR_NAME=groupby, VAR_VALUE=[ avg_price_metric, max_price_metric, min_price_metric, sum_bathroom_metric, cardinality_suburbs_metric ] @@@
 
-sum_bathroom_metric = {"name": 'bathroom_sum',
- "field": 'propertyDetails.bathrooms',
- "agg": 'sum'}
-
-#cardinality_suburbs_metric = {"name": 'num_suburbs',
-# "field": 'propertyDetails.suburb',
-# "agg": 'cardinality'}
-
-metrics = [avg_price_metric,
- max_price_metric,
- min_price_metric,
- sum_bathroom_metric,
- #cardinality_suburbs_metric
- ]
-
-```
-```python
-```
 ### 4. Hit the endpoint
 Simply use the dataset_id and the `aggregate` endpoint as shown below; `jsonshower` is our tool for easy and efficient result presentation.
 @@@ aggregate_dataset, DATASET_ID=AGGREGATION_DATASET_ID @@@
 
-# Use jsonshower to demonstrate json result
-from jsonshower import show_json
-show_json(results, text_fields= list(results[0].keys()))
+#### Use jsonshower to demonstrate json result
+
+
+@@@ show_json_text_fields_result_keys, RESULTS=results @@@
 
 
 A detailed explanation of deriving the `groupby` and `metrics` parameters are included in subsequent pages.

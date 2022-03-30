@@ -31,7 +31,6 @@ In this section, we will show you how to create and experiment with a powerful t
 @@@ relevanceai_installation, RELEVANCEAI_SDK_VERSION=RELEVANCEAI_SDK_VERSION @@@
 
 
-
 ### Setting Up Client
 
 To be able to use Relevance AI, you need to instantiate a client. This needs a Project and API key that can be accessed at [https://cloud.relevance.ai/](https://cloud.relevance.ai/) in the settings area! Alternatively, you can run the code below and follow the link and the guide.
@@ -39,19 +38,14 @@ To be able to use Relevance AI, you need to instantiate a client. This needs a P
 
 @@@ client_instantiation @@@
 
-
 ## Text Search with Universal Sentence Encoder using VectorHub
-
-
 ### 1. Data
 
 For this experiment, we use our sample e-commerce dataset and preview one of the documents.
 
-
 @@@ get_ecommerce_dataset_clean @@@
 
 An example document should have a structure that looks like this.
-
 
 @@@ ecommerce_dataset_clean_sample_document@@@
 
@@ -59,9 +53,7 @@ An example document should have a structure that looks like this.
 
 Next, we will instantiate the universal sentence encoder from VectorHub and encode the `product_title` field among all documents.
 
-
 @@@ use2vec_encode_documents, TEXT_VECTOR_FIELDS=['product_title'] @@@
-
 
 We can see that there is now a field called `product_title_use_vector_` in our data.
 `_use_vector_` is the name assigned to the model in Vectorhub and we use it when generating vectors.

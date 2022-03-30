@@ -53,7 +53,7 @@ This filter returns entries in a database if a certain field (as opposed to the 
 {
   "codes": [
     {
-      "code": "filter = [\n    {\n        \"field\": brand,\n        \"filter_type\": exists,\n        \"condition\": ==,\n        \"condition_value\":  \n    }\n]",
+      "code": "filter = [\n    {\n        \"field\": \"brand\",\n        \"filter_type\": \"exists\",\n        \"condition\": \"==\",\n        \"condition_value\": \" \"\n    }\n]",
       "name": "Python (SDK)",
       "language": "python"
     }

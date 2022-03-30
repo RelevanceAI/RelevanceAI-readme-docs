@@ -57,7 +57,7 @@ Relevance AI has the same regular expression schema as Apache Lucene's ElasticSe
 {
   "codes": [
     {
-      "code": "filter = [\n    {\n        \"field\": description,\n        \"filter_type\": regexp,\n        \"condition\": ==,\n        \"condition_value\": .*Durian (\\w+)\n    }\n]",
+      "code": "filter = [\n    {\n        \"field\": \"description\",\n        \"filter_type\": \"regexp\",\n        \"condition\": \"==\",\n        \"condition_value\": \".*Durian (\\w+)\"\n    }\n]",
       "name": "Python (SDK)",
       "language": "python"
     }

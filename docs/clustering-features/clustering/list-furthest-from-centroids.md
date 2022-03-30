@@ -21,7 +21,7 @@ After clustering is done and the dataset is updated with the results, listing th
 {
   "codes": [
     {
-      "code": "ds = client.Dataset(DATASET_ID)\n\n\nclusterer = ds.auto_cluster('kmeans_5', [VECTOR_FIELD])\n\n\nclusterer.list_furthest_from_center()",
+      "code": "ds = client.Dataset(DATASET_ID)\nclusterer = ds.auto_cluster('kmeans_5', [VECTOR_FIELD])\nclusterer.list_furthest_from_center()",
       "name": "Python (SDK)",
       "language": "python"
     }

@@ -15,27 +15,32 @@ There are two main grouping types: categorical and numerical.
 
 ### Categorical Grouping
 Categorical fields are fields with a string type value. Included within our dataset is a field named **propertyDetails.area** that describes the location of the property. We can use it in categorical grouping as shown below:
-```python Python (SDK)
-#In general, the group-by field is structured as
-#{"name": ALIAS, "field": FIELD, "agg": TYPE-OF-GROUP}
 
-location_group = {"name": 'location',
- "field": 'propertyDetails.area',
- "agg": 'category'}
-```
-```python
-```
+[block:code]
+{
+  "codes": [
+    {
+      "code": "location_group = {\"name\": \"location\", \"field\": \"propertyDetails.area\", \"agg\": \"category\"}",
+      "name": "Python (SDK)",
+      "language": "python"
+    }
+  ]
+}
+[/block]
 ### Numerical Grouping
 It is possible to group data based on numerical values as well. In our dataset number of bedrooms in the listed properties is present under the field **propertyDetails.bedrooms**. We can use that for aggregation as shown below:
-```python Python (SDK)
-#In general, the group-by field is structured as
-#{"name": ALIAS, "field": FIELD, "agg": TYPE-OF-GROUP}
 
-bedrooms_group = {"name": 'bedrooms',
- "field": 'propertyDetails.bedrooms',
- "agg": 'numeric'}
-```
-```python
-```
+
+[block:code]
+{
+  "codes": [
+    {
+      "code": "bedrooms_group = {\"name\": \"bedrooms\", \"field\": \"propertyDetails.bedrooms\", \"agg\": \"numeric\"}",
+      "name": "Python (SDK)",
+      "language": "python"
+    }
+  ]
+}
+[/block]
 
 

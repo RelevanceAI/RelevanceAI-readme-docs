@@ -57,7 +57,7 @@ A screenshot of the results can be seen on top.
 {
   "codes": [
     {
-      "code": "filter = [\n    {\n        \"field\": description,\n        \"filter_type\" : contains,\n        \"condition\": ==,\n        \"condition_value\": Lenovo\n    },\n    {\n        \"field\" : brand,\n        \"filter_type\" : categories,\n        \"condition\": ==,\n        \"condition_value\": ['Lapguard', '4D']\n    },\n    {\n        \"field\" : \"insert_date_\",\n        \"filter_type\" : date,\n        \"condition\": >=,\n        \"condition_value\": 2020-01-01\n    }\n]",
+      "code": "filter = [\n    {\n        \"field\": \"description\",\n        \"filter_type\" : \"contains\",\n        \"condition\": \"==\",\n        \"condition_value\": \"Lenovo\"\n    },\n    {\n        \"field\" : \"brand\",\n        \"filter_type\" : \"categories\",\n        \"condition\": \"==\",\n        \"condition_value\": \"['Lapguard', '4D']\"\n    },\n    {\n        \"field\" : \"\"insert_date_\"\",\n        \"filter_type\" : \"date\",\n        \"condition\": \">=\",\n        \"condition_value\": \"2020-01-01\"\n    }\n]",
       "name": "Python (SDK)",
       "language": "python"
     }

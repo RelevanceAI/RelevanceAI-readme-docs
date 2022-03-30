@@ -23,7 +23,7 @@ The following code example groups the data based on the `product_price` field, a
 {
   "codes": [
     {
-      "code": "ds = client.Dataset(DATASET_ID)\n\n\nclusterer = ds.auto_cluster('kmeans_5', [VECTOR_FIELD])\n\n\n# Aggregate based on the clusters\nresult = clusterer.aggregate(\n    groupby=[\n      {\"name\": \"brand\", \"field\": \"query\", \"agg\": \"category\"}],\n    metrics = [\n      {\"name\": \"avg_retail_price\", \"field\": \"product_price\", \"agg\": \"avg\"}]\n)",
+      "code": "ds = client.Dataset(DATASET_ID)\nclusterer = ds.auto_cluster('kmeans_5', [VECTOR_FIELD])\n# Aggregate based on the clusters\nresult = clusterer.aggregate(\n    groupby=[\n      {\"name\": \"brand\", \"field\": \"query\", \"agg\": \"category\"}],\n    metrics = [\n      {\"name\": \"avg_retail_price\", \"field\": \"product_price\", \"agg\": \"avg\"}]\n)",
       "name": "Python (SDK)",
       "language": "python"
     }

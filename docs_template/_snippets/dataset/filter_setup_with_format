@@ -1,10 +1,10 @@
 python CONDITION_FORMAT="yyyy-dd-MM"
 filter = [
     {
-        "field": <<FIELD>>,
-        "filter_type": <<FILTER_TYPE>>,
-        "condition": <<CONDITION>>,
-        "condition_value": <<CONDITION_VAL>>,
-        "format": <<CONDITION_FORMAT>>
+        "field": "<<FIELD>>",
+        "filter_type": "<<FILTER_TYPE>>",
+        "condition": "<<CONDITION>>",
+        "condition_value": "<<CONDITION_VAL>>",
+        "format": "<<CONDITION_FORMAT>>"
     }
 ]

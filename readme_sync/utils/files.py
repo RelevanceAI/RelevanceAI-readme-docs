@@ -4,6 +4,12 @@ import os
 import re
 import logging
 import json
+from pathlib import Path
+from typing import List, Literal, Tuple, Union
+
+
+def get_files(path: Union[Path, str], ext: Literal["md", "ipynb"]):
+    return Path(path).glob(f"**/*.{ext}")
 
 
 def file_find_replace(
@@ -49,6 +55,8 @@ def notebook_find_replace(
     notebook_json = json.loads(open(fname).read())
 
     for cell in notebook_json["cells"]:
+        if "data:image/png;base64" in str(cell["source"]):
+            continue
         if bool(re.search(find_sent_regex, str(cell["source"]))):
             logging.debug(f"Found sentence: {str(cell['source'])}")
             logging.debug(f"Find string regex: {find_str_regex}")

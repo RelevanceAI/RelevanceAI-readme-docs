@@ -1,3 +1,0 @@
-python
-## TODO: update to the new aggregate
-results = client.services.aggregate.aggregate(<<DATASET_ID>>, metrics = metrics, groupby = groupby)

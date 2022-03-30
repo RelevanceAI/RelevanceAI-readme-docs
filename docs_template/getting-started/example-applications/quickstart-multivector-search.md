@@ -5,17 +5,13 @@ slug: "quickstart-multivector-search"
 hidden: false
 ---
 
-
 <figure>
 <img src="https://github.com/RelevanceAI/RelevanceAI-readme-docs/blob/v2.0.0/docs_template/_assets/RelevanceAI_vector_space.png?raw=true" width="650" alt="Vector Spaces" />
 <figcaption></figcaption>
 <figure>
 
 
-
 **Try it out in Colab:** [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/RelevanceAI/RelevanceAI-readme-docs/blob/v2.0.0/docs/getting-started/example-applications/_notebooks/RelevanceAI-ReadMe-Multi-Vector-Search.ipynb)
-
-
 
 ### What I Need
 * Project and API Key: Grab your Relevance AI project and API key by [signing up](https://cloud.relevance.ai/ )
@@ -37,7 +33,6 @@ After installation, we need to also set up an API client. If you are missing an 
 
 
 @@@ client_instantiation @@@
-
 
 ## Steps to perform multi-vector search
 
@@ -77,7 +72,6 @@ After finalizing the insert task, the client returns a link guiding you to a das
 <img src="https://github.com/RelevanceAI/RelevanceAI-readme-docs/blob/v2.0.0/docs_template/getting-started/example-applications/_assets/RelevanceAI_quickstart_multivector_search.png?raw=true" width="650" alt="Relevance AI Dashboard" />
 <figcaption>Relevance AI Dashboard</figcaption>
 <figure>
-
 
 
 ### 3. Search

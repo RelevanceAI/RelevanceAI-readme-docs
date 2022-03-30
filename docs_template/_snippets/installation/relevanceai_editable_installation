@@ -1,0 +1,3 @@
+shell
+git clone -b v<<RELEVANCEAI_SDK_VERSION>> https://github.com/RelevanceAI/RelevanceAI
+pip install -e .

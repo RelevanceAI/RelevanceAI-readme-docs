@@ -1,0 +1,20 @@
+python
+from jsonshower import show_json
+
+# This is in the same format as search results
+documents = [
+    {
+        "key": "This is awesome",
+        "value": "awesome",
+    },
+    {
+        "key": "Relevance AI",
+        "value": "AI",
+    }
+]
+
+show_json(
+    documents,
+    highlight_fields={"key": ["value"]}, 	# Fields to highlight
+    max_l_dist=0,                           # Parameter for adjusting length of fuzzy matching in backend
+)

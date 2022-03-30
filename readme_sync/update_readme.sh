@@ -64,9 +64,9 @@ fi
 
 CYAN "=== Rebuilding Readme docs $GIT_BRANCH_NAME ==="
 if $DEBUG_MODE; then
-	python readme_sync/build/build_docs.py  -d -p $PWD -pn $PIP_PACKAGE_NAME -v $GIT_BRANCH_NAME
+	python readme_sync/build/build_docs.py  -d -c -p $PWD -pn $PIP_PACKAGE_NAME -v $GIT_BRANCH_NAME
 else
-	python readme_sync/build/build_docs.py  -p $PWD -pn $PIP_PACKAGE_NAME -v $GIT_BRANCH_NAME
+	python readme_sync/build/build_docs.py -c -p $PWD -pn $PIP_PACKAGE_NAME -v $GIT_BRANCH_NAME
 fi
 
 CYAN "=== Syncing ReadMe version $GIT_BRANCH_NAME ==="

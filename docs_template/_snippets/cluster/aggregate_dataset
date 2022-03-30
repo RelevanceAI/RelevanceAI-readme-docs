@@ -1,0 +1,2 @@
+python RESULTS=results, CLUSTEROPS=clusterops, DATASET_ID=DATASET_ID, METRICS=metrics, GROUPBY=groupby
+<<RESULTS>> = <<CLUSTEROPS>>.aggregate(<<DATASET_ID>>, metrics=<<METRICS>>, groupby=<<GROUPBY>>)

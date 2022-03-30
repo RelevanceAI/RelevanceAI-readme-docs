@@ -313,7 +313,8 @@ class DocsConfig(Config):
         if select_fields:
             self.select_fields = select_fields
 
-        self.config = self.dir_to_dict(self.dir_path)
+        self.config = self._dir_to_dict(self.dir_path)
+        self.config["version"] = self.version
 
         with open(self.fpath, "w") as f:
             yaml.dump(self.config, f, default_flow_style=False, sort_keys=True)
@@ -323,32 +324,32 @@ class DocsConfig(Config):
 
         return self.config
 
-    def dict_to_dir(self, data: dict, path: Path):
-        """dict_to_dir expects data to be a dictionary with one top-level key."""
+    def _dict_to_dir(self, data: dict, path: Path):
+        """_dict_to_dir expects data to be a dictionary with one top-level key."""
         dest = Path.getcwd() / path
         if isinstance(data, dict):
             for k, v in data.items():
                 Path(dest / k).mkdir(parents=True, exist_ok=True)
-                self.dict_to_dir(v, Path / str(k))
+                self._dict_to_dir(v, Path / str(k))
         elif isinstance(data, list):
             for i in data:
                 if isinstance(i, dict):
-                    self.dict_to_dir(i, path)
+                    self._dict_to_dir(i, path)
                 else:
                     with open(Path(dest) / i, "a"):
                         Path(dest / i).touch()
         if isinstance(data, dict):
             return list(data.keys())[0]
 
-    def dir_to_dict(self, path: Path):
-        """dir_to_dict returns a dictionary filetree given a path."""
+    def _dir_to_dict(self, path: Path):
+        """_dir_to_dict returns a dictionary filetree given a path."""
         directory = {}
         for root, dirs, files in os.walk(path):
             dn = Path(root).name
             directory[dn] = []
             if dirs:
                 for d in dirs:
-                    directory[dn].append(self.dir_to_dict(path=Path(path) / d))
+                    directory[dn].append(self._dir_to_dict(path=Path(path) / d))
                 for f in files:
                     directory[dn].append(f)
             else:
@@ -430,14 +431,6 @@ class DocsConfig(Config):
                 if result:
                     for k, v in result.items():
                         category_detail[k] = v
-
-        # pprint(category_detail)
-        # def clean_dict(d, regex_filter):
-        #     for k, v in d.items():
-        #         if not re.match(regex_filter, k):
-        #             for p in v:
-        #                 if isinstance(p, dict):
-        #                     clean_dict(p, regex_filter)
 
         category_detail = self._clean_config(category_detail)
         docs_readme_config = {"categories": category_detail}

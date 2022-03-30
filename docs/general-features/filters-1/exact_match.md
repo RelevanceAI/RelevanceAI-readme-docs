@@ -53,7 +53,7 @@ This filter works with string values and only returns documents with a field val
 {
   "codes": [
     {
-      "code": "filter = [\n    {\n        \"field\": product_name,\n        \"filter_type\": exact_match,\n        \"condition\": ==,\n        \"condition_value\": Durian Leather 2 Seater Sofa\n    }\n]",
+      "code": "filter = [\n    {\n        \"field\": \"product_name\",\n        \"filter_type\": \"exact_match\",\n        \"condition\": \"==\",\n        \"condition_value\": \"Durian Leather 2 Seater Sofa\"\n    }\n]",
       "name": "Python (SDK)",
       "language": "python"
     }

@@ -15,39 +15,46 @@ We continue by explaining each aggregation and related examples.
 
 ### Average, Minimum and Maximum
 Included within our dataset is the field named **priceDetails.price** which describes the price of the property. It will be interesting to see the differences in the price of properties in terms of average, minimum and maximum which can be extracted using the three defined metrics as below:
-```python Python (SDK)
-#In general, the metrics field is structured as
-#{"name": ALIAS, "field": FIELD, "agg": TYPE-OF-AGG}
 
-avg_price_metric = {"name": 'avg_price', "field": 'priceDetails.price', "agg": 'avg'}
-max_price_metric = {"name": 'max_price', "field": 'priceDetails.price', "agg": 'max'}
-min_price_metric = {"name": 'min_price', "field": 'priceDetails.price', "agg": 'min'}
-```
-```python
-```
+[block:code]
+{
+  "codes": [
+    {
+      "code": "avg_price_metric = {\"name\": \"avg_price\", \"field\": \"priceDetails.price\", \"agg\": \"avg\"}\nmax_price_metric = {\"name\": \"max_price\", \"field\": \"priceDetails.price\", \"agg\": \"max\"}\nmin_price_metric = {\"name\": \"min_price\", \"field\": \"priceDetails.price\", \"agg\": \"min\"}",
+      "name": "Python (SDK)",
+      "language": "python"
+    }
+  ]
+}
+[/block]
+
+
+
 ### Sum
 Included within our dataset is the field named **propertyDetails.bathrooms** which describes the number of bathrooms in the property.  It will be interesting to understand number of bathrooms in the properties available in the market in a region (for instance to understand where to sell specific bathroom product) using the sum metric.
-```python Python (SDK)
-#In general, the metrics field is structured as
-#{"name": ALIAS, "field": FIELD, "agg": TYPE-OF-AGG}
 
-sum_bathroom_metric = {"name": 'bathroom_sum',
- "field": 'propertyDetails.bathrooms',
- "agg": 'sum'}
-```
-```python
-```
+[block:code]
+{
+  "codes": [
+    {
+      "code": "sum_bathroom_metric = {\"name\": \"bathroom_sum\", \"field\": \"propertyDetails.bathrooms\", \"agg\": \"sum\"}",
+      "name": "Python (SDK)",
+      "language": "python"
+    }
+  ]
+}
+[/block]
 ### Cardinality
 This type of aggregation orders the items based on unique values. Included within our dataset is the field named **propertyDetails.bathrooms** which describes the number of bathrooms in the property.
-```python Python (SDK)
-#In general, the metrics field is structured as
-#{"name": ALIAS, "field": FIELD, "agg": TYPE-OF-AGG}
 
-cardinality_suburbs_metric = {"name": 'bathroom_cardinality',
- "field": 'propertyDetails.bathrooms',
- "agg": 'cardinality'}
-```
-```python
-```
-
-
+[block:code]
+{
+  "codes": [
+    {
+      "code": "cardinality_suburbs_metric = {\"name\": \"num_suburbs\", \"field\": \"propertyDetails.suburb\", \"agg\": \"cardinality\"}",
+      "name": "Python (SDK)",
+      "language": "python"
+    }
+  ]
+}
+[/block]

@@ -53,7 +53,7 @@ This filter is to perform the filtering operators on a numeric value. For instan
 {
   "codes": [
     {
-      "code": "filter = [\n    {\n        \"field\": retail_price,\n        \"filter_type\": numeric,\n        \"condition\": >,\n        \"condition_value\": 5000\n    }\n]",
+      "code": "filter = [\n    {\n        \"field\": \"retail_price\",\n        \"filter_type\": \"numeric\",\n        \"condition\": \">\",\n        \"condition_value\": \"5000\"\n    }\n]",
       "name": "Python (SDK)",
       "language": "python"
     }
