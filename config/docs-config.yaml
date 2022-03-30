@@ -241,24 +241,29 @@ docs_template:
     - vectorhub_encoders_sentence_transformers
     - relevanceai_installation
   - cluster:
+    - cluster_vizops_distribution
     - fit_predict_update
     - clusterops_fit_predict_documents
     - list_furthest_from_center
     - cluster_aggregate_metrics
     - auto_cluster
     - clusterops_fit_predict_update
+    - cluster_vizops_custom
     - evaluate
     - insert_centroid_documents
     - cluster_aggregate
     - clusterops
     - subclustering
     - get_centroid_documents
+    - cluster_vizops
     - cluster_metadata
     - cluster_sample_results
     - list_closest_to_center
   - client:
     - client_dataset
     - client_instantiation
+  - sklearn:
+    - skew_variation
   - dataset:
     - dataset_send_to
     - upsert_documents
@@ -336,12 +341,13 @@ docs_template:
     - quickstart-clustering.md
     - quickstart-k-means.md
     - list-furthest-from-centroids.md
-    - clustering-analysis.md
   - _assets:
     - RelevanceAI_clustering.png
     - RelevanceAI_clustering_quickstart_kmeans_results.png
   - cluster-evaluation:
     - _notebooks:
+      - .ipynb_checkpoints:
+        - RelevanceAI-ReadMe-Cluster-Distribution-checkpoint.ipynb
       - RelevanceAI-ReadMe-Cluster-Metrics.ipynb
       - RelevanceAI-ReadMe-Cluster-Distribution.ipynb
     - cluster-evaluate.md

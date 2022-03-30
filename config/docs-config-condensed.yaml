@@ -8,14 +8,12 @@ categories:
     clustering:
     - cluster-aggregate
     - cluster-metadata
-    - clustering-analysis
     - custom-clustering
     - inserting-centroids
     - list-closest-to-centroids
     - list-furthest-from-centroids
     - quickstart-clustering
     - quickstart-k-means
-    - subclustering
   comparator:
     coming-soon-1: []
     embedding-comparator: []
@@ -146,4 +144,4 @@ categories:
     - hybrid-search
     - multi-vector-search
     - vector-search-prerequisites
-version: v2.0.0
+version: v1.4.5
