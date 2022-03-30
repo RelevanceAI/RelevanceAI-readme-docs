@@ -1,5 +1,7 @@
 #!/usr/bin/env python3
 
+import os
+import re
 from pathlib import Path
 import yaml
 from typing import Dict, List, Literal, Optional, Tuple, Union

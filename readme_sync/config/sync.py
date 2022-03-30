@@ -18,15 +18,6 @@ from readme_sync.config.config import ReadMeConfig, DocsConfig
 ROOT_PATH = Path(__file__).parent.resolve() / ".." / ".."
 
 
-def search_dict(k, d):
-    if k in d:
-        return d[k]
-    for v in d.values():
-        if isinstance(v, dict):
-            return search_dict(k, v)
-    return None
-
-
 def get_config_diff(config_1: Dict, config_2: Dict, fpath: Path) -> List[Path]:
     ddiff = DeepDiff(
         config_1,

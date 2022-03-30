@@ -121,6 +121,14 @@ class ReadMeConfig(Config):
             yaml.dump(config, f, default_flow_style=False, sort_keys=True)
         return config
 
+    def _search_dict(self, k, d):
+        if k in d:
+            return d[k]
+        for v in d.values():
+            if isinstance(v, dict):
+                return self._search_dict(k, v)
+        return None
+
     def create(
         self,
         title: str,
@@ -160,7 +168,7 @@ class ReadMeConfig(Config):
             The error code for docs with the "error" type
         """
 
-        result = search_dict(parent_slug, self.config)
+        result = self._search_dict(parent_slug, self.config)
         parent_doc_id = result["_id"]
         category_id = self.category_slugs[category_slug]
 
