@@ -29,12 +29,17 @@ Search via vector type X is possible only if the dataset includes data vectorize
 To make a search against vectors of type X, the query must be of the same type. So, if the plan is to use three models, we need three query vectors corresponding to the three models/vectorizers. Sample code showing how to use the three vectorizer endpoints is provided below.  Keep it in mind that, first RelevanceAI must be installed as below:
 
 
-```bash Bash
-# remove `!` if running the line in a terminal
-!pip install -U RelevanceAI[notebook]==1.4.5
-```
-```bash
-```
+[block:code]
+{
+  "codes": [
+    {
+      "code": "# remove `!` if running the line in a terminal\n!pip install -U RelevanceAI[notebook]==2.0.0",
+      "name": "Bash",
+      "language": "bash"
+    }
+  ]
+}
+[/block]
 
 And calling three different vectorizers, text encoding, multi-text encoding, and text image encoding.
 

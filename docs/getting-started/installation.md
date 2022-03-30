@@ -12,16 +12,21 @@ hidden: false
 
 The easiest way to install our Python SDK is to run:
 
-```bash Bash
-# remove `!` if running the line in a terminal
-!pip install -U RelevanceAI[notebook]==1.4.5
-```
-```bash
-```
+[block:code]
+{
+  "codes": [
+    {
+      "code": "# remove `!` if running the line in a terminal\n!pip install -U RelevanceAI[notebook]==2.0.0",
+      "name": "Bash",
+      "language": "bash"
+    }
+  ]
+}
+[/block]
 
 This installation provides you with what you need to connect to RelevanceAI's API, read/write data, make different searches, etc.
 
-**The SDK Reference** can be found at https://relevanceai.readthedocs.io/en/v1.4.5/
+**The SDK Reference** can be found at https://relevanceai.readthedocs.io/en/v2.0.0/
 
 ### Installation from source
 
@@ -29,7 +34,7 @@ This will install the latest version of our Python SDK:
 
 
 ```bash Bash
-!pip install git+https://github.com/RelevanceAI/RelevanceAI@v1.4.5
+!pip install git+https://github.com/RelevanceAI/RelevanceAI@v2.0.0
 ```
 ```bash
 ```
@@ -39,7 +44,7 @@ For editable installation:
 
 
 ```bash Bash
-git clone -b v1.4.5 https://github.com/RelevanceAI/RelevanceAI
+git clone -b v2.0.0 https://github.com/RelevanceAI/RelevanceAI
 pip install -e .
 ```
 ```bash
@@ -54,21 +59,21 @@ pip install -e .
 After installation is complete, we need to instantiate a Relevance AI client object which requires you to sign up at https://cloud.relevance.ai/
 
 
-```python Python (SDK)
-from relevanceai import Client
-
-"""
-You can sign up/login and find your credentials here: https://cloud.relevance.ai/sdk/api
-Once you have signed up, click on the value under `Activation token` and paste it here
-"""
-client = Client()
-```
-```python
-```
+[block:code]
+{
+  "codes": [
+    {
+      "code": "from relevanceai import Client\n\n\"\"\"\nYou can sign up/login and find your credentials here: https://cloud.relevance.ai/sdk/api\nOnce you have signed up, click on the value under `Activation token` and paste it here\n\"\"\"\nclient = Client()",
+      "name": "Python (SDK)",
+      "language": "python"
+    }
+  ]
+}
+[/block]
 
 
 <figure>
-<img src="https://github.com/RelevanceAI/RelevanceAI-readme-docs/blob/v1.4.5/docs_template/_assets/RelevanceAI_auth_token_details.png?raw=true" alt="Get your Auth Details" />
+<img src="https://github.com/RelevanceAI/RelevanceAI-readme-docs/blob/v2.0.0/docs_template/_assets/RelevanceAI_auth_token_details.png?raw=true" alt="Get your Auth Details" />
 <figcaption>Get your Auth Details</figcaption>
 <figure>
 

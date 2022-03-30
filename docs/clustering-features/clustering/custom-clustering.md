@@ -11,11 +11,11 @@ Relevance AI supports the integration of custom clustering algorithms. The custo
 ## What you will need
 You need to have a dataset under your account in Relevance AI.
 
-[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/RelevanceAI/RelevanceAI-readme-docs/blob/v1.4.5/docs/clustering-features/clustering/_notebooks/RelevanceAI-ReadMe-Custom-Clustering.ipynb)
+[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/RelevanceAI/RelevanceAI-readme-docs/blob/v2.0.0/docs/clustering-features/clustering/_notebooks/RelevanceAI-ReadMe-Custom-Clustering.ipynb)
 
 ## Code Example
 
-**Try it out in Colab:** [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/RelevanceAI/RelevanceAI-readme-docs/blob/v1.4.5/docs/clustering-features/clustering/_notebooks/RelevanceAI-ReadMe-Custom-Clustering.ipynb)
+**Try it out in Colab:** [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/RelevanceAI/RelevanceAI-readme-docs/blob/v2.0.0/docs/clustering-features/clustering/_notebooks/RelevanceAI-ReadMe-Custom-Clustering.ipynb)
 
 The following code shows
 1. an example of a custom clustering algorithm that chooses randomly between Cluster 0 and Cluster 1
@@ -23,39 +23,15 @@ The following code shows
 3. how to update the dataset with the results
 
 
-```python Python (SDK)
-ds = client.Dataset('faiss_kmeans_clustering')
 
-# Inherit from ClusterBase to keep all the goodies!
-import numpy as np
-from faiss import Kmeans
-from relevanceai import CentroidClusterBase
-
-class FaissKMeans(CentroidClusterBase):
-    def __init__(self, model):
-        self.model = model
-
-    def fit_predict(self, vectors):
-        vectors = np.array(vectors).astype("float32")
-        self.model.train(vectors)
-        cluster_labels = self.model.assign(vectors)[1]
-        return cluster_labels
-
-    def metadata(self):
-        return self.model.__dict__
-
-    def get_centers(self):
-        return self.model.centroids
-
-n_clusters = 10
-d = 512
-alias = f"faiss-kmeans_{n_clusters}"
-vector_fields = ['product_title_clip_vector_']
-
-model = FaissKMeans(model=Kmeans(d=d, k=n_clusters))
-clusterer = client.ClusterOps(model=model, alias=alias)
-clusterer.fit_predict_update(dataset=df, vector_fields=vector_fields)
-```
-```python
-```
+{
+  "codes": [
+    {
+      "code": "# Inherit from ClusterBase to keep all the goodies!\nimport numpy as np\nfrom faiss import Kmeans\nfrom relevanceai import CentroidClusterBase\n\nclass FaissKMeans(CentroidClusterBase):\n    def __init__(self, model):\n        self.model = model\n\n    def fit_predict(self, vectors):\n        vectors = np.array(vectors).astype(\"float32\")\n        self.model.train(vectors)\n        cluster_labels = self.model.assign(vectors)[1]\n        return cluster_labels\n\n    def metadata(self):\n        return self.model.__dict__\n\n    def get_centers(self):\n        return self.model.centroids\n\nn_clusters = 10\nd = 512\nalias = f\"faiss-kmeans_{n_clusters}\"\nvector_fields = ['product_title_clip_vector_']\n\nmodel = FaissKMeans(model=Kmeans(d=d, k=n_clusters))\nclusterer = client.ClusterOps(model=model, alias=alias)\nclusterer.fit_predict_update(dataset=df, vector_fields=vector_fields)",
+      "name": "Python (SDK)",
+      "language": "python"
+    }
+  ]
+}
+[/block]
 

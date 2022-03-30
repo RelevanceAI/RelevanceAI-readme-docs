@@ -7,7 +7,7 @@ createdAt: "2021-11-02T00:37:51.061Z"
 updatedAt: "2022-01-17T02:31:59.061Z"
 ---
 
-[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/RelevanceAI/RelevanceAI-readme-docs/blob/v1.4.5/docs/general-features/creating-a-dataset/_notebooks/RelevanceAI_ReadMe_Creating_A_Dataset.ipynb)
+[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/RelevanceAI/RelevanceAI-readme-docs/blob/v2.0.0/docs/general-features/creating-a-dataset/_notebooks/RelevanceAI_ReadMe_Creating_A_Dataset.ipynb)
 
 ## Inserting data
 In general data insertion to Relevance AI can be done through either of the following options:
@@ -22,22 +22,33 @@ To upload multiple documents to RelevanceAI, you can use the **insert_documents*
 ### Inserting the data in one go
 
 
-```python Python (SDK)
-ds = client.Dataset("quickstart")
-ds.insert_documents(documents)
-```
-```python
-```
+[block:code]
+{
+  "codes": [
+    {
+      "code": "ds = client.Dataset(\"quickstart\")\nds.insert_documents(documents)",
+      "name": "Python (SDK)",
+      "language": "python"
+    }
+  ]
+}
+[/block]
 
 ### Updating documents
 
 To only update specific documents, use `upsert_documents` as shown in the example below:
 
-```python Python (SDK)
-ds.upsert_documents(documents=[{"_id": "example_id", "value": 3}])
-```
-```python
-```
+[block:code]
+{
+  "codes": [
+    {
+      "code": "ds.upsert_documents(documents=[{\"_id\": \"example_id\", \"value\": 3}])",
+      "name": "Python (SDK)",
+      "language": "python"
+    }
+  ]
+}
+[/block]
 
 > 🚧 When To Use Upsert Vs Insert
 >
@@ -58,11 +69,17 @@ For instance, in the sample code below, we use a dataset called `ecommerce_datas
 You can see the list of the available list of models for vectorising here using [Vectorhub](https://github.com/RelevanceAI/vectorhub) or feel free to bring your own model(s).
 
 
-```python Python (SDK)
-ds["sentence"].apply(lambda x: model.encode(x), output_field="sentence_vector")
-```
-```python
-```
+[block:code]
+{
+  "codes": [
+    {
+      "code": "ds[\"sentence\"].apply(lambda x: model.encode(x), output_field=\"sentence_vector\")",
+      "name": "Python (SDK)",
+      "language": "python"
+    }
+  ]
+}
+[/block]
 
 
 

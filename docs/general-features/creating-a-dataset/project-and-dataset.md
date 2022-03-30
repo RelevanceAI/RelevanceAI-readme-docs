@@ -12,11 +12,11 @@ To be able to conduct vector experiments using Relevance AI, you need to sign up
 
 After uploading a dataset to your account in Relevance AI, you can preview your data in the dashboard https://cloud.relevance.ai under Dataset. Note that if you just started, your account will be empty!
 
-Open an example in Colab: [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/RelevanceAI/RelevanceAI-readme-docs/blob/v1.4.5/docs/general-features/creating-a-dataset/_notebooks/RelevanceAI_ReadMe_Creating_A_Dataset.ipynb)
+Open an example in Colab: [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/RelevanceAI/RelevanceAI-readme-docs/blob/v2.0.0/docs/general-features/creating-a-dataset/_notebooks/RelevanceAI_ReadMe_Creating_A_Dataset.ipynb)
 
 
 <figure>
-<img src="https://github.com/RelevanceAI/RelevanceAI-readme-docs/blob/v1.4.5/docs_template/_assets/RelevanceAI_dataset_dashboard.png?raw=true" alt="See your dataset in the dashboard" />
+<img src="https://github.com/RelevanceAI/RelevanceAI-readme-docs/blob/v2.0.0/docs_template/_assets/RelevanceAI_dataset_dashboard.png?raw=true" alt="See your dataset in the dashboard" />
 <figcaption>See your dataset in the dashboard</figcaption>
 <figure>
 
@@ -33,34 +33,44 @@ Some basic actions to deal with datasets are:
 
 You can either use the dashboard to take these actions or employ Relevance AI Python SDK. For the Python SDK, you need to install Relevance AI and initiate a client as shown in the two code snippets below:
 
-```bash Bash
-# remove `!` if running the line in a terminal
-!pip install -U RelevanceAI[notebook]==1.4.5
-```
-```bash
-```
+[block:code]
+{
+  "codes": [
+    {
+      "code": "# remove `!` if running the line in a terminal\n!pip install -U RelevanceAI[notebook]==2.0.0",
+      "name": "Bash",
+      "language": "bash"
+    }
+  ]
+}
+[/block]
 
-```python Python (SDK)
-from relevanceai import Client
-
-"""
-You can sign up/login and find your credentials here: https://cloud.relevance.ai/sdk/api
-Once you have signed up, click on the value under `Activation token` and paste it here
-"""
-client = Client()
-```
-```python
-```
+[block:code]
+{
+  "codes": [
+    {
+      "code": "from relevanceai import Client\n\n\"\"\"\nYou can sign up/login and find your credentials here: https://cloud.relevance.ai/sdk/api\nOnce you have signed up, click on the value under `Activation token` and paste it here\n\"\"\"\nclient = Client()",
+      "name": "Python (SDK)",
+      "language": "python"
+    }
+  ]
+}
+[/block]
 
 ### Creating a dataset
 To create a new empty dataset pass the name under which you wish to save the dataset to the `create` function as shown below. In this example, we have used `ecommerce-sample-dataset` as the name.
 
-```python Python (SDK)
-ds = client.Dataset("ecommerce-sample-dataset")
-ds.insert_documents(documents)
-```
-```python
-```
+[block:code]
+{
+  "codes": [
+    {
+      "code": "ds = client.Dataset(\"ecommerce-sample-dataset\")\nds.insert_documents(documents)",
+      "name": "Python (SDK)",
+      "language": "python"
+    }
+  ]
+}
+[/block]
 
 See [Inserting and updating documents](doc:inserting-data) for more details on how to insert/upload documents into a dataset.
 
@@ -76,37 +86,49 @@ See [Inserting and updating documents](doc:inserting-data) for more details on h
 
 You can see a list of all datasets you have uploaded to your account in the dashboard.
 <figure>
-<img src="https://github.com/RelevanceAI/RelevanceAI-readme-docs/blob/v1.4.5/docs_template/general-features/creating-a-dataset/_assets/dataset-list-view.png?raw=true" alt="Datasets List View" />
+<img src="https://github.com/RelevanceAI/RelevanceAI-readme-docs/blob/v2.0.0/docs_template/general-features/creating-a-dataset/_assets/dataset-list-view.png?raw=true" alt="Datasets List View" />
 <figcaption>List of datasets in the dashboard</figcaption>
 <figure>
 
 
 Alternatively, you can use the list endpoint under Python SDK as shown below:
 
-```python Python (SDK)
-client.list_datasets()
-```
-```python
-```
+[block:code]
+{
+  "codes": [
+    {
+      "code": "client.list_datasets()",
+      "name": "Python (SDK)",
+      "language": "python"
+    }
+  ]
+}
+[/block]
 
 ### Monitoring a specific dataset
 
 RelevanceAI's dashboard at https://cloud.relevance.ai is the most straightforward place to monitor your data.
 <figure>
-<img src="https://github.com/RelevanceAI/RelevanceAI-readme-docs/blob/v1.4.5/docs_template/general-features/creating-a-dataset/_assets/monitor-dataset.png?raw=true" width="1263" alt="vector_health.png" />
+<img src="https://github.com/RelevanceAI/RelevanceAI-readme-docs/blob/v2.0.0/docs_template/general-features/creating-a-dataset/_assets/monitor-dataset.png?raw=true" width="1263" alt="vector_health.png" />
 
 <figcaption>Monitor your vector health</figcaption>
 <figure>
 Alternatively, you can monitor the health of a dataset using the command below which returns the count of total missing and existing fields in the data points in the named dataset.
 
-```python Python (SDK)
-ds.health
-```
-```python
-```
+[block:code]
+{
+  "codes": [
+    {
+      "code": "ds.health",
+      "name": "Python (SDK)",
+      "language": "python"
+    }
+  ]
+}
+[/block]
 
 <figure>
-<img src="https://github.com/RelevanceAI/RelevanceAI-readme-docs/blob/v1.4.5/docs_template/general-features/creating-a-dataset/_assets/health.png?raw=true" width="607" alt="Dataset health".png" />
+<img src="https://github.com/RelevanceAI/RelevanceAI-readme-docs/blob/v2.0.0/docs_template/general-features/creating-a-dataset/_assets/health.png?raw=true" width="607" alt="Dataset health".png" />
 <figcaption>Monitoring dataset health</figcaption>
 <figure>
 
@@ -114,9 +136,15 @@ ds.health
 
 Deleting an existing dataset can be done on the dashboard using the delete option availabal for each dataset. Or through the Python SDK:
 
-```python Python (SDK)
-client.delete_dataset(dataset_id="ecommerce-sample-dataset")
-```
-```python
-```
+[block:code]
+{
+  "codes": [
+    {
+      "code": "client.delete_dataset(dataset_id=\"ecommerce-sample-dataset\")",
+      "name": "Python (SDK)",
+      "language": "python"
+    }
+  ]
+}
+[/block]
 

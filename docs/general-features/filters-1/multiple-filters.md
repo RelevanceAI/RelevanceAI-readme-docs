@@ -6,7 +6,7 @@ createdAt: "2021-11-25T22:31:19.531Z"
 updatedAt: "2022-01-19T05:17:17.089Z"
 ---
 <figure>
-<img src="https://github.com/RelevanceAI/RelevanceAI-readme-docs/blob/v1.4.5/docs_template/general-features/_assets/multiple-filters.png?raw=true" width="1009" alt="combined filters.png" />
+<img src="https://github.com/RelevanceAI/RelevanceAI-readme-docs/blob/v2.0.0/docs_template/general-features/_assets/multiple-filters.png?raw=true" width="1009" alt="combined filters.png" />
 <figcaption>Filtering results when using multiple filters: categories, contains, and date.</figcaption>
 <figure>
 
@@ -17,62 +17,64 @@ It is possible to combine multiple filters. For instance, the sample code below 
 * by either Lapguard or 4D brand.
 A screenshot of the results can be seen on top.
 
-```bash Bash
-# remove `!` if running the line in a terminal
-!pip install -U RelevanceAI[notebook]==1.4.5
-```
-```bash
-```
-
-```python Python (SDK)
-from relevanceai import Client
-
-"""
-You can sign up/login and find your credentials here: https://cloud.relevance.ai/sdk/api
-Once you have signed up, click on the value under `Activation token` and paste it here
-"""
-client = Client()
-```
-```python
-```
-
-```python Python (SDK)
-DATASET_ID = "ecommerce-sample-dataset"
-ds = client.Dataset(DATASET_ID)
-```
-```python
-```
-
-```python Python (SDK)
-filter = [
+[block:code]
+{
+  "codes": [
     {
-        "field": description,
-        "filter_type" : contains,
-        "condition": ==,
-        "condition_value": Lenovo
-    },
-    {
-        "field" : brand,
-        "filter_type" : categories,
-        "condition": ==,
-        "condition_value": ['Lapguard', '4D']
-    },
-    {
-        "field" : "insert_date_",
-        "filter_type" : date,
-        "condition": >=,
-        "condition_value": 2020-01-01
+      "code": "# remove `!` if running the line in a terminal\n!pip install -U RelevanceAI[notebook]==2.0.0",
+      "name": "Bash",
+      "language": "bash"
     }
-]
-```
-```python
-```
+  ]
+}
+[/block]
 
-```python Python (SDK)
-### TODO: update to match the latest SDK
-filtered_data = ds.get_where(filter)
-```
-```python
-```
+[block:code]
+{
+  "codes": [
+    {
+      "code": "from relevanceai import Client\n\n\"\"\"\nYou can sign up/login and find your credentials here: https://cloud.relevance.ai/sdk/api\nOnce you have signed up, click on the value under `Activation token` and paste it here\n\"\"\"\nclient = Client()",
+      "name": "Python (SDK)",
+      "language": "python"
+    }
+  ]
+}
+[/block]
+
+[block:code]
+{
+  "codes": [
+    {
+      "code": "DATASET_ID = \"ecommerce-sample-dataset\"\nds = client.Dataset(DATASET_ID)",
+      "name": "Python (SDK)",
+      "language": "python"
+    }
+  ]
+}
+[/block]
+
+[block:code]
+{
+  "codes": [
+    {
+      "code": "filter = [\n    {\n        \"field\": description,\n        \"filter_type\" : contains,\n        \"condition\": ==,\n        \"condition_value\": Lenovo\n    },\n    {\n        \"field\" : brand,\n        \"filter_type\" : categories,\n        \"condition\": ==,\n        \"condition_value\": ['Lapguard', '4D']\n    },\n    {\n        \"field\" : \"insert_date_\",\n        \"filter_type\" : date,\n        \"condition\": >=,\n        \"condition_value\": 2020-01-01\n    }\n]",
+      "name": "Python (SDK)",
+      "language": "python"
+    }
+  ]
+}
+[/block]
+
+[block:code]
+{
+  "codes": [
+    {
+      "code": "### TODO: update to match the latest SDK\nfiltered_data = ds.get_where(filter)",
+      "name": "Python (SDK)",
+      "language": "python"
+    }
+  ]
+}
+[/block]
 
 

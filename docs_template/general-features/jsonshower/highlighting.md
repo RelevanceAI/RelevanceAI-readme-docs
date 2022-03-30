@@ -34,6 +34,6 @@ show_json(
 ```
 After running this, you should see the following in your Jupyter Notebook:
 <figure>
-<img src="https://github.com/RelevanceAI/RelevanceAI-readme-docs/blob/v1.4.5/docs_template/general-features/_assets/highlighting.png?raw=true" width="183" alt="highlighting.png" />
+<img src="https://github.com/RelevanceAI/RelevanceAI-readme-docs/blob/v2.0.0/docs_template/general-features/_assets/highlighting.png?raw=true" width="183" alt="highlighting.png" />
 <figcaption>Highlight Output</figcaption>
 <figure>

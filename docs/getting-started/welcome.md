@@ -12,76 +12,85 @@ Relevance AI's ultimate goal is to assist developers to experiment, build and sh
 
 
 <figure>
-<img src="https://github.com/RelevanceAI/RelevanceAI-readme-docs/blob/v1.4.5/docs_template/_assets/RelevanceAI_DS_Workflow.png?raw=true"   alt="Relevance AI DS Workflow" />
+<img src="https://github.com/RelevanceAI/RelevanceAI-readme-docs/blob/v2.0.0/docs_template/_assets/RelevanceAI_DS_Workflow.png?raw=true"   alt="Relevance AI DS Workflow" />
 <figcaption>How Relevance AI helps with the data science workflow</figcaption>
 <figure>
 
 
 ## In 5 lines of code, get a shareable dashboard for experiments insight!
 
-Run this Quickstart in Colab: [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/RelevanceAI/RelevanceAI-readme-docs/blob/v1.4.5/docs/getting-started/_notebooks/Intro_to_Relevance_AI.ipynb)
+Run this Quickstart in Colab: [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/RelevanceAI/RelevanceAI-readme-docs/blob/v2.0.0/docs/getting-started/_notebooks/Intro_to_Relevance_AI.ipynb)
 
 ### 1. Set up Relevance AI
 
-```bash Bash
-# remove `!` if running the line in a terminal
-!pip install -U RelevanceAI[notebook]==1.4.5
-```
-```bash
-```
+[block:code]
+{
+  "codes": [
+    {
+      "code": "# remove `!` if running the line in a terminal\n!pip install -U RelevanceAI[notebook]==2.0.0",
+      "name": "Bash",
+      "language": "bash"
+    }
+  ]
+}
+[/block]
 
 
-```python Python (SDK)
-from relevanceai import Client
-
-"""
-You can sign up/login and find your credentials here: https://cloud.relevance.ai/sdk/api
-Once you have signed up, click on the value under `Activation token` and paste it here
-"""
-client = Client()
-```
-```python
-```
+[block:code]
+{
+  "codes": [
+    {
+      "code": "from relevanceai import Client\n\n\"\"\"\nYou can sign up/login and find your credentials here: https://cloud.relevance.ai/sdk/api\nOnce you have signed up, click on the value under `Activation token` and paste it here\n\"\"\"\nclient = Client()",
+      "name": "Python (SDK)",
+      "language": "python"
+    }
+  ]
+}
+[/block]
 
 ### 2. Create a dataset with vectors
 
 
-```python Python (SDK)
-documents = [
-	{"_id": "1", "example_vector_": [0.1, 0.1, 0.1], "data": "Documentation"},
-	{"_id": "2", "example_vector_": [0.2, 0.2, 0.2], "data": "Best document!"},
-	{"_id": "3", "example_vector_": [0.3, 0.3, 0.3], "data": "Document example"},
-	{"_id": "5", "example_vector_": [0.4, 0.4, 0.4], "data": "This is a doc"},
-	{"_id": "4", "example_vector_": [0.5, 0.5, 0.5], "data": "This is another doc"},
-]
 
-ds = client.Dataset("quickstart")
-ds.insert_documents(documents)
-```
-```python
-```
+{
+  "codes": [
+    {
+      "code": "ds = client.Dataset(\"quickstart\")\nds.insert_documents(documents)",
+      "name": "Python (SDK)",
+      "language": "python"
+    }
+  ]
+}
+[/block]
 
 
 ### 3. Clustering
 
-```python Python (SDK)
-clusterer = ds.auto_cluster("kmeans_2", ["example_vector_"])
-```
-```python
-```
+[block:code]
+{
+  "codes": [
+    {
+      "code": "clusterer = ds.auto_cluster(\"kmeans_2\", [\"example_vector_\"])",
+      "name": "Python (SDK)",
+      "language": "python"
+    }
+  ]
+}
+[/block]
 
 ### 4. Vector Search
 
-```python Python (SDK)
-results = ds.vector_search(
-    multivector_query=[
-		{"vector": [0.2, 0.2, 0.2], "fields": ["example_vector"]}
-	],
-    page_size=5
-)
-```
-```python
-```
+[block:code]
+{
+  "codes": [
+    {
+      "code": "results = ds.vector_search(\n    multivector_query=[\n\t\t{\"vector\": [0.2, 0.2, 0.2], \"fields\": [\"example_vector\"]}\n\t],\n    page_size=5\n)",
+      "name": "Python (SDK)",
+      "language": "python"
+    }
+  ]
+}
+[/block]
 
 
 

@@ -35,35 +35,45 @@ Vectorizing under Relevance AI's platform requires three steps:
 
  Keep it in mind that, first RelevanceAI must be installed and a client object must be instantiated:
 
-```bash Bash
-# remove `!` if running the line in a terminal
-!pip install -U RelevanceAI[notebook]==1.4.5
-```
-```bash
-```
+[block:code]
+{
+  "codes": [
+    {
+      "code": "# remove `!` if running the line in a terminal\n!pip install -U RelevanceAI[notebook]==2.0.0",
+      "name": "Bash",
+      "language": "bash"
+    }
+  ]
+}
+[/block]
 
-```python Python (SDK)
-from relevanceai import Client
-
-"""
-You can sign up/login and find your credentials here: https://cloud.relevance.ai/sdk/api
-Once you have signed up, click on the value under `Activation token` and paste it here
-"""
-client = Client()
-```
-```python
-```
+[block:code]
+{
+  "codes": [
+    {
+      "code": "from relevanceai import Client\n\n\"\"\"\nYou can sign up/login and find your credentials here: https://cloud.relevance.ai/sdk/api\nOnce you have signed up, click on the value under `Activation token` and paste it here\n\"\"\"\nclient = Client()",
+      "name": "Python (SDK)",
+      "language": "python"
+    }
+  ]
+}
+[/block]
 
 See the guide on [How to vectorize](doc:vectorize-text) to learn how to define different vectorizers. Here, we call the encoder/vectorizer `enc`.
 
 And vectorizing your text query.
 
-```python Python (SDK)
-query = "white sneakers"
-query_vec_txt = enc.encode(query)
-```
-```python
-```
+[block:code]
+{
+  "codes": [
+    {
+      "code": "query = \"white sneakers\"\nquery_vec_txt = enc.encode(query)",
+      "name": "Python (SDK)",
+      "language": "python"
+    }
+  ]
+}
+[/block]
 
 ### Step 3. Vector search
 As it was mentioned earlier, Relevance AI has provided you with a variety of vector search endpoints with different use-cases; please see guide pages such as [Better text Search](https://docs.relevance.ai/docs/better-text-search) for more information on each search endpoint.
@@ -71,33 +81,41 @@ As it was mentioned earlier, Relevance AI has provided you with a variety of vec
 #### 3.2. Vector search against multiple fields
 Another great sample of multivector search in the Relevance AI platform is how multiple vector fields can be used in search, with possibly different importance through weighing. In the example below, we are looking for `white sneakers` in title and description vector fields in an ecommerce dataset. As can be seen the more important field can be identified with a larger weight under the `fields` argument.
 
-```python Python (SDK)
-# Create a multivector query
-multivector_query=[
-	{
-	"vector": query_vec_txt,
-	"fields": {""title_vector_"":0.6, ""description_vector_"":0.3}},
-	},
-	]
-```
-```python
-```
+[block:code]
+{
+  "codes": [
+    {
+      "code": "# Create a multivector query\nmultivector_query=[\n\t{\n\t\"vector\": query_vec_txt,\n\t\"fields\": {\"\"title_vector_\"\":0.6, \"\"description_vector_\"\":0.3}},\n\t},\n\t]",
+      "name": "Python (SDK)",
+      "language": "python"
+    }
+  ]
+}
+[/block]
 
-```python Python (SDK)
-DATASET_ID = "ecommerce-sample-dataset"
-ds = client.Dataset(DATASET_ID)
-```
-```python
-```
+[block:code]
+{
+  "codes": [
+    {
+      "code": "DATASET_ID = \"ecommerce-sample-dataset\"\nds = client.Dataset(DATASET_ID)",
+      "name": "Python (SDK)",
+      "language": "python"
+    }
+  ]
+}
+[/block]
 
-```python Python (SDK)
-results = ds.vector_search(
-    multivector_query=multivector_query,
-    page_size=5
-)
-```
-```python
-```
+[block:code]
+{
+  "codes": [
+    {
+      "code": "results = ds.vector_search(\n    multivector_query=multivector_query,\n    page_size=5\n)",
+      "name": "Python (SDK)",
+      "language": "python"
+    }
+  ]
+}
+[/block]
 
 **Note**: Another great sample of multivector search in the Relevance AI platform is how endpoints such as `advanced_multistep_chunk` combine normal and chunked vectors. For instance, consider many long descriptions on different items where each one includes on average 8 sentences. Only one-tenth of the entries are on footwear and half of the sentences are about material, with a few on leather. `None` related entries can be filtered out via vector search. Then if descriptions are broken into 8 chunks (corresponding to the 8 sentences) a more fine-grained search on leather shoes is possible using [advanced_multistep_chunk](https://docs.relevance.ai/docs/fine-grained-search-search-on-chunks-of-text-data-2) search.
 

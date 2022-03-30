@@ -6,7 +6,7 @@ createdAt: "2021-11-25T22:33:06.798Z"
 updatedAt: "2022-01-19T05:12:49.766Z"
 ---
 <figure>
-<img src="https://github.com/RelevanceAI/RelevanceAI-readme-docs/blob/v1.4.5/docs_template/general-features/_assets/combine.png?raw=true" width="1014" alt="filter+vectors.png" />
+<img src="https://github.com/RelevanceAI/RelevanceAI-readme-docs/blob/v2.0.0/docs_template/general-features/_assets/combine.png?raw=true" width="1014" alt="filter+vectors.png" />
 <figcaption>Including filters in a vector search.</figcaption>
 <figure>
 ## Including filters in vector search
@@ -20,73 +20,87 @@ Note that the code below needs
 
 Please refer to a full guide on how to [create and upload a database](doc:creating-a-dataset) and how to use vectorizers to update a dataset with vectors at [How to vectorize](doc:vectorize-text).
 
-```bash Bash
-# remove `!` if running the line in a terminal
-!pip install -U RelevanceAI[notebook]==1.4.5
-```
-```bash
-```
-
-```python Python (SDK)
-from relevanceai import Client
-
-"""
-You can sign up/login and find your credentials here: https://cloud.relevance.ai/sdk/api
-Once you have signed up, click on the value under `Activation token` and paste it here
-"""
-client = Client()
-```
-```python
-```
-
-```python Python (SDK)
-DATASET_ID = "ecommerce-sample-dataset"
-ds = client.Dataset(DATASET_ID)
-```
-```python
-```
-
-```python Python (SDK)
-query = "white sneakers"
-query_vec_txt = "enc_imagetext".encode(query)
-```
-```python
-```
-
-```python Python (SDK)
-filter = [
+[block:code]
+{
+  "codes": [
     {
-        "field" : "brand",
-        "filter_type" : "contains",
-        "condition": ",
-        "condition_value": "Asian"
-    },
-    {
-        "field" : "insert_date_",
-        "filter_type" : "date",
-        "condition": ">,
-        "condition_value": "2020-07-01"
+      "code": "# remove `!` if running the line in a terminal\n!pip install -U RelevanceAI[notebook]==2.0.0",
+      "name": "Bash",
+      "language": "bash"
     }
-]
-```
-```python
-```
+  ]
+}
+[/block]
 
-```python Python (SDK)
-multivector_query=[
-        { "vector": "query_vec_txt", "fields": "descriptiontextmulti_vector_"}
-    ]
-```
-```python
-```
+[block:code]
+{
+  "codes": [
+    {
+      "code": "from relevanceai import Client\n\n\"\"\"\nYou can sign up/login and find your credentials here: https://cloud.relevance.ai/sdk/api\nOnce you have signed up, click on the value under `Activation token` and paste it here\n\"\"\"\nclient = Client()",
+      "name": "Python (SDK)",
+      "language": "python"
+    }
+  ]
+}
+[/block]
 
-```python Python (SDK)
-results = ds.vector_search(
-    multivector_query=multivector_query,
-    page_size=5,
-    filter=filter
-)
-```
-```python
-```
+[block:code]
+{
+  "codes": [
+    {
+      "code": "DATASET_ID = \"ecommerce-sample-dataset\"\nds = client.Dataset(DATASET_ID)",
+      "name": "Python (SDK)",
+      "language": "python"
+    }
+  ]
+}
+[/block]
+
+[block:code]
+{
+  "codes": [
+    {
+      "code": "query = \"white sneakers\"\nquery_vec_txt = \"enc_imagetext\".encode(query)",
+      "name": "Python (SDK)",
+      "language": "python"
+    }
+  ]
+}
+[/block]
+
+[block:code]
+{
+  "codes": [
+    {
+      "code": "filter = [\n    {\n        \"field\" : \"brand\",\n        \"filter_type\" : \"contains\",\n        \"condition\": \",\n        \"condition_value\": \"Asian\"\n    },\n    {\n        \"field\" : \"insert_date_\",\n        \"filter_type\" : \"date\",\n        \"condition\": \">,\n        \"condition_value\": \"2020-07-01\"\n    }\n]",
+      "name": "Python (SDK)",
+      "language": "python"
+    }
+  ]
+}
+[/block]
+
+[block:code]
+{
+  "codes": [
+    {
+      "code": "multivector_query=[\n        { \"vector\": \"query_vec_txt\", \"fields\": \"descriptiontextmulti_vector_\"}\n    ]",
+      "name": "Python (SDK)",
+      "language": "python"
+    }
+  ]
+}
+[/block]
+
+[block:code]
+{
+  "codes": [
+    {
+      "code": "results = ds.vector_search(\n    multivector_query=multivector_query,\n    page_size=5,\n    filter=filter\n)",
+      "name": "Python (SDK)",
+      "language": "python"
+    }
+  ]
+}
+[/block]
 

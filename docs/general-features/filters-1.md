@@ -6,7 +6,7 @@ createdAt: "2021-11-21T07:05:21.922Z"
 updatedAt: "2022-01-19T04:01:08.086Z"
 ---
 <figure>
-<img src="https://github.com/RelevanceAI/RelevanceAI-readme-docs/blob/v1.4.5/docs_template/general-features/_assets/filters-1.png?raw=true" width="1009" alt="604547f-combined_filters.png" />
+<img src="https://github.com/RelevanceAI/RelevanceAI-readme-docs/blob/v2.0.0/docs_template/general-features/_assets/filters-1.png?raw=true" width="1009" alt="604547f-combined_filters.png" />
 <figcaption>Example output of filtering Lenovo products all inserted into the database after 01/01/2020</figcaption>
 <figure>
 
@@ -29,18 +29,17 @@ Filters at Relevance AI are defined as Python dictionaries with four main keys:
 - `condition_value` (dependent on the filter type but decides what value to filter on)
 
 
-```python Python (SDK)
-filter = [
+[block:code]
+{
+  "codes": [
     {
-        "field": description,
-        "filter_type": contains,
-        "condition": ==,
-        "condition_value": Durian Club
+      "code": "filter = [\n    {\n        \"field\": description,\n        \"filter_type\": contains,\n        \"condition\": ==,\n        \"condition_value\": Durian Club\n    }\n]",
+      "name": "Python (SDK)",
+      "language": "python"
     }
-]
-```
-```python
-```
+  ]
+}
+[/block]
 
 ## Filtering operators
 Relevance AI covers all common operators:

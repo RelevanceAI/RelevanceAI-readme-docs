@@ -11,47 +11,61 @@ updatedAt: "2022-01-24T00:15:14.549Z"
 [VectorHub](https://github.com/RelevanceAI/vectorhub) provides users with access to various state of the art encoders to vectorize different data types such as text or image. It manages the encoding process as well, allowing users to focus on the data they want to encode rather than the actual model behind the scene.
 On this page, we introduce sentence-transformer based text encoders.
 
-[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/RelevanceAI/RelevanceAI-readme-docs/blob/v1.4.5/docs/general-features/how-to-vectorize/_notebooks/RelevanceAI_ReadMe_How_to_Vectorize.ipynb)
+[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/RelevanceAI/RelevanceAI-readme-docs/blob/v2.0.0/docs/general-features/how-to-vectorize/_notebooks/RelevanceAI_ReadMe_How_to_Vectorize.ipynb)
 ### sentence-transformers
 First, `sentence-transformers` must be installed. Restart the notebook when the installation is finished.
 
-```bash Bash
-# remove `!` if running the line in a terminal
-!pip install vectorhub[sentence-transformers]
-```
-```bash
-```
+[block:code]
+{
+  "codes": [
+    {
+      "code": "# remove `!` if running the line in a terminal\n!pip install vectorhub[sentence-transformers]",
+      "name": "Bash",
+      "language": "bash"
+    }
+  ]
+}
+[/block]
 
 Then from the `sentence_transformers` category, we import our desired transformer and specific model; the full list can be accessed [here](https://huggingface.co/sentence-transformers).
 
-```python Python (SDK)
-from vectorhub.encoders.text.sentence_transformers import SentenceTransformer2Vec
-
-model = SentenceTransformer2Vec("all-mpnet-base-v2")
-```
-```python
-```
+[block:code]
+{
+  "codes": [
+    {
+      "code": "from vectorhub.encoders.text.sentence_transformers import SentenceTransformer2Vec\n\nmodel = SentenceTransformer2Vec(\"all-mpnet-base-v2\")",
+      "name": "Python (SDK)",
+      "language": "python"
+    }
+  ]
+}
+[/block]
 
 Encoding a single text input via the `encode` function and encoding a specified text field in the whole data (i.e. list of dictionaries) via the `encode_documents` function are shown below.
 
-```python Python (SDK)
-# Encode a single input
-model.encode("I love working with vectors.")
-```
-```python
-```
+[block:code]
+{
+  "codes": [
+    {
+      "code": "# Encode a single input\nmodel.encode(\"I love working with vectors.\")",
+      "name": "Python (SDK)",
+      "language": "python"
+    }
+  ]
+}
+[/block]
 
-```python Python (SDK)
-# documents are saved as a list of dictionaries
-documents = [{'sentence': '"This is the first sentence."', '_id': 1}, {'sentence': '"This is the second sentence."', '_id': 2}]
 
-# Encode the `"sentence"` field in a list of documents
-encoded_documents = model.encode_documents(["sentence"], documents)
-
-ds.upsert_documents(documents=encoded_documents)
-```
-```python
-```
+{
+  "codes": [
+    {
+      "code": "ds.upsert_documents(documents=encoded_documents)",
+      "name": "Python (SDK)",
+      "language": "python"
+    }
+  ]
+}
+[/block]
 
 ### Encoding an entire dataset using df.apply()
 
@@ -59,11 +73,17 @@ The easiest way to update an existing dataset with encoding results is to run `d
 
 For instance, in the sample code below, we use a dataset called `ecommerce_dataset`, and encode the `product_description` field using the `SentenceTransformer2Vec` encoder.
 
-```python Python (SDK)
-ds["sentence"].apply(lambda x: model.encode(x), output_field="sentence_vector")
-```
-```python
-```
+[block:code]
+{
+  "codes": [
+    {
+      "code": "ds[\"sentence\"].apply(lambda x: model.encode(x), output_field=\"sentence_vector\")",
+      "name": "Python (SDK)",
+      "language": "python"
+    }
+  ]
+}
+[/block]
 ### Some famous models
 
 #### Encoding using native Transformers
@@ -72,23 +92,17 @@ ds["sentence"].apply(lambda x: model.encode(x), output_field="sentence_vector")
 * BERT
 Below, we show an example of how to get vectors from the popular [**BERT**](https://huggingface.co/transformers/v3.0.2/model_doc/bert.html) model from HuggingFace Transformers library.
 
-```python Python (SDK)
-import torch
-from transformers import AutoTokenizer, AutoModel
-
-model_name = "bert-base-uncased"
-model = AutoModel.from_pretrained(model_name)
-tokenizer = AutoTokenizer.from_pretrained(model_name)
-
-def vectorize(text):
- return (
- torch.mean(model(**tokenizer(text, return_tensors="pt"))[0], axis=1)
- .detach()
- .tolist()[0]
- )
-```
-```python
-```
+[block:code]
+{
+  "codes": [
+    {
+      "code": "import torch\nfrom transformers import AutoTokenizer, AutoModel\n\nmodel_name = \"bert-base-uncased\"\nmodel = AutoModel.from_pretrained(model_name)\ntokenizer = AutoTokenizer.from_pretrained(model_name)\n\ndef vectorize(text):\n return (\n torch.mean(model(**tokenizer(text, return_tensors=\"pt\"))[0], axis=1)\n .detach()\n .tolist()[0]\n )",
+      "name": "Python (SDK)",
+      "language": "python"
+    }
+  ]
+}
+[/block]
 
 #### Encoding using Vectorhub's Sentence Transformers
 
@@ -98,22 +112,27 @@ Vectorhub helps us to more easily work with models to encode fields in our docum
 * CLIP
 Below, we show an example of how to get vectors from the popular [**CLIP**](https://huggingface.co/sentence-transformers/clip-ViT-B-32) model from HuggingFace Transformers library.
 
-```python Python (SDK)
-from vectorhub.encoders.text.sentence_transformers import SentenceTransformer2Vec
+[block:code]
+{
+  "codes": [
+    {
+      "code": "from vectorhub.encoders.text.sentence_transformers import SentenceTransformer2Vec\n\nmodel = SentenceTransformer2Vec('clip-ViT-B-32')\ntext_vector = model.encode(\"I love working with vectors.\")",
+      "name": "Python (SDK)",
+      "language": "python"
+    }
+  ]
+}
+[/block]
 
-model = SentenceTransformer2Vec('clip-ViT-B-32')
-text_vector = model.encode("I love working with vectors.")
-```
-```python
-```
 
-
-```python Python (SDK)
-# documents are saved as a list of dictionaries
-documents=[{'image_url': 'https://relevance.ai/wp-content/uploads/2021/10/statue-illustration.png'}, {'image_url': 'https://relevance.ai/wp-content/uploads/2021/09/Group-193-1.png'}]
-
-# Encode the images accessible from the URL saved in `image_url` field in a list of documents
-docs_with_vecs = model.encode_documents(["image_url"], documents)
-```
-```python
-```
+[block:code]
+{
+  "codes": [
+    {
+      "code": "# documents are saved as a list of dictionaries\ndocuments=[{'image_url': 'https://relevance.ai/wp-content/uploads/2021/10/statue-illustration.png'}, {'image_url': 'https://relevance.ai/wp-content/uploads/2021/09/Group-193-1.png'}]\n\n# Encode the images accessible from the URL saved in `image_url` field in a list of documents\ndocs_with_vecs = model.encode_documents([\"image_url\"], documents)",
+      "name": "Python (SDK)",
+      "language": "python"
+    }
+  ]
+}
+[/block]
