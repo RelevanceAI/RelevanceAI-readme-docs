@@ -30,7 +30,6 @@ def main(args):
     SEMVER_REPLACE_STR = (
         README_VERSION if README_VERSION[0] == "v" else f"v{README_VERSION}"
     )
-    print(SEMVER_REPLACE_STR)
 
     installation_guide = [
         Path(args.path) / "docs_template" / "getting-started" / "installation.md"
@@ -63,7 +62,9 @@ def main(args):
         logging.debug(f"\tUpdating {fpath} to {README_VERSION} ...")
         config = yaml.safe_load(open(fpath, "r"))
 
-        config["version"] = args.version
+        config["version"] = (
+            args.version if args.version[0] == "v" else f"v{args.version}"
+        )
         with open(fpath, "w") as f:
             yaml.dump(config, f, default_flow_style=False, sort_keys=False)
 

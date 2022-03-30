@@ -12,7 +12,7 @@ JSONShower supports highlighting in 1 line of code on your documents!
 {
   "codes": [
     {
-      "code": "from jsonshower import show_json\n\n# This is in the same format as search results\ndocuments = [ \n    {\n        \"image_url\": \"https://imgs.xkcd.com/comics/voting.png\",\n    },\n    {\n        \"image_url\": \"https://imgs.xkcd.com/comics/animal_songs.png\",\n    }\n]\n\nshow_json(\n    documents=documents,\n    image_fields=[\"image_url\"],     # Image fields\n    image_width=200,                # Adjust the image width\n)",
+      "code": "from jsonshower import show_json\n\n# This is in the same format as search results\ndocuments = [\n    {\n        \"image_url\": \"https://imgs.xkcd.com/comics/voting.png\",\n    },\n    {\n        \"image_url\": \"https://imgs.xkcd.com/comics/animal_songs.png\",\n    }\n]\n\nshow_json(\n    documents=documents,\n    image_fields=[\"image_url\"],     # Image fields\n    image_width=200,                # Adjust the image width\n)",
       "name": "Python (SDK)",
       "language": "python"
     }
