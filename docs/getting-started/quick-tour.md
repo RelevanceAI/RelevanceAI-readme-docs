@@ -27,30 +27,32 @@ Run this Quickstart in Colab: [![Open In Colab](https://colab.research.google.co
 ### 1. Set up Relevance AI and Vectorhub for Encoding!
 
 
-```bash Bash
-# remove `!` if running the line in a terminal
-!pip install -U RelevanceAI[notebook]==1.4.5
 
-# remove `!` if running the line in a terminal
-!pip install -U vectorhub[clip]
-```
-```bash
-```
+{
+  "codes": [
+    {
+      "code": "# remove `!` if running the line in a terminal\n!pip install -U vectorhub[clip]",
+      "name": "Bash",
+      "language": "bash"
+    }
+  ]
+}
+[/block]
 
 After installation, we need to also set up an API client. If you are missing an API key, you can easily sign up and get your API key from [https://cloud.relevance.ai/](https://cloud.relevance.ai/) in the settings area.
 
 
-```python Python (SDK)
-from relevanceai import Client
-
-"""
-You can sign up/login and find your credentials here: https://cloud.relevance.ai/sdk/api
-Once you have signed up, click on the value under `Activation token` and paste it here
-"""
-client = Client()
-```
-```python
-```
+[block:code]
+{
+  "codes": [
+    {
+      "code": "from relevanceai import Client\n\n\"\"\"\nYou can sign up/login and find your credentials here: https://cloud.relevance.ai/sdk/api\nOnce you have signed up, click on the value under `Activation token` and paste it here\n\"\"\"\nclient = Client()",
+      "name": "Python (SDK)",
+      "language": "python"
+    }
+  ]
+}
+[/block]
 
 
 <figure>
@@ -63,17 +65,17 @@ client = Client()
 
 Use one of your sample datasets to insert into your own dataset!
 
-```python Python (SDK)
-import pandas as pd
-from relevanceai.datasets import get_ecommerce_dataset_clean
-
-# Retrieve our sample dataset. - This comes in the form of a list of documents.
-documents = get_ecommerce_dataset_clean()
-
-pd.DataFrame.from_dict(documents).head()
-```
-```python
-```
+[block:code]
+{
+  "codes": [
+    {
+      "code": "import pandas as pd\nfrom relevanceai.datasets import get_ecommerce_dataset_clean\n\n# Retrieve our sample dataset. - This comes in the form of a list of documents.\ndocuments = get_ecommerce_dataset_clean()\n\npd.DataFrame.from_dict(documents).head()",
+      "name": "Python (SDK)",
+      "language": "python"
+    }
+  ]
+}
+[/block]
 
 
 <figure>
@@ -81,12 +83,17 @@ pd.DataFrame.from_dict(documents).head()
 <figcaption>See your dataset in the dashboard</figcaption>
 <figure>
 
-```python Python (SDK)
-ds = client.Dataset("quickstart")
-ds.insert_documents(documents)
-```
-```python
-```
+[block:code]
+{
+  "codes": [
+    {
+      "code": "ds = client.Dataset(\"quickstart\")\nds.insert_documents(documents)",
+      "name": "Python (SDK)",
+      "language": "python"
+    }
+  ]
+}
+[/block]
 
 
 ### 3. Encode data and upload vectors into your new dataset
@@ -94,30 +101,34 @@ ds.insert_documents(documents)
 Encode new product image vector using our models out of the box using [Vectorhub's](https://hub.getvectorai.com/) `Clip2Vec` models and update your dataset.
 
 
-```python Python (SDK)
-from vectorhub.bi_encoders.text_image.torch import Clip2Vec
-
-model = Clip2Vec()
-
-# Set the default encode to encoding an image
-model.encode = model.encode_image
-documents = model.encode_documents(fields=['product_image'], documents=documents)
-```
-```python
-```
+[block:code]
+{
+  "codes": [
+    {
+      "code": "from vectorhub.bi_encoders.text_image.torch import Clip2Vec\n\nmodel = Clip2Vec()\n\n# Set the default encode to encoding an image\nmodel.encode = model.encode_image\ndocuments = model.encode_documents(fields=['product_image'], documents=documents)",
+      "name": "Python (SDK)",
+      "language": "python"
+    }
+  ]
+}
+[/block]
 
 
 Update the existing dataset with the encoding results and check the results
 
 
 
-```python Python (SDK)
-ds.upsert_documents(documents=documents)
 
-ds.schema
-```
-```python
-```
+{
+  "codes": [
+    {
+      "code": "ds.schema",
+      "name": "Python (SDK)",
+      "language": "python"
+    }
+  ]
+}
+[/block]
 
 
 
@@ -138,19 +149,31 @@ ds.schema
 Run clustering on your vectors to better understand your data. You can view the clusters in our clustering dashboard following the provided link when clustering finishes.
 
 
-```python Python (SDK)
-clusterer = ds.auto_cluster("kmeans-10", ["product_image_clip_vector_"])
-```
-```python
-```
+[block:code]
+{
+  "codes": [
+    {
+      "code": "clusterer = ds.auto_cluster(\"kmeans-10\", [\"product_image_clip_vector_\"])",
+      "name": "Python (SDK)",
+      "language": "python"
+    }
+  ]
+}
+[/block]
 
 You can also get a list of documents that are closest to the center of the clusters:
 
-```python Python (SDK)
-clusterer.list_closest_to_center()
-```
-```python
-```
+[block:code]
+{
+  "codes": [
+    {
+      "code": "clusterer.list_closest_to_center()",
+      "name": "Python (SDK)",
+      "language": "python"
+    }
+  ]
+}
+[/block]
 
 
 <figure>
@@ -166,21 +189,17 @@ You can read more about how to analyse clusters in your data [here](doc:quicksta
 See your search results on the dashboard here https://cloud.relevance.ai/sdk/search.
 
 
-```python Python (SDK)
-query = "gifts for the holidays"
-query_vector = model.encode(query)
 
-multivector_query=[
-        { "vector": query_vector, "fields": ["product_image_clip_vector_"]}
-    ]
-
-results = ds.vector_search(
-    multivector_query=multivector_query,
-    page_size=10
-)
-```
-```python
-```
+{
+  "codes": [
+    {
+      "code": "results = ds.vector_search(\n    multivector_query=multivector_query,\n    page_size=10\n)",
+      "name": "Python (SDK)",
+      "language": "python"
+    }
+  ]
+}
+[/block]
 
 <figure>
 <img src="https://github.com/RelevanceAI/RelevanceAI-readme-docs/blob/v1.4.5/docs_template/_assets/RelevanceAI_search_dashboard.png?raw=true"  alt="Visualise your search results" />

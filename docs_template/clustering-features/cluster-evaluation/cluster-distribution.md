@@ -1,7 +1,7 @@
 ---
 title: "Cluster Distribution"
 slug: "cluster-distribution"
-hidden: false
+hidden: true
 createdAt: "2021-12-22T00:50:44.016Z"
 updatedAt: "2022-01-27T02:24:54.049Z"
 ---

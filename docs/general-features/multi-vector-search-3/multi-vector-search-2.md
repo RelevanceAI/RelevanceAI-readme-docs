@@ -35,47 +35,67 @@ Vectorizing under Relevance AI's platform requires three steps:
 
  Keep it in mind that, first RelevanceAI must be installed and a client object must be instantiated:
 
-```bash Bash
-# remove `!` if running the line in a terminal
-!pip install -U RelevanceAI[notebook]==1.4.5
-```
-```bash
-```
+[block:code]
+{
+  "codes": [
+    {
+      "code": "# remove `!` if running the line in a terminal\n!pip install -U RelevanceAI[notebook]==1.4.5",
+      "name": "Bash",
+      "language": "bash"
+    }
+  ]
+}
+[/block]
 
-```python Python (SDK)
-from relevanceai import Client
-
-"""
-You can sign up/login and find your credentials here: https://cloud.relevance.ai/sdk/api
-Once you have signed up, click on the value under `Activation token` and paste it here
-"""
-client = Client()
-```
-```python
-```
+[block:code]
+{
+  "codes": [
+    {
+      "code": "from relevanceai import Client\n\n\"\"\"\nYou can sign up/login and find your credentials here: https://cloud.relevance.ai/sdk/api\nOnce you have signed up, click on the value under `Activation token` and paste it here\n\"\"\"\nclient = Client()",
+      "name": "Python (SDK)",
+      "language": "python"
+    }
+  ]
+}
+[/block]
 
 See the guide on [How to vectorize](doc:vectorize-text) to learn how to define different vectorizers. Here, we call them `enc_default`, `enc_textmulti` and `enc_imagetext`.
 
 Calling the three different vectorizers to vectorize the quary:
 
-```python Python (SDK)
-query = "white sneakers"
-query_vec_txt = enc_default.encode(query)
-```
-```python
-```
-```python Python (SDK)
-query = "white sneakers"
-query_vec_txt = enc_textmulti.encode(query)
-```
-```python
-```
-```python Python (SDK)
-query = "white sneakers"
-query_vec_txt = "enc_imagetext".encode(query)
-```
-```python
-```
+[block:code]
+{
+  "codes": [
+    {
+      "code": "query = \"white sneakers\"\nquery_vec_txt = enc_default.encode(query)",
+      "name": "Python (SDK)",
+      "language": "python"
+    }
+  ]
+}
+[/block]
+[block:code]
+{
+  "codes": [
+    {
+      "code": "query = \"white sneakers\"\nquery_vec_txt = enc_textmulti.encode(query)",
+      "name": "Python (SDK)",
+      "language": "python"
+    }
+  ]
+}
+[/block]
+[block:code]
+{
+  "codes": [
+    {
+      "code": "query = \"white sneakers\"\nquery_vec_txt = \"enc_imagetext\".encode(query)",
+      "name": "Python (SDK)",
+      "language": "python"
+    }
+  ]
+}
+[/block]
 
 ### Step 3. Vector search
 As it was mentioned earlier, Relevance AI has provided you with a variety of vector search endpoints with different use-cases; please see guide pages such as [Better text Search](https://docs.relevance.ai/docs/better-text-search) for more information on each search endpoint.
@@ -83,30 +103,39 @@ As it was mentioned earlier, Relevance AI has provided you with a variety of vec
 #### 3.1. Vector search with multiple vectors
 In the sample code below, we show how a vector search can be done by combining all three vector types:
 
-```python Python (SDK)
-# Create a multivector query
-multivector_query = [
-    {"vector": query_vec_txt, "fields": "description_default_vector_"},
-    {"vector": query_vec_txtmulti, "fields": "descriptiontextmulti_vector_"},
-    {"vector": query_vec_txtimg, "fields": "description_imagetext_vector_"}
-]
-```
-```python
-```
+[block:code]
+{
+  "codes": [
+    {
+      "code": "# Create a multivector query\nmultivector_query = [\n    {\"vector\": query_vec_txt, \"fields\": \"description_default_vector_\"},\n    {\"vector\": query_vec_txtmulti, \"fields\": \"descriptiontextmulti_vector_\"},\n    {\"vector\": query_vec_txtimg, \"fields\": \"description_imagetext_vector_\"}\n]",
+      "name": "Python (SDK)",
+      "language": "python"
+    }
+  ]
+}
+[/block]
 
-```python Python (SDK)
-DATASET_ID = "ecommerce-sample-dataset"
-ds = client.Dataset(DATASET_ID)
-```
-```python
-```
+[block:code]
+{
+  "codes": [
+    {
+      "code": "DATASET_ID = \"ecommerce-sample-dataset\"\nds = client.Dataset(DATASET_ID)",
+      "name": "Python (SDK)",
+      "language": "python"
+    }
+  ]
+}
+[/block]
 
-```python Python (SDK)
-results = ds.vector_search(
-    multivector_query=multivector_query,
-    page_size=5
-)
-```
-```python
-```
+[block:code]
+{
+  "codes": [
+    {
+      "code": "results = ds.vector_search(\n    multivector_query=multivector_query,\n    page_size=5\n)",
+      "name": "Python (SDK)",
+      "language": "python"
+    }
+  ]
+}
+[/block]
 

@@ -13,50 +13,64 @@ updatedAt: "2022-01-19T05:17:05.147Z"
 ## `numeric`
 This filter is to perform the filtering operators on a numeric value. For instance, returning the documents with a price larger than 1000 dollars.
 
-```bash Bash
-# remove `!` if running the line in a terminal
-!pip install -U RelevanceAI[notebook]==1.4.5
-```
-```bash
-```
-
-```python Python (SDK)
-from relevanceai import Client
-
-"""
-You can sign up/login and find your credentials here: https://cloud.relevance.ai/sdk/api
-Once you have signed up, click on the value under `Activation token` and paste it here
-"""
-client = Client()
-```
-```python
-```
-
-```python Python (SDK)
-DATASET_ID = "ecommerce-sample-dataset"
-ds = client.Dataset(DATASET_ID)
-```
-```python
-```
-
-```python Python (SDK)
-filter = [
+[block:code]
+{
+  "codes": [
     {
-        "field": retail_price,
-        "filter_type": numeric,
-        "condition": >,
-        "condition_value": 5000
+      "code": "# remove `!` if running the line in a terminal\n!pip install -U RelevanceAI[notebook]==1.4.5",
+      "name": "Bash",
+      "language": "bash"
     }
-]
-```
-```python
-```
+  ]
+}
+[/block]
 
-```python Python (SDK)
-### TODO: update to match the latest SDK
-filtered_data = ds.get_where(filter)
-```
-```python
-```
+[block:code]
+{
+  "codes": [
+    {
+      "code": "from relevanceai import Client\n\n\"\"\"\nYou can sign up/login and find your credentials here: https://cloud.relevance.ai/sdk/api\nOnce you have signed up, click on the value under `Activation token` and paste it here\n\"\"\"\nclient = Client()",
+      "name": "Python (SDK)",
+      "language": "python"
+    }
+  ]
+}
+[/block]
+
+[block:code]
+{
+  "codes": [
+    {
+      "code": "DATASET_ID = \"ecommerce-sample-dataset\"\nds = client.Dataset(DATASET_ID)",
+      "name": "Python (SDK)",
+      "language": "python"
+    }
+  ]
+}
+[/block]
+
+[block:code]
+{
+  "codes": [
+    {
+      "code": "filter = [\n    {\n        \"field\": retail_price,\n        \"filter_type\": numeric,\n        \"condition\": >,\n        \"condition_value\": 5000\n    }\n]",
+      "name": "Python (SDK)",
+      "language": "python"
+    }
+  ]
+}
+[/block]
+
+[block:code]
+{
+  "codes": [
+    {
+      "code": "### TODO: update to match the latest SDK\nfiltered_data = ds.get_where(filter)",
+      "name": "Python (SDK)",
+      "language": "python"
+    }
+  ]
+}
+[/block]
 
 

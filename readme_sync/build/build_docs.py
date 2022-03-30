@@ -90,7 +90,7 @@ def load_snippet(
     snippet_path: str,
     ext: Literal["md", "ipynb"],
     params: Optional[Dict] = None,
-    snippet_format: Union["block", "rdmd"] = "rdmd",
+    snippet_format: Union["block", "rdmd"] = "block",
 ):
     """
     Loads given snippet from the given path in a given format
@@ -136,11 +136,15 @@ def load_snippet(
             snippet_text = snippet[1:]
             snippet_block = ["[block:code]"]
             snippet_code = {}
-            snippet_code["code"] = ["\n".join(snippet_text)]
+            # snippet_text = for s in snippet_text:
+            #     s.replace
+            snippet_code["code"] = "\n".join(snippet_text)
             snippet_code["name"] = RDMD_SNIPPET_LANGUAGES[language]
             snippet_code["language"] = language
 
             snippet_codes = {"codes": [snippet_code]}
+
+            # pprint(snippet_codes)
             snippet_block.append(json.dumps(snippet_codes, indent=2))
             snippet_block.append("[/block]")
             snippet = snippet_block

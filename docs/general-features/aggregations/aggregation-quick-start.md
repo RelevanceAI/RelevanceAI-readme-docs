@@ -21,51 +21,55 @@ This article briefly explains the main aggregation functions. We use a demo data
 
 
 First, we need to install Relevance AI's Python SDK.
-```bash Bash
-# remove `!` if running the line in a terminal
-!pip install -U RelevanceAI[notebook]==1.4.5
-```
-```bash
-```
+[block:code]
+{
+  "codes": [
+    {
+      "code": "# remove `!` if running the line in a terminal\n!pip install -U RelevanceAI[notebook]==1.4.5",
+      "name": "Bash",
+      "language": "bash"
+    }
+  ]
+}
+[/block]
 
 ### 1.  Define a client
 To use Relevance AI services, you need to instantiate a client object.
-```python Python (SDK)
-from relevanceai import Client
+[block:code]
+{
+  "codes": [
+    {
+      "code": "from relevanceai import Client\n\n\"\"\"\nYou can sign up/login and find your credentials here: https://cloud.relevance.ai/sdk/api\nOnce you have signed up, click on the value under `Activation token` and paste it here\n\"\"\"\nclient = Client()",
+      "name": "Python (SDK)",
+      "language": "python"
+    }
+  ]
+}
+[/block]
 
-"""
-You can sign up/login and find your credentials here: https://cloud.relevance.ai/sdk/api
-Once you have signed up, click on the value under `Activation token` and paste it here
-"""
-client = Client()
-```
-```python
-```
+[block:code]
+{
+  "codes": [
+    {
+      "code": "import pandas as pd\nfrom relevanceai.datasets import get_realestate_dataset\n\n# Retrieve our sample dataset. - This comes in the form of a list of documents.\ndocuments = get_realestate_dataset()\n\n# ToDo: Remove this cell when the dataset is updated\n\nfor d in documents:\n  if '_clusters_' in d:\n    del d['_clusters_']\n\npd.DataFrame.from_dict(documents).head()",
+      "name": "Python (SDK)",
+      "language": "python"
+    }
+  ]
+}
+[/block]
 
-```python Python (SDK)
-import pandas as pd
-from relevanceai.datasets import get_realestate_dataset
-
-# Retrieve our sample dataset. - This comes in the form of a list of documents.
-documents = get_realestate_dataset()
-
-# ToDo: Remove this cell when the dataset is updated
-
-for d in documents:
-  if '_clusters_' in d:
-    del d['_clusters_']
-
-pd.DataFrame.from_dict(documents).head()
-```
-```python
-```
-
-```python Python (SDK)
-ds = client.Dataset("quickstart_aggregation")
-ds.insert_documents(documents)
-```
-```python
-```
+[block:code]
+{
+  "codes": [
+    {
+      "code": "ds = client.Dataset(\"quickstart_aggregation\")\nds.insert_documents(documents)",
+      "name": "Python (SDK)",
+      "language": "python"
+    }
+  ]
+}
+[/block]
 
 ### 3. Set aggregation parameters
 There are two main parameters to aggregation, `groupby` and `metrics`. They are  both Python dictionaries with specific fields as shown in the following code snippet; more information is available on the next page.
@@ -114,12 +118,17 @@ metrics = [avg_price_metric,
 ```
 ### 4. Hit the endpoint
 Simply use the dataset_id and the `aggregate` endpoint as shown below; `jsonshower` is our tool for easy and efficient result presentation.
-```python Python (SDK)
-## TODO: update to the new aggregate
-results = client.services.aggregate.aggregate("quickstart_aggregation", metrics = metrics, groupby = groupby)
-```
-```python
-```
+[block:code]
+{
+  "codes": [
+    {
+      "code": "## TODO: update to the new aggregate\nresults = client.services.aggregate.aggregate(\"quickstart_aggregation\", metrics = metrics, groupby = groupby)",
+      "name": "Python (SDK)",
+      "language": "python"
+    }
+  ]
+}
+[/block]
 
 # Use jsonshower to demonstrate json result
 from jsonshower import show_json

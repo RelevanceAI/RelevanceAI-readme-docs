@@ -17,50 +17,64 @@ Relevance AI has the same regular expression schema as Apache Lucene's ElasticSe
 
 *Note that this filter is case-sensitive.*
 
-```bash Bash
-# remove `!` if running the line in a terminal
-!pip install -U RelevanceAI[notebook]==1.4.5
-```
-```bash
-```
-
-```python Python (SDK)
-from relevanceai import Client
-
-"""
-You can sign up/login and find your credentials here: https://cloud.relevance.ai/sdk/api
-Once you have signed up, click on the value under `Activation token` and paste it here
-"""
-client = Client()
-```
-```python
-```
-
-```python Python (SDK)
-DATASET_ID = "ecommerce-sample-dataset"
-ds = client.Dataset(DATASET_ID)
-```
-```python
-```
-
-```python Python (SDK)
-filter = [
+[block:code]
+{
+  "codes": [
     {
-        "field": description,
-        "filter_type": regexp,
-        "condition": ==,
-        "condition_value": .*Durian (\w+)
+      "code": "# remove `!` if running the line in a terminal\n!pip install -U RelevanceAI[notebook]==1.4.5",
+      "name": "Bash",
+      "language": "bash"
     }
-]
-```
-```python
-```
+  ]
+}
+[/block]
 
-```python Python (SDK)
-### TODO: update to match the latest SDK
-filtered_data = ds.get_where(filter)
-```
-```python
-```
+[block:code]
+{
+  "codes": [
+    {
+      "code": "from relevanceai import Client\n\n\"\"\"\nYou can sign up/login and find your credentials here: https://cloud.relevance.ai/sdk/api\nOnce you have signed up, click on the value under `Activation token` and paste it here\n\"\"\"\nclient = Client()",
+      "name": "Python (SDK)",
+      "language": "python"
+    }
+  ]
+}
+[/block]
+
+[block:code]
+{
+  "codes": [
+    {
+      "code": "DATASET_ID = \"ecommerce-sample-dataset\"\nds = client.Dataset(DATASET_ID)",
+      "name": "Python (SDK)",
+      "language": "python"
+    }
+  ]
+}
+[/block]
+
+[block:code]
+{
+  "codes": [
+    {
+      "code": "filter = [\n    {\n        \"field\": description,\n        \"filter_type\": regexp,\n        \"condition\": ==,\n        \"condition_value\": .*Durian (\\w+)\n    }\n]",
+      "name": "Python (SDK)",
+      "language": "python"
+    }
+  ]
+}
+[/block]
+
+[block:code]
+{
+  "codes": [
+    {
+      "code": "### TODO: update to match the latest SDK\nfiltered_data = ds.get_where(filter)",
+      "name": "Python (SDK)",
+      "language": "python"
+    }
+  ]
+}
+[/block]
 
 

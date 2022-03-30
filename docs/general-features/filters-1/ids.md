@@ -13,49 +13,63 @@ updatedAt: "2022-01-19T05:17:10.638Z"
 ## `ids`
 This filter returns documents whose unique id exists in a given list. It may look similar to 'categories'. The main difference is the search speed.
 
-```bash Bash
-# remove `!` if running the line in a terminal
-!pip install -U RelevanceAI[notebook]==1.4.5
-```
-```bash
-```
-
-```python Python (SDK)
-from relevanceai import Client
-
-"""
-You can sign up/login and find your credentials here: https://cloud.relevance.ai/sdk/api
-Once you have signed up, click on the value under `Activation token` and paste it here
-"""
-client = Client()
-```
-```python
-```
-
-```python Python (SDK)
-DATASET_ID = "ecommerce-sample-dataset"
-ds = client.Dataset(DATASET_ID)
-```
-```python
-```
-
-```python Python (SDK)
-filter = [
+[block:code]
+{
+  "codes": [
     {
-        "field": _id,
-        "filter_type": ids,
-        "condition": ==,
-        "condition_value": 7790e058cbe1b1e10e20cd22a1e53d36
+      "code": "# remove `!` if running the line in a terminal\n!pip install -U RelevanceAI[notebook]==1.4.5",
+      "name": "Bash",
+      "language": "bash"
     }
-]
-```
-```python
-```
+  ]
+}
+[/block]
 
-```python Python (SDK)
-### TODO: update to match the latest SDK
-filtered_data = ds.get_where(filter)
-```
-```python
-```
+[block:code]
+{
+  "codes": [
+    {
+      "code": "from relevanceai import Client\n\n\"\"\"\nYou can sign up/login and find your credentials here: https://cloud.relevance.ai/sdk/api\nOnce you have signed up, click on the value under `Activation token` and paste it here\n\"\"\"\nclient = Client()",
+      "name": "Python (SDK)",
+      "language": "python"
+    }
+  ]
+}
+[/block]
+
+[block:code]
+{
+  "codes": [
+    {
+      "code": "DATASET_ID = \"ecommerce-sample-dataset\"\nds = client.Dataset(DATASET_ID)",
+      "name": "Python (SDK)",
+      "language": "python"
+    }
+  ]
+}
+[/block]
+
+[block:code]
+{
+  "codes": [
+    {
+      "code": "filter = [\n    {\n        \"field\": _id,\n        \"filter_type\": ids,\n        \"condition\": ==,\n        \"condition_value\": 7790e058cbe1b1e10e20cd22a1e53d36\n    }\n]",
+      "name": "Python (SDK)",
+      "language": "python"
+    }
+  ]
+}
+[/block]
+
+[block:code]
+{
+  "codes": [
+    {
+      "code": "### TODO: update to match the latest SDK\nfiltered_data = ds.get_where(filter)",
+      "name": "Python (SDK)",
+      "language": "python"
+    }
+  ]
+}
+[/block]
 

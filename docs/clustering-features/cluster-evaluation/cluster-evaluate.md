@@ -25,75 +25,98 @@ Relevance AI provides you with the tools to perform all these analyses. The resu
 
 First, you need to install Relevance AI's Python SDK and set up a client object to interact with Relevance AI.
 
-```bash Bash
-# remove `!` if running the line in a terminal
-!pip install -U RelevanceAI[notebook]==1.4.5
-```
-```bash
-```
+[block:code]
+{
+  "codes": [
+    {
+      "code": "# remove `!` if running the line in a terminal\n!pip install -U RelevanceAI[notebook]==1.4.5",
+      "name": "Bash",
+      "language": "bash"
+    }
+  ]
+}
+[/block]
 
-```python Python (SDK)
-from relevanceai import Client
-
-"""
-You can sign up/login and find your credentials here: https://cloud.relevance.ai/sdk/api
-Once you have signed up, click on the value under `Activation token` and paste it here
-"""
-client = Client()
-```
-```python
-```
+[block:code]
+{
+  "codes": [
+    {
+      "code": "from relevanceai import Client\n\n\"\"\"\nYou can sign up/login and find your credentials here: https://cloud.relevance.ai/sdk/api\nOnce you have signed up, click on the value under `Activation token` and paste it here\n\"\"\"\nclient = Client()",
+      "name": "Python (SDK)",
+      "language": "python"
+    }
+  ]
+}
+[/block]
 
 
 You also need to have a dataset under your Relevance AI account. You can either use our ecommerce sample data as shown in this step or follow the tutorial on [how to create your own dataset](doc:project-and-dataset). Running the code below, the fetched documents will be uploaded into your personal Relevance AI account under the name *quickstart_clustering*.
 
-```python Python (SDK)
-from relevanceai.datasets import get_ecommerce_dataset_encoded
+[block:code]
+{
+  "codes": [
+    {
+      "code": "from relevanceai.datasets import get_ecommerce_dataset_encoded\n\ndocuments = get_ecommerce_dataset_encoded()\n{k:v for k, v in documents[0].items() if '_vector_' not in k}",
+      "name": "Python (SDK)",
+      "language": "python"
+    }
+  ]
+}
+[/block]
 
-documents = get_ecommerce_dataset_encoded()
-{k:v for k, v in documents[0].items() if '_vector_' not in k}
-```
-```python
-```
+[block:code]
+{
+  "codes": [
+    {
+      "code": "ds = client.Dataset(\"quickstart_kmeans_clustering\")\nds.insert_documents(documents)",
+      "name": "Python (SDK)",
+      "language": "python"
+    }
+  ]
+}
+[/block]
 
-```python Python (SDK)
-ds = client.Dataset("quickstart_kmeans_clustering")
-ds.insert_documents(documents)
-```
-```python
-```
-
-```python Python (SDK)
-ds.health
-```
-```python
-```
+[block:code]
+{
+  "codes": [
+    {
+      "code": "ds.health",
+      "name": "Python (SDK)",
+      "language": "python"
+    }
+  ]
+}
+[/block]
 
 ### 2. Run Kmeans clustering algorithm
 The following code clusters the *product_image_clip_vector_* field using the KMeans algorithm. For more information, see [Quickstart (K means)](doc:quickstart-k-means)].
 
 
-```python Python (SDK)
-from relevanceai.clusterer import KMeansModel
-
-VECTOR_FIELD = "product_title_clip_vector_"
-KMEAN_NUMBER_OF_CLUSTERS = 10
-ALIAS = "kmeans_" + str(KMEAN_NUMBER_OF_CLUSTERS)
-
-model = KMeansModel(k=KMEAN_NUMBER_OF_CLUSTERS)
-clusterer = client.ClusterOps(alias=ALIAS, model=model)
-clusterer.fit_predict_update(df, [VECTOR_FIELD])
-```
-```python
-```
+[block:code]
+{
+  "codes": [
+    {
+      "code": "from relevanceai.clusterer import KMeansModel\n\nVECTOR_FIELD = \"product_title_clip_vector_\"\nKMEAN_NUMBER_OF_CLUSTERS = 10\nALIAS = \"kmeans_\" + str(KMEAN_NUMBER_OF_CLUSTERS)\n\nmodel = KMeansModel(k=KMEAN_NUMBER_OF_CLUSTERS)\nclusterer = client.ClusterOps(alias=ALIAS, model=model)\nclusterer.fit_predict_update(df, [VECTOR_FIELD])",
+      "name": "Python (SDK)",
+      "language": "python"
+    }
+  ]
+}
+[/block]
 
 ### 3. Cluster evaluation
 
-```python Python (SDK)
-clusterer.evaluate()
-```
-```python
-```
+[block:code]
+{
+  "codes": [
+    {
+      "code": "clusterer.evaluate()",
+      "name": "Python (SDK)",
+      "language": "python"
+    }
+  ]
+}
+[/block]
 
 
 

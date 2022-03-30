@@ -27,35 +27,43 @@ A very common format for saving data is `CSV`. The `insert_csv` function enables
 
 First, the Relevance AI SDK package must be installed.
 
-```bash Bash
-# remove `!` if running the line in a terminal
-!pip install -U RelevanceAI[notebook]==1.4.5
-```
-```bash
-```
+[block:code]
+{
+  "codes": [
+    {
+      "code": "# remove `!` if running the line in a terminal\n!pip install -U RelevanceAI[notebook]==1.4.5",
+      "name": "Bash",
+      "language": "bash"
+    }
+  ]
+}
+[/block]
 
-```python Python (SDK)
-from relevanceai import Client
-
-"""
-You can sign up/login and find your credentials here: https://cloud.relevance.ai/sdk/api
-Once you have signed up, click on the value under `Activation token` and paste it here
-"""
-client = Client()
-```
-```python
-```
+[block:code]
+{
+  "codes": [
+    {
+      "code": "from relevanceai import Client\n\n\"\"\"\nYou can sign up/login and find your credentials here: https://cloud.relevance.ai/sdk/api\nOnce you have signed up, click on the value under `Activation token` and paste it here\n\"\"\"\nclient = Client()",
+      "name": "Python (SDK)",
+      "language": "python"
+    }
+  ]
+}
+[/block]
 
 
 Uploading a CSV file is as simple as specifying the CSV path to your file.
 
 
-```python Python (SDK)
-ds = client.Dataset('quickstart_insert_csv')
 
-csv_fpath = "./sample_data/california_housing_test.csv"
-ds.insert_csv(filepath_or_buffer = csv_fpath)
-```
-```python
-```
+{
+  "codes": [
+    {
+      "code": "csv_fpath = \"./sample_data/california_housing_test.csv\"\nds.insert_csv(filepath_or_buffer = csv_fpath)",
+      "name": "Python (SDK)",
+      "language": "python"
+    }
+  ]
+}
+[/block]
 
