@@ -147,6 +147,9 @@ def load_snippet(
             # pprint(snippet_codes)
             snippet_block.append(json.dumps(snippet_codes, indent=2))
             snippet_block.append("[/block]")
+
+            print("\n")
+            pprint(snippet_block)
             snippet = snippet_block
 
     return snippet
