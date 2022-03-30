@@ -464,10 +464,12 @@ def get_config_diff(config_1: Dict, config_2: Dict, fpath: Path) -> List[Path]:
         report_repetition=True,
         view="tree",
     )
-    logging.debug(f"---------")
-    logging.debug(f"Deepdiff: \n{ddiff} ...")
+
     paths = []
     if ddiff:
+        logging.debug(f"---------")
+        logging.debug(f"Deepdiff: \n{ddiff} ...")
+
         diff_items = [i for k, v in ddiff.items() for i in ddiff[k]]
         logging.debug(f"{len(diff_items)} items added")
         for d in diff_items:
@@ -594,31 +596,33 @@ def main(args):
             fpath=DOCS_TEMPLATE_PATH,
         )
 
-        for path in new_fpaths:
-            category = str(path).split("docs_template")[1].split("/")[1]
-            parent = path.parent.name
+        if not new_fpaths:
+            logging.debug(f"No new updates in config ...")
+        else:
+            for path in new_fpaths:
+                category = str(path).split("docs_template")[1].split("/")[1]
+                parent = path.parent.name
 
-            ## TODO: read slug from fname - in case slug is not the same
-            post = get_frontmatter(path)
-            child_dict = readme_config.config["categories"][category][parent]
+                ## TODO: read slug from fname - in case slug is not the same
+                post = get_frontmatter(path)
+                child_dict = readme_config.config["categories"][category][parent]
 
-            page_orders = readme_config.get_page_orders(child_dict)
-            max_page_order = max(page_orders)
+                page_orders = readme_config.get_page_orders(child_dict)
+                max_page_order = max(page_orders)
 
-            logging.debug(f"Creating new ReadMe config page... \n\t{path}")
-            readme_config.create(
-                title=post["title"],
-                type="basic",
-                category_slug=category,
-                parent_slug=parent,
-                hidden=post["hidden"],
-                order=max_page_order + 1,
-            )
+                logging.debug(f"Creating new ReadMe config page... \n\t{path}")
+                readme_config.create(
+                    title=post["title"],
+                    type="basic",
+                    category_slug=category,
+                    parent_slug=parent,
+                    hidden=post["hidden"],
+                    order=max_page_order + 1,
+                )
 
-            logging.debug(f"Updating config ... ")
+            logging.debug(f"Rebuilding config ... ")
 
-            ## TODO: Inserting new item in readme config with new category instead rebuilding full config
-
+            ## TODO: Inserting new item in readme config with new category only instead rebuilding full config
             readme_config.build()
 
 

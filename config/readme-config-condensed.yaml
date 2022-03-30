@@ -14,7 +14,6 @@ categories:
     - list-furthest-from-centroids
     - quickstart-clustering
     - quickstart-k-means
-    - subclustering
   comparator:
     coming-soon-1: []
     embedding-comparator: []

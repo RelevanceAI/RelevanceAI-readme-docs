@@ -21,6 +21,7 @@ class ReadMeMarkdown(Preprocessor):
     def preprocess(self, nb, resources):
         self.log.info("I'll keep only cells from %d to %d", self.start, self.end)
         nb.cells = nb.cells[self.start : self.end]
+
         return nb, resources
 
 

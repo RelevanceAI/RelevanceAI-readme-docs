@@ -1,0 +1,6 @@
+python DATASET_ID=DATASET_ID, VECTOR_FIELDS=VECTOR_FIELDS, CLUSTER_ALIAS=CLUSTER_ALIAS
+viz_ops = client.ClusterVizOps(
+    dataset_id=<<DATASET_ID>>,
+    vector_fields=<<VECTOR_FIELDS>>,
+    alias=<<CLUSTER_ALIAS>>
+)

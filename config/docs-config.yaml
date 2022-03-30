@@ -331,18 +331,19 @@ docs_template:
     - custom-clustering.md
     - cluster-aggregate.md
     - cluster-metadata.md
-    - subclustering.md
     - inserting-centroids.md
     - list-closest-to-centroids.md
     - quickstart-clustering.md
     - quickstart-k-means.md
     - list-furthest-from-centroids.md
+    - clustering-analysis.md
   - _assets:
     - RelevanceAI_clustering.png
     - RelevanceAI_clustering_quickstart_kmeans_results.png
   - cluster-evaluation:
     - _notebooks:
       - RelevanceAI-ReadMe-Cluster-Metrics.ipynb
+      - RelevanceAI-ReadMe-Cluster-Distribution.ipynb
     - cluster-evaluate.md
     - cluster-plot.md
     - cluster-distribution.md

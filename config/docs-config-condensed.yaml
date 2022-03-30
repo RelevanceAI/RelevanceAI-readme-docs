@@ -8,6 +8,7 @@ categories:
     clustering:
     - cluster-aggregate
     - cluster-metadata
+    - clustering-analysis
     - custom-clustering
     - inserting-centroids
     - list-closest-to-centroids
