@@ -7,7 +7,7 @@ hidden: false
 ---
 
 <figure>
-<img src="https://github.com/RelevanceAI/RelevanceAI-readme-docs/blob/v2.0.0/docs_template/getting-started/example-applications/_assets/RelevanceAI_text_search.png?raw=true"
+<img src="https://github.com/RelevanceAI/RelevanceAI-readme-docs/blob/v1.4.5/docs_template/getting-started/example-applications/_assets/RelevanceAI_text_search.png?raw=true"
      alt="RelevanceAI Text to Image"
      style="width: 100% vertical-align: middle"/>
 <figcaption>
@@ -18,7 +18,7 @@ hidden: false
 
 In this section, we will show you how to create and experiment with a powerful text search engine using Google's Universal Sentence Encoder through [VectorHub library](https://github.com/RelevanceAI/vectorhub) and Relevance AI.
 
-**Try it out in Colab:** [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/RelevanceAI/RelevanceAI-readme-docs/blob/v2.0.0/docs/getting-started/example-applications/_notebooks/RelevanceAI-ReadMe-Text-Search-using-USE-VectorHub.ipynb)
+**Try it out in Colab:** [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/RelevanceAI/RelevanceAI-readme-docs/blob/v1.4.5/docs/getting-started/example-applications/_notebooks/RelevanceAI-ReadMe-Text-Search-using-USE-VectorHub.ipynb)
 
 
 ### What I Need
@@ -32,7 +32,7 @@ In this section, we will show you how to create and experiment with a powerful t
 {
   "codes": [
     {
-      "code": "# remove `!` if running the line in a terminal\n!pip install -U RelevanceAI[notebook]==2.0.0",
+      "code": "# remove `!` if running the line in a terminal\n!pip install -U RelevanceAI[notebook]==1.4.5",
       "name": "Bash",
       "language": "shell"
     }
@@ -158,7 +158,7 @@ Simple vector search against our dataset:
 {
   "codes": [
     {
-      "code": "multivector_query=[\n        { \"vector\": query_vector, \"fields\": [\"product_title_use_vector_\"]}\n    ]\nresults = ds.vector_search(\n    multivector_query=multivector_query,\n    page_size=5\n)",
+      "code": "multivector_query=[\n    { \"vector\": query_vector, \"fields\": [\"product_title_use_vector_\"]}\n]\nresults = ds.vector_search(\n    multivector_query=multivector_query,\n    page_size=5\n)",
       "name": "Python (SDK)",
       "language": "python"
     }
@@ -184,7 +184,7 @@ We can see the results on the dashboard via the provided link after the search f
 
 
 <figure>
-<img src="https://github.com/RelevanceAI/RelevanceAI-readme-docs/blob/v2.0.0/docs_template/getting-started/example-applications/_assets/RelevanceAI_text_search_results.png?raw=true"
+<img src="https://github.com/RelevanceAI/RelevanceAI-readme-docs/blob/v1.4.5/docs_template/getting-started/example-applications/_assets/RelevanceAI_text_search_results.png?raw=true"
      alt="Text Search Results"
      style="width: 100% vertical-align: middle"/>
 <figcaption>Text Search Results</figcaption>
@@ -194,7 +194,7 @@ We can see the results on the dashboard via the provided link after the search f
 This is just a quick and basic example of using Relevance AI for text search, there are many other search features such as faceted vector search, hybrid search, chunk search, multivector search. For further information please visit [Better text search](doc:better-text-search).
 
 
-[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/RelevanceAI/RelevanceAI-readme-docs/blob/v2.0.0/docs/getting-started/example-applications/_notebooks/RelevanceAI-ReadMe-Text-Search-using-USE-VectorHub.ipynb)
+[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/RelevanceAI/RelevanceAI-readme-docs/blob/v1.4.5/docs/getting-started/example-applications/_notebooks/RelevanceAI-ReadMe-Text-Search-using-USE-VectorHub.ipynb)
 
 
 
@@ -204,7 +204,7 @@ This is just a quick and basic example of using Relevance AI for text search, th
 {
   "codes": [
     {
-      "code": "from relevanceai import Client\n\n\"\"\"\nYou can sign up/login and find your credentials here: https://cloud.relevance.ai/sdk/api\nOnce you have signed up, click on the value under `Activation token` and paste it here\n\"\"\"\nclient = Client()\nimport pandas as pd\nfrom relevanceai.datasets import get_ecommerce_dataset_clean\n\n# Retrieve our sample dataset. - This comes in the form of a list of documents.\ndocuments = get_ecommerce_dataset_clean()\n\npd.DataFrame.from_dict(documents).head()\nfrom vectorhub.encoders.text.tfhub import USE2Vec\nmodel = USE2Vec()\n\ndocuments = model.encode_documents(fields=['product_title'], documents=documents)\nds = client.Dataset(\"quickstart_text_searc\")\nds.insert_documents(documents)\nquery = 'Gift for my son'\nquery_vector = model.encode(query)\nmultivector_query=[\n        { \"vector\": query_vector, \"fields\": [\"product_title_use_vector_\"]}\n    ]\nresults = ds.vector_search(\n    multivector_query=multivector_query,\n    page_size=5\n)\nfrom relevanceai import show_json\n\nprint('=== QUERY === ')\nprint('Gift for my son')\n\nprint('=== RESULTS ===')\nshow_json(results, image_fields=[\"product_image\"], text_fields=[\"product_title\"])",
+      "code": "from relevanceai import Client\n\n\"\"\"\nYou can sign up/login and find your credentials here: https://cloud.relevance.ai/sdk/api\nOnce you have signed up, click on the value under `Activation token` and paste it here\n\"\"\"\nclient = Client()\nimport pandas as pd\nfrom relevanceai.datasets import get_ecommerce_dataset_clean\n\n# Retrieve our sample dataset. - This comes in the form of a list of documents.\ndocuments = get_ecommerce_dataset_clean()\n\npd.DataFrame.from_dict(documents).head()\nfrom vectorhub.encoders.text.tfhub import USE2Vec\nmodel = USE2Vec()\n\ndocuments = model.encode_documents(fields=['product_title'], documents=documents)\nds = client.Dataset(\"quickstart_text_searc\")\nds.insert_documents(documents)\nquery = 'Gift for my son'\nquery_vector = model.encode(query)\nmultivector_query=[\n    { \"vector\": query_vector, \"fields\": [\"product_title_use_vector_\"]}\n]\nresults = ds.vector_search(\n    multivector_query=multivector_query,\n    page_size=5\n)\nfrom relevanceai import show_json\n\nprint('=== QUERY === ')\nprint('Gift for my son')\n\nprint('=== RESULTS ===')\nshow_json(results, image_fields=[\"product_image\"], text_fields=[\"product_title\"])",
       "name": "Python (SDK)",
       "language": "python"
     }

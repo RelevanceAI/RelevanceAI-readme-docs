@@ -9,14 +9,14 @@ updatedAt: "2022-01-27T06:22:06.285Z"
 ### Hybrid search (adjustable word matching and semantics)
 
 <figure>
-<img src="https://github.com/RelevanceAI/RelevanceAI-readme-docs/blob/v2.0.0/docs_template/search-features/_assets/RelevanceAI-paviliondv6-20-small_w.png?raw=true" alt="hybrid0.05.png" />
+<img src="https://github.com/RelevanceAI/RelevanceAI-readme-docs/blob/v1.4.5/docs_template/search-features/_assets/RelevanceAI-paviliondv6-20-small_w.png?raw=true" alt="hybrid0.05.png" />
 <figcaption>Hybrid search result for query "Pavilion DV6-20" with a small emphasis on word-matching. As can be seen, there is no focus on "DV6-20" in the results and it is not included in the first result.</figcaption>
 <figure>
 
 
 
 <figure>
-<img src="https://github.com/RelevanceAI/RelevanceAI-readme-docs/blob/v2.0.0/docs_template/search-features/_assets/RelevanceAI-paviliondv6-20-large_w.png?raw=true" alt="hybrid0.7.png" />
+<img src="https://github.com/RelevanceAI/RelevanceAI-readme-docs/blob/v1.4.5/docs_template/search-features/_assets/RelevanceAI-paviliondv6-20-large_w.png?raw=true" alt="hybrid0.7.png" />
 <figcaption>Hybrid search result for query "Pavilion DV6-20" with a large emphasis on word-matching. As can be seen, the first three returned results, all include the id "DV6-20" in the query.</figcaption>
 <figure>
 
@@ -24,7 +24,7 @@ updatedAt: "2022-01-27T06:22:06.285Z"
 ### Concept
 This endpoint provides search through both word matching and search in the vector space. There is full control over which one to emphasize via a weighting parameter.
 
-[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/RelevanceAI/RelevanceAI-readme-docs/blob/v2.0.0/docs/search-features/_notebooks/RelevanceAI_hybrid_search.ipynb)
+[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/RelevanceAI/RelevanceAI-readme-docs/blob/v1.4.5/docs/search-features/_notebooks/RelevanceAI_hybrid_search.ipynb)
 
 ### Sample use-cases
 * Combining traditional text search with semantic search into one search bar by providing support for ID search and vector search (for example - being able to combine "white shoe" and "Product JI36D" into the same search to return the same result.

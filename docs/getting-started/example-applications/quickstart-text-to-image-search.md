@@ -7,7 +7,7 @@ hidden: false
 
 
 <figure>
-<img src="https://github.com/RelevanceAI/RelevanceAI-readme-docs/blob/v2.0.0/docs_template/getting-started/example-applications/_assets/RelevanceAI_text_to_image.gif?raw=true"
+<img src="https://github.com/RelevanceAI/RelevanceAI-readme-docs/blob/v1.4.5/docs_template/getting-started/example-applications/_assets/RelevanceAI_text_to_image.gif?raw=true"
      alt="RelevanceAI Text to Image"
      style="width: 100% vertical-align: middle"/>
 <figcaption>
@@ -19,7 +19,7 @@ hidden: false
 This section, we will show you how to create and experiment with a powerful text-to-image search engine using OpenAI's CLIP and Relevance AI.
 
 
-**Try it out in Colab:** [![Open In Colab](https://colab.research.google.com/_assets/colab-badge.svg)](https://colab.research.google.com/github/RelevanceAI/RelevanceAI-readme-docs/blob/v2.0.0/docs/getting-started/example-applications/_notebooks/RelevanceAI-ReadMe-Text-to-Image-Search.ipynb)
+**Try it out in Colab:** [![Open In Colab](https://colab.research.google.com/_assets/colab-badge.svg)](https://colab.research.google.com/github/RelevanceAI/RelevanceAI-readme-docs/blob/v1.4.5/docs/getting-started/example-applications/_notebooks/RelevanceAI-ReadMe-Text-to-Image-Search.ipynb)
 
 
 ### What I Need
@@ -36,7 +36,7 @@ Prior to starting, let's install the main dependencies. This installation provid
 {
   "codes": [
     {
-      "code": "# remove `!` if running the line in a terminal\n!pip install -U RelevanceAI[notebook]==2.0.0",
+      "code": "# remove `!` if running the line in a terminal\n!pip install -U RelevanceAI[notebook]==1.4.5",
       "name": "Bash",
       "language": "shell"
     }
@@ -76,7 +76,7 @@ To be able to perform text-to-image search, we will show you how to:
 
 
 <figure>
-<img src="https://github.com/RelevanceAI/RelevanceAI-readme-docs/blob/v2.0.0/docs_template/getting-started/example-applications/_assets/RelevanceAI_search_steps.png?raw=true" width="650" alt="Steps to search" />
+<img src="https://github.com/RelevanceAI/RelevanceAI-readme-docs/blob/v1.4.5/docs_template/getting-started/example-applications/_assets/RelevanceAI_search_steps.png?raw=true" width="650" alt="Steps to search" />
 <figcaption>Steps to search</figcaption>
 <figure>
 
@@ -120,7 +120,7 @@ As you can see each data entry contains both text (`product_title`) and image (`
 CLIP is a vectorizer from OpenAI that is trained to find similarities between text and image pairs. In the code below we set up and install CLIP.
 
 <figure>
-<img src="https://github.com/RelevanceAI/RelevanceAI-readme-docs/blob/v2.0.0/docs_template/getting-started/example-applications/_assets/RelevanceAI_CLIP_contrastive_pretraining.png?raw=true" width="650" alt="Photo of OpenAI's CLIP architecture from OpenAI" />
+<img src="https://github.com/RelevanceAI/RelevanceAI-readme-docs/blob/v1.4.5/docs_template/getting-started/example-applications/_assets/RelevanceAI_CLIP_contrastive_pretraining.png?raw=true" width="650" alt="Photo of OpenAI's CLIP architecture from OpenAI" />
 <figcaption>Photo of OpenAI's CLIP architecture from OpenAI (https://openai.com/blog/clip/)</figcaption>
 <figure>
 
@@ -196,7 +196,7 @@ Lets insert documents into the dataset `quickstart_clip`.
 Once we have inserted the data into the dataset, we can visit [RelevanceAI dashboard](https://cloud.relevance.ai/dataset/quickstart_clip/dashboard/monitor/vectors). The dashboard gives us a great overview of our dataset as shown below.
 
 <figure>
-<img src="https://github.com/RelevanceAI/RelevanceAI-readme-docs/blob/v2.0.0/docs_template/getting-started/example-applications/_assets/RelevanceAI_quickstart_clip_dashboard.png?raw=true" width="650" alt="RelevanceAI Dashboard" />
+<img src="https://github.com/RelevanceAI/RelevanceAI-readme-docs/blob/v1.4.5/docs_template/getting-started/example-applications/_assets/RelevanceAI_quickstart_clip_dashboard.png?raw=true" width="650" alt="RelevanceAI Dashboard" />
 <figcaption>Relevance AI dashboard</figcaption>
 <figure>
 
@@ -224,7 +224,7 @@ Now, let us try out a query using a simple vector search against our dataset.
 {
   "codes": [
     {
-      "code": "multivector_query=[\n        { \"vector\": query_vector, \"fields\": [\"product_image_clip_vector_\"]}\n    ]\nresults = ds.vector_search(\n    multivector_query=multivector_query,\n    page_size=5\n)",
+      "code": "multivector_query=[\n    { \"vector\": query_vector, \"fields\": [\"product_image_clip_vector_\"]}\n]\nresults = ds.vector_search(\n    multivector_query=multivector_query,\n    page_size=5\n)",
       "name": "Python (SDK)",
       "language": "python"
     }
@@ -251,13 +251,13 @@ Next, we use `show_json` to visualize images and text easily and quickly!
 
 
 <figure>
-<img src="https://github.com/RelevanceAI/RelevanceAI-readme-docs/blob/v2.0.0/docs_template/getting-started/example-applications/_assets/RelevanceAI_text_image_search_results.png?raw=true" width="650" alt="Text Image Search Results" />
+<img src="https://github.com/RelevanceAI/RelevanceAI-readme-docs/blob/v1.4.5/docs_template/getting-started/example-applications/_assets/RelevanceAI_text_image_search_results.png?raw=true" width="650" alt="Text Image Search Results" />
 <figcaption>Text Image Search Results</figcaption>
 <figure>
 
 
 
-**Try it out in Colab:** [![Open In Colab](https://colab.research.google.com/_assets/colab-badge.svg)](https://colab.research.google.com/github/RelevanceAI/RelevanceAI-readme-docs/blob/v2.0.0/docs/getting-started/example-applications/_notebooks/RelevanceAI-ReadMe-Text-to-Image-Search.ipynb)
+**Try it out in Colab:** [![Open In Colab](https://colab.research.google.com/_assets/colab-badge.svg)](https://colab.research.google.com/github/RelevanceAI/RelevanceAI-readme-docs/blob/v1.4.5/docs/getting-started/example-applications/_notebooks/RelevanceAI-ReadMe-Text-to-Image-Search.ipynb)
 
 ## Final Code
 
@@ -267,7 +267,7 @@ Next, we use `show_json` to visualize images and text easily and quickly!
 {
   "codes": [
     {
-      "code": "from relevanceai import Client\n\n\"\"\"\nYou can sign up/login and find your credentials here: https://cloud.relevance.ai/sdk/api\nOnce you have signed up, click on the value under `Activation token` and paste it here\n\"\"\"\nclient = Client()\nfrom relevanceai.datasets import get_ecommerce_dataset_encoded\n\ndocuments = get_ecommerce_dataset_encoded()\n{k:v for k, v in documents[0].items() if '_vector_' not in k}\nimport torch\nimport clip\nimport requests\nfrom PIL import Image\n\ndevice = \"cuda\" if torch.cuda.is_available() else \"cpu\"\nmodel, preprocess = clip.load(\"ViT-B/32\", device=device)\n\n# First - let's encode the image based on CLIP\ndef encode_image(image):\n    # Let us download the image and then preprocess it\n    image = preprocess(Image.open(requests.get(image, stream=True).raw)).unsqueeze(0).to(device)\n    # We then feed our processed image through the neural net to get a vector\n    with torch.no_grad():\n      image_features = model.encode_image(image)\n    # Lastly we convert it to a list so that we can send it through the SDK\n    return image_features.tolist()[0]\n\n# Next - let's encode text based on CLIP\ndef encode_text(text):\n    # let us get text and then tokenize it\n    text = clip.tokenize([text]).to(device)\n    # We then feed our processed text through the neural net to get a vector\n    with torch.no_grad():\n        text_features = model.encode_text(text)\n    return text_features.tolist()[0]\ndef encode_image_document(d):\n  try:\n    d['product_image_clip_vector_'] = encode_image(d['product_image])\n  except:\n    pass\n\n# Let's import TQDM for a nice progress bar!\nfrom tqdm.auto import tqdm\n[encode_image_document(d) for d in tqdm(documents)]\nds = client.Dataset(\"quickstart_clip\")\nds.insert_documents(documents)\nquery = 'for my baby daughter'\nquery_vector = encode_text(query)\nmultivector_query=[\n        { \"vector\": query_vector, \"fields\": [\"product_image_clip_vector_\"]}\n    ]\nresults = ds.vector_search(\n    multivector_query=multivector_query,\n    page_size=5\n)\nfrom relevanceai import show_json\n\nprint('=== QUERY === ')\nprint(query)\n\nprint('=== RESULTS ===')\nshow_json(results, image_fields=[\"product_image\"], text_fields=[\"product_title\"])",
+      "code": "from relevanceai import Client\n\n\"\"\"\nYou can sign up/login and find your credentials here: https://cloud.relevance.ai/sdk/api\nOnce you have signed up, click on the value under `Activation token` and paste it here\n\"\"\"\nclient = Client()\nfrom relevanceai.datasets import get_ecommerce_dataset_encoded\n\ndocuments = get_ecommerce_dataset_encoded()\n{k:v for k, v in documents[0].items() if '_vector_' not in k}\nimport torch\nimport clip\nimport requests\nfrom PIL import Image\n\ndevice = \"cuda\" if torch.cuda.is_available() else \"cpu\"\nmodel, preprocess = clip.load(\"ViT-B/32\", device=device)\n\n# First - let's encode the image based on CLIP\ndef encode_image(image):\n    # Let us download the image and then preprocess it\n    image = preprocess(Image.open(requests.get(image, stream=True).raw)).unsqueeze(0).to(device)\n    # We then feed our processed image through the neural net to get a vector\n    with torch.no_grad():\n      image_features = model.encode_image(image)\n    # Lastly we convert it to a list so that we can send it through the SDK\n    return image_features.tolist()[0]\n\n# Next - let's encode text based on CLIP\ndef encode_text(text):\n    # let us get text and then tokenize it\n    text = clip.tokenize([text]).to(device)\n    # We then feed our processed text through the neural net to get a vector\n    with torch.no_grad():\n        text_features = model.encode_text(text)\n    return text_features.tolist()[0]\ndef encode_image_document(d):\n  try:\n    d['product_image_clip_vector_'] = encode_image(d['product_image])\n  except:\n    pass\n\n# Let's import TQDM for a nice progress bar!\nfrom tqdm.auto import tqdm\n[encode_image_document(d) for d in tqdm(documents)]\nds = client.Dataset(\"quickstart_clip\")\nds.insert_documents(documents)\nquery = 'for my baby daughter'\nquery_vector = encode_text(query)\nmultivector_query=[\n    { \"vector\": query_vector, \"fields\": [\"product_image_clip_vector_\"]}\n]\nresults = ds.vector_search(\n    multivector_query=multivector_query,\n    page_size=5\n)\nfrom relevanceai import show_json\n\nprint('=== QUERY === ')\nprint(query)\n\nprint('=== RESULTS ===')\nshow_json(results, image_fields=[\"product_image\"], text_fields=[\"product_title\"])",
       "name": "Python (SDK)",
       "language": "python"
     }
