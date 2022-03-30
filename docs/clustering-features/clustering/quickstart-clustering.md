@@ -66,11 +66,11 @@ In this guide, we use our e-commerce database, which includes fields such as `pr
 
 Next, we can upload these documents into your personal Relevance AI account under the name *quickstart_clustering_kmeans*
 
-
+[block:code]
 {
   "codes": [
     {
-      "code": "ds = client.Dataset(\"quickstart_kmeans_clustering\")\nds.insert_documents(documents)",
+      "code": "documents = [\n\t{\"_id\": \"1\", \"example_vector_\": [0.1, 0.1, 0.1], \"data\": \"Documentation\"},\n\t{\"_id\": \"2\", \"example_vector_\": [0.2, 0.2, 0.2], \"data\": \"Best document!\"},\n\t{\"_id\": \"3\", \"example_vector_\": [0.3, 0.3, 0.3], \"data\": \"Document example\"},\n\t{\"_id\": \"5\", \"example_vector_\": [0.4, 0.4, 0.4], \"data\": \"This is a doc\"},\n\t{\"_id\": \"4\", \"example_vector_\": [0.5, 0.5, 0.5], \"data\": \"This is another doc\"},\n]\n\n\nds = client.Dataset(\"quickstart_kmeans_clustering\")\nds.insert_documents(documents)",
       "name": "Python (SDK)",
       "language": "python"
     }
@@ -157,11 +157,11 @@ Finally, these categorised documents are uploaded back to the dataset as an addi
 
 Get the centroid's vector and insert them as centroids into Relevance AI.
 
-
+[block:code]
 {
   "codes": [
     {
-      "code": "clusterer.insert_centroid_documents(centroids, df)",
+      "code": "centroids = clusterer.get_centroid_documents()\n\n\nclusterer.insert_centroid_documents(centroids, df)",
       "name": "Python (SDK)",
       "language": "python"
     }

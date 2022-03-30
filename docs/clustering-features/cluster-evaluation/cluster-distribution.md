@@ -13,7 +13,7 @@ One way to evaluate clustering performance is to examine how well the vectors ar
 ## Plotting Basic Distributions
 
 We can evaluate our cluster quality through plotting the cluster distribution.
-The following code examines how the clusters are distributed, firstly, within themselves, and then against a ground truth label *category* (i.e. *category* is one of the fields in the dataset). Ideally, there is a clear ground truth in each cluster category. Note that the following code samples are to run after clustering is done on a dataset as was explained in [Clustering](https://docs.relevance.ai/docs/quickstart-k-means).
+The following code examines how the clusters are distributed, firstly, within themselves, and then against a ground truth label *Age* (i.e. *Age* is one of the fields in the dataset). Ideally, there is a clear ground truth in each cluster category. Note that the following code samples are to run after clustering is done on a dataset as was explained in [Clustering](https://docs.relevance.ai/docs/quickstart-k-means).
 
 
 [block:code]

@@ -27,11 +27,11 @@ Run this Quickstart in Colab: [![Open In Colab](https://colab.research.google.co
 ### 1. Set up Relevance AI and Vectorhub for Encoding!
 
 
-
+[block:code]
 {
   "codes": [
     {
-      "code": "# remove `!` if running the line in a terminal\n!pip install -U vectorhub[clip]",
+      "code": "# remove `!` if running the line in a terminal\n!pip install -U RelevanceAI[notebook]==2.0.0\n\n\n# remove `!` if running the line in a terminal\n!pip install -U vectorhub[clip]",
       "name": "Bash",
       "language": "bash"
     }
@@ -118,11 +118,11 @@ Update the existing dataset with the encoding results and check the results
 
 
 
-
+[block:code]
 {
   "codes": [
     {
-      "code": "ds.schema",
+      "code": "ds.upsert_documents(documents=documents)\n\n\nds.schema",
       "name": "Python (SDK)",
       "language": "python"
     }
@@ -189,11 +189,11 @@ You can read more about how to analyse clusters in your data [here](doc:quicksta
 See your search results on the dashboard here https://cloud.relevance.ai/sdk/search.
 
 
-
+[block:code]
 {
   "codes": [
     {
-      "code": "results = ds.vector_search(\n    multivector_query=multivector_query,\n    page_size=10\n)",
+      "code": "query = \"gifts for the holidays\"\nquery_vector = model.encode(query)\n\n\nmultivector_query=[\n        { \"vector\": query_vector, \"fields\": [\"product_image_clip_vector_\"]}\n    ]\n\n\nresults = ds.vector_search(\n    multivector_query=multivector_query,\n    page_size=10\n)",
       "name": "Python (SDK)",
       "language": "python"
     }

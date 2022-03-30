@@ -83,6 +83,7 @@ def load_param_in_snippet(snippet_path: Path, snippet: List, params: Dict):
         raise ValueError(
             f"\nIncorrect params {SNIPPET_PARAM_DIFF} in required params {list(PARAM_REFS)}\n{snippet_path}"
         )
+
     return snippet
 
 
@@ -90,7 +91,6 @@ def load_snippet(
     snippet_path: str,
     ext: Literal["md", "ipynb"],
     params: Optional[Dict] = None,
-    snippet_format: Union["block", "rdmd"] = "block",
 ):
     """
     Loads given snippet from the given path in a given format
@@ -112,44 +112,13 @@ def load_snippet(
     else:
         default_params = {}
 
-    if ext == "ipynb":
-        snippet = text[1:]
-    elif ext == "md":
-        snippet = text
-
+    snippet = text[1:]
     ## Loading params data
     snippet_params = {**default_params, **params} if params else default_params
     if snippet_params:
         load_param_in_snippet(snippet_path, snippet, snippet_params)
 
-    ## Adding snippet wrapper for md
-    if ext == "md":
-        ### RDMD Format
-        if snippet_format == "rdmd":
-            snippet[0] = f"```{language} {RDMD_SNIPPET_LANGUAGES[language]}"
-            snippet.append("```")
-            snippet.append("```" + language)
-            snippet.append("```")
-
-        ### ReadMe Block Format
-        elif snippet_format == "block":
-            snippet_text = snippet[1:]
-            snippet_block = ["[block:code]"]
-            snippet_code = {}
-            # snippet_text = for s in snippet_text:
-            #     s.replace
-            snippet_code["code"] = "\n".join(snippet_text)
-            snippet_code["name"] = RDMD_SNIPPET_LANGUAGES[language]
-            snippet_code["language"] = language
-
-            snippet_codes = {"codes": [snippet_code]}
-
-            # pprint(snippet_codes)
-            snippet_block.append(json.dumps(snippet_codes, indent=2))
-            snippet_block.append("[/block]")
-            snippet = snippet_block
-
-    return snippet
+    return {"language": language, "snippet": snippet}
 
 
 def generate_snippet(
@@ -197,7 +166,6 @@ def generate_snippet(
                 snippet = load_snippet(snippet_fpath, params=params, ext="ipynb")
             elif ext == "md":
                 snippet = load_snippet(snippet_fpath, params=params, ext="md")
-
     if not snippet:
         raise ValueError(f"{snippet_str} was not found in {snippet_paths}")
 
@@ -251,6 +219,7 @@ def generate_md_file(
     output_fname: Path,
     snippet_paths: List[Path],
     snippet_params: Dict,
+    snippet_format: Literal["rdmd", "block"] = "block",
 ):
     """
     Given a list of snippet paths, generate a file `output_fname` with the given `input_fname`
@@ -275,16 +244,36 @@ def generate_md_file(
                     _snippet = generate_snippet(
                         snippet_str, snippet_paths, snippet_params, ext="md"
                     )
+                    language = _snippet["language"]
+                    snippet_text = _snippet["snippet"]
 
-                    ## Removing snippet code wrapper union
-                    if i != 0:
-                        _snippet[0] = ""
-                    if i != len(snippet_strs) - 1:
-                        _snippet = _snippet[:-3]
-                    snippet += _snippet
+                    snippet += ["\n"] + snippet_text
+
                     logging.debug("=================")
                     logging.debug("\n".join(snippet))
                     logging.debug("=================")
+
+                # Adding snippet wrapper
+                ### RDMD Format
+                if snippet_format == "rdmd":
+                    snippet[0] = f"```{language} {RDMD_SNIPPET_LANGUAGES[language]}"
+                    snippet.append("```")
+                    snippet.append("```" + language)
+                    snippet.append("```")
+
+                ### ReadMe Block Format
+                elif snippet_format == "block":
+                    snippet_text = snippet[1:]
+                    snippet_block = ["[block:code]"]
+                    snippet_code = {}
+                    snippet_code["code"] = "\n".join(snippet_text)
+                    snippet_code["name"] = RDMD_SNIPPET_LANGUAGES[language]
+                    snippet_code["language"] = language
+                    snippet_codes = {"codes": [snippet_code]}
+
+                    snippet_block.append(json.dumps(snippet_codes, indent=2))
+                    snippet_block.append("[/block]")
+                    snippet = snippet_block
 
                 [md_lines.append(x) for x in snippet]
 

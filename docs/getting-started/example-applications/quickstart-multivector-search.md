@@ -128,11 +128,11 @@ Since this will be using your own vectors, we will skip vectorizing the query an
 Now, let us try out a query using a simple vector search against our dataset.
 
 
-
+[block:code]
 {
   "codes": [
     {
-      "code": "results = ds.vector_search(\n    multivector_query=multivector_query,\n    page_size=5\n)",
+      "code": "# Query sample data\nsample_id = documents[0]['_id']\ndocument = df.get_documents_by_ids([sample_id])[\"documents\"][0]\nimage_vector = document['product_image_clip_vector_']\ntext_vector = document['product_title_clip_vector_']\n\n# Create a multivector query\nmultivector_query = [\n    {\"vector\": image_vector, \"fields\": ['product_image_clip_vector_']},\n    {\"vector\": text_vector, \"fields\": ['product_title_clip_vector_']}\n]\n\n\nresults = ds.vector_search(\n    multivector_query=multivector_query,\n    page_size=5\n)",
       "name": "Python (SDK)",
       "language": "python"
     }
@@ -171,11 +171,11 @@ Now lets show the results with `show_json`.
 
 ## Final Code
 
-
+[block:code]
 {
   "codes": [
     {
-      "code": "from relevanceai import show_json\n\nprint('=== QUERY === ')\ndisplay(show_json([document], image_fields=[\"product_image\"], text_fields=[\"product_title\"]))\n\nprint('=== RESULTS ===')\nshow_json(results, image_fields=[\"product_image\"], text_fields=[\"product_title\"])",
+      "code": "from relevanceai import Client\n\n\"\"\"\nYou can sign up/login and find your credentials here: https://cloud.relevance.ai/sdk/api\nOnce you have signed up, click on the value under `Activation token` and paste it here\n\"\"\"\nclient = Client()\n\n\nfrom relevanceai.datasets import get_ecommerce_dataset_encoded\n\ndocuments = get_ecommerce_dataset_encoded()\n{k:v for k, v in documents[0].items() if '_vector_' not in k}\n\n\nds = client.Dataset(\"quickstart_multi_vector_search\")\nds.insert_documents(documents)\n\n\n# Query sample data\nsample_id = documents[0]['_id']\ndocument = df.get_documents_by_ids([sample_id])[\"documents\"][0]\nimage_vector = document['product_image_clip_vector_']\ntext_vector = document['product_title_clip_vector_']\n\n# Create a multivector query\nmultivector_query = [\n    {\"vector\": image_vector, \"fields\": ['product_image_clip_vector_']},\n    {\"vector\": text_vector, \"fields\": ['product_title_clip_vector_']}\n]\n\n\nresults = ds.vector_search(\n    multivector_query=multivector_query,\n    page_size=5\n)\n\n\nfrom relevanceai import show_json\n\nprint('=== QUERY === ')\ndisplay(show_json([document], image_fields=[\"product_image\"], text_fields=[\"product_title\"]))\n\nprint('=== RESULTS ===')\nshow_json(results, image_fields=[\"product_image\"], text_fields=[\"product_title\"])",
       "name": "Python (SDK)",
       "language": "python"
     }

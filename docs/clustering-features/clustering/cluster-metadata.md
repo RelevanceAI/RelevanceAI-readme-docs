@@ -45,11 +45,11 @@ The following code snippets extract the metadata from the clustering algorithm a
 
 Once you have stored the metadata, you can view them using the following code.
 
-
+[block:code]
 {
   "codes": [
     {
-      "code": "clusterer = ds.auto_cluster('kmeans_10', ['product_title_clip_vector_'])",
+      "code": "ds = client.Dataset(DATASET_ID)\n\n\nclusterer = ds.auto_cluster('kmeans_10', ['product_title_clip_vector_'])",
       "name": "Python (SDK)",
       "language": "python"
     }

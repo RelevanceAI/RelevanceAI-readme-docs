@@ -55,11 +55,11 @@ First, the Relevance AI SDK package must be installed.
 Uploading a CSV file is as simple as specifying the CSV path to your file.
 
 
-
+[block:code]
 {
   "codes": [
     {
-      "code": "csv_fpath = \"./sample_data/california_housing_test.csv\"\nds.insert_csv(filepath_or_buffer = csv_fpath)",
+      "code": "ds = client.Dataset('quickstart_insert_csv')\n\n\ncsv_fpath = \"./sample_data/california_housing_test.csv\"\nds.insert_csv(filepath_or_buffer = csv_fpath)",
       "name": "Python (SDK)",
       "language": "python"
     }
