@@ -14,43 +14,39 @@ On this page, we introduce the CLIP image encoder.
 First, `vectorhub[clip]` must be installed.
 Notes: you might also run `!pip install "opencv-python-headless<4.3"`, restart your notebook when installation finishes.
 
-[block:code]
-{
-  "codes": [
-    {
-      "code": "# remove `!` if running the line in a terminal\n!pip install -U vectorhub[clip]",
-      "name": "Bash",
-      "language": "bash"
-    }
-  ]
-}
-[/block]
+```bash Bash
+# remove `!` if running the line in a terminal
+!pip install -U vectorhub[clip]
+```
+```bash
+```
 
 Encoding a single image input via the `encode` function and encoding a specified image field in the whole data (i.e. list of dictionaries) via the `encode_documents` function are shown below. Note that images are accessed via their URL in the web.
 
-[block:code]
-{
-  "codes": [
-    {
-      "code": "from vectorhub.bi_encoders.text_image.torch import Clip2Vec\n\nmodel = Clip2Vec()\nmodel.encode = model.encode_image\n\n\"\"\"\nIf you have a fine-tuned model, place the **filepath** into the model as shown below:\n\"\"\"\n\nmodel = Clip2Vec(\"<FINETUNED_MODEL_PATH>\")",
-      "name": "Python (SDK)",
-      "language": "python"
-    }
-  ]
-}
-[/block]
+```python Python (SDK)
+from vectorhub.bi_encoders.text_image.torch import Clip2Vec
 
-[block:code]
-{
-  "codes": [
-    {
-      "code": "# documents are saved as a list of dictionaries\ndocuments=[{'image_url': 'https://relevance.ai/wp-content/uploads/2021/10/statue-illustration.png'}, {'image_url': 'https://relevance.ai/wp-content/uploads/2021/09/Group-193-1.png'}]\n\n# Encode the images accessible from the URL saved in `image_url` field in a list of documents\ndocs_with_vecs = model.encode_documents([\"image_url\"], documents)",
-      "name": "Python (SDK)",
-      "language": "python"
-    }
-  ]
-}
-[/block]
+model = Clip2Vec()
+model.encode = model.encode_image
+
+"""
+If you have a fine-tuned model, place the **filepath** into the model as shown below:
+"""
+
+model = Clip2Vec("<FINETUNED_MODEL_PATH>")
+```
+```python
+```
+
+```python Python (SDK)
+# documents are saved as a list of dictionaries
+documents=[{'image_url': 'https://relevance.ai/wp-content/uploads/2021/10/statue-illustration.png'}, {'image_url': 'https://relevance.ai/wp-content/uploads/2021/09/Group-193-1.png'}]
+
+# Encode the images accessible from the URL saved in `image_url` field in a list of documents
+docs_with_vecs = model.encode_documents(["image_url"], documents)
+```
+```python
+```
 
 
 ### Encoding an entire dataset using `df.apply()`
@@ -59,16 +55,10 @@ The easiest way to update an existing dataset with encoding results is to run `d
 
 For instance, in the sample code below, we use a dataset called `ecommerce_dataset` and encode the `product_image` field using the `clip` encoder.
 
-[block:code]
-{
-  "codes": [
-    {
-      "code": "ds[\"sentence\"].apply(lambda x: model.encode(x), output_field=\"sentence_vector\")",
-      "name": "Python (SDK)",
-      "language": "python"
-    }
-  ]
-}
-[/block]
+```python Python (SDK)
+ds["sentence"].apply(lambda x: model.encode(x), output_field="sentence_vector")
+```
+```python
+```
 
 

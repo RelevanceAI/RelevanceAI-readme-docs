@@ -19,41 +19,32 @@ All these steps are explained in detail on [the quickstart clustering guide](doc
 
 The following code snippets extract the metadata from the clustering algorithm and adds this information to Relevance AI where DATASET_ID refers to the name of the dataset, VECTOR_FIELD is the field based on which the clustering is done, and ALIAS is the name specified by the user to save the clustering results.
 
-[block:code]
-{
-  "codes": [
-    {
-      "code": "# remove `!` if running the line in a terminal\n!pip install -U RelevanceAI[notebook]==1.4.5",
-      "name": "Bash",
-      "language": "bash"
-    }
-  ]
-}
-[/block]
+```bash Bash
+# remove `!` if running the line in a terminal
+!pip install -U RelevanceAI[notebook]==1.4.5
+```
+```bash
+```
 
-[block:code]
-{
-  "codes": [
-    {
-      "code": "from relevanceai import Client\n\n\"\"\"\nYou can sign up/login and find your credentials here: https://cloud.relevance.ai/sdk/api\nOnce you have signed up, click on the value under `Activation token` and paste it here\n\"\"\"\nclient = Client()",
-      "name": "Python (SDK)",
-      "language": "python"
-    }
-  ]
-}
-[/block]
+```python Python (SDK)
+from relevanceai import Client
+
+"""
+You can sign up/login and find your credentials here: https://cloud.relevance.ai/sdk/api
+Once you have signed up, click on the value under `Activation token` and paste it here
+"""
+client = Client()
+```
+```python
+```
 
 Once you have stored the metadata, you can view them using the following code.
 
+```python Python (SDK)
+ds = client.Dataset(DATASET_ID)
 
-{
-  "codes": [
-    {
-      "code": "clusterer = ds.auto_cluster('kmeans_10', ['product_title_clip_vector_'])",
-      "name": "Python (SDK)",
-      "language": "python"
-    }
-  ]
-}
-[/block]
+clusterer = ds.auto_cluster('kmeans_10', ['product_title_clip_vector_'])
+```
+```python
+```
 

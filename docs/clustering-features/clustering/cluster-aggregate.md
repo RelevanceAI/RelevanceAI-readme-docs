@@ -19,15 +19,19 @@ You will also need to have knowledge of [aggregations](doc:aggregations).
 
 The following code example groups the data based on the `product_price` field, also use the average metrics on `product_price` for each cluster. `DATASET_ID` refers to the name of the dataset, `VECTOR_FIELD` is the field based on which the clustering is done, and ALIAS is the name specified by the user to save the clustering results.
 
+```python Python (SDK)
+ds = client.Dataset(DATASET_ID)
 
-{
-  "codes": [
-    {
-      "code": "# Aggregate based on the clusters\nresult = clusterer.aggregate(\n    groupby=[\n      {\"name\": \"brand\", \"field\": \"query\", \"agg\": \"category\"}],\n    metrics = [\n      {\"name\": \"avg_retail_price\", \"field\": \"product_price\", \"agg\": \"avg\"}]\n)",
-      "name": "Python (SDK)",
-      "language": "python"
-    }
-  ]
-}
-[/block]
+clusterer = ds.auto_cluster('kmeans_5', [VECTOR_FIELD])
+
+# Aggregate based on the clusters
+result = clusterer.aggregate(
+    groupby=[
+      {"name": "brand", "field": "query", "agg": "category"}],
+    metrics = [
+      {"name": "avg_retail_price", "field": "product_price", "agg": "avg"}]
+)
+```
+```python
+```
 

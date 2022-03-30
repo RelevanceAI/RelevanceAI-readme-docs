@@ -16,113 +16,81 @@ On this page, we introduce some of the text encoders:
 ### encoders-text-tfhub
 First, `vectorhub[encoders-text-tfhub]` must be installed. Restart the notebook when the installation is finished.
 
-[block:code]
-{
-  "codes": [
-    {
-      "code": "# remove `!` if running the line in a terminal\n!pip install vectorhub[encoders-text-tfhub]",
-      "name": "Bash",
-      "language": "bash"
-    }
-  ]
-}
-[/block]
+```bash Bash
+# remove `!` if running the line in a terminal
+!pip install vectorhub[encoders-text-tfhub]
+```
+```bash
+```
 
 Then we import Universal Sentence Encoder (USE) and instantiate an encoder object.
 
-[block:code]
-{
-  "codes": [
-    {
-      "code": "from vectorhub.encoders.text.tfhub import USE2Vec\n\nmodel = USE2Vec()",
-      "name": "Python (SDK)",
-      "language": "python"
-    }
-  ]
-}
-[/block]
+```python Python (SDK)
+from vectorhub.encoders.text.tfhub import USE2Vec
+
+model = USE2Vec()
+```
+```python
+```
 
 Encoding a single text input via the `encode` function and encoding a specified text field in the whole data (i.e. list of dictionaries) via the `encode_documents` function are shown below.
 
-[block:code]
-{
-  "codes": [
-    {
-      "code": "# Encode a single input\nmodel.encode(\"I love working with vectors.\")",
-      "name": "Python (SDK)",
-      "language": "python"
-    }
-  ]
-}
-[/block]
+```python Python (SDK)
+# Encode a single input
+model.encode("I love working with vectors.")
+```
+```python
+```
 
-[block:code]
-{
-  "codes": [
-    {
-      "code": "# documents are saved as a list of dictionaries\ndocuments = SAMPLE_DOCUMENTS\n\n# Encode the `\"sentence\"` field in a list of documents\nencoded_documents = model.encode_documents([\"sentence\"], documents)",
-      "name": "Python (SDK)",
-      "language": "python"
-    }
-  ]
-}
-[/block]
+```python Python (SDK)
+# documents are saved as a list of dictionaries
+documents = SAMPLE_DOCUMENTS
+
+# Encode the `"sentence"` field in a list of documents
+encoded_documents = model.encode_documents(["sentence"], documents)
+```
+```python
+```
 
 
 ### sentence-transformers
 First, `vectorhub[sentence-transformers]` must be installed. Restart the notebook when the installation is finished.
 
-[block:code]
-{
-  "codes": [
-    {
-      "code": "# remove `!` if running the line in a terminal\n!pip install vectorhub[sentence-transformers]",
-      "name": "Bash",
-      "language": "bash"
-    }
-  ]
-}
-[/block]
+```bash Bash
+# remove `!` if running the line in a terminal
+!pip install vectorhub[sentence-transformers]
+```
+```bash
+```
 
 Then we import SentenceTransformers and instantiate an encoder object.
 
-[block:code]
-{
-  "codes": [
-    {
-      "code": "from vectorhub.encoders.text.sentence_transformers import SentenceTransformer2Vec\n\nmodel = SentenceTransformer2Vec(\"all-mpnet-base-v2\")",
-      "name": "Python (SDK)",
-      "language": "python"
-    }
-  ]
-}
-[/block]
+```python Python (SDK)
+from vectorhub.encoders.text.sentence_transformers import SentenceTransformer2Vec
+
+model = SentenceTransformer2Vec("all-mpnet-base-v2")
+```
+```python
+```
 
 Encoding a single text input via the `encode` function and encoding a specified text field in the whole data (i.e. list of dictionaries) via the `encode_documents` function are shown below.
 
-[block:code]
-{
-  "codes": [
-    {
-      "code": "# Encode a single input\nmodel.encode(\"I love working with vectors.\")",
-      "name": "Python (SDK)",
-      "language": "python"
-    }
-  ]
-}
-[/block]
+```python Python (SDK)
+# Encode a single input
+model.encode("I love working with vectors.")
+```
+```python
+```
 
-[block:code]
-{
-  "codes": [
-    {
-      "code": "# documents are saved as a list of dictionaries\ndocuments = SAMPLE_DOCUMENTS\n\n# Encode the `\"sentence\"` field in a list of documents\nencoded_documents = model.encode_documents([\"sentence\"], documents)",
-      "name": "Python (SDK)",
-      "language": "python"
-    }
-  ]
-}
-[/block]
+```python Python (SDK)
+# documents are saved as a list of dictionaries
+documents = SAMPLE_DOCUMENTS
+
+# Encode the `"sentence"` field in a list of documents
+encoded_documents = model.encode_documents(["sentence"], documents)
+```
+```python
+```
 
 
 ### Encoding an entire dataset
@@ -132,27 +100,24 @@ The easiest way to update an existing dataset with encoding results is to run `d
 For instance, in the sample code below, we use a dataset called `ecommerce_dataset`, and encodes the `product_description` field using the `USE2Vec` encoder.
 You can see the list of the available list of models for vectorising here using [Vectorhub](https://github.com/RelevanceAI/vectorhub) or feel free to bring your own model(s).
 
+```python Python (SDK)
+import pandas as pd
+from relevanceai.datasets import get_ecommerce_dataset_clean
 
-{
-  "codes": [
-    {
-      "code": "ds = client.Dataset('quickstart_example_encoding')\nds.insert_documents(documents)",
-      "name": "Python (SDK)",
-      "language": "python"
-    }
-  ]
-}
-[/block]
+# Retrieve our sample dataset. - This comes in the form of a list of documents.
+documents = get_ecommerce_dataset_clean()
 
-[block:code]
-{
-  "codes": [
-    {
-      "code": "ds[\"product_title\"].apply(lambda x: model.encode(x), output_field=\"product_title_vector_\")",
-      "name": "Python (SDK)",
-      "language": "python"
-    }
-  ]
-}
-[/block]
+pd.DataFrame.from_dict(documents).head()
+
+ds = client.Dataset('quickstart_example_encoding')
+ds.insert_documents(documents)
+```
+```python
+```
+
+```python Python (SDK)
+ds["product_title"].apply(lambda x: model.encode(x), output_field="product_title_vector_")
+```
+```python
+```
 

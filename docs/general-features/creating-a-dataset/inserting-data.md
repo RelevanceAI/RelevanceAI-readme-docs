@@ -22,33 +22,22 @@ To upload multiple documents to RelevanceAI, you can use the **insert_documents*
 ### Inserting the data in one go
 
 
-[block:code]
-{
-  "codes": [
-    {
-      "code": "ds = client.Dataset(\"quickstart\")\nds.insert_documents(documents)",
-      "name": "Python (SDK)",
-      "language": "python"
-    }
-  ]
-}
-[/block]
+```python Python (SDK)
+ds = client.Dataset("quickstart")
+ds.insert_documents(documents)
+```
+```python
+```
 
 ### Updating documents
 
 To only update specific documents, use `upsert_documents` as shown in the example below:
 
-[block:code]
-{
-  "codes": [
-    {
-      "code": "ds.upsert_documents(documents=[{\"_id\": \"example_id\", \"value\": 3}])",
-      "name": "Python (SDK)",
-      "language": "python"
-    }
-  ]
-}
-[/block]
+```python Python (SDK)
+ds.upsert_documents(documents=[{"_id": "example_id", "value": 3}])
+```
+```python
+```
 
 > 🚧 When To Use Upsert Vs Insert
 >
@@ -69,17 +58,11 @@ For instance, in the sample code below, we use a dataset called `ecommerce_datas
 You can see the list of the available list of models for vectorising here using [Vectorhub](https://github.com/RelevanceAI/vectorhub) or feel free to bring your own model(s).
 
 
-[block:code]
-{
-  "codes": [
-    {
-      "code": "ds[\"sentence\"].apply(lambda x: model.encode(x), output_field=\"sentence_vector\")",
-      "name": "Python (SDK)",
-      "language": "python"
-    }
-  ]
-}
-[/block]
+```python Python (SDK)
+ds["sentence"].apply(lambda x: model.encode(x), output_field="sentence_vector")
+```
+```python
+```
 
 
 

@@ -17,64 +17,62 @@ It is possible to combine multiple filters. For instance, the sample code below 
 * by either Lapguard or 4D brand.
 A screenshot of the results can be seen on top.
 
-[block:code]
-{
-  "codes": [
-    {
-      "code": "# remove `!` if running the line in a terminal\n!pip install -U RelevanceAI[notebook]==1.4.5",
-      "name": "Bash",
-      "language": "bash"
-    }
-  ]
-}
-[/block]
+```bash Bash
+# remove `!` if running the line in a terminal
+!pip install -U RelevanceAI[notebook]==1.4.5
+```
+```bash
+```
 
-[block:code]
-{
-  "codes": [
-    {
-      "code": "from relevanceai import Client\n\n\"\"\"\nYou can sign up/login and find your credentials here: https://cloud.relevance.ai/sdk/api\nOnce you have signed up, click on the value under `Activation token` and paste it here\n\"\"\"\nclient = Client()",
-      "name": "Python (SDK)",
-      "language": "python"
-    }
-  ]
-}
-[/block]
+```python Python (SDK)
+from relevanceai import Client
 
-[block:code]
-{
-  "codes": [
-    {
-      "code": "DATASET_ID = \"ecommerce-sample-dataset\"\nds = client.Dataset(DATASET_ID)",
-      "name": "Python (SDK)",
-      "language": "python"
-    }
-  ]
-}
-[/block]
+"""
+You can sign up/login and find your credentials here: https://cloud.relevance.ai/sdk/api
+Once you have signed up, click on the value under `Activation token` and paste it here
+"""
+client = Client()
+```
+```python
+```
 
-[block:code]
-{
-  "codes": [
-    {
-      "code": "filter = [\n    {\n        \"field\": description,\n        \"filter_type\" : contains,\n        \"condition\": ==,\n        \"condition_value\": Lenovo\n    },\n    {\n        \"field\" : brand,\n        \"filter_type\" : categories,\n        \"condition\": ==,\n        \"condition_value\": ['Lapguard', '4D']\n    },\n    {\n        \"field\" : \"insert_date_\",\n        \"filter_type\" : date,\n        \"condition\": >=,\n        \"condition_value\": 2020-01-01\n    }\n]",
-      "name": "Python (SDK)",
-      "language": "python"
-    }
-  ]
-}
-[/block]
+```python Python (SDK)
+DATASET_ID = "ecommerce-sample-dataset"
+ds = client.Dataset(DATASET_ID)
+```
+```python
+```
 
-[block:code]
-{
-  "codes": [
+```python Python (SDK)
+filter = [
     {
-      "code": "### TODO: update to match the latest SDK\nfiltered_data = ds.get_where(filter)",
-      "name": "Python (SDK)",
-      "language": "python"
+        "field": description,
+        "filter_type" : contains,
+        "condition": ==,
+        "condition_value": Lenovo
+    },
+    {
+        "field" : brand,
+        "filter_type" : categories,
+        "condition": ==,
+        "condition_value": ['Lapguard', '4D']
+    },
+    {
+        "field" : "insert_date_",
+        "filter_type" : date,
+        "condition": >=,
+        "condition_value": 2020-01-01
     }
-  ]
-}
-[/block]
+]
+```
+```python
+```
+
+```python Python (SDK)
+### TODO: update to match the latest SDK
+filtered_data = ds.get_where(filter)
+```
+```python
+```
 
 

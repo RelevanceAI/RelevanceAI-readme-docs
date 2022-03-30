@@ -30,48 +30,46 @@ to build powerful applications
 ### Installation Requirements
 
 Prior to starting, we need to install the main dependencies.
+```bash Bash
+# remove `!` if running the line in a terminal
+!pip install -U RelevanceAI[notebook]==1.4.5
 
-{
-  "codes": [
-    {
-      "code": "# remove `!` if running the line in a terminal\n!pip install vectorhub[encoders-text-tfhub]",
-      "name": "Bash",
-      "language": "bash"
-    }
-  ]
-}
-[/block]
+# remove `!` if running the line in a terminal
+!pip install vectorhub[encoders-text-tfhub]
+```
+```bash
+```
 
 ### Setting Up Client
 To be able to use Relevance AI, you need to instantiate a client. This needs a Project and API key that can be accessed at https://cloud.relevance.ai/ in the settings area! Alternatively, you can run the code below and follow the link and the guide.
 
-[block:code]
-{
-  "codes": [
-    {
-      "code": "from relevanceai import Client\n\n\"\"\"\nYou can sign up/login and find your credentials here: https://cloud.relevance.ai/sdk/api\nOnce you have signed up, click on the value under `Activation token` and paste it here\n\"\"\"\nclient = Client()",
-      "name": "Python (SDK)",
-      "language": "python"
-    }
-  ]
-}
-[/block]
+```python Python (SDK)
+from relevanceai import Client
+
+"""
+You can sign up/login and find your credentials here: https://cloud.relevance.ai/sdk/api
+Once you have signed up, click on the value under `Activation token` and paste it here
+"""
+client = Client()
+```
+```python
+```
 
 
 For this guide, we use our sample ecommerce dataset as shown below:
 
 
-[block:code]
-{
-  "codes": [
-    {
-      "code": "import pandas as pd\nfrom relevanceai.datasets import get_ecommerce_dataset_clean\n\n# Retrieve our sample dataset. - This comes in the form of a list of documents.\ndocuments = get_ecommerce_dataset_clean()\n\npd.DataFrame.from_dict(documents).head()",
-      "name": "Python (SDK)",
-      "language": "python"
-    }
-  ]
-}
-[/block]
+```python Python (SDK)
+import pandas as pd
+from relevanceai.datasets import get_ecommerce_dataset_clean
+
+# Retrieve our sample dataset. - This comes in the form of a list of documents.
+documents = get_ecommerce_dataset_clean()
+
+pd.DataFrame.from_dict(documents).head()
+```
+```python
+```
 
 ## Question Answering (Using TFHub's Universal Sentence Encoder QA)
 
@@ -80,92 +78,90 @@ Question answering can be a useful application of vector databases particularly 
 ### Data Preparation
 First, we will define our encoder functions:
 
-[block:code]
-{
-  "codes": [
-    {
-      "code": "import tensorflow as tf\nimport tensorflow_hub as hub\nimport numpy as np\nimport tensorflow_text\n\n# Here we load the model and define how we encode\nmodule = hub.load('https://tfhub.dev/google/universal-sentence-encoder-qa/3')\n\n# First we define how we encode the queries\ndef encode_query(query: str):\n    return module.signatures['question_encoder'](tf.constant([query]))['outputs'][0].numpy().tolist()\n\n# We then want to define how we encode the answers\ndef encode_answer(answer: str):\n    return module.signatures['response_encoder'](\n        input=tf.constant([answer]),\n        context=tf.constant([answer]))['outputs'][0].numpy().tolist()",
-      "name": "Python (SDK)",
-      "language": "python"
-    }
-  ]
-}
-[/block]
+```python Python (SDK)
+import tensorflow as tf
+import tensorflow_hub as hub
+import numpy as np
+import tensorflow_text
+
+# Here we load the model and define how we encode
+module = hub.load('https://tfhub.dev/google/universal-sentence-encoder-qa/3')
+
+# First we define how we encode the queries
+def encode_query(query: str):
+    return module.signatures['question_encoder'](tf.constant([query]))['outputs'][0].numpy().tolist()
+
+# We then want to define how we encode the answers
+def encode_answer(answer: str):
+    return module.signatures['response_encoder'](
+        input=tf.constant([answer]),
+        context=tf.constant([answer]))['outputs'][0].numpy().tolist()
+```
+```python
+```
 
 Next, we will encode the `product_title` field within our documents:
 
 
-[block:code]
-{
-  "codes": [
-    {
-      "code": "from tqdm.auto import tqdm\n\nfor d in tqdm(documents):\n    d['product_title_use_qa_vector_'] = encode_answer(d['product_title'])",
-      "name": "Python (SDK)",
-      "language": "python"
-    }
-  ]
-}
-[/block]
+```python Python (SDK)
+from tqdm.auto import tqdm
+
+for d in tqdm(documents):
+    d['product_title_use_qa_vector_'] = encode_answer(d['product_title'])
+```
+```python
+```
 
 Finally, we can upload the results to a dataset called `quickstart_tfhub_qa` in the Relevance AI platform:
 
-[block:code]
-{
-  "codes": [
-    {
-      "code": "ds = client.Dataset(\"quickstart_tfhub_qa\")\nds.insert_documents(documents)",
-      "name": "Python (SDK)",
-      "language": "python"
-    }
-  ]
-}
-[/block]
+```python Python (SDK)
+ds = client.Dataset("quickstart_tfhub_qa")
+ds.insert_documents(documents)
+```
+```python
+```
 
 
 ### Search
 To be able to search within vectors that are generated by the Universal Sentence Encoder, we need to encode the query with the same vectorizer and then form a vector search as shown below:
 
 
-[block:code]
-{
-  "codes": [
-    {
-      "code": "query = 'What is a good mothers day gift?'\nquery_vector = encode_query(query)",
-      "name": "Python (SDK)",
-      "language": "python"
-    }
-  ]
-}
-[/block]
+```python Python (SDK)
+query = 'What is a good mothers day gift?'
+query_vector = encode_query(query)
+```
+```python
+```
 
 
 Forming a multi-vector query and hitting the vector search endpoint:
 
 
+```python Python (SDK)
+multivector_query=[
+        { "vector": query_vector, "fields": ["product_title_use_qa_vector_"]}
+    ]
 
-{
-  "codes": [
-    {
-      "code": "results = ds.vector_search(\n    multivector_query=multivector_query,\n    page_size=5\n)",
-      "name": "Python (SDK)",
-      "language": "python"
-    }
-  ]
-}
-[/block]
+results = ds.vector_search(
+    multivector_query=multivector_query,
+    page_size=5
+)
+```
+```python
+```
 
 
-[block:code]
-{
-  "codes": [
-    {
-      "code": "from relevanceai import show_json\n\nprint('=== QUERY === ')\nprint(query)\n\nprint('=== RESULTS ===')\nshow_json(results, image_fields=[\"product_image\"], text_fields=[\"product_title\"])",
-      "name": "Python (SDK)",
-      "language": "python"
-    }
-  ]
-}
-[/block]
+```python Python (SDK)
+from relevanceai import show_json
+
+print('=== QUERY === ')
+print(query)
+
+print('=== RESULTS ===')
+show_json(results, image_fields=["product_image"], text_fields=["product_title"])
+```
+```python
+```
 
 
 
@@ -179,15 +175,69 @@ Forming a multi-vector query and hitting the vector search endpoint:
 ## Final Code
 
 
+```python Python (SDK)
+from relevanceai import Client
 
-{
-  "codes": [
-    {
-      "code": "from relevanceai import show_json\n\nprint('=== QUERY === ')\nprint(query)\n\nprint('=== RESULTS ===')\nshow_json(results, image_fields=[\"product_image\"], text_fields=[\"product_title\"])",
-      "name": "Python (SDK)",
-      "language": "python"
-    }
-  ]
-}
-[/block]
+"""
+You can sign up/login and find your credentials here: https://cloud.relevance.ai/sdk/api
+Once you have signed up, click on the value under `Activation token` and paste it here
+"""
+client = Client()
+
+import pandas as pd
+from relevanceai.datasets import get_ecommerce_dataset_clean
+
+# Retrieve our sample dataset. - This comes in the form of a list of documents.
+documents = get_ecommerce_dataset_clean()
+
+pd.DataFrame.from_dict(documents).head()
+
+import tensorflow as tf
+import tensorflow_hub as hub
+import numpy as np
+import tensorflow_text
+
+# Here we load the model and define how we encode
+module = hub.load('https://tfhub.dev/google/universal-sentence-encoder-qa/3')
+
+# First we define how we encode the queries
+def encode_query(query: str):
+    return module.signatures['question_encoder'](tf.constant([query]))['outputs'][0].numpy().tolist()
+
+# We then want to define how we encode the answers
+def encode_answer(answer: str):
+    return module.signatures['response_encoder'](
+        input=tf.constant([answer]),
+        context=tf.constant([answer]))['outputs'][0].numpy().tolist()
+
+from tqdm.auto import tqdm
+
+for d in tqdm(documents):
+    d['product_title_use_qa_vector_'] = encode_answer(d['product_title'])
+
+ds = client.Dataset("quickstart_tfhub_qa")
+ds.insert_documents(documents)
+
+query = 'What is an expensive gift?'
+query_vector = encode_query(query)
+
+multivector_query=[
+        { "vector": query_vector, "fields": ["product_title_use_qa_vector_"]}
+    ]
+
+results = ds.vector_search(
+    multivector_query=multivector_query,
+    page_size=5
+)
+
+from relevanceai import show_json
+
+print('=== QUERY === ')
+print(query)
+
+print('=== RESULTS ===')
+show_json(results, image_fields=["product_image"], text_fields=["product_title"])
+```
+```python
+```
 

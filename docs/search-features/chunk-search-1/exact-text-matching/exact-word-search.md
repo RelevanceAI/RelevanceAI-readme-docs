@@ -25,71 +25,57 @@ This search looks for the closest answer (most relevant data entry) via **exact 
 Sample codes using Relevance AI SDK for traditional search endpoint are shown below. Note that to be able to use this search endpoint you need to:
 1. install Relevance AI's python SDK (for more information please visit the [installation](https://docs.relevance.ai/docs/installation) page).
 
-[block:code]
-{
-  "codes": [
-    {
-      "code": "# remove `!` if running the line in a terminal\n!pip install -U RelevanceAI[notebook]==1.4.5",
-      "name": "Bash",
-      "language": "bash"
-    }
-  ]
-}
-[/block]
+```bash Bash
+# remove `!` if running the line in a terminal
+!pip install -U RelevanceAI[notebook]==1.4.5
+```
+```bash
+```
 
 2. Instantiate a client object to be able to use the services provided by Relevance AI:
 
-[block:code]
-{
-  "codes": [
-    {
-      "code": "from relevanceai import Client\n\n\"\"\"\nYou can sign up/login and find your credentials here: https://cloud.relevance.ai/sdk/api\nOnce you have signed up, click on the value under `Activation token` and paste it here\n\"\"\"\nclient = Client()",
-      "name": "Python (SDK)",
-      "language": "python"
-    }
-  ]
-}
-[/block]
+```python Python (SDK)
+from relevanceai import Client
+
+"""
+You can sign up/login and find your credentials here: https://cloud.relevance.ai/sdk/api
+Once you have signed up, click on the value under `Activation token` and paste it here
+"""
+client = Client()
+```
+```python
+```
 
 3. Upload a dataset under your account (for more information please visit the guide on [datasets](https://docs.relevance.ai/docs/project-and-dataset)). Here, we use our eCommerce sample.
 
-[block:code]
-{
-  "codes": [
-    {
-      "code": "from relevanceai.datasets import get_ecommerce_dataset_encoded\n\ndocuments = get_ecommerce_dataset_encoded()\n{k:v for k, v in documents[0].items() if '_vector_' not in k}",
-      "name": "Python (SDK)",
-      "language": "python"
-    }
-  ]
-}
-[/block]
+```python Python (SDK)
+from relevanceai.datasets import get_ecommerce_dataset_encoded
 
-[block:code]
-{
-  "codes": [
-    {
-      "code": "ds = client.Dataset(\"quickstart_search\")\nds.insert_documents(documents)",
-      "name": "Python (SDK)",
-      "language": "python"
-    }
-  ]
-}
-[/block]
+documents = get_ecommerce_dataset_encoded()
+{k:v for k, v in documents[0].items() if '_vector_' not in k}
+```
+```python
+```
+
+```python Python (SDK)
+ds = client.Dataset("quickstart_search")
+ds.insert_documents(documents)
+```
+```python
+```
 
 4. We call the hybrid search endpoint with no vectors to perform a pure traditional search:
 
-[block:code]
-{
-  "codes": [
-    {
-      "code": "results = ds.hybrid_search(\n    multivector_query=[],\n    text=\"HP 2.4GHz\",\n    fields=[\"product_title\"],\n    page_size=5\n)",
-      "name": "Python (SDK)",
-      "language": "python"
-    }
-  ]
-}
-[/block]
+```python Python (SDK)
+results = ds.hybrid_search(
+    multivector_query=[],
+    text="HP 2.4GHz",
+    fields=["product_title"],
+    page_size=5
+)
+```
+```python
+```
 
 This search is quick and easy to implement. It works very well in the aforementioned use-cases but cannot offer any semantic search. This is because the model has no idea of semantic relations; for instance, the relation between  "puppy" and "dog", or "sparky" and "electrician" is completely unknown to the model. An instance of a failed search is presented in the screenshot below, where the word "puppies" was searched but the closest returned match is "puppet", even though the database includes many entries about dogs and pets.
 

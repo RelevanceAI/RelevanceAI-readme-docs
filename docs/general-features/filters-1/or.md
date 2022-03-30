@@ -35,17 +35,12 @@ filters = [{
 ```python
 ```
 
-[block:code]
-{
-  "codes": [
-    {
-      "code": "### TODO: update to match the latest SDK\nfiltered_data = ds.get_where(filter)",
-      "name": "Python (SDK)",
-      "language": "python"
-    }
-  ]
-}
-[/block]
+```python Python (SDK)
+### TODO: update to match the latest SDK
+filtered_data = ds.get_where(filter)
+```
+```python
+```
 
 ## (A or B) and (C or D)
 
@@ -91,17 +86,12 @@ filter = [{
 ```python
 ```
 
-[block:code]
-{
-  "codes": [
-    {
-      "code": "### TODO: update to match the latest SDK\nfiltered_data = ds.get_where(filter)",
-      "name": "Python (SDK)",
-      "language": "python"
-    }
-  ]
-}
-[/block]
+```python Python (SDK)
+### TODO: update to match the latest SDK
+filtered_data = ds.get_where(filter)
+```
+```python
+```
 
 
 ## (A or B or C) and D
@@ -145,15 +135,10 @@ filter = [{
 ```
 ```python
 ```
-[block:code]
-{
-  "codes": [
-    {
-      "code": "### TODO: update to match the latest SDK\nfiltered_data = ds.get_where(filter)",
-      "name": "Python (SDK)",
-      "language": "python"
-    }
-  ]
-}
-[/block]
+```python Python (SDK)
+### TODO: update to match the latest SDK
+filtered_data = ds.get_where(filter)
+```
+```python
+```
 

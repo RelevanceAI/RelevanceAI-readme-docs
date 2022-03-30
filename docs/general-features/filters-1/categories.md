@@ -14,27 +14,23 @@ updatedAt: "2022-01-19T05:16:45.084Z"
 
 This filter checks the entries in a database and returns ones in which a field value exists in a given filter list. For instance, if the product name is any of Sony, Samsung, or LG. *Note that this filter is case-sensitive.*
 
-[block:code]
-{
-  "codes": [
+```python Python (SDK)
+filter = [
     {
-      "code": "filter = [\n    {\n        \"field\": brand,\n        \"filter_type\": categories,\n        \"condition\": >=,\n        \"condition_value\": ['LG', 'samsung']\n    }\n]",
-      "name": "Python (SDK)",
-      "language": "python"
+        "field": brand,
+        "filter_type": categories,
+        "condition": >=,
+        "condition_value": ['LG', 'samsung']
     }
-  ]
-}
-[/block]
+]
+```
+```python
+```
 
-[block:code]
-{
-  "codes": [
-    {
-      "code": "### TODO: update to match the latest SDK\nfiltered_data = ds.get_where(filter)",
-      "name": "Python (SDK)",
-      "language": "python"
-    }
-  ]
-}
-[/block]
+```python Python (SDK)
+### TODO: update to match the latest SDK
+filtered_data = ds.get_where(filter)
+```
+```python
+```
 

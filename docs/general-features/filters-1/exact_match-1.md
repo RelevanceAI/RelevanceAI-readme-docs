@@ -13,63 +13,49 @@ updatedAt: "2022-01-19T05:16:37.437Z"
 ## `word_match`
 This filter has similarities to both `exact_match` and `contains`. It returns a document only if it contains a **word** value matching the filter; meaning substrings are covered in this category but as long as they can be extracted with common word separators like the white-space (blank). For instance, the filter value "Home Gallery",  can lead to extraction of a document with "Buy Home Fashion Gallery Polyester ..." in the description field as both words are explicitly seen in the text. *Note that this filter is case-sensitive.*
 
-[block:code]
-{
-  "codes": [
-    {
-      "code": "# remove `!` if running the line in a terminal\n!pip install -U RelevanceAI[notebook]==1.4.5",
-      "name": "Bash",
-      "language": "bash"
-    }
-  ]
-}
-[/block]
+```bash Bash
+# remove `!` if running the line in a terminal
+!pip install -U RelevanceAI[notebook]==1.4.5
+```
+```bash
+```
 
-[block:code]
-{
-  "codes": [
-    {
-      "code": "from relevanceai import Client\n\n\"\"\"\nYou can sign up/login and find your credentials here: https://cloud.relevance.ai/sdk/api\nOnce you have signed up, click on the value under `Activation token` and paste it here\n\"\"\"\nclient = Client()",
-      "name": "Python (SDK)",
-      "language": "python"
-    }
-  ]
-}
-[/block]
+```python Python (SDK)
+from relevanceai import Client
 
-[block:code]
-{
-  "codes": [
-    {
-      "code": "DATASET_ID = \"ecommerce-sample-dataset\"\nds = client.Dataset(DATASET_ID)",
-      "name": "Python (SDK)",
-      "language": "python"
-    }
-  ]
-}
-[/block]
+"""
+You can sign up/login and find your credentials here: https://cloud.relevance.ai/sdk/api
+Once you have signed up, click on the value under `Activation token` and paste it here
+"""
+client = Client()
+```
+```python
+```
 
-[block:code]
-{
-  "codes": [
-    {
-      "code": "filter = [\n    {\n        \"field\": description,\n        \"filter_type\": word_match,\n        \"condition\": ==,\n        \"condition_value\": Home curtain\n    }\n]",
-      "name": "Python (SDK)",
-      "language": "python"
-    }
-  ]
-}
-[/block]
+```python Python (SDK)
+DATASET_ID = "ecommerce-sample-dataset"
+ds = client.Dataset(DATASET_ID)
+```
+```python
+```
 
-[block:code]
-{
-  "codes": [
+```python Python (SDK)
+filter = [
     {
-      "code": "### TODO: update to match the latest SDK\nfiltered_data = ds.get_where(filter)",
-      "name": "Python (SDK)",
-      "language": "python"
+        "field": description,
+        "filter_type": word_match,
+        "condition": ==,
+        "condition_value": Home curtain
     }
-  ]
-}
-[/block]
+]
+```
+```python
+```
+
+```python Python (SDK)
+### TODO: update to match the latest SDK
+filtered_data = ds.get_where(filter)
+```
+```python
+```
 

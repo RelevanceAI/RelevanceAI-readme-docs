@@ -28,17 +28,12 @@ In this section, we will show you how to create and experiment with a powerful t
 ### Installation Requirements
 
 
-[block:code]
-{
-  "codes": [
-    {
-      "code": "# remove `!` if running the line in a terminal\n!pip install -U RelevanceAI[notebook]==1.4.5",
-      "name": "Bash",
-      "language": "bash"
-    }
-  ]
-}
-[/block]
+```bash Bash
+# remove `!` if running the line in a terminal
+!pip install -U RelevanceAI[notebook]==1.4.5
+```
+```bash
+```
 
 
 
@@ -47,17 +42,17 @@ In this section, we will show you how to create and experiment with a powerful t
 To be able to use Relevance AI, you need to instantiate a client. This needs a Project and API key that can be accessed at [https://cloud.relevance.ai/](https://cloud.relevance.ai/) in the settings area! Alternatively, you can run the code below and follow the link and the guide.
 
 
-[block:code]
-{
-  "codes": [
-    {
-      "code": "from relevanceai import Client\n\n\"\"\"\nYou can sign up/login and find your credentials here: https://cloud.relevance.ai/sdk/api\nOnce you have signed up, click on the value under `Activation token` and paste it here\n\"\"\"\nclient = Client()",
-      "name": "Python (SDK)",
-      "language": "python"
-    }
-  ]
-}
-[/block]
+```python Python (SDK)
+from relevanceai import Client
+
+"""
+You can sign up/login and find your credentials here: https://cloud.relevance.ai/sdk/api
+Once you have signed up, click on the value under `Activation token` and paste it here
+"""
+client = Client()
+```
+```python
+```
 
 
 ## Text Search with Universal Sentence Encoder using VectorHub
@@ -68,49 +63,47 @@ To be able to use Relevance AI, you need to instantiate a client. This needs a P
 For this experiment, we use our sample e-commerce dataset and preview one of the documents.
 
 
-[block:code]
-{
-  "codes": [
-    {
-      "code": "import pandas as pd\nfrom relevanceai.datasets import get_ecommerce_dataset_clean\n\n# Retrieve our sample dataset. - This comes in the form of a list of documents.\ndocuments = get_ecommerce_dataset_clean()\n\npd.DataFrame.from_dict(documents).head()",
-      "name": "Python (SDK)",
-      "language": "python"
-    }
-  ]
-}
-[/block]
+```python Python (SDK)
+import pandas as pd
+from relevanceai.datasets import get_ecommerce_dataset_clean
+
+# Retrieve our sample dataset. - This comes in the form of a list of documents.
+documents = get_ecommerce_dataset_clean()
+
+pd.DataFrame.from_dict(documents).head()
+```
+```python
+```
 
 An example document should have a structure that looks like this.
 
 
-[block:code]
-{
-  "codes": [
-    {
-      "code": "{'_id': '711160239',\n  'product_image': 'https://thumbs4.ebaystatic.com/d/l225/pict/321567405391_1.jpg',\n  'product_link': 'https://www.ebay.com/itm/20-36-Mens-Silver-Stainless-Steel-Braided-Wheat-Chain-Necklace-Jewelry-3-4-5-6MM-/321567405391?pt=LH_DefaultDomain_0&var=&hash=item4adee9354f',\n  'product_price': '$7.99 to $12.99',\n  'product_title': '20-36Mens Silver Stainless Steel Braided Wheat Chain Necklace Jewelry 3/4/5/6MM\"',\n  'query': 'steel necklace',\n  'source': 'eBay'\n}",
-      "name": "JSON",
-      "language": "json"
-    }
-  ]
+```json JSON
+{'_id': '711160239',
+  'product_image': 'https://thumbs4.ebaystatic.com/d/l225/pict/321567405391_1.jpg',
+  'product_link': 'https://www.ebay.com/itm/20-36-Mens-Silver-Stainless-Steel-Braided-Wheat-Chain-Necklace-Jewelry-3-4-5-6MM-/321567405391?pt=LH_DefaultDomain_0&var=&hash=item4adee9354f',
+  'product_price': '$7.99 to $12.99',
+  'product_title': '20-36Mens Silver Stainless Steel Braided Wheat Chain Necklace Jewelry 3/4/5/6MM"',
+  'query': 'steel necklace',
+  'source': 'eBay'
 }
-[/block]
+```
+```json
+```
 
 ### 2. Encode
 
 Next, we will instantiate the universal sentence encoder from VectorHub and encode the `product_title` field among all documents.
 
 
-[block:code]
-{
-  "codes": [
-    {
-      "code": "from vectorhub.encoders.text.tfhub import USE2Vec\nmodel = USE2Vec()\n\ndocuments = model.encode_documents(fields=['product_title'], documents=documents)",
-      "name": "Python (SDK)",
-      "language": "python"
-    }
-  ]
-}
-[/block]
+```python Python (SDK)
+from vectorhub.encoders.text.tfhub import USE2Vec
+model = USE2Vec()
+
+documents = model.encode_documents(fields=['product_title'], documents=documents)
+```
+```python
+```
 
 
 We can see that there is now a field called `product_title_use_vector_` in our data.
@@ -130,64 +123,55 @@ enc.__name__ = "model_name_goes_here"
 The data can be easily uploaded to Relevance AI platform via `insert_documents`.
 
 
-[block:code]
-{
-  "codes": [
-    {
-      "code": "ds = client.Dataset(\"quickstart_text_searc\")\nds.insert_documents(documents)",
-      "name": "Python (SDK)",
-      "language": "python"
-    }
-  ]
-}
-[/block]
+```python Python (SDK)
+ds = client.Dataset("quickstart_text_searc")
+ds.insert_documents(documents)
+```
+```python
+```
 
 ### 3. Search
 
 Note that our dataset includes vectors generated by Universal Sentence Encoder. Therefore, in this step, we first vectorize the query using the same encoder to be able to search among the similarly generated vectors.
 
 
-[block:code]
-{
-  "codes": [
-    {
-      "code": "query = 'Gift for my son'\nquery_vector = model.encode(query)",
-      "name": "Python (SDK)",
-      "language": "python"
-    }
-  ]
-}
-[/block]
+```python Python (SDK)
+query = 'Gift for my son'
+query_vector = model.encode(query)
+```
+```python
+```
 
 
 Simple vector search against our dataset:
 
+```python Python (SDK)
+multivector_query=[
+        { "vector": query_vector, "fields": ["product_title_use_vector_"]}
+    ]
 
-{
-  "codes": [
-    {
-      "code": "results = ds.vector_search(\n    multivector_query=multivector_query,\n    page_size=5\n)",
-      "name": "Python (SDK)",
-      "language": "python"
-    }
-  ]
-}
-[/block]
+results = ds.vector_search(
+    multivector_query=multivector_query,
+    page_size=5
+)
+```
+```python
+```
 
 
 We can see the results on the dashboard via the provided link after the search finishes. Or using Relevance AI `json_shower` as shown below:
 
-[block:code]
-{
-  "codes": [
-    {
-      "code": "from relevanceai import show_json\n\nprint('=== QUERY === ')\nprint(query)\n\nprint('=== RESULTS ===')\nshow_json(results, image_fields=[\"product_image\"], text_fields=[\"product_title\"])",
-      "name": "Python (SDK)",
-      "language": "python"
-    }
-  ]
-}
-[/block]
+```python Python (SDK)
+from relevanceai import show_json
+
+print('=== QUERY === ')
+print(query)
+
+print('=== RESULTS ===')
+show_json(results, image_fields=["product_image"], text_fields=["product_title"])
+```
+```python
+```
 
 
 
@@ -208,15 +192,51 @@ This is just a quick and basic example of using Relevance AI for text search, th
 
 ## Final Code
 
+```python Python (SDK)
+from relevanceai import Client
 
-{
-  "codes": [
-    {
-      "code": "from relevanceai import show_json\n\nprint('=== QUERY === ')\nprint('Gift for my son')\n\nprint('=== RESULTS ===')\nshow_json(results, image_fields=[\"product_image\"], text_fields=[\"product_title\"])",
-      "name": "Python (SDK)",
-      "language": "python"
-    }
-  ]
-}
-[/block]
+"""
+You can sign up/login and find your credentials here: https://cloud.relevance.ai/sdk/api
+Once you have signed up, click on the value under `Activation token` and paste it here
+"""
+client = Client()
+
+import pandas as pd
+from relevanceai.datasets import get_ecommerce_dataset_clean
+
+# Retrieve our sample dataset. - This comes in the form of a list of documents.
+documents = get_ecommerce_dataset_clean()
+
+pd.DataFrame.from_dict(documents).head()
+
+from vectorhub.encoders.text.tfhub import USE2Vec
+model = USE2Vec()
+
+documents = model.encode_documents(fields=['product_title'], documents=documents)
+
+ds = client.Dataset("quickstart_text_searc")
+ds.insert_documents(documents)
+
+query = 'Gift for my son'
+query_vector = model.encode(query)
+
+multivector_query=[
+        { "vector": query_vector, "fields": ["product_title_use_vector_"]}
+    ]
+
+results = ds.vector_search(
+    multivector_query=multivector_query,
+    page_size=5
+)
+
+from relevanceai import show_json
+
+print('=== QUERY === ')
+print('Gift for my son')
+
+print('=== RESULTS ===')
+show_json(results, image_fields=["product_image"], text_fields=["product_title"])
+```
+```python
+```
 

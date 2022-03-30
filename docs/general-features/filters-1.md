@@ -29,17 +29,18 @@ Filters at Relevance AI are defined as Python dictionaries with four main keys:
 - `condition_value` (dependent on the filter type but decides what value to filter on)
 
 
-[block:code]
-{
-  "codes": [
+```python Python (SDK)
+filter = [
     {
-      "code": "filter = [\n    {\n        \"field\": description,\n        \"filter_type\": contains,\n        \"condition\": ==,\n        \"condition_value\": Durian Club\n    }\n]",
-      "name": "Python (SDK)",
-      "language": "python"
+        "field": description,
+        "filter_type": contains,
+        "condition": ==,
+        "condition_value": Durian Club
     }
-  ]
-}
-[/block]
+]
+```
+```python
+```
 
 ## Filtering operators
 Relevance AI covers all common operators:

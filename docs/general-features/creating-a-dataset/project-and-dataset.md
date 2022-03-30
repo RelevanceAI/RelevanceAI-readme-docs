@@ -33,44 +33,34 @@ Some basic actions to deal with datasets are:
 
 You can either use the dashboard to take these actions or employ Relevance AI Python SDK. For the Python SDK, you need to install Relevance AI and initiate a client as shown in the two code snippets below:
 
-[block:code]
-{
-  "codes": [
-    {
-      "code": "# remove `!` if running the line in a terminal\n!pip install -U RelevanceAI[notebook]==1.4.5",
-      "name": "Bash",
-      "language": "bash"
-    }
-  ]
-}
-[/block]
+```bash Bash
+# remove `!` if running the line in a terminal
+!pip install -U RelevanceAI[notebook]==1.4.5
+```
+```bash
+```
 
-[block:code]
-{
-  "codes": [
-    {
-      "code": "from relevanceai import Client\n\n\"\"\"\nYou can sign up/login and find your credentials here: https://cloud.relevance.ai/sdk/api\nOnce you have signed up, click on the value under `Activation token` and paste it here\n\"\"\"\nclient = Client()",
-      "name": "Python (SDK)",
-      "language": "python"
-    }
-  ]
-}
-[/block]
+```python Python (SDK)
+from relevanceai import Client
+
+"""
+You can sign up/login and find your credentials here: https://cloud.relevance.ai/sdk/api
+Once you have signed up, click on the value under `Activation token` and paste it here
+"""
+client = Client()
+```
+```python
+```
 
 ### Creating a dataset
 To create a new empty dataset pass the name under which you wish to save the dataset to the `create` function as shown below. In this example, we have used `ecommerce-sample-dataset` as the name.
 
-[block:code]
-{
-  "codes": [
-    {
-      "code": "ds = client.Dataset(\"ecommerce-sample-dataset\")\nds.insert_documents(documents)",
-      "name": "Python (SDK)",
-      "language": "python"
-    }
-  ]
-}
-[/block]
+```python Python (SDK)
+ds = client.Dataset("ecommerce-sample-dataset")
+ds.insert_documents(documents)
+```
+```python
+```
 
 See [Inserting and updating documents](doc:inserting-data) for more details on how to insert/upload documents into a dataset.
 
@@ -93,17 +83,11 @@ You can see a list of all datasets you have uploaded to your account in the dash
 
 Alternatively, you can use the list endpoint under Python SDK as shown below:
 
-[block:code]
-{
-  "codes": [
-    {
-      "code": "client.list_datasets()",
-      "name": "Python (SDK)",
-      "language": "python"
-    }
-  ]
-}
-[/block]
+```python Python (SDK)
+client.list_datasets()
+```
+```python
+```
 
 ### Monitoring a specific dataset
 
@@ -115,17 +99,11 @@ RelevanceAI's dashboard at https://cloud.relevance.ai is the most straightforwar
 <figure>
 Alternatively, you can monitor the health of a dataset using the command below which returns the count of total missing and existing fields in the data points in the named dataset.
 
-[block:code]
-{
-  "codes": [
-    {
-      "code": "ds.health",
-      "name": "Python (SDK)",
-      "language": "python"
-    }
-  ]
-}
-[/block]
+```python Python (SDK)
+ds.health
+```
+```python
+```
 
 <figure>
 <img src="https://github.com/RelevanceAI/RelevanceAI-readme-docs/blob/v1.4.5/docs_template/general-features/creating-a-dataset/_assets/health.png?raw=true" width="607" alt="Dataset health".png" />
@@ -136,15 +114,9 @@ Alternatively, you can monitor the health of a dataset using the command below w
 
 Deleting an existing dataset can be done on the dashboard using the delete option availabal for each dataset. Or through the Python SDK:
 
-[block:code]
-{
-  "codes": [
-    {
-      "code": "client.delete_dataset(dataset_id=\"ecommerce-sample-dataset\")",
-      "name": "Python (SDK)",
-      "language": "python"
-    }
-  ]
-}
-[/block]
+```python Python (SDK)
+client.delete_dataset(dataset_id="ecommerce-sample-dataset")
+```
+```python
+```
 

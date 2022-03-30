@@ -90,7 +90,7 @@ def load_snippet(
     snippet_path: str,
     ext: Literal["md", "ipynb"],
     params: Optional[Dict] = None,
-    snippet_format: Union["block", "rdmd"] = "block",
+    snippet_format: Union["block", "rdmd"] = "rdmd",
 ):
     """
     Loads given snippet from the given path in a given format

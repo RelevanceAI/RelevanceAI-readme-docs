@@ -16,43 +16,30 @@ We can evaluate our cluster quality through plotting the cluster distribution.
 The following code examines how the clusters are distributed, firstly, within themselves, and then against a ground truth label *Age* (i.e. *Age* is one of the fields in the dataset). Ideally, there is a clear ground truth in each cluster category. Note that the following code samples are to run after clustering is done on a dataset as was explained in [Clustering](https://docs.relevance.ai/docs/quickstart-k-means).
 
 
-[block:code]
-{
-  "codes": [
-    {
-      "code": "DATASET_ID = \"titanic\"\nds = client.Dataset(DATASET_ID)",
-      "name": "Python (SDK)",
-      "language": "python"
-    }
-  ]
-}
-[/block]
+```python Python (SDK)
+DATASET_ID = "titanic"
+ds = client.Dataset(DATASET_ID)
+```
+```python
+```
 
 
-[block:code]
-{
-  "codes": [
-    {
-      "code": "viz_ops = client.ClusterVizOps(\n    dataset_id=DATASET_ID,\n    vector_fields=[\"value_vector_\"],\n    alias=\"kmeans_5\"\n)",
-      "name": "Python (SDK)",
-      "language": "python"
-    }
-  ]
-}
-[/block]
+```python Python (SDK)
+viz_ops = client.ClusterVizOps(
+    dataset_id=DATASET_ID,
+    vector_fields=["value_vector_"],
+    alias="kmeans_5"
+)
+```
+```python
+```
 
 
-[block:code]
-{
-  "codes": [
-    {
-      "code": "viz_ops.plot_distributions(\"Age\", top_indices=3)",
-      "name": "Python (SDK)",
-      "language": "python"
-    }
-  ]
-}
-[/block]
+```python Python (SDK)
+viz_ops.plot_distributions("Age", top_indices=3)
+```
+```python
+```
 
 
 
@@ -60,40 +47,26 @@ The following code examines how the clusters are distributed, firstly, within th
 
 We can further plot custom distribution like below.
 
-[block:code]
-{
-  "codes": [
-    {
-      "code": "from scipy.stats import skew, variation",
-      "name": "Python (SDK)",
-      "language": "python"
-    }
-  ]
-}
-[/block]
+```python Python (SDK)
+from scipy.stats import skew, variation
+```
+```python
+```
 
 
-[block:code]
-{
-  "codes": [
-    {
-      "code": "viz_ops.plot_distributions(\n    numeric_field=\"Age\", dataset_id=DATASET_ID, measure_function=variation, top_indices=3\n)",
-      "name": "Python (SDK)",
-      "language": "python"
-    }
-  ]
-}
-[/block]
+```python Python (SDK)
+viz_ops.plot_distributions(
+    numeric_field="Age", dataset_id=DATASET_ID, measure_function=variation, top_indices=3
+)
+```
+```python
+```
 
 
-[block:code]
-{
-  "codes": [
-    {
-      "code": "viz_ops.plot_distributions(\n    numeric_field=\"Age\", dataset_id=DATASET_ID, measure_function=skew, top_indices=2\n)",
-      "name": "Python (SDK)",
-      "language": "python"
-    }
-  ]
-}
-[/block]
+```python Python (SDK)
+viz_ops.plot_distributions(
+    numeric_field="Age", dataset_id=DATASET_ID, measure_function=skew, top_indices=2
+)
+```
+```python
+```
