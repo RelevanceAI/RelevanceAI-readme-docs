@@ -14,7 +14,7 @@ To install, users simply run:
 
 ```bash Bash
 # remove `!` if running the line in a terminal
-!pip install -U RelevanceAI[notebook]==2.0.0
+!pip install -U RelevanceAI[notebook]==1.4.5
 ```
 ```bash
 ```

@@ -6,7 +6,7 @@ createdAt: "2021-11-25T05:44:25.366Z"
 updatedAt: "2022-01-19T05:16:37.437Z"
 ---
 <figure>
-<img src="https://github.com/RelevanceAI/RelevanceAI-readme-docs/blob/v2.0.0/docs_template/general-features/_assets/word-match.png?raw=true" width="1974" alt="wordmatch.png" />
+<img src="https://github.com/RelevanceAI/RelevanceAI-readme-docs/blob/v1.4.5/docs_template/general-features/_assets/word-match.png?raw=true" width="1974" alt="wordmatch.png" />
 <figcaption>Filtering documents matching "Home curtain" in the description field.</figcaption>
 <figure>
 
@@ -15,7 +15,7 @@ This filter has similarities to both `exact_match` and `contains`. It returns a 
 
 ```bash Bash
 # remove `!` if running the line in a terminal
-!pip install -U RelevanceAI[notebook]==2.0.0
+!pip install -U RelevanceAI[notebook]==1.4.5
 ```
 ```bash
 ```

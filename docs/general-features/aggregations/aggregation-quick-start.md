@@ -12,10 +12,10 @@ One of the most useful analysis tools is **grouping** and **aggregating** data b
 
 This article briefly explains the main aggregation functions. We use a demo dataset containing different real-estate properties. The goal is to find out how properties differ in terms of average price and other characteristics across different locations in Sydney, Australia.
 
-[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/RelevanceAI/RelevanceAI-readme-docs/blob/v2.0.0/docs/general-features/aggregations/_notebooks/RelevanceAI_ReadMe_QuickStart_Aggregations.ipynb)
+[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/RelevanceAI/RelevanceAI-readme-docs/blob/v1.4.5/docs/general-features/aggregations/_notebooks/RelevanceAI_ReadMe_QuickStart_Aggregations.ipynb)
 
 <figure>
-<img src="https://colab.research.google.com/github/RelevanceAI/RelevanceAI-readme-docs/blob/v2.0.0/docs_template/general-features/_assets/grouping-results.png" width="1458" alt="Screen Shot 2022-01-05 at 9.37.37 pm.png" />
+<img src="https://colab.research.google.com/github/RelevanceAI/RelevanceAI-readme-docs/blob/v1.4.5/docs_template/general-features/_assets/grouping-results.png" width="1458" alt="Screen Shot 2022-01-05 at 9.37.37 pm.png" />
 <figcaption>Grouping properties based on location, price, number of bathrooms, etc.</figcaption>
 <figure>
 
@@ -23,7 +23,7 @@ This article briefly explains the main aggregation functions. We use a demo data
 First, we need to install Relevance AI's Python SDK.
 ```bash Bash
 # remove `!` if running the line in a terminal
-!pip install -U RelevanceAI[notebook]==2.0.0
+!pip install -U RelevanceAI[notebook]==1.4.5
 ```
 ```bash
 ```
