@@ -19,7 +19,7 @@ This filter returns entries in a database if a certain field (as opposed to the 
     {
       "code": "# remove `!` if running the line in a terminal\n!pip install -U RelevanceAI[notebook]==2.0.0",
       "name": "Bash",
-      "language": "bash"
+      "language": "shell"
     }
   ]
 }

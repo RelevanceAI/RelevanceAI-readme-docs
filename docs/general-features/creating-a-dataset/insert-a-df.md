@@ -24,11 +24,11 @@ You can insert a dataframe easily with Relevance AI.
 
 First, the Relevance AI SDK package must be installed.
 
-```bash Bash
+```shell shell
 # remove `!` if running the line in a terminal
 !pip install -U RelevanceAI[notebook]==1.4.3
 ```
-```bash
+```shell
 ```
 
 ```python Python (SDK)

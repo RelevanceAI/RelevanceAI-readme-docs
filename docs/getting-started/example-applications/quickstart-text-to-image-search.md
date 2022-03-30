@@ -38,7 +38,7 @@ Prior to starting, let's install the main dependencies. This installation provid
     {
       "code": "# remove `!` if running the line in a terminal\n!pip install -U RelevanceAI[notebook]==2.0.0",
       "name": "Bash",
-      "language": "bash"
+      "language": "shell"
     }
   ]
 }
@@ -133,7 +133,7 @@ CLIP installation
     {
       "code": "# Clip installation\n!pip install ftfy regex tqdm\n!pip install git+https://github.com/openai/CLIP.git",
       "name": "Bash",
-      "language": "bash"
+      "language": "shell"
     }
   ]
 }

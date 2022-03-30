@@ -40,7 +40,7 @@ Sample codes using Relevance AI SDK for hybrid search endpoint are shown below. 
     {
       "code": "# remove `!` if running the line in a terminal\n!pip install -U RelevanceAI[notebook]==2.0.0",
       "name": "Bash",
-      "language": "bash"
+      "language": "shell"
     }
   ]
 }
@@ -52,7 +52,7 @@ Sample codes using Relevance AI SDK for hybrid search endpoint are shown below. 
     {
       "code": "# remove `!` if running the line in a terminal\n!pip install vectorhub[sentence-transformers]",
       "name": "Bash",
-      "language": "bash"
+      "language": "shell"
     }
   ]
 }

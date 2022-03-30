@@ -17,7 +17,7 @@ Vectorizing in Relevance AI can happen directly from the Python SDK or from a se
 
 ## Installation
 Relevance AI's Python SDK can be installed via a simple `pip install` command as shown below:
-```shell Bash
+```shell shell
 pip install RelevanceAI==0.27.0
 ```
 ```shell

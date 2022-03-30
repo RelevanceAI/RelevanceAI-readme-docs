@@ -23,21 +23,21 @@ This installation provides you with what you need to connect to RelevanceAI's AP
 This will install the latest version of our Python SDK:
 
 
-```bash Bash
+```shell shell
 !pip install git+https://github.com/RelevanceAI/RelevanceAI@v2.0.0
 ```
-```bash
+```shell
 ```
 
 
 For editable installation:
 
 
-```bash Bash
+```shell shell
 git clone -b v2.0.0 https://github.com/RelevanceAI/RelevanceAI
 pip install -e .
 ```
-```bash
+```shell
 ```
 
 ### Setting Up Client

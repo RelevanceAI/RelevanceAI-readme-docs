@@ -19,7 +19,7 @@ This filter returns documents whose unique id exists in a given list. It may loo
     {
       "code": "# remove `!` if running the line in a terminal\n!pip install -U RelevanceAI[notebook]==2.0.0",
       "name": "Bash",
-      "language": "bash"
+      "language": "shell"
     }
   ]
 }

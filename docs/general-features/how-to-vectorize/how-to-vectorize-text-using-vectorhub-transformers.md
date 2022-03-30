@@ -21,7 +21,7 @@ First, `sentence-transformers` must be installed. Restart the notebook when the 
     {
       "code": "# remove `!` if running the line in a terminal\n!pip install vectorhub[sentence-transformers]",
       "name": "Bash",
-      "language": "bash"
+      "language": "shell"
     }
   ]
 }

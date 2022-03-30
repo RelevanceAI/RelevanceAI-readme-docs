@@ -25,11 +25,11 @@ This search looks for the closest answer (most relevant data entry) via **exact 
 Sample codes using Relevance AI SDK for traditional search endpoint are shown below. Note that to be able to use this search endpoint you need to:
 1. install Relevance AI's python SDK (for more information please visit the [installation](https://docs.relevance.ai/docs/installation) page).
 
-```bash Bash
+```shell shell
 # remove `!` if running the line in a terminal
 !pip install -U RelevanceAI[notebook]==2.0.0
 ```
-```bash
+```shell
 ```
 
 2. Instantiate a client object to be able to use the services provided by Relevance AI:

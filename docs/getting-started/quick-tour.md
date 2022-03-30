@@ -33,7 +33,7 @@ Run this Quickstart in Colab: [![Open In Colab](https://colab.research.google.co
     {
       "code": "# remove `!` if running the line in a terminal\n!pip install -U RelevanceAI[notebook]==2.0.0\n\n\n# remove `!` if running the line in a terminal\n!pip install -U vectorhub[clip]",
       "name": "Bash",
-      "language": "bash"
+      "language": "shell"
     }
   ]
 }

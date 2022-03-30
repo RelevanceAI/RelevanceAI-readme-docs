@@ -31,7 +31,7 @@ Sample codes using Relevance AI SDK for traditional search endpoint are shown be
     {
       "code": "# remove `!` if running the line in a terminal\n!pip install -U RelevanceAI[notebook]==2.0.0",
       "name": "Bash",
-      "language": "bash"
+      "language": "shell"
     }
   ]
 }

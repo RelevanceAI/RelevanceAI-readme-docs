@@ -1,2 +1,2 @@
-bash
+shell
 !pip install faiss-cpu

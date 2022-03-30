@@ -20,7 +20,7 @@ Run this Quickstart in Colab: [![Open In Colab](https://colab.research.google.co
     {
       "code": "pip install -U RelevanceAI",
       "language": "shell",
-      "name": "Bash"
+      "name": "shell"
     }
   ]
 }

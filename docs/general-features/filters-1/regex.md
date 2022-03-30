@@ -23,7 +23,7 @@ Relevance AI has the same regular expression schema as Apache Lucene's ElasticSe
     {
       "code": "# remove `!` if running the line in a terminal\n!pip install -U RelevanceAI[notebook]==2.0.0",
       "name": "Bash",
-      "language": "bash"
+      "language": "shell"
     }
   ]
 }

@@ -20,7 +20,7 @@ Notes: you might also run `!pip install "opencv-python-headless<4.3"`, restart y
     {
       "code": "# remove `!` if running the line in a terminal\n!pip install -U vectorhub[clip]",
       "name": "Bash",
-      "language": "bash"
+      "language": "shell"
     }
   ]
 }

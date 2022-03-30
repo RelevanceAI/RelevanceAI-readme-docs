@@ -26,7 +26,7 @@ Please refer to a full guide on how to [create and upload a database](doc:creati
     {
       "code": "# remove `!` if running the line in a terminal\n!pip install -U RelevanceAI[notebook]==2.0.0",
       "name": "Bash",
-      "language": "bash"
+      "language": "shell"
     }
   ]
 }

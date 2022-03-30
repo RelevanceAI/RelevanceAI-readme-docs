@@ -22,7 +22,7 @@ First, `vectorhub[encoders-text-tfhub]` must be installed. Restart the notebook 
     {
       "code": "# remove `!` if running the line in a terminal\n!pip install vectorhub[encoders-text-tfhub]",
       "name": "Bash",
-      "language": "bash"
+      "language": "shell"
     }
   ]
 }
@@ -78,7 +78,7 @@ First, `vectorhub[sentence-transformers]` must be installed. Restart the noteboo
     {
       "code": "# remove `!` if running the line in a terminal\n!pip install vectorhub[sentence-transformers]",
       "name": "Bash",
-      "language": "bash"
+      "language": "shell"
     }
   ]
 }

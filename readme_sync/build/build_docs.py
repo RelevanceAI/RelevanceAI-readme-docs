@@ -16,7 +16,7 @@ import traceback
 
 RDMD_SNIPPET_LANGUAGES = {
     "python": "Python (SDK)",
-    "bash": "Bash",
+    "shell": "Bash",
     "json": "JSON",
 }
 
