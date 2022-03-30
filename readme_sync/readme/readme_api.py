@@ -33,7 +33,7 @@ class ReadMeAPI:
 
     @staticmethod
     def _validate_response(request_params: Dict, response: requests.Response):
-        if response.status_code != 200:
+        if response.status_code < 200 or response.status_code > 299:
             raise Exception(
                 f"Request failed with status code {response.status_code}\n. {json.dumps(request_params)}"
             )
@@ -184,8 +184,8 @@ class ReadMeAPI:
         self,
         title: str,
         type: Union["basic", "link", "error"],
-        category_slug: str,
-        parentDoc: str = None,
+        category_id: str,
+        parent_doc_id: str = None,
         body: str = "",
         hidden: bool = True,
         order: int = 999,
@@ -203,12 +203,10 @@ class ReadMeAPI:
         type: str
             Type of the page. The available types all show up under the /docs/ URL path of your docs project.
             Can be "basic" (most common), "error" (page desribing an API error), or "link" (page that redirects to an external link).
-        category_slug: str
-            A URL-safe representation of the category title.
-            Slugs must be all lowercase, and replace spaces with hyphens.
-            For example, for the the category "Getting Started", enter the slug "getting-started"
-        parentDoc: str
-            Slug of the parent doc. If you don't want to have a parent doc, leave this blank.
+        category_id: str
+            Category ID of the page
+        parent_doc_id: str
+            Id of the parent doc. If you don't want to have a parent doc, leave this blank.
         body: str
             Body content of the page, formatted in ReadMe or GitHub flavored Markdown. Accepts long page content, for example, greater than 100k characters.
         hidden: bool
@@ -224,11 +222,11 @@ class ReadMeAPI:
         payload = {
             "title": title,
             "type": type,
-            "category": category_slug,
+            "category": category_id,
             "body": body,
             "hidden": hidden,
             "order": order,
-            "parentDoc": parentDoc,
+            "parentDoc": parent_doc_id,
             "error": error_code,
         }
 

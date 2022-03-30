@@ -13,7 +13,7 @@ import argparse
 import json
 import yaml
 import frontmatter
-from deepdiff import DeepDiff
+from deepdiff import DeepDiff, grep
 import shutil
 from pprint import pprint
 from datetime import datetime
@@ -49,6 +49,7 @@ class Config(ABC):
                 "updatedAt",
                 "parentDoc",
                 "order",
+                "_id",
             ]
 
     @abstractmethod
@@ -90,6 +91,10 @@ class ReadMeConfig(Config):
         self.condensed_fpath = f"{str(self.fpath).replace('.yaml', '-condensed.yaml')}"
         self.condensed_config = yaml.safe_load(open(self.condensed_fpath, "r"))
 
+        self.category_slugs = {
+            c["slug"]: c["_id"]
+            for c in self.readme.get_categories(select_fields=["slug", "_id"])
+        }
         self.readme_page_slugs = self._load_page_slugs()
         self.docs_categories = self._load_docs_categories()
 
@@ -130,14 +135,15 @@ class ReadMeConfig(Config):
         if select_fields:
             self.select_fields = select_fields
 
-        category_slugs = [
-            c["slug"] for c in self.readme.get_categories(select_fields=["slug"])
-        ]
+        category_slugs = {
+            c["slug"]: c["_id"]
+            for c in self.readme.get_categories(select_fields=["slug", "_id"])
+        }
 
         ## Building condensed
         condensed_config = {"version": self.version}
         category_detail = {}
-        for cs in category_slugs:
+        for cs in category_slugs.keys():
             if not any([f in cs for f in self.api_categories + self.sdk_categories]):
                 category_detail[cs] = {
                     ps["slug"]: sorted([c["slug"] for c in ps["children"]])
@@ -164,10 +170,12 @@ class ReadMeConfig(Config):
                 page_details[page] = (
                     page_detail[0] if isinstance(page_detail, list) else page_detail
                 )
+
                 for child in children:
                     page_details[page][child] = self.readme.get_doc(
                         page_slug=child, select_fields=self.select_fields
                     )
+
             category_detail[category] = page_details
 
         logging.debug(f"Saving config to {self.fpath} ... ")
@@ -179,30 +187,66 @@ class ReadMeConfig(Config):
 
     def create(
         self,
-        slug: str,
-        select_fields: Optional[List[str]] = None,
+        title: str,
+        type: Union["basic", "link", "error"],
+        category_slug: str,
+        parent_slug: str = None,
+        body: str = "",
+        hidden: bool = True,
+        order: int = 999,
+        error_code: Dict = {"code": "404"},
     ):
         """Creates new page in ReadMe if slug does not exist
 
         Parameters
         ----------
-        fpath : Config filepath
-            Overrides instance fpath if set
-        slug: str
-            Page slug to create
-        select_fields : List[str]
-            select_fields: List
-            Fields to include in the search results, empty array/list means all fields
-
+        title: str
+            A URL-safe representation of the doc title.
+            Slugs must be all lowercase, and replace spaces with hyphens.
+            For example, for the the doc "New Features", enter the slug "new-features"
+        type: str
+            Type of the page. The available types all show up under the /docs/ URL path of your docs project.
+            Can be "basic" (most common), "error" (page desribing an API error), or "link" (page that redirects to an external link).
+        category_slug: str
+            A URL-safe representation of the category title.
+            Slugs must be all lowercase, and replace spaces with hyphens.
+            For example, for the the category "Getting Started", enter the slug "getting-started"
+        parent_slug: str
+            Slug of the parent doc. If you don't want to have a parent doc, leave this blank.
+        body: str
+            Body content of the page, formatted in ReadMe or GitHub flavored Markdown. Accepts long page content, for example, greater than 100k characters.
+        hidden: bool
+            Whether or not the doc should be hidden in Readme.
+        order: int
+            The position of the page in your project sidebar.
+        error_code: dict
+            code: str
+            The error code for docs with the "error" type
         """
-        # category_detail = {}
-        # for root, dirs, files in os.walk(self.fpath):
-        #     category_path = "/".join(
-        #             root.split('docs_template')[-1].split("/")[1:]
-        #         )
-        #     print(category_path)
 
-        return NotImplementedError
+        result = search_dict(parent_slug, self.config)
+        parent_doc_id = result["_id"]
+        category_id = self.category_slugs[category_slug]
+
+        return self.readme.create_doc(
+            title=title,
+            type=type,
+            category_id=category_id,
+            parent_doc_id=parent_doc_id,
+            body=body,
+            hidden=hidden,
+            order=order,
+            error_code=error_code,
+        )
+
+    @staticmethod
+    def get_page_orders(d: Dict):
+        page_orders = []
+        for k, v in d.items():
+            if isinstance(v, list):
+                if isinstance(v[0], dict):
+                    page_orders.append(v[0]["order"])
+        return page_orders
 
 
 class DocsConfig(Config):
@@ -313,6 +357,7 @@ class DocsConfig(Config):
             return directory
 
     def _iterdict(self, d: Dict, filter_keys: List[str] = ["([_])\w+"]):
+        """Iterate nested dict"""
         regex_filter = "(" + ")|(".join(filter_keys) + ")"
         for k, v in d.items():
             if not re.match(regex_filter, k):
@@ -328,6 +373,9 @@ class DocsConfig(Config):
 
     @staticmethod
     def _clean_config(config: Dict, filter_keys: List[str] = ["([_])\w+"]):
+        """Filter config with regex filter_keys
+        Converts docs-config into docs-config-condensed
+        """
         regex_filter = "(" + ")|(".join(filter_keys) + ")"
         clean_config = {}
         for category, pages in config.items():
@@ -345,6 +393,7 @@ class DocsConfig(Config):
                 if page_dicts:
                     logging.debug(f"\tPage Dicts: {list(page_dicts.keys())}")
                 page_detail = {}
+
                 for slug in page_slugs:
                     if page_dicts.get(slug):
                         children = sorted(
@@ -396,6 +445,59 @@ class DocsConfig(Config):
         with open(fpath, "w") as f:
             yaml.dump(docs_readme_config, f, default_flow_style=False, sort_keys=True)
         return docs_readme_config
+
+
+def search_dict(k, d):
+    if k in d:
+        return d[k]
+    for v in d.values():
+        if isinstance(v, dict):
+            return search_dict(k, v)
+    return None
+
+
+def get_config_diff(config_1: Dict, config_2: Dict, fpath: Path) -> List[Path]:
+    ddiff = DeepDiff(
+        config_1,
+        config_2,
+        ignore_order=True,
+        report_repetition=True,
+        view="tree",
+    )
+    logging.debug(f"---------")
+    logging.debug(f"Deepdiff: \n{ddiff} ...")
+    paths = []
+    if ddiff:
+        diff_items = [i for k, v in ddiff.items() for i in ddiff[k]]
+        logging.debug(f"{len(diff_items)} items added")
+        for d in diff_items:
+            path = [
+                i
+                for i in d.path(output_format="list")
+                if i not in ["categories"]
+                if isinstance(i, str)
+            ]
+            if str(d.t1) != "not present":
+                md_path = d.t1
+            elif str(d.t2) != "not present":
+                md_path = d.t2
+            path += [f"{md_path}.md"]
+
+        DIFF_FPATH = fpath / "/".join(path)
+        logging.debug(f"\n{DIFF_FPATH} ...")
+        paths.append(DIFF_FPATH)
+    return paths
+
+
+def get_frontmatter(fpath: Path) -> Dict:
+    with open(fpath, "r") as f:
+        post = frontmatter.load(f)
+        logging.debug(f"Loading frontmatter: {post.to_dict()}")
+        # dt = datetime.now().strftime("%Y-%m-%dT%H:%M:%S.%fZ")
+        # post["createdAt"] = dt
+        # post["updatedAt"] = dt
+        # frontmatter.dump(post, fpath, sort_keys=False)
+    return post.to_dict()
 
 
 def main(args):
@@ -471,82 +573,53 @@ def main(args):
 
                     for f in files:
                         export_path = Path(root).joinpath(f)
-
                         docs_path = Path(DOCS_TEMPLATE_PATH).joinpath(category_path, f)
                         docs_path.parent.mkdir(parents=True, exist_ok=True)
                         if not docs_path.exists():
                             logging.info(f"Copying file: {export_path} to {docs_path}")
-                            shutil.copy(export_path, docs_path)
+                        shutil.copy(export_path, docs_path)
 
     elif args.method == "update":
         logging.info(f"Updating {README_VERSION} ReadMe to current {DOCS_PATH}")
 
         ## TODO: Merge docs_config and readme_config schema
         docs_config.build()
+
         docs_condensed_config = docs_config.condensed_config
         readme_condensed_config = readme_config.condensed_config
 
-        def get_config(fpath: Path):
-
-            return fpath
-
-        ## https://zepworks.com/deepdiff/current/view.html#text-view
-        ddiff = DeepDiff(
-            docs_condensed_config,
-            readme_condensed_config,
-            ignore_order=True,
-            report_repetition=True,
-            view="tree",
+        new_fpaths = get_config_diff(
+            config_1=docs_condensed_config,
+            config_2=readme_condensed_config,
+            fpath=DOCS_TEMPLATE_PATH,
         )
-        logging.debug(f"---------")
-        logging.debug(f"Deepdiff {ddiff} ...")
 
-        if ddiff:
-            diff_items = [i for k, v in ddiff.items() for i in ddiff[k]]
-            logging.debug(f"{len(diff_items)} items added")
-            for d in diff_items:
-                path = [
-                    i
-                    for i in d.path(output_format="list")
-                    if i not in ["categories"]
-                    if isinstance(i, str)
-                ]
-                path += [f"{d.t1}.md"]
+        for path in new_fpaths:
+            category = str(path).split("docs_template")[1].split("/")[1]
+            parent = path.parent.name
 
-            path = "/".join(path)
-            DIFF_FPATH = DOCS_TEMPLATE_PATH / path
-            logging.debug(f"Found new file: {DIFF_FPATH} ...")
+            ## TODO: read slug from fname - in case slug is not the same
+            post = get_frontmatter(path)
+            child_dict = readme_config.config["categories"][category][parent]
 
-            with open(DIFF_FPATH, "r") as f:
-                post = frontmatter.load(f)
-                logging.debug(f"Loading frontmatter: {post.to_dict()}")
+            page_orders = readme_config.get_page_orders(child_dict)
+            max_page_order = max(page_orders)
 
-                dt = datetime.now().strftime("%Y-%m-%dT%H:%M:%S.%fZ")
+            logging.debug(f"Creating new ReadMe config page... \n\t{path}")
+            readme_config.create(
+                title=post["title"],
+                type="basic",
+                category_slug=category,
+                parent_slug=parent,
+                hidden=post["hidden"],
+                order=max_page_order + 1,
+            )
 
-                post["createdAt"] = dt
-                post["updatedAt"] = dt
-                frontmatter.dump(post, DIFF_FPATH, sort_keys=False)
+            logging.debug(f"Updating config ... ")
 
-            return post
+            ## TODO: Inserting new item in readme config with new category instead rebuilding full config
 
-            # post = frontmatter.load(DIFF_FPATH)
-            # # f =
-            # frontmatter.dump(post, BytesIO())
-            # print(frontmatter.dumps(dt))
-            # print(f.getvalue().decode('utf-8'))
-
-        # for item in ddiff['dictionary_item_removed']:
-        #     for d in item.items():
-        #         print(d)
-        #         print(item)
-        # print(d)
-        # d = d.split()
-        # print(eval(d))
-        # new_item = d.split()
-        # print(new_item)
-        # print(type(d))
-
-        # self.config = yaml.safe_load(open(self.fpath, "r"))
+            readme_config.build()
 
 
 if __name__ == "__main__":
