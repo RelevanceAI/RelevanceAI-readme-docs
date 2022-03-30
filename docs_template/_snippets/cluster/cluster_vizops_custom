@@ -1,6 +1,4 @@
 python NUMERIC_FIELD=NUMERIC_FIELD, DATASET_ID=DATASET_ID, MEASURE_FUNCTION=variation, TOP_INDICES=3
-from scipy.stats import skew, variation
-
 viz_ops.plot_distributions(
     numeric_field=<<NUMERIC_FIELD>>, dataset_id=<<DATASET_ID>>, measure_function=<<MEASURE_FUNCTION>>, top_indices=<<TOP_INDICES>>
 )
