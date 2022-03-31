@@ -5,7 +5,7 @@ from typing import Dict, List, Literal, Optional, Tuple, Union
 import logging
 
 from readme.readme_api import ReadMeAPI
-from readme_sync.config.config import Config
+from rdme_sync.config.config import Config
 
 
 class ReadMeConfig(Config):

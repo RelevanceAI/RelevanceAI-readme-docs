@@ -12,7 +12,7 @@ import frontmatter
 from deepdiff import DeepDiff, grep
 import shutil
 
-from readme_sync.config.config import ReadMeConfig, DocsConfig
+from rdme_sync.config.config import ReadMeConfig, DocsConfig
 
 
 ROOT_PATH = Path(__file__).parent.resolve() / ".." / ".."

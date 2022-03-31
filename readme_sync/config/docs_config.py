@@ -5,7 +5,7 @@ import yaml
 from typing import Dict, List, Literal, Optional, Tuple, Union
 import logging
 
-from readme_sync.config.config import Config
+from rdme_sync.config.config import Config
 
 
 class DocsConfig(Config):
