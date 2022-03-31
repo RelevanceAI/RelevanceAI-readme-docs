@@ -394,4 +394,4 @@ docs_template:
   - RelevanceAI_cluster_dashboard.png
   - RelevanceAI_DS_Workflow_old.png
 - _snippet_params.json
-version: v1.4.5
+version: v2.0.0

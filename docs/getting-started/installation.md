@@ -16,7 +16,7 @@ The easiest way to install our Python SDK is to run:
 {
   "codes": [
     {
-      "code": "# remove `!` if running the line in a terminal\n!pip install -U RelevanceAI[notebook]==1.4.5",
+      "code": "# remove `!` if running the line in a terminal\n!pip install -U RelevanceAI[notebook]==2.0.0",
       "name": "Bash",
       "language": "shell"
     }
@@ -26,7 +26,7 @@ The easiest way to install our Python SDK is to run:
 
 This installation provides you with what you need to connect to RelevanceAI's API, read/write data, make different searches, etc.
 
-**The SDK Reference** can be found at https://relevanceai.readthedocs.io/en/v1.4.5/
+**The SDK Reference** can be found at https://relevanceai.readthedocs.io/en/v2.0.0/
 
 ### Installation from source
 
@@ -36,7 +36,7 @@ This will install the latest version of our Python SDK:
 {
   "codes": [
     {
-      "code": "!pip install git+https://github.com/RelevanceAI/RelevanceAI@v1.4.5",
+      "code": "!pip install git+https://github.com/RelevanceAI/RelevanceAI@v2.0.0",
       "name": "Bash",
       "language": "shell"
     }
@@ -51,7 +51,7 @@ For editable installation:
 {
   "codes": [
     {
-      "code": "git clone -b v1.4.5 https://github.com/RelevanceAI/RelevanceAI\npip install -e .",
+      "code": "git clone -b v2.0.0 https://github.com/RelevanceAI/RelevanceAI\npip install -e .",
       "name": "Bash",
       "language": "shell"
     }
@@ -82,7 +82,7 @@ After installation is complete, we need to instantiate a Relevance AI client obj
 
 
 <figure>
-<img src="https://github.com/RelevanceAI/RelevanceAI-readme-docs/blob/v1.4.5/docs_template/_assets/RelevanceAI_auth_token_details.png?raw=true" alt="Get your Auth Details" />
+<img src="https://github.com/RelevanceAI/RelevanceAI-readme-docs/blob/heads/v2.0.0/docs_template/_assets/RelevanceAI_auth_token_details.png?raw=true" alt="Get your Auth Details" />
 <figcaption>Get your Auth Details</figcaption>
 <figure>
 

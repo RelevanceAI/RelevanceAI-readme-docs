@@ -21,6 +21,8 @@ def file_find_replace(
 
         with open(fname, "w") as f:
             for i, line in enumerate(lines):
+                if "data:image/png;base64" in str(line):
+                    continue
                 if bool(re.search(find_sent_regex, line)):
                     find_sent = re.search(find_sent_regex, line)
                     if find_sent:

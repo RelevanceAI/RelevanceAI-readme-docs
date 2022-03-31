@@ -15,7 +15,7 @@ You will need to have followed [the quickstart clustering guide](doc:quickstart-
 You will also need to have knowledge of [aggregations](doc:aggregations).
 
 ## Code Example
-[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/RelevanceAI/RelevanceAI-readme-docs/blob/v1.4.5/docs/clustering-features/clustering/_notebooks/RelevanceAI-ReadMe-Clustering-Aggregation.ipynb)
+[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/RelevanceAI/RelevanceAI-readme-docs/blob/heads/v2.0.0/docs/clustering-features/clustering/_notebooks/RelevanceAI-ReadMe-Clustering-Aggregation.ipynb)
 
 The following code example groups the data based on the `product_price` field, also use the average metrics on `product_price` for each cluster. `DATASET_ID` refers to the name of the dataset, `VECTOR_FIELD` is the field based on which the clustering is done, and ALIAS is the name specified by the user to save the clustering results.
 

@@ -25,7 +25,7 @@ Some important similarity and relevance based problems that can be solved with v
 In the vector workflow to solve search and relevance problems, we decided to focus heavily on the foundation of all good solutions - the **experimentation stage**. Our **experimentation-first** approach helps users experiment, tune and prototype various vector weightings, configurations, data structures and vector search methods to improve their vectors. For a more in-depth exploration and comparison take a look at our article on [experimentation-first vector database](doc:why-experimentation-first).
 
 <figure>
-<img src="https://github.com/RelevanceAI/RelevanceAI-readme-docs/blob/v1.4.5/docs_template/_assets/RelevanceAI_Workflow_Phases.png?raw=true"  alt="Relevance AI Workflow Phases" />
+<img src="https://github.com/RelevanceAI/RelevanceAI-readme-docs/blob/heads/v2.0.0/docs_template/_assets/RelevanceAI_Workflow_Phases.png?raw=true"  alt="Relevance AI Workflow Phases" />
 <figcaption>Relevance AI's Workflow</figcaption>
 <figure>
 

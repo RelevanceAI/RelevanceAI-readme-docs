@@ -1,13 +1,15 @@
 #!/usr/bin/env python3
 
 import logging
-from typing import Dict, List, Union
+from typing import Dict, List, Literal, Union
 from pathlib import Path
 import requests
 import os
+import re
 import json
 import argparse
 from pprint import pprint
+import traceback
 
 import nbformat
 from traitlets.config import Config
@@ -16,22 +18,46 @@ from nbconvert import MarkdownExporter
 from traitlets import Integer
 from nbconvert.preprocessors import Preprocessor
 
+from rdme_sync.build.build_snippets import generate_snippet
+from rdme_sync.build.constants import RDMD_SNIPPET_LANGUAGES
 
-class RdmdPreprocessor(Preprocessor):
-    """ReadMe Markdown preprocessor"""
+
+class RdmdSnippetPreprocessor(Preprocessor):
+    """ReadMe Markdown Snippet preprocessor"""
 
     start = Integer(0, help="first cell of notebook to be converted").tag(config=True)
     end = Integer(-1, help="last cell of notebook to be converted").tag(config=True)
+    snippet_format: Literal["rdmd", "block"] = "block"
 
     def preprocess(self, nb, resources):
-        self.log.info("I'll keep only cells from %d to %d", self.start, self.end)
-        nb.cells = nb.cells[self.start : self.end]
-
+        # nb.cells = nb.cells[self.start : self.end]
+        language = "python"
         for cell in nb.cells:
             if cell["cell_type"] == "code":
-                print(cell["source"])
-        # print(nb.cells)
-        # print(resources)
+
+                snippet = cell["source"]
+
+                logging.debug(f"Before: {snippet}")
+                if self.snippet_format == "rdmd":
+                    snippet[0] = f"```{language} {RDMD_SNIPPET_LANGUAGES[language]}"
+                    snippet.append("```")
+                    snippet.append("```" + language)
+                    snippet.append("```")
+
+                ### ReadMe Block Format
+                elif self.snippet_format == "block":
+                    snippet_block = ["[block:code]"]
+                    snippet_code = {}
+                    snippet_code["code"] = "\n".join(snippet)
+                    snippet_code["name"] = RDMD_SNIPPET_LANGUAGES[language]
+                    snippet_code["language"] = language
+                    snippet_codes = {"codes": [snippet_code]}
+
+                    snippet_block.append(json.dumps(snippet_codes, indent=2))
+                    snippet_block.append("[/block]")
+                    snippet = snippet_block
+                cell["source"] = snippet
+                logging.debug(f"After: {snippet}")
 
         return nb, resources
 
@@ -50,11 +76,12 @@ def main(args):
     DOCS_CONFIG_FPATH = ROOT_PATH / "config" / "docs-config.yaml"
 
     c = Config()
-    c.MarkdownExporter.preprocessors = [RdmdPreprocessor]
+    c.snippet_format = "block"
+    # c.MarkdownExporter.preprocessors = [RdmdSnippetPreprocessor]
 
     # Create our new, customized exporter that uses our custom preprocessor
-    rdmd = MarkdownExporter(config=c)
-    NOTEBOOK_PATHS = Path(DOCS_TEMPLATE_PATH).glob("**/**/*.ipynb")
+    rdmd_exporter = MarkdownExporter(config=c)
+    NOTEBOOK_PATHS = Path(DOCS_PATH).glob("**/**/*.ipynb")
     ## Filter checkpoints
     NOTEBOOK_GENERATE_PATHS = [
         n
@@ -66,7 +93,16 @@ def main(args):
         print(notebook_fpath)
         notebook = nbformat.read(Path(notebook_fpath), as_version=4)
         # pprint(notebook)
-        rdmd.from_notebook_node(notebook)[0]
+        rdmd = rdmd_exporter.from_notebook_node(notebook)[0]
+        print(type(rdmd))
+        # print(rdmd)
+        output_fname = notebook_fpath.parent.parent / f"{notebook_fpath.stem}.md"
+        print(output_fname)
+
+        with open(output_fname, "w") as fout:
+            # for element in md_lines:
+            fout.write(rdmd)
+            logging.info(f"\tOutput file: {output_fname}")
 
 
 if __name__ == "__main__":

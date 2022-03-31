@@ -6,7 +6,7 @@ createdAt: "2021-11-25T05:18:31.045Z"
 updatedAt: "2022-01-19T05:16:24.396Z"
 ---
 <figure>
-<img src="https://github.com/RelevanceAI/RelevanceAI-readme-docs/blob/v1.4.5/docs_template/general-features/_assets/contains.png?raw=true" width="2048" alt="contains.png" />
+<img src="https://github.com/RelevanceAI/RelevanceAI-readme-docs/blob/heads/v2.0.0/docs_template/general-features/_assets/contains.png?raw=true" width="2048" alt="contains.png" />
 <figcaption>Filtering documents containing "Durian BID" in description using filter_type `contains`.</figcaption>
 <figure>
 
