@@ -36,7 +36,7 @@ Run this Quickstart in Colab: [![Open In Colab](https://colab.research.google.co
 
 ### 3. Clustering
 
-@@@ kmeans_cluster, N_CLUSTERS="2",  VECTOR_FIELD="example_vector_" @@@
+@@@ kmeans_cluster, N_CLUSTERS=2,  VECTOR_FIELD="example_vector_" @@@
 
 You can run clustering via Relevance AI's clustering app too:
 @@@ launch_cluster_app @@@
