@@ -31,7 +31,7 @@ function blue(){
 DOCS_PATH=${2:-"$PWD/docs/"}
 PIP_PACKAGE_NAME=${3:-"RelevanceAI"}
 
-GIT_BRANCH_NAME=$(git rev-parse --abbrev-ref HEAD)
+GIT_BRANCH_NAME=$(git rev-parse --abbrev-ref HEAD | sed -e 's/[heads/]//g')
 VERSION_FILE=$(cat __version__)
 
 if [[ $GIT_BRANCH_NAME == "main" ]]; then

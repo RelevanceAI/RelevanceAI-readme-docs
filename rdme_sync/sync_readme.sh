@@ -41,7 +41,7 @@ LATEST_RELEVANCEAI_SDK_VERSION=$(curl -L -s "$PACKAGE_JSON_URL" | jq  -r '.relea
 LATEST_README_VERSION=$(get_latest_readme_version)
 
 DOCS_PATH=${2:-"$PWD/docs/"}
-GIT_BRANCH_NAME=$(git rev-parse --abbrev-ref HEAD)
+GIT_BRANCH_NAME=$(git rev-parse --abbrev-ref HEAD | sed -e 's/[heads/]//g')
 README_VERSION_NAME=${3:-${GIT_BRANCH_NAME}}
 README_VERSION=$(echo $README_VERSION_NAME | sed 's/[^0-9.]//g')
 RELEVANCEAI_SDK_VERSION=${README_VERSION}
