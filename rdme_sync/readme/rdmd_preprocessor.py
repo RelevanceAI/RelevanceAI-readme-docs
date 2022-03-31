@@ -7,6 +7,7 @@ import requests
 import os
 import json
 import argparse
+from pprint import pprint
 
 import nbformat
 from traitlets.config import Config
@@ -26,7 +27,11 @@ class RdmdPreprocessor(Preprocessor):
         self.log.info("I'll keep only cells from %d to %d", self.start, self.end)
         nb.cells = nb.cells[self.start : self.end]
 
-        print(nb.cells)
+        for cell in nb.cells:
+            if cell["cell_type"] == "code":
+                print(cell["source"])
+        # print(nb.cells)
+        # print(resources)
 
         return nb, resources
 
@@ -49,12 +54,19 @@ def main(args):
 
     # Create our new, customized exporter that uses our custom preprocessor
     rdmd = MarkdownExporter(config=c)
-    NOTEBOOK_PATHS = Path(DOCS_TEMPLATE_PATH).glob("**/**/_notebook_generated/*.ipynb")
+    NOTEBOOK_PATHS = Path(DOCS_TEMPLATE_PATH).glob("**/**/*.ipynb")
+    ## Filter checkpoints
+    NOTEBOOK_GENERATE_PATHS = [
+        n
+        for n in NOTEBOOK_PATHS
+        if ".ipynb_checkpoints" not in str(n) and "_notebooks_convert" in str(n)
+    ]
 
-    for notebook in NOTEBOOK_PATHS:
-        print(notebook)
-    # notebook = nbformat.read(Path("notebook.ipynb"), as_version=4)
-    # print(rdmd.from_notebook_node(jake_notebook)[0])
+    for notebook_fpath in NOTEBOOK_GENERATE_PATHS:
+        print(notebook_fpath)
+        notebook = nbformat.read(Path(notebook_fpath), as_version=4)
+        # pprint(notebook)
+        rdmd.from_notebook_node(notebook)[0]
 
 
 if __name__ == "__main__":
