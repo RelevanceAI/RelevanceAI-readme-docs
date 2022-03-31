@@ -16,6 +16,7 @@ requirements = [
     "pyyaml",
     "typing_extensions",
     "python-frontmatter",
+    "deepdiff"
 ]
 
 notebook_test_requirements = [

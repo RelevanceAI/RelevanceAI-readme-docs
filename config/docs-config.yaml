@@ -173,8 +173,6 @@ docs_template:
     - why-experimentation-first.md
   - terminology:
     - documents-1.md
-  - _notebooks_convert:
-    - "\u2618\uFE0F_Relevance_AI_Quickstart.ipynb"
   - old-welcome.md
   - terminology.md
   - boilerplate.md
@@ -187,6 +185,7 @@ docs_template:
   - example-applications.md
   - quickstart-boilerplate.md
   - quickstart-1.md
+  - "\u2618\uFE0F_Relevance_AI_Quickstart.ipynb"
 - search-features:
   - _notebooks:
     - RelevanceAI_hybrid_search.ipynb
@@ -315,7 +314,6 @@ docs_template:
     - clip2vec_encode_image_documents
     - transformer_enc
     - use_enc
-  - vectorize: []
   - output:
     - ecommerce_dataset_clean_sample_document
     - ecommerce_dataset_encoded_schema
@@ -357,8 +355,6 @@ docs_template:
     - RelevanceAI_clustering_quickstart_kmeans_results.png
   - cluster-evaluation:
     - _notebooks:
-      - .ipynb_checkpoints:
-        - RelevanceAI-ReadMe-Cluster-Distribution-checkpoint.ipynb
       - RelevanceAI-ReadMe-Cluster-Metrics.ipynb
       - RelevanceAI-ReadMe-Cluster-Distribution.ipynb
     - cluster-evaluate.md

@@ -81,24 +81,22 @@ def main(args):
 
     # Create our new, customized exporter that uses our custom preprocessor
     rdmd_exporter = MarkdownExporter(config=c)
-    NOTEBOOK_PATHS = Path(DOCS_PATH).glob("**/**/*.ipynb")
+    NOTEBOOK_PATHS = Path(DOCS_TEMPLATE_PATH).glob("**/**/*.ipynb")
     ## Filter checkpoints
     NOTEBOOK_GENERATE_PATHS = [
         n
         for n in NOTEBOOK_PATHS
-        if ".ipynb_checkpoints" not in str(n) and "_notebooks_convert" in str(n)
+        if ".ipynb_checkpoints" not in str(n) and "_notebooks" != n.parent.name
     ]
+    print(NOTEBOOK_GENERATE_PATHS)
 
     for notebook_fpath in NOTEBOOK_GENERATE_PATHS:
-        print(notebook_fpath)
+        logging.info(f'Converting: {notebook_fpath}')
         notebook = nbformat.read(Path(notebook_fpath), as_version=4)
         # pprint(notebook)
         rdmd = rdmd_exporter.from_notebook_node(notebook)[0]
-        print(type(rdmd))
-        # print(rdmd)
-        output_fname = notebook_fpath.parent.parent / f"{notebook_fpath.stem}.md"
-        print(output_fname)
-
+        # output_fname = notebook_fpath.parent.parent / f"{notebook_fpath.stem}.md"
+        output_fname = Path(str(notebook_fpath).replace("docs_template", "docs").replace('.ipynb', '.md'))
         with open(output_fname, "w") as fout:
             # for element in md_lines:
             fout.write(rdmd)
