@@ -1,7 +1,7 @@
 python
 # Query sample data
 sample_id = documents[0]['_id']
-document = df.get_documents_by_ids([sample_id])["documents"][0]
+document = ds.get_documents_by_ids([sample_id])["documents"][0]
 image_vector = document[<<IMAGE_VECTOR>>]
 text_vector = document[<<TEXT_VECTOR>>]
 
