@@ -1,0 +1,5 @@
+python N_CLUSTERS='5', VECTOR_FIELD=VECTOR_FIELD
+from sklearn.cluster import KMeans
+
+cluster_model = KMeans(n_clusters=<<N_CLUSTERS>>)
+ds.cluster(cluster_model, [<<VECTOR_FIELD>>])
