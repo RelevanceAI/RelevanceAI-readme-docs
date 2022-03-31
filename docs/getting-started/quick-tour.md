@@ -153,7 +153,7 @@ Run clustering on your vectors to better understand your data. You can view the 
 {
   "codes": [
     {
-      "code": "clusterer = ds.auto_cluster(\"kmeans-10\", [\"product_image_clip_vector_\"])",
+      "code": "from sklearn.cluster import KMeans\n\ncluster_model = KMeans(n_clusters=10)\nds.cluster(cluster_model, [\"product_image_clip_vector_\"])",
       "name": "Python (SDK)",
       "language": "python"
     }
@@ -162,18 +162,6 @@ Run clustering on your vectors to better understand your data. You can view the 
 [/block]
 
 You can also get a list of documents that are closest to the center of the clusters:
-
-[block:code]
-{
-  "codes": [
-    {
-      "code": "clusterer.list_closest_to_center()",
-      "name": "Python (SDK)",
-      "language": "python"
-    }
-  ]
-}
-[/block]
 
 
 <figure>
