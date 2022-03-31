@@ -4,7 +4,7 @@ import yaml
 from typing import Dict, List, Literal, Optional, Tuple, Union
 import logging
 
-from readme.readme_api import ReadMeAPI
+from rdme_sync.readme.rdme_api import ReadMeAPI
 from rdme_sync.config.config import Config
 
 
@@ -13,25 +13,36 @@ class ReadMeConfig(Config):
         self,
         fpath: str,
         version: str,
-        select_fields: Optional[List[str]] = None,
+        select_fields: Optional[List[str]] = [
+            "slug",
+            "title",
+            "excerpt",
+            "hidden",
+            "createdAt",
+            "updatedAt",
+            "parentDoc",
+            "order",
+            "_id",
+        ],
         *args,
         **kwargs,
     ):
         super().__init__(
             fpath=fpath, version=version, select_fields=select_fields, *args, **kwargs
         )
-        self.readme = ReadMeAPI(self.version)
+        self.rdme = ReadMeAPI(self.version)
         self.api_categories = ["relevance-ai-endpoints"]
         self.sdk_categories = ["python-sdk"]
         self.config = yaml.safe_load(open(self.fpath, "r"))
         self.condensed_fpath = f"{str(self.fpath).replace('.yaml', '-condensed.yaml')}"
         self.condensed_config = yaml.safe_load(open(self.condensed_fpath, "r"))
+        self.select_fields = select_fields
 
         self.category_slugs = {
             c["slug"]: c["_id"]
-            for c in self.readme.get_categories(select_fields=["slug", "_id"])
+            for c in self.rdme.get_categories(select_fields=["slug", "_id"])
         }
-        self.readme_page_slugs = self._load_page_slugs()
+        self.rdme_page_slugs = self._load_page_slugs()
         self.docs_categories = self._load_docs_categories()
 
     def _load_docs_categories(self):
@@ -40,7 +51,7 @@ class ReadMeConfig(Config):
         return [category for category, pages in categories.items()]
 
     def _load_page_slugs(self):
-        """Loads list of all readme page slugs"""
+        """Loads list of all rdme page slugs"""
         categories = self.config["categories"]
         slugs = []
         for category, pages in categories.items():
@@ -53,14 +64,14 @@ class ReadMeConfig(Config):
     def build(
         self, fpath: str = None, condensed: bool = True, select_fields: List[str] = None
     ):
-        """Builds readme config dict and outputs to readme-config file
+        """Builds rdme config dict and outputs to rdme-config file
 
         Parameters
         ----------
         fpath : Config filepath
             Overrides instance fpath if set
         condensed: bool
-            If True, builds a condensed version of the readme-config file as well
+            If True, builds a condensed version of the rdme-config file as well
         select_fields : List[str]
             select_fields: List
             Fields to include in the search results, empty array/list means all fields
@@ -73,7 +84,7 @@ class ReadMeConfig(Config):
 
         category_slugs = {
             c["slug"]: c["_id"]
-            for c in self.readme.get_categories(select_fields=["slug", "_id"])
+            for c in self.rdme.get_categories(select_fields=["slug", "_id"])
         }
 
         ## Building condensed
@@ -83,7 +94,7 @@ class ReadMeConfig(Config):
             if not any([f in cs for f in self.api_categories + self.sdk_categories]):
                 category_detail[cs] = {
                     ps["slug"]: sorted([c["slug"] for c in ps["children"]])
-                    for ps in self.readme.get_docs_for_category(
+                    for ps in self.rdme.get_docs_for_category(
                         category_slug=cs, select_fields=["slug", "children"]
                     )
                 }
@@ -100,7 +111,7 @@ class ReadMeConfig(Config):
         for category, pages in category_detail.items():
             page_details = {}
             for page, children in pages.items():
-                page_detail = self.readme.get_doc(
+                page_detail = self.rdme.get_doc(
                     page_slug=page, select_fields=self.select_fields
                 )
                 page_details[page] = (
@@ -108,7 +119,7 @@ class ReadMeConfig(Config):
                 )
 
                 for child in children:
-                    page_details[page][child] = self.readme.get_doc(
+                    page_details[page][child] = self.rdme.get_doc(
                         page_slug=child, select_fields=self.select_fields
                     )
 
@@ -140,7 +151,7 @@ class ReadMeConfig(Config):
         order: int = 999,
         error_code: Dict = {"code": "404"},
     ):
-        """Creates new page in ReadMe if slug does not exist
+        """Creates new page in rdme if slug does not exist
 
         Parameters
         ----------
@@ -158,9 +169,9 @@ class ReadMeConfig(Config):
         parent_slug: str
             Slug of the parent doc. If you don't want to have a parent doc, leave this blank.
         body: str
-            Body content of the page, formatted in ReadMe or GitHub flavored Markdown. Accepts long page content, for example, greater than 100k characters.
+            Body content of the page, formatted in rdme or GitHub flavored Markdown. Accepts long page content, for example, greater than 100k characters.
         hidden: bool
-            Whether or not the doc should be hidden in Readme.
+            Whether or not the doc should be hidden in rdme.
         order: int
             The position of the page in your project sidebar.
         error_code: dict
@@ -172,7 +183,7 @@ class ReadMeConfig(Config):
         parent_doc_id = result["_id"]
         category_id = self.category_slugs[category_slug]
 
-        return self.readme.create_doc(
+        return self.rdme.create_doc(
             title=title,
             type=type,
             category_id=category_id,

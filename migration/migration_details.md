@@ -18,10 +18,10 @@ Please use this locally to quickly test that the changes that you make in the re
 
 
 ```zsh
-❯ ./readme_sync/sync_readme.sh
+❯ ./rdme_sync/sync_readme.sh
 
 ## To run in debug mode
-❯ ./readme_sync/sync_readme.sh true
+❯ ./rdme_sync/sync_readme.sh true
 ```
 
 For each section, we need to
@@ -31,7 +31,7 @@ For each section, we need to
 - Ensure assets and notebooks are stored in `_assets` and `_notebooks` and references in Markdown updated
 - Ensure front matter matches the current page
 - Replace each respective `[block]` section with `rdmd`
-- Sync the page using `./readme_sync/sync_readme_template.sh` and check new synced version matches previous unsynced version upon render
+- Sync the page using `./rdme_sync/sync_readme_template.sh` and check new synced version matches previous unsynced version upon render
 - Commit changes!
 
 1. ## File/folder Naming Conventions

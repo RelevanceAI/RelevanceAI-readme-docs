@@ -7,7 +7,7 @@ import argparse
 import json
 import yaml
 
-from readme_sync.utils.files import get_files, file_find_replace
+from rdme_sync.utils.files import get_files, file_find_replace
 
 
 def main(args):

@@ -49,25 +49,25 @@ CYAN "=== Updating asset links to $GIT_BRANCH_NAME ==="
 
 if $DEBUG_MODE; then
 	echo $GIT_BRANCH_NAME
-	python readme_sync/build/update_asset_ref.py -d -p $PWD -pn $PIP_PACKAGE_NAME -v $GIT_BRANCH_NAME
+	python rdme_sync/build/update_asset_ref.py -d -p $PWD -pn $PIP_PACKAGE_NAME -v $GIT_BRANCH_NAME
 else
-	python readme_sync/build/update_asset_ref.py -p $PWD -pn $PIP_PACKAGE_NAME -v $GIT_BRANCH_NAME
+	python rdme_sync/build/update_asset_ref.py -p $PWD -pn $PIP_PACKAGE_NAME -v $GIT_BRANCH_NAME
 fi
 
 CYAN "=== Updating semver ref to $README_VERSION ==="
 
 if $DEBUG_MODE; then
-	python readme_sync/build/update_semver_ref.py -d -p $PWD -pn $PIP_PACKAGE_NAME -v $GIT_BRANCH_NAME_VERSION
+	python rdme_sync/build/update_semver_ref.py -d -p $PWD -pn $PIP_PACKAGE_NAME -v $GIT_BRANCH_NAME_VERSION
 else
-	python readme_sync/build/update_semver_ref.py -p $PWD -pn $PIP_PACKAGE_NAME -v $GIT_BRANCH_NAME_VERSION
+	python rdme_sync/build/update_semver_ref.py -p $PWD -pn $PIP_PACKAGE_NAME -v $GIT_BRANCH_NAME_VERSION
 fi
 
 CYAN "=== Rebuilding Readme docs $GIT_BRANCH_NAME ==="
 if $DEBUG_MODE; then
-	python readme_sync/build/build_docs.py  -d -c -p $PWD -pn $PIP_PACKAGE_NAME -v $GIT_BRANCH_NAME
+	python rdme_sync/build/build_docs.py  -d -c -p $PWD -pn $PIP_PACKAGE_NAME -v $GIT_BRANCH_NAME
 else
-	python readme_sync/build/build_docs.py -c -p $PWD -pn $PIP_PACKAGE_NAME -v $GIT_BRANCH_NAME
+	python rdme_sync/build/build_docs.py -c -p $PWD -pn $PIP_PACKAGE_NAME -v $GIT_BRANCH_NAME
 fi
 
 CYAN "=== Syncing ReadMe version $GIT_BRANCH_NAME ==="
-./readme_sync/sync_readme.sh $DEBUG_MODE $DOCS_PATH $GIT_BRANCH_NAME
+./rdme_sync/sync_readme.sh $DEBUG_MODE $DOCS_PATH $GIT_BRANCH_NAME

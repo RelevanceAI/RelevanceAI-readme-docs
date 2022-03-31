@@ -33,7 +33,7 @@ dev_requirements = [
 ]
 
 setuptools.setup(
-    name="readme-sync",
+    name="rdme-sync",
     version="0.0.1",
     description="RelevanceAI ReadMe Sync",
     long_description=long_description,
@@ -44,8 +44,8 @@ setuptools.setup(
         "tests": notebook_test_requirements,
         "dev": dev_requirements + notebook_test_requirements,
     },
-    # package_dir={"": "readme_sync"},
-    # packages=setuptools.find_packages(where="readme_sync"),
+    # package_dir={"": "rdme_sync"},
+    # packages=setuptools.find_packages(where="rdme_sync"),
     python_requires=">=3.7",
     classifiers=[
         "Development Status :: 4 - Beta",

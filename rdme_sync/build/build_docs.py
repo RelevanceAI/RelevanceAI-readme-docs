@@ -196,9 +196,10 @@ def generate_ipynb_file(
                         for snippet_str in snippet_strs:
                             snippet_str = snippet_str.strip()
                             logging.debug(f"Snippet str {snippet_str}")
-                            snippet += generate_snippet(
+                            snippet_text = generate_snippet(
                                 snippet_str, snippet_paths, snippet_params, ext="ipynb"
                             )
+                            snippet += snippet_text["snippet"]
                             snippet += ["\n"]
                         cell["source"][j] = "".join(snippet)
                         logging.debug("=================")

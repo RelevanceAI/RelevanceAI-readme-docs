@@ -11,7 +11,7 @@ import nbformat
 from nbconvert.preprocessors import ExecutePreprocessor
 import traceback
 
-from readme_sync.utils.concurrency import multiprocess
+from rdme_sync.utils.concurrency import multiprocess
 
 import logging
 import argparse
@@ -256,7 +256,7 @@ def main(args):
         ]
 
     ## Filter checkpoints
-    notebooks = [f for f in notebooks if ".ipynb_checkpoints" not in str(f)]
+    notebooks = [n for n in notebooks if ".ipynb_checkpoints" not in str(n)]
 
     ## Filter notebooks
     if args.notebook_ignore:

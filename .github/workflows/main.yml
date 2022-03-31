@@ -33,24 +33,24 @@ jobs:
 
       - name: Test for API keys in docs
         run: |
-          python readme_sync/tests/detect_secrets.py -d -p docs
+          python rdme_sync/tests/detect_secrets.py -d -p docs
 
       - name: Update asset links
         run: |
-          python readme_sync/build/update_asset_ref.py -d -p . -pn RelevanceAI -v $GIT_BRANCH_VERSION
+          python rdme_sync/build/update_asset_ref.py -d -p . -pn RelevanceAI -v $GIT_BRANCH_VERSION
 
       - name: Update semver ref
         run: |
-          python readme_sync/build/update_semver_ref.py -d -p . -pn RelevanceAI -v $README_VERSION
+          python rdme_sync/build/update_semver_ref.py -d -p . -pn RelevanceAI -v $README_VERSION
 
       - name: Building docs from docs_template
         run: |
-          python readme_sync/build/build_docs.py -d -p . -pn RelevanceAI -v $GIT_BRANCH_VERSION
+          python rdme_sync/build/build_docs.py -d -p . -pn RelevanceAI -v $GIT_BRANCH_VERSION
 
       - id: set-notebook-fpaths
         name: Setting notebook fpath output
         run: |
-          export NOTEBOOK_IGNORE=$(cat readme_sync/tests/notebook_ignore.txt)
+          export NOTEBOOK_IGNORE=$(cat rdme_sync/tests/notebook_ignore.txt)
           export NOTEBOOKS=$(find docs -type f -name "*.ipynb")
           export NOTEBOOK_FPATHS=$(for n in  ${NOTEBOOKS[@]}; do echo $n; done | grep -wv "$NOTEBOOK_IGNORE"  | jq -Rsc '. / "\n" - [""]')
           echo "::set-output name=notebook-fpaths::$NOTEBOOK_FPATHS"
@@ -102,7 +102,7 @@ jobs:
         run: |
           README_VERSION=$(cat __version__)
           echo "README_VERSION=$README_VERSION" >> $GITHUB_ENV
-          python readme_sync/tests/test_notebooks.py -d -p . -pn RelevanceAI -v $README_VERSION --notebooks ${{ matrix.notebook }} -nm
+          python rdme_sync/tests/test_notebooks.py -d -p . -pn RelevanceAI -v $README_VERSION --notebooks ${{ matrix.notebook }} -nm
 
 
 
@@ -146,7 +146,7 @@ jobs:
         run: |
           README_VERSION=$(cat __version__)
           echo "README_VERSION=$README_VERSION"
-          ./readme_sync/update_readme.sh true ./docs/ $README_VERSION
+          ./rdme_sync/update_readme.sh true ./docs/ $README_VERSION
 
 
 
@@ -178,5 +178,5 @@ jobs:
   #       run: |
   #         README_VERSION=$(cat __version__)
   #         echo "README_VERSION=$README_VERSION"
-  #         ./readme_sync/sync_readme.sh true $README_VERSION
+  #         ./rdme_sync/sync_readme.sh true $README_VERSION
 

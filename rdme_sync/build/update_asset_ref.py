@@ -7,11 +7,7 @@ from typing import List, Literal, Tuple, Union
 import logging
 import argparse
 
-from readme_sync.utils.files import get_files, file_find_replace, notebook_find_replace
-
-
-def get_files(path: Union[Path, str], ext: Literal["md", "ipynb"]):
-    return Path(path).glob(f"**/*.{ext}")
+from rdme_sync.utils.files import get_files, file_find_replace, notebook_find_replace
 
 
 def main(args):
