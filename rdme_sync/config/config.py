@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 
-from typing import Dict, List, Literal, Optional, Tuple, Union
+from typing import Dict, List
 from abc import abstractmethod, ABC
 
 
@@ -9,24 +9,11 @@ class Config(ABC):
         self,
         fpath: str = None,
         version: str = None,
-        select_fields: Optional[List[str]] = None,
         *args,
         **kwargs,
     ):
         self.version = f"v{version}" if version[0] != "v" else version
         self.fpath = fpath
-        if not select_fields:
-            self.select_fields = [
-                "slug",
-                "title",
-                "excerpt",
-                "hidden",
-                "createdAt",
-                "updatedAt",
-                "parentDoc",
-                "order",
-                "_id",
-            ]
 
     @abstractmethod
     def build(

@@ -16,7 +16,7 @@ from traitlets import Integer
 from nbconvert.preprocessors import Preprocessor
 
 
-class ReadMeMarkdown(Preprocessor):
+class RdmdPreprocessor(Preprocessor):
     """ReadMe Markdown preprocessor"""
 
     start = Integer(0, help="first cell of notebook to be converted").tag(config=True)
@@ -45,7 +45,7 @@ def main(args):
     DOCS_CONFIG_FPATH = ROOT_PATH / "config" / "docs-config.yaml"
 
     c = Config()
-    c.MarkdownExporter.preprocessors = [ReadMeMarkdown]
+    c.MarkdownExporter.preprocessors = [RdmdPreprocessor]
 
     # Create our new, customized exporter that uses our custom preprocessor
     rdmd = MarkdownExporter(config=c)

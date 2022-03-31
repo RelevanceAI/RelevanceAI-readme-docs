@@ -33,7 +33,7 @@ dev_requirements = [
 ]
 
 setuptools.setup(
-    name="readme-sync",
+    name="rdme-sync",
     version="0.0.1",
     description="RelevanceAI ReadMe Sync",
     long_description=long_description,

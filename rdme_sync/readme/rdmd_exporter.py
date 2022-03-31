@@ -9,7 +9,7 @@ from traitlets.config import Config
 from nbconvert import MarkdownExporter
 
 
-class ReadmeMarkdownExporter(MarkdownExporter):
+class RdmdExporter(MarkdownExporter):
     """Custom ReadMe Markdown Exporter
 
     Parameters

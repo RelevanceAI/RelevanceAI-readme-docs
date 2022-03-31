@@ -4,16 +4,26 @@ import yaml
 from typing import Dict, List, Literal, Optional, Tuple, Union
 import logging
 
-from readme.rdme_api import ReadMeAPI
+from rdme_sync.readme.rdme_api import ReadMeAPI
 from rdme_sync.config.config import Config
 
 
-class rdmeConfig(Config):
+class ReadMeConfig(Config):
     def __init__(
         self,
         fpath: str,
         version: str,
-        select_fields: Optional[List[str]] = None,
+        select_fields: Optional[List[str]] = [
+            "slug",
+            "title",
+            "excerpt",
+            "hidden",
+            "createdAt",
+            "updatedAt",
+            "parentDoc",
+            "order",
+            "_id",
+        ],
         *args,
         **kwargs,
     ):
@@ -26,6 +36,7 @@ class rdmeConfig(Config):
         self.config = yaml.safe_load(open(self.fpath, "r"))
         self.condensed_fpath = f"{str(self.fpath).replace('.yaml', '-condensed.yaml')}"
         self.condensed_config = yaml.safe_load(open(self.condensed_fpath, "r"))
+        self.select_fields = select_fields
 
         self.category_slugs = {
             c["slug"]: c["_id"]
