@@ -187,6 +187,12 @@ def main(args):
         MD_FILES = Path(DOCS_TEMPLATE_PATH).glob("**/**/*.md")
         NOTEBOOKS = Path(DOCS_TEMPLATE_PATH).glob("**/**/*.ipynb")
 
+        ## Notebooks only in _notebooks folder
+        NOTEBOOKS = [
+            n
+            for n in NOTEBOOKS
+            if ".ipynb_checkpoints" not in str(n) and "_notebooks" in str(n)
+        ]
     if args.clear:
         shutil.rmtree(DOCS_PATH, ignore_errors=True)
     for input_fname in MD_FILES:

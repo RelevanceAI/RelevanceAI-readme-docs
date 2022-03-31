@@ -11,6 +11,8 @@ import argparse
 from pprint import pprint
 import traceback
 
+import frontmatter
+
 import nbformat
 from traitlets.config import Config
 from nbconvert import MarkdownExporter
@@ -34,9 +36,7 @@ class RdmdSnippetPreprocessor(Preprocessor):
         language = "python"
         for cell in nb.cells:
             if cell["cell_type"] == "code":
-
                 snippet = cell["source"]
-
                 logging.debug(f"Before: {snippet}")
                 if self.snippet_format == "rdmd":
                     snippet[0] = f"```{language} {RDMD_SNIPPET_LANGUAGES[language]}"
@@ -56,6 +56,7 @@ class RdmdSnippetPreprocessor(Preprocessor):
                     snippet_block.append(json.dumps(snippet_codes, indent=2))
                     snippet_block.append("[/block]")
                     snippet = snippet_block
+
                 cell["source"] = snippet
                 logging.debug(f"After: {snippet}")
 
@@ -69,11 +70,7 @@ def main(args):
 
     DOCS_PATH = Path(args.path) / "docs"
     DOCS_TEMPLATE_PATH = Path(args.path) / "docs_template"
-    EXPORT_MD_PATH = Path(args.path) / "export_md" / args.version
     README_VERSION = args.version
-    README_CONFIG_FPATH = ROOT_PATH / "config" / "readme-config.yaml"
-    DOCS_CONDENSED_CONFIG_FPATH = ROOT_PATH / "config" / "docs-config-condensed.yaml"
-    DOCS_CONFIG_FPATH = ROOT_PATH / "config" / "docs-config.yaml"
 
     c = Config()
     c.snippet_format = "block"
@@ -88,10 +85,10 @@ def main(args):
         for n in NOTEBOOK_PATHS
         if ".ipynb_checkpoints" not in str(n) and "_notebooks" != n.parent.name
     ]
-    print(NOTEBOOK_GENERATE_PATHS)
+    logging.info(f'Converting: {NOTEBOOK_GENERATE_PATHS}')
 
     for notebook_fpath in NOTEBOOK_GENERATE_PATHS:
-        logging.info(f'Converting: {notebook_fpath}')
+        logging.debug(f'Converting: {notebook_fpath}')
         notebook = nbformat.read(Path(notebook_fpath), as_version=4)
         # pprint(notebook)
         rdmd = rdmd_exporter.from_notebook_node(notebook)[0]
@@ -112,13 +109,13 @@ if __name__ == "__main__":
 
     parser.add_argument("-d", "--debug", help="Run debug mode", action="store_true")
     parser.add_argument("-p", "--path", default=ROOT_PATH, help="Path of root folder")
-    parser.add_argument(
-        "-m",
-        "--method",
-        default="build",
-        choices=["build"],
-        help="Method",
-    )
+    # parser.add_argument(
+    #     "-m",
+    #     "--method",
+    #     default="build",
+    #     choices=["build"],
+    #     help="Method",
+    # )
     parser.add_argument(
         "-v", "--version", default=README_VERSION_FILE, help="Package Version"
     )

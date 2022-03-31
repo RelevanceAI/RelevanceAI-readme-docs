@@ -40,10 +40,8 @@ By following instructions below, you will be able to preview/create any given ve
     ```zsh
     ❯ git checkout -b v1.0.0
     ```
-2. Update the `__version__` file to match that semver of the branch eg. 1.0.0 (this can be automated in future)
-   - All automation scripts read from this file by default if no version given
-3. Make your desired changes to the relevant Markdown/notebooks etc.
-4. Sync changes w/ README!
+2. Make your desired changes to the relevant Markdown/notebooks etc.
+3. Sync changes w/ README!
     ```zsh
     ❯ ./rdme_sync/update_readme.sh
     ## Run in debug mode

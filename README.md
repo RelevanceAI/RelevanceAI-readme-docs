@@ -46,7 +46,7 @@ By following instructions below, you will be able to preview/create any given ve
     ❯ git clone git@github.com:RelevanceAI/RelevanceAI-readme-docs.git
     ❯ python -m venv .venv                 # Create new Python venv
     ❯ source .venv/bin/activate            # Activate new venv
-    ❯ ./rdme_sync/setup_env.sh               # Install
+    ❯ make install
     ```
 
 2. Create a new branch for the ReadMe version you'd like to create if not already auto-created upon SDK release eg. v1.0.0
@@ -86,19 +86,27 @@ These are templates because all the files and notebooks in docs_templates are wr
     @@@ <SNIPPET_1_NAME>; <SNIPPET_2_NAME>, <SNIPPET_2_PARAMS>; <SNIPPET_3_NAME>, <SNIPPET_3_PARAMS>; @@@
     ```
 
+## 👩🏻‍💻 Building and previewing docs locally 
+7. Feel free to build the docs locally in order to preview your Markdown in Vscode.
+    
+   ```zsh
+   ❯ python rdme_sync/build/build_docs.py -d 
+
+   ```
+
 ## 👩🏻‍💻  Syncing your Changes
 
 
-7. Go the ReadMe Dash config and export the ReadMe API key `$RELEVANCEAI_README_API_KEY` variable from ReadMe Project Configuration
+8. Go the ReadMe Dash config and export the ReadMe API key `$RELEVANCEAI_README_API_KEY` variable from ReadMe Project Configuration
    ![](./assets/readme_api_key.png)
    ```zsh
    ❯ export RELEVANCEAI_README_API_KEY='xxx'
    ```
-8.  To run notebook tests, make sure to export your `TEST_ACTIVATION_TOKEN` from https://cloud.relevance.ai/sdk/api/.
+9.  To run notebook tests, make sure to export your `TEST_ACTIVATION_TOKEN` from https://cloud.relevance.ai/sdk/api/.
     ```zsh
     ❯ export TEST_ACTIVATION_TOKEN='xxx'
     ```
-9. Apply the changes and update the ReadMe documentations. By default, this script will sync all files in `docs`.
+10. Apply the changes and update the ReadMe documentations. By default, this script will sync all files in `docs`.
     ```zsh
     ❯ ./rdme_sync/update_readme.sh
     ## Run in debug mode
@@ -113,13 +121,13 @@ These are templates because all the files and notebooks in docs_templates are wr
 ## 👩🏻‍💻 Testing notebooks
 
 
-10. Test the notebooks for changes. By default, the script will process all notebooks in the `docs` folder if no `--notebooks` specified. This script will output error logs to the file `readme_notebook_error_log.txt`
+11. Test the notebooks for changes. By default, the script will process all notebooks in the `docs` folder if no `--notebooks` specified. This script will output error logs to the file `readme_notebook_error_log.txt`
     ```zsh
-    ❯ python rdme_sync/test_notebooks.py
+    ❯ python rdme_sync/tests/test_notebooks.py
     ## Run in debug mode
-    ❯ python rdme_sync/test_notebooks.py -d
+    ❯ python rdme_sync/tests/test_notebooks.py -d
     ## Test on a selection of notebooks
-    ❯ python rdme_sync/test_notebooks.py -d --notebooks examples/Intro_to_Relevance_AI.ipynb examples/RelevanceAI-ReadMe-Quick-Feature-Tour.ipynb
+    ❯ python rdme_sync/tests/test_notebooks.py -d --notebooks examples/Intro_to_Relevance_AI.ipynb examples/RelevanceAI-ReadMe-Quick-Feature-Tour.ipynb
     ```
     If you have a notebook you'd like to ignore in tests, add to the [notebook_ignore.txt](./rdme_sync/notebook_ignore.txt) file.
 
@@ -127,11 +135,11 @@ These are templates because all the files and notebooks in docs_templates are wr
 ## 👩🏻‍💻  Committing your changes
 
 
-11. Install pre-commit! This helps with things like merge conflicts, linting and checking API keys to help with cleaner commits. 😊
+12. Install pre-commit! This helps with things like merge conflicts, linting and checking API keys to help with cleaner commits. 😊
     ```
     pre-commit install
     ```
-12. Commit your changes if what you see in the ReadMe documentation is correct! 🎉💪🏻
+13. Commit your changes if what you see in the ReadMe documentation is correct! 🎉💪🏻
 
 See [./rdme_sync/README.md](./rdme_sync/README.md) for more details about the build and sync scripts.
 
