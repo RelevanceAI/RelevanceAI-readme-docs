@@ -70,7 +70,20 @@ Run this Quickstart in Colab: [![Open In Colab](https://colab.research.google.co
 {
   "codes": [
     {
-      "code": "clusterer = ds.auto_cluster(\"kmeans_2\", [\"example_vector_\"])",
+      "code": "from sklearn.cluster import KMeans\n\ncluster_model = KMeans(n_clusters=\"2\")\nds.cluster(cluster_model, [\"example_vector_\"])",
+      "name": "Python (SDK)",
+      "language": "python"
+    }
+  ]
+}
+[/block]
+
+You can run clustering via Relevance AI's clustering app too:
+[block:code]
+{
+  "codes": [
+    {
+      "code": "ds.launch_cluster_app()",
       "name": "Python (SDK)",
       "language": "python"
     }
