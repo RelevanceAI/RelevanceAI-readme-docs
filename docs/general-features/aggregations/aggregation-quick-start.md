@@ -51,7 +51,7 @@ To use Relevance AI services, you need to instantiate a client object.
 {
   "codes": [
     {
-      "code": "import pandas as pd\nfrom relevanceai.datasets import get_realestate_dataset\n\n# Retrieve our sample dataset. - This comes in the form of a list of documents.\ndocuments = get_realestate_dataset()\n\n# ToDo: Remove this cell when the dataset is updated\n\nfor d in documents:\n  if '_clusters_' in d:\n    del d['_clusters_']\n\npd.DataFrame.from_dict(documents).head()",
+      "code": "import pandas as pd\nfrom relevanceai.utils.datasets import get_realestate_dataset\n\n# Retrieve our sample dataset. - This comes in the form of a list of documents.\ndocuments = get_realestate_dataset()\n\n# ToDo: Remove this cell when the dataset is updated\n\nfor d in documents:\n  if '_clusters_' in d:\n    del d['_clusters_']\n\npd.DataFrame.from_dict(documents).head()",
       "name": "Python (SDK)",
       "language": "python"
     }

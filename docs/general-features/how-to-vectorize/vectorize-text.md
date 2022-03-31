@@ -136,7 +136,7 @@ You can see the list of the available list of models for vectorising here using 
 {
   "codes": [
     {
-      "code": "import pandas as pd\nfrom relevanceai.datasets import get_ecommerce_dataset_clean\n\n# Retrieve our sample dataset. - This comes in the form of a list of documents.\ndocuments = get_ecommerce_dataset_clean()\n\npd.DataFrame.from_dict(documents).head()\nds = client.Dataset('quickstart_example_encoding')\nds.insert_documents(documents)",
+      "code": "import pandas as pd\nfrom relevanceai.utils.datasets import get_ecommerce_dataset_clean\n\n# Retrieve our sample dataset. - This comes in the form of a list of documents.\ndocuments = get_ecommerce_dataset_clean()\n\npd.DataFrame.from_dict(documents).head()\nds = client.Dataset('quickstart_example_encoding')\nds.insert_documents(documents)",
       "name": "Python (SDK)",
       "language": "python"
     }

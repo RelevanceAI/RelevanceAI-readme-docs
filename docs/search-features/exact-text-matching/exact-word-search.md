@@ -57,7 +57,7 @@ Sample codes using Relevance AI SDK for traditional search endpoint are shown be
 {
   "codes": [
     {
-      "code": "from relevanceai.datasets import get_ecommerce_dataset_encoded\n\ndocuments = get_ecommerce_dataset_encoded()\n{k:v for k, v in documents[0].items() if '_vector_' not in k}",
+      "code": "from relevanceai.utils.datasets import get_ecommerce_dataset_encoded\n\ndocuments = get_ecommerce_dataset_encoded()\n{k:v for k, v in documents[0].items() if '_vector_' not in k}",
       "name": "Python (SDK)",
       "language": "python"
     }

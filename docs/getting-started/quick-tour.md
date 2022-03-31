@@ -69,7 +69,7 @@ Use one of your sample datasets to insert into your own dataset!
 {
   "codes": [
     {
-      "code": "import pandas as pd\nfrom relevanceai.datasets import get_ecommerce_dataset_clean\n\n# Retrieve our sample dataset. - This comes in the form of a list of documents.\ndocuments = get_ecommerce_dataset_clean()\n\npd.DataFrame.from_dict(documents).head()",
+      "code": "import pandas as pd\nfrom relevanceai.utils.datasets import get_ecommerce_dataset_clean\n\n# Retrieve our sample dataset. - This comes in the form of a list of documents.\ndocuments = get_ecommerce_dataset_clean()\n\npd.DataFrame.from_dict(documents).head()",
       "name": "Python (SDK)",
       "language": "python"
     }
