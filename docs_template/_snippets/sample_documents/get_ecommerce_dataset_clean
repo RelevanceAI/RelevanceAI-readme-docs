@@ -1,6 +1,6 @@
 python
 import pandas as pd
-from relevanceai.datasets import get_ecommerce_dataset_clean
+from relevanceai.utils.datasets import get_ecommerce_dataset_clean
 
 # Retrieve our sample dataset. - This comes in the form of a list of documents.
 documents = get_ecommerce_dataset_clean()

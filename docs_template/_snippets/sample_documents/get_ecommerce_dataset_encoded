@@ -1,5 +1,5 @@
 python
-from relevanceai.datasets import get_ecommerce_dataset_encoded
+from relevanceai.utils.datasets import get_ecommerce_dataset_encoded
 
 documents = get_ecommerce_dataset_encoded()
 {k:v for k, v in documents[0].items() if '_vector_' not in k}
