@@ -7,7 +7,7 @@ from typing import List, Literal, Tuple, Union
 import logging
 import argparse
 
-from rdme_sync.utils.files import get_files, file_find_replace, notebook_find_replace
+from src.utils.files import get_files, file_find_replace, notebook_find_replace
 
 
 def main(args):
