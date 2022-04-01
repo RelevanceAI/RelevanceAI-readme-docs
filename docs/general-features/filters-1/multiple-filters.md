@@ -21,7 +21,7 @@ A screenshot of the results can be seen on top.
 {
   "codes": [
     {
-      "code": "# remove `!` if running the line in a terminal\n!pip install -U RelevanceAI-dev[notebook]",
+      "code": "# remove `!` if running the line in a terminal\n!pip install -U RelevanceAI-dev[notebook]>=2.0.0",
       "name": "Bash",
       "language": "shell"
     }

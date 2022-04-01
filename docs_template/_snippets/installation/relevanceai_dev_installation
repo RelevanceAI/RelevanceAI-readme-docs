@@ -1,3 +1,3 @@
 shell
 # remove `!` if running the line in a terminal
-!pip install -U RelevanceAI-dev[notebook]
+!pip install -U RelevanceAI-dev[notebook]>=2.0.0
