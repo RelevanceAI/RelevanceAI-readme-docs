@@ -29,6 +29,7 @@ jobs:
             ${{ runner.os }}-${{ env.pythonLocation }}-pip-
             ${{ runner.os }}-${{ env.pythonLocation }}-
 
+      - run: echo $PWD >> $GITHUB_PATH
       - name: Install requirements
         run: |
           pip install --upgrade pip
