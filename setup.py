@@ -12,6 +12,7 @@ long_description = (this_directory / "README.md").read_text(encoding="utf-8")
 requirements = [
     "nbconvert>=1.3.5",
     "nbformat>=3.0.9",
+    "jupyter",
     "RelevanceAI[notebook]",
     "pyyaml",
     "typing_extensions",
@@ -26,7 +27,6 @@ notebook_test_requirements = [
 
 dev_requirements = [
     "ipykernel",
-    "jupyter",
     "autopep8",
     "pylint",
     "flake8",

@@ -108,7 +108,7 @@ jobs:
 
 
   sync-readme-docs:
-    # needs: test-notebooks
+    needs: test-notebooks
     runs-on: ${{ matrix.os }}
     strategy:
       matrix:
