@@ -36,6 +36,8 @@ PACKAGE_JSON_URL="https://pypi.org/pypi/$PIP_PACKAGE_NAME/json"
 RELEVANCEAI_SDK_VERSIONS=$(curl -L -s "$PACKAGE_JSON_URL" | jq  -r '.releases | keys | .[]' | sort -V)
 LATEST_RELEVANCEAI_SDK_VERSION=$(curl -L -s "$PACKAGE_JSON_URL" | jq  -r '.releases | keys | .[]' | sort -V | tail -n1)
 README_VERSIONS=$(npx rdme versions --key $RELEVANCEAI_README_API_KEY --raw )
+echo $GITHUB_ACTIONS
+
 echo $README_VERSIONS
 
 LATEST_README_VERSION=$(echo $README_VERSIONS| jq -r 'sort_by(.createdAt)[-1].version')
