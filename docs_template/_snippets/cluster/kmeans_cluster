@@ -1,4 +1,4 @@
-python N_CLUSTERS='5', VECTOR_FIELD=VECTOR_FIELD
+python N_CLUSTERS=5, VECTOR_FIELD=VECTOR_FIELD
 from sklearn.cluster import KMeans
 
 cluster_model = KMeans(n_clusters=<<N_CLUSTERS>>)

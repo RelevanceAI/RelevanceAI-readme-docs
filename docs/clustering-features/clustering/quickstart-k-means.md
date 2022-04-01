@@ -112,7 +112,7 @@ The easiest way to run a Kmeans clustering algorithm under the Relevance AI plat
 {
   "codes": [
     {
-      "code": "clusterer = ds.auto_cluster(ALIAS-10, [\"product_title_clip_vector_\"])",
+      "code": "from sklearn.cluster import KMeans\n\ncluster_model = KMeans(n_clusters=10)\nds.cluster(cluster_model, [\"product_title_clip_vector_\"])",
       "name": "Python (SDK)",
       "language": "python"
     }
@@ -126,7 +126,7 @@ Another way of clustering is to use the ClusterOps class as shown in the snippet
 {
   "codes": [
     {
-      "code": "from relevanceai.clusterer import KMeansModel\n\nVECTOR_FIELD = \"product_title_clip_vector_\"\nKMEAN_NUMBER_OF_CLUSTERS = 10\nALIAS = \"kmeans_\" + str(KMEAN_NUMBER_OF_CLUSTERS)\n\nmodel = KMeansModel(k=KMEAN_NUMBER_OF_CLUSTERS)\nclusterer = client.ClusterOps(alias=ALIAS, model=model)\nclusterer.fit_predict_update(df, [VECTOR_FIELD])",
+      "code": "from sklearn.cluster import KMeans\n\nVECTOR_FIELD = \"product_title_clip_vector_\"\nKMEAN_NUMBER_OF_CLUSTERS = 10\nALIAS = \"kmeans-\" + str(KMEAN_NUMBER_OF_CLUSTERS)\n\nmodel = KMeansModel(k=KMEAN_NUMBER_OF_CLUSTERS)\nclusterer = client.ClusterOps(alias=ALIAS, model=model)\nclusterer.operate(dataset_id=\"quickstart_kmeans_clustering\", vector_fields=[\"product_title_clip_vector_\"])",
       "name": "Python (SDK)",
       "language": "python"
     }
@@ -135,7 +135,7 @@ Another way of clustering is to use the ClusterOps class as shown in the snippet
 [/block]
 
 
-The `fit_predict_update()` function performs the following steps:
+This performs the following steps:
 1. loading the data
 2. clustering
 3. writing the results back to the dataset

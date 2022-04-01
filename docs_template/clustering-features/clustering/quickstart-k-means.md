@@ -48,14 +48,14 @@ The result is a JSON output similar to what is shown below. As can be seen, ther
 ### 2. Run Kmeans clustering algorithm in one go
 The easiest way to run a Kmeans clustering algorithm under the Relevance AI platform is the `auto_cluster` function. The following code snippet shows how generate 10 clusters using the `product_title_clip_vector_` vector field.
 
-@@@ auto_cluster, ALIAS=ALIAS-10, VECTOR_FIELD=PRODUCT_TITLE_CLIP_VEC @@@
+@@@ kmeans_cluster, N_CLUSTERS=10,  VECTOR_FIELD=PRODUCT_TITLE_CLIP_VEC @@@
 
 Another way of clustering is to use the ClusterOps class as shown in the snippet below:
 
-@@@  clusterops_fit_predict_update, VECTOR_FIELD=PRODUCT_TITLE_CLIP_VEC, N_KMEANS=10 @@@
+@@@  clusterops, VECTOR_FIELD=PRODUCT_TITLE_CLIP_VEC, N_KMEANS=10, DATASET_ID=QUICKSTART_KMEANS_CLUSTERING_DATASET_ID @@@
 
 
-The `fit_predict_update()` function performs the following steps:
+This performs the following steps:
 1. loading the data
 2. clustering
 3. writing the results back to the dataset
