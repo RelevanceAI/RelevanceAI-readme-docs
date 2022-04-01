@@ -156,6 +156,7 @@ jobs:
         env:
           RELEVANCEAI_README_API_KEY: ${{ secrets.RELEVANCEAI_README_API_KEY }}
         run: |
+          export GITHUB_ACTIONS=false
           ./rdme_sync/sync_readme.sh true ./docs/ $README_VERSION
 
       # - name: Set ReadMe version as Github env var
