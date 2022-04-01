@@ -4,8 +4,8 @@ import yaml
 from typing import Dict, List, Literal, Optional, Tuple, Union
 import logging
 
-from src.readme.rdme_api import ReadMeAPI
-from src.config.config import Config
+from rdme_sync.readme.rdme_api import ReadMeAPI
+from rdme_sync.config.config import Config
 
 
 class ReadMeConfig(Config):

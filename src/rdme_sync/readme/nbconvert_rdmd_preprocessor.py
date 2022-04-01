@@ -20,8 +20,8 @@ from nbconvert import MarkdownExporter
 from traitlets import Integer
 from nbconvert.preprocessors import Preprocessor
 
-from src.build.build_snippets import generate_snippet
-from src.build.constants import RDMD_SNIPPET_LANGUAGES
+from rdme_sync.build.build_snippets import generate_snippet
+from rdme_sync.build.constants import RDMD_SNIPPET_LANGUAGES
 
 
 class RdmdSnippetPreprocessor(Preprocessor):
