@@ -119,7 +119,7 @@ Alternatively, you can monitor the health of a dataset using the command below w
 {
   "codes": [
     {
-      "code": "ds.health",
+      "code": "ds.health()",
       "name": "Python (SDK)",
       "language": "python"
     }
