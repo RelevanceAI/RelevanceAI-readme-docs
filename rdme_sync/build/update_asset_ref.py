@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
 
+from gzip import READ
 import json
 from pathlib import Path
 import itertools
@@ -22,6 +23,7 @@ def main(args):
     ###############################################################################
     # Updating asset links
     ###############################################################################
+    logging.info(type(README_VERSION))
 
     logging.info(f"Updating asset links to {README_VERSION} for all md and ipynb files")
 

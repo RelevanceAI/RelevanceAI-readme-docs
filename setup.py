@@ -16,17 +16,17 @@ requirements = [
     "pyyaml",
     "typing_extensions",
     "python-frontmatter",
-    "deepdiff"
+    "deepdiff",
 ]
 
 notebook_test_requirements = [
     "vectorhub[sentence-transformers]>=1.8.3",
-    "matplotlib>=3.5.1",
+    "matplotlib",
 ]
 
 dev_requirements = [
     "ipykernel",
-    "jupyterlab",
+    "jupyter",
     "autopep8",
     "pylint",
     "flake8",
@@ -45,8 +45,8 @@ setuptools.setup(
         "tests": notebook_test_requirements,
         "dev": dev_requirements + notebook_test_requirements,
     },
-    # package_dir={"": "rdme_sync"},
-    # packages=setuptools.find_packages(where="rdme_sync"),
+    package_dir={"": "rdme_sync"},
+    packages=setuptools.find_packages(where="rdme_sync"),
     python_requires=">=3.7",
     classifiers=[
         "Development Status :: 4 - Beta",

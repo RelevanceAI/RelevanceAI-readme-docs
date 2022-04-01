@@ -20,7 +20,7 @@
     "url": "https://github.com/RelevanceAI/RelevanceAI-readme-docs/issues"
   },
   "homepage": "https://github.com/RelevanceAI/RelevanceAI-readme-docs#readme",
-  "devDependencies": {
+  "dependencies": {
     "rdme": "^6.5.0"
   }
 }
