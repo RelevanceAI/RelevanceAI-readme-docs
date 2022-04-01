@@ -7,7 +7,7 @@ updatedAt: "2022-01-17T02:40:49.066Z"
 ---
 A very common format for saving data is `CSV`. The `insert_csv` function enables us to directly upload our CSV files to Relevance AI.
 
-[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/RelevanceAI/RelevanceAI-readme-docs/blob/v1.4.5/docs/general-features/creating-a-dataset/_notebooks/RelevanceAI_ReadMe_Creating_A_Dataset.ipynb)
+[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/RelevanceAI/RelevanceAI-readme-docs/blob/v1.4.5/docs/general-features/creating-a-dataset/_notebooks/RelevanceAI_ReadMe_Insert_A_CSV.ipynb)
 
 
 ## Data:
@@ -53,6 +53,8 @@ First, the Relevance AI SDK package must be installed.
 
 
 Uploading a CSV file is as simple as specifying the CSV path to your file.
+If there is no `_id` field in your dataset, we will automatically generate it for you, unless you specify otherwise via `auto_generate_id=False`. If there is a unique identifier in your dataset which can be used as the `_id` field, pass it to the insert function through the `col_for_id` field (e.g. `col_for_id="ref_no"`)
+
 
 
 [block:code]
