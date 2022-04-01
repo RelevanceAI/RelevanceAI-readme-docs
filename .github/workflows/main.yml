@@ -94,6 +94,7 @@ jobs:
         run: |
           pip install --upgrade pip
           python -m pip install -e .[tests]
+          jupyter kernelspec list
 
       - name: Test notebooks
         continue-on-error: true
