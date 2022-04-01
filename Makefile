@@ -36,7 +36,7 @@ sync:
 
 ## Build and sync
 build_sync:
-	./rdme_sync/update_readme.sh true
+	./rdme_sync/build_sync_readme.sh true
 
 ## Test dependencies
 test:

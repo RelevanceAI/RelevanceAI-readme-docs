@@ -77,7 +77,7 @@ These are templates because all the files and notebooks in docs_templates are wr
    - Snippets are loaded in a nested fashion. Inner most `_snippets` with the same name will override general snippets in [`docs_template/_snippets/`](./docs_template/_snippets/).
    - All snippets in `*.md` and `*.ipynb` files are prefaced with `@@@`.
     ```markdown
-    @@@ relevanceai_installation, RELEVANCEAI_SDK_VERSION=RELEVANCEAI_SDK_VERSION @@@
+    @@@ relevanceai_dev_installation @@@
     @@@ <SNIPPET_NAME>, <SNIPPET_PARAM_KEY_1>=<SNIPPET_PARAM_VALUE_1>, <SNIPPET_PARAM_KEY_2>=<SNIPPET_PARAM_VALUE_2>, ...  @@@
     ```
     - If you want to concatenate snippets, please concatenate using the following format.
@@ -86,11 +86,11 @@ These are templates because all the files and notebooks in docs_templates are wr
     @@@ <SNIPPET_1_NAME>; <SNIPPET_2_NAME>, <SNIPPET_2_PARAMS>; <SNIPPET_3_NAME>, <SNIPPET_3_PARAMS>; @@@
     ```
 
-## 👩🏻‍💻 Building and previewing docs locally 
+## 👩🏻‍💻 Building and previewing docs locally
 7. Feel free to build the docs locally in order to preview your Markdown in Vscode.
-    
+
    ```zsh
-   ❯ python rdme_sync/build/build_docs.py -d 
+   ❯ python rdme_sync/build/build_docs.py -d
 
    ```
 
@@ -108,13 +108,13 @@ These are templates because all the files and notebooks in docs_templates are wr
     ```
 10. Apply the changes and update the ReadMe documentations. By default, this script will sync all files in `docs`.
     ```zsh
-    ❯ ./rdme_sync/update_readme.sh
+    ❯ ./rdme_sync/build_sync_readme.sh
     ## Run in debug mode
-    ❯ ./rdme_sync/update_readme.sh true
+    ❯ ./rdme_sync/build_sync_readme.sh true
     ## Sync only a specific section, by default will sync everything in the generated `docs` folder.
-    ❯ ./rdme_sync/update_readme.sh false docs/clustering-features
+    ❯ ./rdme_sync/build_sync_readme.sh false docs/clustering-features
     ## Override the version, by default will create a new version from your current Git branch name
-    ❯ ./rdme_sync/update_readme.sh false docs/clustering-features v1.0.0-my-new-version
+    ❯ ./rdme_sync/build_sync_readme.sh false docs/clustering-features v1.0.0-my-new-version
     ```
     View your synced changes in ReadMe eg. https://docs.relevance.ai/v0.31.0/docs/quick-tour
 
