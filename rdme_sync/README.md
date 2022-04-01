@@ -28,7 +28,7 @@ By following instructions below, you will be able to preview/create any given ve
 ├── README.md
 ├── sync_readme.sh       ## Sync docs to ReadMe
 ├── tests
-├── update_readme.sh     ## Master script to build and sync
+├── build_sync_readme.sh     ## Master script to build and sync
 └── utils.py
 
 
@@ -43,13 +43,13 @@ By following instructions below, you will be able to preview/create any given ve
 2. Make your desired changes to the relevant Markdown/notebooks etc.
 3. Sync changes w/ README!
     ```zsh
-    ❯ ./rdme_sync/update_readme.sh
+    ❯ ./rdme_sync/build_sync_readme.sh
     ## Run in debug mode
-    ❯ ./rdme_sync/update_readme.sh true
+    ❯ ./rdme_sync/build_sync_readme.sh true
     ## Sync only a specific section, by default will sync everything in the generated `docs` folder.
-    ❯ ./rdme_sync/update_readme.sh false docs/clustering-features
+    ❯ ./rdme_sync/build_sync_readme.sh false docs/clustering-features
     ## Override the version, by default will create a new version from your current Git branch name
-    ❯ ./rdme_sync/update_readme.sh false docs/clustering-features v1.0.0-my-new-version
+    ❯ ./rdme_sync/build_sync_readme.sh false docs/clustering-features v1.0.0-my-new-version
     ```
 
 ## For further reference
