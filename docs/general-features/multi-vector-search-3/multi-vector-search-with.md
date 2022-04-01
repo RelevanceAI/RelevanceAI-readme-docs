@@ -39,7 +39,7 @@ Vectorizing under Relevance AI's platform requires three steps:
 {
   "codes": [
     {
-      "code": "# remove `!` if running the line in a terminal\n!pip install -U RelevanceAI[notebook]==1.4.5",
+      "code": "# remove `!` if running the line in a terminal\n!pip install -U RelevanceAI-dev[notebook]",
       "name": "Bash",
       "language": "shell"
     }
