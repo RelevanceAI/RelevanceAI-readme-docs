@@ -68,7 +68,7 @@ This filter returns a document only if it contains a string value. Note that sub
 {
   "codes": [
     {
-      "code": "### TODO: update to match the latest SDK\nfiltered_data = ds.get_where(filter)",
+      "code": "\nfiltered_data = ds.get_documents(filters=filter, n = 20)",
       "name": "Python (SDK)",
       "language": "python"
     }

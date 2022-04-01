@@ -75,7 +75,7 @@ You also need to have a dataset under your Relevance AI account. You can either 
 {
   "codes": [
     {
-      "code": "ds.health",
+      "code": "ds.health()",
       "name": "Python (SDK)",
       "language": "python"
     }

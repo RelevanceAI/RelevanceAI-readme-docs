@@ -65,7 +65,7 @@ This filter returns documents whose unique id exists in a given list. It may loo
 {
   "codes": [
     {
-      "code": "### TODO: update to match the latest SDK\nfiltered_data = ds.get_where(filter)",
+      "code": "\nfiltered_data = ds.get_documents(filters=filter, n = 20)",
       "name": "Python (SDK)",
       "language": "python"
     }

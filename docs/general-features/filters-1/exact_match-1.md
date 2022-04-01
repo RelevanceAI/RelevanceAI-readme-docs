@@ -65,7 +65,7 @@ This filter has similarities to both `exact_match` and `contains`. It returns a 
 {
   "codes": [
     {
-      "code": "### TODO: update to match the latest SDK\nfiltered_data = ds.get_where(filter)",
+      "code": "\nfiltered_data = ds.get_documents(filters=filter, n = 20)",
       "name": "Python (SDK)",
       "language": "python"
     }

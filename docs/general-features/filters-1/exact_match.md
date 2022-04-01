@@ -65,7 +65,7 @@ This filter works with string values and only returns documents with a field val
 {
   "codes": [
     {
-      "code": "### TODO: update to match the latest SDK\nfiltered_data = ds.get_where(filter)",
+      "code": "\nfiltered_data = ds.get_documents(filters=filter, n = 20)",
       "name": "Python (SDK)",
       "language": "python"
     }

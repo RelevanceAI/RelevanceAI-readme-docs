@@ -65,7 +65,7 @@ This filter returns entries in a database if a certain field (as opposed to the 
 {
   "codes": [
     {
-      "code": "### TODO: update to match the latest SDK\nfiltered_data = ds.get_where(filter)",
+      "code": "\nfiltered_data = ds.get_documents(filters=filter, n = 20)",
       "name": "Python (SDK)",
       "language": "python"
     }

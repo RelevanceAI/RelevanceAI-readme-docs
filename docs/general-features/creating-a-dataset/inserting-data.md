@@ -21,6 +21,8 @@ To upload multiple documents to RelevanceAI, you can use the **insert_documents*
 
 ### Inserting the data in one go
 
+Your data should be in the form of a list of dictionaries, each dictionary representing one document. Keep in mind that each document must include an `_id` field with a unique value.
+
 
 [block:code]
 {
@@ -53,7 +55,7 @@ To only update specific documents, use `upsert_documents` as shown in the exampl
 > 🚧 When To Use Upsert Vs Insert
 >
 > `insert` replaces the entire document whereas `upsert` only changes the fields that are specified or newly added. It will not delete fields that are already in the dataset, nor insert new documents.
-The easiest way to modify and update all documents in a dataset is to run `df.apply` in the Python SDK.
+The easiest way to modify and update all documents in a dataset is to run `ds.apply` in the Python SDK.
 
 
 
@@ -62,7 +64,7 @@ The easiest way to modify and update all documents in a dataset is to run `df.ap
 
 > 📘How to update fields
 >
-> The easiest way to update an existing dataset with encoding results is to run `df.apply`. This function fetches all the data-points in a dataset, runs the specified function (i.e. encoding in this case) and writes the result back to the dataset.
+> The easiest way to update an existing dataset with encoding results is to run `ds.apply`. This function fetches all the data-points in a dataset, runs the specified function (i.e. encoding in this case) and writes the result back to the dataset.
 >
 
 For instance, in the sample code below, we use a dataset called `ecommerce_dataset`, and encodes the `product_description` field using the `USE2Vec` encoder.
