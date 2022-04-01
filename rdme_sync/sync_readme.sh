@@ -25,11 +25,6 @@ check_readme_api_key_set(){
     fi
 }
 
-get_latest_readme_version() {
-    README_VERSIONS=$(npx rdme versions --key $RELEVANCEAI_README_API_KEY --raw)
-    LATEST_README_VERSION=$($README_VERSIONS | jq -r 'sort_by(.createdAt)[-1].version')
-    echo $LATEST_README_VERSION
-}
 
 ###############################################################################
 # Setting env vars
@@ -40,7 +35,8 @@ PIP_PACKAGE_NAME="RelevanceAI"
 PACKAGE_JSON_URL="https://pypi.org/pypi/$PIP_PACKAGE_NAME/json"
 RELEVANCEAI_SDK_VERSIONS=$(curl -L -s "$PACKAGE_JSON_URL" | jq  -r '.releases | keys | .[]' | sort -V)
 LATEST_RELEVANCEAI_SDK_VERSION=$(curl -L -s "$PACKAGE_JSON_URL" | jq  -r '.releases | keys | .[]' | sort -V | tail -n1)
-# LATEST_README_VERSION=$(get_latest_readme_version)
+LATEST_README_VERSION=$(npx rdme versions --key $RELEVANCEAI_README_API_KEY --raw |  | jq -r 'sort_by(.createdAt)[-1].version')
+
 
 DOCS_PATH=${2:-"$PWD/docs/"}
 GIT_BRANCH_NAME=$(git rev-parse --abbrev-ref HEAD | sed -e 's/[heads/]//g')
