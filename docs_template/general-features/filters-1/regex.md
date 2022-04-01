@@ -17,7 +17,7 @@ Relevance AI has the same regular expression schema as Apache Lucene's ElasticSe
 
 *Note that this filter is case-sensitive.*
 
-@@@ relevanceai_installation, RELEVANCEAI_SDK_VERSION=RELEVANCEAI_SDK_VERSION @@@
+@@@ relevanceai_dev_installation @@@
 
 @@@ client_instantiation @@@
 

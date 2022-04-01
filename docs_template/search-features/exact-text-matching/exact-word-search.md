@@ -25,7 +25,7 @@ This search looks for the closest answer (most relevant data entry) via **exact 
 Sample codes using Relevance AI SDK for traditional search endpoint are shown below. Note that to be able to use this search endpoint you need to:
 1. install Relevance AI's python SDK (for more information please visit the [installation](https://docs.relevance.ai/docs/installation) page).
 
-@@@ relevanceai_installation, RELEVANCEAI_SDK_VERSION=RELEVANCEAI_SDK_VERSION @@@
+@@@ relevanceai_dev_installation @@@
 
 2. Instantiate a client object to be able to use the services provided by Relevance AI:
 

@@ -21,7 +21,7 @@ This article briefly explains the main aggregation functions. We use a demo data
 
 
 First, we need to install Relevance AI's Python SDK.
-@@@ relevanceai_installation, RELEVANCEAI_SDK_VERSION=RELEVANCEAI_SDK_VERSION @@@
+@@@ relevanceai_dev_installation @@@
 
 ### 1.  Define a client
 To use Relevance AI services, you need to instantiate a client object.

@@ -23,7 +23,7 @@ Run this Quickstart in Colab: [![Open In Colab](https://colab.research.google.co
 
 ### 1. Set up Relevance AI
 
-@@@ relevanceai_installation, RELEVANCEAI_SDK_VERSION=RELEVANCEAI_SDK_VERSION @@@
+@@@ relevanceai_dev_installation @@@
 
 
 @@@ client_instantiation @@@

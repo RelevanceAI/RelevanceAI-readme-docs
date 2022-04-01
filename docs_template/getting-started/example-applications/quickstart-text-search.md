@@ -28,7 +28,7 @@ In this section, we will show you how to create and experiment with a powerful t
 ### Installation Requirements
 
 
-@@@ relevanceai_installation, RELEVANCEAI_SDK_VERSION=RELEVANCEAI_SDK_VERSION @@@
+@@@ relevanceai_dev_installation @@@
 
 
 ### Setting Up Client

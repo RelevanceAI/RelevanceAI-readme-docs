@@ -27,7 +27,7 @@ A very common format for saving data is `CSV`. The `insert_csv` function enables
 
 First, the Relevance AI SDK package must be installed.
 
-@@@ relevanceai_installation, RELEVANCEAI_SDK_VERSION=RELEVANCEAI_SDK_VERSION @@@
+@@@ relevanceai_dev_installation @@@
 
 @@@ client_instantiation @@@
 

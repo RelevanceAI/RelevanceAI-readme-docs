@@ -22,7 +22,7 @@ hidden: false
 Prior to starting, let's install the main dependencies.
 
 
-@@@ relevanceai_installation, RELEVANCEAI_SDK_VERSION=RELEVANCEAI_SDK_VERSION @@@
+@@@ relevanceai_dev_installation @@@
 
 
 This will give you access to Relevance AI's Python SDK.

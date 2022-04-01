@@ -17,7 +17,7 @@ It is possible to combine multiple filters. For instance, the sample code below 
 * by either Lapguard or 4D brand.
 A screenshot of the results can be seen on top.
 
-@@@ relevanceai_installation, RELEVANCEAI_SDK_VERSION=RELEVANCEAI_SDK_VERSION @@@
+@@@ relevanceai_dev_installation @@@
 
 @@@ client_instantiation @@@
 

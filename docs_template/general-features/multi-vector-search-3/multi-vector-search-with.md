@@ -35,7 +35,7 @@ Vectorizing under Relevance AI's platform requires three steps:
 
  Keep it in mind that, first RelevanceAI must be installed and a client object must be instantiated:
 
-@@@ relevanceai_installation, RELEVANCEAI_SDK_VERSION=RELEVANCEAI_SDK_VERSION @@@
+@@@ relevanceai_dev_installation @@@
 
 @@@ client_instantiation @@@
 
