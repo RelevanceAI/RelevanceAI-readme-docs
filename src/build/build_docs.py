@@ -14,8 +14,8 @@ import argparse
 import logging
 import traceback
 
-from rdme_sync.build.build_snippets import generate_snippet
-from rdme_sync.build.constants import RDMD_SNIPPET_LANGUAGES
+from src.build.build_snippets import generate_snippet
+from src.build.constants import RDMD_SNIPPET_LANGUAGES
 
 
 ## TODO: Refactor into DocBuilder class
