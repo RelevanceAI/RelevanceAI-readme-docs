@@ -304,7 +304,7 @@ if __name__ == "__main__":
     parser = argparse.ArgumentParser()
 
     PACKAGE_NAME = "RelevanceAI"
-    ROOT_PATH = Path(__file__).parent.resolve() / ".."
+    ROOT_PATH = Path(__file__).parent.resolve() / ".." / ".."
 
     try:
         README_VERSION = open(ROOT_PATH / "__version__").read()
