@@ -256,7 +256,7 @@ def main(args):
         ]
 
     ## Filter checkpoints
-    notebooks = [f for f in notebooks if ".ipynb_checkpoints" not in str(f)]
+    notebooks = [n for n in notebooks if ".ipynb_checkpoints" not in str(n)]
 
     ## Filter notebooks
     if args.notebook_ignore:
