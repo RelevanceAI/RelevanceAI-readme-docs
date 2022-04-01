@@ -48,15 +48,15 @@ jobs:
       - name: Update asset links
         run: |
           python -c 'import sys; print(sys.path)'
-          python src/build/update_asset_ref.py -d -p . -pn RelevanceAI -v $GIT_BRANCH_VERSION
+          python src/rdme_sync/build/update_asset_ref.py -d -p . -pn RelevanceAI -v $GIT_BRANCH_VERSION
 
       - name: Update semver ref
         run: |
-          python src/build/update_semver_ref.py -d -p . -pn RelevanceAI -v $README_VERSION
+          python src/rdme_sync/build/update_semver_ref.py -d -p . -pn RelevanceAI -v $README_VERSION
 
       - name: Building docs from docs_template
         run: |
-          python src/build/build_docs.py -d -p . -pn RelevanceAI -v $GIT_BRANCH_VERSION
+          python src/rdme_sync/build/build_docs.py -d -p . -pn RelevanceAI -v $GIT_BRANCH_VERSION
 
       - id: set-notebook-fpaths
         name: Setting notebook fpath output

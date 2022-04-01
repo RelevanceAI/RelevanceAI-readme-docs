@@ -17,7 +17,7 @@ from rdme_sync.config.readme_config import ReadMeConfig
 from rdme_sync.config.docs_config import DocsConfig
 
 
-ROOT_PATH = Path(__file__).parent.resolve() / ".." / ".."
+ROOT_PATH = Path(__file__).parent.resolve() / ".." / ".." / ".."
 
 
 def get_config_diff(docs_config: Dict, readme_config: Dict, fpath: Path) -> List[Path]:
