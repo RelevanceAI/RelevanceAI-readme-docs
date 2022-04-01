@@ -38,6 +38,7 @@ jobs:
 
       - name: Update asset links
         run: |
+          python -c 'import sys; print(sys.path)'
           python src/build/update_asset_ref.py -d -p . -pn RelevanceAI -v $GIT_BRANCH_VERSION
 
       - name: Update semver ref
