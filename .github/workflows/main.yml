@@ -125,8 +125,8 @@ jobs:
       - name: Set up Node
         uses: actions/setup-node@v2
         with:
-          node-version: '16'
-      - run: npm install
+          node-version: '12'
+      # - run: npm install
 
       - name: Cache node modules
         uses: actions/cache@v2
@@ -147,6 +147,9 @@ jobs:
         run: |
           README_VERSION=$(cat __version__)
           echo "README_VERSION=$README_VERSION"
+
+          ## To turn off default debugging in new Github env
+          echo "GITHUB_ENV=false >> $GITHUB_ENV
           ./rdme_sync/sync_readme.sh true ./docs/ $README_VERSION
 
       # - name: Set ReadMe version as Github env var
