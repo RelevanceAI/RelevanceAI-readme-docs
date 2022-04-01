@@ -8,7 +8,7 @@ updatedAt: "2022-01-17T02:18:18.269Z"
 Often our data can come in the form of a CSV or from a Pandas DataFrame. This guide will show you how to upload such data into the Relevance AI platform.
 
 <figure>
-<img src="https://github.com/RelevanceAI/RelevanceAI-readme-docs/blob/v2.0.0/docs_template/general-features/creating-a-dataset/_assets/insert-csv-pandas.png?raw=true" alt="insert_into_csv.png" />
+<img src="https://github.com/RelevanceAI/RelevanceAI-readme-docs/blob/v1.4.5/docs_template/general-features/creating-a-dataset/_assets/insert-csv-pandas.png?raw=true" alt="insert_into_csv.png" />
 <figcaption>Inserting CSV/Pandas DataFrame</figcaption>
 <figure>
 

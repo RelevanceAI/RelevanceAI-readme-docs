@@ -6,7 +6,7 @@ createdAt: "2021-11-25T06:28:37.534Z"
 updatedAt: "2022-01-19T05:17:05.147Z"
 ---
 <figure>
-<img src="https://github.com/RelevanceAI/RelevanceAI-readme-docs/blob/v2.0.0/docs_template/general-features/_assets/numeric.png?raw=true" width="446" alt="Numeric.png" />
+<img src="https://github.com/RelevanceAI/RelevanceAI-readme-docs/blob/v1.4.5/docs_template/general-features/_assets/numeric.png?raw=true" width="446" alt="Numeric.png" />
 <figcaption>Filtering documents with retail price higher than 5000.</figcaption>
 <figure>
 
@@ -17,7 +17,7 @@ This filter is to perform the filtering operators on a numeric value. For instan
 {
   "codes": [
     {
-      "code": "# remove `!` if running the line in a terminal\n!pip install -U RelevanceAI[notebook]==2.0.0",
+      "code": "# remove `!` if running the line in a terminal\n!pip install -U RelevanceAI[notebook]==1.4.5",
       "name": "Bash",
       "language": "shell"
     }

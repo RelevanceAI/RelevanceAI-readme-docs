@@ -17,6 +17,7 @@ all:
 install:
 	python -m venv .venv
 	. .venv/bin/activate
+
 	pip install --upgrade pip
 	pip install -q -r requirements-dev.txt
 	npm i
@@ -28,21 +29,19 @@ update:
 
 # Build from docs_template to docs
 build:
-	python rdme_sync/build/build_docs.py -d  
-
+	python rdme_sync/build/build_docs.py -d
 
 ## Sync docs to ReadMe
-sync: 
-	./rdme_sync/sync_readme.sh true 
+sync:
+	./rdme_sync/sync_readme.sh true
 
-
-## Build and sync 
+## Build and sync
 build_sync:
-	./rdme_sync/update_readme.sh true 
+	./rdme_sync/update_readme.sh true
 
 ## Test dependencies
 test:
-	python rdme_sync/tests/test_notebooks.py -d 
+	python rdme_sync/tests/test_notebooks.py -d
 
 ## Delete all compiled Python files
 clean:

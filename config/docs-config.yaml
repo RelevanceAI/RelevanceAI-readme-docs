@@ -195,4 +195,4 @@ docs:
 - dashboard:
   - saving-aggregation-queries-from-sdk.md
   - writing-aggregation-queries.md
-version: v2.0.0
+version: v1.4.5

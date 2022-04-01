@@ -1,6 +1,5 @@
 #!/usr/bin/env python3
 
-from gzip import READ
 import json
 from pathlib import Path
 import itertools
