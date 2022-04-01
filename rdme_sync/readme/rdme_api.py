@@ -189,7 +189,7 @@ class ReadMeAPI:
         body: str = "",
         hidden: bool = True,
         order: int = 999,
-        error_code: Dict = {"code": "404"},
+        error_code: Dict = None,
     ):
         """
         Returns the doc with this slug.
@@ -227,7 +227,11 @@ class ReadMeAPI:
             "hidden": hidden,
             "order": order,
             "parentDoc": parent_doc_id,
-            "error": error_code,
         }
+
+        if type == "error":
+            if not error_code:
+                error_code={"code": "404"}
+            payload["error"] = error_code
 
         return self._request("POST", request_url, payload=payload)

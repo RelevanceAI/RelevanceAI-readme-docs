@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
 
+import json
 import os
 from pathlib import Path
 
@@ -19,34 +20,43 @@ from rdme_sync.config.docs_config import DocsConfig
 ROOT_PATH = Path(__file__).parent.resolve() / ".." / ".."
 
 
-def get_config_diff(config_1: Dict, config_2: Dict, fpath: Path) -> List[Path]:
+def get_config_diff(docs_config: Dict, readme_config: Dict, fpath: Path) -> List[Path]:
     ddiff = DeepDiff(
-        config_1,
-        config_2,
+        docs_config,
+        readme_config,
         ignore_order=True,
         report_repetition=True,
         view="tree",
     )
-
+        
     paths = []
     if ddiff:
         logging.debug(f"---------")
         logging.debug(f"Deepdiff: \n{ddiff} ...")
-
-        diff_items = [i for k, v in ddiff.items() for i in ddiff[k]]
-        logging.debug(f"{len(diff_items)} items added")
-        for d in diff_items:
+        
+        new_doc_items = [i for k, v in ddiff.items() for i in ddiff[k] if 'removed' in k]
+        ## TODO: Add new page in repo if created in ReadMe
+        new_readme_items = [i for k, v in ddiff.items() for i in ddiff[k] if 'added' in k]
+        logging.debug(f"{len(new_doc_items)} items added")
+        for d in new_doc_items:
             path = [
                 i
                 for i in d.path(output_format="list")
                 if i not in ["categories"]
                 if isinstance(i, str)
             ]
-            if str(d.t1) != "not present":
-                md_path = d.t1
-            elif str(d.t2) != "not present":
-                md_path = d.t2
-            path += [f"{md_path}.md"]
+
+            ## Traversing tree diff
+            for node in [d.t1, d.t2]:
+                if isinstance(node, list):
+                    fname = [f'{path[-1]}.md']
+                    path.pop()
+                    break
+                if str(node) != "not present":
+                    fname = [f"{node}.md"]
+                    break
+
+            path += fname
 
         DIFF_FPATH = fpath / "/".join(path)
         logging.debug(f"\n{DIFF_FPATH} ...")
@@ -81,7 +91,7 @@ def main(args):
     readme_config = ReadMeConfig(version=README_VERSION, fpath=README_CONFIG_FPATH)
     docs_config = DocsConfig(
         version=README_VERSION,
-        dir_path=DOCS_TEMPLATE_PATH,
+        dir_path=DOCS_PATH,
         fpath=DOCS_CONFIG_FPATH,
     )
 
@@ -154,39 +164,54 @@ def main(args):
         readme_condensed_config = readme_config.condensed_config
 
         new_fpaths = get_config_diff(
-            config_1=docs_condensed_config,
-            config_2=readme_condensed_config,
-            fpath=DOCS_TEMPLATE_PATH,
+            docs_config=docs_condensed_config,
+            readme_config=readme_condensed_config,
+            fpath=DOCS_PATH,
         )
 
         if not new_fpaths:
             logging.debug(f"No new updates in config ...")
         else:
             for path in new_fpaths:
-                category = str(path).split("docs_template")[1].split("/")[1]
+                category = str(path).split("/docs")[1].split("/")[1]
                 parent = path.parent.name
+                logging.debug(f'Category: {category} Parent: {parent}')
 
-                ## TODO: read slug from fname - in case slug is not the same
+                # ## TODO: read slug from fname - in case slug is not the same
                 post = get_frontmatter(path)
-                child_dict = readme_config.config["categories"][category][parent]
 
-                page_orders = readme_config.get_page_orders(child_dict)
+                ## Creating new frontmatter if none exists
+                
+
+
+                ## Getting max page order
+                if category==parent:
+                    config_dict = readme_config.config["categories"][category] 
+                    page_orders = readme_config.get_page_orders(config_dict, category=True)
+                else:
+                    config_dict = readme_config.config["categories"][category][parent]
+                    page_orders = readme_config.get_page_orders(config_dict, category=False)
                 max_page_order = max(page_orders)
+                print(max_page_order)
 
-                logging.debug(f"Creating new ReadMe config page... \n\t{path}")
+                ## Creating new page
+                args = {
+                    'title': post["title"],
+                    'type': 'basic',
+                    'category_slug': category,
+                    'parent_slug': parent,
+                    'hidden': post["hidden"],
+                    'order': max_page_order + 1
+                }
+                logging.debug(f"Creating new ReadMe config page... \n\t{path}\n{json.dumps(args)}")
                 readme_config.create(
-                    title=post["title"],
-                    type="basic",
-                    category_slug=category,
-                    parent_slug=parent,
-                    hidden=post["hidden"],
-                    order=max_page_order + 1,
+                    **args
                 )
 
-            logging.debug(f"Rebuilding config ... ")
+            # logging.debug(f"Rebuilding config ... ")
 
-            ## TODO: Inserting new item in readme config with new category only instead rebuilding full config
-            readme_config.build()
+            # ## TODO: Inserting new item in readme config with new category only instead rebuilding full config
+            # readme_config.build()
 
 
 if __name__ == "__main__":

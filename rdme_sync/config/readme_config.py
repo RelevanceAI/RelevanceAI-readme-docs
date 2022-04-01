@@ -149,7 +149,7 @@ class ReadMeConfig(Config):
         body: str = "",
         hidden: bool = True,
         order: int = 999,
-        error_code: Dict = {"code": "404"},
+        error_code: Dict = None,
     ):
         """Creates new page in rdme if slug does not exist
 
@@ -178,10 +178,14 @@ class ReadMeConfig(Config):
             code: str
             The error code for docs with the "error" type
         """
-
-        result = self._search_dict(parent_slug, self.config)
-        parent_doc_id = result["_id"]
         category_id = self.category_slugs[category_slug]
+
+        if category_slug!=parent_slug:
+            result = self._search_dict(parent_slug, self.config)
+            parent_doc_id = result["_id"]
+        else:
+            parent_doc_id=category_id
+        
 
         return self.rdme.create_doc(
             title=title,
@@ -195,9 +199,18 @@ class ReadMeConfig(Config):
         )
 
     @staticmethod
-    def get_page_orders(d: Dict):
+    def get_page_orders(d: Dict, category: bool=False):
+        """Returns list of page orders
+        d: dict
+            Config dict
+        category: bool
+            If true, get category order else page/children order
+        """
         page_orders = []
         for k, v in d.items():
+            if category:
+                if v.get('order'):
+                    page_orders.append(v["order"])
             if isinstance(v, list):
                 if isinstance(v[0], dict):
                     page_orders.append(v[0]["order"])

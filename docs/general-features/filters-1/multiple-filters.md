@@ -6,7 +6,7 @@ createdAt: "2021-11-25T22:31:19.531Z"
 updatedAt: "2022-01-19T05:17:17.089Z"
 ---
 <figure>
-<img src="https://github.com/RelevanceAI/RelevanceAI-readme-docs/blob/v1.4.5/docs_template/general-features/_assets/multiple-filters.png?raw=true" width="1009" alt="combined filters.png" />
+<img src="https://github.com/RelevanceAI/RelevanceAI-readme-docs/blob/v2.0.0/docs_template/general-features/_assets/multiple-filters.png?raw=true" width="1009" alt="combined filters.png" />
 <figcaption>Filtering results when using multiple filters: categories, contains, and date.</figcaption>
 <figure>
 
@@ -21,7 +21,7 @@ A screenshot of the results can be seen on top.
 {
   "codes": [
     {
-      "code": "# remove `!` if running the line in a terminal\n!pip install -U RelevanceAI[notebook]==1.4.5",
+      "code": "# remove `!` if running the line in a terminal\n!pip install -U RelevanceAI[notebook]==2.0.0",
       "name": "Bash",
       "language": "shell"
     }

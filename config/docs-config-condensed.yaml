@@ -87,6 +87,7 @@ categories:
     - what-are-vectors
     - why-experimentation-first
     welcome: []
+    "\u2618\uFE0F_Relevance_AI_Quickstart": []
   integrations:
     coming-soon-2: []
   other:
@@ -143,4 +144,4 @@ categories:
     - hybrid-search
     - multi-vector-search
     - vector-search-prerequisites
-version: v1.4.5
+version: v2.0.0

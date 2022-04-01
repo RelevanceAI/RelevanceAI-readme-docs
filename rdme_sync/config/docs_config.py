@@ -32,11 +32,10 @@ class DocsConfig(Config):
         self.docs_categories = self._load_docs_categories()
 
     def _load_docs_categories(self):
-        """Loads list of docs categories slugs"""
-        # pprint(self.config["docs_template"])
+        """Loads list of docs categories slugs""" 
         return [
             category_name
-            for category in self.config["docs_template"]
+            for category in self.config[self.dir_path.name]
             if category and isinstance(category, dict)
             for category_name, pages in category.items()
         ]
@@ -186,7 +185,7 @@ class DocsConfig(Config):
             Config of new docs
         """
         category_detail = {}
-        for category in self.config["docs_template"]:
+        for category in self.config[self.dir_path.name]:
             if isinstance(category, dict):
                 result = self._iterdict(category)
                 if result:
