@@ -149,7 +149,7 @@ jobs:
           echo "README_VERSION=$README_VERSION"
 
           ## To turn off default debugging in new Github env
-          echo "GITHUB_ENV=false >> $GITHUB_ENV
+          echo "GITHUB_ENV=false" >> $GITHUB_ENV
           ./rdme_sync/sync_readme.sh true ./docs/ $README_VERSION
 
       # - name: Set ReadMe version as Github env var
