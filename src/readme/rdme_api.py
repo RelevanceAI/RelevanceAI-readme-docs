@@ -231,7 +231,7 @@ class ReadMeAPI:
 
         if type == "error":
             if not error_code:
-                error_code={"code": "404"}
+                error_code = {"code": "404"}
             payload["error"] = error_code
 
         return self._request("POST", request_url, payload=payload)

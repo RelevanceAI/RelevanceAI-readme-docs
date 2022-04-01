@@ -7,10 +7,10 @@ set -euox pipefail
 # echo $POETRY_VERSION
 
 ## Python Virtualenv
-echo 'Updating Python dependencies' 
+echo 'Updating Python dependencies'
 
 
-echo 'Creating virtualenv' 
+echo 'Creating virtualenv'
 if [[ ! -d "$PWD/.venv" ]]; then
     python -m venv .venv
     source .venv/bin/activate
@@ -18,7 +18,7 @@ fi
 
 pip install --upgrade pip
 pip install -r requirements-dev.txt
-brew install jq     
+brew install jq
 npm i
 
 pre-commit install

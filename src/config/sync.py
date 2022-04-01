@@ -13,8 +13,8 @@ import frontmatter
 from deepdiff import DeepDiff, grep
 import shutil
 
-from rdme_sync.config.readme_config import ReadMeConfig
-from rdme_sync.config.docs_config import DocsConfig
+from src.config.readme_config import ReadMeConfig
+from src.config.docs_config import DocsConfig
 
 
 ROOT_PATH = Path(__file__).parent.resolve() / ".." / ".."
@@ -28,15 +28,19 @@ def get_config_diff(docs_config: Dict, readme_config: Dict, fpath: Path) -> List
         report_repetition=True,
         view="tree",
     )
-        
+
     paths = []
     if ddiff:
         logging.debug(f"---------")
         logging.debug(f"Deepdiff: \n{ddiff} ...")
-        
-        new_doc_items = [i for k, v in ddiff.items() for i in ddiff[k] if 'removed' in k]
+
+        new_doc_items = [
+            i for k, v in ddiff.items() for i in ddiff[k] if "removed" in k
+        ]
         ## TODO: Add new page in repo if created in ReadMe
-        new_readme_items = [i for k, v in ddiff.items() for i in ddiff[k] if 'added' in k]
+        new_readme_items = [
+            i for k, v in ddiff.items() for i in ddiff[k] if "added" in k
+        ]
         logging.debug(f"{len(new_doc_items)} items added")
         for d in new_doc_items:
             path = [
@@ -49,7 +53,7 @@ def get_config_diff(docs_config: Dict, readme_config: Dict, fpath: Path) -> List
             ## Traversing tree diff
             for node in [d.t1, d.t2]:
                 if isinstance(node, list):
-                    fname = [f'{path[-1]}.md']
+                    fname = [f"{path[-1]}.md"]
                     path.pop()
                     break
                 if str(node) != "not present":
@@ -175,38 +179,40 @@ def main(args):
             for path in new_fpaths:
                 category = str(path).split("/docs")[1].split("/")[1]
                 parent = path.parent.name
-                logging.debug(f'Category: {category} Parent: {parent}')
+                logging.debug(f"Category: {category} Parent: {parent}")
 
                 # ## TODO: read slug from fname - in case slug is not the same
                 post = get_frontmatter(path)
 
                 ## Creating new frontmatter if none exists
-                
-
 
                 ## Getting max page order
-                if category==parent:
-                    config_dict = readme_config.config["categories"][category] 
-                    page_orders = readme_config.get_page_orders(config_dict, category=True)
+                if category == parent:
+                    config_dict = readme_config.config["categories"][category]
+                    page_orders = readme_config.get_page_orders(
+                        config_dict, category=True
+                    )
                 else:
                     config_dict = readme_config.config["categories"][category][parent]
-                    page_orders = readme_config.get_page_orders(config_dict, category=False)
+                    page_orders = readme_config.get_page_orders(
+                        config_dict, category=False
+                    )
                 max_page_order = max(page_orders)
                 print(max_page_order)
 
                 ## Creating new page
                 args = {
-                    'title': post["title"],
-                    'type': 'basic',
-                    'category_slug': category,
-                    'parent_slug': parent,
-                    'hidden': post["hidden"],
-                    'order': max_page_order + 1
+                    "title": post["title"],
+                    "type": "basic",
+                    "category_slug": category,
+                    "parent_slug": parent,
+                    "hidden": post["hidden"],
+                    "order": max_page_order + 1,
                 }
-                logging.debug(f"Creating new ReadMe config page... \n\t{path}\n{json.dumps(args)}")
-                readme_config.create(
-                    **args
+                logging.debug(
+                    f"Creating new ReadMe config page... \n\t{path}\n{json.dumps(args)}"
                 )
+                readme_config.create(**args)
 
             # logging.debug(f"Rebuilding config ... ")
 

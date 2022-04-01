@@ -20,8 +20,8 @@ from nbconvert import MarkdownExporter
 from traitlets import Integer
 from nbconvert.preprocessors import Preprocessor
 
-from rdme_sync.build.build_snippets import generate_snippet
-from rdme_sync.build.constants import RDMD_SNIPPET_LANGUAGES
+from src.build.build_snippets import generate_snippet
+from src.build.constants import RDMD_SNIPPET_LANGUAGES
 
 
 class RdmdSnippetPreprocessor(Preprocessor):
@@ -85,15 +85,19 @@ def main(args):
         for n in NOTEBOOK_PATHS
         if ".ipynb_checkpoints" not in str(n) and "_notebooks" != n.parent.name
     ]
-    logging.info(f'Converting: {NOTEBOOK_GENERATE_PATHS}')
+    logging.info(f"Converting: {NOTEBOOK_GENERATE_PATHS}")
 
     for notebook_fpath in NOTEBOOK_GENERATE_PATHS:
-        logging.debug(f'Converting: {notebook_fpath}')
+        logging.debug(f"Converting: {notebook_fpath}")
         notebook = nbformat.read(Path(notebook_fpath), as_version=4)
         # pprint(notebook)
         rdmd = rdmd_exporter.from_notebook_node(notebook)[0]
         # output_fname = notebook_fpath.parent.parent / f"{notebook_fpath.stem}.md"
-        output_fname = Path(str(notebook_fpath).replace("docs_template", "docs").replace('.ipynb', '.md'))
+        output_fname = Path(
+            str(notebook_fpath)
+            .replace("docs_template", "docs")
+            .replace(".ipynb", ".md")
+        )
         with open(output_fname, "w") as fout:
             # for element in md_lines:
             fout.write(rdmd)

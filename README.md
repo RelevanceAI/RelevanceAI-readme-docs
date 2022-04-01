@@ -90,7 +90,7 @@ These are templates because all the files and notebooks in docs_templates are wr
 7. Feel free to build the docs locally in order to preview your Markdown in Vscode.
 
    ```zsh
-   ❯ python rdme_sync/build/build_docs.py -d
+   ❯ python src/build/build_docs.py -d
 
    ```
 
@@ -108,13 +108,13 @@ These are templates because all the files and notebooks in docs_templates are wr
     ```
 10. Apply the changes and update the ReadMe documentations. By default, this script will sync all files in `docs`.
     ```zsh
-    ❯ ./rdme_sync/build_sync_readme.sh
+    ❯ ./src/build_sync_readme.sh
     ## Run in debug mode
-    ❯ ./rdme_sync/build_sync_readme.sh true
+    ❯ ./src/build_sync_readme.sh true
     ## Sync only a specific section, by default will sync everything in the generated `docs` folder.
-    ❯ ./rdme_sync/build_sync_readme.sh false docs/clustering-features
+    ❯ ./src/build_sync_readme.sh false docs/clustering-features
     ## Override the version, by default will create a new version from your current Git branch name
-    ❯ ./rdme_sync/build_sync_readme.sh false docs/clustering-features v1.0.0-my-new-version
+    ❯ ./src/build_sync_readme.sh false docs/clustering-features v1.0.0-my-new-version
     ```
     View your synced changes in ReadMe eg. https://docs.relevance.ai/v0.31.0/docs/quick-tour
 
@@ -123,13 +123,13 @@ These are templates because all the files and notebooks in docs_templates are wr
 
 11. Test the notebooks for changes. By default, the script will process all notebooks in the `docs` folder if no `--notebooks` specified. This script will output error logs to the file `readme_notebook_error_log.txt`
     ```zsh
-    ❯ python rdme_sync/tests/test_notebooks.py
+    ❯ python src/tests/test_notebooks.py
     ## Run in debug mode
-    ❯ python rdme_sync/tests/test_notebooks.py -d
+    ❯ python src/tests/test_notebooks.py -d
     ## Test on a selection of notebooks
-    ❯ python rdme_sync/tests/test_notebooks.py -d --notebooks examples/Intro_to_Relevance_AI.ipynb examples/RelevanceAI-ReadMe-Quick-Feature-Tour.ipynb
+    ❯ python src/tests/test_notebooks.py -d --notebooks examples/Intro_to_Relevance_AI.ipynb examples/RelevanceAI-ReadMe-Quick-Feature-Tour.ipynb
     ```
-    If you have a notebook you'd like to ignore in tests, add to the [notebook_ignore.txt](./rdme_sync/notebook_ignore.txt) file.
+    If you have a notebook you'd like to ignore in tests, add to the [notebook_ignore.txt](./src/notebook_ignore.txt) file.
 
 
 ## 👩🏻‍💻  Committing your changes
@@ -141,14 +141,14 @@ These are templates because all the files and notebooks in docs_templates are wr
     ```
 13. Commit your changes if what you see in the ReadMe documentation is correct! 🎉💪🏻
 
-See [./rdme_sync/README.md](./rdme_sync/README.md) for more details about the build and sync scripts.
+See [./src/README.md](./src/README.md) for more details about the build and sync scripts.
 
 
 ## 👩🏻‍💻  Updating the ReadMe config
 
 To rebuild the config, if want to sync changes made in ReadMe
 ```
- ❯ python rdme_sync/readme_config.py --method 'build' --version 'v2.0.0'
+ ❯ python src/readme_config.py --method 'build' --version 'v2.0.0'
 ```
 
 ## For further reference

@@ -4,8 +4,8 @@ import yaml
 from typing import Dict, List, Literal, Optional, Tuple, Union
 import logging
 
-from rdme_sync.readme.rdme_api import ReadMeAPI
-from rdme_sync.config.config import Config
+from src.readme.rdme_api import ReadMeAPI
+from src.config.config import Config
 
 
 class ReadMeConfig(Config):
@@ -180,12 +180,11 @@ class ReadMeConfig(Config):
         """
         category_id = self.category_slugs[category_slug]
 
-        if category_slug!=parent_slug:
+        if category_slug != parent_slug:
             result = self._search_dict(parent_slug, self.config)
             parent_doc_id = result["_id"]
         else:
-            parent_doc_id=category_id
-        
+            parent_doc_id = category_id
 
         return self.rdme.create_doc(
             title=title,
@@ -199,7 +198,7 @@ class ReadMeConfig(Config):
         )
 
     @staticmethod
-    def get_page_orders(d: Dict, category: bool=False):
+    def get_page_orders(d: Dict, category: bool = False):
         """Returns list of page orders
         d: dict
             Config dict
@@ -209,7 +208,7 @@ class ReadMeConfig(Config):
         page_orders = []
         for k, v in d.items():
             if category:
-                if v.get('order'):
+                if v.get("order"):
                     page_orders.append(v["order"])
             if isinstance(v, list):
                 if isinstance(v[0], dict):

@@ -43,13 +43,13 @@ By following instructions below, you will be able to preview/create any given ve
 2. Make your desired changes to the relevant Markdown/notebooks etc.
 3. Sync changes w/ README!
     ```zsh
-    ❯ ./rdme_sync/build_sync_readme.sh
+    ❯ ./src/build_sync_readme.sh
     ## Run in debug mode
-    ❯ ./rdme_sync/build_sync_readme.sh true
+    ❯ ./src/build_sync_readme.sh true
     ## Sync only a specific section, by default will sync everything in the generated `docs` folder.
-    ❯ ./rdme_sync/build_sync_readme.sh false docs/clustering-features
+    ❯ ./src/build_sync_readme.sh false docs/clustering-features
     ## Override the version, by default will create a new version from your current Git branch name
-    ❯ ./rdme_sync/build_sync_readme.sh false docs/clustering-features v1.0.0-my-new-version
+    ❯ ./src/build_sync_readme.sh false docs/clustering-features v1.0.0-my-new-version
     ```
 
 ## For further reference

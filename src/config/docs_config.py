@@ -7,7 +7,7 @@ import yaml
 from typing import Dict, List, Literal, Optional, Tuple, Union
 import logging
 
-from rdme_sync.config.config import Config
+from src.config.config import Config
 
 
 class DocsConfig(Config):
@@ -32,7 +32,7 @@ class DocsConfig(Config):
         self.docs_categories = self._load_docs_categories()
 
     def _load_docs_categories(self):
-        """Loads list of docs categories slugs""" 
+        """Loads list of docs categories slugs"""
         return [
             category_name
             for category in self.config[self.dir_path.name]
