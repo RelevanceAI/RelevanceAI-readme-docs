@@ -90,7 +90,7 @@ These are templates because all the files and notebooks in docs_templates are wr
 7. Feel free to build the docs locally in order to preview your Markdown in Vscode.
 
    ```zsh
-   ❯ python src/build/build_docs.py -d
+   ❯ python src/rdme_sync/build/build_docs.py -d
 
    ```
 
@@ -148,7 +148,7 @@ See [./src/README.md](./src/README.md) for more details about the build and sync
 
 To rebuild the config, if want to sync changes made in ReadMe
 ```
- ❯ python src/readme_config.py --method 'build' --version 'v2.0.0'
+ ❯ python src/rdme_sync/config/readme_config.py --method 'build' --version 'v2.0.0'
 ```
 
 ## For further reference

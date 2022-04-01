@@ -130,8 +130,8 @@ def execute_notebook(notebook: str, notebook_args: Dict):
         if os.getenv("SHELL") and "zsh" in os.getenv("SHELL"):
             update_pip_for_shell(notebook, shell="zsh")
 
-        ## Update to latest version
-        notebook_find_replace(notebook, **notebook_args["pip_install_version_args"])
+        # ## Update to latest version
+        # notebook_find_replace(notebook, **notebook_args["pip_install_version_args"])
 
         ## Temporarily updating notebook with test creds
         notebook_find_replace(notebook, **notebook_args["client_instantiation_args"])
