@@ -30,7 +30,7 @@ to build powerful applications
 ### Installation Requirements
 
 Prior to starting, we need to install the main dependencies.
-@@@ relevanceai_installation, RELEVANCEAI_SDK_VERSION=RELEVANCEAI_SDK_VERSION; vectorhub_encoders_text_tfhub_installation @@@
+@@@ relevanceai_dev_installation; vectorhub_encoders_text_tfhub_installation @@@
 
 ### Setting Up Client
 To be able to use Relevance AI, you need to instantiate a client. This needs a Project and API key that can be accessed at https://cloud.relevance.ai/ in the settings area! Alternatively, you can run the code below and follow the link and the guide.
