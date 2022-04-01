@@ -17,7 +17,6 @@ all:
 install:
 	python -m venv .venv
 	. .venv/bin/activate
-
 	pip install --upgrade pip
 	pip install -q -r requirements-dev.txt
 	npm i
