@@ -79,7 +79,7 @@ Note that the default format is "yyyy-mm-dd" but can be changed to "yyyy-dd-mm" 
 {
   "codes": [
     {
-      "code": "### TODO: update to match the latest SDK\nfiltered_data = ds.get_where(filter)",
+      "code": "\nfiltered_data = ds.get_documents(filters=filter, n = 20)",
       "name": "Python (SDK)",
       "language": "python"
     }
