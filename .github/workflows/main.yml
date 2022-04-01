@@ -56,44 +56,44 @@ jobs:
           echo "::set-output name=notebook-fpaths::$NOTEBOOK_FPATHS"
 
 
-  test-notebooks:
-    name: Test ${{ matrix.notebook }}
-    needs: build-docs
-    runs-on: ${{ matrix.os }}
-    strategy:
-      matrix:
-        os: [ ubuntu-latest]
-        python-version: [ '3.8' ]
-        # python-version: [ '3.6', '3.7', '3.8', '3.9' ]
-        notebook: ${{fromJSON(needs.build-docs.outputs.notebook-fpaths )}}
-        include:
-          - os: ubuntu-latest
-            path: ~/.cache/pip
-          # - os: macos-latest
-          #   path: ~/Library/Caches/pip
-          # - os: windows-latest
-          #   path: ~\AppData\Local\pip\Cache
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v2
+  # test-notebooks:
+  #   name: Test ${{ matrix.notebook }}
+  #   needs: build-docs
+  #   runs-on: ${{ matrix.os }}
+  #   strategy:
+  #     matrix:
+  #       os: [ ubuntu-latest]
+  #       python-version: [ '3.8' ]
+  #       # python-version: [ '3.6', '3.7', '3.8', '3.9' ]
+  #       notebook: ${{fromJSON(needs.build-docs.outputs.notebook-fpaths )}}
+  #       include:
+  #         - os: ubuntu-latest
+  #           path: ~/.cache/pip
+  #         # - os: macos-latest
+  #         #   path: ~/Library/Caches/pip
+  #         # - os: windows-latest
+  #         #   path: ~\AppData\Local\pip\Cache
+  #   steps:
+  #     - name: Checkout code
+  #       uses: actions/checkout@v2
 
-      - uses: actions/setup-python@v2
-        with:
-          python-version: ${{ matrix.python-version }}
-          # cache: 'pip'
-      - name: Cache Python deps
-        uses: actions/cache@v2
-        with:
-          path: ${{ matrix.path }}
-          key: ${{ runner.os }}-${{ env.pythonLocation }}-pip-${{ hashFiles('requirements.txt') }}
-          restore-keys: |
-            ${{ runner.os }}-${{ env.pythonLocation }}-pip-
-            ${{ runner.os }}-${{ env.pythonLocation }}-
+  #     - uses: actions/setup-python@v2
+  #       with:
+  #         python-version: ${{ matrix.python-version }}
+  #         # cache: 'pip'
+  #     - name: Cache Python deps
+  #       uses: actions/cache@v2
+  #       with:
+  #         path: ${{ matrix.path }}
+  #         key: ${{ runner.os }}-${{ env.pythonLocation }}-pip-${{ hashFiles('requirements.txt') }}
+  #         restore-keys: |
+  #           ${{ runner.os }}-${{ env.pythonLocation }}-pip-
+  #           ${{ runner.os }}-${{ env.pythonLocation }}-
 
-      - name: Install requirements
-        run: |
-          pip install --upgrade pip
-          python -m pip install -e .[tests]
+  #     - name: Install requirements
+  #       run: |
+  #         pip install --upgrade pip
+  #         python -m pip install -e .[tests]
 
       # - name: Test notebooks
       #   continue-on-error: true
@@ -107,7 +107,7 @@ jobs:
 
 
   sync-readme-docs:
-    needs: test-notebooks
+    # needs: test-notebooks
     runs-on: ${{ matrix.os }}
     strategy:
       matrix:
@@ -125,7 +125,7 @@ jobs:
       - name: Set up Node
         uses: actions/setup-node@v2
         with:
-          node-version: '16.14.2'
+          node-version: '16'
       - run: npm install
 
       - name: Cache node modules
@@ -149,6 +149,17 @@ jobs:
           echo "README_VERSION=$README_VERSION"
           ./rdme_sync/sync_readme.sh true ./docs/ $README_VERSION
 
+      # - name: Set ReadMe version as Github env var
+      #   run: |
+      #     README_VERSION=$(cat __version__)
+      #     echo "README_VERSION=$README_VERSION" >> $GITHUB_ENV
+
+      # - name: GitHub Action
+      #   env:
+      #     RELEVANCEAI_README_API_KEY: ${{ secrets.RELEVANCEAI_README_API_KEY }}
+      #   uses: readmeio/rdme@7.0.2
+      #   with:
+      #     rdme: docs ./docs --key=$RELEVANCEAI_README_API_KEY --version=$README_VERSION
 
 
   # update-readme-main:

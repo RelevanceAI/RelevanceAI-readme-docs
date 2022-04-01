@@ -21,6 +21,6 @@
   },
   "homepage": "https://github.com/RelevanceAI/RelevanceAI-readme-docs#readme",
   "dependencies": {
-    "rdme": "^6.5.0"
+    "rdme": "^7.0.2"
   }
 }
