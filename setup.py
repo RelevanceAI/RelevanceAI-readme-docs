@@ -13,7 +13,6 @@ requirements = [
     "nbconvert>=1.3.5",
     "nbformat>=3.0.9",
     "jupyter",
-    "RelevanceAI[notebook]",
     "pyyaml",
     "typing_extensions",
     "python-frontmatter",
@@ -21,6 +20,7 @@ requirements = [
 ]
 
 notebook_test_requirements = [
+    "RelevanceAI[notebook]",
     "vectorhub[sentence-transformers]>=1.8.3",
     "matplotlib",  ## Needed for Vectorhub Clip2Vec in non-Colab env
 ]
