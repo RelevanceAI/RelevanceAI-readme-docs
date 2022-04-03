@@ -25,7 +25,7 @@ def generate_ipynb_file(
     input_fname: Path,
     output_fname: Path,
     snippet_paths: List[Path],
-    snippet_params=Dict,
+    snippet_params: Dict,
 ):
     """
     Given a list of snippet paths, generate a notebook `output_fname` with the given `input_fname`

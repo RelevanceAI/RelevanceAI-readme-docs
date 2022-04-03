@@ -37,7 +37,6 @@ jobs:
         run: |
           pip install --upgrade pip
           pip install -r requirements.txt
-          python -c 'import sys; print(sys.path)'
 
       - name: Set ReadMe version as Github env var
         run: |
@@ -51,7 +50,6 @@ jobs:
 
       - name: Update asset links
         run: |
-          python -c 'import sys; print(sys.path)'
           python src/rdme_sync/build/update_asset_ref.py -d -p . -pn RelevanceAI -v $GIT_BRANCH_VERSION
 
       - name: Update semver ref
