@@ -21,12 +21,12 @@ class RdmdExporter(MarkdownExporter):
 
     export_from_notebook = "ReadMe Markdown"
 
-    def __init__(self, readme_version: str = None):
-        if not readme_version:
-            raise ValueError(
-                f"Readme version is required. Please specify a version. eg. 'v2.0.0'"
-            )
-        self.readme_version = readme_version
+    # def __init__(self, readme_version: str = None):
+    #     if not readme_version:
+    #         raise ValueError(
+    #             f"Readme version is required. Please specify a version. eg. 'v2.0.0'"
+    #         )
+    #     self.readme_version = readme_version
 
     # def _file_extension_default(self):
     #     """
@@ -35,7 +35,7 @@ class RdmdExporter(MarkdownExporter):
     #     return '.ipynb'
 
     @property
-    def template_paths(self):
+    def template_path(self):
         """
         We want to inherit from Markdown template, and have template under
         ``./templates/`` so append it to the search path. (see next section)
@@ -43,11 +43,11 @@ class RdmdExporter(MarkdownExporter):
         Note: nbconvert 6.0 changed ``template_path`` to ``template_paths``
         """
         return super().template_paths + [
-            os.path.join(os.path.dirname(__file__), "templates")
+            os.path.join(os.path.dirname(__file__), "templates", "rdmd")
         ]
 
-    def _template_file_default(self):
-        """
-        We want to use the new template we ship with our library.
-        """
-        return "test_template"  # full
+    # def _template_file_default(self):
+    #     """
+    #     We want to use the new template we ship with our library.
+    #     """
+    #     return  "rdmd"

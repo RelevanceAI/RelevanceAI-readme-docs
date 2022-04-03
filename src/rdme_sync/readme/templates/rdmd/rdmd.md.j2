@@ -1,0 +1,25 @@
+{% extends 'markdown/index.md.j2' %}
+
+{%- block traceback_line -%}
+```output
+{{ line.rstrip() | strip_ansi }}
+```
+```output
+```
+{%- endblock traceback_line -%}
+
+{%- block stream -%}
+```output
+{{ output.text.rstrip() }}
+```
+```output
+```
+{%- endblock stream -%}
+
+{%- block data_text scoped -%}
+```output
+{{ output.data['text/plain'].rstrip() }}
+```
+```output
+```
+{%- endblock data_text -%}
