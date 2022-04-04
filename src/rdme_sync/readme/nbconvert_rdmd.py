@@ -1,7 +1,8 @@
 #!/usr/bin/env python3
 
 import logging
-from typing import Dict, List, Literal, Union
+from typing import Dict, List, Union
+from typing_extensions import Literal
 from pathlib import Path
 import os
 import re

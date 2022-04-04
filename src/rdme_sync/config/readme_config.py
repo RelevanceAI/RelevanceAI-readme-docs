@@ -1,7 +1,8 @@
 #!/usr/bin/env python3
 
 import yaml
-from typing import Dict, List, Literal, Optional, Tuple, Union
+from typing import Dict, List, Optional, Tuple, Union
+from typing_extensions import Literal
 import logging
 
 from rdme_sync.readme.rdme_api import ReadMeAPI
@@ -20,7 +21,7 @@ class ReadMeConfig(Config):
             "hidden",
             "createdAt",
             "updatedAt",
-            "parentDoc",
+            # "parentDoc",
             "order",
             "_id",
         ],

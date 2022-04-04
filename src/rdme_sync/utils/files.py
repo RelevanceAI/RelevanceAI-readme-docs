@@ -5,7 +5,8 @@ import re
 import logging
 import json
 from pathlib import Path
-from typing import List, Literal, Tuple, Union
+from typing import List, Tuple, Union
+from typing_extensions import Literal
 
 
 def get_files(path: Union[Path, str], ext: Literal["md", "ipynb"]):

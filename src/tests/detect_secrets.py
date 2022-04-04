@@ -2,8 +2,8 @@
 
 from pathlib import Path
 import sys, os, re, itertools
-from tkinter import E
-from typing import Iterable, Literal, Union
+from typing import Iterable, Union
+from typing_extensions import Literal
 import logging
 import argparse
 import json

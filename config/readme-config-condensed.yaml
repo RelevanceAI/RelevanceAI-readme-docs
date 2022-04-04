@@ -14,7 +14,6 @@ categories:
     - list-furthest-from-centroids
     - quickstart-clustering
     - quickstart-k-means
-    - subclustering
   comparator:
     coming-soon-1: []
     embedding-comparator: []
@@ -66,6 +65,7 @@ categories:
     - multi-vector-search-2
     - multi-vector-search-with
   getting-started:
+    -relevance-ai-quickstart: []
     boilerplate: []
     example-applications:
     - music-recommendation

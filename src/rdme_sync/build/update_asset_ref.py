@@ -3,7 +3,8 @@
 import json
 from pathlib import Path
 import itertools
-from typing import List, Literal, Tuple, Union
+from typing import List, Tuple, Union
+from typing_extensions import Literal
 import logging
 import argparse
 

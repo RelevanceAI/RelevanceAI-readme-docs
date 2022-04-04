@@ -8,27 +8,24 @@ categories:
         excerpt: ''
         hidden: false
         order: 1
-        parentDoc: 623a96a3032c43002ef2c6ac
         slug: cluster-distribution
         title: Cluster Distribution
-        updatedAt: '2022-03-31T05:26:26.775Z'
+        updatedAt: '2022-04-04T04:50:36.822Z'
       cluster-evaluate:
       - _id: 623a96a3032c43002ef2c6ad
         createdAt: '2021-12-22T00:47:17.465Z'
         excerpt: Evaluate your clusters 5 quick steps
         hidden: true
         order: 0
-        parentDoc: 623a96a3032c43002ef2c6ac
         slug: cluster-evaluate
         title: Quickstart
-        updatedAt: '2022-03-31T05:26:26.483Z'
+        updatedAt: '2022-04-01T09:14:37.154Z'
       cluster-metrics:
       - _id: 623a96a3032c43002ef2c6af
         createdAt: '2021-12-22T00:51:39.184Z'
         excerpt: ''
         hidden: true
         order: 2
-        parentDoc: 623a96a3032c43002ef2c6ac
         slug: cluster-metrics
         title: Cluster Metrics
         updatedAt: '2022-03-24T09:43:58.579Z'
@@ -38,7 +35,6 @@ categories:
         excerpt: ''
         hidden: true
         order: 3
-        parentDoc: 623a96a3032c43002ef2c6ac
         slug: cluster-plot
         title: Cluster Plot
         updatedAt: '2022-01-27T02:25:35.045Z'
@@ -46,7 +42,6 @@ categories:
       excerpt: ''
       hidden: false
       order: 1
-      parentDoc: null
       slug: cluster-evaluation
       title: Cluster Evaluation
       updatedAt: '2021-12-22T00:31:56.816Z'
@@ -58,20 +53,18 @@ categories:
         excerpt: How to run a cluster aggregate
         hidden: false
         order: 2
-        parentDoc: 623a96a3032c43002ef2c68d
         slug: cluster-aggregate
         title: Cluster Aggregate
-        updatedAt: '2022-03-31T05:26:26.734Z'
+        updatedAt: '2022-04-04T04:50:36.996Z'
       cluster-metadata:
       - _id: 623a96a3032c43002ef2c695
         createdAt: '2021-12-02T14:01:15.693Z'
         excerpt: ''
-        hidden: false
+        hidden: true
         order: 6
-        parentDoc: 623a96a3032c43002ef2c68d
         slug: cluster-metadata
         title: Cluster Metadata
-        updatedAt: '2022-03-31T05:26:26.757Z'
+        updatedAt: '2022-01-24T06:35:28.286Z'
       createdAt: '2021-11-26T10:20:49.107Z'
       custom-clustering:
       - _id: 623a96a3032c43002ef2c696
@@ -79,75 +72,58 @@ categories:
         excerpt: How to perform custom clustering
         hidden: false
         order: 7
-        parentDoc: 623a96a3032c43002ef2c68d
         slug: custom-clustering
         title: Custom Clustering
-        updatedAt: '2022-03-31T05:26:26.520Z'
+        updatedAt: '2022-04-04T04:50:37.047Z'
       excerpt: ''
       hidden: false
       inserting-centroids:
       - _id: 623a96a3032c43002ef2c694
         createdAt: '2021-12-02T14:00:02.849Z'
         excerpt: How to insert/read your cluster centroids into/from Relevance AI
-        hidden: false
+        hidden: true
         order: 3
-        parentDoc: 623a96a3032c43002ef2c68d
         slug: inserting-centroids
         title: Centroids
-        updatedAt: '2022-03-30T13:35:36.448Z'
+        updatedAt: '2022-01-24T04:32:36.426Z'
       list-closest-to-centroids:
       - _id: 623a96a3032c43002ef2c692
         createdAt: '2021-12-02T12:42:27.912Z'
         excerpt: List the documents closest to center
         hidden: false
         order: 4
-        parentDoc: 623a96a3032c43002ef2c68d
         slug: list-closest-to-centroids
         title: List closest to centroids
-        updatedAt: '2022-03-31T05:26:26.495Z'
+        updatedAt: '2022-04-04T04:50:37.024Z'
       list-furthest-from-centroids:
       - _id: 623a96a3032c43002ef2c693
         createdAt: '2021-12-02T13:13:54.940Z'
         excerpt: ''
         hidden: false
         order: 5
-        parentDoc: 623a96a3032c43002ef2c68d
         slug: list-furthest-from-centroids
         title: List furthest from centroids
-        updatedAt: '2022-03-31T05:26:26.696Z'
+        updatedAt: '2022-04-04T04:50:37.000Z'
       order: 0
-      parentDoc: null
       quickstart-clustering:
       - _id: 623a96a3032c43002ef2c68e
         createdAt: '2021-11-26T10:21:47.021Z'
         excerpt: Get started with clustering in a few minutes!
         hidden: false
         order: 1
-        parentDoc: 623a96a3032c43002ef2c68d
         slug: quickstart-clustering
         title: Quickstart (step by step)
-        updatedAt: '2022-03-31T05:26:27.105Z'
+        updatedAt: '2022-04-04T04:50:37.107Z'
       quickstart-k-means:
       - _id: 623a96a3032c43002ef2c69f
         createdAt: '2021-12-10T01:56:27.206Z'
         excerpt: ''
         hidden: false
         order: 0
-        parentDoc: 623a96a3032c43002ef2c68d
         slug: quickstart-k-means
         title: Quickstart (K Means)
-        updatedAt: '2022-03-31T05:26:26.817Z'
+        updatedAt: '2022-04-04T04:50:37.046Z'
       slug: clustering
-      subclustering:
-      - _id: 6243b7fbb38910007e90da26
-        createdAt: '2022-03-30T01:52:59.325Z'
-        excerpt: ''
-        hidden: true
-        order: 8
-        parentDoc: 623a96a3032c43002ef2c68d
-        slug: subclustering
-        title: Subclustering
-        updatedAt: '2022-03-30T01:52:59.325Z'
       title: Clustering
       updatedAt: '2021-12-12T14:07:47.030Z'
   comparator:
@@ -157,7 +133,6 @@ categories:
       excerpt: Comparator features are still in the works!
       hidden: false
       order: 0
-      parentDoc: null
       slug: coming-soon-1
       title: Coming Soon
       updatedAt: '2021-12-24T05:11:14.801Z'
@@ -167,7 +142,6 @@ categories:
       excerpt: Compare the shift in the embedding spaces
       hidden: true
       order: 2
-      parentDoc: null
       slug: embedding-comparator
       title: Embedding Comparator
       updatedAt: '2021-12-16T00:37:54.475Z'
@@ -177,14 +151,12 @@ categories:
       excerpt: A Python tool for comparing different models
       hidden: true
       order: 1
-      parentDoc: null
       search-comparator-2:
       - _id: 623a96a3032c43002ef2c6ab
         createdAt: '2021-12-16T00:43:43.510Z'
         excerpt: ''
         hidden: true
         order: 0
-        parentDoc: 623a96a3032c43002ef2c638
         slug: search-comparator-2
         title: Search Comparator
         updatedAt: '2022-03-24T09:43:58.557Z'
@@ -194,7 +166,6 @@ categories:
         excerpt: ''
         hidden: true
         order: 2
-        parentDoc: 623a96a3032c43002ef2c638
         slug: search-comparison-and-evaluation
         title: Model comparison via the search comparator
         updatedAt: '2022-03-24T09:43:58.630Z'
@@ -204,7 +175,6 @@ categories:
         excerpt: ''
         hidden: true
         order: 1
-        parentDoc: 623a96a3032c43002ef2c638
         slug: set-up
         title: Setting up the search comparator
         updatedAt: '2022-03-24T09:43:58.647Z'
@@ -218,7 +188,6 @@ categories:
       excerpt: Save SDK queries for use in the Clusters App
       hidden: true
       order: 1
-      parentDoc: null
       slug: saving-aggregation-queries-from-sdk
       title: Saving aggregation queries from SDK
       updatedAt: '2022-03-24T09:43:58.473Z'
@@ -228,7 +197,6 @@ categories:
       excerpt: Learn how to power your cluster app visualizations
       hidden: true
       order: 0
-      parentDoc: null
       slug: writing-aggregation-queries
       title: Writing aggregation queries
       updatedAt: '2022-01-05T06:28:35.415Z'
@@ -241,20 +209,18 @@ categories:
         excerpt: Get started with vector aggregations in 3 quick steps
         hidden: false
         order: 1
-        parentDoc: 623a96a3032c43002ef2c652
         slug: aggregation-quick-start
         title: Quickstart
-        updatedAt: '2022-03-31T05:26:26.795Z'
+        updatedAt: '2022-04-04T06:02:35.323Z'
       aggregations-1:
       - _id: 623a96a3032c43002ef2c667
         createdAt: '2021-11-14T15:42:46.167Z'
         excerpt: ''
         hidden: true
         order: 0
-        parentDoc: 623a96a3032c43002ef2c652
         slug: aggregations-1
         title: Prerequisites
-        updatedAt: '2022-03-31T05:26:26.749Z'
+        updatedAt: '2022-03-31T06:19:17.315Z'
       createdAt: '2021-11-04T01:13:38.587Z'
       creating-aggregation-metrics:
       - _id: 623a96a3032c43002ef2c666
@@ -262,7 +228,6 @@ categories:
         excerpt: ''
         hidden: false
         order: 3
-        parentDoc: 623a96a3032c43002ef2c652
         slug: creating-aggregation-metrics
         title: Aggregation metrics (mean/max/min/sum)
         updatedAt: '2022-03-30T13:35:37.020Z'
@@ -273,13 +238,11 @@ categories:
         excerpt: ''
         hidden: false
         order: 2
-        parentDoc: 623a96a3032c43002ef2c652
         slug: grouping-the-data
         title: Grouping the data
         updatedAt: '2022-03-30T13:35:37.085Z'
       hidden: false
       order: 2
-      parentDoc: null
       slug: aggregations
       title: Aggregations
       updatedAt: '2021-11-17T02:44:02.097Z'
@@ -292,7 +255,6 @@ categories:
         excerpt: Guide to insert documents that contain chunk data
         hidden: true
         order: 5
-        parentDoc: 623a96a3032c43002ef2c651
         slug: documents-with-chunked-data
         title: Documents with chunked data
         updatedAt: '2022-02-08T01:32:56.306Z'
@@ -302,10 +264,9 @@ categories:
         excerpt: Guide on how to copy and clone datasets
         hidden: false
         order: 4
-        parentDoc: 623a96a3032c43002ef2c651
         slug: ecommerce-example-dataset
         title: Copying and cloning dataset
-        updatedAt: '2022-03-30T06:08:31.949Z'
+        updatedAt: '2022-04-01T09:14:37.010Z'
       excerpt: Quick guide on how to create a dataset
       hidden: false
       insert-a-csv:
@@ -314,52 +275,46 @@ categories:
         excerpt: ''
         hidden: false
         order: 3
-        parentDoc: 623a96a3032c43002ef2c651
         slug: insert-a-csv
         title: Insert a CSV
-        updatedAt: '2022-03-31T05:26:26.777Z'
+        updatedAt: '2022-04-01T09:14:37.168Z'
       insert-a-df:
       - _id: 623a96a3032c43002ef2c73d
         createdAt: '2022-01-12T06:07:56.382Z'
         excerpt: ''
         hidden: false
         order: 6
-        parentDoc: 623a96a3032c43002ef2c651
         slug: insert-a-df
         title: Insert A Dataframe
-        updatedAt: '2022-03-31T05:26:26.767Z'
+        updatedAt: '2022-04-01T09:14:37.140Z'
       inserting-data:
       - _id: 623a96a3032c43002ef2c64e
         createdAt: '2021-11-02T00:37:51.061Z'
         excerpt: Guide on how to insert data into RelevanceAI
         hidden: false
         order: 2
-        parentDoc: 623a96a3032c43002ef2c651
         slug: inserting-data
         title: Inserting and updating documents
-        updatedAt: '2022-03-31T05:26:26.752Z'
+        updatedAt: '2022-04-01T09:14:37.138Z'
       order: 0
-      parentDoc: null
       preparing-data-from-csv-pandas-df:
       - _id: 623a96a3032c43002ef2c64d
         createdAt: '2021-11-02T00:00:24.907Z'
         excerpt: ''
         hidden: true
         order: 1
-        parentDoc: 623a96a3032c43002ef2c651
         slug: preparing-data-from-csv-pandas-df
         title: Preparing data from CSV / Pandas Dataframe
-        updatedAt: '2022-03-31T05:26:26.783Z'
+        updatedAt: '2022-03-31T06:19:17.216Z'
       project-and-dataset:
       - _id: 623a96a3032c43002ef2c640
         createdAt: '2021-10-28T06:57:07.293Z'
         excerpt: Dedicated section to managing your RelevanceAI space
         hidden: false
         order: 0
-        parentDoc: 623a96a3032c43002ef2c651
         slug: project-and-dataset
         title: Dataset Basics
-        updatedAt: '2022-03-31T05:26:26.799Z'
+        updatedAt: '2022-04-01T09:14:37.163Z'
       slug: creating-a-dataset
       title: Creating a dataset
       updatedAt: '2021-12-21T22:34:47.769Z'
@@ -371,30 +326,27 @@ categories:
         excerpt: ''
         hidden: false
         order: 3
-        parentDoc: 623a96a3032c43002ef2c67a
         slug: categories
         title: Categories
-        updatedAt: '2022-03-31T05:26:26.732Z'
+        updatedAt: '2022-04-01T09:14:37.129Z'
       combining-filters-and-vector-search:
       - _id: 623a96a3032c43002ef2c68c
         createdAt: '2021-11-25T22:33:06.798Z'
         excerpt: ''
         hidden: false
         order: 9
-        parentDoc: 623a96a3032c43002ef2c67a
         slug: combining-filters-and-vector-search
         title: Combining filters and vector search
-        updatedAt: '2022-03-31T05:26:26.808Z'
+        updatedAt: '2022-04-01T09:14:37.122Z'
       contains:
       - _id: 623a96a3032c43002ef2c683
         createdAt: '2021-11-25T05:18:31.045Z'
         excerpt: ''
         hidden: false
         order: 0
-        parentDoc: 623a96a3032c43002ef2c67a
         slug: contains
         title: Contains
-        updatedAt: '2022-03-31T05:26:26.737Z'
+        updatedAt: '2022-04-01T09:14:37.259Z'
       createdAt: '2021-11-21T07:05:21.922Z'
       date:
       - _id: 623a96a3032c43002ef2c688
@@ -402,30 +354,27 @@ categories:
         excerpt: ''
         hidden: false
         order: 5
-        parentDoc: 623a96a3032c43002ef2c67a
         slug: date
         title: Date
-        updatedAt: '2022-03-31T05:26:26.822Z'
+        updatedAt: '2022-04-01T09:14:37.193Z'
       exact_match:
       - _id: 623a96a3032c43002ef2c684
         createdAt: '2021-11-25T05:20:53.996Z'
         excerpt: ''
         hidden: false
         order: 1
-        parentDoc: 623a96a3032c43002ef2c67a
         slug: exact_match
         title: Exact match
-        updatedAt: '2022-03-31T05:26:26.489Z'
+        updatedAt: '2022-04-01T09:14:37.015Z'
       exact_match-1:
       - _id: 623a96a3032c43002ef2c685
         createdAt: '2021-11-25T05:44:25.366Z'
         excerpt: ''
         hidden: false
         order: 2
-        parentDoc: 623a96a3032c43002ef2c67a
         slug: exact_match-1
         title: Word match
-        updatedAt: '2022-03-31T05:26:26.805Z'
+        updatedAt: '2022-04-01T09:14:37.043Z'
       excerpt: ''
       exists:
       - _id: 623a96a3032c43002ef2c687
@@ -433,10 +382,9 @@ categories:
         excerpt: ''
         hidden: false
         order: 4
-        parentDoc: 623a96a3032c43002ef2c67a
         slug: exists
         title: Exists
-        updatedAt: '2022-03-31T05:26:26.818Z'
+        updatedAt: '2022-04-01T09:14:37.119Z'
       hidden: false
       ids:
       - _id: 623a96a3032c43002ef2c68a
@@ -444,55 +392,49 @@ categories:
         excerpt: ''
         hidden: false
         order: 7
-        parentDoc: 623a96a3032c43002ef2c67a
         slug: ids
         title: Ids
-        updatedAt: '2022-03-31T05:26:26.506Z'
+        updatedAt: '2022-04-01T09:14:37.194Z'
       multiple-filters:
       - _id: 623a96a3032c43002ef2c68b
         createdAt: '2021-11-25T22:31:19.531Z'
         excerpt: ''
         hidden: false
         order: 8
-        parentDoc: 623a96a3032c43002ef2c67a
         slug: multiple-filters
         title: Multiple filters
-        updatedAt: '2022-03-31T05:26:26.738Z'
+        updatedAt: '2022-04-01T09:14:37.138Z'
       numeric:
       - _id: 623a96a3032c43002ef2c689
         createdAt: '2021-11-25T06:28:37.534Z'
         excerpt: ''
         hidden: false
         order: 6
-        parentDoc: 623a96a3032c43002ef2c67a
         slug: numeric
         title: Numeric
-        updatedAt: '2022-03-31T05:26:26.755Z'
+        updatedAt: '2022-04-01T09:14:37.174Z'
       or:
       - _id: 623a96a3032c43002ef2c6a0
         createdAt: '2021-12-14T02:24:01.377Z'
         excerpt: How to filter when you have multiple filter requirements
         hidden: false
         order: 11
-        parentDoc: 623a96a3032c43002ef2c67a
         slug: or
         title: Or
-        updatedAt: '2022-03-30T04:51:57.257Z'
+        updatedAt: '2022-04-01T09:14:36.994Z'
       order: 4
-      parentDoc: null
       regex:
       - _id: 623a96a3032c43002ef2c690
         createdAt: '2021-11-29T23:13:52.305Z'
         excerpt: ''
         hidden: false
         order: 10
-        parentDoc: 623a96a3032c43002ef2c67a
         slug: regex
         title: Regex
-        updatedAt: '2022-03-31T05:26:26.741Z'
+        updatedAt: '2022-04-01T09:14:37.099Z'
       slug: filters-1
       title: Filters
-      updatedAt: '2022-03-31T05:26:26.920Z'
+      updatedAt: '2022-03-31T06:19:17.288Z'
     how-to-vectorize:
       _id: 623a96a3032c43002ef2c644
       createdAt: '2021-10-28T08:07:42.539Z'
@@ -504,22 +446,19 @@ categories:
         excerpt: A guide on vectorizing text using Vectorhub
         hidden: false
         order: 2
-        parentDoc: 623a96a3032c43002ef2c644
         slug: how-to-vectorize-text-using-vectorhub-transformers
         title: How to vectorize text using VectorHub - Transformers
-        updatedAt: '2022-03-31T05:26:26.782Z'
+        updatedAt: '2022-03-31T06:19:17.328Z'
       how-to-vectorize-using-the-sdk:
       - _id: 623a96a3032c43002ef2c6b9
         createdAt: '2022-01-19T22:20:35.514Z'
         excerpt: A guide on vectorizing text using Vectorhub
         hidden: true
         order: 0
-        parentDoc: 623a96a3032c43002ef2c644
         slug: how-to-vectorize-using-the-sdk
         title: How to vectorize using Relevance AI's SDK
         updatedAt: '2022-03-30T06:08:32.003Z'
       order: 1
-      parentDoc: null
       slug: how-to-vectorize
       title: How to vectorize
       updatedAt: '2021-11-10T03:19:46.445Z'
@@ -529,7 +468,6 @@ categories:
         excerpt: A guide to vectorizing/encoding images using Vectorhub
         hidden: false
         order: 3
-        parentDoc: 623a96a3032c43002ef2c644
         slug: vectorize-images
         title: How to vectorize images
         updatedAt: '2022-03-30T06:08:31.941Z'
@@ -539,17 +477,15 @@ categories:
         excerpt: A guide on vectorizing text using Vectorhub
         hidden: false
         order: 1
-        parentDoc: 623a96a3032c43002ef2c644
         slug: vectorize-text
         title: How to vectorize text using VectorHub - TFhub
-        updatedAt: '2022-03-30T13:35:37.573Z'
+        updatedAt: '2022-04-01T09:14:37.170Z'
       waiting-for-the-encoding-to-end:
       - _id: 623a96a3032c43002ef2c659
         createdAt: '2021-11-08T22:12:52.358Z'
         excerpt: Encoding requires some time to finish, in the meantime...
         hidden: true
         order: 4
-        parentDoc: 623a96a3032c43002ef2c644
         slug: waiting-for-the-encoding-to-end
         title: Waiting for the encoding to end
         updatedAt: '2022-02-14T01:59:23.587Z'
@@ -564,35 +500,31 @@ categories:
         excerpt: Highlight in 1 line of code using JSONShower
         hidden: false
         order: 2
-        parentDoc: 623a96a3032c43002ef2c679
         slug: highlighting
         title: Highlighting
-        updatedAt: '2022-03-31T05:26:26.656Z'
+        updatedAt: '2022-03-31T06:19:17.479Z'
       image-fields:
       - _id: 623a96a3032c43002ef2c67b
         createdAt: '2021-11-22T04:01:02.046Z'
         excerpt: View image fields inside image documents easily in JSONShower!
         hidden: false
         order: 0
-        parentDoc: 623a96a3032c43002ef2c679
         slug: image-fields
         title: Preview Images
-        updatedAt: '2022-03-31T05:26:26.761Z'
+        updatedAt: '2022-03-31T06:19:17.430Z'
       order: 5
-      parentDoc: null
       preview-audio:
       - _id: 623a96a3032c43002ef2c67c
         createdAt: '2021-11-22T04:04:32.150Z'
         excerpt: ''
         hidden: false
         order: 1
-        parentDoc: 623a96a3032c43002ef2c679
         slug: preview-audio
         title: Preview Audio
-        updatedAt: '2022-03-31T05:26:26.747Z'
+        updatedAt: '2022-03-31T06:19:17.348Z'
       slug: jsonshower
       title: Prettyprint json
-      updatedAt: '2022-03-30T06:08:31.950Z'
+      updatedAt: '2022-04-01T09:14:37.002Z'
     multi-vector-search-3:
       _id: 623a96a3032c43002ef2c6a1
       createdAt: '2021-12-14T02:43:08.885Z'
@@ -604,33 +536,38 @@ categories:
         excerpt: Guide to using multi-vector search with multiple models
         hidden: false
         order: 0
-        parentDoc: 623a96a3032c43002ef2c6a1
         slug: multi-vector-search-2
         title: Multi-vector search with multiple models
-        updatedAt: '2022-03-30T06:08:32.025Z'
+        updatedAt: '2022-04-01T09:14:37.189Z'
       multi-vector-search-with:
       - _id: 623a96a3032c43002ef2c6b2
         createdAt: '2021-12-24T03:13:06.821Z'
         excerpt: Guide to using multi-vector search with multiple fields
         hidden: false
         order: 1
-        parentDoc: 623a96a3032c43002ef2c6a1
         slug: multi-vector-search-with
         title: Multi-vector search with multiple fields
-        updatedAt: '2022-03-30T13:35:37.539Z'
+        updatedAt: '2022-04-01T09:14:37.216Z'
       order: 3
-      parentDoc: null
       slug: multi-vector-search-3
       title: Multi-vector search
       updatedAt: '2021-12-14T02:43:08.885Z'
   getting-started:
+    -relevance-ai-quickstart:
+      _id: 624a6846823c1b00a016ba6c
+      createdAt: '2022-04-04T04:34:41.064Z'
+      excerpt: ''
+      hidden: true
+      order: 999
+      slug: -relevance-ai-quickstart
+      title: "\u2618\uFE0F Relevance AI Quickstart"
+      updatedAt: '2022-04-04T06:10:33.985Z'
     boilerplate:
       _id: 623a96a3032c43002ef2c658
       createdAt: '2021-11-08T00:59:35.504Z'
       excerpt: ''
       hidden: true
       order: 6
-      parentDoc: null
       slug: boilerplate
       title: Boilerplate
       updatedAt: '2022-03-24T06:18:08.611Z'
@@ -645,52 +582,46 @@ categories:
         excerpt: ''
         hidden: true
         order: 4
-        parentDoc: 623a96a3032c43002ef2c650
         slug: music-recommendation
         title: Audio Recommendation
         updatedAt: '2022-03-24T09:43:58.934Z'
       order: 9
-      parentDoc: null
       quickstart-multivector-search:
       - _id: 623a96a3032c43002ef2c65f
         createdAt: '2021-11-10T05:02:55.660Z'
         excerpt: Get started with Relevance AI in 5 minutes!
         hidden: false
         order: 1
-        parentDoc: 623a96a3032c43002ef2c650
         slug: quickstart-multivector-search
         title: Multi-vector search with your own vectors
-        updatedAt: '2022-03-31T05:26:27.117Z'
+        updatedAt: '2022-04-01T09:14:37.405Z'
       quickstart-question-answering:
       - _id: 623a96a3032c43002ef2c656
         createdAt: '2021-11-05T06:25:12.543Z'
         excerpt: Get started with Relevance AI in 5 minutes!
         hidden: false
         order: 3
-        parentDoc: 623a96a3032c43002ef2c650
         slug: quickstart-question-answering
         title: Question answering (using USE QA Tensorflow Hub)
-        updatedAt: '2022-03-31T05:26:27.073Z'
+        updatedAt: '2022-04-01T09:14:37.799Z'
       quickstart-text-search:
       - _id: 623a96a3032c43002ef2c655
         createdAt: '2021-11-05T06:24:29.236Z'
         excerpt: ''
         hidden: false
         order: 2
-        parentDoc: 623a96a3032c43002ef2c650
         slug: quickstart-text-search
         title: Text search (using USE VectorHub)
-        updatedAt: '2022-03-31T05:26:27.058Z'
+        updatedAt: '2022-04-01T09:14:37.471Z'
       quickstart-text-to-image-search:
       - _id: 623a96a3032c43002ef2c654
         createdAt: '2021-11-05T06:20:43.205Z'
         excerpt: Get started with Relevance AI in 5 minutes!
         hidden: false
         order: 0
-        parentDoc: 623a96a3032c43002ef2c650
         slug: quickstart-text-to-image-search
         title: Text-to-image search (using OpenAI's CLIP Pytorch)
-        updatedAt: '2022-03-31T05:26:27.439Z'
+        updatedAt: '2022-04-01T09:14:37.498Z'
       slug: example-applications
       title: Example applications
       updatedAt: '2021-11-17T04:06:48.371Z'
@@ -700,47 +631,42 @@ categories:
       excerpt: Developer-first vector platform
       hidden: false
       order: 2
-      parentDoc: null
       slug: features
       title: Features
-      updatedAt: '2022-03-31T05:26:26.765Z'
+      updatedAt: '2022-03-31T06:19:17.482Z'
     installation:
       _id: 623a96a3032c43002ef2c63b
       createdAt: '2021-10-26T04:06:08.694Z'
       excerpt: Installing RelevanceAI
       hidden: false
       order: 5
-      parentDoc: null
       slug: installation
       title: Installation
-      updatedAt: '2022-03-31T05:26:26.692Z'
+      updatedAt: '2022-04-01T09:14:37.182Z'
     old-welcome:
       _id: 623a96a3032c43002ef2c657
       createdAt: '2021-11-07T00:21:21.957Z'
       excerpt: Developer-first vector platform
       hidden: true
       order: 3
-      parentDoc: null
       slug: old-welcome
       title: Welcome
-      updatedAt: '2022-03-31T05:26:26.711Z'
+      updatedAt: '2022-03-31T06:19:17.445Z'
     quick-tour:
       _id: 623a96a3032c43002ef2c6b1
       createdAt: '2022-01-10T01:31:01.336Z'
       excerpt: Try out RelevanceAI in 5 steps!
       hidden: false
       order: 1
-      parentDoc: null
       slug: quick-tour
       title: Quick Feature Tour
-      updatedAt: '2022-03-31T05:26:26.840Z'
+      updatedAt: '2022-04-01T09:14:37.455Z'
     quickstart:
       _id: 623a96a3032c43002ef2c66f
       createdAt: '2021-11-17T03:54:08.625Z'
       excerpt: Try us out in 5 lines of code!
       hidden: true
       order: 4
-      parentDoc: null
       slug: quickstart
       title: Quickstart
       updatedAt: '2022-03-30T06:08:31.990Z'
@@ -750,7 +676,6 @@ categories:
       excerpt: Get started with Relevance AI in 5 minutes!
       hidden: true
       order: 10
-      parentDoc: null
       slug: quickstart-1
       title: Example application boilerplate
       updatedAt: '2022-03-24T06:18:08.641Z'
@@ -760,7 +685,6 @@ categories:
       excerpt: Try us out in 5 lines of code!
       hidden: true
       order: 11
-      parentDoc: null
       slug: quickstart-boilerplate
       title: Quickstart boilerplate
       updatedAt: '2022-03-30T06:08:31.940Z'
@@ -773,14 +697,12 @@ categories:
         excerpt: Introduction to documents and complex document types
         hidden: false
         order: 0
-        parentDoc: 623a96a3032c43002ef2c624
         slug: documents-1
         title: Documents
         updatedAt: '2022-03-24T02:50:51.514Z'
       excerpt: Guide to the terminology used in Relevance AI
       hidden: false
       order: 8
-      parentDoc: null
       slug: terminology
       title: Terminology
       updatedAt: '2022-01-31T09:14:05.514Z'
@@ -794,13 +716,11 @@ categories:
         excerpt: A guide to a vector search experimentation workflow
         hidden: true
         order: 3
-        parentDoc: 623a96a3032c43002ef2c64c
         slug: experimentation-workflow
         title: Experimentation workflow
         updatedAt: '2022-03-24T06:18:08.497Z'
       hidden: false
       order: 7
-      parentDoc: null
       slug: vectors-and-vector-databases
       title: New to vectors?
       updatedAt: '2021-12-21T00:20:59.858Z'
@@ -810,40 +730,36 @@ categories:
         excerpt: An introduction to vector databases
         hidden: false
         order: 1
-        parentDoc: 623a96a3032c43002ef2c64c
         slug: what-are-vector-databases
         title: What are vector databases
-        updatedAt: '2022-03-31T05:26:26.784Z'
+        updatedAt: '2022-03-31T06:19:17.548Z'
       what-are-vectors:
       - _id: 623a96a3032c43002ef2c633
         createdAt: '2021-10-24T23:24:48.901Z'
         excerpt: An introduction to vectors
         hidden: false
         order: 0
-        parentDoc: 623a96a3032c43002ef2c64c
         slug: what-are-vectors
         title: What are vectors
-        updatedAt: '2022-03-31T05:26:26.710Z'
+        updatedAt: '2022-03-31T06:19:17.470Z'
       why-experimentation-first:
       - _id: 623a96a3032c43002ef2c63c
         createdAt: '2021-10-26T11:00:54.856Z'
         excerpt: Why we need an experimentation-first vector database
         hidden: false
         order: 2
-        parentDoc: 623a96a3032c43002ef2c64c
         slug: why-experimentation-first
         title: Why experimentation first
-        updatedAt: '2022-03-31T05:26:26.778Z'
+        updatedAt: '2022-03-31T06:19:17.480Z'
     welcome:
       _id: 623a96a3032c43002ef2c6a8
       createdAt: '2022-01-10T01:31:01.336Z'
       excerpt: Start experimenting faster with Relevance AI in 5 minutes!
       hidden: false
       order: 0
-      parentDoc: null
       slug: welcome
       title: Relevance AI
-      updatedAt: '2022-03-31T05:26:26.771Z'
+      updatedAt: '2022-04-01T09:14:37.156Z'
   integrations:
     coming-soon-2:
       _id: 623a96a3032c43002ef2c6b5
@@ -852,7 +768,6 @@ categories:
         soon!
       hidden: false
       order: 0
-      parentDoc: null
       slug: coming-soon-2
       title: Coming Soon
       updatedAt: '2021-12-24T05:12:35.111Z'
@@ -863,7 +778,6 @@ categories:
       excerpt: ''
       hidden: false
       order: 1
-      parentDoc: null
       slug: data-privacy-policy
       title: Data Privacy Policy
       updatedAt: '2021-11-11T04:36:50.677Z'
@@ -873,7 +787,6 @@ categories:
       excerpt: ''
       hidden: false
       order: 0
-      parentDoc: null
       slug: sdk-reference
       title: Python SDK Reference
       updatedAt: '2021-11-09T00:51:39.019Z'
@@ -884,7 +797,6 @@ categories:
       excerpt: Projection features are still in the works!
       hidden: false
       order: 0
-      parentDoc: null
       slug: coming-soon
       title: Coming Soon
       updatedAt: '2021-12-24T05:11:07.241Z'
@@ -896,7 +808,6 @@ categories:
         excerpt: Clustering allows you to quickly detect bias in your visualisations
         hidden: true
         order: 3
-        parentDoc: 623a96a3032c43002ef2c65e
         slug: add-clustering
         title: Add clustering
         updatedAt: '2022-03-24T09:43:58.678Z'
@@ -906,7 +817,6 @@ categories:
         excerpt: ''
         hidden: true
         order: 1
-        parentDoc: 623a96a3032c43002ef2c65e
         slug: adding-labels
         title: Add labels
         updatedAt: '2022-03-24T09:43:58.837Z'
@@ -916,7 +826,6 @@ categories:
         excerpt: ''
         hidden: true
         order: 2
-        parentDoc: 623a96a3032c43002ef2c65e
         slug: color-by-category
         title: Color by category
         updatedAt: '2022-03-24T09:43:58.587Z'
@@ -924,7 +833,6 @@ categories:
       excerpt: Visualise your vectors in 3D in 1 line of code!
       hidden: true
       order: 1
-      parentDoc: null
       slug: quickstart-visualize-your-vectors
       title: Visualise your vectors in 3D
       updatedAt: '2021-11-24T03:35:17.036Z'
@@ -935,7 +843,6 @@ categories:
           into Relevance AI platform
         hidden: true
         order: 0
-        parentDoc: 623a96a3032c43002ef2c65e
         slug: visualise-your-vectors-in-3d
         title: Basics
         updatedAt: '2022-03-24T09:43:58.473Z'
@@ -948,7 +855,6 @@ categories:
         excerpt: Fine-grained search - Both word matching, and semantics
         hidden: true
         order: 1
-        parentDoc: 623a96a3032c43002ef2c6a5
         slug: advance-chunk-search
         title: Advanced chunk search
         updatedAt: '2022-02-14T01:59:23.647Z'
@@ -958,7 +864,6 @@ categories:
         excerpt: Fine-grained search - No word matching, just semantics
         hidden: true
         order: 0
-        parentDoc: 623a96a3032c43002ef2c6a5
         slug: chunk-search
         title: Chunk search
         updatedAt: '2022-02-14T01:59:23.544Z'
@@ -966,7 +871,6 @@ categories:
       excerpt: ''
       hidden: true
       order: 3
-      parentDoc: null
       slug: chunk-search-1
       title: Chunk search
       updatedAt: '2021-12-14T13:44:35.624Z'
@@ -976,7 +880,6 @@ categories:
       excerpt: ''
       hidden: true
       order: 5
-      parentDoc: null
       slug: combining-exact-text-with-vector-search
       title: Combining exact text with vector search
       updatedAt: '2021-11-19T01:36:01.161Z'
@@ -989,14 +892,12 @@ categories:
         excerpt: No word matching, just semantics with clustering
         hidden: true
         order: 0
-        parentDoc: 623a96a3032c43002ef2c671
         slug: diversity-search-1
         title: Diversity Search
         updatedAt: '2022-01-27T06:27:26.158Z'
       excerpt: Try out diversity search with your current search!
       hidden: true
       order: 6
-      parentDoc: null
       slug: diversity-search
       title: Diversity Search
       updatedAt: '2021-11-19T01:38:29.031Z'
@@ -1009,14 +910,12 @@ categories:
         excerpt: Exact word matching
         hidden: false
         order: 0
-        parentDoc: 623a96a3032c43002ef2c6a2
         slug: exact-word-search
         title: Exact text matching
-        updatedAt: '2022-03-31T05:26:26.772Z'
+        updatedAt: '2022-04-01T09:14:37.165Z'
       excerpt: ''
       hidden: false
       order: 0
-      parentDoc: null
       slug: exact-text-matching
       title: Exact text matching
       updatedAt: '2021-12-14T13:44:23.989Z'
@@ -1026,17 +925,15 @@ categories:
       excerpt: Guide to using multi-vector search
       hidden: true
       order: 4
-      parentDoc: null
       slug: multi-vector-search-2-1
       title: Multi-vector search
-      updatedAt: '2022-03-30T06:08:31.972Z'
+      updatedAt: '2022-04-01T09:14:37.167Z'
     redirects:
       _id: 623a96a3032c43002ef2c69b
       createdAt: '2021-12-09T08:32:05.808Z'
       excerpt: ''
       hidden: true
       order: 7
-      parentDoc: null
       slug: redirects
       title: Redirects
       updatedAt: '2021-12-09T08:32:05.808Z'
@@ -1046,7 +943,6 @@ categories:
         excerpt: ''
         hidden: true
         order: 1
-        parentDoc: 623a96a3032c43002ef2c69b
         slug: vectorise-images-with-vectorhub
         title: redirect-vectorize-images
         updatedAt: '2021-12-09T08:37:51.800Z'
@@ -1056,7 +952,6 @@ categories:
         excerpt: ''
         hidden: true
         order: 0
-        parentDoc: 623a96a3032c43002ef2c69b
         slug: vectorise-text-with-vectorhub
         title: redirect-vectorize-text
         updatedAt: '2021-12-09T08:37:26.691Z'
@@ -1071,12 +966,10 @@ categories:
         excerpt: Adjustable word matching and semantics
         hidden: false
         order: 0
-        parentDoc: 623a96a3032c43002ef2c6a3
         slug: hybrid-search-1
         title: Text and vector search (hybrid)
-        updatedAt: '2022-03-31T05:26:26.792Z'
+        updatedAt: '2022-04-01T09:14:37.190Z'
       order: 1
-      parentDoc: null
       slug: text-and-vector-search-hybrid
       title: Text and vector search (hybrid)
       updatedAt: '2021-12-14T02:45:08.200Z'
@@ -1087,7 +980,6 @@ categories:
       excerpt: Vectors are re-framing how we approach traditional deep learning problems
       hidden: false
       order: 1
-      parentDoc: null
       slug: vectors-for-classification
       title: Vectors for classification
       updatedAt: '2022-03-24T06:18:08.521Z'
@@ -1098,7 +990,6 @@ categories:
         excerpt: A discussion on the applications of vectors
         hidden: false
         order: 2
-        parentDoc: 623a96a3032c43002ef2c637
         slug: _applications-of-vectors
         title: Applications of vectors
         updatedAt: '2021-10-29T09:02:38.708Z'
@@ -1109,7 +1000,6 @@ categories:
         excerpt: An outline of the limitations of what vectors are capable of
         hidden: true
         order: 1
-        parentDoc: 623a96a3032c43002ef2c637
         slug: _limitations-of-vectors
         title: Limitations of vectors
         updatedAt: '2022-03-24T09:43:58.601Z'
@@ -1122,12 +1012,10 @@ categories:
         excerpt: A Guide On Using Vector Search
         hidden: false
         order: 0
-        parentDoc: 623a96a3032c43002ef2c637
         slug: how-to-vector-search
         title: How to vector search
         updatedAt: '2022-03-24T09:43:58.616Z'
       order: 0
-      parentDoc: null
       slug: what-is-vector-search
       title: What is vector search?
       updatedAt: '2022-03-24T06:18:08.575Z'
@@ -1140,7 +1028,6 @@ categories:
         excerpt: Fine-grained search - No word matching, just semantics
         hidden: true
         order: 6
-        parentDoc: 623a96a3032c43002ef2c625
         slug: better-text-search-chunk-search
         title: Chunk Search
         updatedAt: '2022-03-24T09:43:58.642Z'
@@ -1150,7 +1037,6 @@ categories:
         excerpt: No word matching, just semantics with clustering
         hidden: true
         order: 5
-        parentDoc: 623a96a3032c43002ef2c625
         slug: better-text-search-diversified-search-results
         title: Diversity Search
         updatedAt: '2022-03-24T09:43:58.624Z'
@@ -1160,7 +1046,6 @@ categories:
         excerpt: How to build better text search for a variety of different use cases
         hidden: true
         order: 0
-        parentDoc: 623a96a3032c43002ef2c625
         slug: better-text-search-prerequisites
         title: Prerequisites
         updatedAt: '2022-03-24T09:43:58.661Z'
@@ -1170,7 +1055,6 @@ categories:
         excerpt: Exact word matching
         hidden: true
         order: 1
-        parentDoc: 623a96a3032c43002ef2c625
         slug: better-text-search-with-hybrid
         title: Traditional Search
         updatedAt: '2022-01-05T10:54:17.911Z'
@@ -1182,7 +1066,6 @@ categories:
         excerpt: Fast fine-grained search - No word matching, just semantics
         hidden: true
         order: 7
-        parentDoc: 623a96a3032c43002ef2c625
         slug: fine-grained-search-search-on-chunks-of-text-data
         title: Multistep Chunk Search
         updatedAt: '2022-03-24T09:43:58.503Z'
@@ -1192,7 +1075,6 @@ categories:
         excerpt: Fine-grained search - Both word matching, and semantics
         hidden: true
         order: 8
-        parentDoc: 623a96a3032c43002ef2c625
         slug: fine-grained-search-search-on-chunks-of-text-data-1
         title: Advanced Chunk Search
         updatedAt: '2022-03-24T09:43:58.694Z'
@@ -1202,20 +1084,17 @@ categories:
         excerpt: Fast fine-grained search - Both word matching, and semantics
         hidden: true
         order: 9
-        parentDoc: 623a96a3032c43002ef2c625
         slug: fine-grained-search-search-on-chunks-of-text-data-2
         title: Advanced Multistep Chunk Search
         updatedAt: '2022-03-24T09:43:58.640Z'
       hidden: true
       order: 1
-      parentDoc: null
       pure-word-matching-pure-vector-search-or-combination-of-both:
       - _id: 623a96a3032c43002ef2c669
         createdAt: '2021-11-16T00:56:09.821Z'
         excerpt: No word matching, just semantics
         hidden: true
         order: 2
-        parentDoc: 623a96a3032c43002ef2c625
         slug: pure-word-matching-pure-vector-search-or-combination-of-both
         title: Vector Search
         updatedAt: '2022-03-24T09:43:58.614Z'
@@ -1225,7 +1104,6 @@ categories:
         excerpt: Adjustable word matching and semantics
         hidden: true
         order: 3
-        parentDoc: 623a96a3032c43002ef2c625
         slug: pure-word-matching-pure-vector-search-or-combination-of-both-1
         title: Text and vector search (Hybrid search)
         updatedAt: '2022-03-24T09:43:59.190Z'
@@ -1235,7 +1113,6 @@ categories:
         excerpt: Automatic word matching and semantics
         hidden: true
         order: 4
-        parentDoc: 623a96a3032c43002ef2c625
         slug: pure-word-matching-pure-vector-search-or-combination-of-both-2
         title: Semantic Search
         updatedAt: '2022-03-24T09:43:58.642Z'
@@ -1248,14 +1125,12 @@ categories:
       excerpt: Finetuning your embedding projections
       hidden: true
       order: 0
-      parentDoc: null
       prerequisites:
       - _id: 623a96a3032c43002ef2c664
         createdAt: '2021-11-12T01:22:11.406Z'
         excerpt: How to use embedding projection to better understand your vectors
         hidden: true
         order: 0
-        parentDoc: 623a96a3032c43002ef2c663
         slug: prerequisites
         title: Prerequisites
         updatedAt: '2022-03-24T09:43:58.647Z'
@@ -1273,12 +1148,10 @@ categories:
         excerpt: ''
         hidden: true
         order: 0
-        parentDoc: 623a96a3032c43002ef2c647
         slug: image-similarity-search
         title: Image Similarity Search
         updatedAt: '2022-03-24T09:43:58.042Z'
       order: 2
-      parentDoc: null
       slug: image-search
       text-to-image-search:
       - _id: 623a96a3032c43002ef2c649
@@ -1286,7 +1159,6 @@ categories:
         excerpt: ''
         hidden: true
         order: 1
-        parentDoc: 623a96a3032c43002ef2c647
         slug: text-to-image-search
         title: Text To Image Search
         updatedAt: '2022-03-24T09:43:58.615Z'
@@ -1298,7 +1170,6 @@ categories:
       excerpt: ''
       hidden: true
       order: 4
-      parentDoc: null
       slug: nlp-search-with-e-commerce
       title: Experimentation workflow with e-commerce text search
       updatedAt: '2022-03-24T06:18:09.794Z'
@@ -1312,7 +1183,6 @@ categories:
         excerpt: ''
         hidden: true
         order: 2
-        parentDoc: 623a96a3032c43002ef2c641
         slug: filters
         title: Filters
         updatedAt: '2022-02-14T01:59:23.839Z'
@@ -1324,7 +1194,6 @@ categories:
           matching
         hidden: true
         order: 3
-        parentDoc: 623a96a3032c43002ef2c641
         slug: hybrid-search
         title: Combine traditional and vector
         updatedAt: '2022-03-24T09:43:58.977Z'
@@ -1334,12 +1203,10 @@ categories:
         excerpt: Guide to using multi-vector search
         hidden: true
         order: 1
-        parentDoc: 623a96a3032c43002ef2c641
         slug: multi-vector-search
         title: Multi-vector search
         updatedAt: '2022-03-24T09:43:58.970Z'
       order: 3
-      parentDoc: null
       slug: vector-search
       title: Vector search
       updatedAt: '2021-11-10T03:20:33.530Z'
@@ -1349,7 +1216,6 @@ categories:
         excerpt: Quick guide on how to perform vector search
         hidden: true
         order: 0
-        parentDoc: 623a96a3032c43002ef2c641
         slug: vector-search-prerequisites
         title: Prerequisites
         updatedAt: '2022-03-24T09:43:59.158Z'

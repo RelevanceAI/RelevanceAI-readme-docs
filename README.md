@@ -148,7 +148,7 @@ See [./src/README.md](./src/README.md) for more details about the build and sync
 
 To rebuild the config, if want to sync changes made in ReadMe
 ```
- ❯ python src/rdme_sync/config/readme_config.py --method 'build' --version 'v2.0.0'
+ ❯ python src/rdme_sync/config/sync.py --method 'build' --version 'v2.0.0'
 ```
 
 ## For further reference

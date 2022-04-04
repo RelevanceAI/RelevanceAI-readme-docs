@@ -259,7 +259,7 @@ def main(args):
     notebooks = [n for n in notebooks if ".ipynb_checkpoints" not in str(n)]
 
     ## Filter notebooks
-    if args.notebook_ignore:
+    if not args.all:
         notebooks = [n for n in notebooks if n not in NOTEBOOK_IGNORE]
 
     if not notebooks:
@@ -334,10 +334,10 @@ if __name__ == "__main__":
         help="Whether to run multiprocessing",
     )
     parser.add_argument(
-        "-i",
-        "--notebook-ignore",
+        "-a",
+        "--all",
         action="store_true",
-        help="Whether to include notebook ignore list",
+        help="Run all notebooks",
     )
     args = parser.parse_args()
 
