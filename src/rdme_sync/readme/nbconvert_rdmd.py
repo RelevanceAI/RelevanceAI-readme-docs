@@ -37,20 +37,18 @@ def main(args):
     README_VERSION = args.version
 
     c = Config()
-    c.snippet_format = "block"
     if args.format == "block":
+        c.snippet_format = "block"
         rdmd_template = "rdmd_block.md.j2"
     elif args.format == "rdmd":
+        c.snippet_format = "rdmd"
         rdmd_template = "rdmd.md.j2"
 
     c.Exporter.template_file = os.path.join(
         os.path.dirname(__file__), "templates", "rdmd", rdmd_template
     )
+    c.RdmdExporter.preprocessors = [RdmdSnippetPreprocessor]
 
-    # pprint(c.Exporter.template_file)
-    c.MarkdownExporter.preprocessors = [RdmdSnippetPreprocessor]
-
-    # Create our new, customized exporter that uses our custom preprocessor
     # rdmd_exporter = MarkdownExporter(config=c)
     rdmd_exporter = RdmdExporter(config=c)
 
@@ -66,15 +64,15 @@ def main(args):
     for notebook_fpath in NOTEBOOK_GENERATE_PATHS:
         logging.debug(f"Converting: {notebook_fpath}")
         notebook = nbformat.read(Path(notebook_fpath), as_version=4)
-        # pprint(notebook)
-
         rdmd = rdmd_exporter.from_notebook_node(notebook)[0]
-        rdmd = "\n".join(
+        rdmd_print = "\n".join(
             [f for f in rdmd.split("\n") if "data:image/png;base64," not in f]
         )
 
-        logging.debug(rdmd)
-        # output_fname = notebook_fpath.parent.parent / f"{notebook_fpath.stem}.md"
+        # rdmd_frontmatter = frontmatter.load(rdmd_print)
+        logging.debug(rdmd_print)
+        print(c.snippet_format)
+
         output_fname = Path(
             str(notebook_fpath)
             .replace("docs_template", "docs")

@@ -1,7 +1,6 @@
 #!/usr/bin/env python3
 
 from typing import Dict, List, Union
-import requests
 import os
 import json
 
