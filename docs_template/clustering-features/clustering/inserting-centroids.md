@@ -2,7 +2,7 @@
 title: "Centroids"
 slug: "inserting-centroids"
 excerpt: "How to insert/read your cluster centroids into/from Relevance AI"
-hidden: false
+hidden: true
 createdAt: "2021-12-02T14:00:02.849Z"
 updatedAt: "2022-01-24T04:32:36.426Z"
 ---

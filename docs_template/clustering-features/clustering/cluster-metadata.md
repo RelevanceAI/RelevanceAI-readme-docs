@@ -1,7 +1,7 @@
 ---
 title: "Cluster Metadata"
 slug: "cluster-metadata"
-hidden: false
+hidden: true
 createdAt: "2021-12-02T14:01:15.693Z"
 updatedAt: "2022-01-24T06:35:28.286Z"
 ---

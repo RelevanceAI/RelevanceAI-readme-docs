@@ -20,7 +20,43 @@ The following code examines how the clusters are distributed, firstly, within th
 {
   "codes": [
     {
-      "code": "DATASET_ID = \"titanic\"\nds = client.Dataset(DATASET_ID)",
+      "code": "from relevanceai.utils.datasets import get_titanic_dataset\n\ndocuments = get_titanic_dataset()\nfor i,doc in enumerate(documents):\n  doc['_id']=i",
+      "name": "Python (SDK)",
+      "language": "python"
+    }
+  ]
+}
+[/block]
+
+[block:code]
+{
+  "codes": [
+    {
+      "code": "ds = client.Dataset(\"titanic\")\nds.insert_documents(documents)",
+      "name": "Python (SDK)",
+      "language": "python"
+    }
+  ]
+}
+[/block]
+
+[block:code]
+{
+  "codes": [
+    {
+      "code": "from sklearn.cluster import KMeans\n\nVECTOR_FIELD = \"value_vector_\"\nKMEAN_NUMBER_OF_CLUSTERS = 5\nALIAS = \"kmeans-\" + str(KMEAN_NUMBER_OF_CLUSTERS)\n\nmodel = KMeans(n_clusters=KMEAN_NUMBER_OF_CLUSTERS)\nclusterer = client.ClusterOps(alias=ALIAS, model=model)\nclusterer.operate(dataset_id=\"titanic\", vector_fields=[\"value_vector_\"])",
+      "name": "Python (SDK)",
+      "language": "python"
+    }
+  ]
+}
+[/block]
+
+[block:code]
+{
+  "codes": [
+    {
+      "code": "viz_ops = client.ClusterVizOps(\n    dataset_id=DATASET_ID,\n    vector_fields=[\"value_vector_\"],\n    alias=\"kmeans_5\"\n)",
       "name": "Python (SDK)",
       "language": "python"
     }
@@ -33,7 +69,7 @@ The following code examines how the clusters are distributed, firstly, within th
 {
   "codes": [
     {
-      "code": "viz_ops = client.ClusterVizOps(\n    dataset_id=DATASET_ID,\n    vector_fields=[\"value_vector_\"],\n    alias=\"kmeans_5\"\n)",
+      "code": "viz_ops.plot_distributions(\"Age\", top_indices=3)",
       "name": "Python (SDK)",
       "language": "python"
     }

@@ -1,6 +1,8 @@
-python
+python DATASET_ID=DATASET_ID, VECTOR_FIELD=VECTOR_FIELD
 # Aggregate based on the clusters
 result = clusterer.aggregate(
+    dataset=<<DATASET_ID>>, 
+    vector_fields = [<<VECTOR_FIELD>>],
     groupby=[
       {"name": <<GROUPBY_NAME>>, "field": <<GROUPBY_FIELD>>, "agg": <<GROUPBY_AGG_TYPE>>}
     ]

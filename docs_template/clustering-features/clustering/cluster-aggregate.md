@@ -19,4 +19,8 @@ You will also need to have knowledge of [aggregations](doc:aggregations).
 
 The following code example groups the data based on the `product_price` field, also use the average metrics on `product_price` for each cluster. `DATASET_ID` refers to the name of the dataset, `VECTOR_FIELD` is the field based on which the clustering is done, and ALIAS is the name specified by the user to save the clustering results.
 
-@@@ client_dataset; auto_cluster; cluster_aggregate_metrics, GROUPBY_NAME="brand", GROUPBY_FIELD="query", GROUPBY_AGG_TYPE="category", METRICS_NAME="avg_retail_price", METRICS_VECTOR_FIELD="product_price", METRICS_AGG_TYPE="avg" @@@
+@@@ client_dataset @@@
+
+@@@ clusterops, VECTOR_FIELD=VECTOR_FIELD, N_KMEANS=n, DATASET_ID=DATASET_ID @@@
+
+@@@ cluster_aggregate_metrics, GROUPBY_NAME="brand", GROUPBY_FIELD="query", GROUPBY_AGG_TYPE="category", METRICS_NAME="avg_retail_price", METRICS_VECTOR_FIELD="product_price", METRICS_AGG_TYPE="avg" @@@

@@ -1,2 +1,2 @@
-python CLUSTERER=clusterer, DF=''
-<<CLUSTERER>>.list_closest_to_center(<<DF>>)
+python CLUSTERER=clusterer
+<<CLUSTERER>>.list_closest(dataset_id = <<DATASET_ID>>, vector_field=<<VECTOR_FIELD>>)

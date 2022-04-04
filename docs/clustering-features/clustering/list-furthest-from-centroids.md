@@ -21,7 +21,29 @@ After clustering is done and the dataset is updated with the results, listing th
 {
   "codes": [
     {
-      "code": "ds = client.Dataset(DATASET_ID)\nclusterer = ds.auto_cluster('kmeans_5', [VECTOR_FIELD])\nclusterer.list_furthest_from_center()",
+      "code": "ds = client.Dataset(DATASET_ID)",
+      "name": "Python (SDK)",
+      "language": "python"
+    }
+  ]
+}
+[/block]
+[block:code]
+{
+  "codes": [
+    {
+      "code": "from sklearn.cluster import KMeans\n\nVECTOR_FIELD = \"product_title_clip_vector_\"\nKMEAN_NUMBER_OF_CLUSTERS = 5\nALIAS = \"kmeans-\" + str(KMEAN_NUMBER_OF_CLUSTERS)\n\nmodel = KMeans(n_clusters=KMEAN_NUMBER_OF_CLUSTERS)\nclusterer = client.ClusterOps(alias=ALIAS, model=model)\nclusterer.operate(dataset_id=\"quickstart_kmeans_clustering\", vector_fields=[\"product_title_clip_vector_\"])",
+      "name": "Python (SDK)",
+      "language": "python"
+    }
+  ]
+}
+[/block]
+[block:code]
+{
+  "codes": [
+    {
+      "code": "clusterer.list_closest(dataset_id = \"quickstart_kmeans_clustering\", vector_field=\"product_title_clip_vector_\")",
       "name": "Python (SDK)",
       "language": "python"
     }

@@ -50,24 +50,16 @@ The result is a JSON output similar to what is shown below. As can be seen, ther
 
 To run KMeans Clustering, we need to first define a clustering object, `KMeansModel`, which loads the clustering algorithm with a specified number of clusters.
 
-@@@  clusterops, VECTOR_FIELD=PRODUCT_TITLE_CLIP_VEC, N_KMEANS=5 @@@
-
-Next, the algorithm is fitted on the vector field, *product_title_clip_vector_*, to distinguish between clusters. The cluster to which each document belongs is returned.
-
-@@@ clusterops_fit_predict_documents, VECTOR_FIELDS=['product_title_clip_vector_'] @@@
+@@@ clusterops, VECTOR_FIELD=PRODUCT_TITLE_CLIP_VEC, N_KMEANS=5, DATASET_ID=QUICKSTART_KMEANS_CLUSTERING_DATASET_ID @@@
 
 
-### 3. Update the dataset with the cluster labels
+### 3. List closest to center of the cluster
 
-Finally, these categorised documents are uploaded back to the dataset as an additional field.
+@@@ list_closest_to_center, DATASET_ID=QUICKSTART_KMEANS_CLUSTERING_DATASET_ID, VECTOR_FIELD=PRODUCT_TITLE_CLIP_VEC @@@
 
-@@@ upsert_documents, DOCUMENTS=clustered_docs@@@
+### 4. List furthest from the center of the cluster
 
-### 4. Insert the cluster centroids
-
-Get the centroid's vector and insert them as centroids into Relevance AI.
-
-@@@ get_centroid_documents; insert_centroid_documents @@@
+@@@ list_furthest_from_center, DATASET_ID=QUICKSTART_KMEANS_CLUSTERING_DATASET_ID, VECTOR_FIELD=PRODUCT_TITLE_CLIP_VEC @@@
 
 Downloading a few sample documents from the dataset, we show to which cluster they belong:
 

@@ -16,10 +16,16 @@ We can evaluate our cluster quality through plotting the cluster distribution.
 The following code examines how the clusters are distributed, firstly, within themselves, and then against a ground truth label *Age* (i.e. *Age* is one of the fields in the dataset). Ideally, there is a clear ground truth in each cluster category. Note that the following code samples are to run after clustering is done on a dataset as was explained in [Clustering](https://docs.relevance.ai/docs/quickstart-k-means).
 
 
-@@@ dataset, DATASET_ID="titanic" @@@
+@@@ get_titanic_dataset @@@
 
+@@@ dataset_basics, DATASET_ID="titanic" @@@
+
+@@@ clusterops, VECTOR_FIELD="value_vector_", N_KMEANS=5, DATASET_ID="titanic" @@@
 
 @@@ cluster_vizops, VECTOR_FIELDS=["value_vector_"], CLUSTER_ALIAS="kmeans_5" @@@
+
+
+@@@ cluster_vizops_distribution, NUMERIC_FIELD="Age", TOP_INDICES=3@@@
 
 
 @@@ cluster_vizops_distribution, NUMERIC_FIELD="Age", TOP_INDICES=3@@@
