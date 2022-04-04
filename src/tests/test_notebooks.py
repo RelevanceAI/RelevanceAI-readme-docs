@@ -266,45 +266,42 @@ def main(args):
             n for n in notebooks if not any([ni in str(n) for ni in NOTEBOOK_IGNORE])
         ]
 
-    from pprint import pprint
+    if not notebooks:
+        print(f"No notebooks found not in {NOTEBOOK_IGNORE}")
+        sys.exit(1)
 
-    pprint(notebooks)
-    # if not notebooks:
-    #     print(f"No notebooks found not in {NOTEBOOK_IGNORE}")
-    #     sys.exit(1)
+    static_args = {
+        "relevanceai_sdk_version": RELEVANCEAI_SDK_VERSION,
+        "pip_install_version_args": pip_install_version_args,
+        "client_instantiation_args": client_instantiation_args,
+        "client_instantiation_base_args": client_instantiation_base_args,
+        "multiprocess": False if args.no_multiprocess else True,
+    }
 
-    # static_args = {
-    #     "relevanceai_sdk_version": RELEVANCEAI_SDK_VERSION,
-    #     "pip_install_version_args": pip_install_version_args,
-    #     "client_instantiation_args": client_instantiation_args,
-    #     "client_instantiation_base_args": client_instantiation_base_args,
-    #     "multiprocess": False if args.no_multiprocess else True,
-    # }
+    with open(README_NOTEBOOK_ERROR_FPATH, "w") as f:
+        f.write("")
 
-    # with open(README_NOTEBOOK_ERROR_FPATH, "w") as f:
-    #     f.write("")
+    if args.no_multiprocess:
+        logging.info("Executing sequentially")
+        for notebook in notebooks:
+            execute_notebook(notebook, static_args)
+    else:
+        logging.info("Executing in multiprocess mode")
+        results = multiprocess(
+            func=execute_notebook,
+            iterables=notebooks,
+            static_args=static_args,
+            chunksize=1,
+        )
 
-    # if args.no_multiprocess:
-    #     logging.info("Executing sequentially")
-    #     for notebook in notebooks:
-    #         execute_notebook(notebook, static_args)
-    # else:
-    #     logging.info("Executing in multiprocess mode")
-    #     results = multiprocess(
-    #         func=execute_notebook,
-    #         iterables=notebooks,
-    #         static_args=static_args,
-    #         chunksize=1,
-    #     )
-
-    #     # results = [execute_notebook(n) for n in ALL_NOTEBOOKS]
-    #     results = [r for r in results if r is not None]
-    #     if len(results) > 0:
-    #         for r in results:
-    #             print(r.get("Exception reason"))
-    #             print("============")
-    #             print(r.get("notebook"))
-    #         raise ValueError(f"You have errored notebooks {results}")
+        # results = [execute_notebook(n) for n in ALL_NOTEBOOKS]
+        results = [r for r in results if r is not None]
+        if len(results) > 0:
+            for r in results:
+                print(r.get("Exception reason"))
+                print("============")
+                print(r.get("notebook"))
+            raise ValueError(f"You have errored notebooks {results}")
 
 
 if __name__ == "__main__":
