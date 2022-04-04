@@ -62,29 +62,33 @@ else
 	python src/rdme_sync/build/update_semver_ref.py -p $PWD -pn $PIP_PACKAGE_NAME -v $GIT_BRANCH_NAME_VERSION
 fi
 
+
+CYAN "=== Converting notebooks to Markdown $GIT_BRANCH_NAME ==="
+### Converts *ipynb  to *.md not in _notebooks
+if $DEBUG_MODE; then
+	python src/rdme_sync/readme/nbconvert_rdmd.py -d -f "block" -p $PWD -v $GIT_BRANCH_NAME
+else
+	python src/rdme_sync/readme/nbconvert_rdmd.py -f "block" -p $PWD -v $GIT_BRANCH_NAME
+fi
+
+
+
 CYAN "=== Rebuilding Readme docs $GIT_BRANCH_NAME ==="
 ### Builds all code snippets all Markdown files from docs to docs_template as well *ipynb in _notebooks
 ###
 if $DEBUG_MODE; then
-	python src/rdme_sync/build/build_docs.py  -d -c -p $PWD -pn $PIP_PACKAGE_NAME -v $GIT_BRANCH_NAME
+	 -c -p $PWD -pn $PIP_PACKAGE_NAME -v $GIT_BRANCH_NAME
 else
 	python src/rdme_sync/build/build_docs.py -c -p $PWD -pn $PIP_PACKAGE_NAME -v $GIT_BRANCH_NAME
 fi
 
-# CYAN "=== Converting notebooks to Markdown $GIT_BRANCH_NAME ==="
-# ### Converts *ipynb  to *.md not in _notebooks
-# if $DEBUG_MODE; then
-# 	python src/readme/nbconvert_rdmd_preprocessor.py -d  -p $PWD -v $GIT_BRANCH_NAME
-# else
-# 	python src/readme/nbconvert_rdmd_preprocessor.py  -p $PWD -v $GIT_BRANCH_NAME
-# fi
 
 # CYAN "=== Updating config $GIT_BRANCH_NAME with new files ==="
 # ### Updates ReadMe with new files in docs
 # if $DEBUG_MODE; then
-# 	python src/config/sync.py -d --method "update"   -p $PWD -v $GIT_BRANCH_NAME
+# 	python src/rdme_sync/sync.py -d --method "update"   -p $PWD -v $GIT_BRANCH_NAME
 # else
-# 	python src/config/sync.py --method "update"  -p $PWD -v $GIT_BRANCH_NAME
+# 	python src/rdme_sync/sync.py --method "update"  -p $PWD -v $GIT_BRANCH_NAME
 # fi
 
 

@@ -3,27 +3,26 @@
 import logging
 from typing import Dict, List, Literal, Union
 from pathlib import Path
-import requests
 import os
 import re
 import json
 import argparse
 from pprint import pprint
-import traceback
-
-import frontmatter
 
 import nbformat
 from traitlets.config import Config
-from nbconvert import MarkdownExporter
 
-from traitlets import Integer
-from nbconvert.preprocessors import Preprocessor
+from deepdiff import grep
 
-from rdme_sync.build.build_snippets import generate_snippet
-from rdme_sync.build.constants import RDMD_SNIPPET_LANGUAGES
+import frontmatter
 
-from rdme_sync.readme.nbconvert_rdmd_preprocessor import RdmdSnippetPreprocessor
+from datetime import datetime
+
+from rdme_sync.config.readme_config import ReadMeConfig
+from rdme_sync.readme.nbconvert_rdmd_preprocessor import (
+    RdmdPreprocessor,
+    RdmdSnippetPreprocessor,
+)
 from rdme_sync.readme.nbconvert_rdmd_exporter import RdmdExporter
 
 
@@ -35,21 +34,22 @@ def main(args):
     DOCS_PATH = Path(args.path) / "docs"
     DOCS_TEMPLATE_PATH = Path(args.path) / "docs_template"
     README_VERSION = args.version
+    README_CONFIG_FPATH = ROOT_PATH / "config" / "readme-config.yaml"
+    readme_config = ReadMeConfig(version=README_VERSION, fpath=README_CONFIG_FPATH)
 
     c = Config()
     if args.format == "block":
-        c.snippet_format = "block"
+        c.RdmdSnippetPreprocessor.snippet_format = "block"
         rdmd_template = "rdmd_block.md.j2"
     elif args.format == "rdmd":
-        c.snippet_format = "rdmd"
+        c.RdmdSnippetPreprocessor.snippet_format = "rdmd"
         rdmd_template = "rdmd.md.j2"
 
     c.Exporter.template_file = os.path.join(
         os.path.dirname(__file__), "templates", "rdmd", rdmd_template
     )
-    c.RdmdExporter.preprocessors = [RdmdSnippetPreprocessor]
+    c.RdmdExporter.preprocessors = [RdmdPreprocessor, RdmdSnippetPreprocessor]
 
-    # rdmd_exporter = MarkdownExporter(config=c)
     rdmd_exporter = RdmdExporter(config=c)
 
     NOTEBOOK_PATHS = Path(DOCS_TEMPLATE_PATH).glob("**/**/*.ipynb")
@@ -59,29 +59,47 @@ def main(args):
         for n in NOTEBOOK_PATHS
         if ".ipynb_checkpoints" not in str(n) and "_notebooks" != n.parent.name
     ]
-    logging.info(f"Converting: {NOTEBOOK_GENERATE_PATHS}")
 
     for notebook_fpath in NOTEBOOK_GENERATE_PATHS:
-        logging.debug(f"Converting: {notebook_fpath}")
-        notebook = nbformat.read(Path(notebook_fpath), as_version=4)
-        rdmd = rdmd_exporter.from_notebook_node(notebook)[0]
-        rdmd_print = "\n".join(
-            [f for f in rdmd.split("\n") if "data:image/png;base64," not in f]
-        )
+        output_fname = str(notebook_fpath).replace(".ipynb", ".md")
+        if not Path(output_fname).exists():
+            logging.debug(f"Converting: {notebook_fpath}")
+            notebook = nbformat.read(Path(notebook_fpath), as_version=4)
+            rdmd = rdmd_exporter.from_notebook_node(notebook)[0]
 
-        # rdmd_frontmatter = frontmatter.load(rdmd_print)
-        logging.debug(rdmd_print)
-        print(c.snippet_format)
+            rdmd_print = "\n".join(
+                [f for f in rdmd.split("\n") if "data:image/png;base64," not in f]
+            )
+            logging.debug(rdmd_print)
 
-        output_fname = Path(
-            str(notebook_fpath)
-            .replace("docs_template", "docs")
-            .replace(".ipynb", ".md")
-        )
-        with open(output_fname, "w") as fout:
-            # for element in md_lines:
-            fout.write(rdmd)
-            logging.info(f"\tOutput file: {output_fname}")
+            ## Loading frontmatter
+            post = frontmatter.loads(rdmd)
+
+            logging.info(f"Building frontmatter: ")
+            notebook_name = notebook_fpath.name.split(".")[0].replace("_", " ")
+
+            page_slug = re.sub(
+                r"[^a-zA-Z0-9-]", "", notebook_name.replace(" ", "-").lower()
+            )
+            post_metadata = {
+                "title": notebook_name,
+                "slug": page_slug,
+                "hidden": True,
+                "excerpt": "",
+                "category": readme_config.category_slugs[notebook_fpath.parent.name],
+                "createdAt": datetime.now().strftime("%Y-%m-%dT%H:%M:%S.%fZ"),
+                "updatedAt": datetime.now().strftime("%Y-%m-%dT%H:%M:%S.%fZ"),
+            }
+            post.metadata = post_metadata
+            logging.debug(post.metadata)
+
+            # logging.info(f'Converting: ')
+            # logging.debug(frontmatter.dumps(post))
+
+            with open(output_fname, "w") as fout:
+                # for element in md_lines:
+                fout.write(frontmatter.dumps(post))
+                logging.info(f"\tOutput file: {output_fname}")
 
 
 if __name__ == "__main__":

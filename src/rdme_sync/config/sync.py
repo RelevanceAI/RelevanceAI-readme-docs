@@ -198,7 +198,6 @@ def main(args):
                         config_dict, category=False
                     )
                 max_page_order = max(page_orders)
-                print(max_page_order)
 
                 ## Creating new page
                 args = {
@@ -214,10 +213,10 @@ def main(args):
                 )
                 readme_config.create(**args)
 
-            # logging.debug(f"Rebuilding config ... ")
+            logging.debug(f"Rebuilding config ... ")
 
             # ## TODO: Inserting new item in readme config with new category only instead rebuilding full config
-            # readme_config.build()
+            readme_config.build()
 
 
 if __name__ == "__main__":

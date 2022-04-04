@@ -68,6 +68,7 @@ docs:
   - creating-a-dataset:
     - _notebooks:
       - RelevanceAI_ReadMe_Creating_A_Dataset.ipynb
+      - RelevanceAI_ReadMe_Insert_A_CSV.ipynb
     - insert-a-csv.md
     - project-and-dataset.md
     - insert-a-df.md
