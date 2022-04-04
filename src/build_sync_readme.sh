@@ -77,7 +77,7 @@ CYAN "=== Rebuilding Readme docs $GIT_BRANCH_NAME ==="
 ### Builds all code snippets all Markdown files from docs to docs_template as well *ipynb in _notebooks
 ###
 if $DEBUG_MODE; then
-	 -c -p $PWD -pn $PIP_PACKAGE_NAME -v $GIT_BRANCH_NAME
+	python src/rdme_sync/build/build_docs.py -d -c -p $PWD -pn $PIP_PACKAGE_NAME -v $GIT_BRANCH_NAME
 else
 	python src/rdme_sync/build/build_docs.py -c -p $PWD -pn $PIP_PACKAGE_NAME -v $GIT_BRANCH_NAME
 fi
@@ -88,7 +88,7 @@ fi
 # if $DEBUG_MODE; then
 # 	python src/rdme_sync/sync.py -d --method "update"   -p $PWD -v $GIT_BRANCH_NAME
 # else
-# 	python src/rdme_sync/sync.py --method "update"  -p $PWD -v $GIT_BRANCH_NAME
+# python src/rdme_sync/sync.py --method "update"  -p $PWD -v $GIT_BRANCH_NAME
 # fi
 
 
