@@ -8,7 +8,7 @@ updatedAt: "2022-01-24T06:26:11.281Z"
 ---
 
 <figure>
-<img src="https://github.com/RelevanceAI/RelevanceAI-readme-docs/blob/v2.0.0/docs_template/clustering-features/_assets/RelevanceAI_clustering.png?raw=true"  width="450" alt="Clustering effect on pricing" />
+<img src="https://github.com/RelevanceAI/RelevanceAI-readme-docs/blob/v2.0.0-autoresolve-git-conflict/docs_template/clustering-features/_assets/RelevanceAI_clustering.png?raw=true"  width="450" alt="Clustering effect on pricing" />
 <figcaption>Clustering showing how a certain variety of images can improve pricing</figcaption>
 <figure>
 
@@ -18,7 +18,7 @@ Clustering groups items so that those in the same group/cluster have meaningful 
 
 In this guide, you will learn to run clustering based on the K-Means algorithm which aims to partition your dataset into K distinct clusters.
 
-[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/RelevanceAI/RelevanceAI-readme-docs/blob/v2.0.0/docs/clustering-features/clustering/_notebooks/RelevanceAI-ReadMe-Kmeans-Clustering-Step-by-Step.ipynb)
+[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/RelevanceAI/RelevanceAI-readme-docs/blob/v2.0.0-autoresolve-git-conflict/docs/clustering-features/clustering/_notebooks/RelevanceAI-ReadMe-Kmeans-Clustering-Step-by-Step.ipynb)
 
 ### 1. Create a dataset and insert data
 
@@ -114,7 +114,7 @@ To run KMeans Clustering, we need to first define a clustering object, `KMeansMo
 {
   "codes": [
     {
-      "code": "from sklearn.cluster import KMeans\n\nVECTOR_FIELD = \"product_title_clip_vector_\"\nKMEAN_NUMBER_OF_CLUSTERS = 5\nALIAS = \"kmeans-\" + str(KMEAN_NUMBER_OF_CLUSTERS)\n\nmodel = KMeans(n_clusters=KMEAN_NUMBER_OF_CLUSTERS)\nclusterer = client.ClusterOps(alias=ALIAS, model=model)\nclusterer.operate(dataset_id=\"quickstart_kmeans_clustering\", vector_fields=[\"product_title_clip_vector_\"])",
+      "code": "from sklearn.cluster import KMeans\n\nVECTOR_FIELD = \"product_title_clip_vector_\"\nKMEAN_NUMBER_OF_CLUSTERS = 5\nALIAS = \"kmeans_\" + str(KMEAN_NUMBER_OF_CLUSTERS)\n\nmodel = KMeans(n_clusters=KMEAN_NUMBER_OF_CLUSTERS)\nclusterer = client.ClusterOps(alias=ALIAS, model=model)\nclusterer.operate(dataset_id=\"quickstart_kmeans_clustering\", vector_fields=[\"product_title_clip_vector_\"])",
       "name": "Python (SDK)",
       "language": "python"
     }

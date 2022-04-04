@@ -40,7 +40,8 @@ if [[ $GIT_BRANCH_NAME == "main" ]]; then
 	GIT_BRANCH_NAME_VERSION=$VERSION_FILE
 	echo 'Branch ver is main'
 else
-	GIT_BRANCH_NAME_VERSION=$(echo $GIT_BRANCH_NAME | sed 's/[^0-9.]//g')
+	GIT_BRANCH_NAME_VERSION=$(echo $GIT_BRANCH_NAME )
+	echo $GIT_BRANCH_NAME_VERSION
 	echo $GIT_BRANCH_NAME_VERSION > __version__
 fi
 
@@ -65,13 +66,13 @@ else
 fi
 
 
-CYAN "=== Converting notebooks to Markdown $GIT_BRANCH_NAME ==="
-### Converts *ipynb  to *.md not in _notebooks
-if $DEBUG_MODE; then
-	python src/rdme_sync/readme/nbconvert_rdmd.py -d -f "block" -p $PWD -v $GIT_BRANCH_NAME_VERSION
-else
-	python src/rdme_sync/readme/nbconvert_rdmd.py -f "block" -p $PWD -v $GIT_BRANCH_NAME_VERSION
-fi
+# CYAN "=== Converting notebooks to Markdown $GIT_BRANCH_NAME ==="
+# ### Converts *ipynb  to *.md not in _notebooks
+# if $DEBUG_MODE; then
+# 	python src/rdme_sync/readme/nbconvert_rdmd.py -d -f "block" -p $PWD -v $GIT_BRANCH_NAME_VERSION
+# else
+# 	python src/rdme_sync/readme/nbconvert_rdmd.py -f "block" -p $PWD -v $GIT_BRANCH_NAME_VERSION
+# fi
 
 
 

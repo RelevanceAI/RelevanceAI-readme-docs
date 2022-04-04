@@ -3,7 +3,7 @@ from sklearn.cluster import KMeans
 
 VECTOR_FIELD = <<VECTOR_FIELD>>
 KMEAN_NUMBER_OF_CLUSTERS = <<N_KMEANS>>
-ALIAS = "kmeans-" + str(KMEAN_NUMBER_OF_CLUSTERS)
+ALIAS = "kmeans_" + str(KMEAN_NUMBER_OF_CLUSTERS)
 
 model = KMeans(n_clusters=KMEAN_NUMBER_OF_CLUSTERS)
 clusterer = client.ClusterOps(alias=ALIAS, model=model)

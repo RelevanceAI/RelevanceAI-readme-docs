@@ -1219,4 +1219,4 @@ categories:
         slug: vector-search-prerequisites
         title: Prerequisites
         updatedAt: '2022-03-24T09:43:59.158Z'
-version: v2.0.0
+version: v2.0.0-autoresolve-git-conflict

@@ -23,6 +23,7 @@ notebook_test_requirements = [
     "RelevanceAI[notebook]",
     "vectorhub[sentence-transformers]>=1.8.3",
     "matplotlib",  ## Needed for Vectorhub Clip2Vec in non-Colab env
+    "seaborn",  ## Needed for running ClusterVizOps in non-Colab env
 ]
 
 dev_requirements = [

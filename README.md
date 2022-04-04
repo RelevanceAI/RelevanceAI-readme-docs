@@ -6,11 +6,11 @@ This repository updates RelevanceAI's ReadMe Documentation [here](https://docs.r
 
 ## 🛠️  Requirements
 
-- [Node.JS ^12.x and NPM](https://docs.npmjs.com/downloading-and-installing-node-js-and-npm)
-- [Python ^3.8.0](https://www.python.org/downloads/release/python-380/) - more Python version to be supported in future
-- [rdme NPM client](https://www.npmjs.com/package/rdme/v/6.2.1)
+- [Node.JS ^14.x and NPM](https://docs.npmjs.com/downloading-and-installing-node-js-and-npm)
+- [Python ^3.7.0](https://www.python.org/downloads/release/python-3713/)
+- [rdme NPM client ^7.0.0](https://www.npmjs.com/package/rdme?activeTab=readme)
 
-## 🧰 OS Supported
+## 🧰 OS Tested
 
 - Linux (Ubuntu 18.04.6 LTS (Bionic Beaver) Debian)
 
@@ -72,6 +72,11 @@ These are templates because all the files and notebooks in docs_templates are wr
    [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/RelevanceAI/RelevanceAI-readme-docs/blob/v0.33.2/docs/getting-started/_notebooks/Intro_to_Relevance_AI.ipynb)
   ```
   - Please add this badge in top cell of notebook as well so it can be accessed from Github.
+
+## Optional: Adding new snippets
+
+In order to keep consistency of the code snippets throughout the repo, you can use the snippet format below to update the snippets in all places.
+
 6. To add new snippet
    - Add new snippets in the corresponding `_snippets` folder.
    - Snippets are loaded in a nested fashion. Inner most `_snippets` with the same name will override general snippets in [`docs_template/_snippets/`](./docs_template/_snippets/).

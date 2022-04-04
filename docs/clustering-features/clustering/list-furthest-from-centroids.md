@@ -12,7 +12,7 @@ Centroids from your clustering algorithm describe the 'average' of each cluster.
 2. performed clustering and uploaded the results to Relevance AI
 All these steps are explained in detail on [the quickstart clustering guide](doc:quickstart-clustering)
 
-[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/RelevanceAI/RelevanceAI-readme-docs/blob/v2.0.0/docs/clustering-features/clustering/_notebooks/RelevanceAI-ReadMe-Clustering-List-Furthest.ipynb)
+[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/RelevanceAI/RelevanceAI-readme-docs/blob/v2.0.0-autoresolve-git-conflict/docs/clustering-features/clustering/_notebooks/RelevanceAI-ReadMe-Clustering-List-Furthest.ipynb)
 
 After clustering is done and the dataset is updated with the results, listing the furthest points from the center of each cluster can be done via `list_furthest_from_center` function as shown in the code snippet below where `DATASET_ID` refers to the name of the dataset, `VECTOR_FIELD` is the field based on which the clustering is done, and `ALIAS` is the name specified by the user to save the clustering results.
 
@@ -32,7 +32,7 @@ After clustering is done and the dataset is updated with the results, listing th
 {
   "codes": [
     {
-      "code": "from sklearn.cluster import KMeans\n\nVECTOR_FIELD = \"product_title_clip_vector_\"\nKMEAN_NUMBER_OF_CLUSTERS = 5\nALIAS = \"kmeans-\" + str(KMEAN_NUMBER_OF_CLUSTERS)\n\nmodel = KMeans(n_clusters=KMEAN_NUMBER_OF_CLUSTERS)\nclusterer = client.ClusterOps(alias=ALIAS, model=model)\nclusterer.operate(dataset_id=\"quickstart_kmeans_clustering\", vector_fields=[\"product_title_clip_vector_\"])",
+      "code": "from sklearn.cluster import KMeans\n\nVECTOR_FIELD = \"product_title_clip_vector_\"\nKMEAN_NUMBER_OF_CLUSTERS = 5\nALIAS = \"kmeans_\" + str(KMEAN_NUMBER_OF_CLUSTERS)\n\nmodel = KMeans(n_clusters=KMEAN_NUMBER_OF_CLUSTERS)\nclusterer = client.ClusterOps(alias=ALIAS, model=model)\nclusterer.operate(dataset_id=\"quickstart_kmeans_clustering\", vector_fields=[\"product_title_clip_vector_\"])",
       "name": "Python (SDK)",
       "language": "python"
     }
