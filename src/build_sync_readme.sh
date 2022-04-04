@@ -31,7 +31,8 @@ function blue(){
 DOCS_PATH=${2:-"$PWD/docs/"}
 PIP_PACKAGE_NAME=${3:-"RelevanceAI"}
 
-GIT_BRANCH_NAME=$(git rev-parse --abbrev-ref HEAD | sed -e 's/[heads/]//g')
+GIT_BRANCH_NAME=$(git rev-parse --abbrev-ref HEAD | sed -e 's/heads\///g')
+echo $GIT_BRANCH_NAME
 VERSION_FILE=$(cat __version__)
 
 if [[ $GIT_BRANCH_NAME == "main" ]]; then
@@ -42,6 +43,7 @@ else
 	GIT_BRANCH_NAME_VERSION=$(echo $GIT_BRANCH_NAME | sed 's/[^0-9.]//g')
 	echo $GIT_BRANCH_NAME_VERSION > __version__
 fi
+
 
 README_VERSION=${4:-$GIT_BRANCH_NAME_VERSION}
 
@@ -66,9 +68,9 @@ fi
 CYAN "=== Converting notebooks to Markdown $GIT_BRANCH_NAME ==="
 ### Converts *ipynb  to *.md not in _notebooks
 if $DEBUG_MODE; then
-	python src/rdme_sync/readme/nbconvert_rdmd.py -d -f "block" -p $PWD -v $GIT_BRANCH_NAME
+	python src/rdme_sync/readme/nbconvert_rdmd.py -d -f "block" -p $PWD -v $GIT_BRANCH_NAME_VERSION
 else
-	python src/rdme_sync/readme/nbconvert_rdmd.py -f "block" -p $PWD -v $GIT_BRANCH_NAME
+	python src/rdme_sync/readme/nbconvert_rdmd.py -f "block" -p $PWD -v $GIT_BRANCH_NAME_VERSION
 fi
 
 
@@ -86,9 +88,9 @@ fi
 # CYAN "=== Updating config $GIT_BRANCH_NAME with new files ==="
 # ### Updates ReadMe with new files in docs
 # if $DEBUG_MODE; then
-# 	python src/rdme_sync/sync.py -d --method "update"   -p $PWD -v $GIT_BRANCH_NAME
+# 	  -p $PWD -v $GIT_BRANCH_NAME
 # else
-# python src/rdme_sync/sync.py --method "update"  -p $PWD -v $GIT_BRANCH_NAME
+# python src/rdme_sync/config/sync.py --method "update"  -p $PWD -v $GIT_BRANCH_NAME
 # fi
 
 

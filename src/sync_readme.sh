@@ -39,7 +39,7 @@ LATEST_README_VERSION=$(npx rdme versions --key $RELEVANCEAI_README_API_KEY --ra
 
 
 DOCS_PATH=${2:-"$PWD/docs/"}
-GIT_BRANCH_NAME=$(git rev-parse --abbrev-ref HEAD | sed -e 's/[heads/]//g')
+GIT_BRANCH_NAME=$(git rev-parse --abbrev-ref HEAD | sed -e 's/heads\///g')
 README_VERSION_NAME=${3:-${GIT_BRANCH_NAME}}
 README_VERSION=$(echo $README_VERSION_NAME | sed 's/[^0-9.]//g')
 RELEVANCEAI_SDK_VERSION=${README_VERSION}
