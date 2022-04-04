@@ -48,7 +48,7 @@ def main(args):
     )
 
     # pprint(c.Exporter.template_file)
-    # c.MarkdownExporter.preprocessors = [RdmdSnippetPreprocessor]
+    c.MarkdownExporter.preprocessors = [RdmdSnippetPreprocessor]
 
     # Create our new, customized exporter that uses our custom preprocessor
     # rdmd_exporter = MarkdownExporter(config=c)
