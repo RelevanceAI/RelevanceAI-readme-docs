@@ -1,10 +1,28 @@
 {% extends 'markdown/index.md.j2' %}
 
+### Input cells
+{% block input %}
+```
+{%- if 'magics_language' in cell.metadata  -%}
+    {{ cell.metadata.magics_language}}
+{%- elif 'name' in nb.metadata.get('language_info', {}) -%}
+    {{ nb.metadata.language_info.name }}
+{%- endif %}
+{{ cell.source}}
+```
+```
+{%- if 'magics_language' in cell.metadata  -%}
+    {{ cell.metadata.magics_language}}
+{%- elif 'name' in nb.metadata.get('language_info', {}) -%}
+    {{ nb.metadata.language_info.name }}
+{%- endif %}
+```
+{% endblock input %}
+
+### Output cells
 {%- block traceback_line -%}
 ```output
 {{ line.rstrip() | strip_ansi }}
-```
-```output
 ```
 {%- endblock traceback_line -%}
 
@@ -12,14 +30,18 @@
 ```output
 {{ output.text.rstrip() }}
 ```
-```output
-```
 {%- endblock stream -%}
 
 {%- block data_text scoped -%}
 ```output
 {{ output.data['text/plain'].rstrip() }}
 ```
-```output
-```
 {%- endblock data_text -%}
+
+
+
+{% block markdowncell -%}
+
+{{ super() }}
+
+{% endblock markdowncell %}

@@ -38,9 +38,16 @@ def main(args):
 
     c = Config()
     c.snippet_format = "block"
+    if args.format == "block":
+        rdmd_template = "rdmd_block.md.j2"
+    elif args.format == "rdmd":
+        rdmd_template = "rdmd.md.j2"
+
     c.Exporter.template_file = os.path.join(
-        os.path.dirname(__file__), "templates", "rdmd", "rdmd.md.j2"
+        os.path.dirname(__file__), "templates", "rdmd", rdmd_template
     )
+
+    # pprint(c.Exporter.template_file)
     # c.MarkdownExporter.preprocessors = [RdmdSnippetPreprocessor]
 
     # Create our new, customized exporter that uses our custom preprocessor
@@ -88,13 +95,13 @@ if __name__ == "__main__":
 
     parser.add_argument("-d", "--debug", help="Run debug mode", action="store_true")
     parser.add_argument("-p", "--path", default=ROOT_PATH, help="Path of root folder")
-    # parser.add_argument(
-    #     "-m",
-    #     "--method",
-    #     default="build",
-    #     choices=["build"],
-    #     help="Method",
-    # )
+    parser.add_argument(
+        "-f",
+        "--format",
+        default="block",
+        choices=["rdmd", "block"],
+        help="Conversion format",
+    )
     parser.add_argument(
         "-v", "--version", default=README_VERSION_FILE, help="Package Version"
     )

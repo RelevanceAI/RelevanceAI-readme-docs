@@ -1,0 +1,45 @@
+{% extends 'markdown/index.md.j2' %}
+
+### Input cells
+{% block input %}
+
+[block:code]
+{
+  "codes": [
+    {
+    "code": {{ cell.source}},
+     "name": "
+     {%- if 'magics_language' in cell.metadata  -%}
+        {{ cell.metadata.magics_language}}
+    {%- elif 'name' in nb.metadata.get('language_info', {}) -%}
+        {{ nb.metadata.language_info.name }}
+    {%- endif %}
+    ",
+    "language": "
+    {%- if 'magics_language' in cell.metadata  -%}
+        {{ cell.metadata.magics_language}}
+    {%- elif 'name' in nb.metadata.get('language_info', {}) -%}
+        {{ nb.metadata.language_info.name }}
+    {%- endif %}"
+[/block]
+{% endblock input %}
+
+### Output cells
+{%- block traceback_line -%}
+```output
+{{ line.rstrip() | strip_ansi }}
+```
+{%- endblock traceback_line -%}
+
+{%- block stream -%}
+```output
+{{ output.text.rstrip() }}
+```
+{%- endblock stream -%}
+
+{%- block data_text scoped -%}
+```output
+{{ output.data['text/plain'].rstrip() }}
+```
+{%- endblock data_text -%}
+

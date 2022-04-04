@@ -35,15 +35,15 @@ class RdmdExporter(MarkdownExporter):
     #     return '.ipynb'
 
     @property
-    def template_path(self):
+    def template_paths(self):
         """
         We want to inherit from Markdown template, and have template under
         ``./templates/`` so append it to the search path. (see next section)
 
         Note: nbconvert 6.0 changed ``template_path`` to ``template_paths``
         """
-        return super().template_paths + [
-            os.path.join(os.path.dirname(__file__), "templates", "rdmd")
+        return super()._template_paths() + [
+            os.path.join(os.path.dirname(__file__), "templates")
         ]
 
     # def _template_file_default(self):
@@ -51,3 +51,9 @@ class RdmdExporter(MarkdownExporter):
     #     We want to use the new template we ship with our library.
     #     """
     #     return  "rdmd"
+
+    # @property
+    # def template_file(self):
+    #     return os.path.join(
+    #     os.path.dirname(__file__), "templates", "rdmd", "rdmd.md.j2"
+    # )
