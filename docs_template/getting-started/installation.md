@@ -16,7 +16,7 @@ The easiest way to install our Python SDK is to run:
 
 This installation provides you with what you need to connect to RelevanceAI's API, read/write data, make different searches, etc.
 
-**The SDK Reference** can be found at https://relevanceai.readthedocs.io/en/v2.0.0-autoresolve-git-conflict-autoresolve-git-conflict/
+**The SDK Reference** can be found at https://relevanceai.readthedocs.io/en/v2.0.0-autoresolve-git-conflict-autoresolve-git-conflict-autoresolve-git-conflict-autoresolve-git-conflict-autoresolve-git-conflict-autoresolve-git-conflict-autoresolve-git-conflict-autoresolve-git-conflict-autoresolve-git-conflict-autoresolve-git-conflict/
 
 ### Installation from source
 
@@ -42,6 +42,6 @@ After installation is complete, we need to instantiate a Relevance AI client obj
 
 
 <figure>
-<img src="https://github.com/RelevanceAI/RelevanceAI-readme-docs/blob/v2.0.0-autoresolve-git-conflict-autoresolve-git-conflict/docs_template/_assets/RelevanceAI_auth_token_details.png?raw=true" alt="Get your Auth Details" />
+<img src="https://github.com/RelevanceAI/RelevanceAI-readme-docs/blob/v2.0.0/docs_template/_assets/RelevanceAI_auth_token_details.png?raw=true" alt="Get your Auth Details" />
 <figcaption>Get your Auth Details</figcaption>
 <figure>

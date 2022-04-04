@@ -1,11 +1,11 @@
 ---
 category: 623abf4109822f00e1da0b80
-createdAt: '2022-04-04T04:34:41.064436Z'
+createdAt: '2022-04-04T23:18:43.421911Z'
 excerpt: ''
 hidden: true
-slug: -relevance-ai-quickstart
+slug: relevance-ai-quickstart
 title: ☘️ Relevance AI Quickstart
-updatedAt: '2022-04-04T04:34:41.064465Z'
+updatedAt: '2022-04-04T23:18:43.421942Z'
 ---
 
 [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/RelevanceAI/workflows/blob/main/workflows/quickstart_workflow/☘%EF%B8%8F_Relevance_AI_Quickstart.ipynb)
@@ -18,7 +18,7 @@ updatedAt: '2022-04-04T04:34:41.064465Z'
 Use Relevance AI to experiment, build and share the best vectors to solve similarity and relevance based problems across teams.
 
 
-<img src="https://github.com/RelevanceAI/RelevanceAI-readme-docs/blob/v2.0.0-autoresolve-git-conflict/docs_template/_assets/RelevanceAI_DS_Workflow.png?raw=true"  alt="Relevance AI" />
+<img src="https://github.com/RelevanceAI/RelevanceAI-readme-docs/blob/v2.0.0/docs_template/_assets/RelevanceAI_DS_Workflow.png?raw=true"  alt="Relevance AI" />
 
 
 [block:code]

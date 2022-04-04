@@ -65,7 +65,6 @@ categories:
     - multi-vector-search-2
     - multi-vector-search-with
   getting-started:
-    -relevance-ai-quickstart: []
     boilerplate: []
     example-applications:
     - music-recommendation
@@ -88,6 +87,8 @@ categories:
     - what-are-vectors
     - why-experimentation-first
     welcome: []
+    "\uFE0F-relevance-ai-quickstart": []
+    "\uFE0F-relevance-ai-quickstart-1": []
   integrations:
     coming-soon-2: []
   other:
@@ -144,4 +145,4 @@ categories:
     - hybrid-search
     - multi-vector-search
     - vector-search-prerequisites
-version: v2.0.0-autoresolve-git-conflict
+version: v2.0.0

@@ -26,7 +26,7 @@ The easiest way to install our Python SDK is to run:
 
 This installation provides you with what you need to connect to RelevanceAI's API, read/write data, make different searches, etc.
 
-**The SDK Reference** can be found at https://relevanceai.readthedocs.io/en/v2.0.0-autoresolve-git-conflict-autoresolve-git-conflict/
+**The SDK Reference** can be found at https://relevanceai.readthedocs.io/en/v2.0.0-autoresolve-git-conflict-autoresolve-git-conflict-autoresolve-git-conflict-autoresolve-git-conflict-autoresolve-git-conflict-autoresolve-git-conflict-autoresolve-git-conflict-autoresolve-git-conflict-autoresolve-git-conflict-autoresolve-git-conflict/
 
 ### Installation from source
 
@@ -36,7 +36,7 @@ This will install the latest version of our Python SDK:
 {
   "codes": [
     {
-      "code": "!pip install git+https://github.com/RelevanceAI/RelevanceAI@vv2.0.0-autoresolve-git-conflict",
+      "code": "!pip install git+https://github.com/RelevanceAI/RelevanceAI@vv2.0.0",
       "name": "Bash",
       "language": "shell"
     }
@@ -51,7 +51,7 @@ For editable installation:
 {
   "codes": [
     {
-      "code": "git clone -b vv2.0.0-autoresolve-git-conflict https://github.com/RelevanceAI/RelevanceAI\npip install -e .",
+      "code": "git clone -b vv2.0.0 https://github.com/RelevanceAI/RelevanceAI\npip install -e .",
       "name": "Bash",
       "language": "shell"
     }
@@ -82,7 +82,7 @@ After installation is complete, we need to instantiate a Relevance AI client obj
 
 
 <figure>
-<img src="https://github.com/RelevanceAI/RelevanceAI-readme-docs/blob/v2.0.0-autoresolve-git-conflict-autoresolve-git-conflict/docs_template/_assets/RelevanceAI_auth_token_details.png?raw=true" alt="Get your Auth Details" />
+<img src="https://github.com/RelevanceAI/RelevanceAI-readme-docs/blob/v2.0.0/docs_template/_assets/RelevanceAI_auth_token_details.png?raw=true" alt="Get your Auth Details" />
 <figcaption>Get your Auth Details</figcaption>
 <figure>
 

@@ -81,7 +81,8 @@ def main(args):
 
             page_slug = re.sub(
                 r"[^a-zA-Z0-9-]", "", notebook_name.replace(" ", "-").lower()
-            )
+            ).strip("-")
+
             post_metadata = {
                 "title": notebook_name,
                 "slug": page_slug,
@@ -98,7 +99,6 @@ def main(args):
             # logging.debug(frontmatter.dumps(post))
 
             with open(output_fname, "w") as fout:
-                # for element in md_lines:
                 fout.write(frontmatter.dumps(post))
                 logging.info(f"\tOutput file: {output_fname}")
 
@@ -108,7 +108,12 @@ if __name__ == "__main__":
 
     PACKAGE_NAME = "RelevanceAI"
     ROOT_PATH = Path(__file__).parent.resolve() / ".." / ".." / ".."
-    README_VERSION_FILE = f"v{open(ROOT_PATH / '__version__').read().strip()}"
+    README_VERSION_FILE = open(ROOT_PATH / "__version__").read().strip()
+    README_VERSION_FILE = (
+        f"v{README_VERSION_FILE}"
+        if README_VERSION_FILE[0] != "v"
+        else README_VERSION_FILE
+    )
 
     parser.add_argument("-d", "--debug", help="Run debug mode", action="store_true")
     parser.add_argument("-p", "--path", default=ROOT_PATH, help="Path of root folder")
