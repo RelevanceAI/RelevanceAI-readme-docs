@@ -5,7 +5,7 @@ VECTOR_FIELD = <<VECTOR_FIELD>>
 KMEAN_NUMBER_OF_CLUSTERS = <<N_KMEANS>>
 ALIAS = "kmeans-" + str(KMEAN_NUMBER_OF_CLUSTERS)
 
-model = KMeansModel(k=KMEAN_NUMBER_OF_CLUSTERS)
+model = KMeans(n_clusters=KMEAN_NUMBER_OF_CLUSTERS)
 clusterer = client.ClusterOps(alias=ALIAS, model=model)
 clusterer.operate(dataset_id=<<DATASET_ID>>, vector_fields=[<<VECTOR_FIELD>>])
 

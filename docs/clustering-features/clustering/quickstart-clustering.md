@@ -114,21 +114,7 @@ To run KMeans Clustering, we need to first define a clustering object, `KMeansMo
 {
   "codes": [
     {
-      "code": "from sklearn.cluster import KMeans\n\nVECTOR_FIELD = \"product_title_clip_vector_\"\nKMEAN_NUMBER_OF_CLUSTERS = 5\nALIAS = \"kmeans-\" + str(KMEAN_NUMBER_OF_CLUSTERS)\n\nmodel = KMeansModel(k=KMEAN_NUMBER_OF_CLUSTERS)\nclusterer = client.ClusterOps(alias=ALIAS, model=model)\nclusterer.operate(dataset_id=<<DATASET_ID>>, vector_fields=[\"product_title_clip_vector_\"])",
-      "name": "Python (SDK)",
-      "language": "python"
-    }
-  ]
-}
-[/block]
-
-Next, the algorithm is fitted on the vector field, *product_title_clip_vector_*, to distinguish between clusters. The cluster to which each document belongs is returned.
-
-[block:code]
-{
-  "codes": [
-    {
-      "code": "clustered_docs = clusterer.fit_predict_documents(\n        vector_fields=['product_title_clip_vector_'],\n        documents=documents, inplace=False\n    )",
+      "code": "from sklearn.cluster import KMeans\n\nVECTOR_FIELD = \"product_title_clip_vector_\"\nKMEAN_NUMBER_OF_CLUSTERS = 5\nALIAS = \"kmeans-\" + str(KMEAN_NUMBER_OF_CLUSTERS)\n\nmodel = KMeans(n_clusters=KMEAN_NUMBER_OF_CLUSTERS)\nclusterer = client.ClusterOps(alias=ALIAS, model=model)\nclusterer.operate(dataset_id=\"quickstart_kmeans_clustering\", vector_fields=[\"product_title_clip_vector_\"])",
       "name": "Python (SDK)",
       "language": "python"
     }
@@ -137,15 +123,13 @@ Next, the algorithm is fitted on the vector field, *product_title_clip_vector_*,
 [/block]
 
 
-### 3. Update the dataset with the cluster labels
-
-Finally, these categorised documents are uploaded back to the dataset as an additional field.
+### 3. List closest to center of the cluster
 
 [block:code]
 {
   "codes": [
     {
-      "code": "ds.upsert_documents(documents=clustered_docs)",
+      "code": "clusterer.list_closest(dataset_id = \"quickstart_kmeans_clustering\", vector_field=\"product_title_clip_vector_\")",
       "name": "Python (SDK)",
       "language": "python"
     }
@@ -153,15 +137,13 @@ Finally, these categorised documents are uploaded back to the dataset as an addi
 }
 [/block]
 
-### 4. Insert the cluster centroids
-
-Get the centroid's vector and insert them as centroids into Relevance AI.
+### 4. List furthest from the center of the cluster
 
 [block:code]
 {
   "codes": [
     {
-      "code": "centroids = clusterer.get_centroid_documents()\nclusterer.insert_centroid_documents(centroids, df)",
+      "code": "clusterer.list_furthest(dataset_id = \"quickstart_kmeans_clustering\", vector_field=\"product_title_clip_vector_\")",
       "name": "Python (SDK)",
       "language": "python"
     }
