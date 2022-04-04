@@ -30,6 +30,7 @@ class RdmdPreprocessor(Preprocessor):
                         logging.debug(m.group())
                         cell["source"] = cell["source"].replace(m.group(), "")
                 ## Converting
+
         return nb, resources
 
 

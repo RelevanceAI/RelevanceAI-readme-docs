@@ -112,7 +112,7 @@ Simply use the dataset_id and the `aggregate` endpoint as shown below; `jsonshow
 {
   "codes": [
     {
-      "code": "results = ds.aggregatemetrics=metrics, groupby=groupby)",
+      "code": "results = ds.aggregate(metrics=metrics, groupby=groupby)",
       "name": "Python (SDK)",
       "language": "python"
     }
