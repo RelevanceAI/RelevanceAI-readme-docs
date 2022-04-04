@@ -1,0 +1,2 @@
+python RESULTS=results, DATASET=ds, METRICS=metrics, GROUPBY=groupby
+<<RESULTS>> = <<DATASET>>.aggregatemetrics=<<METRICS>>, groupby=<<GROUPBY>>)

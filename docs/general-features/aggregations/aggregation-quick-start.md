@@ -96,7 +96,7 @@ There are two main parameters to aggregation, `groupby` and `metrics`. They are 
 {
   "codes": [
     {
-      "code": "avg_price_metric = {\"name\": \"avg_price\", \"field\": \"priceDetails.price\", \"agg\": \"avg\"}\nmax_price_metric = {\"name\": \"max_price\", \"field\": \"priceDetails.price\", \"agg\": \"max\"}\nmin_price_metric = {\"name\": \"min_price\", \"field\": \"priceDetails.price\", \"agg\": \"min\"}\nsum_bathroom_metric = {\"name\": \"bathroom_sum\", \"field\": \"propertyDetails.bathrooms\", \"agg\": \"sum\"}\ncardinality_suburbs_metric = {\"name\": \"num_suburbs\", \"field\": \"propertyDetails.suburb\", \"agg\": \"cardinality\"}\ngroupby = [ avg_price_metric, max_price_metric, min_price_metric, sum_bathroom_metric, cardinality_suburbs_metric ]",
+      "code": "avg_price_metric = {\"name\": \"avg_price\", \"field\": \"priceDetails.price\", \"agg\": \"avg\"}\nmax_price_metric = {\"name\": \"max_price\", \"field\": \"priceDetails.price\", \"agg\": \"max\"}\nmin_price_metric = {\"name\": \"min_price\", \"field\": \"priceDetails.price\", \"agg\": \"min\"}\nsum_bathroom_metric = {\"name\": \"bathroom_sum\", \"field\": \"propertyDetails.bathrooms\", \"agg\": \"sum\"}\ncardinality_suburbs_metric = {\"name\": \"num_suburbs\", \"field\": \"propertyDetails.suburb\", \"agg\": \"cardinality\"}\nmetrics = [ avg_price_metric, max_price_metric, min_price_metric, sum_bathroom_metric, cardinality_suburbs_metric ]",
       "name": "Python (SDK)",
       "language": "python"
     }
@@ -106,11 +106,13 @@ There are two main parameters to aggregation, `groupby` and `metrics`. They are 
 
 ### 4. Hit the endpoint
 Simply use the dataset_id and the `aggregate` endpoint as shown below; `jsonshower` is our tool for easy and efficient result presentation.
+
+
 [block:code]
 {
   "codes": [
     {
-      "code": "results = clusterops.aggregate(\"quickstart_aggregation\", metrics=metrics, groupby=groupby)",
+      "code": "results = ds.aggregatemetrics=metrics, groupby=groupby)",
       "name": "Python (SDK)",
       "language": "python"
     }

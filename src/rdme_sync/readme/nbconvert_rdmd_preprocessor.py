@@ -29,6 +29,7 @@ class RdmdPreprocessor(Preprocessor):
                     for m in re.finditer(LOGO_REGEX_FILTER, cell["source"]):
                         logging.debug(m.group())
                         cell["source"] = cell["source"].replace(m.group(), "")
+                ## Converting
         return nb, resources
 
 
