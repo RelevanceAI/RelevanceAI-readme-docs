@@ -64,20 +64,6 @@ The following code examines how the clusters are distributed, firstly, within th
 }
 [/block]
 
-
-[block:code]
-{
-  "codes": [
-    {
-      "code": "viz_ops.plot_distributions(\"Age\", top_indices=3)",
-      "name": "Python (SDK)",
-      "language": "python"
-    }
-  ]
-}
-[/block]
-
-
 [block:code]
 {
   "codes": [
@@ -113,7 +99,7 @@ We can further plot custom distribution like below.
 {
   "codes": [
     {
-      "code": "viz_ops.plot_distributions(\n    numeric_field=\"Age\", dataset_id=DATASET_ID, measure_function=variation, top_indices=3\n)",
+      "code": "viz_ops.plot_distributions(\n    numeric_field=\"Age\", dataset_id=\"titanic\", measure_function=variation, top_indices=3\n)",
       "name": "Python (SDK)",
       "language": "python"
     }
@@ -126,7 +112,7 @@ We can further plot custom distribution like below.
 {
   "codes": [
     {
-      "code": "viz_ops.plot_distributions(\n    numeric_field=\"Age\", dataset_id=DATASET_ID, measure_function=skew, top_indices=2\n)",
+      "code": "viz_ops.plot_distributions(\n    numeric_field=\"Age\", dataset_id=\"titanic\", measure_function=skew, top_indices=2\n)",
       "name": "Python (SDK)",
       "language": "python"
     }

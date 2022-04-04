@@ -24,10 +24,6 @@ The following code examines how the clusters are distributed, firstly, within th
 
 @@@ cluster_vizops, VECTOR_FIELDS=["value_vector_"], CLUSTER_ALIAS="kmeans_5" @@@
 
-
-@@@ cluster_vizops_distribution, NUMERIC_FIELD="Age", TOP_INDICES=3@@@
-
-
 @@@ cluster_vizops_distribution, NUMERIC_FIELD="Age", TOP_INDICES=3@@@
 
 
@@ -39,7 +35,7 @@ We can further plot custom distribution like below.
 @@@ skew_variation @@@
 
 
-@@@ cluster_vizops_custom, NUMERIC_FIELD="Age", MEASURE_FUNCTION=variation, TOP_INDICES=3 @@@
+@@@ cluster_vizops_custom, NUMERIC_FIELD="Age", MEASURE_FUNCTION=variation, TOP_INDICES=3, DATASET_ID="titanic" @@@
 
 
-@@@ cluster_vizops_custom, NUMERIC_FIELD="Age", MEASURE_FUNCTION=skew, TOP_INDICES=2 @@@
+@@@ cluster_vizops_custom, NUMERIC_FIELD="Age", MEASURE_FUNCTION=skew, TOP_INDICES=2, DATASET_ID="titanic" @@@
