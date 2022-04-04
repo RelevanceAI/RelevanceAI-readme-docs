@@ -23,7 +23,31 @@ The following code example groups the data based on the `product_price` field, a
 {
   "codes": [
     {
-      "code": "ds = client.Dataset(DATASET_ID)\nclusterer = ds.auto_cluster('kmeans_5', [VECTOR_FIELD])\n# Aggregate based on the clusters\nresult = clusterer.aggregate(\n    groupby=[\n      {\"name\": \"brand\", \"field\": \"query\", \"agg\": \"category\"}],\n    metrics = [\n      {\"name\": \"avg_retail_price\", \"field\": \"product_price\", \"agg\": \"avg\"}]\n)",
+      "code": "ds = client.Dataset(DATASET_ID)",
+      "name": "Python (SDK)",
+      "language": "python"
+    }
+  ]
+}
+[/block]
+
+[block:code]
+{
+  "codes": [
+    {
+      "code": "from sklearn.cluster import KMeans\n\nVECTOR_FIELD = VECTOR_FIELD\nKMEAN_NUMBER_OF_CLUSTERS = n\nALIAS = \"kmeans-\" + str(KMEAN_NUMBER_OF_CLUSTERS)\n\nmodel = KMeans(n_clusters=KMEAN_NUMBER_OF_CLUSTERS)\nclusterer = client.ClusterOps(alias=ALIAS, model=model)\nclusterer.operate(dataset_id=DATASET_ID, vector_fields=[VECTOR_FIELD])",
+      "name": "Python (SDK)",
+      "language": "python"
+    }
+  ]
+}
+[/block]
+
+[block:code]
+{
+  "codes": [
+    {
+      "code": "# Aggregate based on the clusters\nresult = clusterer.aggregate(\n    dataset=DATASET_ID, \n    vector_fields = [VECTOR_FIELD],\n    groupby=[\n      {\"name\": \"brand\", \"field\": \"query\", \"agg\": \"category\"}],\n    metrics = [\n      {\"name\": \"avg_retail_price\", \"field\": \"product_price\", \"agg\": \"avg\"}]\n)",
       "name": "Python (SDK)",
       "language": "python"
     }
