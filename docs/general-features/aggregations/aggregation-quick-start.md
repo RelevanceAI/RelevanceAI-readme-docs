@@ -96,7 +96,7 @@ There are two main parameters to aggregation, `groupby` and `metrics`. They are 
 {
   "codes": [
     {
-      "code": "avg_price_metric = {\"name\": \"avg_price\", \"field\": \"priceDetails.price\", \"agg\": \"avg\"}\nmax_price_metric = {\"name\": \"max_price\", \"field\": \"priceDetails.price\", \"agg\": \"max\"}\nmin_price_metric = {\"name\": \"min_price\", \"field\": \"priceDetails.price\", \"agg\": \"min\"}\nsum_bathroom_metric = {\"name\": \"bathroom_sum\", \"field\": \"propertyDetails.bathrooms\", \"agg\": \"sum\"}\ncardinality_suburbs_metric = {\"name\": \"num_suburbs\", \"field\": \"propertyDetails.suburb\", \"agg\": \"cardinality\"}\nmetrics = [ avg_price_metric, max_price_metric, min_price_metric, sum_bathroom_metric, cardinality_suburbs_metric ]",
+      "code": "avg_price_metric = {\"name\": \"avg_price\", \"field\": \"priceDetails.price\", \"agg\": \"avg\"}\nmax_price_metric = {\"name\": \"max_price\", \"field\": \"priceDetails.price\", \"agg\": \"max\"}\nmin_price_metric = {\"name\": \"min_price\", \"field\": \"priceDetails.price\", \"agg\": \"min\"}\nsum_bathroom_metric = {\"name\": \"bathroom_sum\", \"field\": \"propertyDetails.bathrooms\", \"agg\": \"sum\"}\nmetrics = [ avg_price_metric, max_price_metric, min_price_metric, sum_bathroom_metric ]",
       "name": "Python (SDK)",
       "language": "python"
     }
@@ -127,7 +127,7 @@ Simply use the dataset_id and the `aggregate` endpoint as shown below; `jsonshow
 {
   "codes": [
     {
-      "code": "from jsonshower import show_json\nshow_json(results, text_fields=list(results[0].keys()))",
+      "code": "from jsonshower import show_json\nshow_json(results, text_fields=list(results['results'][0].keys()))",
       "name": "Python (SDK)",
       "language": "python"
     }

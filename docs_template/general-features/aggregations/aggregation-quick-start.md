@@ -42,7 +42,7 @@ There are two main parameters to aggregation, `groupby` and `metrics`. They are 
 
 #### Creating Aggregation Metrics
 
-@@@ aggregation_query, VAR_NAME=avg_price_metric, NAME="avg_price", FIELD="priceDetails.price", TYPE="avg"; aggregation_query, VAR_NAME=max_price_metric, NAME="max_price", FIELD="priceDetails.price", TYPE="max"; aggregation_query, VAR_NAME=min_price_metric, NAME="min_price", FIELD="priceDetails.price", TYPE="min"; aggregation_query, VAR_NAME=sum_bathroom_metric, NAME="bathroom_sum", FIELD="propertyDetails.bathrooms", TYPE="sum"; aggregation_query, VAR_NAME=cardinality_suburbs_metric, NAME="num_suburbs", FIELD="propertyDetails.suburb", TYPE="cardinality"; variable, VAR_NAME=metrics, VAR_VALUE=[ avg_price_metric, max_price_metric, min_price_metric, sum_bathroom_metric, cardinality_suburbs_metric ] @@@
+@@@ aggregation_query, VAR_NAME=avg_price_metric, NAME="avg_price", FIELD="priceDetails.price", TYPE="avg"; aggregation_query, VAR_NAME=max_price_metric, NAME="max_price", FIELD="priceDetails.price", TYPE="max"; aggregation_query, VAR_NAME=min_price_metric, NAME="min_price", FIELD="priceDetails.price", TYPE="min"; aggregation_query, VAR_NAME=sum_bathroom_metric, NAME="bathroom_sum", FIELD="propertyDetails.bathrooms", TYPE="sum"; variable, VAR_NAME=metrics, VAR_VALUE=[ avg_price_metric, max_price_metric, min_price_metric, sum_bathroom_metric ] @@@
 
 ### 4. Hit the endpoint
 Simply use the dataset_id and the `aggregate` endpoint as shown below; `jsonshower` is our tool for easy and efficient result presentation.
