@@ -18,7 +18,7 @@ updatedAt: '2022-04-04T23:18:43.421942Z'
 Use Relevance AI to experiment, build and share the best vectors to solve similarity and relevance based problems across teams.
 
 
-<img src="https://github.com/RelevanceAI/RelevanceAI-readme-docs/blob/v2.0.0/docs_template/_assets/RelevanceAI_DS_Workflow.png?raw=true"  alt="Relevance AI" />
+<img src="https://github.com/RelevanceAI/RelevanceAI-readme-docs/blob/v2.0.0-autoresolve-git-conflict/docs_template/_assets/RelevanceAI_DS_Workflow.png?raw=true"  alt="Relevance AI" />
 
 
 [block:code]

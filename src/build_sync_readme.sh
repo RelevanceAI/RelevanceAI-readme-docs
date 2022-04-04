@@ -39,6 +39,9 @@ if [[ $GIT_BRANCH_NAME == "main" ]]; then
 	GIT_BRANCH_NAME="v$VERSION_FILE"
 	GIT_BRANCH_NAME_VERSION=$VERSION_FILE
 	echo 'Branch ver is main'
+
+elif   [[ "$GIT_BRANCH_NAME" == *"-"* ]]; then
+	GIT_BRANCH_NAME_VERSION=$VERSION_FILE
 else
 	GIT_BRANCH_NAME_VERSION=$(echo $GIT_BRANCH_NAME | sed -e 's/v\///g' )
 	echo $GIT_BRANCH_NAME_VERSION
