@@ -3,6 +3,7 @@
 "QUICKSTART_SEARCH_DATASET_ID": "\"quickstart_search\"",
 "TEXT_IMAGE_SEARCH_DATASET_ID": "\"quickstart_clip\"",
 "AGGREGATION_DATASET_ID": "\"quickstart_aggregation\"",
+"QUICKSTART_CLUSTERING_AGGREGATION_DATASET_ID": "\"quickstart_clustering_aggregation\"",
 "MULTI_VECTOR_SEARCH_DATASET_ID": "\"quickstart_multi_vector_search\"",
 "QUICKSTART_MULTI_VECTOR_SEARCH_QUERY": "[\n\t\t{\"vector\": [0.2, 0.2, 0.2], \"fields\": [\"example_vector\"]}\n\t]",
 "FEATURE_TOUR_MULTI_VECTOR_SEARCH_QUERY": "[\n\t\t{\"vector\": query_vec_txt[\"vector\"], \n\t\t\"fields\": [\"product_image_clip_vector_\"]}\n\t]",

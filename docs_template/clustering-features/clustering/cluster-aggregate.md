@@ -21,6 +21,6 @@ The following code example groups the data based on the `product_price` field, a
 
 @@@ client_dataset @@@
 
-@@@ clusterops, VECTOR_FIELD=VECTOR_FIELD, N_KMEANS=n, DATASET_ID=DATASET_ID @@@
+@@@ clusterops, QUICKSTART_CLUSTERING_AGGREGATION_DATASET_ID, VECTOR_FIELD=VECTOR_FIELD, N_KMEANS=n, DATASET_ID=DATASET_ID @@@
 
 @@@ cluster_aggregate_metrics, GROUPBY_NAME="brand", GROUPBY_FIELD="query", GROUPBY_AGG_TYPE="category", METRICS_NAME="avg_retail_price", METRICS_VECTOR_FIELD="product_price", METRICS_AGG_TYPE="avg" @@@
