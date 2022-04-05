@@ -5,4 +5,5 @@ result = <<CLUSTEROPS>>.aggregate(
     vector_fields = [<<VECTOR_FIELD>>],
     groupby=[
       {"name": <<GROUPBY_NAME>>, "field": <<GROUPBY_FIELD>>, "agg": <<GROUPBY_AGG_TYPE>>}
+    ]
 )
