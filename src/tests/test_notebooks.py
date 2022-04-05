@@ -259,8 +259,12 @@ def main(args):
     notebooks = [n for n in notebooks if ".ipynb_checkpoints" not in str(n)]
 
     ## Filter notebooks
+    print(args.all)
     if not args.all:
-        notebooks = [n for n in notebooks if n not in NOTEBOOK_IGNORE]
+        print("Filtering notebook ignore")
+        notebooks = [
+            n for n in notebooks if not any([ni in str(n) for ni in NOTEBOOK_IGNORE])
+        ]
 
     if not notebooks:
         print(f"No notebooks found not in {NOTEBOOK_IGNORE}")
