@@ -553,15 +553,6 @@ categories:
       title: Multi-vector search
       updatedAt: '2021-12-14T02:43:08.885Z'
   getting-started:
-    -relevance-ai-quickstart:
-      _id: 624b747a631fa60039559ce3
-      createdAt: '2022-04-04T04:34:41.064Z'
-      excerpt: ''
-      hidden: true
-      order: 999
-      slug: -relevance-ai-quickstart
-      title: "\u2618\uFE0F Relevance AI Quickstart"
-      updatedAt: '2022-04-04T04:34:41.064Z'
     boilerplate:
       _id: 624b747a631fa60039559c05
       createdAt: '2021-11-08T00:59:35.504Z'
@@ -642,7 +633,7 @@ categories:
       order: 5
       slug: installation
       title: Installation
-      updatedAt: '2022-04-04T22:48:47.662Z'
+      updatedAt: '2022-04-04T23:28:52.496Z'
     old-welcome:
       _id: 624b747a631fa60039559c04
       createdAt: '2021-11-07T00:21:21.957Z'
@@ -760,15 +751,6 @@ categories:
       slug: welcome
       title: Relevance AI
       updatedAt: '2022-04-04T22:43:08.949Z'
-    "\uFE0F-relevance-ai-quickstart":
-      _id: 624b7637b06a7b003c88f32e
-      createdAt: '2022-04-04T22:50:31.540Z'
-      excerpt: ''
-      hidden: true
-      order: 1000
-      slug: "\uFE0F-relevance-ai-quickstart"
-      title: "\u2618\uFE0F Relevance AI Quickstart"
-      updatedAt: '2022-04-04T22:50:31.540Z'
   integrations:
     coming-soon-2:
       _id: 624b747a631fa60039559c5a
