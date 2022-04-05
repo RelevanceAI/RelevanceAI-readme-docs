@@ -34,7 +34,7 @@ Prior to starting, we need to install the main dependencies.
 {
   "codes": [
     {
-      "code": "# remove `!` if running the line in a terminal\n!pip install -U RelevanceAI[notebook]==<<RELEVANCEAI_SDK_VERSION>>\n# remove `!` if running the line in a terminal\n!pip install vectorhub[encoders-text-tfhub]",
+      "code": "# remove `!` if running the line in a terminal\n!pip install -U RelevanceAI[notebook]==2.0.0\n# remove `!` if running the line in a terminal\n!pip install vectorhub[encoders-text-tfhub]",
       "name": "Bash",
       "language": "shell"
     }
