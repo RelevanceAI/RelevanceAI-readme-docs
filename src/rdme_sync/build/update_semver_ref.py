@@ -48,7 +48,11 @@ def main(args):
     logging.debug(f"\tUpdating {SNIPPET_PARAMS_FPATH} to {README_VERSION} ...")
     SNIPPET_PARAMS = json.loads(open(str(SNIPPET_PARAMS_FPATH), "r").read())
 
-    SNIPPET_PARAMS["RELEVANCEAI_SDK_VERSION"] = args.version
+    RELEVANCEAI_SDK_VERSION = (
+        README_VERSION.replace("v", "") if README_VERSION[0] == "v" else README_VERSION
+    )
+    SNIPPET_PARAMS["RELEVANCEAI_SDK_VERSION"] = RELEVANCEAI_SDK_VERSION
+
     json.dump(SNIPPET_PARAMS, open(SNIPPET_PARAMS_FPATH, "w"), separators=(",\n", ": "))
 
     ###############################################################################
@@ -77,8 +81,8 @@ if __name__ == "__main__":
     ROOT_PATH = Path(__file__).parent.resolve() / ".." / ".." / ".."
     README_VERSION_FILE = open(ROOT_PATH / "__version__").read().strip()
     README_VERSION_FILE = (
-        f"v{README_VERSION_FILE}"
-        if README_VERSION_FILE[0] != "v"
+        README_VERSION_FILE.replace("v", "")
+        if README_VERSION_FILE[0] == "v"
         else README_VERSION_FILE
     )
 

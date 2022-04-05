@@ -32,7 +32,7 @@ This section, we will show you how to create and experiment with a powerful text
 Prior to starting, let's install the main dependencies. This installation provides you with what you need to connect to Relevance AI's API, read/write data, make different searches, etc.
 
 
-@@@ relevanceai_dev_installation @@@
+@@@ relevanceai_installation , RELEVANCEAI_SDK_VERSION=RELEVANCEAI_SDK_VERSION @@@
 
 This will give you access to Relevance AI's Python SDK.
 

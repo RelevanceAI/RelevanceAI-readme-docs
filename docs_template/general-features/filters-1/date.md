@@ -13,7 +13,7 @@ updatedAt: "2022-01-19T05:16:58.720Z"
 ## `date`
 This filter performs date analysis and filters documents based on their date information. For instance, it is possible to filter out any documents with a production date before January 2021.
 
-@@@ relevanceai_dev_installation @@@
+@@@ relevanceai_installation , RELEVANCEAI_SDK_VERSION=RELEVANCEAI_SDK_VERSION @@@
 
 @@@ client_instantiation @@@
 

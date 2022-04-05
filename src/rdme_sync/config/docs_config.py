@@ -134,7 +134,7 @@ class DocsConfig(Config):
                 return {k: v}
 
     @staticmethod
-    def _clean_config(config: Dict, filter_keys: List[str] = ["([_])\w+"]):
+    def _clean_config(config: Dict, filter_keys: List[str] = ["([_])\w+", ""]):
         """Filter config with regex filter_keys
         Converts docs-config into docs-config-condensed
         """

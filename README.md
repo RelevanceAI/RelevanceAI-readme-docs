@@ -82,7 +82,7 @@ In order to keep consistency of the code snippets throughout the repo, you can u
    - Snippets are loaded in a nested fashion. Inner most `_snippets` with the same name will override general snippets in [`docs_template/_snippets/`](./docs_template/_snippets/).
    - All snippets in `*.md` and `*.ipynb` files are prefaced with `@@@`.
     ```markdown
-    @@@ relevanceai_dev_installation @@@
+    @@@ relevanceai_installation , RELEVANCEAI_SDK_VERSION=RELEVANCEAI_SDK_VERSION @@@
     @@@ <SNIPPET_NAME>, <SNIPPET_PARAM_KEY_1>=<SNIPPET_PARAM_VALUE_1>, <SNIPPET_PARAM_KEY_2>=<SNIPPET_PARAM_VALUE_2>, ...  @@@
     ```
     - If you want to concatenate snippets, please concatenate using the following format.
@@ -98,6 +98,15 @@ In order to keep consistency of the code snippets throughout the repo, you can u
    ❯ python src/rdme_sync/build/build_docs.py -d
 
    ```
+
+
+## Converting notebooks to Markdown
+You can now convert notebooks to ReadMe Markdown either in [`rdmd`](https://rdmd.readme.io/) format or `block` format (which allows for interactive editing in ReadMe).
+
+    ```zsh
+        ❯ sudo apt-get install pandoc ## or brew install pandoc
+        ❯ python src/rdme_sync/readme/nbconvert_rdmd.py -d -f "block"
+    ```
 
 ## 👩🏻‍💻  Syncing your Changes
 
@@ -123,8 +132,10 @@ In order to keep consistency of the code snippets throughout the repo, you can u
     ```
     View your synced changes in ReadMe eg. https://docs.relevance.ai/v0.31.0/docs/quick-tour
 
-## 👩🏻‍💻 Testing notebooks
 
+
+
+## 👩🏻‍💻 Testing notebooks
 
 11. Test the notebooks for changes. By default, the script will process all notebooks in the `docs` folder if no `--notebooks` specified. This script will output error logs to the file `readme_notebook_error_log.txt`
     ```zsh

@@ -27,7 +27,7 @@ Run this Quickstart in Colab: [![Open In Colab](https://colab.research.google.co
 ### 1. Set up Relevance AI and Vectorhub for Encoding!
 
 
-@@@ relevanceai_dev_installation; vectorhub_clip_installation @@@
+@@@ relevanceai_installation; vectorhub_clip_installation @@@
 
 After installation, we need to also set up an API client. If you are missing an API key, you can easily sign up and get your API key from [https://cloud.relevance.ai/](https://cloud.relevance.ai/) in the settings area.
 
@@ -65,7 +65,6 @@ Encode new product image vector using our models out of the box using [Vectorhub
 
 
 Update the existing dataset with the encoding results and check the results
-
 
 
 @@@ upsert_documents; dataset_schema @@@

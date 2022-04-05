@@ -58,7 +58,7 @@ if __name__ == "__main__":
     README_VERSION_FILE = open(ROOT_PATH / "__version__").read().strip()
     README_VERSION_FILE = (
         f"v{README_VERSION_FILE}"
-        if README_VERSION_FILE[0] != "v"
+        if README_VERSION_FILE[0] == "v"
         else README_VERSION_FILE
     )
 

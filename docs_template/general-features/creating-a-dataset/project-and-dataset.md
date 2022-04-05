@@ -33,7 +33,7 @@ Some basic actions to deal with datasets are:
 
 You can either use the dashboard to take these actions or employ Relevance AI Python SDK. For the Python SDK, you need to install Relevance AI and initiate a client as shown in the two code snippets below:
 
-@@@ relevanceai_dev_installation @@@
+@@@ relevanceai_installation , RELEVANCEAI_SDK_VERSION=RELEVANCEAI_SDK_VERSION @@@
 
 @@@ client_instantiation @@@
 

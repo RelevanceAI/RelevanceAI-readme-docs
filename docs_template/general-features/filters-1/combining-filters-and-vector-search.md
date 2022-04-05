@@ -20,7 +20,7 @@ Note that the code below needs
 
 Please refer to a full guide on how to [create and upload a database](doc:creating-a-dataset) and how to use vectorizers to update a dataset with vectors at [How to vectorize](doc:vectorize-text).
 
-@@@ relevanceai_dev_installation @@@
+@@@ relevanceai_installation , RELEVANCEAI_SDK_VERSION=RELEVANCEAI_SDK_VERSION @@@
 
 @@@ client_instantiation @@@
 

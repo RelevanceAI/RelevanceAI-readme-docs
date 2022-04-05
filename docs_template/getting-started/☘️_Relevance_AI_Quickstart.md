@@ -1,11 +1,11 @@
 ---
 category: 623abf4109822f00e1da0b80
-createdAt: '2022-04-04T23:18:43.421911Z'
+createdAt: '2022-04-05T07:51:41.364562Z'
 excerpt: ''
 hidden: true
 slug: relevance-ai-quickstart
 title: ☘️ Relevance AI Quickstart
-updatedAt: '2022-04-04T23:18:43.421942Z'
+updatedAt: '2022-04-05T07:51:41.364589Z'
 ---
 
 [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/RelevanceAI/workflows/blob/main/workflows/quickstart_workflow/☘%EF%B8%8F_Relevance_AI_Quickstart.ipynb)

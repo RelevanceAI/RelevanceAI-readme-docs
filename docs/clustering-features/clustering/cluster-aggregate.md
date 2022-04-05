@@ -47,7 +47,7 @@ The following code example groups the data based on the `product_price` field, a
 {
   "codes": [
     {
-      "code": "# Aggregate based on the clusters\nresult = clusterer.aggregate(\n    dataset=DATASET_ID, \n    vector_fields = [VECTOR_FIELD],\n    groupby=[\n      {\"name\": \"brand\", \"field\": \"query\", \"agg\": \"category\"}],\n    metrics = [\n      {\"name\": \"avg_retail_price\", \"field\": \"product_price\", \"agg\": \"avg\"}]\n)",
+      "code": "# Aggregate based on the clusters\nresult = clusterer.aggregate(\n    dataset=DATASET_ID,\n    vector_fields = [VECTOR_FIELD],\n    groupby=[\n      {\"name\": \"brand\", \"field\": \"query\", \"agg\": \"category\"}],\n    metrics = [\n      {\"name\": \"avg_retail_price\", \"field\": \"product_price\", \"agg\": \"avg\"}]\n)",
       "name": "Python (SDK)",
       "language": "python"
     }

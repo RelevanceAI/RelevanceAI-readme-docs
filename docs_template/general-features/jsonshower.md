@@ -12,7 +12,7 @@ The JSONViewer allows Jupyter Notebook users to quickly view JSONs as if they we
 
 To install, users simply run:
 
-@@@ relevanceai_dev_installation @@@
+@@@ relevanceai_installation , RELEVANCEAI_SDK_VERSION=RELEVANCEAI_SDK_VERSION @@@
 
 # Features
 

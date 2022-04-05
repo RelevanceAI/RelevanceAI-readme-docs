@@ -16,7 +16,7 @@ The easiest way to install our Python SDK is to run:
 {
   "codes": [
     {
-      "code": "# remove `!` if running the line in a terminal\n!pip install -U RelevanceAI-dev[notebook]>=2.0.0",
+      "code": "# remove `!` if running the line in a terminal\n!pip install -U RelevanceAI[notebook]==2.0.0",
       "name": "Bash",
       "language": "shell"
     }
@@ -36,7 +36,7 @@ This will install the latest version of our Python SDK:
 {
   "codes": [
     {
-      "code": "!pip install git+https://github.com/RelevanceAI/RelevanceAI@vv2.0.0",
+      "code": "!pip install git+https://github.com/RelevanceAI/RelevanceAI@v2.0.0",
       "name": "Bash",
       "language": "shell"
     }
@@ -51,7 +51,7 @@ For editable installation:
 {
   "codes": [
     {
-      "code": "git clone -b vv2.0.0 https://github.com/RelevanceAI/RelevanceAI\npip install -e .",
+      "code": "git clone -b v2.0.0 https://github.com/RelevanceAI/RelevanceAI\npip install -e .",
       "name": "Bash",
       "language": "shell"
     }

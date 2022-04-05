@@ -20,7 +20,7 @@ Relevance AI provides you with the tools to perform all these analyses. The resu
 
 First, you need to install Relevance AI's Python SDK and set up a client object to interact with Relevance AI.
 
-@@@ relevanceai_dev_installation @@@
+@@@ relevanceai_installation , RELEVANCEAI_SDK_VERSION=RELEVANCEAI_SDK_VERSION @@@
 
 @@@ client_instantiation @@@
 

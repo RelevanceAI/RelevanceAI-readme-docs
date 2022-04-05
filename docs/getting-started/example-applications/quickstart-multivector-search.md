@@ -26,7 +26,7 @@ Prior to starting, let's install the main dependencies.
 {
   "codes": [
     {
-      "code": "# remove `!` if running the line in a terminal\n!pip install -U RelevanceAI-dev[notebook]>=2.0.0",
+      "code": "# remove `!` if running the line in a terminal\n!pip install -U RelevanceAI[notebook]==2.0.0",
       "name": "Bash",
       "language": "shell"
     }

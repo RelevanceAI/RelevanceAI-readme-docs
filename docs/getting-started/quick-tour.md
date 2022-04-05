@@ -31,7 +31,7 @@ Run this Quickstart in Colab: [![Open In Colab](https://colab.research.google.co
 {
   "codes": [
     {
-      "code": "# remove `!` if running the line in a terminal\n!pip install -U RelevanceAI-dev[notebook]>=2.0.0\n# remove `!` if running the line in a terminal\n!pip install -U vectorhub[clip]",
+      "code": "# remove `!` if running the line in a terminal\n!pip install -U RelevanceAI[notebook]==<<RELEVANCEAI_SDK_VERSION>>\n# remove `!` if running the line in a terminal\n!pip install -U vectorhub[clip]",
       "name": "Bash",
       "language": "shell"
     }
@@ -115,7 +115,6 @@ Encode new product image vector using our models out of the box using [Vectorhub
 
 
 Update the existing dataset with the encoding results and check the results
-
 
 
 [block:code]

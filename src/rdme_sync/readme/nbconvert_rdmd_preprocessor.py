@@ -10,6 +10,9 @@ from nbconvert.preprocessors import Preprocessor
 
 from rdme_sync.build.constants import RDMD_SNIPPET_LANGUAGES
 import re
+import base64
+import io
+from PIL import Image
 
 
 class RdmdPreprocessor(Preprocessor):
@@ -21,6 +24,11 @@ class RdmdPreprocessor(Preprocessor):
             "<img src=.*https://relevance.ai/wp-content/uploads/2021/11/logo.79f303e-1.svg.*",
         ]
         LOGO_REGEX_FILTER = "(" + ")|(".join(LOGO_REGEX) + ")"
+        FILE_ATTACHMENT_REGEX = [
+            ".*data:image/png;base64,.*",
+        ]
+        FILE_ATTACHMENT_REGEX_FILTER = "(" + ")|(".join(FILE_ATTACHMENT_REGEX) + ")"
+        logging.debug(FILE_ATTACHMENT_REGEX_FILTER)
 
         for cell in nb.cells:
             if cell["cell_type"] == "markdown":
@@ -30,23 +38,26 @@ class RdmdPreprocessor(Preprocessor):
                     for m in re.finditer(LOGO_REGEX_FILTER, cell["source"]):
                         logging.debug(m.group())
                         cell["source"] = cell["source"].replace(m.group(), "")
-                ## Converting
-
+                # ## Converting attachment to markdown
+                # if bool(re.search(FILE_ATTACHMENT_REGEX_FILTER, cell["source"])):
+                #     for m in re.finditer(FILE_ATTACHMENT_REGEX_FILTER, cell["source"]):
+                #         # slogging.debug(m.group())
+                #         base64_string = m.group().split("data:image/png;base64,")[-1]
+                #         logging.debug(base64_string[:10])
+                #         image_data = base64.b64decode(str(base64_string))
+                #         image = Image.open(io.BytesIO(image_data))
+                #         image.save('img.png')
         return nb, resources
 
 
 class RdmdSnippetPreprocessor(Preprocessor):
     """ReadMe Markdown Snippet preprocessor"""
 
-    # start = Integer(0, help="first cell of notebook to be converted").tag(config=True)
-    # end = Integer(-1, help="last cell of notebook to be converted").tag(config=True)
-
     snippet_format: Literal["rdmd", "block"] = Unicode(allow_none=False).tag(
         config=True
     )
 
     def preprocess(self, nb, resources):
-        # nb.cells = nb.cells[self.start : self.end]
         language = "python"
 
         for cell in nb.cells:

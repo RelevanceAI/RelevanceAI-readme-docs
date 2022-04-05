@@ -22,6 +22,7 @@ install:
 	npm i
 	pre-commit install
 
+
 ## Update dependencies
 update:
 	pip install -U -q -r requirements-dev.txt

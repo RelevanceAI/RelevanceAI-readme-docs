@@ -13,7 +13,7 @@ updatedAt: "2022-01-19T05:17:10.638Z"
 ## `ids`
 This filter returns documents whose unique id exists in a given list. It may look similar to 'categories'. The main difference is the search speed.
 
-@@@ relevanceai_dev_installation @@@
+@@@ relevanceai_installation , RELEVANCEAI_SDK_VERSION=RELEVANCEAI_SDK_VERSION @@@
 
 @@@ client_instantiation @@@
 

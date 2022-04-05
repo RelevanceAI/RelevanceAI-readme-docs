@@ -20,7 +20,7 @@ This filter returns a document only if it contains a string value. Note that sub
 {
   "codes": [
     {
-      "code": "# remove `!` if running the line in a terminal\n!pip install -U RelevanceAI-dev[notebook]>=2.0.0",
+      "code": "# remove `!` if running the line in a terminal\n!pip install -U RelevanceAI[notebook]==2.0.0",
       "name": "Bash",
       "language": "shell"
     }

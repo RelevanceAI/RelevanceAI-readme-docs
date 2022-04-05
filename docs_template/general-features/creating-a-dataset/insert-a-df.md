@@ -24,7 +24,7 @@ You can insert a dataframe easily with Relevance AI.
 
 First, the Relevance AI SDK package must be installed.
 
-@@@ relevanceai_dev_installation @@@
+@@@ relevanceai_installation , RELEVANCEAI_SDK_VERSION=RELEVANCEAI_SDK_VERSION @@@
 
 @@@ client_instantiation @@@
 

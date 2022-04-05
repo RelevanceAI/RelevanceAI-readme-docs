@@ -25,6 +25,7 @@ from rdme_sync.readme.nbconvert_rdmd_preprocessor import (
     RdmdSnippetPreprocessor,
 )
 from rdme_sync.readme.nbconvert_rdmd_exporter import RdmdExporter
+from nbconvert import HTMLExporter, RSTExporter
 
 
 def main(args):
@@ -53,6 +54,10 @@ def main(args):
 
     rdmd_exporter = RdmdExporter(config=c)
 
+    # fig_c = Config()
+    # rst_exporter = RSTExporter()
+    # fig_c.HTMLExporter.preprocessors = ['nbconvert.preprocessors.ExtractOutputPreprocessor']
+
     NOTEBOOK_PATHS = Path(DOCS_TEMPLATE_PATH).glob("**/**/*.ipynb")
     ## Filter checkpoints
     NOTEBOOK_GENERATE_PATHS = [
@@ -68,10 +73,10 @@ def main(args):
             notebook = nbformat.read(Path(notebook_fpath), as_version=4)
             rdmd = rdmd_exporter.from_notebook_node(notebook)[0]
 
-            rdmd_print = "\n".join(
-                [f for f in rdmd.split("\n") if "data:image/png;base64," not in f]
-            )
-            logging.debug(rdmd_print)
+            # rdmd_print = "\n".join(
+            #     [f for f in rdmd.split("\n") if "data:image/png;base64," not in f]
+            # )
+            # logging.debug(rdmd_print)
 
             ## Loading frontmatter
             post = frontmatter.loads(rdmd)

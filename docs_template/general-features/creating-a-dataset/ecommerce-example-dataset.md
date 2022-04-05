@@ -12,7 +12,7 @@ updatedAt: "2022-01-17T02:57:42.720Z"
 In this section, we show you how to create a copy of a dataset from one project to another. This allows you to freely collaborate and share datasets between accounts.
 First Relevance AI's Python SDK must be installed and then a client object must be instantiated as shown below:
 
-@@@ relevanceai_dev_installation @@@
+@@@ relevanceai_installation , RELEVANCEAI_SDK_VERSION=RELEVANCEAI_SDK_VERSION @@@
 
 @@@ client_instantiation @@@
 
