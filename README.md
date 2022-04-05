@@ -101,7 +101,8 @@ In order to keep consistency of the code snippets throughout the repo, you can u
 
 
 ## Converting notebooks to Markdown
-You can now convert notebooks to ReadMe Markdown either in [`rdmd`](https://rdmd.readme.io/) format or `block` format (which allows for interactive editing in ReadMe).
+
+8. You can now convert notebooks to ReadMe Markdown either in [`rdmd`](https://rdmd.readme.io/) format or `block` format (which allows for interactive editing in ReadMe).
 
     ```zsh
         ❯ sudo apt-get install pandoc ## or brew install pandoc
@@ -111,16 +112,16 @@ You can now convert notebooks to ReadMe Markdown either in [`rdmd`](https://rdmd
 ## 👩🏻‍💻  Syncing your Changes
 
 
-8. Go the ReadMe Dash config and export the ReadMe API key `$RELEVANCEAI_README_API_KEY` variable from ReadMe Project Configuration
+9. Go the ReadMe Dash config and export the ReadMe API key `$RELEVANCEAI_README_API_KEY` variable from ReadMe Project Configuration
    ![](./assets/readme_api_key.png)
    ```zsh
    ❯ export RELEVANCEAI_README_API_KEY='xxx'
    ```
-9.  To run notebook tests, make sure to export your `TEST_ACTIVATION_TOKEN` from https://cloud.relevance.ai/sdk/api/.
+10.  To run notebook tests, make sure to export your `TEST_ACTIVATION_TOKEN` from https://cloud.relevance.ai/sdk/api/.
     ```zsh
-    ❯ export TEST_ACTIVATION_TOKEN='xxx'
+    ❯ export TEST_ACTIVATION_TOKEN="$TEST_PROJECT:$TEST_API_KEY:$TEST_REGION:$TEST_FIREBASEUID"
     ```
-10. Apply the changes and update the ReadMe documentations. By default, this script will sync all files in `docs`.
+11. Apply the changes and update the ReadMe documentations. By default, this script will sync all files in `docs`.
     ```zsh
     ❯ ./src/build_sync_readme.sh
     ## Run in debug mode
@@ -137,7 +138,7 @@ You can now convert notebooks to ReadMe Markdown either in [`rdmd`](https://rdmd
 
 ## 👩🏻‍💻 Testing notebooks
 
-11. Test the notebooks for changes. By default, the script will process all notebooks in the `docs` folder if no `--notebooks` specified. This script will output error logs to the file `readme_notebook_error_log.txt`
+12. Test the notebooks for changes. By default, the script will process all notebooks in the `docs` folder if no `--notebooks` specified. This script will output error logs to the file `readme_notebook_error_log.txt`
     ```zsh
     ❯ python src/tests/test_notebooks.py
     ## Run in debug mode
@@ -152,7 +153,7 @@ You can now convert notebooks to ReadMe Markdown either in [`rdmd`](https://rdmd
 
 
 12. Install pre-commit! This helps with things like merge conflicts, linting and checking API keys to help with cleaner commits. 😊
-    ```
+    ```zsh
     pre-commit install
     ```
 13. Commit your changes if what you see in the ReadMe documentation is correct! 🎉💪🏻
@@ -162,10 +163,10 @@ See [./src/README.md](./src/README.md) for more details about the build and sync
 
 ## 👩🏻‍💻  Updating the ReadMe config
 
-To rebuild the config, if want to sync changes made in ReadMe
-```
- ❯ python src/rdme_sync/config/sync.py --method 'build' --version 'v2.0.0'
-```
+14. To rebuild the config, if want to sync changes made in ReadMe
+    ```zsh
+    ❯ python src/rdme_sync/config/sync.py --method 'build' --version 'v2.0.0'
+    ```
 
 ## For further reference
 ### 👩🏻‍💻 Getting Started with rdme Client

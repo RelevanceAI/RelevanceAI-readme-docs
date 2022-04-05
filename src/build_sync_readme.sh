@@ -40,7 +40,7 @@ if [[ $GIT_BRANCH_NAME == "main" ]]; then
 	GIT_BRANCH_NAME_VERSION=$VERSION_FILE
 	echo 'Branch ver is main'
 else
-	GIT_BRANCH_NAME_VERSION=$(echo $GIT_BRANCH_NAME | sed -e 's/v\///g' )
+	GIT_BRANCH_NAME_VERSION=$(echo $GIT_BRANCH_NAME | sed 's/[^0-9.]//g' )
 	echo $GIT_BRANCH_NAME_VERSION
 	echo $GIT_BRANCH_NAME_VERSION > __version__
 fi
