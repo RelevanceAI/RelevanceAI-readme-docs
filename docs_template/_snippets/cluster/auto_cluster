@@ -1,2 +1,0 @@
-python ALIAS='kmeans_5', VECTOR_FIELD=VECTOR_FIELD
-clusterer = ds.auto_cluster(<<ALIAS>>, [<<VECTOR_FIELD>>])

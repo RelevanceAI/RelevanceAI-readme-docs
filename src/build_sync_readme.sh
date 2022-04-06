@@ -66,13 +66,14 @@ else
 fi
 
 
-CYAN "=== Converting notebooks to Markdown $GIT_BRANCH_NAME ==="
-### Converts *ipynb  to *.md not in _notebooks
-if $DEBUG_MODE; then
-	python src/rdme_sync/readme/nbconvert_rdmd.py -d -f "block" -p $PWD -v $GIT_BRANCH_NAME_VERSION
-else
-	python src/rdme_sync/readme/nbconvert_rdmd.py -f "block" -p $PWD -v $GIT_BRANCH_NAME_VERSION
-fi
+# CYAN "=== Converting notebooks to Markdown $GIT_BRANCH_NAME ==="
+# ### Converts *ipynb  to *.md not in _notebooks
+# if $DEBUG_MODE; then
+# 	python src/rdme_sync/readme/nbconvert_rdmd.py -d -f "block" -p $PWD -v $GIT_BRANCH_NAME_VERSION
+# else
+# 	python src/rdme_sync/readme/nbconvert_rdmd.py -f "block" -p $PWD -v $GIT_BRANCH_NAME_VERSION
+# fi
+
 
 # CYAN "=== Updating config $GIT_BRANCH_NAME with new files ==="
 # ### Updates ReadMe with new files in docs

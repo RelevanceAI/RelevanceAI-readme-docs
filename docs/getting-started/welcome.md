@@ -2,7 +2,7 @@
 title: "Relevance AI"
 excerpt: "Start experimenting faster with Relevance AI in 5 minutes!"
 slug: "welcome"
-hidden: false
+hidden: true
 createdAt: "2022-01-10T01:31:01.336Z"
 updatedAt: "2022-01-10T01:31:01.336Z"
 ---

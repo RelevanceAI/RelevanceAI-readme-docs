@@ -40,7 +40,10 @@ def main(args):
     readme_config = ReadMeConfig(version=README_VERSION, fpath=README_CONFIG_FPATH)
 
     c = Config()
-    if args.format == "block":
+    if args.format == "snippet":
+        c.RdmdSnippetPreprocessor.snippet_format = "snippet"
+        rdmd_template = "rdmd_snippet.md.j2"
+    elif args.format == "block":
         c.RdmdSnippetPreprocessor.snippet_format = "block"
         rdmd_template = "rdmd_block.md.j2"
     elif args.format == "rdmd":
@@ -53,10 +56,6 @@ def main(args):
     c.RdmdExporter.preprocessors = [RdmdPreprocessor, RdmdSnippetPreprocessor]
 
     rdmd_exporter = RdmdExporter(config=c)
-
-    # fig_c = Config()
-    # rst_exporter = RSTExporter()
-    # fig_c.HTMLExporter.preprocessors = ['nbconvert.preprocessors.ExtractOutputPreprocessor']
 
     NOTEBOOK_PATHS = Path(DOCS_TEMPLATE_PATH).glob("**/**/*.ipynb")
     ## Filter checkpoints
@@ -125,8 +124,8 @@ if __name__ == "__main__":
     parser.add_argument(
         "-f",
         "--format",
-        default="block",
-        choices=["rdmd", "block"],
+        default="snippet",
+        choices=["rdmd", "block", "snippet"],
         help="Conversion format",
     )
     parser.add_argument(

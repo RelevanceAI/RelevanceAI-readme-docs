@@ -1,0 +1,2 @@
+python CLUSTEROPS=clusterer, ALIAS='kmeans_5', VECTOR_FIELD=VECTOR_FIELD
+<<CLUSTEROPS>> = ds.cluster(<<ALIAS>>, [<<VECTOR_FIELD>>])

@@ -19,7 +19,7 @@ categories:
         order: 0
         slug: cluster-evaluate
         title: Quickstart
-        updatedAt: '2022-04-01T09:14:37.154Z'
+        updatedAt: '2022-04-05T07:58:58.424Z'
       cluster-metrics:
       - _id: 623a96a3032c43002ef2c6af
         createdAt: '2021-12-22T00:51:39.184Z'
@@ -55,7 +55,7 @@ categories:
         order: 2
         slug: cluster-aggregate
         title: Cluster Aggregate
-        updatedAt: '2022-04-04T22:48:30.550Z'
+        updatedAt: '2022-04-05T07:42:40.152Z'
       cluster-metadata:
       - _id: 623a96a3032c43002ef2c695
         createdAt: '2021-12-02T14:01:15.693Z'
@@ -64,7 +64,7 @@ categories:
         order: 6
         slug: cluster-metadata
         title: Cluster Metadata
-        updatedAt: '2022-01-24T06:35:28.286Z'
+        updatedAt: '2022-04-05T07:58:58.553Z'
       createdAt: '2021-11-26T10:20:49.107Z'
       custom-clustering:
       - _id: 623a96a3032c43002ef2c696
@@ -113,7 +113,7 @@ categories:
         order: 1
         slug: quickstart-clustering
         title: Quickstart (step by step)
-        updatedAt: '2022-04-04T22:48:30.625Z'
+        updatedAt: '2022-04-05T07:58:58.524Z'
       quickstart-k-means:
       - _id: 623a96a3032c43002ef2c69f
         createdAt: '2021-12-10T01:56:27.206Z'
@@ -122,7 +122,7 @@ categories:
         order: 0
         slug: quickstart-k-means
         title: Quickstart (K Means)
-        updatedAt: '2022-04-04T22:48:30.638Z'
+        updatedAt: '2022-04-05T07:58:58.598Z'
       slug: clustering
       title: Clustering
       updatedAt: '2021-12-12T14:07:47.030Z'
@@ -211,7 +211,7 @@ categories:
         order: 1
         slug: aggregation-quick-start
         title: Quickstart
-        updatedAt: '2022-04-04T06:02:35.323Z'
+        updatedAt: '2022-04-05T07:58:58.756Z'
       aggregations-1:
       - _id: 623a96a3032c43002ef2c667
         createdAt: '2021-11-14T15:42:46.167Z'
@@ -266,7 +266,7 @@ categories:
         order: 4
         slug: ecommerce-example-dataset
         title: Copying and cloning dataset
-        updatedAt: '2022-04-01T09:14:37.010Z'
+        updatedAt: '2022-04-05T07:58:58.290Z'
       excerpt: Quick guide on how to create a dataset
       hidden: false
       insert-a-csv:
@@ -277,7 +277,7 @@ categories:
         order: 3
         slug: insert-a-csv
         title: Insert a CSV
-        updatedAt: '2022-04-01T09:14:37.168Z'
+        updatedAt: '2022-04-05T07:58:58.547Z'
       insert-a-df:
       - _id: 623a96a3032c43002ef2c73d
         createdAt: '2022-01-12T06:07:56.382Z'
@@ -286,7 +286,7 @@ categories:
         order: 6
         slug: insert-a-df
         title: Insert A Dataframe
-        updatedAt: '2022-04-01T09:14:37.140Z'
+        updatedAt: '2022-04-05T07:58:58.517Z'
       inserting-data:
       - _id: 623a96a3032c43002ef2c64e
         createdAt: '2021-11-02T00:37:51.061Z'
@@ -314,7 +314,7 @@ categories:
         order: 0
         slug: project-and-dataset
         title: Dataset Basics
-        updatedAt: '2022-04-01T09:14:37.163Z'
+        updatedAt: '2022-04-05T07:58:58.477Z'
       slug: creating-a-dataset
       title: Creating a dataset
       updatedAt: '2021-12-21T22:34:47.769Z'
@@ -337,7 +337,7 @@ categories:
         order: 9
         slug: combining-filters-and-vector-search
         title: Combining filters and vector search
-        updatedAt: '2022-04-01T09:14:37.122Z'
+        updatedAt: '2022-04-05T07:58:58.642Z'
       contains:
       - _id: 623a96a3032c43002ef2c683
         createdAt: '2021-11-25T05:18:31.045Z'
@@ -346,7 +346,7 @@ categories:
         order: 0
         slug: contains
         title: Contains
-        updatedAt: '2022-04-01T09:14:37.259Z'
+        updatedAt: '2022-04-05T07:58:58.537Z'
       createdAt: '2021-11-21T07:05:21.922Z'
       date:
       - _id: 623a96a3032c43002ef2c688
@@ -356,7 +356,7 @@ categories:
         order: 5
         slug: date
         title: Date
-        updatedAt: '2022-04-01T09:14:37.193Z'
+        updatedAt: '2022-04-05T07:58:58.559Z'
       exact_match:
       - _id: 623a96a3032c43002ef2c684
         createdAt: '2021-11-25T05:20:53.996Z'
@@ -365,7 +365,7 @@ categories:
         order: 1
         slug: exact_match
         title: Exact match
-        updatedAt: '2022-04-01T09:14:37.015Z'
+        updatedAt: '2022-04-05T07:58:58.578Z'
       exact_match-1:
       - _id: 623a96a3032c43002ef2c685
         createdAt: '2021-11-25T05:44:25.366Z'
@@ -374,7 +374,7 @@ categories:
         order: 2
         slug: exact_match-1
         title: Word match
-        updatedAt: '2022-04-01T09:14:37.043Z'
+        updatedAt: '2022-04-05T07:58:58.509Z'
       excerpt: ''
       exists:
       - _id: 623a96a3032c43002ef2c687
@@ -384,7 +384,7 @@ categories:
         order: 4
         slug: exists
         title: Exists
-        updatedAt: '2022-04-01T09:14:37.119Z'
+        updatedAt: '2022-04-05T07:58:58.588Z'
       hidden: false
       ids:
       - _id: 623a96a3032c43002ef2c68a
@@ -394,7 +394,7 @@ categories:
         order: 7
         slug: ids
         title: Ids
-        updatedAt: '2022-04-01T09:14:37.194Z'
+        updatedAt: '2022-04-05T07:58:59.138Z'
       multiple-filters:
       - _id: 623a96a3032c43002ef2c68b
         createdAt: '2021-11-25T22:31:19.531Z'
@@ -403,7 +403,7 @@ categories:
         order: 8
         slug: multiple-filters
         title: Multiple filters
-        updatedAt: '2022-04-01T09:14:37.138Z'
+        updatedAt: '2022-04-05T07:58:58.549Z'
       numeric:
       - _id: 623a96a3032c43002ef2c689
         createdAt: '2021-11-25T06:28:37.534Z'
@@ -412,7 +412,7 @@ categories:
         order: 6
         slug: numeric
         title: Numeric
-        updatedAt: '2022-04-01T09:14:37.174Z'
+        updatedAt: '2022-04-05T07:58:58.450Z'
       or:
       - _id: 623a96a3032c43002ef2c6a0
         createdAt: '2021-12-14T02:24:01.377Z'
@@ -431,7 +431,7 @@ categories:
         order: 10
         slug: regex
         title: Regex
-        updatedAt: '2022-04-01T09:14:37.099Z'
+        updatedAt: '2022-04-05T07:58:58.576Z'
       slug: filters-1
       title: Filters
       updatedAt: '2022-03-31T06:19:17.288Z'
@@ -524,7 +524,7 @@ categories:
         updatedAt: '2022-03-31T06:19:17.348Z'
       slug: jsonshower
       title: Prettyprint json
-      updatedAt: '2022-04-01T09:14:37.002Z'
+      updatedAt: '2022-04-05T07:58:58.557Z'
     multi-vector-search-3:
       _id: 623a96a3032c43002ef2c6a1
       createdAt: '2021-12-14T02:43:08.885Z'
@@ -538,7 +538,7 @@ categories:
         order: 0
         slug: multi-vector-search-2
         title: Multi-vector search with multiple models
-        updatedAt: '2022-04-01T09:14:37.189Z'
+        updatedAt: '2022-04-05T07:58:58.697Z'
       multi-vector-search-with:
       - _id: 623a96a3032c43002ef2c6b2
         createdAt: '2021-12-24T03:13:06.821Z'
@@ -547,7 +547,7 @@ categories:
         order: 1
         slug: multi-vector-search-with
         title: Multi-vector search with multiple fields
-        updatedAt: '2022-04-01T09:14:37.216Z'
+        updatedAt: '2022-04-05T07:58:59.306Z'
       order: 3
       slug: multi-vector-search-3
       title: Multi-vector search
@@ -585,7 +585,7 @@ categories:
         order: 1
         slug: quickstart-multivector-search
         title: Multi-vector search with your own vectors
-        updatedAt: '2022-04-01T09:14:37.405Z'
+        updatedAt: '2022-04-05T07:58:58.660Z'
       quickstart-question-answering:
       - _id: 623a96a3032c43002ef2c656
         createdAt: '2021-11-05T06:25:12.543Z'
@@ -594,7 +594,7 @@ categories:
         order: 3
         slug: quickstart-question-answering
         title: Question answering (using USE QA Tensorflow Hub)
-        updatedAt: '2022-04-01T09:14:37.799Z'
+        updatedAt: '2022-04-05T20:50:29.775Z'
       quickstart-text-search:
       - _id: 623a96a3032c43002ef2c655
         createdAt: '2021-11-05T06:24:29.236Z'
@@ -603,7 +603,7 @@ categories:
         order: 2
         slug: quickstart-text-search
         title: Text search (using USE VectorHub)
-        updatedAt: '2022-04-01T09:14:37.471Z'
+        updatedAt: '2022-04-05T07:58:58.772Z'
       quickstart-text-to-image-search:
       - _id: 623a96a3032c43002ef2c654
         createdAt: '2021-11-05T06:20:43.205Z'
@@ -612,7 +612,7 @@ categories:
         order: 0
         slug: quickstart-text-to-image-search
         title: Text-to-image search (using OpenAI's CLIP Pytorch)
-        updatedAt: '2022-04-01T09:14:37.498Z'
+        updatedAt: '2022-04-05T07:58:58.961Z'
       slug: example-applications
       title: Example applications
       updatedAt: '2021-11-17T04:06:48.371Z'
@@ -633,7 +633,7 @@ categories:
       order: 5
       slug: installation
       title: Installation
-      updatedAt: '2022-04-04T22:57:02.929Z'
+      updatedAt: '2022-04-05T07:58:58.589Z'
     old-welcome:
       _id: 623a96a3032c43002ef2c657
       createdAt: '2021-11-07T00:21:21.957Z'
@@ -651,7 +651,7 @@ categories:
       order: 1
       slug: quick-tour
       title: Quick Feature Tour
-      updatedAt: '2022-04-01T09:14:37.455Z'
+      updatedAt: '2022-04-05T20:50:29.704Z'
     quickstart:
       _id: 623a96a3032c43002ef2c66f
       createdAt: '2021-11-17T03:54:08.625Z'
@@ -681,13 +681,13 @@ categories:
       updatedAt: '2022-03-30T06:08:31.940Z'
     relevance-ai-quickstart:
       _id: 624b905912b7be001ad7ddae
-      createdAt: '2022-04-04T23:18:43.421Z'
+      createdAt: '2022-04-05T07:51:41.364Z'
       excerpt: ''
       hidden: true
       order: 999
       slug: relevance-ai-quickstart
       title: "\u2618\uFE0F Relevance AI Quickstart"
-      updatedAt: '2022-04-04T23:18:43.421Z'
+      updatedAt: '2022-04-05T07:53:44.622Z'
     terminology:
       _id: 623a96a3032c43002ef2c624
       createdAt: '2021-10-20T03:08:30.714Z'
@@ -759,7 +759,7 @@ categories:
       order: 0
       slug: welcome
       title: Relevance AI
-      updatedAt: '2022-04-01T09:14:37.156Z'
+      updatedAt: '2022-04-05T07:59:00.271Z'
   integrations:
     coming-soon-2:
       _id: 623a96a3032c43002ef2c6b5
@@ -912,7 +912,7 @@ categories:
         order: 0
         slug: exact-word-search
         title: Exact text matching
-        updatedAt: '2022-04-01T09:14:37.165Z'
+        updatedAt: '2022-04-05T07:58:58.457Z'
       excerpt: ''
       hidden: false
       order: 0
@@ -927,7 +927,7 @@ categories:
       order: 4
       slug: multi-vector-search-2-1
       title: Multi-vector search
-      updatedAt: '2022-04-01T09:14:37.167Z'
+      updatedAt: '2022-04-05T07:58:58.620Z'
     redirects:
       _id: 623a96a3032c43002ef2c69b
       createdAt: '2021-12-09T08:32:05.808Z'
@@ -968,7 +968,7 @@ categories:
         order: 0
         slug: hybrid-search-1
         title: Text and vector search (hybrid)
-        updatedAt: '2022-04-01T09:14:37.190Z'
+        updatedAt: '2022-04-05T07:58:58.703Z'
       order: 1
       slug: text-and-vector-search-hybrid
       title: Text and vector search (hybrid)

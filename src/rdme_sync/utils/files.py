@@ -10,12 +10,38 @@ from typing_extensions import Literal
 
 
 def get_files(path: Union[Path, str], ext: Literal["md", "ipynb"]):
+    """Gets all files in a directory with a specific extension
+
+    Parameters
+    ----------
+    path : Union[Path, str]
+        The path to the directory containing the files.
+    ext : Literal["md", "ipynb"]
+        The extension of the files you want to get.
+
+    """
     return Path(path).glob(f"**/*.{ext}")
 
 
 def file_find_replace(
     fname: str, find_sent_regex: str, find_str_regex: str, replace_str: str
 ):
+    """This function takes a file name, a find sentence regex, a find string regex, and a replace string.
+    It then opens the file, finds the sentence that matches the find sentence regex, and replaces the
+    string that matches the find string regex with the replace string
+
+    Parameters
+    ----------
+    fname : str
+        The name of the file to be modified.
+    find_sent_regex : str
+        A regular expression that will be used to find sentences.
+    find_str_regex : str
+        The regex that will be used to find the string that needs to be replaced.
+    replace_str : str
+        The string to replace the found string with.
+
+    """
     if fname.is_file():
         with open(fname, "r") as f:
             lines = f.readlines()
@@ -54,6 +80,20 @@ def file_find_replace(
 def notebook_find_replace(
     fname: str, find_sent_regex: str, find_str_regex: str, replace_str: str
 ):
+    """This function finds and replaces a string in a Jupyter notebook
+
+    Parameters
+    ----------
+    fname : str
+        The name of the file to be searched.
+    find_sent_regex : str
+        A regular expression that will be used to find sentences.
+    find_str_regex : str
+        The regex that will be used to find the string that needs to be replaced.
+    replace_str : str
+        The string to replace the found string with.
+
+    """
     logging.info(f"\tInput: {fname}")
     notebook_json = json.loads(open(fname).read())
 

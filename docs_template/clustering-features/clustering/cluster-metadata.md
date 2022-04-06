@@ -25,4 +25,4 @@ The following code snippets extract the metadata from the clustering algorithm a
 
 Once you have stored the metadata, you can view them using the following code.
 
-@@@ client_dataset, DATASET_ID=DATASET_ID; auto_cluster, ALIAS='kmeans_10', VECTOR_FIELD='product_title_clip_vector_' @@@
+@@@ client_dataset, DATASET_ID=DATASET_ID; cluster, ALIAS='kmeans_10', VECTOR_FIELD='product_title_clip_vector_' @@@

@@ -22,6 +22,18 @@ ROOT_PATH = Path(__file__).parent.resolve() / ".." / ".." / ".."
 
 
 def get_config_diff(docs_config: Dict, readme_config: Dict, fpath: Path) -> List[Path]:
+    """This function compares the configs in the docs and the configs in the readme
+
+    Parameters
+    ----------
+    docs_config : Dict
+        The configuration from the docs.
+    readme_config : Dict
+        The configuration read from the README.
+    fpath : Path
+        Path
+
+    """
     ddiff = DeepDiff(
         docs_config,
         readme_config,
@@ -70,6 +82,14 @@ def get_config_diff(docs_config: Dict, readme_config: Dict, fpath: Path) -> List
 
 
 def get_frontmatter(fpath: Path) -> Dict:
+    """The function takes a file path and returns a dictionary of the front matter
+
+    Parameters
+    ----------
+    fpath : Path
+        Path
+
+    """
     with open(fpath, "r") as f:
         post = frontmatter.load(f)
         logging.debug(f"Loading frontmatter: {post.to_dict()}")
@@ -216,8 +236,8 @@ def main(args):
 
             logging.debug(f"Rebuilding config ... ")
 
-            # ## TODO: Inserting new item in readme config with new category only instead rebuilding full config
-            readme_config.build()
+            # # ## TODO: Inserting new item in readme config with new category only instead rebuilding full config
+            # readme_config.build()
 
 
 if __name__ == "__main__":

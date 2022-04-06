@@ -4,9 +4,10 @@ import os
 import re
 from pathlib import Path
 import yaml
-from typing import Dict, List, Optional, Tuple, Union
+from typing import Callable, Dict, List, Optional, Tuple, Union
 from typing_extensions import Literal
 import logging
+import frontmatter
 
 from rdme_sync.config.config import Config
 
@@ -118,23 +119,43 @@ class DocsConfig(Config):
 
             return directory
 
-    def _iterdict(self, d: Dict, filter_keys: List[str] = ["([_])\w+"]):
+    def _iterdict_apply(
+        self,
+        d: Dict,
+        fn: Optional[Callable] = None,
+        fn_args: Optional[Dict] = {},
+        filter_keys: List[str] = ["([_])\w+"],
+    ):
         """Iterate nested dict"""
         regex_filter = "(" + ")|(".join(filter_keys) + ")"
         for k, v in d.items():
             if not re.match(regex_filter, k):
                 if isinstance(v, dict):
-                    self._iterdict(v)
+                    self._iterdict_apply(d=v, fn=fn, fn_args=fn_args)
                 elif isinstance(v, list):
                     for i, value in enumerate(v):
                         if isinstance(value, dict):
-                            self._iterdict(value)
+                            self._iterdict_apply(d=value, fn=fn, fn_args=fn_args)
                         elif isinstance(value, str):
-                            v[i] = value.replace(".md", "")
+                            v[i] = fn(value, **fn_args)
                 return {k: v}
 
     @staticmethod
-    def _clean_config(config: Dict, filter_keys: List[str] = ["([_])\w+", ""]):
+    def get_slug(fpath: Path):
+        """It takes a file path and returns the file name without the extension.
+
+        Parameters
+        ----------
+        fpath : Path
+            Path: The path to the file you want to get the slug for.
+
+        """
+        with open(fpath, "r") as f:
+            post = frontmatter.load(f)
+            return post.metadata["slug"]
+
+    @staticmethod
+    def _clean_config(config: Dict, filter_keys: List[str] = ["([_])\w+"]):
         """Filter config with regex filter_keys
         Converts docs-config into docs-config-condensed
         """
@@ -185,10 +206,19 @@ class DocsConfig(Config):
         config : Dict
             Config of new docs
         """
+
+        ## Same as 'src/rdme_sync/readme/nbconver_rdmd.py'
+        def preprocess_slug(v: str):
+            # v = v.replace("_", " ")
+            # v = re.sub(
+            #     r"[^a-zA-Z0-9-]", "", v.replace(" ", "-").lower()
+            # ).strip("-")
+            return v.replace(".md", "")
+
         category_detail = {}
         for category in self.config[self.dir_path.name]:
             if isinstance(category, dict):
-                result = self._iterdict(category)
+                result = self._iterdict_apply(d=category, fn=preprocess_slug)
                 if result:
                     for k, v in result.items():
                         category_detail[k] = v

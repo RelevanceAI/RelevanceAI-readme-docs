@@ -16,7 +16,9 @@ from PIL import Image
 
 
 class RdmdPreprocessor(Preprocessor):
-    """ReadMe Markdown Snippet preprocessor"""
+    """ReadMe Markdown preprocessor"""
+
+    format: Literal["rdmd", "block"] = Unicode(allow_none=False).tag(config=True)
 
     def preprocess(self, nb, resources):
         LOGO_REGEX = [
@@ -28,7 +30,6 @@ class RdmdPreprocessor(Preprocessor):
             ".*data:image/png;base64,.*",
         ]
         FILE_ATTACHMENT_REGEX_FILTER = "(" + ")|(".join(FILE_ATTACHMENT_REGEX) + ")"
-        logging.debug(FILE_ATTACHMENT_REGEX_FILTER)
 
         for cell in nb.cells:
             if cell["cell_type"] == "markdown":
@@ -41,7 +42,7 @@ class RdmdPreprocessor(Preprocessor):
                 # ## Converting attachment to markdown
                 # if bool(re.search(FILE_ATTACHMENT_REGEX_FILTER, cell["source"])):
                 #     for m in re.finditer(FILE_ATTACHMENT_REGEX_FILTER, cell["source"]):
-                #         # slogging.debug(m.group())
+                #         # logging.debug(m.group())
                 #         base64_string = m.group().split("data:image/png;base64,")[-1]
                 #         logging.debug(base64_string[:10])
                 #         image_data = base64.b64decode(str(base64_string))
@@ -64,25 +65,26 @@ class RdmdSnippetPreprocessor(Preprocessor):
             if cell["cell_type"] == "code":
 
                 snippet = cell["source"]
-                logging.debug(f"Before: {snippet}")
-                # if self.snippet_format == "rdmd":
-                #     snippet_code[0] = f"```{language} {RDMD_SNIPPET_LANGUAGES[language]}"
-                #     snippet.append("```")
-                #     snippet.append("```" + language)
-                #     snippet.append("```")
+                if not bool(re.search("@@@.*@@@", snippet)):
+                    logging.debug(f"Before: {snippet}")
+                    # if self.snippet_format == "rdmd":
+                    #     snippet_code[0] = f"```{language} {RDMD_SNIPPET_LANGUAGES[language]}"
+                    #     snippet.append("```")
+                    #     snippet.append("```" + language)
+                    #     snippet.append("```")
 
-                ### ReadMe Block Format
-                if self.snippet_format == "block":
-                    snippet_code = {}
-                    snippet_code["code"] = snippet
-                    snippet_code["name"] = RDMD_SNIPPET_LANGUAGES[language]
-                    snippet_code["language"] = language
-                    snippet_codes = {"codes": [snippet_code]}
+                    ### ReadMe Block Format
+                    if self.snippet_format == "block":
+                        snippet_code = {}
+                        snippet_code["code"] = snippet
+                        snippet_code["name"] = RDMD_SNIPPET_LANGUAGES[language]
+                        snippet_code["language"] = language
+                        snippet_codes = {"codes": [snippet_code]}
 
-                    snippet = json.dumps(snippet_codes, indent=2)
-                    snippet = snippet
+                        snippet = json.dumps(snippet_codes, indent=2)
+                        snippet = snippet
 
-                cell["source"] = snippet
-                logging.debug(f"After: {snippet}")
+                    cell["source"] = snippet
+                    logging.debug(f"After: {snippet}")
 
         return nb, resources
