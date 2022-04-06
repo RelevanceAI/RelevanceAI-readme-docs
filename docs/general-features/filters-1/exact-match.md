@@ -1,6 +1,6 @@
 ---
 title: "Exact match"
-slug: "exact_match"
+slug: "exact-match"
 hidden: false
 createdAt: "2021-11-25T05:20:53.996Z"
 updatedAt: "2022-01-19T05:16:30.996Z"

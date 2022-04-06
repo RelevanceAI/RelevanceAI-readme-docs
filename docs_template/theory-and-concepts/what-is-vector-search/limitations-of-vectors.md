@@ -1,6 +1,6 @@
 ---
 title: "Limitations of vectors"
-slug: "_limitations-of-vectors"
+slug: "limitations-of-vectors"
 excerpt: "An outline of the limitations of what vectors are capable of"
 hidden: true
 createdAt: "2021-10-24T23:26:42.495Z"

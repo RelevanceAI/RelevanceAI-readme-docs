@@ -1,6 +1,6 @@
 ---
 title: "Applications of vectors"
-slug: "_applications-of-vectors"
+slug: "applications-of-vectors"
 excerpt: "A discussion on the applications of vectors"
 hidden: false
 createdAt: "2021-10-24T23:25:11.121Z"

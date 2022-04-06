@@ -31,16 +31,16 @@ docs:
   - better-text-search.md
 - theory-and-concepts:
   - what-is-vector-search:
-    - _applications-of-vectors.md
+    - limitations-of-vectors.md
+    - applications-of-vectors.md
     - how-to-vector-search.md
-    - _limitations-of-vectors.md
   - what-is-vector-search.md
   - vectors-for-classification.md
 - general-features:
   - filters-1:
-    - exact_match-1.md
-    - exact_match.md
+    - word-match.md
     - numeric.md
+    - exact-match.md
     - regex.md
     - categories.md
     - contains.md
@@ -123,6 +123,7 @@ docs:
   - example-applications.md
   - quickstart-boilerplate.md
   - quickstart-1.md
+  - "\u2618\uFE0F_Relevance_AI_Quickstart.md"
 - search-features:
   - _notebooks:
     - RelevanceAI_hybrid_search.ipynb

@@ -43,14 +43,14 @@ categories:
     - combining-filters-and-vector-search
     - contains
     - date
-    - exact_match
-    - exact_match-1
+    - exact-match
     - exists
     - ids
     - multiple-filters
     - numeric
     - or
     - regex
+    - word-match
     how-to-vectorize:
     - how-to-vectorize-text-using-vectorhub-transformers
     - how-to-vectorize-using-the-sdk
@@ -118,9 +118,9 @@ categories:
   theory-and-concepts:
     vectors-for-classification: []
     what-is-vector-search:
-    - _applications-of-vectors
-    - _limitations-of-vectors
+    - applications-of-vectors
     - how-to-vector-search
+    - limitations-of-vectors
   use-cases:
     better-text-search:
     - better-text-search-chunk-search

@@ -207,13 +207,12 @@ class DocsConfig(Config):
             Config of new docs
         """
 
-        ## Same as 'src/rdme_sync/readme/nbconver_rdmd.py'
+        ## Same as 'src/rdme_sync/readme/nbconvert_rdmd.py'
         def preprocess_slug(v: str):
-            # v = v.replace("_", " ")
-            # v = re.sub(
-            #     r"[^a-zA-Z0-9-]", "", v.replace(" ", "-").lower()
-            # ).strip("-")
-            return v.replace(".md", "")
+            if ".md" in v:
+                v = v.replace(".md", "")
+                v = re.sub(r"[^a-zA-Z0-9-]", "", v.replace("_", "-").lower()).strip("-")
+            return v
 
         category_detail = {}
         for category in self.config[self.dir_path.name]:

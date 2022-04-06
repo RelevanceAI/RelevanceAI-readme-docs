@@ -232,7 +232,7 @@ def main(args):
                 logging.debug(
                     f"Creating new ReadMe config page... \n\t{path}\n{json.dumps(args)}"
                 )
-                readme_config.create(**args)
+                # readme_config.create(**args)
 
             logging.debug(f"Rebuilding config ... ")
 

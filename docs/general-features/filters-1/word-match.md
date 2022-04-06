@@ -1,6 +1,6 @@
 ---
 title: "Word match"
-slug: "exact_match-1"
+slug: "word-match"
 hidden: false
 createdAt: "2021-11-25T05:44:25.366Z"
 updatedAt: "2022-01-19T05:16:37.437Z"

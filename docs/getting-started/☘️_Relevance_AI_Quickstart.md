@@ -2,7 +2,7 @@
 category: 623abf4109822f00e1da0b80
 createdAt: '2022-04-06T02:34:20.910205Z'
 excerpt: ''
-hidden: false
+hidden: true
 slug: relevance-ai-quickstart
 title: ☘️ Relevance AI Quickstart
 updatedAt: '2022-04-06T02:34:20.910232Z'

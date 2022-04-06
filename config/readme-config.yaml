@@ -64,7 +64,7 @@ categories:
         order: 6
         slug: cluster-metadata
         title: Cluster Metadata
-        updatedAt: '2022-04-05T07:58:58.553Z'
+        updatedAt: '2022-04-06T02:13:18.509Z'
       createdAt: '2021-11-26T10:20:49.107Z'
       custom-clustering:
       - _id: 623a96a3032c43002ef2c696
@@ -357,24 +357,15 @@ categories:
         slug: date
         title: Date
         updatedAt: '2022-04-05T07:58:58.559Z'
-      exact_match:
+      exact-match:
       - _id: 623a96a3032c43002ef2c684
         createdAt: '2021-11-25T05:20:53.996Z'
         excerpt: ''
         hidden: false
         order: 1
-        slug: exact_match
+        slug: exact-match
         title: Exact match
-        updatedAt: '2022-04-05T07:58:58.578Z'
-      exact_match-1:
-      - _id: 623a96a3032c43002ef2c685
-        createdAt: '2021-11-25T05:44:25.366Z'
-        excerpt: ''
-        hidden: false
-        order: 2
-        slug: exact_match-1
-        title: Word match
-        updatedAt: '2022-04-05T07:58:58.509Z'
+        updatedAt: '2022-01-19T05:16:30.996Z'
       excerpt: ''
       exists:
       - _id: 623a96a3032c43002ef2c687
@@ -435,6 +426,15 @@ categories:
       slug: filters-1
       title: Filters
       updatedAt: '2022-03-31T06:19:17.288Z'
+      word-match:
+      - _id: 623a96a3032c43002ef2c685
+        createdAt: '2021-11-25T05:44:25.366Z'
+        excerpt: ''
+        hidden: false
+        order: 2
+        slug: word-match
+        title: Word match
+        updatedAt: '2022-01-19T05:16:37.437Z'
     how-to-vectorize:
       _id: 623a96a3032c43002ef2c644
       createdAt: '2021-10-28T08:07:42.539Z'
@@ -558,7 +558,7 @@ categories:
       createdAt: '2021-11-08T00:59:35.504Z'
       excerpt: ''
       hidden: true
-      order: 6
+      order: 7
       slug: boilerplate
       title: Boilerplate
       updatedAt: '2022-03-24T06:18:08.611Z'
@@ -576,7 +576,7 @@ categories:
         slug: music-recommendation
         title: Audio Recommendation
         updatedAt: '2022-03-24T09:43:58.934Z'
-      order: 9
+      order: 10
       quickstart-multivector-search:
       - _id: 623a96a3032c43002ef2c65f
         createdAt: '2021-11-10T05:02:55.660Z'
@@ -621,7 +621,7 @@ categories:
       createdAt: '2021-12-14T13:55:10.312Z'
       excerpt: Developer-first vector platform
       hidden: false
-      order: 2
+      order: 3
       slug: features
       title: Features
       updatedAt: '2022-03-31T06:19:17.482Z'
@@ -630,16 +630,16 @@ categories:
       createdAt: '2021-10-26T04:06:08.694Z'
       excerpt: Installing RelevanceAI
       hidden: false
-      order: 5
+      order: 6
       slug: installation
       title: Installation
-      updatedAt: '2022-04-05T07:58:58.589Z'
+      updatedAt: '2022-04-06T02:13:18.408Z'
     old-welcome:
       _id: 623a96a3032c43002ef2c657
       createdAt: '2021-11-07T00:21:21.957Z'
       excerpt: Developer-first vector platform
       hidden: true
-      order: 3
+      order: 4
       slug: old-welcome
       title: Welcome
       updatedAt: '2022-03-31T06:19:17.445Z'
@@ -648,7 +648,7 @@ categories:
       createdAt: '2022-01-10T01:31:01.336Z'
       excerpt: Try out RelevanceAI in 5 steps!
       hidden: false
-      order: 1
+      order: 2
       slug: quick-tour
       title: Quick Feature Tour
       updatedAt: '2022-04-05T20:50:29.704Z'
@@ -657,7 +657,7 @@ categories:
       createdAt: '2021-11-17T03:54:08.625Z'
       excerpt: Try us out in 5 lines of code!
       hidden: true
-      order: 4
+      order: 5
       slug: quickstart
       title: Quickstart
       updatedAt: '2022-03-30T06:08:31.990Z'
@@ -666,7 +666,7 @@ categories:
       createdAt: '2021-11-09T04:10:49.372Z'
       excerpt: Get started with Relevance AI in 5 minutes!
       hidden: true
-      order: 10
+      order: 11
       slug: quickstart-1
       title: Example application boilerplate
       updatedAt: '2022-03-24T06:18:08.641Z'
@@ -675,19 +675,19 @@ categories:
       createdAt: '2021-12-14T14:08:01.323Z'
       excerpt: Try us out in 5 lines of code!
       hidden: true
-      order: 11
+      order: 12
       slug: quickstart-boilerplate
       title: Quickstart boilerplate
       updatedAt: '2022-03-30T06:08:31.940Z'
     relevance-ai-quickstart:
       _id: 624b905912b7be001ad7ddae
-      createdAt: '2022-04-05T07:51:41.364Z'
+      createdAt: '2022-04-06T02:34:20.910Z'
       excerpt: ''
       hidden: true
-      order: 999
+      order: 1
       slug: relevance-ai-quickstart
       title: "\u2618\uFE0F Relevance AI Quickstart"
-      updatedAt: '2022-04-05T07:53:44.622Z'
+      updatedAt: '2022-04-06T02:34:20.910Z'
     terminology:
       _id: 623a96a3032c43002ef2c624
       createdAt: '2021-10-20T03:08:30.714Z'
@@ -702,7 +702,7 @@ categories:
         updatedAt: '2022-03-24T02:50:51.514Z'
       excerpt: Guide to the terminology used in Relevance AI
       hidden: false
-      order: 8
+      order: 9
       slug: terminology
       title: Terminology
       updatedAt: '2022-01-31T09:14:05.514Z'
@@ -720,7 +720,7 @@ categories:
         title: Experimentation workflow
         updatedAt: '2022-03-24T06:18:08.497Z'
       hidden: false
-      order: 7
+      order: 8
       slug: vectors-and-vector-databases
       title: New to vectors?
       updatedAt: '2021-12-21T00:20:59.858Z'
@@ -759,7 +759,7 @@ categories:
       order: 0
       slug: welcome
       title: Relevance AI
-      updatedAt: '2022-04-05T07:59:00.271Z'
+      updatedAt: '2022-01-10T01:31:01.336Z'
   integrations:
     coming-soon-2:
       _id: 623a96a3032c43002ef2c6b5
@@ -870,7 +870,7 @@ categories:
       createdAt: '2021-12-14T02:45:46.981Z'
       excerpt: ''
       hidden: true
-      order: 3
+      order: 2
       slug: chunk-search-1
       title: Chunk search
       updatedAt: '2021-12-14T13:44:35.624Z'
@@ -879,7 +879,7 @@ categories:
       createdAt: '2021-11-19T01:36:01.161Z'
       excerpt: ''
       hidden: true
-      order: 5
+      order: 4
       slug: combining-exact-text-with-vector-search
       title: Combining exact text with vector search
       updatedAt: '2021-11-19T01:36:01.161Z'
@@ -897,7 +897,7 @@ categories:
         updatedAt: '2022-01-27T06:27:26.158Z'
       excerpt: Try out diversity search with your current search!
       hidden: true
-      order: 6
+      order: 5
       slug: diversity-search
       title: Diversity Search
       updatedAt: '2021-11-19T01:38:29.031Z'
@@ -924,7 +924,7 @@ categories:
       createdAt: '2021-12-14T13:33:49.517Z'
       excerpt: Guide to using multi-vector search
       hidden: true
-      order: 4
+      order: 3
       slug: multi-vector-search-2-1
       title: Multi-vector search
       updatedAt: '2022-04-05T07:58:58.620Z'
@@ -933,7 +933,7 @@ categories:
       createdAt: '2021-12-09T08:32:05.808Z'
       excerpt: ''
       hidden: true
-      order: 7
+      order: 6
       slug: redirects
       title: Redirects
       updatedAt: '2021-12-09T08:32:05.808Z'
@@ -984,25 +984,16 @@ categories:
       title: Vectors for classification
       updatedAt: '2022-03-24T06:18:08.521Z'
     what-is-vector-search:
-      _applications-of-vectors:
+      _id: 623a96a3032c43002ef2c637
+      applications-of-vectors:
       - _id: 623a96a3032c43002ef2c634
         createdAt: '2021-10-24T23:25:11.121Z'
         excerpt: A discussion on the applications of vectors
         hidden: false
         order: 2
-        slug: _applications-of-vectors
+        slug: applications-of-vectors
         title: Applications of vectors
         updatedAt: '2021-10-29T09:02:38.708Z'
-      _id: 623a96a3032c43002ef2c637
-      _limitations-of-vectors:
-      - _id: 623a96a3032c43002ef2c636
-        createdAt: '2021-10-24T23:26:42.495Z'
-        excerpt: An outline of the limitations of what vectors are capable of
-        hidden: true
-        order: 1
-        slug: _limitations-of-vectors
-        title: Limitations of vectors
-        updatedAt: '2022-03-24T09:43:58.601Z'
       createdAt: '2021-10-24T23:27:46.979Z'
       excerpt: An introduction to vector search/nearest neighbors
       hidden: false
@@ -1015,6 +1006,15 @@ categories:
         slug: how-to-vector-search
         title: How to vector search
         updatedAt: '2022-03-24T09:43:58.616Z'
+      limitations-of-vectors:
+      - _id: 623a96a3032c43002ef2c636
+        createdAt: '2021-10-24T23:26:42.495Z'
+        excerpt: An outline of the limitations of what vectors are capable of
+        hidden: true
+        order: 1
+        slug: limitations-of-vectors
+        title: Limitations of vectors
+        updatedAt: '2021-12-03T01:07:01.121Z'
       order: 0
       slug: what-is-vector-search
       title: What is vector search?
