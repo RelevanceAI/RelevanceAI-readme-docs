@@ -1,4 +1,4 @@
-docs:
+docs_template:
 - other:
   - data-privacy-policy.md
   - sdk-reference.md
@@ -50,6 +50,9 @@ docs:
     - or.md
     - combining-filters-and-vector-search.md
     - ids.md
+  - _snippets:
+    - ecommerce_dataset_encoded_sample_document
+    - bert_full_snippet
   - how-to-vectorize:
     - _notebooks:
       - RelevanceAI_ReadMe_How_to_Vectorize.ipynb
@@ -61,6 +64,8 @@ docs:
   - aggregations:
     - _notebooks:
       - RelevanceAI_ReadMe_Quickstart_Aggregations.ipynb
+    - _snippets:
+      - show_json_text_fields_result_keys
     - creating-aggregation-metrics.md
     - grouping-the-data.md
     - aggregations-1.md
@@ -69,6 +74,14 @@ docs:
     - _notebooks:
       - RelevanceAI_ReadMe_Creating_A_Dataset.ipynb
       - RelevanceAI_ReadMe_Insert_A_CSV.ipynb
+    - _assets:
+      - insert-csv-pandas.png
+      - pull-update-push.png
+      - health.png
+      - monitor-dataset.png
+      - csv-data-sample.png
+      - dataset-list-view.png
+      - datasets-RAI.png
     - insert-a-csv.md
     - project-and-dataset.md
     - insert-a-df.md
@@ -79,7 +92,28 @@ docs:
   - multi-vector-search-3:
     - multi-vector-search-with.md
     - multi-vector-search-2.md
+  - _assets:
+    - contains.png
+    - preview_images.png
+    - grouping-results.png
+    - multiple-filters.png
+    - category.png
+    - combine.png
+    - numeric.png
+    - exact-match.png
+    - regex.png
+    - date.png
+    - highlighting.png
+    - filters-1.png
+    - id.png
+    - preview_audio.png
+    - word-match.png
+    - exists.png
   - jsonshower:
+    - _snippets:
+      - preview_highlighting
+      - preview_images
+      - preview_audio
     - image-fields.md
     - preview-audio.md
     - highlighting.md
@@ -99,18 +133,49 @@ docs:
       - RelevanceAI-ReadMe-Text-Search-using-USE-VectorHub.ipynb
       - RelevanceAI-ReadMe-Text-to-Image-Search.ipynb
       - RelevanceAI-ReadMe-Question-Answering-using-USE-QA-Tensorflow-Hub.ipynb
+    - _snippets:
+      - tfhub_useqa_encode_query
+      - tfhub_useqa_encode_documents
+      - clip_encode_image_documents
+      - tfhub_useqa_encoding_functions
+      - multivector_query_sample_data
+      - clip_encoding_functions
+      - clip_installation
+      - clip_encode_query
+    - _assets:
+      - RelevanceAI_text_to_image.gif
+      - RelevanceAI_quickstart_clip_dashboard.png
+      - RelevanceAI_search_steps.png
+      - RelevanceAI_text_search.png
+      - RelevanceAI_quickstart_multivector_search.png
+      - RelevanceAI_question_answering_search_results.png
+      - RelevanceAI_ecommerce_dataset_preview.png
+      - RelevanceAI_multivector_search_results.png
+      - RelevanceAI_CLIP_contrastive_pretraining.png
+      - RelevanceAI_text_image_search_results.png
     - quickstart-text-search.md
     - quickstart-question-answering.md
     - music-recommendation.md
     - quickstart-text-to-image-search.md
     - quickstart-multivector-search.md
   - vectors-and-vector-databases:
+    - _assets:
+      - RelevanceAI_vector_graphic.png
+      - RelevanceAI_traditional_db.png
+      - RelevanceAI_vector_items.png
+      - RelevanceAI_experimentation_first_example_flow.png
+      - RelevanceAI_vector_analysis.png
+      - RelevanceAI_vectorbase_workflow.png
+      - RelevanceAI_nearest_neighbour.png
+      - RelevanceAI_vector_similarity.png
     - experimentation-workflow.md
     - what-are-vector-databases.md
     - what-are-vectors.md
     - why-experimentation-first.md
   - terminology:
     - documents-1.md
+  - _assets:
+    - quickstart_projector.png
   - old-welcome.md
   - terminology.md
   - boilerplate.md
@@ -121,8 +186,10 @@ docs:
   - quick-tour.md
   - quickstart.md
   - example-applications.md
+  - quickstart-boilerplate.md
   - quickstart-1.md
   - "\u2618\uFE0F_Relevance_AI_Quickstart.md"
+  - "\u2618\uFE0F_Relevance_AI_Quickstart.ipynb"
 - search-features:
   - _notebooks:
     - RelevanceAI_hybrid_search.ipynb
@@ -139,6 +206,11 @@ docs:
   - redirects:
     - vectorise-text-with-vectorhub.md
     - vectorise-images-with-vectorhub.md
+  - _assets:
+    - RelevanceAI-paviliondv6-20-large_w.png
+    - traditional_search.png
+    - RelevanceAI-paviliondv6-20-small_w.png
+    - lack_of_semantic_info.png
   - combining-exact-text-with-vector-search.md
   - text-and-vector-search-hybrid.md
   - exact-text-matching.md
@@ -146,6 +218,114 @@ docs:
   - diversity-search.md
   - chunk-search-1.md
   - redirects.md
+- _snippets:
+  - sample_documents:
+    - get_titanic_dataset
+    - quickstart_docs
+    - get_realestate_dataset
+    - get_ecommerce_dataset_encoded
+    - get_ecommerce_dataset_clean
+    - quickstart_docs_1
+    - uuid
+  - search:
+    - multivector_query
+    - multivector_query_multiple_models_weighted
+    - vector_search_with_filter
+    - traditional_search
+    - hybrid_search
+    - launch_search_app
+    - multivector_query_multiple_models
+    - show_json_text_fields
+    - multivector_query_three_models
+    - vector_search
+    - multivector_query_show_json
+    - query_show_json
+  - installation:
+    - relevanceai_git_installation
+    - vectorhub_clip_installation
+    - vectorhub_encoders_text_tfhub_installation
+    - sentence_transformers_installation
+    - relevanceai_dev_installation
+    - vectorhub_encoders_transformers
+    - vectorhub_encoders_sentence_transformers
+    - relevanceai_editable_installation
+    - relevanceai_installation
+  - cluster:
+    - cluster_vizops_distribution
+    - launch_cluster_app
+    - fit_predict_update
+    - clusterops_fit_predict_documents
+    - list_furthest_from_center
+    - cluster_aggregate_metrics
+    - cluster
+    - clusterops_fit_predict_update
+    - cluster_vizops_custom
+    - evaluate
+    - insert_centroid_documents
+    - cluster_aggregate
+    - clusterops
+    - subclustering
+    - get_centroid_documents
+    - kmeans_cluster
+    - cluster_vizops
+    - groupby
+    - cluster_metadata
+    - cluster_sample_results
+    - list_closest_to_center
+  - client:
+    - client_dataset
+    - client_instantiation
+  - sklearn:
+    - skew_variation
+  - dataset:
+    - dataset_send_to
+    - upsert_documents
+    - clone_dataset
+    - filters_three_setup
+    - delete_dataset
+    - list_datasets
+    - dataset_basics
+    - filters_setup
+    - aggregate_dataset
+    - insert_csv
+    - dataset_vectorize
+    - upsert_example
+    - bulk_apply_encoding
+    - filter_setup_with_format
+    - filter_setup
+    - pull_update_push
+    - insert_df
+    - dataset_health
+    - insert_documents
+    - dataset
+    - create_dataset
+    - aggregation_query
+    - vectorize
+    - dataset_schema
+    - apply_encoding
+    - filter_dataset
+  - general:
+    - variable
+  - encode:
+    - encode_documents
+    - clip_define_txt_encoder
+    - clip_encode_an_image
+    - clip_enc_image
+    - clip_enc_img_docs
+    - encode_fields_in_documents_func
+    - encode_text_query
+    - clip_encode_a_text_snippet
+    - model_encode_query
+    - use2vec_encode_documents
+    - encode_documents_sample_func
+    - encode_a_sample
+    - clip2vec_encode_image_documents
+    - transformer_enc
+    - use_enc
+  - output:
+    - ecommerce_dataset_clean_sample_document
+    - ecommerce_dataset_encoded_schema
+    - ecommerce_dataset_encoded_sample_document
 - comparator:
   - search-comparator:
     - set-up.md
@@ -155,6 +335,12 @@ docs:
   - embedding-comparator.md
   - search-comparator.md
 - clustering-features:
+  - _snippets:
+    - clean_price_field
+    - faiss_install
+    - custom_clustering_sample
+    - faiss_kmeans_clustering_sample
+    - numpy_install
   - clustering:
     - _notebooks:
       - RelevanceAI-ReadMe-Kmeans-Clustering-Step-by-Step.ipynb
@@ -172,6 +358,9 @@ docs:
     - quickstart-clustering.md
     - quickstart-k-means.md
     - list-furthest-from-centroids.md
+  - _assets:
+    - RelevanceAI_clustering.png
+    - RelevanceAI_clustering_quickstart_kmeans_results.png
   - cluster-evaluation:
     - _notebooks:
       - RelevanceAI-ReadMe-Cluster-Metrics.ipynb
@@ -195,4 +384,18 @@ docs:
 - dashboard:
   - saving-aggregation-queries-from-sdk.md
   - writing-aggregation-queries.md
+- _assets:
+  - RelevanceAI_Workflow_Phases.png
+  - RelevanceAI_vectors_dashboard.png
+  - RelevanceAI_search_dashboard.png
+  - RelevanceAI_auth_token_details.png
+  - RelevanceAI_vector_space.png
+  - RelevanceAI_auth_setting_details.png
+  - RelevanceAI_images_dashboard.png
+  - RelevanceAI_DS_Workflow.png
+  - RelevanceAI_dataset_dashboard.png
+  - RelevanceAI-logo.svg
+  - RelevanceAI_cluster_dashboard.png
+  - RelevanceAI_DS_Workflow_old.png
+- _snippet_params.json
 version: v2.0.0

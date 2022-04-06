@@ -124,7 +124,7 @@ class DocsConfig(Config):
         d: Dict,
         fn: Optional[Callable] = None,
         fn_args: Optional[Dict] = {},
-        filter_keys: List[str] = ["([_])\w+"],
+        filter_keys: List[str] = ["([_])\w+", ".*.ipynb"],
     ):
         """Iterate nested dict"""
         regex_filter = "(" + ")|(".join(filter_keys) + ")"
@@ -155,7 +155,7 @@ class DocsConfig(Config):
             return post.metadata["slug"]
 
     @staticmethod
-    def _clean_config(config: Dict, filter_keys: List[str] = ["([_])\w+"]):
+    def _clean_config(config: Dict, filter_keys: List[str] = ["([_])\w+", ".*.ipynb"]):
         """Filter config with regex filter_keys
         Converts docs-config into docs-config-condensed
         """
@@ -164,7 +164,12 @@ class DocsConfig(Config):
         for category, pages in config.items():
             if not re.match(regex_filter, category):
                 clean_config[category] = pages
-                page_slugs = [p for p in pages if isinstance(p, str)]
+                page_slugs = [
+                    p
+                    for p in pages
+                    if isinstance(p, str)
+                    if not re.match(regex_filter, p)
+                ]
                 page_dicts = {
                     k: v
                     for p in pages
@@ -179,10 +184,13 @@ class DocsConfig(Config):
 
                 for slug in page_slugs:
                     if page_dicts.get(slug):
-                        children = sorted(
-                            [c for c in page_dicts.get(slug) if isinstance(c, str)]
-                        )
-                        page_detail[slug] = children
+                        if not re.match(regex_filter, slug):
+                            if "ipynb" in slug:
+                                raise ValueError()
+                            children = sorted(
+                                [c for c in page_dicts.get(slug) if isinstance(c, str)]
+                            )
+                            page_detail[slug] = children
                     else:
                         page_detail[slug] = []
             clean_config[category] = page_detail

@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 
 import json
+from multiprocessing.sharedctypes import Value
 import os
 from pathlib import Path
 
@@ -49,6 +50,9 @@ def get_diff_fpaths(
 
         ## Traversing tree diff
         for node in [d.t1, d.t2]:
+            if isinstance(node, dict):
+                fname = [f"{list(node.keys())[0]}.md"]
+                break
             if isinstance(node, list):
                 fname = [f"{path[-1]}.md"]
                 path.pop()
@@ -65,7 +69,7 @@ def get_diff_fpaths(
     return ddiff_fpaths
 
 
-def get_config_diff(docs_config: Dict, readme_config: Dict, fpath: Path) -> List[Path]:
+def get_config_diff(docs_config: Dict, readme_config: Dict, root: Path) -> List[Path]:
     """This function compares the configs in the docs and the configs in the readme
 
     Parameters
@@ -74,8 +78,8 @@ def get_config_diff(docs_config: Dict, readme_config: Dict, fpath: Path) -> List
         The configuration from the docs.
     readme_config : Dict
         The configuration read from the README.
-    fpath : Path
-        Path
+    root : Path
+        Root dir path
 
     """
     new_doc_fpaths = new_readme_fpaths = []
@@ -91,9 +95,10 @@ def get_config_diff(docs_config: Dict, readme_config: Dict, fpath: Path) -> List
         logging.debug(f"---------")
         logging.debug(f"Deepdiff: \n{ddiff} ...")
 
+        fpath = root / "docs"
         new_doc_fpaths = get_diff_fpaths(ddiff, "removed", fpath)
 
-        fpath = Path(str(fpath).replace("/docs", "/docs_template"))
+        fpath = root / "docs_template"
         new_readme_fpaths = get_diff_fpaths(ddiff, "added", fpath)
 
     return new_doc_fpaths, new_readme_fpaths
@@ -180,23 +185,38 @@ def create_doc_page(path: Path, readme_config: ReadMeConfig):
         logging.info(f"\tOutput file: {path}")
 
 
+def create_categories(fpath: Path, readme_config: ReadMeConfig):
+    readme_categories = readme_config.config["categories"]
+    doc_categories = [
+        d.name for d in fpath.iterdir() if d.is_dir() if str(d.name)[0] != "_"
+    ]
+
+    for c in readme_categories:
+        if c not in doc_categories:
+            new_category_fpath = fpath / c
+            logging.debug(f"Creating new category: {new_category_fpath}")
+            Path(new_category_fpath).mkdir()
+
+
 def main(args):
     logging_level = logging.DEBUG if args.debug else logging.INFO
     # logging.basicConfig(format='%(asctime)s %(message)s', level=logging_level)
     logging.basicConfig(level=logging_level)
 
-    DOCS_PATH = Path(args.path) / "docs"
+    # DOCS_PATH = Path(args.path) / "docs"
     DOCS_TEMPLATE_PATH = Path(args.path) / "docs_template"
     EXPORT_MD_PATH = Path(args.path) / "export_md" / args.version
     README_VERSION = args.version
     README_CONFIG_FPATH = ROOT_PATH / "config" / "readme-config.yaml"
-    DOCS_CONDENSED_CONFIG_FPATH = ROOT_PATH / "config" / "docs-config-condensed.yaml"
-    DOCS_CONFIG_FPATH = ROOT_PATH / "config" / "docs-config.yaml"
+    DOCS_CONDENSED_CONFIG_FPATH = (
+        ROOT_PATH / "config" / "docs-template-config-condensed.yaml"
+    )
+    DOCS_CONFIG_FPATH = ROOT_PATH / "config" / "docs-template-config.yaml"
 
     readme_config = ReadMeConfig(version=README_VERSION, fpath=README_CONFIG_FPATH)
     docs_config = DocsConfig(
         version=README_VERSION,
-        dir_path=DOCS_PATH,
+        dir_path=DOCS_TEMPLATE_PATH,
         fpath=DOCS_CONFIG_FPATH,
     )
 
@@ -206,7 +226,7 @@ def main(args):
         readme_config.build()
 
     elif args.method == "import_md":
-        logging.info(f"Importing {README_VERSION} doc export to {DOCS_PATH}")
+        logging.info(f"Importing {README_VERSION} doc export to {DOCS_TEMPLATE_PATH}")
 
         MD_FILES = Path(DOCS_TEMPLATE_PATH).glob("**/**/*.md")
         EXPORT_MD_FILES = Path(EXPORT_MD_PATH).glob("**/**/*.md")
@@ -260,17 +280,24 @@ def main(args):
                         shutil.copy(export_path, docs_path)
 
     elif args.method == "update":
-        logging.info(f"Updating {README_VERSION} ReadMe to current {DOCS_PATH}")
+        logging.info(
+            f"Updating {README_VERSION} ReadMe to current {DOCS_TEMPLATE_PATH}"
+        )
 
         docs_config.build()
 
         docs_condensed_config = docs_config.condensed_config
         readme_condensed_config = readme_config.condensed_config
 
+        ## Syncing categories
+        logging.debug(f"Creating categories in {DOCS_TEMPLATE_PATH}...")
+        create_categories(DOCS_TEMPLATE_PATH, readme_config)
+
+        ## Syncing pages
         new_doc_fpaths, new_readme_fpaths = get_config_diff(
+            root=ROOT_PATH,
             docs_config=docs_condensed_config,
             readme_config=readme_condensed_config,
-            fpath=DOCS_PATH,
         )
 
         if not new_doc_fpaths and not new_readme_fpaths:
@@ -284,6 +311,7 @@ def main(args):
 
         if new_doc_fpaths or new_readme_fpaths:
             logging.debug(f"Rebuilding config ... ")
+            docs_config.build()
             readme_config.build()
 
 
