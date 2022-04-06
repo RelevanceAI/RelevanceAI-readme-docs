@@ -634,6 +634,15 @@ categories:
       slug: installation
       title: Installation
       updatedAt: '2022-04-06T02:13:18.408Z'
+    new-page-test:
+      _id: 624d060acca16400352eba8c
+      createdAt: '2022-04-06T03:16:26.257Z'
+      excerpt: ''
+      hidden: true
+      order: 999
+      slug: new-page-test
+      title: New page test
+      updatedAt: '2022-04-06T03:16:26.257Z'
     old-welcome:
       _id: 623a96a3032c43002ef2c657
       createdAt: '2021-11-07T00:21:21.957Z'
