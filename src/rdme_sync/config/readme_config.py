@@ -17,10 +17,10 @@ class ReadMeConfig(Config):
         select_fields: Optional[List[str]] = [
             "slug",
             "title",
-            "excerpt",
+            # "excerpt",
             "hidden",
-            "createdAt",
-            "updatedAt",
+            # "createdAt",
+            # "updatedAt",
             # "parentDoc",
             "order",
             "_id",
@@ -90,16 +90,23 @@ class ReadMeConfig(Config):
 
         ## Building condensed
         condensed_config = {"version": self.version}
+        category_condensed = {}
         category_detail = {}
+
         for cs in category_slugs.keys():
             if not any([f in cs for f in self.api_categories + self.sdk_categories]):
-                category_detail[cs] = {
-                    ps["slug"]: sorted([c["slug"] for c in ps["children"]])
-                    for ps in self.rdme.get_docs_for_category(
-                        category_slug=cs, select_fields=["slug", "children"]
+                category_condensed[cs] = {}
+                category_detail[cs] = {}
+
+                for ps in self.rdme.get_docs_for_category(
+                    category_slug=cs, select_fields=self.select_fields + ["children"]
+                ):
+                    category_condensed[cs][ps["slug"]] = sorted(
+                        [c["slug"] for c in ps["children"]]
                     )
-                }
-        condensed_config["categories"] = category_detail
+                    category_detail[cs][ps["slug"]] = ps
+
+        condensed_config["categories"] = category_condensed
 
         if condensed:
             logging.debug(f"Saving config to { self.condensed_fpath}")
@@ -108,23 +115,23 @@ class ReadMeConfig(Config):
 
         config = condensed_config
 
-        ## Building expanded config (inc children)
-        for category, pages in category_detail.items():
-            page_details = {}
-            for page, children in pages.items():
-                page_detail = self.rdme.get_doc(
-                    page_slug=page, select_fields=self.select_fields
-                )
-                page_details[page] = (
-                    page_detail[0] if isinstance(page_detail, list) else page_detail
-                )
+        # ## Building expanded config (inc children)
+        # for category, pages in category_detail.items():
+        #     page_details = {}
+        #     for page, children in pages.items():
+        #         page_detail = self.rdme.get_doc(
+        #             page_slug=page, select_fields=self.select_fields
+        #         )
 
-                for child in children:
-                    page_details[page][child] = self.rdme.get_doc(
-                        page_slug=child, select_fields=self.select_fields
-                    )
+        #         page_details[page] = (
+        #             page_detail[0] if isinstance(page_detail, list) else page_detail
+        #         )
 
-            category_detail[category] = page_details
+        #         for child in children:
+        #             page_details[page][child] = self.rdme.get_doc(
+        #                 page_slug=child, select_fields=self.select_fields
+        #             )
+        #     category_detail[category] = page_details
 
         logging.debug(f"Saving config to {self.fpath} ... ")
         # logging.debug(f'Config: {json.dumps(category_detail, indent=2)}')
@@ -215,3 +222,15 @@ class ReadMeConfig(Config):
                 if isinstance(v[0], dict):
                     page_orders.append(v[0]["order"])
         return page_orders
+
+    def get_readme_page(self, page_slug: str):
+        res = self.rdme.get_doc(page_slug=page_slug)
+        return {
+            "title": res["title"],
+            "slug": res["slug"],
+            "excerpt": res["excerpt"],
+            "hidden": res["hidden"],
+            "createdAt": res["createdAt"],
+            "updatedAt": res["updatedAt"],
+            "body": res["body"],
+        }

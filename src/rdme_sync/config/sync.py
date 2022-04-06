@@ -78,6 +78,8 @@ def get_config_diff(docs_config: Dict, readme_config: Dict, fpath: Path) -> List
         Path
 
     """
+    new_doc_fpaths = new_readme_fpaths = []
+
     ddiff = DeepDiff(
         docs_config,
         readme_config,
@@ -85,12 +87,13 @@ def get_config_diff(docs_config: Dict, readme_config: Dict, fpath: Path) -> List
         report_repetition=True,
         view="tree",
     )
-
     if ddiff:
         logging.debug(f"---------")
         logging.debug(f"Deepdiff: \n{ddiff} ...")
 
         new_doc_fpaths = get_diff_fpaths(ddiff, "removed", fpath)
+
+        fpath = Path(str(fpath).replace("/docs", "/docs_template"))
         new_readme_fpaths = get_diff_fpaths(ddiff, "added", fpath)
 
     return new_doc_fpaths, new_readme_fpaths
@@ -113,6 +116,68 @@ def get_frontmatter(fpath: Path) -> Dict:
         # post["updatedAt"] = dt
         # frontmatter.dump(post, fpath, sort_keys=False)
     return post.to_dict()
+
+
+def create_readme_page(path: Path, readme_config: ReadMeConfig):
+    """This function creates a readme page for the given path
+
+    Parameters
+    ----------
+    path : Path
+        The path to the directory that contains the readme file.
+    readme_config : ReadMeConfig
+        ReadMeConfig
+
+    """
+    category = str(path).split("/docs")[1].split("/")[1]
+    parent = path.parent.name
+    logging.debug(f"Category: {category} Parent: {parent}")
+
+    post = get_frontmatter(path)
+
+    ## Getting max page order
+    if category == parent:
+        config_dict = readme_config.config["categories"][category]
+        page_orders = readme_config.get_page_orders(config_dict, category=True)
+    else:
+        config_dict = readme_config.config["categories"][category][parent]
+        page_orders = readme_config.get_page_orders(config_dict, category=False)
+    max_page_order = max(page_orders)
+
+    ## Creating new page
+    args = {
+        "title": post["title"],
+        "type": "basic",
+        "category_slug": category,
+        "parent_slug": parent,
+        "hidden": post["hidden"],
+        "order": max_page_order + 1,
+    }
+    logging.debug(f"Creating new ReadMe config page... \n\t{path}\n{json.dumps(args)}")
+    readme_config.create(**args)
+
+
+def create_doc_page(path: Path, readme_config: ReadMeConfig):
+
+    doc = readme_config.get_readme_page(page_slug=path.name.replace(".md", ""))
+    post_metadata = {
+        "title": doc["title"],
+        "slug": doc["slug"],
+        "hidden": doc["hidden"],
+        "excerpt": doc["excerpt"],
+        "createdAt": doc["createdAt"],
+        "updatedAt": doc["updatedAt"],
+    }
+
+    post = frontmatter.loads(doc["body"])
+    post.metadata = post_metadata
+
+    logging.debug(
+        f"Creating new page in repo ... \n\t{path}\n{json.dumps(post_metadata)}"
+    )
+    with open(path, "w") as fout:
+        fout.write(frontmatter.dumps(post))
+        logging.info(f"\tOutput file: {path}")
 
 
 def main(args):
@@ -197,7 +262,6 @@ def main(args):
     elif args.method == "update":
         logging.info(f"Updating {README_VERSION} ReadMe to current {DOCS_PATH}")
 
-        ## TODO: Merge docs_config and readme_config schema
         docs_config.build()
 
         docs_condensed_config = docs_config.condensed_config
@@ -209,50 +273,18 @@ def main(args):
             fpath=DOCS_PATH,
         )
 
-        # if not new_doc_fpaths and not new_readme_fpaths:
-        #     logging.debug(f"No new updates in config ...")
-        # elif new_doc_fpaths:
-        #     for path in new_doc_fpaths:
-        #         category = str(path).split("/docs")[1].split("/")[1]
-        #         parent = path.parent.name
-        #         logging.debug(f"Category: {category} Parent: {parent}")
+        if not new_doc_fpaths and not new_readme_fpaths:
+            logging.debug(f"No new updates in config ...")
+        elif new_doc_fpaths:
+            for path in new_doc_fpaths:
+                create_readme_page(path, readme_config)
+        elif new_readme_fpaths:
+            for path in new_readme_fpaths:
+                create_doc_page(path, readme_config)
 
-        #         # ## TODO: read slug from fname - in case slug is not the same
-        #         post = get_frontmatter(path)
-
-        #         ## Creating new frontmatter if none exists
-
-        #         ## Getting max page order
-        #         if category == parent:
-        #             config_dict = readme_config.config["categories"][category]
-        #             page_orders = readme_config.get_page_orders(
-        #                 config_dict, category=True
-        #             )
-        #         else:
-        #             config_dict = readme_config.config["categories"][category][parent]
-        #             page_orders = readme_config.get_page_orders(
-        #                 config_dict, category=False
-        #             )
-        #         max_page_order = max(page_orders)
-
-        #         ## Creating new page
-        #         args = {
-        #             "title": post["title"],
-        #             "type": "basic",
-        #             "category_slug": category,
-        #             "parent_slug": parent,
-        #             "hidden": post["hidden"],
-        #             "order": max_page_order + 1,
-        #         }
-        #         logging.debug(
-        #             f"Creating new ReadMe config page... \n\t{path}\n{json.dumps(args)}"
-        #         )
-        #         readme_config.create(**args)
-
-        #     logging.debug(f"Rebuilding config ... ")
-
-        #     # # ## TODO: Inserting new item in readme config with new category only instead rebuilding full config
-        #     # readme_config.build()
+        if new_doc_fpaths or new_readme_fpaths:
+            logging.debug(f"Rebuilding config ... ")
+            readme_config.build()
 
 
 if __name__ == "__main__":

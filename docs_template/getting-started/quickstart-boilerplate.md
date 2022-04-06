@@ -1,11 +1,12 @@
 ---
-title: "Quickstart boilerplate"
-slug: "quickstart-boilerplate"
-excerpt: "Try us out in 5 lines of code!"
+createdAt: '2021-12-14T14:08:01.323Z'
+excerpt: Try us out in 5 lines of code!
 hidden: true
-createdAt: "2021-12-14T14:08:01.323Z"
-updatedAt: "2021-12-14T14:08:01.323Z"
+slug: quickstart-boilerplate
+title: Quickstart boilerplate
+updatedAt: '2022-03-30T06:08:31.940Z'
 ---
+
 [block:api-header]
 {
   "title": "Try us out in 5 lines of code!"
