@@ -50,23 +50,26 @@ def get_diff_fpaths(
 
         ## Traversing tree diff
         for node in [d.t1, d.t2]:
-            if isinstance(node, dict):
-                print(list(node.keys()))
-                fname = [f"{list(node.keys())[0]}.md"]
-                break
-            if isinstance(node, list):
-                fname = [f"{path[-1]}.md"]
-                path.pop()
-                break
-            if str(node) != "not present":
-                fname = [f"{node}.md"]
-                break
-        path += fname
+            # print(node)
+            # print(type(node))
+            if str(node) == "not present":
+                print(f"Str: {node}")
 
-        if ddiff_items:
-            NEW_DOC_FPATH = fpath / "/".join(path)
-            logging.debug(f"\n{NEW_DOC_FPATH} ...")
-            ddiff_fpaths.append(NEW_DOC_FPATH)
+                ddiff_fpaths.append(fpath / "/".join(path[:-1] + [f"{path[-1]}.md"]))
+            if isinstance(node, dict):
+                print(f"Dict: {list(node.keys())}")
+                for k, v in node.items():
+                    ddiff_fpaths.append(fpath / "/".join(path + [f"{n}.md"]))
+            if isinstance(node, list):
+                # print(f'List: {list(node)}')
+
+                if node != []:
+                    for n in node:
+                        ddiff_fpaths.append(fpath / "/".join(path + [f"{n}.md"]))
+            if isinstance(node, str) and str(node) != "not present":
+                print(f"Str: {node}")
+                ddiff_fpaths.append(fpath / "/".join(path + [f"{n}.md"]))
+
     return ddiff_fpaths
 
 
@@ -88,8 +91,8 @@ def get_config_diff(docs_config: Dict, readme_config: Dict, root: Path) -> List[
     ddiff = DeepDiff(
         docs_config,
         readme_config,
-        # ignore_order=True,
-        # report_repetition=True,
+        ignore_order=True,
+        report_repetition=True,
         view="tree",
     )
     if ddiff:
@@ -184,9 +187,12 @@ def create_doc_page(path: Path, readme_config: ReadMeConfig):
     logging.debug(
         f"Creating new page in repo ... \n\t{path}\n{json.dumps(post_metadata)}"
     )
-    with open(path, "w") as fout:
-        fout.write(frontmatter.dumps(post))
-        logging.info(f"\tOutput file: {path}")
+
+    if not Path(path).exists():
+        Path(path.parent).mkdir(parents=True, exist_ok=True)
+        with open(path, "w") as fout:
+            fout.write(frontmatter.dumps(post))
+            logging.info(f"\tOutput file: {path}")
 
 
 def create_categories(fpath: Path, readme_config: ReadMeConfig):
@@ -291,8 +297,8 @@ def main(args):
         ## Syncing categories
         logging.debug(f"Creating categories in {DOCS_TEMPLATE_PATH}...")
         create_categories(DOCS_TEMPLATE_PATH, readme_config)
-
-        docs_config.build()
+        # from pprint import pprint
+        # pprint(docs_config.build())
 
         docs_condensed_config = docs_config.condensed_config
         readme_condensed_config = readme_config.condensed_config
@@ -306,17 +312,18 @@ def main(args):
 
         if not new_doc_fpaths and not new_readme_fpaths:
             logging.debug(f"No new updates in config ...")
-        elif new_doc_fpaths:
+            return
+
+        if new_doc_fpaths:
             for path in new_doc_fpaths:
                 create_readme_page(path, readme_config)
         elif new_readme_fpaths:
             for path in new_readme_fpaths:
                 create_doc_page(path, readme_config)
 
-        if new_doc_fpaths or new_readme_fpaths:
-            logging.debug(f"Rebuilding config ... ")
-            docs_config.build()
-            readme_config.build()
+        logging.debug(f"Rebuilding config ... ")
+        docs_config.build()
+        readme_config.build()
 
 
 if __name__ == "__main__":

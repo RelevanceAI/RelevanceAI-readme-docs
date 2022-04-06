@@ -1,11 +1,12 @@
 ---
-title: "Applications of vectors"
-slug: "applications-of-vectors"
-excerpt: "A discussion on the applications of vectors"
+createdAt: '2021-10-24T23:25:11.121Z'
+excerpt: A discussion on the applications of vectors
 hidden: false
-createdAt: "2021-10-24T23:25:11.121Z"
-updatedAt: "2021-10-29T09:02:38.708Z"
+slug: applications-of-vectors
+title: Applications of vectors
+updatedAt: '2021-10-29T09:02:38.708Z'
 ---
+
 **Assumed Knowledge**: Vectors
 **Target Audience**: General audience
 **Reading Time**: 2 minutes

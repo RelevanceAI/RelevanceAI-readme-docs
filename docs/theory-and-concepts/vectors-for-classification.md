@@ -1,11 +1,12 @@
 ---
-title: "Vectors for classification"
-slug: "vectors-for-classification"
-excerpt: "Vectors are re-framing how we approach traditional deep learning problems"
+createdAt: '2021-10-24T23:26:12.954Z'
+excerpt: Vectors are re-framing how we approach traditional deep learning problems
 hidden: false
-createdAt: "2021-10-24T23:26:12.954Z"
-updatedAt: "2021-12-03T03:33:46.707Z"
+slug: vectors-for-classification
+title: Vectors for classification
+updatedAt: '2022-03-24T06:18:08.521Z'
 ---
+
 **Required Knowledge**: Vectors, Encoding, Classification problems
 **Audience**: Data scientists, Vector enthusiasts, Statisticians, Machine learning engineers
 **Reading time**: 5 minutes

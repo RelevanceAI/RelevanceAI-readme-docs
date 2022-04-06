@@ -1,11 +1,12 @@
 ---
-title: "What is vector search?"
-slug: "what-is-vector-search"
-excerpt: "An introduction to vector search/nearest neighbors"
+createdAt: '2021-10-24T23:27:46.979Z'
+excerpt: An introduction to vector search/nearest neighbors
 hidden: false
-createdAt: "2021-10-24T23:27:46.979Z"
-updatedAt: "2021-10-29T09:02:55.001Z"
+slug: what-is-vector-search
+title: What is vector search?
+updatedAt: '2022-03-24T06:18:08.575Z'
 ---
+
 **Assumed Knowledge**: Vectors
 **Target Audience**: General developers
 **Reading Time**: 3 minutes

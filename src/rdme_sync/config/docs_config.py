@@ -12,6 +12,8 @@ import frontmatter
 from rdme_sync.config.config import Config
 
 
+# DocsConfig is a class that
+# contains the configuration for the Docs class
 class DocsConfig(Config):
     def __init__(
         self,
@@ -75,9 +77,14 @@ class DocsConfig(Config):
         if select_fields:
             self.select_fields = select_fields
 
+        print(self.dir_path)
+        from pprint import pprint
+
+        # pprint(self.config)
         self.config = self._dir_to_dict(self.dir_path)
         self.config["version"] = self.version
 
+        print(self.fpath)
         with open(self.fpath, "w") as f:
             yaml.dump(self.config, f, default_flow_style=False, sort_keys=True)
 
@@ -185,8 +192,6 @@ class DocsConfig(Config):
                 for slug in page_slugs:
                     if page_dicts.get(slug):
                         if not re.match(regex_filter, slug):
-                            if "ipynb" in slug:
-                                raise ValueError()
                             children = sorted(
                                 [c for c in page_dicts.get(slug) if isinstance(c, str)]
                             )

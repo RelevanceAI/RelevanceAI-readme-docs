@@ -1,11 +1,12 @@
 ---
-title: "How to vector search"
-slug: "how-to-vector-search"
-excerpt: "A Guide On Using Vector Search"
+createdAt: '2021-10-20T03:08:30.713Z'
+excerpt: A Guide On Using Vector Search
 hidden: false
-createdAt: "2021-10-20T03:08:30.713Z"
-updatedAt: "2021-10-29T09:03:00.155Z"
+slug: how-to-vector-search
+title: How to vector search
+updatedAt: '2022-03-24T09:43:58.616Z'
 ---
+
 **Assumed Knowledge**: Vectors
 **Target Audience**: General audience
 **Reading Time**: 1 minute

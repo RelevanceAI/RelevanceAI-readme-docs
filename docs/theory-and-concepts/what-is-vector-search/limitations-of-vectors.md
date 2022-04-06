@@ -1,11 +1,12 @@
 ---
-title: "Limitations of vectors"
-slug: "limitations-of-vectors"
-excerpt: "An outline of the limitations of what vectors are capable of"
+createdAt: '2021-10-24T23:26:42.495Z'
+excerpt: An outline of the limitations of what vectors are capable of
 hidden: true
-createdAt: "2021-10-24T23:26:42.495Z"
-updatedAt: "2021-12-03T01:07:01.121Z"
+slug: limitations-of-vectors
+title: Limitations of vectors
+updatedAt: '2021-12-03T01:07:01.121Z'
 ---
+
 **Assumed Knowledge**: Vectors
 **Target Audience**: General audience
 **Reading Time**: 2 minutes
