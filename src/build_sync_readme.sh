@@ -74,14 +74,13 @@ fi
 # 	python src/rdme_sync/readme/nbconvert_rdmd.py -f "block" -p $PWD -v $GIT_BRANCH_NAME_VERSION
 # fi
 
-
-# CYAN "=== Updating config $GIT_BRANCH_NAME with new files ==="
-# ### Updates ReadMe with new files in docs
-# if $DEBUG_MODE; then
-# 	python src/rdme_sync/config/sync.py --method "update" -d -p $PWD -v $GIT_BRANCH_NAME
-# else
-# 	python src/rdme_sync/config/sync.py --method "update"  -p $PWD -v $GIT_BRANCH_NAME
-# fi
+CYAN "=== Updating config $GIT_BRANCH_NAME with new files ==="
+### Updates ReadMe with new files in docs
+if $DEBUG_MODE; then
+	python src/rdme_sync/config/sync.py --method "update" -d -p $PWD -v $GIT_BRANCH_NAME
+else
+	python src/rdme_sync/config/sync.py --method "update"  -p $PWD -v $GIT_BRANCH_NAME
+fi
 
 
 CYAN "=== Rebuilding Readme docs $GIT_BRANCH_NAME ==="

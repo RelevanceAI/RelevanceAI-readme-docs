@@ -51,6 +51,7 @@ def get_diff_fpaths(
         ## Traversing tree diff
         for node in [d.t1, d.t2]:
             if isinstance(node, dict):
+                print(list(node.keys()))
                 fname = [f"{list(node.keys())[0]}.md"]
                 break
             if isinstance(node, list):
@@ -87,8 +88,8 @@ def get_config_diff(docs_config: Dict, readme_config: Dict, root: Path) -> List[
     ddiff = DeepDiff(
         docs_config,
         readme_config,
-        ignore_order=True,
-        report_repetition=True,
+        # ignore_order=True,
+        # report_repetition=True,
         view="tree",
     )
     if ddiff:
@@ -173,6 +174,9 @@ def create_doc_page(path: Path, readme_config: ReadMeConfig):
         "createdAt": doc["createdAt"],
         "updatedAt": doc["updatedAt"],
     }
+    if doc.get("type") and doc.get("type") == "link":
+        post_metadata["link_url"] = doc["link_url"]
+        post_metadata["type"] = doc["type"]
 
     post = frontmatter.loads(doc["body"])
     post.metadata = post_metadata
@@ -284,14 +288,14 @@ def main(args):
             f"Updating {README_VERSION} ReadMe to current {DOCS_TEMPLATE_PATH}"
         )
 
+        ## Syncing categories
+        logging.debug(f"Creating categories in {DOCS_TEMPLATE_PATH}...")
+        create_categories(DOCS_TEMPLATE_PATH, readme_config)
+
         docs_config.build()
 
         docs_condensed_config = docs_config.condensed_config
         readme_condensed_config = readme_config.condensed_config
-
-        ## Syncing categories
-        logging.debug(f"Creating categories in {DOCS_TEMPLATE_PATH}...")
-        create_categories(DOCS_TEMPLATE_PATH, readme_config)
 
         ## Syncing pages
         new_doc_fpaths, new_readme_fpaths = get_config_diff(

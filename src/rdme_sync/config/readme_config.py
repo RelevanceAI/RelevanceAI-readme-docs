@@ -233,4 +233,6 @@ class ReadMeConfig(Config):
             "createdAt": res["createdAt"],
             "updatedAt": res["updatedAt"],
             "body": res["body"],
+            "type": res["type"],
+            "link_url": res["link_url"],
         }
