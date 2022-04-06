@@ -50,25 +50,23 @@ def get_diff_fpaths(
 
         ## Traversing tree diff
         for node in [d.t1, d.t2]:
-            # print(node)
-            # print(type(node))
-            if str(node) == "not present":
-                print(f"Str: {node}")
-
-                ddiff_fpaths.append(fpath / "/".join(path[:-1] + [f"{path[-1]}.md"]))
             if isinstance(node, dict):
-                print(f"Dict: {list(node.keys())}")
+                logging.debug(f"Dict: {node}")
                 for k, v in node.items():
-                    ddiff_fpaths.append(fpath / "/".join(path + [f"{n}.md"]))
+                    if v == []:
+                        ddiff_fpaths.append(fpath / "/".join(path + [f"{k}.md"]))
             if isinstance(node, list):
-                # print(f'List: {list(node)}')
-
+                logging.debug(f"List: {list(node)}")
                 if node != []:
                     for n in node:
                         ddiff_fpaths.append(fpath / "/".join(path + [f"{n}.md"]))
+                else:
+                    ddiff_fpaths.append(
+                        fpath / "/".join(path[:-1] + [f"{path[-1]}.md"])
+                    )
             if isinstance(node, str) and str(node) != "not present":
-                print(f"Str: {node}")
-                ddiff_fpaths.append(fpath / "/".join(path + [f"{n}.md"]))
+                logging.debug(f"Str: {node}")
+                ddiff_fpaths.append(fpath / "/".join(path + [f"{node}.md"]))
 
     return ddiff_fpaths
 
@@ -151,7 +149,8 @@ def create_readme_page(path: Path, readme_config: ReadMeConfig):
     else:
         config_dict = readme_config.config["categories"][category][parent]
         page_orders = readme_config.get_page_orders(config_dict, category=False)
-    max_page_order = max(page_orders)
+
+    max_page_order = max(page_orders) if page_orders else 0
 
     ## Creating new page
     args = {
@@ -163,7 +162,7 @@ def create_readme_page(path: Path, readme_config: ReadMeConfig):
         "order": max_page_order + 1,
     }
     logging.debug(f"Creating new ReadMe config page... \n\t{path}\n{json.dumps(args)}")
-    readme_config.create(**args)
+    readme_config.create_doc(**args)
 
 
 def create_doc_page(path: Path, readme_config: ReadMeConfig):
@@ -201,11 +200,20 @@ def create_categories(fpath: Path, readme_config: ReadMeConfig):
         d.name for d in fpath.iterdir() if d.is_dir() if str(d.name)[0] != "_"
     ]
 
-    for c in readme_categories:
-        if c not in doc_categories:
-            new_category_fpath = fpath / c
-            logging.debug(f"Creating new category: {new_category_fpath}")
-            Path(new_category_fpath).mkdir()
+    ## Creating doc categories
+    new_doc_categories = list(set(readme_categories) - set(doc_categories))
+    for c in new_doc_categories:
+        new_category_fpath = fpath / c
+        logging.debug(f"Creating new category: {new_category_fpath}")
+        Path(new_category_fpath).mkdir()
+
+    ## Creating Readme categories
+    new_readme_categories = list(set(doc_categories) - set(readme_categories))
+    for c in new_readme_categories:
+        logging.debug(f"Creating new category: {c}")
+        readme_config.create_category(title=c)
+
+    return new_doc_categories, new_readme_categories
 
 
 def main(args):
@@ -256,10 +264,6 @@ def main(args):
                     if "slug: " in line
                 ]
 
-        # for category, pages in readme_config.config["categories"].items():
-        #     if category not in docs_category_slugs:
-        #         Path(DOCS_TEMPLATE_PATH / category).mkdir(parents=True)
-
         for root, dirs, files in os.walk(EXPORT_MD_PATH):
             root_name = root.split("/")[-1]
             logging.debug(f"Root file: {root}")
@@ -296,9 +300,18 @@ def main(args):
 
         ## Syncing categories
         logging.debug(f"Creating categories in {DOCS_TEMPLATE_PATH}...")
-        create_categories(DOCS_TEMPLATE_PATH, readme_config)
-        # from pprint import pprint
-        # pprint(docs_config.build())
+        new_doc_categories, new_readme_categories = create_categories(
+            DOCS_TEMPLATE_PATH, readme_config
+        )
+        if new_doc_categories:
+            logging.debug(f"Rebuilding doc config ... ")
+            docs_config.build()
+        if new_readme_categories:
+            logging.debug(f"Rebuilding readme config ... ")
+            readme_config.build()
+
+            for c in new_readme_categories:
+                readme_config.category_slugs += c
 
         docs_condensed_config = docs_config.condensed_config
         readme_condensed_config = readme_config.condensed_config

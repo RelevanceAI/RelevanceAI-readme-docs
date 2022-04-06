@@ -114,7 +114,6 @@ class ReadMeConfig(Config):
                 yaml.dump(condensed_config, f, default_flow_style=False, sort_keys=True)
 
         config = condensed_config
-
         # ## Building expanded config (inc children)
         # for category, pages in category_detail.items():
         #     page_details = {}
@@ -138,6 +137,10 @@ class ReadMeConfig(Config):
         config["categories"] = category_detail
         with open(self.fpath, "w") as f:
             yaml.dump(config, f, default_flow_style=False, sort_keys=True)
+
+        self.condensed_config = yaml.safe_load(open(self.condensed_fpath, "r"))
+        self.config = yaml.safe_load(open(self.fpath, "r"))
+
         return config
 
     def _search_dict(self, k, d):
@@ -148,7 +151,7 @@ class ReadMeConfig(Config):
                 return self._search_dict(k, v)
         return None
 
-    def create(
+    def create_doc(
         self,
         title: str,
         type: Union["basic", "link", "error"],
@@ -203,6 +206,26 @@ class ReadMeConfig(Config):
             hidden=hidden,
             order=order,
             error_code=error_code,
+        )
+
+    def create_category(
+        self,
+        title: str,
+        type: str = "guide",
+    ):
+        """Create a new category
+
+        Parameters
+        ----------
+        title : str
+            The title of the category.
+        type : str, optional
+            The type of category you want to create.
+
+        """
+        return self.rdme.create_category(
+            title=title,
+            type=type,
         )
 
     @staticmethod

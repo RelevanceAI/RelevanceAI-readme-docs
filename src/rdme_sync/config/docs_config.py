@@ -77,19 +77,15 @@ class DocsConfig(Config):
         if select_fields:
             self.select_fields = select_fields
 
-        print(self.dir_path)
-        from pprint import pprint
-
-        # pprint(self.config)
         self.config = self._dir_to_dict(self.dir_path)
         self.config["version"] = self.version
 
-        print(self.fpath)
         with open(self.fpath, "w") as f:
             yaml.dump(self.config, f, default_flow_style=False, sort_keys=True)
+        self.config = yaml.safe_load(open(self.fpath, "r"))
 
         if condensed:
-            self._build_condensed(fpath=self.condensed_fpath)
+            self.condensed_config = self._build_condensed(fpath=self.condensed_fpath)
 
         return self.config
 
@@ -240,4 +236,5 @@ class DocsConfig(Config):
         docs_readme_config["version"] = self.version
         with open(fpath, "w") as f:
             yaml.dump(docs_readme_config, f, default_flow_style=False, sort_keys=True)
+        docs_readme_config = yaml.safe_load(open(fpath, "r"))
         return docs_readme_config

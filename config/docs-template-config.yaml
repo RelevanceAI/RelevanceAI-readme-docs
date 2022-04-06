@@ -381,6 +381,7 @@ docs_template:
     - add-clustering.md
   - coming-soon.md
   - quickstart-visualize-your-vectors.md
+- new_category: []
 - dashboard:
   - saving-aggregation-queries-from-sdk.md
   - writing-aggregation-queries.md

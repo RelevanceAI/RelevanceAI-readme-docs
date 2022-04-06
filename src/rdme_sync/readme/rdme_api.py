@@ -105,22 +105,22 @@ class ReadMeAPI:
             request_params, self.session.request(**request_params)
         )
         result = json.loads(response.text)
+        if result:
+            if select_fields:
+                available_fields = (
+                    result[0].keys() if isinstance(result, list) else result.keys()
+                )
+                result = result if isinstance(result, list) else [result]
+                select_fields = self._validate_select_fields(
+                    select_fields=select_fields, available_fields=available_fields
+                )
 
-        if select_fields:
-            available_fields = (
-                result[0].keys() if isinstance(result, list) else result.keys()
-            )
-            result = result if isinstance(result, list) else [result]
-            select_fields = self._validate_select_fields(
-                select_fields=select_fields, available_fields=available_fields
-            )
+                select_result = []
+                for r in result:
+                    select_result.append({s: r[s] for s in select_fields})
+                return select_result
 
-            select_result = []
-            for r in result:
-                select_result.append({s: r[s] for s in select_fields})
-            return select_result
-        else:
-            return result
+        return result
 
     def get_categories(
         self,
@@ -233,5 +233,28 @@ class ReadMeAPI:
             if not error_code:
                 error_code = {"code": "404"}
             payload["error"] = error_code
+
+        return self._request("POST", request_url, payload=payload)
+
+    def create_category(
+        self,
+        title: str,
+        type: str = "guide",
+    ):
+        """Create a new category
+
+        Parameters
+        ----------
+        title : str
+            The title of the category.
+        type : str, optional
+            The type of category you want to create.
+
+        """
+        request_url = f"{self.base_url}/categories"
+        payload = {
+            "title": title,
+            "type": type,
+        }
 
         return self._request("POST", request_url, payload=payload)
